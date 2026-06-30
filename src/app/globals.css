@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #ffffff;
+  color: #211d18;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Spectral", Georgia, serif;
+}
+
+/* Reader prose tuned to the Reading Room palette */
+.prose-reading {
+  color: #211d18;
+}
+.prose-reading :where(h1, h2, h3) {
+  font-family: "Spectral", Georgia, serif;
+  color: #211d18;
+  letter-spacing: -0.01em;
+}
+.prose-reading :where(a) {
+  color: #7c2d2d;
+}
+.prose-reading :where(strong) {
+  color: #211d18;
+}
+.prose-reading :where(code) {
+  font-family: ui-monospace, Menlo, monospace;
+  background: #f0e9da;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* Drop cap on the first paragraph of a reader entry */
+.dropcap > p:first-of-type::first-letter {
+  font-family: "Spectral", Georgia, serif;
+  font-weight: 700;
+  font-size: 3.1rem;
+  line-height: 0.78;
+  float: left;
+  color: #7c2d2d;
+  margin: 0.35rem 0.6rem 0 0;
+}
+
+/* Thin scholarly scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d8cfbf transparent;
+}
