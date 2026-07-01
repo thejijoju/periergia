@@ -1,0 +1,36 @@
+name: Apply Supabase schema & seed
+
+# Automatically applies the database schema and seed data to Supabase whenever
+# the SQL files change on main. No more copy-pasting into the SQL editor.
+# Requires a repo secret SUPABASE_DB_URL (Supabase → Project Settings →
+# Database → Connection string → "Session pooler" URI, with your password).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "supabase/**"
+  workflow_dispatch: {} # lets you run it manually from the Actions tab
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply schema (idempotent)
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -f supabase/schema.sql
+
+      - name: Apply seed (resets + reloads taxonomy)
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -f supabase/seed.sql
+
+      - name: Report counts
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -c \
+            "select (select count(*) from subjects) as subjects, (select count(*) from nodes) as nodes;"
