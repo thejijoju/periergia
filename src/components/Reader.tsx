@@ -62,11 +62,11 @@ export function Reader({ node }: { node: ReaderNode }) {
       </div>
 
       {/* Title + meta */}
-      <h1 className="mt-2 font-serif font-bold text-[30px] leading-[1.1] tracking-[-0.01em] text-ink">
+      <h1 className="mt-2 font-sans font-bold text-[30px] leading-[1.1] tracking-[-0.01em] text-ink">
         {node.title}
       </h1>
       {node.summary && (
-        <p className="mt-2 font-serif italic text-[14px] text-muted">{node.summary}</p>
+        <p className="mt-2 font-sans italic text-[14px] text-muted">{node.summary}</p>
       )}
 
       {/* Format pills (Read / Listen / Watch / See) */}
@@ -77,7 +77,7 @@ export function Reader({ node }: { node: ReaderNode }) {
             <button
               key={f.id}
               onClick={() => setPrefs({ format: f.id as Format })}
-              className={`font-serif text-[12.5px] px-4 py-[7px] rounded-full transition-colors ${
+              className={`font-sans text-[12.5px] px-4 py-[7px] rounded-full transition-colors ${
                 active
                   ? "text-white bg-maroon"
                   : "text-ink border border-[rgba(33,29,24,.25)] hover:border-ink"
@@ -110,18 +110,18 @@ export function Reader({ node }: { node: ReaderNode }) {
 
       {/* Body */}
       {loading ? (
-        <p className="font-serif italic text-[15px] text-faint">Composing this entry…</p>
+        <p className="font-sans italic text-[15px] text-faint">Composing this entry…</p>
       ) : isVisual && formatMeta && !formatMeta.ready ? (
         <div className="rounded-2xl border border-line bg-[#faf8f4] px-6 py-10 text-center">
-          <p className="font-serif text-[16px] text-ink">
+          <p className="font-sans text-[16px] text-ink">
             “{formatMeta.label}” is coming soon.
           </p>
-          <p className="mt-2 font-serif italic text-[13px] text-muted">
+          <p className="mt-2 font-sans italic text-[13px] text-muted">
             v1 supports Read and Listen. Visual and 3D formats arrive as the next “format plugins.”
           </p>
           <button
             onClick={() => setPrefs({ format: "text" })}
-            className="mt-4 font-serif text-[13px] text-maroon underline underline-offset-2"
+            className="mt-4 font-sans text-[13px] text-maroon underline underline-offset-2"
           >
             Back to reading
           </button>
@@ -133,7 +133,7 @@ export function Reader({ node }: { node: ReaderNode }) {
               <VoiceButton text={body} />
             </div>
           )}
-          <div className="prose-reading dropcap font-serif text-[15px] leading-[1.7] max-w-none">
+          <div className="prose-reading dropcap font-sans text-[15px] leading-[1.7] max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown>
           </div>
         </>
@@ -153,10 +153,10 @@ export function Reader({ node }: { node: ReaderNode }) {
               onClick={() => setShowQuiz(true)}
               className="w-full flex justify-between items-center border border-maroon rounded-full px-5 py-3 hover:bg-[#faf3f0] transition-colors"
             >
-              <span className="font-serif font-medium text-[14px] text-ink">
+              <span className="font-sans font-medium text-[14px] text-ink">
                 Test yourself — 6 questions
               </span>
-              <span className="font-serif font-semibold text-[16px] text-maroon">→</span>
+              <span className="font-sans font-semibold text-[16px] text-maroon">→</span>
             </button>
           ) : (
             <QuizPanel
@@ -196,7 +196,7 @@ function ControlRow({
             <button
               key={it.id}
               onClick={() => onSelect(it.id)}
-              className={`font-serif text-[11px] px-[10px] py-[4px] rounded-full transition-colors ${
+              className={`font-sans text-[11px] px-[10px] py-[4px] rounded-full transition-colors ${
                 active
                   ? "border-[1.1px] border-ink bg-white text-ink"
                   : "border border-[rgba(33,29,24,.08)] bg-pill text-ink"

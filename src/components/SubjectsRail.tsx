@@ -18,7 +18,7 @@ export function SubjectsRail({
     <nav className="text-[14px]">
       <Link
         href="/"
-        className="inline-block font-serif font-bold text-[20px] tracking-[-0.01em] border-b-[2px] border-maroon pb-1 text-ink"
+        className="inline-block font-sans font-bold text-[20px] tracking-[-0.01em] border-b-[2px] border-maroon pb-1 text-ink"
       >
         Periergia
       </Link>
@@ -32,7 +32,7 @@ export function SubjectsRail({
             <li key={s.slug}>
               <Link
                 href={s.href}
-                className={`block font-serif text-[15px] py-1.5 transition-colors ${
+                className={`block font-sans text-[15px] py-1.5 transition-colors ${
                   active ? "text-maroon font-semibold" : "text-ink hover:text-maroon"
                 }`}
               >

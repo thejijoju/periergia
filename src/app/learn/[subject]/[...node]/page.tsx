@@ -110,7 +110,7 @@ function SubjectsRailMobile({
     <div className="flex items-center justify-between">
       <a
         href="/"
-        className="font-serif font-bold text-[18px] tracking-[-0.01em] border-b-2 border-maroon pb-0.5 text-ink"
+        className="font-sans font-bold text-[18px] tracking-[-0.01em] border-b-2 border-maroon pb-0.5 text-ink"
       >
         Periergia
       </a>

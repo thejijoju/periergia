@@ -24,9 +24,10 @@ body {
   color: #211d18;
 }
 .prose-reading :where(h1, h2, h3) {
-  font-family: "Spectral", Georgia, serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 700;
   color: #211d18;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 .prose-reading :where(a) {
   color: #7c2d2d;
@@ -44,13 +45,13 @@ body {
 
 /* Drop cap on the first paragraph of a reader entry */
 .dropcap > p:first-of-type::first-letter {
-  font-family: "Spectral", Georgia, serif;
-  font-weight: 700;
-  font-size: 3.1rem;
-  line-height: 0.78;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 0.8;
   float: left;
   color: #7c2d2d;
-  margin: 0.35rem 0.6rem 0 0;
+  margin: 0.3rem 0.5rem 0 0;
 }
 
 /* Thin scholarly scrollbars */

@@ -93,19 +93,19 @@ export function QuizPanel({
   return (
     <div className="border border-maroon rounded-2xl p-5 sm:p-6 bg-white">
       <div className="flex items-baseline justify-between mb-4">
-        <h2 className="font-serif font-semibold text-[18px] text-ink">Test yourself — {title}</h2>
-        <button onClick={onClose} className="font-serif text-[13px] text-whisper hover:text-maroon">
+        <h2 className="font-sans font-semibold text-[18px] text-ink">Test yourself — {title}</h2>
+        <button onClick={onClose} className="font-sans text-[13px] text-whisper hover:text-maroon">
           Close
         </button>
       </div>
 
-      {loading && <p className="font-serif italic text-[14px] text-faint">Preparing your questions…</p>}
+      {loading && <p className="font-sans italic text-[14px] text-faint">Preparing your questions…</p>}
 
       {!loading && questions && (
         <div className="space-y-6">
           {questions.map((q, i) => (
             <div key={q.id}>
-              <p className="font-serif text-[15px] text-ink mb-2">
+              <p className="font-sans text-[15px] text-ink mb-2">
                 <span className="font-mono text-[11px] text-numeral mr-2">{String(i + 1).padStart(2, "0")}</span>
                 {q.prompt}
               </p>
@@ -130,7 +130,7 @@ export function QuizPanel({
                         key={oi}
                         disabled={submitted}
                         onClick={() => setPicks((p) => ({ ...p, [q.id]: oi }))}
-                        className={`block w-full text-left font-serif text-[14px] px-4 py-2 rounded-xl border ${tone} transition-colors`}
+                        className={`block w-full text-left font-sans text-[14px] px-4 py-2 rounded-xl border ${tone} transition-colors`}
                       >
                         {opt}
                       </button>
@@ -147,11 +147,11 @@ export function QuizPanel({
                     disabled={submitted}
                     rows={3}
                     placeholder="Write your answer…"
-                    className="w-full font-serif text-[14px] border border-line rounded-xl px-4 py-3 outline-none focus:border-ink disabled:opacity-70"
+                    className="w-full font-sans text-[14px] border border-line rounded-xl px-4 py-3 outline-none focus:border-ink disabled:opacity-70"
                   />
                   {submitted && grades[q.id] && !grades[q.id].loading && (
                     <p
-                      className={`mt-2 font-serif text-[13px] ${
+                      className={`mt-2 font-sans text-[13px] ${
                         grades[q.id].correct ? "text-maroon" : "text-muted"
                       }`}
                     >
@@ -160,7 +160,7 @@ export function QuizPanel({
                     </p>
                   )}
                   {submitted && grades[q.id]?.loading && (
-                    <p className="mt-2 font-serif italic text-[13px] text-faint">Grading…</p>
+                    <p className="mt-2 font-sans italic text-[13px] text-faint">Grading…</p>
                   )}
                 </div>
               )}
@@ -170,14 +170,14 @@ export function QuizPanel({
           {!submitted ? (
             <button
               onClick={submit}
-              className="font-serif text-[14px] text-white bg-maroon rounded-full px-6 py-2.5 hover:opacity-90"
+              className="font-sans text-[14px] text-white bg-maroon rounded-full px-6 py-2.5 hover:opacity-90"
             >
               Submit answers
             </button>
           ) : (
             allOpenGraded && (
               <div className="border-t border-line pt-4">
-                <p className="font-serif text-[16px] text-ink">
+                <p className="font-sans text-[16px] text-ink">
                   You scored <strong>{got}</strong> / {total}.{" "}
                   {got / total >= 0.6 ? "Well done — entry complete." : "Review the entry and try again."}
                 </p>

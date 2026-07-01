@@ -31,7 +31,7 @@ export function SyllabusTree({
               {it.isLeaf ? (
                 <Link
                   href={it.href}
-                  className={`block font-serif py-1 border-l-2 pl-3 -ml-px transition-colors ${
+                  className={`block font-sans py-1 border-l-2 pl-3 -ml-px transition-colors ${
                     active
                       ? "border-maroon text-maroon font-medium"
                       : "border-transparent text-muted hover:text-ink"
@@ -40,7 +40,7 @@ export function SyllabusTree({
                   {it.title}
                 </Link>
               ) : (
-                <div className="font-serif text-[13px] py-1 pl-3 text-ink font-medium">
+                <div className="font-sans text-[13px] py-1 pl-3 text-ink font-medium">
                   {it.title}
                 </div>
               )}

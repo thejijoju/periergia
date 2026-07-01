@@ -36,7 +36,7 @@ export function VoiceButton({ text }: { text: string }) {
 
   if (!supported) {
     return (
-      <p className="font-serif italic text-[13px] text-faint">
+      <p className="font-sans italic text-[13px] text-faint">
         Audio narration needs a browser with speech support.
       </p>
     );
@@ -61,7 +61,7 @@ export function VoiceButton({ text }: { text: string }) {
   return (
     <button
       onClick={toggle}
-      className="inline-flex items-center gap-2 font-serif text-[13.5px] text-ink border border-maroon rounded-full px-4 py-2 hover:bg-maroon hover:text-white transition-colors"
+      className="inline-flex items-center gap-2 font-sans text-[13.5px] text-ink border border-maroon rounded-full px-4 py-2 hover:bg-maroon hover:text-white transition-colors"
     >
       <svg width="15" height="16" viewBox="0 0 16 17" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
         {speaking ? (
