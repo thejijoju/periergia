@@ -26,9 +26,9 @@ const ICONS: Record<string, LucideIcon> = {
 // always visible even if it lives past the peek.
 const PEEK = 5;
 
-// Small, discreet icon rail that sits next to a topic title. At rest it shows a
-// few modes; hovering reveals the rest with a staggered cascade. Each chip grows
-// to show its label (tinted by category) on hover / focus / when active.
+// Small, discreet icon rail beside a topic title. Icons keep a fixed size; the
+// label appears as a little black tooltip above the icon on hover (no inline
+// growing). At rest it shows a few modes; hovering the rail reveals the rest.
 export function LearningModeRail({
   active,
   onSelect,
@@ -50,89 +50,89 @@ export function LearningModeRail({
     >
       <style>{`
         .periergia-rail {
-          --chip: 24px;
           display: flex;
           align-items: center;
           gap: 3px;
-          overflow-x: auto;
-          overflow-y: hidden;
-          padding: 2px;
-          scrollbar-width: none;
+          padding: 2px 0;
+          overflow: visible;
         }
-        .periergia-rail::-webkit-scrollbar { display: none; }
 
         .pm-chip {
           --c: #888;
+          position: relative;
           flex: 0 0 auto;
           display: inline-flex;
           align-items: center;
-          height: var(--chip);
-          width: var(--chip);
+          justify-content: center;
+          height: 24px;
+          width: 24px;
           padding: 0;
           border: 1px solid transparent;
-          border-radius: 999px;
+          border-radius: 8px;
           background: transparent;
           color: #a59a8a;
           cursor: pointer;
-          overflow: hidden;
-          transition: width .22s ease, padding .22s ease, opacity .2s ease,
-                      margin .22s ease, background .18s ease, color .18s ease,
-                      border-color .18s ease, transform .18s ease;
+          transition: width .22s ease, opacity .2s ease, margin .22s ease,
+                      background .16s ease, color .16s ease, border-color .16s ease;
           -webkit-tap-highlight-color: transparent;
         }
-        .pm-chip svg {
-          flex: 0 0 auto;
-          width: 15px;
-          height: 15px;
-          margin: 0 auto;
-          transition: width .18s ease, height .18s ease, margin .22s ease;
-        }
-        .pm-label {
-          max-width: 0;
-          opacity: 0;
-          white-space: nowrap;
-          font: 500 12px/1 var(--font-inter), system-ui, sans-serif;
-          transition: max-width .22s ease, opacity .16s ease;
-        }
+        .pm-chip svg { width: 15px; height: 15px; flex: 0 0 auto; }
 
-        /* hidden until the rail is hovered/focused */
+        /* hidden until the rail is hovered/focused, then cascaded in */
         .pm-chip.pm-collapsed {
           width: 0;
-          padding: 0;
           margin-left: -3px;
           opacity: 0;
+          overflow: hidden;
           pointer-events: none;
           border-color: transparent;
         }
 
-        /* grow + reveal label on hover, keyboard focus, or when active */
+        /* colour tint only — no size change, no inline label */
         .pm-chip:hover,
         .pm-chip:focus-visible,
         .pm-chip[data-active="true"] {
-          width: auto;
-          padding: 0 11px 0 9px;
           color: var(--c);
           background: color-mix(in srgb, var(--c) 12%, transparent);
-          border-color: color-mix(in srgb, var(--c) 35%, transparent);
-          transform: translateY(-1px);
+          border-color: color-mix(in srgb, var(--c) 30%, transparent);
           outline: none;
         }
-        .pm-chip:hover svg,
-        .pm-chip:focus-visible svg,
-        .pm-chip[data-active="true"] svg {
-          width: 17px;
-          height: 17px;
-          margin: 0 6px 0 0;
+
+        /* black tooltip above the icon */
+        .pm-tip {
+          position: absolute;
+          bottom: calc(100% + 7px);
+          left: 50%;
+          transform: translateX(-50%) translateY(2px);
+          background: #17130f;
+          color: #fff;
+          font: 500 11px/1 var(--font-inter), system-ui, sans-serif;
+          letter-spacing: 0;
+          padding: 5px 7px;
+          border-radius: 6px;
+          white-space: nowrap;
+          opacity: 0;
+          pointer-events: none;
+          z-index: 40;
+          transition: opacity .13s ease, transform .13s ease;
         }
-        .pm-chip:hover .pm-label,
-        .pm-chip:focus-visible .pm-label,
-        .pm-chip[data-active="true"] .pm-label {
-          max-width: 140px;
+        .pm-tip::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 4px solid transparent;
+          border-top-color: #17130f;
+        }
+        .pm-chip:hover .pm-tip,
+        .pm-chip:focus-visible .pm-tip {
           opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .pm-chip, .pm-chip svg, .pm-label { transition: none; }
+          .pm-chip, .pm-tip { transition: none; }
         }
       `}</style>
 
@@ -155,11 +155,10 @@ export function LearningModeRail({
             aria-hidden={collapsed}
             aria-label={m.label}
             aria-pressed={on}
-            title={m.label}
             onClick={() => onSelect(m.id)}
           >
             <Icon strokeWidth={1.75} aria-hidden="true" />
-            <span className="pm-label">{m.label}</span>
+            <span className="pm-tip">{m.label}</span>
           </button>
         );
       })}
