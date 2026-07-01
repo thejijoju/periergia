@@ -11,12 +11,14 @@ export function SearchBar({
   onSubmit,
   placeholder = "Search any topic…",
   size = "lg",
+  autoFocus = false,
 }: {
   value: string;
   onChange: (v: string) => void;
   onSubmit?: () => void;
   placeholder?: string;
   size?: "sm" | "lg";
+  autoFocus?: boolean;
 }) {
   const [supportsVoice, setSupportsVoice] = useState(false);
   const [listening, setListening] = useState(false);
@@ -70,6 +72,8 @@ export function SearchBar({
         <line x1="11" y1="11" x2="15" y2="15" />
       </svg>
       <input
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={autoFocus}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => {

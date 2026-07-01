@@ -12,10 +12,14 @@ export function TopicSearch({
   searchIndex,
   placeholder = "Search any topic…",
   size = "sm",
+  autoFocus = false,
+  onClose,
 }: {
   searchIndex: SearchItem[];
   placeholder?: string;
   size?: "sm" | "lg";
+  autoFocus?: boolean;
+  onClose?: () => void;
 }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
@@ -50,6 +54,7 @@ export function TopicSearch({
         // close only when focus leaves the whole widget
         if (!e.currentTarget.contains(e.relatedTarget as HTMLElement)) {
           setTimeout(() => setOpen(false), 120);
+          onClose?.();
         }
       }}
     >
@@ -62,6 +67,7 @@ export function TopicSearch({
         onSubmit={() => results[0] && go(results[0].href)}
         placeholder={placeholder}
         size={size}
+        autoFocus={autoFocus}
       />
       {open && q && (
         <div className="absolute z-30 left-0 right-0 mt-2 bg-white border border-line rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,.25)] overflow-hidden">

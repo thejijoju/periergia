@@ -206,21 +206,46 @@ export async function gradeOpenAnswer(
 // ── Placeholders (offline / no key) ───────────────────────────────────────
 
 function placeholderContent(node: Node, key: ContentKey, trail: string): string {
-  const depthLine = DEPTH_GUIDE[key.depth];
+  const t = node.title;
+  const subject = trail.split(" › ")[0];
+  const lorem =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " +
+    "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " +
+    "laboris nisi ut aliquip ex ea commodo consequat.";
+  const lorem2 =
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+    "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
+    "mollit anim id est laborum.";
+
+  // Sectioned so the "On this page" outline has anchors to track on scroll.
   return [
-    `**${node.title}** — ${node.summary || `an entry in ${trail}.`}`,
+    `**${t}** — ${node.summary || `an entry in ${trail}.`} _This is placeholder text; set an \`ANTHROPIC_API_KEY\` to generate the real, original entry tuned to your depth, level, and format._`,
     ``,
-    `_This is placeholder content._ With an \`ANTHROPIC_API_KEY\` set, Periergia generates a real, ` +
-      `original explanation here tuned to your settings — currently **${key.depth}** depth (${depthLine}) ` +
-      `at the **${key.level}** level, read as **${formatLabel(key.format)}**.`,
+    `## Overview`,
+    lorem,
     ``,
-    `### What you'd learn`,
-    `- The core idea of *${node.title}* and why it matters.`,
-    `- How it connects to the rest of ${trail.split(" › ")[0]}.`,
-    `- The kind of question you should be able to answer afterwards.`,
+    lorem2,
     ``,
-    `Change the **depth**, **level**, and **format** controls above to see how the same topic ` +
-      `re-renders for a different reader. When you're ready, hit **Test yourself**.`,
+    `## Origins & context`,
+    `Where ${t} comes from and how it fits within ${subject}. ${lorem}`,
+    ``,
+    `## Key ideas`,
+    `The handful of ideas that carry most of the weight in ${t}.`,
+    ``,
+    `- The first core idea, stated plainly.`,
+    `- A second idea, and why it follows.`,
+    `- A third, with an everyday analogy.`,
+    ``,
+    lorem2,
+    ``,
+    `## How it works`,
+    lorem,
+    ``,
+    `## Why it matters`,
+    `What ${t} lets you understand or do once it clicks. ${lorem2}`,
+    ``,
+    `## Common questions`,
+    `The questions most people have when meeting ${t} for the first time. When you're ready, hit **Test yourself**.`,
   ].join("\n");
 }
 

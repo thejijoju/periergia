@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { Reader, type ReaderNode } from "@/components/Reader";
+import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SubjectTree, type TreeGroup } from "@/components/SubjectTree";
-import { TopicSearch } from "@/components/TopicSearch";
+import { HeaderSearch } from "@/components/HeaderSearch";
+import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
 import {
   getSubject,
@@ -51,33 +52,44 @@ export default async function ReaderPage({
         .map((t) => ({ id: t.id, title: t.title, href: `/learn/${subj.slug}/${t.path.join("/")}` })),
     }));
 
-  const ancestors = await getAncestors(node);
-  const trail = [subj.name, ...ancestors.map((n) => n.title)];
+  // Breadcrumb: subject → ancestors → current (current has no href).
+  const ancestors = await getAncestors(node); // includes self as last element
+  const crumbs: Crumb[] = [
+    { label: subj.name, href: subjectHref },
+    ...ancestors.map((n, i) => {
+      const isSelf = i === ancestors.length - 1;
+      return {
+        label: n.title,
+        href: isSelf ? undefined : `/learn/${subj.slug}/${n.path.join("/")}`,
+      };
+    }),
+  ];
+
   const readerNode: ReaderNode = {
     id: node.id,
     title: node.title,
     summary: node.summary,
-    trail,
+    crumbs,
   };
 
   const searchIndex = await getSearchIndex();
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Sticky header — wordmark + jump-to-any-topic search */}
+      {/* Sticky header — wordmark + expandable search icon */}
       <header className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-line">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-8 py-3 flex items-center gap-4">
           <div className="shrink-0">
             <Wordmark size="sm" />
           </div>
-          <div className="ml-auto w-full max-w-[380px] min-w-0">
-            <TopicSearch searchIndex={searchIndex} />
+          <div className="ml-auto flex justify-end min-w-0">
+            <HeaderSearch searchIndex={searchIndex} />
           </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[230px_minmax(0,1fr)_210px] lg:gap-10 px-5 sm:px-8 py-8 lg:py-12">
-        {/* Left rail — nested syllabus tree with purple current highlight */}
+      <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[240px_minmax(0,1fr)_210px] lg:gap-10 px-5 sm:px-8 py-8 lg:py-12">
+        {/* Left rail — full subject curriculum with purple current highlight */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
             <SubjectTree
@@ -94,42 +106,13 @@ export default async function ReaderPage({
           <Reader node={readerNode} />
         </div>
 
-        {/* Right rail — "you are here" */}
+        {/* Right rail — "on this page" scroll-spy outline */}
         <aside className="hidden lg:block">
           <div className="sticky top-24">
-            <PositionCard trail={trail} />
+            <OnThisPage />
           </div>
         </aside>
       </div>
     </div>
-  );
-}
-
-function PositionCard({ trail }: { trail: string[] }) {
-  return (
-    <nav className="text-[13px]">
-      <div className="font-mono font-semibold text-[10px] tracking-[0.12em] uppercase text-whisper">
-        Where you are
-      </div>
-      <ol className="mt-3 space-y-1.5">
-        {trail.map((t, i) => {
-          const last = i === trail.length - 1;
-          return (
-            <li key={i} style={{ paddingLeft: `${i * 10}px` }}>
-              {last ? (
-                <span className="font-sans font-medium text-purple">
-                  {t}
-                  <span className="block font-mono text-[9px] tracking-[0.1em] uppercase text-purple/60">
-                    You are here
-                  </span>
-                </span>
-              ) : (
-                <span className="font-sans text-muted">{t}</span>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
   );
 }
