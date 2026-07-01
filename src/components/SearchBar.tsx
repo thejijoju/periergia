@@ -58,8 +58,8 @@ export function SearchBar({
     }
   };
 
-  const pad = size === "lg" ? "px-[17px] py-[11px]" : "px-4 py-2";
-  const textSize = size === "lg" ? "text-[14px]" : "text-[13px]";
+  const pad = size === "lg" ? "px-5 py-3 sm:px-6 sm:py-4" : "px-4 py-2";
+  const textSize = size === "lg" ? "text-[14px] sm:text-[16px]" : "text-[13px]";
 
   return (
     <div className={`flex items-center gap-[10px] border-[1.5px] border-ink rounded-full ${pad}`}>

@@ -26,38 +26,39 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
   }, [subjects, query]);
 
   return (
-    <main className="min-h-screen bg-white text-ink">
-      <div className="mx-auto max-w-[560px] px-6 pt-12 pb-16">
-        {/* Brand */}
+    <main className="min-h-screen bg-white text-ink flex flex-col">
+      {/* Brand */}
+      <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 pt-16 sm:pt-24 lg:pt-28 text-center">
         <Wordmark size="lg" tagline />
+      </div>
 
-        {/* Library strip */}
-        <div className="relative mt-4 h-[44px] w-screen left-1/2 -translate-x-1/2 max-w-[560px] sm:rounded-none">
-          <Image
-            src="/library-strip.png"
-            alt="A classical library"
-            fill
-            sizes="560px"
-            className="object-cover"
-            priority
-          />
-        </div>
+      {/* Full-bleed library strip */}
+      <div className="relative w-full h-[56px] sm:h-[130px] lg:h-[190px] mt-8 sm:mt-14">
+        <Image
+          src="/library-strip.png"
+          alt="A classical library"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+      </div>
 
+      {/* Controls */}
+      <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 mt-10 sm:mt-16 pb-24 sm:pb-32">
         {/* Search */}
-        <div className="mt-[30px]">
-          <SearchBar value={query} onChange={setQuery} />
-        </div>
+        <SearchBar value={query} onChange={setQuery} size="lg" />
 
         {/* Browse-mode toggle */}
-        <div className="mt-[42px] flex gap-[22px] items-end border-b border-line">
+        <div className="mt-12 sm:mt-16 flex gap-8 items-end border-b border-line">
           {(["pills", "list"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`font-serif text-[12px] pb-2 -mb-px border-b-2 ${
+              className={`font-serif text-[14px] sm:text-[16px] pb-3 -mb-px border-b-2 transition-colors ${
                 tab === t
                   ? "font-semibold text-ink border-maroon"
-                  : "font-normal text-whisper border-transparent"
+                  : "font-normal text-whisper border-transparent hover:text-ink"
               }`}
             >
               {t === "pills" ? "Quick pills" : "Full list"}
@@ -67,26 +68,26 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
 
         {/* Pills view */}
         {tab === "pills" && (
-          <div className="mt-[18px] flex flex-wrap gap-[6px] items-center">
+          <div className="mt-7 sm:mt-9 flex flex-wrap gap-2.5 sm:gap-3 items-center">
             <button
               onClick={() => setPill("Explore")}
-              className={`flex-none font-serif text-[10.5px] px-[10px] py-[4px] rounded-full inline-flex items-center whitespace-nowrap transition-colors ${
+              className={`flex-none font-serif text-[14px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full inline-flex items-center whitespace-nowrap transition-colors ${
                 pill === "Explore"
-                  ? "border-[1.1px] border-ink bg-white text-ink"
-                  : "border border-[rgba(33,29,24,.08)] bg-pill text-ink"
+                  ? "border-[1.5px] border-ink bg-white text-ink"
+                  : "border border-[rgba(33,29,24,.1)] bg-pill text-ink hover:border-ink"
               }`}
             >
-              <span className="text-maroon mr-1">◆</span>Explore
+              <span className="text-maroon mr-1.5">◆</span>Explore
             </button>
             {filtered.map((s) => (
               <Link
                 key={s.slug}
                 href={s.href}
                 onClick={() => setPill(s.name)}
-                className={`flex-none font-serif text-[10.5px] px-[10px] py-[4px] rounded-full inline-flex items-center whitespace-nowrap transition-colors ${
+                className={`flex-none font-serif text-[14px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full inline-flex items-center whitespace-nowrap transition-colors ${
                   pill === s.name
-                    ? "border-[1.1px] border-ink bg-white text-ink"
-                    : "border border-[rgba(33,29,24,.08)] bg-pill text-ink"
+                    ? "border-[1.5px] border-ink bg-white text-ink"
+                    : "border border-[rgba(33,29,24,.1)] bg-pill text-ink hover:border-ink"
                 }`}
               >
                 {s.name}
@@ -98,11 +99,11 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
         {/* Full list view */}
         {tab === "list" && (
           <div>
-            <div className="mt-[18px] mb-[2px] flex items-baseline justify-between">
-              <span className="font-mono font-semibold text-[11px] tracking-[0.14em] uppercase text-maroon">
+            <div className="mt-7 sm:mt-9 mb-1 flex items-baseline justify-between">
+              <span className="font-mono font-semibold text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-maroon">
                 Browse subjects
               </span>
-              <span className="font-serif italic text-[12px] text-muted">
+              <span className="font-serif italic text-[13px] sm:text-[14px] text-muted">
                 {subjects.length} fields
               </span>
             </div>
@@ -110,21 +111,21 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
               <Link
                 key={s.slug}
                 href={s.href}
-                className="flex justify-between items-center py-[10px] border-t border-line group"
+                className="flex justify-between items-center py-4 sm:py-5 border-t border-line group"
               >
-                <span className="font-serif font-medium text-[16px]">
-                  <span className="font-mono text-[11px] text-numeral mr-[11px]">
+                <span className="font-serif font-medium text-[18px] sm:text-[21px]">
+                  <span className="font-mono text-[12px] text-numeral mr-4">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {s.name}
                 </span>
-                <span className="font-serif text-[12px] text-whisper group-hover:text-maroon transition-colors">
+                <span className="font-serif text-[13px] sm:text-[14px] text-whisper group-hover:text-maroon transition-colors">
                   {s.themeCount} themes&nbsp;›
                 </span>
               </Link>
             ))}
             {filtered.length === 0 && (
-              <p className="py-6 font-serif italic text-[13px] text-faint">
+              <p className="py-8 font-serif italic text-[14px] text-faint">
                 No subjects match “{query}”.
               </p>
             )}
