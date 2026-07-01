@@ -23,7 +23,7 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
 
   // Outline chips — no fill colour, modern/Medium-like.
   const chip =
-    "flex-none font-sans text-[14px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-[rgba(33,29,24,.18)] text-ink bg-transparent hover:border-ink transition-colors whitespace-nowrap";
+    "flex-none font-sans text-[13px] sm:text-[13.5px] px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[rgba(33,29,24,.18)] text-ink bg-transparent hover:border-ink transition-colors whitespace-nowrap";
 
   return (
     <main className="relative min-h-screen bg-white text-ink flex flex-col overflow-hidden">
