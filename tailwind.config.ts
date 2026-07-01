@@ -15,6 +15,8 @@ const config: Config = {
       colors: {
         ink: "#211d18",
         maroon: "#7c2d2d",
+        purple: "#6d28d9",
+        "purple-soft": "#f3effb",
         muted: "#6b6258",
         faint: "#8a8076",
         whisper: "#a59a8a",

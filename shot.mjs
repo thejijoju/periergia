@@ -1,11 +1,7 @@
 import { chromium } from "playwright-core";
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
 const p = await (await b.newContext({ viewport:{width:1280,height:820}, deviceScaleFactor:2 })).newPage();
-await p.goto("http://localhost:3000/learn/physics/modern-physics/quantum-mechanics", { waitUntil: "networkidle" });
-await p.waitForTimeout(700);
-const input = p.locator("header input");
-await input.click();
-await input.type("evolut", { delay: 35 });
-await p.waitForTimeout(400);
-await p.screenshot({ path: process.argv[2] + "/reader-search.png" });
+await p.goto("http://localhost:3000/learn/history/ancient-history/rome", { waitUntil: "networkidle" });
+await p.waitForTimeout(800);
+await p.screenshot({ path: process.argv[2] + "/reader-tree.png" });
 await b.close(); console.log("ok");

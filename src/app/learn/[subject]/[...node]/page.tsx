@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
 import { Reader, type ReaderNode } from "@/components/Reader";
-import { SubjectsRail, type RailSubject } from "@/components/SubjectsRail";
-import { SyllabusTree, type TreeItem } from "@/components/SyllabusTree";
+import { SubjectTree, type TreeGroup } from "@/components/SubjectTree";
 import { TopicSearch } from "@/components/TopicSearch";
 import { Wordmark } from "@/components/Wordmark";
 import {
-  getSubjects,
   getSubject,
   getNodeByPath,
   getNodes,
@@ -35,35 +33,31 @@ export default async function ReaderPage({
   const node = await getNodeByPath(subject, nodePath);
   if (!node) notFound();
 
-  // Left rail — all subjects
-  const allSubjects = await getSubjects();
-  const railSubjects: RailSubject[] = await Promise.all(
-    allSubjects.map(async (s): Promise<RailSubject> => {
-      const leaf = await getFirstLeaf(s.id);
-      return {
-        name: s.name,
-        slug: s.slug,
-        href: leaf ? `/learn/${s.slug}/${leaf.path.join("/")}` : `/learn/${s.slug}`,
-      };
-    }),
-  );
-
-  // Right rail — this subject's syllabus tree
   const subjectNodes = await getNodes(subj.id);
-  const treeItems: TreeItem[] = subjectNodes.map((n) => ({
-    id: n.id,
-    title: n.title,
-    href: `/learn/${subj.slug}/${n.path.join("/")}`,
-    depth: n.depth,
-    isLeaf: !subjectNodes.some((c) => c.parentId === n.id),
-  }));
+  const firstLeaf = await getFirstLeaf(subj.id);
+  const subjectHref = firstLeaf
+    ? `/learn/${subj.slug}/${firstLeaf.path.join("/")}`
+    : `/learn/${subj.slug}`;
+
+  // Group the subject into sub-subjects → topics for the left tree.
+  const groups: TreeGroup[] = subjectNodes
+    .filter((n) => n.depth === 0)
+    .map((sub) => ({
+      id: sub.id,
+      title: sub.title,
+      href: `/learn/${subj.slug}/${sub.path.join("/")}`,
+      topics: subjectNodes
+        .filter((n) => n.parentId === sub.id)
+        .map((t) => ({ id: t.id, title: t.title, href: `/learn/${subj.slug}/${t.path.join("/")}` })),
+    }));
 
   const ancestors = await getAncestors(node);
+  const trail = [subj.name, ...ancestors.map((n) => n.title)];
   const readerNode: ReaderNode = {
     id: node.id,
     title: node.title,
     summary: node.summary,
-    trail: [subj.name, ...ancestors.map((n) => n.title)],
+    trail,
   };
 
   const searchIndex = await getSearchIndex();
@@ -82,11 +76,16 @@ export default async function ReaderPage({
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[200px_minmax(0,1fr)_220px] lg:gap-10 px-5 sm:px-8 py-8 lg:py-12">
-        {/* Left rail */}
+      <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[230px_minmax(0,1fr)_210px] lg:gap-10 px-5 sm:px-8 py-8 lg:py-12">
+        {/* Left rail — nested syllabus tree with purple current highlight */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24">
-            <SubjectsRail subjects={railSubjects} activeSlug={subj.slug} />
+          <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
+            <SubjectTree
+              subjectName={subj.name}
+              subjectHref={subjectHref}
+              groups={groups}
+              activeId={node.id}
+            />
           </div>
         </aside>
 
@@ -95,13 +94,42 @@ export default async function ReaderPage({
           <Reader node={readerNode} />
         </div>
 
-        {/* Right rail */}
+        {/* Right rail — "you are here" */}
         <aside className="hidden lg:block">
           <div className="sticky top-24">
-            <SyllabusTree subjectName={subj.name} items={treeItems} activeId={node.id} />
+            <PositionCard trail={trail} />
           </div>
         </aside>
       </div>
     </div>
+  );
+}
+
+function PositionCard({ trail }: { trail: string[] }) {
+  return (
+    <nav className="text-[13px]">
+      <div className="font-mono font-semibold text-[10px] tracking-[0.12em] uppercase text-whisper">
+        Where you are
+      </div>
+      <ol className="mt-3 space-y-1.5">
+        {trail.map((t, i) => {
+          const last = i === trail.length - 1;
+          return (
+            <li key={i} style={{ paddingLeft: `${i * 10}px` }}>
+              {last ? (
+                <span className="font-sans font-medium text-purple">
+                  {t}
+                  <span className="block font-mono text-[9px] tracking-[0.1em] uppercase text-purple/60">
+                    You are here
+                  </span>
+                </span>
+              ) : (
+                <span className="font-sans text-muted">{t}</span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
   );
 }
