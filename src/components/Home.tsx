@@ -26,14 +26,24 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
   }, [subjects, query]);
 
   return (
-    <main className="min-h-screen bg-white text-ink flex flex-col">
+    <main className="relative min-h-screen bg-white text-ink flex flex-col overflow-hidden">
+      {/* Faint pixel-grid accent, top-right (from the periergia.com reference) */}
+      <Image
+        src="/accent-pixels.png"
+        alt=""
+        width={432}
+        height={230}
+        priority
+        className="pointer-events-none select-none absolute top-4 right-4 sm:top-6 sm:right-8 w-[190px] sm:w-[260px] lg:w-[320px] h-auto hidden sm:block"
+      />
+
       {/* Brand */}
       <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 pt-16 sm:pt-24 lg:pt-28 text-center">
         <Wordmark size="lg" tagline />
       </div>
 
-      {/* Full-bleed library strip */}
-      <div className="relative w-full h-[56px] sm:h-[130px] lg:h-[190px] mt-8 sm:mt-14">
+      {/* Full-bleed library strip — thin & crisp, matching the reference */}
+      <div className="relative w-full h-[52px] sm:h-[84px] lg:h-[104px] mt-8 sm:mt-12">
         <Image
           src="/library-strip.png"
           alt="A classical library"
