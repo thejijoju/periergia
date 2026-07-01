@@ -103,18 +103,18 @@ export function Reader({ node }: { node: ReaderNode }) {
         ))}
       </nav>
 
-      {/* Title */}
-      <h1 className="mt-4 font-sans font-bold text-[32px] leading-[1.12] tracking-[-0.02em] text-ink">
-        {node.title}
-      </h1>
+      {/* Title with the inline learning-mode rail beside it */}
+      <div className="mt-4 flex items-start gap-x-3 gap-y-1 flex-wrap">
+        <h1 className="font-sans font-bold text-[32px] leading-[1.12] tracking-[-0.02em] text-ink">
+          {node.title}
+        </h1>
+        <div className="mt-2 flex-1 min-w-[120px]">
+          <LearningModeRail active={mode} onSelect={(id: Mode) => setPrefs({ mode: id })} />
+        </div>
+      </div>
       {node.summary && (
         <p className="mt-2 font-sans text-[15px] text-muted">{node.summary}</p>
       )}
-
-      {/* Learning-mode rail — every way to experience this topic */}
-      <div className="mt-3">
-        <LearningModeRail active={mode} onSelect={(id: Mode) => setPrefs({ mode: id })} />
-      </div>
 
       {/* Depth + Level controls */}
       <div className="mt-4 space-y-2.5">
