@@ -23,7 +23,8 @@ const config: Config = {
         line: "rgba(33,29,24,.14)",
       },
       fontFamily: {
-        serif: ["Spectral", "Georgia", "serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-spectral)", "Georgia", "serif"],
         mono: ["ui-monospace", "Menlo", "monospace"],
       },
     },

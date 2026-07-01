@@ -71,7 +71,7 @@ export function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`flex-1 bg-transparent outline-none font-serif italic ${textSize} text-ink placeholder:text-faint`}
+        className={`flex-1 bg-transparent outline-none font-sans ${textSize} text-ink placeholder:text-faint`}
       />
       {supportsVoice && (
         <button

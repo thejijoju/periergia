@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
-import { Spectral } from "next/font/google";
+import { Inter, Spectral } from "next/font/google";
 import "./globals.css";
+
+// Inter drives the modern, "younger" UI (Medium-like). Spectral stays available
+// for long-form reading in the reader.
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 const spectral = Spectral({
   subsets: ["latin"],
@@ -18,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={spectral.variable}>
+    <html lang="en" className={`${inter.variable} ${spectral.variable}`}>
       <body>{children}</body>
     </html>
   );

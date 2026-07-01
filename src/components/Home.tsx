@@ -13,21 +13,21 @@ export interface HomeSubject {
   href: string;
 }
 
-type Tab = "pills" | "list";
-
 export function Home({ subjects }: { subjects: HomeSubject[] }) {
-  const [tab, setTab] = useState<Tab>("pills");
   const [query, setQuery] = useState("");
-  const [pill, setPill] = useState("Explore");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return q ? subjects.filter((s) => s.name.toLowerCase().includes(q)) : subjects;
   }, [subjects, query]);
 
+  // Outline chips — no fill colour, modern/Medium-like.
+  const chip =
+    "flex-none font-sans text-[14px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-[rgba(33,29,24,.18)] text-ink bg-transparent hover:border-ink transition-colors whitespace-nowrap";
+
   return (
     <main className="relative min-h-screen bg-white text-ink flex flex-col overflow-hidden">
-      {/* Faint pixel-grid accent, top-right (from the periergia.com reference) */}
+      {/* Faint pixel-grid accent, top-right */}
       <Image
         src="/accent-pixels.png"
         alt=""
@@ -43,7 +43,7 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
       </div>
 
       {/* Full-bleed library strip — the Long Room, Trinity College Dublin */}
-      <div className="relative w-full h-[64px] sm:h-[140px] lg:h-[190px] mt-8 sm:mt-12">
+      <div className="relative w-full h-[56px] sm:h-[104px] lg:h-[132px] mt-8 sm:mt-12">
         <Image
           src="/library-strip.jpg"
           alt="The Long Room, Trinity College Library, Dublin"
@@ -56,95 +56,50 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
       </div>
 
       {/* Controls */}
-      <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 mt-10 sm:mt-16 pb-24 sm:pb-32">
-        {/* Search */}
+      <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 mt-10 sm:mt-14 pb-24 sm:pb-32">
         <SearchBar value={query} onChange={setQuery} size="lg" />
 
-        {/* Browse-mode toggle */}
-        <div className="mt-12 sm:mt-16 flex gap-8 items-end border-b border-line">
-          {(["pills", "list"] as Tab[]).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`font-serif text-[14px] sm:text-[16px] pb-3 -mb-px border-b-2 transition-colors ${
-                tab === t
-                  ? "font-semibold text-ink border-maroon"
-                  : "font-normal text-whisper border-transparent hover:text-ink"
-              }`}
-            >
-              {t === "pills" ? "Quick pills" : "Full list"}
-            </button>
+        {/* Desktop → pills only */}
+        <div className="hidden sm:flex flex-wrap gap-3 items-center mt-11">
+          <span className={`${chip} inline-flex items-center`}>
+            <span className="text-maroon mr-1.5">◆</span>Explore
+          </span>
+          {filtered.map((s) => (
+            <Link key={s.slug} href={s.href} className={chip}>
+              {s.name}
+            </Link>
           ))}
+          {filtered.length === 0 && (
+            <span className="font-sans text-[14px] text-faint">No subjects match “{query}”.</span>
+          )}
         </div>
 
-        {/* Pills view */}
-        {tab === "pills" && (
-          <div className="mt-7 sm:mt-9 flex flex-wrap gap-2.5 sm:gap-3 items-center">
-            <button
-              onClick={() => setPill("Explore")}
-              className={`flex-none font-serif text-[14px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full inline-flex items-center whitespace-nowrap transition-colors ${
-                pill === "Explore"
-                  ? "border-[1.5px] border-ink bg-white text-ink"
-                  : "border border-[rgba(33,29,24,.1)] bg-pill text-ink hover:border-ink"
-              }`}
+        {/* Mobile → full list only */}
+        <div className="sm:hidden mt-8">
+          {filtered.map((s, i) => (
+            <Link
+              key={s.slug}
+              href={s.href}
+              className="flex justify-between items-center py-4 border-t border-line group"
             >
-              <span className="text-maroon mr-1.5">◆</span>Explore
-            </button>
-            {filtered.map((s) => (
-              <Link
-                key={s.slug}
-                href={s.href}
-                onClick={() => setPill(s.name)}
-                className={`flex-none font-serif text-[14px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full inline-flex items-center whitespace-nowrap transition-colors ${
-                  pill === s.name
-                    ? "border-[1.5px] border-ink bg-white text-ink"
-                    : "border border-[rgba(33,29,24,.1)] bg-pill text-ink hover:border-ink"
-                }`}
-              >
+              <span className="font-sans font-medium text-[18px]">
+                <span className="font-mono text-[12px] text-numeral mr-4">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 {s.name}
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {/* Full list view */}
-        {tab === "list" && (
-          <div>
-            <div className="mt-7 sm:mt-9 mb-1 flex items-baseline justify-between">
-              <span className="font-mono font-semibold text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-maroon">
-                Browse subjects
               </span>
-              <span className="font-serif italic text-[13px] sm:text-[14px] text-muted">
-                {subjects.length} fields
+              <span className="font-sans text-[13px] text-whisper group-hover:text-maroon transition-colors">
+                {s.themeCount} themes&nbsp;›
               </span>
-            </div>
-            {filtered.map((s, i) => (
-              <Link
-                key={s.slug}
-                href={s.href}
-                className="flex justify-between items-center py-4 sm:py-5 border-t border-line group"
-              >
-                <span className="font-serif font-medium text-[18px] sm:text-[21px]">
-                  <span className="font-mono text-[12px] text-numeral mr-4">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {s.name}
-                </span>
-                <span className="font-serif text-[13px] sm:text-[14px] text-whisper group-hover:text-maroon transition-colors">
-                  {s.themeCount} themes&nbsp;›
-                </span>
-              </Link>
-            ))}
-            {filtered.length === 0 && (
-              <p className="py-8 font-serif italic text-[14px] text-faint">
-                No subjects match “{query}”.
-              </p>
-            )}
-          </div>
-        )}
+            </Link>
+          ))}
+          {filtered.length === 0 && (
+            <p className="py-8 font-sans text-[14px] text-faint">No subjects match “{query}”.</p>
+          )}
+        </div>
 
         {/* Image credit (CC BY-SA 3.0 requires attribution) */}
-        <p className="mt-20 text-center font-serif text-[11px] leading-relaxed text-whisper">
+        <p className="mt-20 text-center font-sans text-[11px] leading-relaxed text-whisper">
           Library photograph:{" "}
           <a
             href="https://commons.wikimedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg"
@@ -154,7 +109,7 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
           >
             The Long Room, Trinity College Dublin
           </a>{" "}
-          by David Iliff ·{" "}
+          by David Iliff · {" "}
           <a
             href="https://creativecommons.org/licenses/by-sa/3.0/"
             target="_blank"
