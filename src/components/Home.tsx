@@ -98,28 +98,41 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
           )}
         </div>
 
-        {/* Image credit (CC BY-SA 3.0 requires attribution) */}
-        <p className="mt-20 text-center font-sans text-[11px] leading-relaxed text-whisper">
-          Library photograph:{" "}
-          <a
-            href="https://commons.wikimedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-maroon"
-          >
-            The Long Room, Trinity College Dublin
-          </a>{" "}
-          by David Iliff · {" "}
-          <a
-            href="https://creativecommons.org/licenses/by-sa/3.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-maroon"
-          >
-            CC BY-SA 3.0
-          </a>
+        {/* Image credit — mobile: tiny, at the very bottom (scroll to reach) */}
+        <p className="sm:hidden mt-28 mb-4 text-center font-sans text-[9.5px] leading-relaxed text-whisper">
+          <ImageCredit />
         </p>
       </div>
+
+      {/* Image credit — desktop: unobtrusive, bottom-right corner */}
+      <p className="hidden sm:block absolute bottom-4 right-6 text-right font-sans text-[10px] leading-snug text-whisper max-w-[280px]">
+        <ImageCredit />
+      </p>
     </main>
+  );
+}
+
+function ImageCredit() {
+  return (
+    <>
+      Library photograph:{" "}
+      <a
+        href="https://commons.wikimedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-2 hover:text-maroon"
+      >
+        The Long Room, Trinity College Dublin
+      </a>{" "}
+      by David Iliff · {" "}
+      <a
+        href="https://creativecommons.org/licenses/by-sa/3.0/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-2 hover:text-maroon"
+      >
+        CC BY-SA 3.0
+      </a>
+    </>
   );
 }
