@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BookOpen, Headphones, Mic, Feather, Music,
   Image, Pencil, LayoutGrid, Video, Film, Box, Network, Milestone,
@@ -37,15 +37,31 @@ export function LearningModeRail({
   onSelect: (id: Mode) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openRail = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  // Delay collapsing so a brief cursor exit (moving between icons, or drifting
+  // up toward the tooltip) doesn't yank the icon out from under the pointer.
+  const closeRail = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 320);
+  };
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
 
   return (
     <div
       className="periergia-rail"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
+      onMouseEnter={openRail}
+      onMouseLeave={closeRail}
+      onFocus={openRail}
       onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) closeRail();
       }}
     >
       <style>{`
@@ -53,7 +69,8 @@ export function LearningModeRail({
           display: flex;
           align-items: center;
           gap: 3px;
-          padding: 2px 0;
+          padding: 8px 4px 6px;
+          margin: -6px 0 0;
           overflow: visible;
         }
 
