@@ -4,6 +4,8 @@ import { getNodeById, getCachedQuiz, putCachedQuiz } from "@/lib/store";
 import { generateQuiz, gradeOpenAnswer } from "@/lib/generate";
 
 export const runtime = "nodejs";
+// Quiz generation + open-answer grading call Claude — give headroom.
+export const maxDuration = 60;
 
 // Two actions on one route:
 //   { action: "quiz",  nodeId, level }              → { questions }   (cached generate-once)

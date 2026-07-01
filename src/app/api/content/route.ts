@@ -4,6 +4,9 @@ import { getNodeById, getCachedContent, putCachedContent } from "@/lib/store";
 import { generateContent } from "@/lib/generate";
 
 export const runtime = "nodejs";
+// Claude generation (esp. detailed/research depth) can run long — give the
+// serverless function headroom. 60s is the Vercel Hobby ceiling; raise on Pro.
+export const maxDuration = 60;
 
 // POST { nodeId, depth, level, format } → { body, generated }
 // Cache hit returns instantly; a miss generates with Claude (or a placeholder),
