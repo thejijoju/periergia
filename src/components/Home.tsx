@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Wordmark } from "./Wordmark";
 import { SearchBar } from "./SearchBar";
 
@@ -11,6 +12,13 @@ export interface HomeSubject {
   slug: string;
   themeCount: number;
   href: string;
+}
+
+export interface SearchItem {
+  title: string;
+  ctx: string; // "Subject › Sub-subject"
+  href: string;
+  leaf: boolean; // true for a topic, false for a sub-subject
 }
 
 // The 8 subjects shown as quick pills on desktop (broad, representative mix).
@@ -25,20 +33,44 @@ const CURATED_PILLS = [
   "philosophy",
 ];
 
-export function Home({ subjects }: { subjects: HomeSubject[] }) {
+export function Home({
+  subjects,
+  searchIndex,
+}: {
+  subjects: HomeSubject[];
+  searchIndex: SearchItem[];
+}) {
+  const router = useRouter();
   const [query, setQuery] = useState("");
+  const q = query.trim().toLowerCase();
+  const searching = q.length > 0;
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return q ? subjects.filter((s) => s.name.toLowerCase().includes(q)) : subjects;
-  }, [subjects, query]);
-
-  // Desktop shows a curated 8 by default; a search surfaces any subject.
+  // Curated pills (the "hint" of what you can learn) — shown when idle.
   const pillSubjects = useMemo(() => {
-    if (query.trim()) return filtered;
     const bySlug = new Map(subjects.map((s) => [s.slug, s]));
     return CURATED_PILLS.map((slug) => bySlug.get(slug)).filter(Boolean) as HomeSubject[];
-  }, [subjects, filtered, query]);
+  }, [subjects]);
+
+  // Typing a keyword searches all 659 topics (+ sub-subjects) and lets you drop
+  // straight into the matching topic's reader.
+  const results = useMemo(() => {
+    if (!q) return [] as SearchItem[];
+    const starts: SearchItem[] = [];
+    const includes: SearchItem[] = [];
+    const ctxOnly: SearchItem[] = [];
+    for (const it of searchIndex) {
+      const t = it.title.toLowerCase();
+      if (t.startsWith(q)) starts.push(it);
+      else if (t.includes(q)) includes.push(it);
+      else if (it.ctx.toLowerCase().includes(q)) ctxOnly.push(it);
+    }
+    const leafFirst = (a: SearchItem, b: SearchItem) => Number(b.leaf) - Number(a.leaf);
+    return [...starts.sort(leafFirst), ...includes.sort(leafFirst), ...ctxOnly].slice(0, 12);
+  }, [q, searchIndex]);
+
+  const goTop = () => {
+    if (results.length) router.push(results[0].href);
+  };
 
   // Outline chips — no fill colour, modern/Medium-like.
   const chip =
@@ -76,46 +108,65 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
 
       {/* Controls */}
       <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 mt-10 sm:mt-14 pb-24 sm:pb-32">
-        <SearchBar value={query} onChange={setQuery} size="lg" />
+        <SearchBar value={query} onChange={setQuery} onSubmit={goTop} size="lg" />
 
-        {/* Desktop → pills only */}
-        <div className="hidden sm:flex flex-wrap gap-3 items-center mt-11">
-          <span className={`${chip} inline-flex items-center`}>
-            <span className="text-maroon mr-1.5">◆</span>Explore
-          </span>
-          {pillSubjects.map((s) => (
-            <Link key={s.slug} href={s.href} className={chip}>
-              {s.name}
-            </Link>
-          ))}
-          {pillSubjects.length === 0 && (
-            <span className="font-sans text-[14px] text-faint">No subjects match “{query}”.</span>
-          )}
-        </div>
-
-        {/* Mobile → full list only */}
-        <div className="sm:hidden mt-8">
-          {filtered.map((s, i) => (
-            <Link
-              key={s.slug}
-              href={s.href}
-              className="flex justify-between items-center py-4 border-t border-line group"
-            >
-              <span className="font-sans font-medium text-[18px]">
-                <span className="font-mono text-[12px] text-numeral mr-4">
-                  {String(i + 1).padStart(2, "0")}
+        {searching ? (
+          /* Search → matching topics; Enter or click drops into the reader */
+          <div className="mt-6">
+            {results.map((it) => (
+              <Link
+                key={it.href}
+                href={it.href}
+                className="block py-3 border-t border-line group"
+              >
+                <span className="font-sans text-[16px] text-ink group-hover:text-maroon transition-colors">
+                  {it.title}
                 </span>
-                {s.name}
+                <span className="ml-2 font-sans text-[12px] text-whisper">{it.ctx}</span>
+              </Link>
+            ))}
+            {results.length === 0 && (
+              <p className="py-8 font-sans text-[14px] text-faint">
+                No topics match “{query}”. Try another keyword.
+              </p>
+            )}
+          </div>
+        ) : (
+          <>
+            {/* Idle hint — desktop: curated pills */}
+            <div className="hidden sm:flex flex-wrap gap-3 items-center mt-11">
+              <span className={`${chip} inline-flex items-center`}>
+                <span className="text-maroon mr-1.5">◆</span>Explore
               </span>
-              <span className="font-sans text-[13px] text-whisper group-hover:text-maroon transition-colors">
-                {s.themeCount} themes&nbsp;›
-              </span>
-            </Link>
-          ))}
-          {filtered.length === 0 && (
-            <p className="py-8 font-sans text-[14px] text-faint">No subjects match “{query}”.</p>
-          )}
-        </div>
+              {pillSubjects.map((s) => (
+                <Link key={s.slug} href={s.href} className={chip}>
+                  {s.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Idle hint — mobile: full subject list */}
+            <div className="sm:hidden mt-8">
+              {subjects.map((s, i) => (
+                <Link
+                  key={s.slug}
+                  href={s.href}
+                  className="flex justify-between items-center py-4 border-t border-line group"
+                >
+                  <span className="font-sans font-medium text-[18px]">
+                    <span className="font-mono text-[12px] text-numeral mr-4">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {s.name}
+                  </span>
+                  <span className="font-sans text-[13px] text-whisper group-hover:text-maroon transition-colors">
+                    {s.themeCount} themes&nbsp;›
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Image credit — mobile: tiny, at the very bottom (scroll to reach) */}
         <p className="sm:hidden mt-28 mb-4 text-center font-sans text-[9.5px] leading-relaxed text-whisper">

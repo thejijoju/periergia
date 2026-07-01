@@ -8,11 +8,13 @@ import { useEffect, useRef, useState } from "react";
 export function SearchBar({
   value,
   onChange,
+  onSubmit,
   placeholder = "Search any topic…",
   size = "lg",
 }: {
   value: string;
   onChange: (v: string) => void;
+  onSubmit?: () => void;
   placeholder?: string;
   size?: "sm" | "lg";
 }) {
@@ -70,6 +72,9 @@ export function SearchBar({
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onSubmit?.();
+        }}
         placeholder={placeholder}
         className={`flex-1 bg-transparent outline-none font-sans ${textSize} text-ink placeholder:text-faint`}
       />
