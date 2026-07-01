@@ -32,20 +32,20 @@ const LEVEL_GUIDE: Record<Level, string> = {
   expert: "Explain for an expert. Be precise and dense; engage edge cases and debates.",
 };
 
-function nodeContext(node: Node): string {
-  const trail = getAncestors(node).map((n) => n.title).join(" › ");
-  return trail;
+async function nodeContext(node: Node): Promise<string> {
+  const ancestors = await getAncestors(node);
+  return ancestors.map((n) => n.title).join(" › ");
 }
 
 // ---- Content -------------------------------------------------------------
 
 export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
+  const trail = await nodeContext(node);
   const client = getAnthropic();
   if (!client) {
-    return { ...key, body: placeholderContent(node, key), generated: false };
+    return { ...key, body: placeholderContent(node, key, trail), generated: false };
   }
 
-  const trail = nodeContext(node);
   const system =
     "You are Periergia, a living textbook for everything. You write clear, accurate, " +
     "engaging explanations that fit the reader's chosen depth and level. Output GitHub-flavored " +
@@ -70,7 +70,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   const message = await stream.finalMessage();
   const body = textOf(message.content).trim();
 
-  return { ...key, body: body || placeholderContent(node, key), generated: true };
+  return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
 }
 
 // Concatenate the text blocks of a Claude response.
@@ -112,7 +112,7 @@ export async function generateQuiz(node: Node, level: Level): Promise<Quiz> {
     return { nodeId: node.id, level, questions: placeholderQuiz(node), generated: false };
   }
 
-  const trail = nodeContext(node);
+  const trail = await nodeContext(node);
   const system =
     "You write short, fair quizzes that test understanding (not trivia recall) of a topic. " +
     "Produce a mix of multiple-choice and one or two open-ended questions. For MCQ, give exactly " +
@@ -205,8 +205,7 @@ export async function gradeOpenAnswer(
 
 // ── Placeholders (offline / no key) ───────────────────────────────────────
 
-function placeholderContent(node: Node, key: ContentKey): string {
-  const trail = nodeContext(node);
+function placeholderContent(node: Node, key: ContentKey, trail: string): string {
   const depthLine = DEPTH_GUIDE[key.depth];
   return [
     `**${node.title}** — ${node.summary || `an entry in ${trail}.`}`,

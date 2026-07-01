@@ -8,9 +8,9 @@ export default async function SubjectIndex({
   params: Promise<{ subject: string }>;
 }) {
   const { subject } = await params;
-  const subj = getSubject(subject);
+  const subj = await getSubject(subject);
   if (!subj) notFound();
-  const leaf = getFirstLeaf(subj.id);
+  const leaf = await getFirstLeaf(subj.id);
   if (!leaf) notFound();
   redirect(`/learn/${subj.slug}/${leaf.path.join("/")}`);
 }

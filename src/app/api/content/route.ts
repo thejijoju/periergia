@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing nodeId/depth/level/format" }, { status: 400 });
   }
 
-  const node = getNodeById(nodeId);
+  const node = await getNodeById(nodeId);
   if (!node) return NextResponse.json({ error: "Unknown node" }, { status: 404 });
 
   // Voice reads the same text aloud client-side (Web Speech API), so it shares

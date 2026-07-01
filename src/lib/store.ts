@@ -1,68 +1,147 @@
 import "server-only";
 import type { Content, ContentKey, Node, Quiz, Subject } from "./types";
-import { SEED_NODES, SEED_SUBJECTS, themeCount } from "./seed";
+import { SEED_NODES, SEED_SUBJECTS } from "./seed";
 import { getSupabase } from "./supabase";
 
 // ── Data store ───────────────────────────────────────────────────────────
 // One interface over two backends:
-//   • Tree (subjects + nodes): the STABLE syllabus. Served from seed.ts.
-//     When Supabase holds it, swap the read functions to query `subjects`/`nodes`.
+//   • Tree (subjects + nodes): the STABLE syllabus. Read from Supabase when
+//     configured (and seeded — see `npm run seed`), otherwise from seed.ts.
+//     The tree is small and immutable per deploy, so it's loaded once and
+//     memoized in-process.
 //   • Cache (content + quizzes): generate-once, keyed by depth/level/format.
 //     Persisted to Supabase when configured; otherwise an in-process Map.
 //
-// The whole app touches the store only through the functions below, so moving
-// to Postgres is local to this file.
+// The whole app touches the store only through the functions below, so the
+// backend choice is local to this file.
 
-// ---- Tree (stable) -------------------------------------------------------
+// ---- Tree (stable, memoized) ---------------------------------------------
 
-export function getSubjects(): Subject[] {
-  return [...SEED_SUBJECTS].sort((a, b) => a.position - b.position);
+interface Tree {
+  subjects: Subject[];
+  nodes: Node[];
+  source: "supabase" | "seed";
 }
 
-export function getSubject(slug: string): Subject | undefined {
-  return SEED_SUBJECTS.find((s) => s.slug === slug);
+let treePromise: Promise<Tree> | null = null;
+
+// DB rows are snake_case; the node id encodes its path (`subject/seg/seg`), so
+// `subjectSlug` and `path` are reconstructed rather than stored.
+function rowToNode(r: {
+  id: string;
+  subject_id: string;
+  parent_id: string | null;
+  title: string;
+  slug: string;
+  summary: string | null;
+  position: number;
+  depth: number;
+}): Node {
+  return {
+    id: r.id,
+    subjectId: r.subject_id,
+    subjectSlug: r.subject_id,
+    parentId: r.parent_id,
+    title: r.title,
+    slug: r.slug,
+    summary: r.summary ?? "",
+    position: r.position,
+    path: r.id.split("/").slice(1),
+    depth: r.depth,
+  };
 }
 
-export function getSubjectThemeCount(subjectId: string): number {
-  return themeCount(subjectId);
+async function loadTree(): Promise<Tree> {
+  if (treePromise) return treePromise;
+  treePromise = (async () => {
+    const supabase = getSupabase();
+    if (supabase) {
+      const [{ data: subs }, { data: nds }] = await Promise.all([
+        supabase.from("subjects").select("*").order("position"),
+        supabase.from("nodes").select("*").order("position"),
+      ]);
+      if (subs && subs.length && nds && nds.length) {
+        return {
+          subjects: subs as Subject[],
+          nodes: nds.map(rowToNode),
+          source: "supabase" as const,
+        };
+      }
+      // Supabase configured but not yet seeded → fall back to seed so the app
+      // still works. Run `npm run seed` to populate Postgres.
+    }
+    return { subjects: SEED_SUBJECTS, nodes: SEED_NODES, source: "seed" as const };
+  })();
+  return treePromise;
 }
 
-export function getNodes(subjectId: string): Node[] {
-  return SEED_NODES.filter((n) => n.subjectId === subjectId).sort(
-    (a, b) => a.depth - b.depth || a.position - b.position,
-  );
+/** Test/ops hook: drop the memoized tree so the next read reloads from source. */
+export function invalidateTree(): void {
+  treePromise = null;
 }
 
-export function getChildren(subjectId: string, parentId: string | null): Node[] {
-  return SEED_NODES.filter(
-    (n) => n.subjectId === subjectId && n.parentId === parentId,
-  ).sort((a, b) => a.position - b.position);
+export async function treeSource(): Promise<Tree["source"]> {
+  return (await loadTree()).source;
 }
 
-export function getNodeByPath(subjectSlug: string, path: string[]): Node | undefined {
+export async function getSubjects(): Promise<Subject[]> {
+  const { subjects } = await loadTree();
+  return [...subjects].sort((a, b) => a.position - b.position);
+}
+
+export async function getSubject(slug: string): Promise<Subject | undefined> {
+  const { subjects } = await loadTree();
+  return subjects.find((s) => s.slug === slug);
+}
+
+export async function getSubjectThemeCount(subjectId: string): Promise<number> {
+  const { nodes } = await loadTree();
+  return nodes.filter((n) => n.subjectId === subjectId).length;
+}
+
+export async function getNodes(subjectId: string): Promise<Node[]> {
+  const { nodes } = await loadTree();
+  return nodes
+    .filter((n) => n.subjectId === subjectId)
+    .sort((a, b) => a.depth - b.depth || a.position - b.position);
+}
+
+export async function getChildren(subjectId: string, parentId: string | null): Promise<Node[]> {
+  const { nodes } = await loadTree();
+  return nodes
+    .filter((n) => n.subjectId === subjectId && n.parentId === parentId)
+    .sort((a, b) => a.position - b.position);
+}
+
+export async function getNodeByPath(subjectSlug: string, path: string[]): Promise<Node | undefined> {
   const id = `${subjectSlug}/${path.join("/")}`;
-  return SEED_NODES.find((n) => n.id === id);
+  const { nodes } = await loadTree();
+  return nodes.find((n) => n.id === id);
 }
 
-export function getNodeById(id: string): Node | undefined {
-  return SEED_NODES.find((n) => n.id === id);
+export async function getNodeById(id: string): Promise<Node | undefined> {
+  const { nodes } = await loadTree();
+  return nodes.find((n) => n.id === id);
 }
 
 /** Ancestor chain (root → ... → node), inclusive — used for breadcrumbs & the right rail. */
-export function getAncestors(node: Node): Node[] {
+export async function getAncestors(node: Node): Promise<Node[]> {
+  const { nodes } = await loadTree();
+  const byId = new Map(nodes.map((n) => [n.id, n]));
   const chain: Node[] = [];
   let current: Node | undefined = node;
   while (current) {
     chain.unshift(current);
-    current = current.parentId ? getNodeById(current.parentId) : undefined;
+    current = current.parentId ? byId.get(current.parentId) : undefined;
   }
   return chain;
 }
 
 /** First leaf (or first node) of a subject — where a bare /learn/[subject] redirects to. */
-export function getFirstLeaf(subjectId: string): Node | undefined {
-  const nodes = getNodes(subjectId);
-  return nodes.find((n) => getChildren(subjectId, n.id).length === 0) ?? nodes[0];
+export async function getFirstLeaf(subjectId: string): Promise<Node | undefined> {
+  const nodes = await getNodes(subjectId);
+  const childless = (id: string) => !nodes.some((n) => n.parentId === id);
+  return nodes.find((n) => childless(n.id)) ?? nodes[0];
 }
 
 // ---- Cache (generate-once) ----------------------------------------------

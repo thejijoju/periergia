@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   if (!nodeId || !level) {
     return NextResponse.json({ error: "Missing nodeId/level" }, { status: 400 });
   }
-  const node = getNodeById(nodeId);
+  const node = await getNodeById(nodeId);
   if (!node) return NextResponse.json({ error: "Unknown node" }, { status: 404 });
 
   const cached = await getCachedQuiz(nodeId, level);

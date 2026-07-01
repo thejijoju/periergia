@@ -66,9 +66,28 @@ copy `.env.example` → `.env.local` and fill in:
 
 - `ANTHROPIC_API_KEY` — turns on Claude content, quizzes, and open-answer
   grading (defaults to `claude-opus-4-8`; override with `PERIERGIA_MODEL`).
-- `NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` — persist the
-  generated-content cache to Postgres (the stable tree still seeds from
-  `src/lib/seed.ts`).
+- `NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` — move the syllabus
+  tree **and** the generated-content/quiz cache into Postgres.
+
+### Connect Supabase
+
+```bash
+# 1. Create a Supabase project, then run the schema:
+#    open supabase/schema.sql in the Supabase SQL editor and run it
+#    (creates subjects, nodes, content, quizzes + RLS).
+
+# 2. Add the credentials to .env.local:
+#    NEXT_PUBLIC_SUPABASE_URL=...
+#    SUPABASE_SERVICE_ROLE_KEY=...
+
+# 3. Seed the stable syllabus tree into Postgres:
+npm run seed
+```
+
+Once seeded, the app reads the tree from Postgres (memoized per process) and
+writes each generated entry/quiz to the cache tables. If the env vars are set
+but the tables are empty, it falls back to the in-memory seed so nothing breaks
+before `npm run seed` runs. With no env vars at all, everything is in-memory.
 
 ---
 
@@ -100,58 +119,31 @@ node's content is generated **on demand** at the chosen depth/level/format and
 **cached** (generate-once). The voice format reads the cached text aloud — no
 separate generation.
 
-**Swapping in Supabase is local to `store.ts`.** The tree read functions and the
-content/quiz cache are the only Postgres touch-points; set the env vars and the
-cache writes/reads move from an in-process `Map` to Postgres with no other code
-changes.
+**Supabase is wired end-to-end, and it's all local to `store.ts`.** Both the
+tree reads and the content/quiz cache go through Postgres when configured:
 
-### Database schema (Supabase / Postgres)
+- **Tree** — `loadTree()` queries `subjects`/`nodes` once and memoizes; falls
+  back to `src/lib/seed.ts` when Supabase is absent or unseeded.
+- **Cache** — `getCachedContent`/`putCachedContent` and the quiz equivalents
+  upsert to / read from Postgres, or use an in-process `Map` otherwise.
 
-```sql
--- Stable syllabus (seeded from src/lib/seed.ts)
-create table subjects (
-  id text primary key,
-  name text not null,
-  slug text unique not null,
-  description text,
-  position int not null default 0
-);
+Nothing else in the app knows which backend is live.
 
-create table nodes (
-  id text primary key,            -- e.g. history/revolutions/the-french-revolution
-  subject_id text references subjects(id),
-  parent_id text references nodes(id),
-  title text not null,
-  slug text not null,
-  summary text,
-  position int not null default 0,
-  depth int not null default 0
-);
+### Database schema
 
--- Generate-once cache, keyed by depth/level/format
-create table content (
-  node_id text not null,
-  depth text not null,
-  level text not null,
-  format text not null,
-  body text not null,
-  generated boolean not null default false,
-  created_at timestamptz default now(),
-  primary key (node_id, depth, level, format)
-);
+The full schema (tables + indexes + row-level security) lives in
+[`supabase/schema.sql`](./supabase/schema.sql) — run it in the Supabase SQL
+editor, then `npm run seed`. Shape:
 
-create table quizzes (
-  node_id text not null,
-  level text not null,
-  questions jsonb not null,
-  generated boolean not null default false,
-  created_at timestamptz default now(),
-  primary key (node_id, level)
-);
-```
+- `subjects` — id, name, slug, description, position
+- `nodes` — id (encodes the path), subject_id, parent_id, title, slug, summary,
+  position, depth
+- `content` — PK (node_id, depth, level, format) → body, generated
+- `quizzes` — PK (node_id, level) → questions (jsonb), generated
 
-Storage buckets (audio for premium TTS, later video/3D assets) drop in beside
-this when those format plugins land.
+RLS is public-read; writes happen server-side with the service-role key (which
+bypasses RLS). Storage buckets (audio for premium TTS, later video/3D assets)
+drop in beside this when those format plugins land.
 
 ---
 
@@ -162,7 +154,8 @@ Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS · `@anthropic
 
 ## Roadmap
 
-1. Wire live Supabase (seed the tree, point the cache at Postgres).
+1. ~~Wire live Supabase (seed the tree, point the cache at Postgres).~~ ✅ —
+   run `supabase/schema.sql` + `npm run seed`.
 2. Subject/Chapter landing pages (Medium-style columns).
 3. Format plugins: **Game** (AI-generated interactive), **Watch** (narrated
    slides), **See** (3D for geometry / molecules / anatomy).

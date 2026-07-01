@@ -7,7 +7,6 @@ import {
   getSubject,
   getNodeByPath,
   getNodes,
-  getChildren,
   getAncestors,
   getFirstLeaf,
 } from "@/lib/store";
@@ -18,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ subject: string; node: string[] }>;
 }) {
   const { subject, node } = await params;
-  const n = getNodeByPath(subject, node);
+  const n = await getNodeByPath(subject, node);
   return { title: n ? `${n.title} · Periergia` : "Periergia" };
 }
 
@@ -28,35 +27,40 @@ export default async function ReaderPage({
   params: Promise<{ subject: string; node: string[] }>;
 }) {
   const { subject, node: nodePath } = await params;
-  const subj = getSubject(subject);
+  const subj = await getSubject(subject);
   if (!subj) notFound();
-  const node = getNodeByPath(subject, nodePath);
+  const node = await getNodeByPath(subject, nodePath);
   if (!node) notFound();
 
   // Left rail — all subjects
-  const railSubjects: RailSubject[] = getSubjects().map((s) => {
-    const leaf = getFirstLeaf(s.id);
-    return {
-      name: s.name,
-      slug: s.slug,
-      href: leaf ? `/learn/${s.slug}/${leaf.path.join("/")}` : `/learn/${s.slug}`,
-    };
-  });
+  const allSubjects = await getSubjects();
+  const railSubjects: RailSubject[] = await Promise.all(
+    allSubjects.map(async (s): Promise<RailSubject> => {
+      const leaf = await getFirstLeaf(s.id);
+      return {
+        name: s.name,
+        slug: s.slug,
+        href: leaf ? `/learn/${s.slug}/${leaf.path.join("/")}` : `/learn/${s.slug}`,
+      };
+    }),
+  );
 
   // Right rail — this subject's syllabus tree
-  const treeItems: TreeItem[] = getNodes(subj.id).map((n) => ({
+  const subjectNodes = await getNodes(subj.id);
+  const treeItems: TreeItem[] = subjectNodes.map((n) => ({
     id: n.id,
     title: n.title,
     href: `/learn/${subj.slug}/${n.path.join("/")}`,
     depth: n.depth,
-    isLeaf: getChildren(subj.id, n.id).length === 0,
+    isLeaf: !subjectNodes.some((c) => c.parentId === n.id),
   }));
 
+  const ancestors = await getAncestors(node);
   const readerNode: ReaderNode = {
     id: node.id,
     title: node.title,
     summary: node.summary,
-    trail: [subj.name, ...getAncestors(node).map((n) => n.title)],
+    trail: [subj.name, ...ancestors.map((n) => n.title)],
   };
 
   return (
