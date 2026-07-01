@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-// The underlined "Periergia" wordmark — Inter Medium (500) with a black rule.
+// The underlined "Periergia" wordmark — Inter Semibold (600) with a black rule.
 export function Wordmark({
   size = "lg",
   tagline = false,
@@ -17,7 +17,7 @@ export function Wordmark({
     <div className={tagline ? "text-center" : ""}>
       <Link
         href="/"
-        className={`inline-block font-sans font-medium underline decoration-ink ${text} tracking-[-0.02em] text-ink`}
+        className={`inline-block font-sans font-semibold underline decoration-ink ${text} tracking-[-0.02em] text-ink`}
       >
         Periergia
       </Link>
