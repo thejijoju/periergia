@@ -13,6 +13,18 @@ export interface HomeSubject {
   href: string;
 }
 
+// The 8 subjects shown as quick pills on desktop (broad, representative mix).
+const CURATED_PILLS = [
+  "mathematics",
+  "physics",
+  "computer-science",
+  "biology",
+  "psychology",
+  "history",
+  "economics",
+  "philosophy",
+];
+
 export function Home({ subjects }: { subjects: HomeSubject[] }) {
   const [query, setQuery] = useState("");
 
@@ -20,6 +32,13 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
     const q = query.trim().toLowerCase();
     return q ? subjects.filter((s) => s.name.toLowerCase().includes(q)) : subjects;
   }, [subjects, query]);
+
+  // Desktop shows a curated 8 by default; a search surfaces any subject.
+  const pillSubjects = useMemo(() => {
+    if (query.trim()) return filtered;
+    const bySlug = new Map(subjects.map((s) => [s.slug, s]));
+    return CURATED_PILLS.map((slug) => bySlug.get(slug)).filter(Boolean) as HomeSubject[];
+  }, [subjects, filtered, query]);
 
   // Outline chips — no fill colour, modern/Medium-like.
   const chip =
@@ -64,12 +83,12 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
           <span className={`${chip} inline-flex items-center`}>
             <span className="text-maroon mr-1.5">◆</span>Explore
           </span>
-          {filtered.map((s) => (
+          {pillSubjects.map((s) => (
             <Link key={s.slug} href={s.href} className={chip}>
               {s.name}
             </Link>
           ))}
-          {filtered.length === 0 && (
+          {pillSubjects.length === 0 && (
             <span className="font-sans text-[14px] text-faint">No subjects match “{query}”.</span>
           )}
         </div>
