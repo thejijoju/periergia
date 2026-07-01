@@ -86,3 +86,11 @@ export interface GradeResult {
   score: number; // 0..1
   feedback: string;
 }
+
+/** A searchable entry (sub-subject or topic) for the client-side topic search. */
+export interface SearchItem {
+  title: string;
+  ctx: string; // "Subject › Sub-subject"
+  href: string;
+  leaf: boolean; // true for a topic, false for a sub-subject
+}

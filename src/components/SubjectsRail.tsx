@@ -16,13 +16,7 @@ export function SubjectsRail({
 }) {
   return (
     <nav className="text-[14px]">
-      <Link
-        href="/"
-        className="inline-block font-sans font-bold text-[20px] tracking-[-0.01em] border-b-[2px] border-maroon pb-1 text-ink"
-      >
-        Periergia
-      </Link>
-      <div className="mt-6 font-mono font-semibold text-[10px] tracking-[0.12em] uppercase text-whisper">
+      <div className="font-mono font-semibold text-[10px] tracking-[0.12em] uppercase text-whisper">
         Subjects
       </div>
       <ul className="mt-3 space-y-1">

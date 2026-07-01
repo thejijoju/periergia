@@ -6,19 +6,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Wordmark } from "./Wordmark";
 import { SearchBar } from "./SearchBar";
+import type { SearchItem } from "@/lib/types";
 
 export interface HomeSubject {
   name: string;
   slug: string;
   themeCount: number;
   href: string;
-}
-
-export interface SearchItem {
-  title: string;
-  ctx: string; // "Subject › Sub-subject"
-  href: string;
-  leaf: boolean; // true for a topic, false for a sub-subject
 }
 
 // The 8 subjects shown as quick pills on desktop (broad, representative mix).

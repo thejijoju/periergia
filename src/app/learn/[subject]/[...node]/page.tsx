@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { Reader, type ReaderNode } from "@/components/Reader";
 import { SubjectsRail, type RailSubject } from "@/components/SubjectsRail";
 import { SyllabusTree, type TreeItem } from "@/components/SyllabusTree";
+import { TopicSearch } from "@/components/TopicSearch";
+import { Wordmark } from "@/components/Wordmark";
 import {
   getSubjects,
   getSubject,
@@ -9,6 +11,7 @@ import {
   getNodes,
   getAncestors,
   getFirstLeaf,
+  getSearchIndex,
 } from "@/lib/store";
 
 export async function generateMetadata({
@@ -63,17 +66,26 @@ export default async function ReaderPage({
     trail: [subj.name, ...ancestors.map((n) => n.title)],
   };
 
+  const searchIndex = await getSearchIndex();
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Mobile top bar */}
-      <header className="lg:hidden sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-line px-5 py-3">
-        <SubjectsRailMobile subjects={railSubjects} activeSlug={subj.slug} subjectName={subj.name} />
+      {/* Sticky header — wordmark + jump-to-any-topic search */}
+      <header className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-line">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-8 py-3 flex items-center gap-4">
+          <div className="shrink-0">
+            <Wordmark size="sm" />
+          </div>
+          <div className="ml-auto w-full max-w-[380px] min-w-0">
+            <TopicSearch searchIndex={searchIndex} />
+          </div>
+        </div>
       </header>
 
       <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[200px_minmax(0,1fr)_220px] lg:gap-10 px-5 sm:px-8 py-8 lg:py-12">
         {/* Left rail */}
         <aside className="hidden lg:block">
-          <div className="sticky top-12">
+          <div className="sticky top-24">
             <SubjectsRail subjects={railSubjects} activeSlug={subj.slug} />
           </div>
         </aside>
@@ -85,38 +97,11 @@ export default async function ReaderPage({
 
         {/* Right rail */}
         <aside className="hidden lg:block">
-          <div className="sticky top-12">
+          <div className="sticky top-24">
             <SyllabusTree subjectName={subj.name} items={treeItems} activeId={node.id} />
           </div>
         </aside>
       </div>
-    </div>
-  );
-}
-
-// Compact mobile header: wordmark + the active subject name.
-function SubjectsRailMobile({
-  subjects,
-  activeSlug,
-  subjectName,
-}: {
-  subjects: RailSubject[];
-  activeSlug: string;
-  subjectName: string;
-}) {
-  void subjects;
-  void activeSlug;
-  return (
-    <div className="flex items-center justify-between">
-      <a
-        href="/"
-        className="font-sans font-bold text-[18px] tracking-[-0.01em] border-b-2 border-maroon pb-0.5 text-ink"
-      >
-        Periergia
-      </a>
-      <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-whisper">
-        {subjectName}
-      </span>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import "server-only";
-import type { Content, ContentKey, Node, Quiz, Subject } from "./types";
+import type { Content, ContentKey, Node, Quiz, SearchItem, Subject } from "./types";
 import { SEED_NODES, SEED_SUBJECTS } from "./seed";
 import { getSupabase } from "./supabase";
 
@@ -142,6 +142,26 @@ export async function getFirstLeaf(subjectId: string): Promise<Node | undefined>
   const nodes = await getNodes(subjectId);
   const childless = (id: string) => !nodes.some((n) => n.parentId === id);
   return nodes.find((n) => childless(n.id)) ?? nodes[0];
+}
+
+/** Flat client-side search index over every sub-subject + topic. */
+export async function getSearchIndex(): Promise<SearchItem[]> {
+  const { subjects, nodes } = await loadTree();
+  const subjById = new Map(subjects.map((s) => [s.id, s]));
+  const titleById = new Map(nodes.map((n) => [n.id, n.title]));
+  const out: SearchItem[] = [];
+  for (const n of nodes) {
+    const subj = subjById.get(n.subjectId);
+    if (!subj) continue;
+    const parentTitle = n.parentId ? titleById.get(n.parentId) : undefined;
+    out.push({
+      title: n.title,
+      ctx: parentTitle ? `${subj.name} › ${parentTitle}` : subj.name,
+      href: `/learn/${subj.slug}/${n.path.join("/")}`,
+      leaf: n.depth >= 1,
+    });
+  }
+  return out;
 }
 
 // ---- Cache (generate-once) ----------------------------------------------
