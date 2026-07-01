@@ -1516,6 +1516,15 @@ const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "breakeven & shutdown"
+          },
+          {
+            "title": "surplus & market interventions"
+          },
+          {
+            "title": "factor markets"
+          },
+          {
+            "title": "market failure & government"
           }
         ]
       },
@@ -1559,6 +1568,12 @@ const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "unemployment"
+          },
+          {
+            "title": "Keynesian economics & IS-LM"
+          },
+          {
+            "title": "current economic issues"
           }
         ]
       },
@@ -1596,6 +1611,29 @@ const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "interest rates"
+          },
+          {
+            "title": "stabilization policies & their limits"
+          }
+        ]
+      },
+      {
+        "title": "Finance & Capital Markets",
+        "children": [
+          {
+            "title": "stocks & bonds"
+          },
+          {
+            "title": "funds & investment vehicles"
+          },
+          {
+            "title": "derivatives"
+          },
+          {
+            "title": "financial statements"
+          },
+          {
+            "title": "housing & mortgages"
           }
         ]
       },
@@ -3031,13 +3069,40 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "saving"
           },
           {
-            "title": "investing"
+            "title": "financial goals"
+          },
+          {
+            "title": "banking"
+          },
+          {
+            "title": "credit"
+          },
+          {
+            "title": "loans & debt"
           },
           {
             "title": "taxes"
           },
           {
-            "title": "credit"
+            "title": "insurance"
+          },
+          {
+            "title": "investing"
+          },
+          {
+            "title": "retirement"
+          },
+          {
+            "title": "car buying"
+          },
+          {
+            "title": "housing"
+          },
+          {
+            "title": "scams & fraud"
+          },
+          {
+            "title": "careers & employment"
           }
         ]
       },
