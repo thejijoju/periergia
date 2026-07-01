@@ -42,10 +42,10 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
         <Wordmark size="lg" tagline />
       </div>
 
-      {/* Full-bleed library strip — thin & crisp, matching the reference */}
-      <div className="relative w-full h-[52px] sm:h-[84px] lg:h-[104px] mt-8 sm:mt-12">
+      {/* Full-bleed library strip — high-res panorama, crisp at any height */}
+      <div className="relative w-full h-[64px] sm:h-[140px] lg:h-[190px] mt-8 sm:mt-12">
         <Image
-          src="/library-strip.png"
+          src="/library-strip.jpg"
           alt="A classical library"
           fill
           sizes="100vw"
