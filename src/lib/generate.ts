@@ -3,13 +3,13 @@ import type {
   Content,
   ContentKey,
   Depth,
-  Format,
   GradeResult,
   Level,
   Node,
   Quiz,
   QuizQuestion,
 } from "./types";
+import { type Mode, getMode } from "./modes";
 import { getAnthropic, MODEL } from "./anthropic";
 import { getAncestors } from "./store";
 
@@ -32,6 +32,39 @@ const LEVEL_GUIDE: Record<Level, string> = {
   expert: "Explain for an expert. Be precise and dense; engage edge cases and debates.",
 };
 
+// How each learning mode should render the topic. All modes produce Markdown;
+// visual/immersive modes produce a described storyboard/experience (real image,
+// video, and 3D generation arrive as later "format plugins").
+const MODE_GUIDE: Record<Mode, string> = {
+  read: "A clear, well-structured explanatory article with short sections.",
+  listen: "A clear, spoken-style explanation that flows well when read aloud.",
+  podcast: "A lively two-host podcast script (label lines **Host A** / **Host B**) that explains the topic through natural conversation.",
+  story: "A short narrative story that teaches the topic through characters and plot, then a one-line note on the lesson.",
+  song: "Original song lyrics with verses and a chorus that capture the key ideas, plus a short note on the intended tune/mood.",
+  image: "A vivid, detailed description of one illustrative image (written as an image-generation prompt), then a caption explaining what it shows and why.",
+  sketch: "A simple annotated sketch described step by step — what to draw and label — so the concept is conveyed visually.",
+  comic: "A short comic laid out panel by panel (**Panel 1**, **Panel 2**, …), each with a caption and any dialogue.",
+  video: "A short explainer-video storyboard: numbered scenes, each with on-screen visuals and the narration for that scene.",
+  animation: "An animation storyboard describing the key frames and motion that bring the concept to life, with narration.",
+  model3d: "A description of an interactive 3D model: its parts, how they relate in space, and what to rotate or zoom to understand it.",
+  mindmap: "A mind map as a nested bulleted outline: the central idea, its main branches, and sub-branches.",
+  timeline: "A chronological timeline as a dated list, each entry a date/period in bold followed by a short description.",
+  quiz: "A short set of understanding-check questions, each followed by its answer.",
+  tutor: "An interactive tutor opening: greet the learner, explain the first idea simply, then ask one question to check understanding.",
+  simulate: "A described interactive simulation: the setup, the variables the learner can change, and what happens as they do.",
+  roleplay: "A roleplay scenario: set the scene, give the learner a role, and voice a relevant character they can converse with.",
+  teachback: "A 'teach it back' exercise: a scenario where the learner must explain the topic, with hints and what a strong explanation includes.",
+  debate: "A structured debate: state the motion, then alternating arguments **For** and **Against**, ending with what to weigh.",
+  build: "A hands-on project: a numbered, step-by-step guide to make or do something that embodies the concept.",
+  game: "A simple text game that teaches the topic: its rules, how to play, and an engaging first round.",
+  puzzle: "A puzzle or riddle whose solution requires understanding the topic, followed by the worked solution.",
+  duel: "A rapid-fire challenge — a series of quick questions of rising difficulty — with the answers after.",
+  speedrun: "A speedrun cram sheet: only the essential facts to grasp the topic as fast as possible, tightly ordered.",
+  adventure: "A short choose-your-path adventure that teaches the topic through branching choices (number the options at each step).",
+  ar: "A described augmented-reality experience: what virtual elements appear in the learner's space and how they interact to learn.",
+  vr: "A described virtual-reality experience: the immersive world the learner steps into and what they do there to grasp the concept.",
+};
+
 async function nodeContext(node: Node): Promise<string> {
   const ancestors = await getAncestors(node);
   return ancestors.map((n) => n.title).join(" › ");
@@ -46,18 +79,21 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     return { ...key, body: placeholderContent(node, key, trail), generated: false };
   }
 
+  const mode = key.format as Mode; // the `format` field holds the learning mode
+  const spec = getMode(mode);
+
   const system =
     "You are Periergia, a living textbook for everything. You write clear, accurate, " +
-    "engaging explanations that fit the reader's chosen depth and level. Output GitHub-flavored " +
-    "Markdown only: a short bolded lead sentence, then prose with the occasional subheading, " +
-    "list, or example where it genuinely helps. No preamble, no meta-commentary, no closing summary.";
+    "engaging content that fits the reader's chosen mode, depth, and level. Output GitHub-flavored " +
+    "Markdown only. No preamble, no meta-commentary, no closing summary.";
 
   const prompt =
-    `Write the entry for **${node.title}** (in the path ${trail}).\n\n` +
+    `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
+    `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
     `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
     `Level: ${key.level}. ${LEVEL_GUIDE[key.level]}\n\n` +
     `${node.summary ? `Context: ${node.summary}\n\n` : ""}` +
-    `Write the entry now.`;
+    `Create it now.`;
 
   // Stream so longer (detailed/research) entries don't hit HTTP timeouts.
   const stream = client.messages.stream({
@@ -247,10 +283,6 @@ function placeholderContent(node: Node, key: ContentKey, trail: string): string 
     `## Common questions`,
     `The questions most people have when meeting ${t} for the first time. When you're ready, hit **Test yourself**.`,
   ].join("\n");
-}
-
-function formatLabel(f: Format): string {
-  return f === "text" ? "text" : f === "voice" ? "audio" : f;
 }
 
 function placeholderQuiz(node: Node): QuizQuestion[] {

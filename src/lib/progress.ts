@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { Depth, Format, Level } from "./types";
+import type { Depth, Level } from "./types";
+import type { Mode } from "./modes";
 
 // Browser-saved progress + reader preferences. No accounts in v1 — everything
 // lives in localStorage. Swappable for Supabase Auth + a `progress` table later.
@@ -11,13 +12,13 @@ const KEY = "periergia.v1";
 interface ProgressState {
   visited: string[]; // node ids opened
   completed: string[]; // node ids whose quiz was passed
-  prefs: { depth: Depth; level: Level; format: Format };
+  prefs: { depth: Depth; level: Level; mode: Mode };
 }
 
 const DEFAULT: ProgressState = {
   visited: [],
   completed: [],
-  prefs: { depth: "medium", level: "easy", format: "text" },
+  prefs: { depth: "medium", level: "easy", mode: "read" },
 };
 
 function load(): ProgressState {

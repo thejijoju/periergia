@@ -4,8 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { DEPTHS, FORMATS, LEVELS, type Format } from "@/lib/types";
+import { DEPTHS, LEVELS } from "@/lib/types";
+import { getMode, type Mode } from "@/lib/modes";
 import { useProgress } from "@/lib/progress";
+import { LearningModeRail } from "./LearningModeRail";
 import { VoiceButton } from "./VoiceButton";
 import { QuizPanel } from "./QuizPanel";
 
@@ -21,49 +23,9 @@ export interface ReaderNode {
   crumbs: Crumb[]; // subject → … → current (current has no href)
 }
 
-// Discreet mode icons shown next to the title. Text is the default focus;
-// unavailable modes stay grey and disabled. Hover turns an available mode
-// violet.
-const MODE_ICONS: Record<Format, React.ReactNode> = {
-  text: (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
-      <line x1="3" y1="4" x2="13" y2="4" />
-      <line x1="3" y1="7" x2="13" y2="7" />
-      <line x1="3" y1="10" x2="10" y2="10" />
-    </svg>
-  ),
-  voice: (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8 2.5 4.5 5.5H2.5v5h2L8 13.5z" />
-      <path d="M11 5.5a3.5 3.5 0 0 1 0 5" />
-    </svg>
-  ),
-  game: (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="5" width="12" height="6" rx="3" />
-      <line x1="5" y1="8" x2="7" y2="8" />
-      <line x1="6" y1="7" x2="6" y2="9" />
-      <circle cx="10.5" cy="8" r="0.6" fill="currentColor" />
-    </svg>
-  ),
-  video: (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round">
-      <rect x="2.5" y="4" width="11" height="8" rx="1.5" />
-      <path d="M7 6.5 10 8 7 9.5z" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  "3d": (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round">
-      <path d="M8 2 13 4.8v6.4L8 14 3 11.2V4.8z" />
-      <path d="M8 2v12M3 4.8 8 8l5-3.2" />
-    </svg>
-  ),
-};
-
 // Slugify a heading's text into a stable anchor id.
 function headingId(children: React.ReactNode): string {
-  const text = extractText(children);
-  return text
+  return extractText(children)
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
@@ -82,7 +44,8 @@ function extractText(node: React.ReactNode): string {
 
 export function Reader({ node }: { node: ReaderNode }) {
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
-  const { depth, level, format } = state.prefs;
+  const { depth, level, mode } = state.prefs;
+  const spec = getMode(mode);
 
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(true);
@@ -100,21 +63,21 @@ export function Reader({ node }: { node: ReaderNode }) {
       const res = await fetch("/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nodeId: node.id, depth, level, format }),
+        body: JSON.stringify({ nodeId: node.id, depth, level, mode }),
       }).then((r) => r.json());
       setBody(res.body ?? "");
       setGenerated(!!res.generated);
     } finally {
       setLoading(false);
     }
-  }, [node.id, depth, level, format]);
+  }, [node.id, depth, level, mode]);
 
   useEffect(() => {
     if (hydrated) load();
   }, [hydrated, load]);
 
-  const isVisual = format === "video" || format === "3d";
-  const formatMeta = FORMATS.find((f) => f.id === format);
+  const isAudio = spec.kind === "audio";
+  const isVisual = spec.kind === "visual";
 
   return (
     <article className="max-w-[720px] mx-auto px-1">
@@ -140,44 +103,21 @@ export function Reader({ node }: { node: ReaderNode }) {
         ))}
       </nav>
 
-      {/* Title + discreet mode icons */}
-      <div className="mt-4 flex items-start gap-3">
-        <h1 className="font-sans font-bold text-[32px] leading-[1.12] tracking-[-0.02em] text-ink">
-          {node.title}
-        </h1>
-        <div className="mt-2 flex items-center gap-1 shrink-0">
-          {FORMATS.map((f) => {
-            const active = f.id === format;
-            const disabled = !f.ready;
-            return (
-              <button
-                key={f.id}
-                type="button"
-                disabled={disabled}
-                onClick={() => !disabled && setPrefs({ format: f.id as Format })}
-                title={f.ready ? f.label : `${f.label} — coming soon`}
-                aria-label={f.label}
-                aria-pressed={active}
-                className={`grid place-items-center h-6 w-6 rounded-md transition-colors ${
-                  disabled
-                    ? "text-faint/50 cursor-default"
-                    : active
-                      ? "text-purple"
-                      : "text-numeral hover:text-purple"
-                }`}
-              >
-                <span className="h-[15px] w-[15px]">{MODE_ICONS[f.id]}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      {/* Title */}
+      <h1 className="mt-4 font-sans font-bold text-[32px] leading-[1.12] tracking-[-0.02em] text-ink">
+        {node.title}
+      </h1>
       {node.summary && (
         <p className="mt-2 font-sans text-[15px] text-muted">{node.summary}</p>
       )}
 
+      {/* Learning-mode rail — every way to experience this topic */}
+      <div className="mt-3">
+        <LearningModeRail active={mode} onSelect={(id: Mode) => setPrefs({ mode: id })} />
+      </div>
+
       {/* Depth + Level controls */}
-      <div className="mt-5 space-y-2.5">
+      <div className="mt-4 space-y-2.5">
         <ControlRow
           label="Depth"
           items={DEPTHS}
@@ -196,26 +136,21 @@ export function Reader({ node }: { node: ReaderNode }) {
 
       {/* Body */}
       {loading ? (
-        <p className="font-sans italic text-[15px] text-faint">Composing this entry…</p>
-      ) : isVisual && formatMeta && !formatMeta.ready ? (
-        <div className="rounded-2xl border border-line bg-[#faf8f4] px-6 py-10 text-center">
-          <p className="font-sans text-[16px] text-ink">“{formatMeta.label}” is coming soon.</p>
-          <p className="mt-2 font-sans italic text-[13px] text-muted">
-            v1 supports Read and Listen. Visual and 3D formats arrive as the next “format plugins.”
-          </p>
-          <button
-            onClick={() => setPrefs({ format: "text" })}
-            className="mt-4 font-sans text-[13px] text-maroon underline underline-offset-2"
-          >
-            Back to reading
-          </button>
-        </div>
+        <p className="font-sans italic text-[15px] text-faint">
+          Composing this {spec.label.toLowerCase()}…
+        </p>
       ) : (
         <>
-          {format === "voice" && (
+          {isAudio && (
             <div className="mb-5">
               <VoiceButton text={body} />
             </div>
+          )}
+          {isVisual && (
+            <p className="mb-5 font-sans text-[13px] text-muted bg-purple-soft/60 border border-line rounded-xl px-4 py-2.5">
+              Rich {spec.label.toLowerCase()} generation is coming soon — for now, here’s the{" "}
+              {spec.label.toLowerCase()} described in words.
+            </p>
           )}
           <div id="reader-content" className="prose-reading max-w-none">
             <ReactMarkdown
@@ -231,14 +166,14 @@ export function Reader({ node }: { node: ReaderNode }) {
         </>
       )}
 
-      {!generated && !loading && !isVisual && (
+      {!generated && !loading && (
         <p className="mt-4 font-mono text-[10.5px] tracking-[0.04em] text-whisper uppercase">
           Placeholder — set ANTHROPIC_API_KEY for original content
         </p>
       )}
 
       {/* Test CTA */}
-      {!loading && !isVisual && (
+      {!loading && (
         <div className="mt-8">
           {!showQuiz ? (
             <button
