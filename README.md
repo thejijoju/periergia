@@ -160,3 +160,7 @@ Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS · `@anthropic
 3. Format plugins: **Game** (AI-generated interactive), **Watch** (narrated
    slides), **See** (3D for geometry / molecules / anatomy).
 4. Accounts + cross-device progress (Supabase Auth — the data layer is ready).
+
+## Credits
+
+- Home library photograph: “The Long Room, Trinity College Dublin, Ireland” by David Iliff — [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg), licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Cropped and optimized for the header strip.

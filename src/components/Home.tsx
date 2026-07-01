@@ -42,13 +42,14 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
         <Wordmark size="lg" tagline />
       </div>
 
-      {/* Full-bleed library strip — high-res panorama, crisp at any height */}
+      {/* Full-bleed library strip — the Long Room, Trinity College Dublin */}
       <div className="relative w-full h-[64px] sm:h-[140px] lg:h-[190px] mt-8 sm:mt-12">
         <Image
           src="/library-strip.jpg"
-          alt="A classical library"
+          alt="The Long Room, Trinity College Library, Dublin"
           fill
           sizes="100vw"
+          quality={90}
           className="object-cover"
           priority
         />
@@ -141,6 +142,28 @@ export function Home({ subjects }: { subjects: HomeSubject[] }) {
             )}
           </div>
         )}
+
+        {/* Image credit (CC BY-SA 3.0 requires attribution) */}
+        <p className="mt-20 text-center font-serif text-[11px] leading-relaxed text-whisper">
+          Library photograph:{" "}
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-maroon"
+          >
+            The Long Room, Trinity College Dublin
+          </a>{" "}
+          by David Iliff ·{" "}
+          <a
+            href="https://creativecommons.org/licenses/by-sa/3.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-maroon"
+          >
+            CC BY-SA 3.0
+          </a>
+        </p>
       </div>
     </main>
   );
