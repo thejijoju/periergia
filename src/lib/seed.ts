@@ -1506,16 +1506,39 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "supply & demand"
           },
           {
-            "title": "markets"
-          },
-          {
             "title": "elasticity"
           },
           {
-            "title": "firms"
+            "title": "consumer choice"
           },
           {
-            "title": "competition"
+            "title": "production & costs"
+          },
+          {
+            "title": "breakeven & shutdown"
+          }
+        ]
+      },
+      {
+        "title": "Firms & Market Structures",
+        "children": [
+          {
+            "title": "perfect competition"
+          },
+          {
+            "title": "monopolistic competition"
+          },
+          {
+            "title": "oligopoly"
+          },
+          {
+            "title": "monopoly"
+          },
+          {
+            "title": "economies of scale"
+          },
+          {
+            "title": "measuring market power"
           }
         ]
       },
@@ -1523,44 +1546,116 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Macroeconomics",
         "children": [
           {
-            "title": "GDP"
+            "title": "GDP & national accounts"
+          },
+          {
+            "title": "aggregate demand & supply"
+          },
+          {
+            "title": "economic growth"
           },
           {
             "title": "inflation"
           },
           {
             "title": "unemployment"
-          },
-          {
-            "title": "fiscal & monetary policy"
           }
         ]
       },
       {
-        "title": "International Economics",
+        "title": "Business Cycles",
         "children": [
           {
-            "title": "trade"
+            "title": "phases of the cycle"
+          },
+          {
+            "title": "credit cycles"
+          },
+          {
+            "title": "economic indicators"
+          },
+          {
+            "title": "recessions & recoveries"
+          }
+        ]
+      },
+      {
+        "title": "Money & Policy",
+        "children": [
+          {
+            "title": "money & banking"
+          },
+          {
+            "title": "central banks"
+          },
+          {
+            "title": "monetary policy"
+          },
+          {
+            "title": "fiscal policy"
+          },
+          {
+            "title": "interest rates"
+          }
+        ]
+      },
+      {
+        "title": "Global Economy",
+        "children": [
+          {
+            "title": "international trade"
+          },
+          {
+            "title": "trade restrictions & blocs"
+          },
+          {
+            "title": "capital flows & balance of payments"
           },
           {
             "title": "exchange rates"
           },
           {
-            "title": "globalization"
+            "title": "geopolitics & markets"
           }
         ]
       },
       {
-        "title": "Development Economics",
+        "title": "Quantitative Foundations",
         "children": [
           {
-            "title": "growth"
+            "title": "time value of money"
           },
           {
-            "title": "poverty"
+            "title": "rates & returns"
           },
           {
-            "title": "inequality"
+            "title": "statistical measures of returns"
+          },
+          {
+            "title": "probability & expected value"
+          },
+          {
+            "title": "portfolio mathematics"
+          }
+        ]
+      },
+      {
+        "title": "Statistical Methods",
+        "children": [
+          {
+            "title": "sampling & estimation"
+          },
+          {
+            "title": "hypothesis testing"
+          },
+          {
+            "title": "regression"
+          },
+          {
+            "title": "simulation methods"
+          },
+          {
+            "title": "big data techniques"
           }
         ]
       },
@@ -1579,16 +1674,16 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
-        "title": "Econometrics",
+        "title": "Development Economics",
         "children": [
           {
-            "title": "economic data"
+            "title": "growth"
           },
           {
-            "title": "modeling"
+            "title": "poverty"
           },
           {
-            "title": "forecasting"
+            "title": "inequality"
           }
         ]
       }
