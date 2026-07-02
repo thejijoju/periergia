@@ -1658,6 +1658,31 @@ const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "housing & mortgages"
+          },
+          {
+            "title": "Alternative Investments",
+            "summary": "Assets beyond public stocks and bonds — private equity, hedge funds, real estate, commodities, and infrastructure — and why investors use them: diversification (returns that don't move in lockstep with public markets) and the potential for higher returns, in exchange for less liquidity, higher fees, and greater complexity.",
+            "children": [
+              {
+                "title": "Core Concepts",
+                "summary": "What counts as an alternative investment and how it differs from traditional stocks and bonds; the main categories (private equity, hedge funds, real estate, commodities, infrastructure); and the case for holding them — diversification and the potential for higher returns, weighed against illiquidity, higher fees, leverage, and valuation difficulty."
+              },
+              {
+                "title": "Private Equity"
+              },
+              {
+                "title": "Hedge Funds"
+              },
+              {
+                "title": "Real Estate"
+              },
+              {
+                "title": "Commodities and Natural Resources"
+              },
+              {
+                "title": "Infrastructure"
+              }
+            ]
           }
         ]
       },
