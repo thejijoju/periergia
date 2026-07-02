@@ -85,7 +85,13 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   const system =
     "You are Periergia, a living textbook for everything. You write clear, accurate, " +
     "engaging content that fits the reader's chosen mode, depth, and level. Output GitHub-flavored " +
-    "Markdown only. No preamble, no meta-commentary, no closing summary.";
+    "Markdown only. No preamble, no meta-commentary, no closing summary.\n\n" +
+    "ALWAYS begin with a definition callout: a single Markdown blockquote (a line starting " +
+    "with '> ') of one or two plain, jargon-free sentences that define the topic in simple " +
+    "terms, starting with the term in bold — e.g. '> **State management** is a concept focused " +
+    "on maintaining and controlling the state of an application…'. Then continue with the " +
+    "requested content. (For song lyrics, still open with this one-line definition blockquote " +
+    "before the lyrics.)";
 
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
@@ -253,9 +259,12 @@ function placeholderContent(node: Node, key: ContentKey, trail: string): string 
     "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
     "mollit anim id est laborum.";
 
-  // Sectioned so the "On this page" outline has anchors to track on scroll.
+  // Leads with a definition callout (blockquote), then sections so the
+  // "On this page" outline has anchors to track on scroll.
   return [
-    `**${t}** — ${node.summary || `an entry in ${trail}.`} _This is placeholder text; set an \`ANTHROPIC_API_KEY\` to generate the real, original entry tuned to your depth, level, and format._`,
+    `> **${t}** — ${node.summary || `a concept in ${trail}.`}`,
+    ``,
+    `_This is placeholder text; set an \`ANTHROPIC_API_KEY\` to generate the real, original entry tuned to your depth, level, and format._`,
     ``,
     `## Overview`,
     lorem,

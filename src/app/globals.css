@@ -70,6 +70,23 @@ body {
   border-radius: 4px;
   font-size: 0.85em;
 }
+/* Definition callout — every concept opens with one (the leading blockquote) */
+.prose-reading :where(blockquote) {
+  margin: 0 0 1.6em;
+  padding: 0.9em 1.1em;
+  background: #f6f3fc;
+  border: 1px solid #e7e0f7;
+  border-left: 3px solid #6d28d9;
+  border-radius: 10px;
+  color: #2b2620;
+  font-size: 0.98em;
+}
+.prose-reading :where(blockquote p) {
+  margin: 0;
+}
+.prose-reading :where(blockquote strong) {
+  color: #4c1d95;
+}
 
 /* Thin scholarly scrollbars */
 * {

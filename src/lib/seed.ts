@@ -1661,43 +1661,88 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Quantitative Foundations",
         "children": [
           {
-            "title": "time value of money"
-          },
-          {
-            "title": "rates & returns",
-            "summary": "How investment performance is measured: holding period return, mean returns, money- vs time-weighted returns, and adjusting for inflation, taxes, and leverage.",
+            "title": "Rates and Returns",
+            "summary": "How interest rates and investment returns are defined and measured — the building blocks for comparing any investment.",
             "children": [
               {
-                "title": "holding period return"
+                "title": "Key Concepts"
               },
               {
-                "title": "arithmetic & geometric mean return"
+                "title": "Interest Rates and Return Measurement"
               },
               {
-                "title": "money-weighted return (IRR)"
+                "title": "Time-Weighted and Money-Weighted Returns"
               },
               {
-                "title": "time-weighted return"
-              },
-              {
-                "title": "annualized returns"
-              },
-              {
-                "title": "real, nominal & after-tax returns"
-              },
-              {
-                "title": "leveraged returns"
+                "title": "Common Measures of Return"
               }
             ]
           },
           {
-            "title": "statistical measures of returns"
+            "title": "The Time Value of Money in Finance",
+            "summary": "Why a dollar today is worth more than a dollar tomorrow, and how to move cash flows through time to value them.",
+            "children": [
+              {
+                "title": "Key Concepts"
+              },
+              {
+                "title": "Discounted Cash Flow Valuation"
+              },
+              {
+                "title": "Implied Returns and Cash Flow Additivity"
+              }
+            ]
           },
           {
-            "title": "probability & expected value"
+            "title": "Statistical Measures of Asset Returns",
+            "summary": "How to summarize the distribution of asset returns — its center, spread, shape, and how returns move together.",
+            "children": [
+              {
+                "title": "Key Concepts"
+              },
+              {
+                "title": "Central Tendency and Dispersion"
+              },
+              {
+                "title": "Skewness"
+              },
+              {
+                "title": "Kurtosis"
+              },
+              {
+                "title": "Correlation"
+              }
+            ]
           },
           {
-            "title": "portfolio mathematics"
+            "title": "Probability Trees and Conditional Expectations",
+            "summary": "Using probability to reason about uncertain outcomes, form expectations, and update beliefs as new information arrives.",
+            "children": [
+              {
+                "title": "Key Concepts"
+              },
+              {
+                "title": "Probability Models"
+              },
+              {
+                "title": "Expected Values"
+              },
+              {
+                "title": "Bayes’ Formula"
+              }
+            ]
+          },
+          {
+            "title": "Portfolio Mathematics",
+            "summary": "How the returns and risks of individual assets combine into the return and risk of a whole portfolio.",
+            "children": [
+              {
+                "title": "Key Concepts"
+              },
+              {
+                "title": "Probability Models for Portfolio Return and Risk"
+              }
+            ]
           }
         ]
       },
