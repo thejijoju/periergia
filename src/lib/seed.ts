@@ -3675,6 +3675,657 @@ export const SUBJECTS: SubjectSpec[] = [
         ]
       }
     ]
+  },
+  {
+    "name": "Classics",
+    "slug": "classics",
+    "description": "",
+    "tree": [
+      {
+        "title": "The Greek World",
+        "children": [
+          {
+            "title": "Archaic Greece"
+          },
+          {
+            "title": "Classical Athens"
+          },
+          {
+            "title": "Alexander and the Hellenistic Age"
+          },
+          {
+            "title": "Greek Mythology"
+          },
+          {
+            "title": "Greek Philosophy"
+          },
+          {
+            "title": "Greek Drama"
+          }
+        ]
+      },
+      {
+        "title": "The Roman World",
+        "children": [
+          {
+            "title": "The Roman Republic"
+          },
+          {
+            "title": "The Roman Empire"
+          },
+          {
+            "title": "Roman Law"
+          },
+          {
+            "title": "Roman Religion"
+          },
+          {
+            "title": "Roman Literature"
+          },
+          {
+            "title": "The Fall of Rome"
+          }
+        ]
+      },
+      {
+        "title": "Classical Languages",
+        "children": [
+          {
+            "title": "Ancient Greek"
+          },
+          {
+            "title": "Latin"
+          },
+          {
+            "title": "Classical Rhetoric"
+          }
+        ]
+      },
+      {
+        "title": "Legacy of Antiquity",
+        "children": [
+          {
+            "title": "Classical Reception"
+          },
+          {
+            "title": "Archaeology of the Ancient World"
+          },
+          {
+            "title": "Myth in Modern Culture"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Neuroscience",
+    "slug": "neuroscience",
+    "description": "",
+    "tree": [
+      {
+        "title": "Cellular Neuroscience",
+        "children": [
+          {
+            "title": "Neurons"
+          },
+          {
+            "title": "The Synapse"
+          },
+          {
+            "title": "Action Potentials"
+          },
+          {
+            "title": "Neurotransmitters"
+          },
+          {
+            "title": "Glial Cells"
+          }
+        ]
+      },
+      {
+        "title": "Brain Systems",
+        "children": [
+          {
+            "title": "Vision"
+          },
+          {
+            "title": "Hearing"
+          },
+          {
+            "title": "Movement and Motor Control"
+          },
+          {
+            "title": "The Limbic System"
+          },
+          {
+            "title": "Sleep and Circadian Rhythms"
+          }
+        ]
+      },
+      {
+        "title": "Cognitive Neuroscience",
+        "children": [
+          {
+            "title": "Perception"
+          },
+          {
+            "title": "Attention"
+          },
+          {
+            "title": "Learning and Memory"
+          },
+          {
+            "title": "Language"
+          },
+          {
+            "title": "Consciousness"
+          }
+        ]
+      },
+      {
+        "title": "Methods in Neuroscience",
+        "children": [
+          {
+            "title": "Brain Imaging"
+          },
+          {
+            "title": "Electrophysiology"
+          },
+          {
+            "title": "Optogenetics"
+          }
+        ]
+      },
+      {
+        "title": "Clinical Neuroscience",
+        "children": [
+          {
+            "title": "Neuroplasticity"
+          },
+          {
+            "title": "Neurodegeneration"
+          },
+          {
+            "title": "Stroke and Brain Injury"
+          },
+          {
+            "title": "The Neuroscience of Mental Illness"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Statistics",
+    "slug": "statistics",
+    "description": "",
+    "tree": [
+      {
+        "title": "Descriptive Statistics",
+        "children": [
+          {
+            "title": "Measures of Center"
+          },
+          {
+            "title": "Measures of Spread"
+          },
+          {
+            "title": "Distributions"
+          },
+          {
+            "title": "Data Visualization"
+          }
+        ]
+      },
+      {
+        "title": "Probability",
+        "children": [
+          {
+            "title": "Probability Basics"
+          },
+          {
+            "title": "Random Variables"
+          },
+          {
+            "title": "Common Distributions"
+          },
+          {
+            "title": "Bayes' Theorem"
+          }
+        ]
+      },
+      {
+        "title": "Statistical Inference",
+        "children": [
+          {
+            "title": "Sampling"
+          },
+          {
+            "title": "Estimation"
+          },
+          {
+            "title": "Confidence Intervals"
+          },
+          {
+            "title": "Hypothesis Testing"
+          },
+          {
+            "title": "P-values and Significance"
+          }
+        ]
+      },
+      {
+        "title": "Regression and Modeling",
+        "children": [
+          {
+            "title": "Correlation"
+          },
+          {
+            "title": "Linear Regression"
+          },
+          {
+            "title": "Logistic Regression"
+          },
+          {
+            "title": "ANOVA"
+          }
+        ]
+      },
+      {
+        "title": "Modern Statistics",
+        "children": [
+          {
+            "title": "Experimental Design"
+          },
+          {
+            "title": "Bayesian Statistics"
+          },
+          {
+            "title": "Resampling Methods"
+          },
+          {
+            "title": "Statistical Learning"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Africana Studies",
+    "slug": "africana-studies",
+    "description": "",
+    "tree": [
+      {
+        "title": "African History",
+        "children": [
+          {
+            "title": "Precolonial Africa"
+          },
+          {
+            "title": "The Transatlantic Slave Trade"
+          },
+          {
+            "title": "Colonial Africa"
+          },
+          {
+            "title": "Decolonization"
+          },
+          {
+            "title": "Contemporary Africa"
+          }
+        ]
+      },
+      {
+        "title": "The African American Experience",
+        "children": [
+          {
+            "title": "Slavery in America"
+          },
+          {
+            "title": "Reconstruction"
+          },
+          {
+            "title": "The Jim Crow Era"
+          },
+          {
+            "title": "The Civil Rights Movement"
+          },
+          {
+            "title": "Black Power and After"
+          }
+        ]
+      },
+      {
+        "title": "Black Thought and Politics",
+        "children": [
+          {
+            "title": "Pan-Africanism"
+          },
+          {
+            "title": "Black Feminism"
+          },
+          {
+            "title": "Critical Race Theory"
+          }
+        ]
+      },
+      {
+        "title": "Diaspora and Culture",
+        "children": [
+          {
+            "title": "The African Diaspora"
+          },
+          {
+            "title": "Black Literature"
+          },
+          {
+            "title": "Black Music and Art"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Asian Studies",
+    "slug": "asian-studies",
+    "description": "",
+    "tree": [
+      {
+        "title": "East Asia",
+        "children": [
+          {
+            "title": "Chinese History"
+          },
+          {
+            "title": "Japanese History"
+          },
+          {
+            "title": "Korean History"
+          }
+        ]
+      },
+      {
+        "title": "South Asia",
+        "children": [
+          {
+            "title": "Indian History"
+          },
+          {
+            "title": "Religions of India"
+          },
+          {
+            "title": "Modern South Asia"
+          }
+        ]
+      },
+      {
+        "title": "Southeast Asia",
+        "children": [
+          {
+            "title": "Southeast Asian History"
+          },
+          {
+            "title": "Cultures of Southeast Asia"
+          }
+        ]
+      },
+      {
+        "title": "Asian Thought",
+        "children": [
+          {
+            "title": "Confucianism"
+          },
+          {
+            "title": "Daoism"
+          },
+          {
+            "title": "Buddhism"
+          },
+          {
+            "title": "Hinduism"
+          }
+        ]
+      },
+      {
+        "title": "Language and Literature",
+        "children": [
+          {
+            "title": "East Asian Languages"
+          },
+          {
+            "title": "Asian Literature"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Gender Studies",
+    "slug": "gender-studies",
+    "description": "",
+    "tree": [
+      {
+        "title": "Foundations",
+        "children": [
+          {
+            "title": "Sex and Gender"
+          },
+          {
+            "title": "Feminist Theory"
+          },
+          {
+            "title": "Intersectionality"
+          },
+          {
+            "title": "Patriarchy"
+          }
+        ]
+      },
+      {
+        "title": "History of Feminism",
+        "children": [
+          {
+            "title": "The First Wave"
+          },
+          {
+            "title": "The Second Wave"
+          },
+          {
+            "title": "Third and Fourth Waves"
+          },
+          {
+            "title": "Global Feminisms"
+          }
+        ]
+      },
+      {
+        "title": "Sexuality and Queer Studies",
+        "children": [
+          {
+            "title": "LGBTQ History"
+          },
+          {
+            "title": "Queer Theory"
+          },
+          {
+            "title": "Identity and Sexuality"
+          }
+        ]
+      },
+      {
+        "title": "Gender in Society",
+        "children": [
+          {
+            "title": "Gender and Work"
+          },
+          {
+            "title": "Gender and Politics"
+          },
+          {
+            "title": "Media and Representation"
+          },
+          {
+            "title": "Masculinities"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Folklore & Mythology",
+    "slug": "folklore-and-mythology",
+    "description": "",
+    "tree": [
+      {
+        "title": "World Mythologies",
+        "children": [
+          {
+            "title": "Greek Mythology"
+          },
+          {
+            "title": "Norse Mythology"
+          },
+          {
+            "title": "Egyptian Mythology"
+          },
+          {
+            "title": "Mesopotamian Mythology"
+          },
+          {
+            "title": "Asian Mythologies"
+          },
+          {
+            "title": "African Mythologies"
+          }
+        ]
+      },
+      {
+        "title": "Folktales and Legends",
+        "children": [
+          {
+            "title": "Fairy Tales"
+          },
+          {
+            "title": "Legends"
+          },
+          {
+            "title": "Urban Legends"
+          },
+          {
+            "title": "Fables"
+          }
+        ]
+      },
+      {
+        "title": "Myth and Motif",
+        "children": [
+          {
+            "title": "Creation Myths"
+          },
+          {
+            "title": "Hero Myths"
+          },
+          {
+            "title": "Tricksters"
+          },
+          {
+            "title": "The Afterlife"
+          }
+        ]
+      },
+      {
+        "title": "Studying Myth",
+        "children": [
+          {
+            "title": "Comparative Mythology"
+          },
+          {
+            "title": "Folklore Theory"
+          },
+          {
+            "title": "Oral Tradition"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Film",
+    "slug": "film",
+    "description": "",
+    "tree": [
+      {
+        "title": "Film History",
+        "children": [
+          {
+            "title": "Silent Cinema"
+          },
+          {
+            "title": "The Studio Era"
+          },
+          {
+            "title": "World Cinema"
+          },
+          {
+            "title": "The New Waves"
+          },
+          {
+            "title": "Contemporary Film"
+          }
+        ]
+      },
+      {
+        "title": "Film Theory and Criticism",
+        "children": [
+          {
+            "title": "Film Language"
+          },
+          {
+            "title": "Genre Theory"
+          },
+          {
+            "title": "Auteur Theory"
+          },
+          {
+            "title": "Film Criticism"
+          }
+        ]
+      },
+      {
+        "title": "The Craft of Film",
+        "children": [
+          {
+            "title": "Directing"
+          },
+          {
+            "title": "Cinematography"
+          },
+          {
+            "title": "Editing"
+          },
+          {
+            "title": "Screenwriting"
+          },
+          {
+            "title": "Sound Design"
+          }
+        ]
+      },
+      {
+        "title": "Forms and Genres",
+        "children": [
+          {
+            "title": "Documentary"
+          },
+          {
+            "title": "Animation"
+          },
+          {
+            "title": "Experimental Film"
+          }
+        ]
+      }
+    ]
   }
 ];
 
