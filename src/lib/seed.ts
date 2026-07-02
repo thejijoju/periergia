@@ -1665,7 +1665,7 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "How interest rates and investment returns are defined and measured — the building blocks for comparing any investment.",
             "children": [
               {
-                "title": "Key Concepts"
+                "title": "Core Concepts"
               },
               {
                 "title": "Interest Rates and Return Measurement"
@@ -1683,7 +1683,7 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "Why a dollar today is worth more than a dollar tomorrow, and how to move cash flows through time to value them.",
             "children": [
               {
-                "title": "Key Concepts"
+                "title": "Core Concepts"
               },
               {
                 "title": "Discounted Cash Flow Valuation"
@@ -1698,7 +1698,7 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "How to summarize the distribution of asset returns — its center, spread, shape, and how returns move together.",
             "children": [
               {
-                "title": "Key Concepts"
+                "title": "Core Concepts"
               },
               {
                 "title": "Central Tendency and Dispersion"
@@ -1719,7 +1719,7 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "Using probability to reason about uncertain outcomes, form expectations, and update beliefs as new information arrives.",
             "children": [
               {
-                "title": "Key Concepts"
+                "title": "Core Concepts"
               },
               {
                 "title": "Probability Models"
@@ -1737,7 +1737,7 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "How the returns and risks of individual assets combine into the return and risk of a whole portfolio.",
             "children": [
               {
-                "title": "Key Concepts"
+                "title": "Core Concepts"
               },
               {
                 "title": "Probability Models for Portfolio Return and Risk"
@@ -1750,19 +1750,79 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Statistical Methods",
         "children": [
           {
-            "title": "sampling & estimation"
+            "title": "Estimation and Inference",
+            "summary": "How to draw conclusions about a whole population from a sample, and how sample means behave.",
+            "children": [
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Sampling Techniques and the Central Limit Theorem"
+              }
+            ]
           },
           {
-            "title": "hypothesis testing"
+            "title": "Hypothesis Testing",
+            "summary": "A formal procedure for using sample evidence to accept or reject a claim about a population.",
+            "children": [
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Hypothesis Testing Basics"
+              },
+              {
+                "title": "Types of Hypothesis Tests"
+              }
+            ]
           },
           {
-            "title": "regression"
+            "title": "Parametric and Non-Parametric Tests of Independence",
+            "summary": "Testing whether two variables move together, using correlation-based and rank/frequency-based methods.",
+            "children": [
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Tests for Independence"
+              }
+            ]
           },
           {
-            "title": "simulation methods"
+            "title": "Simulation Methods",
+            "summary": "Modelling uncertain outcomes by generating many random scenarios instead of solving in closed form.",
+            "children": [
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Lognormal Distributions and Simulation Techniques"
+              }
+            ]
           },
           {
-            "title": "big data techniques"
+            "title": "Introduction to Linear Regression",
+            "summary": "Fitting a straight line to describe how one variable depends on another.",
+            "children": [
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Simple Linear Regression"
+              }
+            ]
+          },
+          {
+            "title": "Introduction to Big Data Techniques",
+            "summary": "How large, fast, and varied data — and fintech tools — are transforming financial analysis.",
+            "children": [
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Fintech and Big Data"
+              }
+            ]
           }
         ]
       },
