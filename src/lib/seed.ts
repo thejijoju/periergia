@@ -1717,10 +1717,12 @@ const SUBJECTS: SubjectSpec[] = [
                 "title": "Interest Rates and Return Measurement"
               },
               {
-                "title": "Time-Weighted and Money-Weighted Returns"
+                "title": "Time-Weighted and Money-Weighted Returns",
+                "summary": "The money-weighted rate of return (the IRR of a portfolio's cash flows) and the time-weighted rate of return; how they differ and when each is appropriate; and how to evaluate and compare portfolio performance using these measures — including why time-weighted return is preferred for judging a manager."
               },
               {
-                "title": "Common Measures of Return"
+                "title": "Common Measures of Return",
+                "summary": "Gross vs net, pre-tax vs after-tax, real, and leveraged returns; annualized return measures (converting a return over any period into a comparable annual figure); and continuously compounded returns and how to compute them."
               }
             ]
           },

@@ -162,7 +162,10 @@ export async function generateQuiz(node: Node, level: Level): Promise<Quiz> {
     "concise rubric describing what a correct answer must include.";
   const prompt =
     `Write 6 questions testing understanding of **${node.title}** (${trail}) at the ${level} level. ` +
-    `Include 4 multiple-choice and 2 open-ended questions.`;
+    `Include 4 multiple-choice and 2 open-ended questions.` +
+    (node.summary
+      ? ` The questions must test these core concepts — make sure each is covered by at least one question: ${node.summary}`
+      : "");
 
   const res = await client.messages.create({
     model: MODEL,
