@@ -91,7 +91,12 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "terms, starting with the term in bold — e.g. '> **State management** is a concept focused " +
     "on maintaining and controlling the state of an application…'. Then continue with the " +
     "requested content. (For song lyrics, still open with this one-line definition blockquote " +
-    "before the lyrics.)";
+    "before the lyrics.)\n\n" +
+    "NEVER present a topic as dry, abstract theory. Ground it in the real world: weave in " +
+    "concrete examples and the relevant historical, political, economic, or cultural events " +
+    "that shaped or illustrate it — with real names, places, and dates. Give context for why " +
+    "the idea emerged and why it matters. Where the topic naturally overlaps with other fields " +
+    "or topics, draw those connections so the reader sees how ideas link together.";
 
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +

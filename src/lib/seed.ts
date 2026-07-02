@@ -1797,6 +1797,31 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
+        "title": "Financial Statement Analysis",
+        "children": [
+          {
+            "title": "Introduction and Analysis Framework",
+            "summary": "A general framework for conducting financial statement analysis: what it sets out to answer, the steps from gathering data to drawing conclusions, and how analysts use the statements to judge a company's performance, health, and prospects."
+          },
+          {
+            "title": "Primary Financial Statements",
+            "summary": "The primary financial statements — the income statement, the balance sheet, the statement of cash flows, and the statement of changes in equity — what each one shows and how they link together."
+          },
+          {
+            "title": "Financial Reporting Procedures",
+            "summary": "How economic transactions flow through the accounting system to become financial statements: the reporting process, the accounting equation, and accrual accounting."
+          },
+          {
+            "title": "Financial Reporting Standards and Disclosures",
+            "summary": "The standards that govern financial reporting and disclosure (such as IFRS and US GAAP), why they exist, and how required disclosures let users compare companies and judge quality."
+          },
+          {
+            "title": "Accounting Methods and Their Effects",
+            "summary": "How alternative accounting methods and choices — revenue recognition, inventory, depreciation, and off-balance-sheet structures — change the picture the statements paint, and how this can be abused. Use the Enron scandal as the cautionary case: off-balance-sheet entities hid debt and inflated earnings until the company collapsed in 2001, taking auditor Arthur Andersen with it and prompting the Sarbanes-Oxley Act."
+          }
+        ]
+      },
+      {
         "title": "Ethics and Professional Standards",
         "children": [
           {
