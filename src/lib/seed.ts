@@ -1734,10 +1734,12 @@ const SUBJECTS: SubjectSpec[] = [
                 "title": "Core Concepts"
               },
               {
-                "title": "Discounted Cash Flow Valuation"
+                "title": "Discounted Cash Flow Valuation",
+                "summary": "Calculate and interpret the present value (PV) of fixed-income and equity instruments from their expected future cash flows."
               },
               {
-                "title": "Implied Returns and Cash Flow Additivity"
+                "title": "Implied Returns and Cash Flow Additivity",
+                "summary": "Calculate and interpret the implied return of fixed-income instruments, and the required return and implied growth rate of equity instruments, given price (PV) and cash flows. Explain the cash flow additivity principle, why it underpins the no-arbitrage condition, and how it is used to compute implied forward interest rates, forward exchange rates, and option values."
               }
             ]
           },
@@ -1749,16 +1751,20 @@ const SUBJECTS: SubjectSpec[] = [
                 "title": "Core Concepts"
               },
               {
-                "title": "Central Tendency and Dispersion"
+                "title": "Central Tendency and Dispersion",
+                "summary": "Calculate, interpret, and evaluate measures of central tendency and location, and measures of dispersion, to address an investment problem."
               },
               {
-                "title": "Skewness"
+                "title": "Skewness",
+                "summary": "Interpret and evaluate the skewness of a return distribution to address an investment problem."
               },
               {
-                "title": "Kurtosis"
+                "title": "Kurtosis",
+                "summary": "Interpret and evaluate the kurtosis of a return distribution to address an investment problem."
               },
               {
-                "title": "Correlation"
+                "title": "Correlation",
+                "summary": "Interpret the correlation between two variables to address an investment problem."
               }
             ]
           },
@@ -1770,13 +1776,16 @@ const SUBJECTS: SubjectSpec[] = [
                 "title": "Core Concepts"
               },
               {
-                "title": "Probability Models"
+                "title": "Probability Models",
+                "summary": "Formulate an investment problem as a probability tree, and explain and apply conditional expectations in an investment setting."
               },
               {
-                "title": "Expected Values"
+                "title": "Expected Values",
+                "summary": "Calculate expected values, variances, and standard deviations, and apply them to investment problems."
               },
               {
-                "title": "Bayes’ Formula"
+                "title": "Bayes’ Formula",
+                "summary": "Calculate and interpret an updated (posterior) probability in an investment setting using Bayes’ formula."
               }
             ]
           },
@@ -1788,7 +1797,8 @@ const SUBJECTS: SubjectSpec[] = [
                 "title": "Core Concepts"
               },
               {
-                "title": "Probability Models for Portfolio Return and Risk"
+                "title": "Probability Models for Portfolio Return and Risk",
+                "summary": "Calculate and interpret the expected value, variance, standard deviation, covariances, and correlations of portfolio returns."
               }
             ]
           }
