@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAnthropic, MODEL } from "@/lib/anthropic";
+import { generateContent } from "@/lib/generate";
+import { getNodeById } from "@/lib/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic"; // always read live env, never cache
@@ -40,7 +42,33 @@ export async function GET(req: Request) {
     vercelEnv: process.env.VERCEL_ENV ?? "unknown",
   };
 
-  if (new URL(req.url).searchParams.get("test") !== "1") {
+  const params = new URL(req.url).searchParams;
+
+  // ?gen=1 → run the REAL content generator on a known node and report result.
+  if (params.get("gen") === "1") {
+    const node = await getNodeById("economics/money-and-policy/money-and-banking");
+    if (!node) return NextResponse.json({ ...base, gen: { error: "node not found" } });
+    try {
+      const c = await generateContent(node, {
+        nodeId: node.id,
+        depth: "medium",
+        level: "easy",
+        format: "read",
+      });
+      return NextResponse.json({
+        ...base,
+        gen: { generated: c.generated, bodyLen: c.body.length, preview: c.body.slice(0, 120) },
+      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e: any) {
+      return NextResponse.json({
+        ...base,
+        gen: { error: String(e?.message ?? e).slice(0, 400), status: e?.status },
+      });
+    }
+  }
+
+  if (params.get("test") !== "1") {
     return NextResponse.json(base);
   }
 

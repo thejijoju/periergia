@@ -106,15 +106,13 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     `${node.summary ? `Required coverage — you must include all of this, explained clearly (even at the easy level), never omitting any of it: ${node.summary}\n\n` : ""}` +
     `Create it now.`;
 
-  // Stream so longer (detailed/research) entries don't hit HTTP timeouts.
-  const stream = client.messages.stream({
+  const message = await client.messages.create({
     model: MODEL,
     max_tokens: 4096,
     thinking: { type: "adaptive" },
     system,
     messages: [{ role: "user", content: prompt }],
   });
-  const message = await stream.finalMessage();
   const body = textOf(message.content).trim();
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
