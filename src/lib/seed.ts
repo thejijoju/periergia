@@ -1797,6 +1797,27 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
+        "title": "Ethics and Professional Standards",
+        "children": [
+          {
+            "title": "The Role of Ethics and Professionalism",
+            "summary": "Why ethics and professionalism are central to the investment industry: how trust underpins the profession, how ethical conduct differs from merely legal conduct, and what professionalism demands of practitioners."
+          },
+          {
+            "title": "Challenges to Ethical Behavior",
+            "summary": "Why even well-intentioned people act unethically — situational pressures, incentives, overconfidence, and the gap between how we expect to behave and how we actually do."
+          },
+          {
+            "title": "A Framework for Ethical Decision-Making",
+            "summary": "A structured, repeatable process for working through ethical dilemmas: identify the issue and stakeholders, weigh options and consequences, decide, act, and reflect."
+          },
+          {
+            "title": "Industry Standards of Conduct",
+            "summary": "The standards of professional conduct that govern behavior in the investment industry, and how they guide real day-to-day decisions."
+          }
+        ]
+      },
+      {
         "title": "Global Economy",
         "children": [
           {
