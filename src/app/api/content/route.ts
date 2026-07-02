@@ -32,10 +32,14 @@ export async function POST(req: Request) {
   // the "read" cache rather than generating a separate body.
   const key = { nodeId, depth, level, format: contentMode(mode) };
 
+  // Only trust a real (Claude-generated) cache hit. Placeholder rows (from runs
+  // without a key) are treated as a miss so they regenerate once a key is set.
   const cached = await getCachedContent(key);
-  if (cached) return NextResponse.json({ body: cached.body, generated: cached.generated });
+  if (cached && cached.generated) {
+    return NextResponse.json({ body: cached.body, generated: cached.generated });
+  }
 
   const content = await generateContent(node, key);
-  await putCachedContent(content);
+  if (content.generated) await putCachedContent(content); // never cache placeholders
   return NextResponse.json({ body: content.body, generated: content.generated });
 }

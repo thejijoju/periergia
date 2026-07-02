@@ -40,10 +40,13 @@ export async function POST(req: Request) {
   const node = await getNodeById(nodeId);
   if (!node) return NextResponse.json({ error: "Unknown node" }, { status: 404 });
 
+  // Only trust a real (Claude-generated) cache hit; regenerate placeholder rows.
   const cached = await getCachedQuiz(nodeId, level);
-  if (cached) return NextResponse.json({ questions: cached.questions, generated: cached.generated });
+  if (cached && cached.generated) {
+    return NextResponse.json({ questions: cached.questions, generated: cached.generated });
+  }
 
   const quiz = await generateQuiz(node, level);
-  await putCachedQuiz(quiz);
+  if (quiz.generated) await putCachedQuiz(quiz); // never cache placeholders
   return NextResponse.json({ questions: quiz.questions, generated: quiz.generated });
 }
