@@ -587,7 +587,7 @@ insert into nodes (id, subject_id, parent_id, title, slug, summary, position, de
   ('economics/money-and-policy/interest-rates', 'economics', 'economics/money-and-policy', 'interest rates', 'interest-rates', '', 4, 1),
   ('economics/money-and-policy/stabilization-policies-and-their-limits', 'economics', 'economics/money-and-policy', 'stabilization policies & their limits', 'stabilization-policies-and-their-limits', '', 5, 1),
   ('economics/quantitative-foundations/time-value-of-money', 'economics', 'economics/quantitative-foundations', 'time value of money', 'time-value-of-money', '', 0, 1),
-  ('economics/quantitative-foundations/rates-and-returns', 'economics', 'economics/quantitative-foundations', 'rates & returns', 'rates-and-returns', '', 1, 1),
+  ('economics/quantitative-foundations/rates-and-returns', 'economics', 'economics/quantitative-foundations', 'rates & returns', 'rates-and-returns', 'Holding period return; arithmetic vs geometric mean return; money-weighted return (IRR) vs time-weighted return; gross vs net returns; real vs nominal and after-tax returns; leveraged returns; and annualizing returns.', 1, 1),
   ('economics/quantitative-foundations/statistical-measures-of-returns', 'economics', 'economics/quantitative-foundations', 'statistical measures of returns', 'statistical-measures-of-returns', '', 2, 1),
   ('economics/quantitative-foundations/probability-and-expected-value', 'economics', 'economics/quantitative-foundations', 'probability & expected value', 'probability-and-expected-value', '', 3, 1),
   ('economics/quantitative-foundations/portfolio-mathematics', 'economics', 'economics/quantitative-foundations', 'portfolio mathematics', 'portfolio-mathematics', '', 4, 1),

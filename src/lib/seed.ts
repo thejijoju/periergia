@@ -1664,7 +1664,8 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "time value of money"
           },
           {
-            "title": "rates & returns"
+            "title": "rates & returns",
+            "summary": "Holding period return; arithmetic vs geometric mean return; money-weighted return (IRR) vs time-weighted return; gross vs net returns; real vs nominal and after-tax returns; leveraged returns; and annualizing returns."
           },
           {
             "title": "statistical measures of returns"
