@@ -1665,7 +1665,30 @@ const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "rates & returns",
-            "summary": "Holding period return; arithmetic vs geometric mean return; money-weighted return (IRR) vs time-weighted return; gross vs net returns; real vs nominal and after-tax returns; leveraged returns; and annualizing returns."
+            "summary": "How investment performance is measured: holding period return, mean returns, money- vs time-weighted returns, and adjusting for inflation, taxes, and leverage.",
+            "children": [
+              {
+                "title": "holding period return"
+              },
+              {
+                "title": "arithmetic & geometric mean return"
+              },
+              {
+                "title": "money-weighted return (IRR)"
+              },
+              {
+                "title": "time-weighted return"
+              },
+              {
+                "title": "annualized returns"
+              },
+              {
+                "title": "real, nominal & after-tax returns"
+              },
+              {
+                "title": "leveraged returns"
+              }
+            ]
           },
           {
             "title": "statistical measures of returns"

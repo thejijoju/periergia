@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
-import { SubjectTree, type TreeGroup } from "@/components/SubjectTree";
+import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
 import { HeaderSearch } from "@/components/HeaderSearch";
 import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
@@ -40,17 +40,18 @@ export default async function ReaderPage({
     ? `/learn/${subj.slug}/${firstLeaf.path.join("/")}`
     : `/learn/${subj.slug}`;
 
-  // Group the subject into sub-subjects → topics for the left tree.
-  const groups: TreeGroup[] = subjectNodes
-    .filter((n) => n.depth === 0)
-    .map((sub) => ({
-      id: sub.id,
-      title: sub.title,
-      href: `/learn/${subj.slug}/${sub.path.join("/")}`,
-      topics: subjectNodes
-        .filter((n) => n.parentId === sub.id)
-        .map((t) => ({ id: t.id, title: t.title, href: `/learn/${subj.slug}/${t.path.join("/")}` })),
-    }));
+  // Build the subject into a nested tree (sub-subject → topic → sub-topic → …).
+  const childrenOf = (parentId: string | null): TreeItem[] =>
+    subjectNodes
+      .filter((n) => n.parentId === parentId)
+      .sort((a, b) => a.position - b.position)
+      .map((n) => ({
+        id: n.id,
+        title: n.title,
+        href: `/learn/${subj.slug}/${n.path.join("/")}`,
+        children: childrenOf(n.id),
+      }));
+  const items = childrenOf(null);
 
   // Breadcrumb: subject → ancestors → current (current has no href).
   const ancestors = await getAncestors(node); // includes self as last element
@@ -95,7 +96,7 @@ export default async function ReaderPage({
             <SubjectTree
               subjectName={subj.name}
               subjectHref={subjectHref}
-              groups={groups}
+              items={items}
               activeId={node.id}
             />
           </div>
