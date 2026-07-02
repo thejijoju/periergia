@@ -1503,7 +1503,22 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Microeconomics",
         "children": [
           {
-            "title": "supply & demand"
+            "title": "Demand and Supply Analysis",
+            "summary": "How prices and quantities are set by the interaction of buyers and sellers — analyzed both from the individual consumer's side and from the firm's side.",
+            "children": [
+              {
+                "title": "Core Concepts",
+                "summary": "How demand and supply curves determine a market's equilibrium price and quantity, and what shifts each curve."
+              },
+              {
+                "title": "Supply and Demand for Consumers",
+                "summary": "Demand and supply from the individual consumer's perspective: how consumers respond to prices, income, and preferences, and how their choices aggregate into market demand."
+              },
+              {
+                "title": "Supply and Demand for Firms",
+                "summary": "Demand and supply from the firm's perspective: how a firm decides how much to produce and supply given its costs and market prices."
+              }
+            ]
           },
           {
             "title": "elasticity"
@@ -1562,13 +1577,26 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Macroeconomics",
         "children": [
           {
-            "title": "GDP & national accounts"
-          },
-          {
-            "title": "aggregate demand & supply"
-          },
-          {
-            "title": "economic growth"
+            "title": "Aggregate Output, Prices, and Economic Growth",
+            "summary": "The big-picture measures and forces of a national economy — what it produces, the overall price level, and what makes it grow over time.",
+            "children": [
+              {
+                "title": "Core Concepts",
+                "summary": "The core macroeconomic aggregates — output, income, the price level, and growth — and how they fit together."
+              },
+              {
+                "title": "Aggregate Output and Income Measurement",
+                "summary": "How a nation's output and income are measured (GDP and the national income accounts), and why total output equals total income."
+              },
+              {
+                "title": "Aggregate Demand and Supply Analysis",
+                "summary": "Using aggregate demand and aggregate supply to explain the level of output, the price level, inflation, and recessions."
+              },
+              {
+                "title": "Economic Growth and Its Determinants",
+                "summary": "What drives long-run economic growth — labor, capital, and productivity — and the factors that sustain or constrain it."
+              }
+            ]
           },
           {
             "title": "inflation"
