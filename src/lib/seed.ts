@@ -1547,7 +1547,14 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "economies of scale"
           },
           {
-            "title": "measuring market power"
+            "title": "The Firm and Market Structures",
+            "summary": "How a firm's costs shape its output decisions, and how a market's structure — from perfect competition to monopoly — shapes prices and power.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "Breakeven, Shutdown, and Scale" },
+              { "title": "Characteristics of Market Structures" },
+              { "title": "Identifying Market Structures" }
+            ]
           }
         ]
       },
@@ -1581,7 +1588,12 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Business Cycles",
         "children": [
           {
-            "title": "phases of the cycle"
+            "title": "Understanding Business Cycles",
+            "summary": "How economies expand and contract over time, and the forces that drive each phase of the cycle.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "Business Cycles" }
+            ]
           },
           {
             "title": "credit cycles"
@@ -1604,10 +1616,22 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "central banks"
           },
           {
-            "title": "monetary policy"
+            "title": "Monetary Policy",
+            "summary": "How central banks use interest rates and the money supply to steer inflation and growth.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "Central Bank Objectives and Tools" },
+              { "title": "Monetary Policy Effects and Limitations" }
+            ]
           },
           {
-            "title": "fiscal policy"
+            "title": "Fiscal Policy",
+            "summary": "How governments use spending and taxation to influence the economy.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "Fiscal Policy Objectives" },
+              { "title": "Fiscal Policy Tools and Implementation" }
+            ]
           },
           {
             "title": "interest rates"
@@ -1641,19 +1665,40 @@ const SUBJECTS: SubjectSpec[] = [
         "title": "Global Economy",
         "children": [
           {
-            "title": "international trade"
+            "title": "International Trade",
+            "summary": "Why countries trade, who gains, and how comparative advantage shapes the flow of goods across borders.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "International Trade" }
+            ]
           },
           {
             "title": "trade restrictions & blocs"
           },
           {
-            "title": "capital flows & balance of payments"
+            "title": "Capital Flows and the FX Market",
+            "summary": "How money moves between countries, and how currencies are exchanged in the world's largest market.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "The Foreign Exchange Market" },
+              { "title": "Managing Exchange Rates" }
+            ]
           },
           {
-            "title": "exchange rates"
+            "title": "Exchange Rate Calculations",
+            "summary": "How exchange rates are quoted, and how to compute cross rates and currency returns.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "Foreign Exchange Rates" }
+            ]
           },
           {
-            "title": "geopolitics & markets"
+            "title": "Introduction to Geopolitics",
+            "summary": "How cooperation and rivalry between states shape trade, capital, and markets.",
+            "children": [
+              { "title": "Core Concepts" },
+              { "title": "Geopolitics" }
+            ]
           }
         ]
       },
@@ -1802,26 +1847,20 @@ const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "Introduction to Linear Regression",
-            "summary": "Fitting a straight line to describe how one variable depends on another.",
+            "summary": "Fitting a straight line to describe how one variable depends on another, then judging how well it fits.",
             "children": [
-              {
-                "title": "Core Concepts"
-              },
-              {
-                "title": "Simple Linear Regression"
-              }
+              { "title": "Core Concepts" },
+              { "title": "Linear Regression Basics" },
+              { "title": "Analysis of Variance (ANOVA) and Goodness of Fit" },
+              { "title": "Predicted Values and Functional Forms of Regression" }
             ]
           },
           {
             "title": "Introduction to Big Data Techniques",
             "summary": "How large, fast, and varied data — and fintech tools — are transforming financial analysis.",
             "children": [
-              {
-                "title": "Core Concepts"
-              },
-              {
-                "title": "Fintech and Big Data"
-              }
+              { "title": "Core Concepts" },
+              { "title": "Introduction to Fintech" }
             ]
           }
         ]
