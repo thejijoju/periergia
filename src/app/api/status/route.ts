@@ -5,6 +5,7 @@ import { getNodeById } from "@/lib/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic"; // always read live env, never cache
+export const maxDuration = 60; // the ?gen=1 test runs a real (slow) generation
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function tryCall(client: any, opts: any) {
