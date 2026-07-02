@@ -98,7 +98,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
     `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
     `Level: ${key.level}. ${LEVEL_GUIDE[key.level]}\n\n` +
-    `${node.summary ? `Context: ${node.summary}\n\n` : ""}` +
+    `${node.summary ? `Required coverage — you must include all of this, explained clearly (even at the easy level), never omitting any of it: ${node.summary}\n\n` : ""}` +
     `Create it now.`;
 
   // Stream so longer (detailed/research) entries don't hit HTTP timeouts.

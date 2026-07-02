@@ -1710,7 +1710,8 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "How interest rates and investment returns are defined and measured — the building blocks for comparing any investment.",
             "children": [
               {
-                "title": "Core Concepts"
+                "title": "Core Concepts",
+                "summary": "What an interest rate is, and the three equivalent ways to read it: as a required rate of return, as a discount rate used to bring future cash flows to the present, and as the opportunity cost of current consumption. An interest rate as the sum of a real risk-free rate plus premiums that compensate investors for bearing distinct types of risk — inflation, default, liquidity, and maturity risk. And how a return is measured over time, including how to calculate it."
               },
               {
                 "title": "Interest Rates and Return Measurement"
