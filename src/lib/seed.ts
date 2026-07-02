@@ -1772,6 +1772,31 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
+        "title": "Equity Investments",
+        "children": [
+          {
+            "title": "Characteristics of Equity Securities",
+            "summary": "What equity investments are — ownership shares in a company — and their main types and features: common vs preferred stock, voting and ownership rights, and dividends, and how they differ across companies and markets."
+          },
+          {
+            "title": "Security Markets and Indexes",
+            "summary": "How security markets are organized, and how security market indexes are constructed, weighted, and used to measure and benchmark market performance."
+          },
+          {
+            "title": "Industry and Company Analysis",
+            "summary": "How to analyze an industry and an individual company — competitive position, business model, and value drivers — in order to evaluate an equity security."
+          },
+          {
+            "title": "Equity Valuation Models",
+            "summary": "Basic equity valuation models: present-value / dividend discount models, multiplier (multiples) models, and asset-based valuation."
+          },
+          {
+            "title": "Global Equities",
+            "summary": "Investing in equities around the world, and how global equity diversification supports longer-term growth and diversification objectives, in exchange for higher volatility than bonds."
+          }
+        ]
+      },
+      {
         "title": "Global Economy",
         "children": [
           {
