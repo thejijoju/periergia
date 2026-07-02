@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { Depth, Level } from "@/lib/types";
-import { type Mode, contentMode } from "@/lib/modes";
+import { type Mode, contentMode, getMode } from "@/lib/modes";
 import { getNodeById, getCachedContent, putCachedContent } from "@/lib/store";
 import { generateContent } from "@/lib/generate";
 
@@ -20,9 +20,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { nodeId, depth, level, mode } = payload;
-  if (!nodeId || !depth || !level || !mode) {
-    return NextResponse.json({ error: "Missing nodeId/depth/level/mode" }, { status: 400 });
+  const { nodeId, depth, level } = payload;
+  // Tolerate stale clients that omit or send an unknown mode — default to read.
+  const mode: Mode = payload.mode && getMode(payload.mode).id === payload.mode ? payload.mode : "read";
+  if (!nodeId || !depth || !level) {
+    return NextResponse.json({ error: "Missing nodeId/depth/level" }, { status: 400 });
   }
 
   const node = await getNodeById(nodeId);

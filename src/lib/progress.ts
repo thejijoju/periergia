@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Depth, Level } from "./types";
-import type { Mode } from "./modes";
+import { MODES, type Mode } from "./modes";
 
 // Browser-saved progress + reader preferences. No accounts in v1 — everything
 // lives in localStorage. Swappable for Supabase Auth + a `progress` table later.
@@ -26,7 +26,22 @@ function load(): ProgressState {
   try {
     const raw = window.localStorage.getItem(KEY);
     if (!raw) return DEFAULT;
-    return { ...DEFAULT, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw) as Partial<ProgressState> & {
+      prefs?: Partial<ProgressState["prefs"]> & { format?: string };
+    };
+    // Deep-merge prefs (a shallow spread would let old stored prefs wipe out
+    // newer fields like `mode`), and migrate the legacy `format` pref.
+    const prefs = { ...DEFAULT.prefs, ...(parsed.prefs ?? {}) };
+    if (!parsed.prefs?.mode) {
+      prefs.mode = parsed.prefs?.format === "voice" ? "listen" : "read";
+    }
+    // Guard against unknown/stale mode ids.
+    if (!MODES.some((m) => m.id === prefs.mode)) prefs.mode = "read";
+    return {
+      visited: parsed.visited ?? [],
+      completed: parsed.completed ?? [],
+      prefs,
+    };
   } catch {
     return DEFAULT;
   }
