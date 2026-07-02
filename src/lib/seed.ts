@@ -1651,7 +1651,34 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "funds & investment vehicles"
           },
           {
-            "title": "derivatives"
+            "title": "Derivatives",
+            "summary": "Contracts whose value derives from an underlying asset: forwards, futures, swaps, and contingent claims (options). How derivative markets work, how arbitrage keeps prices in line, and why a derivative's price is tied to the price of its underlying.",
+            "children": [
+              {
+                "title": "Core Concepts",
+                "summary": "What a derivative is and how derivative markets work; the two families — forward commitments (forwards, futures, swaps) and contingent claims (options) — and the benefits and risks of using them."
+              },
+              {
+                "title": "Forwards and Futures",
+                "summary": "Forward and futures contracts lock in a price today for a transaction later; how futures differ from forwards (exchange-traded, standardized, marked to market daily)."
+              },
+              {
+                "title": "Swaps",
+                "summary": "Swaps as a series of forward commitments to exchange cash flows over time, such as interest rate swaps."
+              },
+              {
+                "title": "Contingent Claims (Options)",
+                "summary": "Options as contingent claims — the right, but not the obligation, to buy (call) or sell (put) an underlying; their payoffs and basic uses."
+              },
+              {
+                "title": "Arbitrage and Replication",
+                "summary": "Arbitrage — a riskless profit from mispricing — and how replicating a derivative's payoff with the underlying plus cash enforces its price under the no-arbitrage condition."
+              },
+              {
+                "title": "Pricing Derivatives from the Underlying",
+                "summary": "Why a derivative's price is tied to the price of its underlying asset, using arbitrage, replication, and the cost of carry."
+              }
+            ]
           },
           {
             "title": "financial statements"
