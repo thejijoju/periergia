@@ -1918,6 +1918,7 @@ const SUBJECTS: SubjectSpec[] = [
       },
       {
         "title": "Quantitative Foundations",
+        "summary": "The quantitative concepts and techniques used in financial analysis and investment decision-making — the time value of money, rates and returns, descriptive statistics, probability, and portfolio mathematics.",
         "children": [
           {
             "title": "Rates and Returns",
@@ -1962,7 +1963,8 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "How to summarize the distribution of asset returns — its center, spread, shape, and how returns move together.",
             "children": [
               {
-                "title": "Core Concepts"
+                "title": "Core Concepts",
+                "summary": "How descriptive statistics convey the important attributes of return data — measures of central tendency, location, and dispersion — and introduce the characteristics of a return distribution's shape, including skewness and kurtosis."
               },
               {
                 "title": "Central Tendency and Dispersion",
@@ -1987,7 +1989,8 @@ const SUBJECTS: SubjectSpec[] = [
             "summary": "Using probability to reason about uncertain outcomes, form expectations, and update beliefs as new information arrives.",
             "children": [
               {
-                "title": "Core Concepts"
+                "title": "Core Concepts",
+                "summary": "The essentials of probability theory and how it is applied to quantify risk for investment decision-making — probabilities, expected values, and reasoning about uncertain outcomes."
               },
               {
                 "title": "Probability Models",
