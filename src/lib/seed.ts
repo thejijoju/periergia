@@ -1772,6 +1772,39 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
+        "title": "Fixed Income",
+        "children": [
+          {
+            "title": "Fixed-Income Securities",
+            "summary": "What fixed-income securities are — bonds and other debt instruments — and their key features: issuer, maturity, coupon, principal, seniority, covenants, and embedded options."
+          },
+          {
+            "title": "Fixed-Income Markets",
+            "summary": "How fixed-income markets are organized: who issues bonds (governments, corporations, agencies), how they are sold and traded, and the main market sectors and instruments."
+          },
+          {
+            "title": "Valuation of Fixed-Income Securities",
+            "summary": "How to calculate the value (price) of a fixed-income security by discounting its expected cash flows, and the drivers of that value — market yields, credit spreads, and the shape of the yield curve."
+          },
+          {
+            "title": "Yield Measures and Bond Returns",
+            "summary": "Yield measures (yield to maturity, current yield, spot and forward rates), how to calculate them, and the fundamentals of what drives a bond's total return."
+          },
+          {
+            "title": "Risk Factors",
+            "summary": "The main risks of holding bonds — interest rate risk (measured by duration and convexity), credit risk, liquidity risk, and inflation risk — and how they interact. Ground interest rate risk in real episodes such as Paul Volcker's Fed rate hikes around 1980 and the sharp 2022 bond selloff."
+          },
+          {
+            "title": "Securitization and Asset-Backed Securities",
+            "summary": "How pools of loans (mortgages, auto loans, credit-card receivables) are packaged into tradable securities — ABS, MBS, and CDOs. Anchor it in the 2007–2008 subprime mortgage crisis, when mispriced mortgage-backed securities and CDOs helped trigger a global financial crisis."
+          },
+          {
+            "title": "Introduction to Credit Analysis",
+            "summary": "The basic principles of credit analysis — assessing a borrower's ability and willingness to repay, credit ratings, and yield spreads — illustrated with real defaults and downgrades such as the 2011 US credit-rating downgrade and the Greek and Argentine debt crises."
+          }
+        ]
+      },
+      {
         "title": "Equity Investments",
         "children": [
           {
