@@ -1683,6 +1683,36 @@ const SUBJECTS: SubjectSpec[] = [
                 "title": "Infrastructure"
               }
             ]
+          },
+          {
+            "title": "Corporate Issuers",
+            "summary": "How companies are owned, financed, and governed: the stakeholders a company must balance, corporate governance, how environmental and social factors enter investing (ESG), how firms use leverage, and how they manage working capital to meet short-term needs.",
+            "children": [
+              {
+                "title": "Core Concepts",
+                "summary": "What a corporate issuer is, the main forms of business organization, and how companies raise and allocate capital; and the key players — shareholders, the board, management, creditors, and other stakeholders."
+              },
+              {
+                "title": "Stakeholder Management",
+                "summary": "Identifying a company's stakeholders (shareholders, creditors, employees, customers, suppliers, regulators, and the community) and managing their sometimes-competing interests."
+              },
+              {
+                "title": "Corporate Governance",
+                "summary": "Corporate governance — the system of controls and incentives that directs a company; the conflicts of interest among managers, shareholders, and other stakeholders, the mechanisms that manage them, and their risks and benefits."
+              },
+              {
+                "title": "ESG Considerations in Investing",
+                "summary": "How environmental and social considerations are integrated into investing (ESG), and why they matter to both issuers and investors."
+              },
+              {
+                "title": "Capital Structure and Leverage",
+                "summary": "How companies make use of leverage — financing with debt alongside equity — and the benefits and risks of doing so."
+              },
+              {
+                "title": "Working Capital and Liquidity",
+                "summary": "How companies manage working capital and liquidity to meet short-term operational needs."
+              }
+            ]
           }
         ]
       },
