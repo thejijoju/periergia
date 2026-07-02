@@ -1,21 +1,60 @@
 import { NextResponse } from "next/server";
+import { getAnthropic, MODEL } from "@/lib/anthropic";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic"; // always read live env, never cache
 
-// Diagnostic endpoint: reports whether the deployment can see its keys.
-// Returns booleans/lengths only — never the secret values themselves.
-export async function GET() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function tryCall(client: any, opts: any) {
+  try {
+    const m = await client.messages.create(opts);
+    const text = (m.content ?? [])
+      .filter((b: { type: string }) => b.type === "text")
+      .map((b: { text: string }) => b.text)
+      .join("");
+    return { ok: true, text: text.slice(0, 60) };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
+    return {
+      ok: false,
+      status: e?.status,
+      type: e?.error?.error?.type ?? e?.error?.type ?? e?.name,
+      message: String(e?.message ?? e).slice(0, 300),
+    };
+  }
+}
+
+// Diagnostic endpoint. Booleans only for env presence (never the secret).
+// Add ?test=1 to run two tiny live Claude calls and report the real error.
+export async function GET(req: Request) {
   const anthropic = process.env.ANTHROPIC_API_KEY ?? "";
-  return NextResponse.json({
+  const base = {
     anthropicKeyPresent: anthropic.length > 0,
     anthropicKeyLength: anthropic.length,
     anthropicKeyLooksValid: anthropic.startsWith("sk-ant-"),
-    model: process.env.PERIERGIA_MODEL || "claude-opus-4-8",
+    model: MODEL,
     supabaseUrlPresent: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
     supabaseKeyPresent: !!(
       process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     ),
     vercelEnv: process.env.VERCEL_ENV ?? "unknown",
+  };
+
+  if (new URL(req.url).searchParams.get("test") !== "1") {
+    return NextResponse.json(base);
+  }
+
+  const client = getAnthropic();
+  if (!client) return NextResponse.json({ ...base, test: "no client" });
+
+  const msgs = [{ role: "user", content: "Reply with the single word: ok" }];
+  const withThinking = await tryCall(client, {
+    model: MODEL,
+    max_tokens: 16,
+    thinking: { type: "adaptive" },
+    messages: msgs,
   });
+  const plain = await tryCall(client, { model: MODEL, max_tokens: 16, messages: msgs });
+
+  return NextResponse.json({ ...base, test: { withThinking, plain } });
 }
