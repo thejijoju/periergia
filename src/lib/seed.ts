@@ -18,7 +18,7 @@ interface SubjectSpec {
   tree: NodeSpec[];
 }
 
-const SUBJECTS: SubjectSpec[] = [
+export const SUBJECTS: SubjectSpec[] = [
   {
     "name": "Mathematics",
     "slug": "mathematics",
@@ -1565,10 +1565,18 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "The Firm and Market Structures",
             "summary": "How a firm's costs shape its output decisions, and how a market's structure — from perfect competition to monopoly — shapes prices and power.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Breakeven, Shutdown, and Scale" },
-              { "title": "Characteristics of Market Structures" },
-              { "title": "Identifying Market Structures" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Breakeven, Shutdown, and Scale"
+              },
+              {
+                "title": "Characteristics of Market Structures"
+              },
+              {
+                "title": "Identifying Market Structures"
+              }
             ]
           }
         ]
@@ -1619,8 +1627,12 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "Understanding Business Cycles",
             "summary": "How economies expand and contract over time, and the forces that drive each phase of the cycle.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Business Cycles" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Business Cycles"
+              }
             ]
           },
           {
@@ -1647,18 +1659,30 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "Monetary Policy",
             "summary": "How central banks use interest rates and the money supply to steer inflation and growth.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Central Bank Objectives and Tools" },
-              { "title": "Monetary Policy Effects and Limitations" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Central Bank Objectives and Tools"
+              },
+              {
+                "title": "Monetary Policy Effects and Limitations"
+              }
             ]
           },
           {
             "title": "Fiscal Policy",
             "summary": "How governments use spending and taxation to influence the economy.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Fiscal Policy Objectives" },
-              { "title": "Fiscal Policy Tools and Implementation" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Fiscal Policy Objectives"
+              },
+              {
+                "title": "Fiscal Policy Tools and Implementation"
+              }
             ]
           },
           {
@@ -1670,250 +1694,18 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
-        "title": "Finance & Capital Markets",
-        "children": [
-          {
-            "title": "stocks & bonds"
-          },
-          {
-            "title": "funds & investment vehicles"
-          },
-          {
-            "title": "Derivatives",
-            "summary": "Contracts whose value derives from an underlying asset: forwards, futures, swaps, and contingent claims (options). How derivative markets work, how arbitrage keeps prices in line, and why a derivative's price is tied to the price of its underlying.",
-            "children": [
-              {
-                "title": "Core Concepts",
-                "summary": "What a derivative is and how derivative markets work; the two families — forward commitments (forwards, futures, swaps) and contingent claims (options) — and the benefits and risks of using them."
-              },
-              {
-                "title": "Forwards and Futures",
-                "summary": "Forward and futures contracts lock in a price today for a transaction later; how futures differ from forwards (exchange-traded, standardized, marked to market daily)."
-              },
-              {
-                "title": "Swaps",
-                "summary": "Swaps as a series of forward commitments to exchange cash flows over time, such as interest rate swaps."
-              },
-              {
-                "title": "Contingent Claims (Options)",
-                "summary": "Options as contingent claims — the right, but not the obligation, to buy (call) or sell (put) an underlying; their payoffs and basic uses."
-              },
-              {
-                "title": "Arbitrage and Replication",
-                "summary": "Arbitrage — a riskless profit from mispricing — and how replicating a derivative's payoff with the underlying plus cash enforces its price under the no-arbitrage condition."
-              },
-              {
-                "title": "Pricing Derivatives from the Underlying",
-                "summary": "Why a derivative's price is tied to the price of its underlying asset, using arbitrage, replication, and the cost of carry."
-              }
-            ]
-          },
-          {
-            "title": "financial statements"
-          },
-          {
-            "title": "housing & mortgages"
-          },
-          {
-            "title": "Alternative Investments",
-            "summary": "Assets beyond public stocks and bonds — private equity, hedge funds, real estate, commodities, and infrastructure — and why investors use them: diversification (returns that don't move in lockstep with public markets) and the potential for higher returns, in exchange for less liquidity, higher fees, and greater complexity.",
-            "children": [
-              {
-                "title": "Core Concepts",
-                "summary": "What counts as an alternative investment and how it differs from traditional stocks and bonds; the main categories (private equity, hedge funds, real estate, commodities, infrastructure); and the case for holding them — diversification and the potential for higher returns, weighed against illiquidity, higher fees, leverage, and valuation difficulty."
-              },
-              {
-                "title": "Private Equity"
-              },
-              {
-                "title": "Hedge Funds"
-              },
-              {
-                "title": "Real Estate"
-              },
-              {
-                "title": "Commodities and Natural Resources"
-              },
-              {
-                "title": "Infrastructure"
-              }
-            ]
-          },
-          {
-            "title": "Corporate Issuers",
-            "summary": "How companies are owned, financed, and governed: the stakeholders a company must balance, corporate governance, how environmental and social factors enter investing (ESG), how firms use leverage, and how they manage working capital to meet short-term needs.",
-            "children": [
-              {
-                "title": "Core Concepts",
-                "summary": "What a corporate issuer is, the main forms of business organization, and how companies raise and allocate capital; and the key players — shareholders, the board, management, creditors, and other stakeholders."
-              },
-              {
-                "title": "Stakeholder Management",
-                "summary": "Identifying a company's stakeholders (shareholders, creditors, employees, customers, suppliers, regulators, and the community) and managing their sometimes-competing interests."
-              },
-              {
-                "title": "Corporate Governance",
-                "summary": "Corporate governance — the system of controls and incentives that directs a company; the conflicts of interest among managers, shareholders, and other stakeholders, the mechanisms that manage them, and their risks and benefits."
-              },
-              {
-                "title": "ESG Considerations in Investing",
-                "summary": "How environmental and social considerations are integrated into investing (ESG), and why they matter to both issuers and investors."
-              },
-              {
-                "title": "Capital Structure and Leverage",
-                "summary": "How companies make use of leverage — financing with debt alongside equity — and the benefits and risks of doing so."
-              },
-              {
-                "title": "Working Capital and Liquidity",
-                "summary": "How companies manage working capital and liquidity to meet short-term operational needs."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Fixed Income",
-        "children": [
-          {
-            "title": "Fixed-Income Securities",
-            "summary": "What fixed-income securities are — bonds and other debt instruments — and their key features: issuer, maturity, coupon, principal, seniority, covenants, and embedded options."
-          },
-          {
-            "title": "Fixed-Income Markets",
-            "summary": "How fixed-income markets are organized: who issues bonds (governments, corporations, agencies), how they are sold and traded, and the main market sectors and instruments."
-          },
-          {
-            "title": "Valuation of Fixed-Income Securities",
-            "summary": "How to calculate the value (price) of a fixed-income security by discounting its expected cash flows, and the drivers of that value — market yields, credit spreads, and the shape of the yield curve."
-          },
-          {
-            "title": "Yield Measures and Bond Returns",
-            "summary": "Yield measures (yield to maturity, current yield, spot and forward rates), how to calculate them, and the fundamentals of what drives a bond's total return."
-          },
-          {
-            "title": "Risk Factors",
-            "summary": "The main risks of holding bonds — interest rate risk (measured by duration and convexity), credit risk, liquidity risk, and inflation risk — and how they interact. Ground interest rate risk in real episodes such as Paul Volcker's Fed rate hikes around 1980 and the sharp 2022 bond selloff."
-          },
-          {
-            "title": "Securitization and Asset-Backed Securities",
-            "summary": "How pools of loans (mortgages, auto loans, credit-card receivables) are packaged into tradable securities — ABS, MBS, and CDOs. Anchor it in the 2007–2008 subprime mortgage crisis, when mispriced mortgage-backed securities and CDOs helped trigger a global financial crisis."
-          },
-          {
-            "title": "Introduction to Credit Analysis",
-            "summary": "The basic principles of credit analysis — assessing a borrower's ability and willingness to repay, credit ratings, and yield spreads — illustrated with real defaults and downgrades such as the 2011 US credit-rating downgrade and the Greek and Argentine debt crises."
-          }
-        ]
-      },
-      {
-        "title": "Equity Investments",
-        "children": [
-          {
-            "title": "Characteristics of Equity Securities",
-            "summary": "What equity investments are — ownership shares in a company — and their main types and features: common vs preferred stock, voting and ownership rights, and dividends, and how they differ across companies and markets."
-          },
-          {
-            "title": "Security Markets and Indexes",
-            "summary": "How security markets are organized, and how security market indexes are constructed, weighted, and used to measure and benchmark market performance."
-          },
-          {
-            "title": "Industry and Company Analysis",
-            "summary": "How to analyze an industry and an individual company — competitive position, business model, and value drivers — in order to evaluate an equity security."
-          },
-          {
-            "title": "Equity Valuation Models",
-            "summary": "Basic equity valuation models: present-value / dividend discount models, multiplier (multiples) models, and asset-based valuation."
-          },
-          {
-            "title": "Global Equities",
-            "summary": "Investing in equities around the world, and how global equity diversification supports longer-term growth and diversification objectives, in exchange for higher volatility than bonds."
-          }
-        ]
-      },
-      {
-        "title": "Portfolio Planning and Wealth Management",
-        "summary": "The fundamentals of portfolio and risk management — measuring return and risk, planning and constructing a portfolio — and how the needs of individual and institutional investors shape the investment solutions they choose.",
-        "children": [
-          {
-            "title": "Portfolio Management Overview",
-            "summary": "The fundamentals of portfolio and risk management: why investors hold diversified portfolios rather than single assets, the portfolio approach to return and risk, and the steps of the portfolio management process."
-          },
-          {
-            "title": "Return and Risk Measurement",
-            "summary": "How to measure a portfolio's return and its risk — expected return, variance and standard deviation — and how combining assets changes overall risk through diversification and correlation."
-          },
-          {
-            "title": "Portfolio Risk and Return",
-            "summary": "The trade-off between risk and return, how diversification reduces risk, and the efficient frontier. How the capital asset pricing model (CAPM) prices risk and is used to identify the optimal level of risk in a portfolio (the tangency/market portfolio and the security market line)."
-          },
-          {
-            "title": "Portfolio Planning and Construction",
-            "summary": "Turning an investor's goals and constraints into a real portfolio: the investment policy statement (IPS), risk tolerance and objectives, and strategic asset allocation."
-          },
-          {
-            "title": "Retail vs Institutional Investors",
-            "summary": "The basics — a retail (individual) investor manages their own or their household's money; an institutional investor (pension funds, endowments, insurers, sovereign wealth funds, mutual and hedge funds) invests large pools on behalf of others. How their goals, time horizons, resources, and interests diverge — vividly illustrated by the January 2021 GameStop short squeeze, when retail investors coordinating on Reddit's r/WallStreetBets drove the stock up and squeezed institutional hedge funds (such as Melvin Capital) that had shorted it."
-          },
-          {
-            "title": "Investment Solutions",
-            "summary": "The range of available investment solutions — from individual stocks and bonds to mutual funds, ETFs, separately managed accounts, and alternatives — and how each fits different investors' needs and constraints."
-          }
-        ]
-      },
-      {
-        "title": "Financial Statement Analysis",
-        "children": [
-          {
-            "title": "Introduction and Analysis Framework",
-            "summary": "A general framework for conducting financial statement analysis: what it sets out to answer, the steps from gathering data to drawing conclusions, and how analysts use the statements to judge a company's performance, health, and prospects."
-          },
-          {
-            "title": "Primary Financial Statements",
-            "summary": "The primary financial statements — the income statement, the balance sheet, the statement of cash flows, and the statement of changes in equity — what each one shows and how they link together."
-          },
-          {
-            "title": "Financial Reporting Procedures",
-            "summary": "How economic transactions flow through the accounting system to become financial statements: the reporting process, the accounting equation, and accrual accounting."
-          },
-          {
-            "title": "Financial Reporting Standards and Disclosures",
-            "summary": "The standards that govern financial reporting and disclosure (such as IFRS and US GAAP), why they exist, and how required disclosures let users compare companies and judge quality."
-          },
-          {
-            "title": "Accounting Methods and Their Effects",
-            "summary": "How alternative accounting methods and choices — revenue recognition, inventory, depreciation, and off-balance-sheet structures — change the picture the statements paint, and how this can be abused. Use the Enron scandal as the cautionary case: off-balance-sheet entities hid debt and inflated earnings until the company collapsed in 2001, taking auditor Arthur Andersen with it and prompting the Sarbanes-Oxley Act."
-          }
-        ]
-      },
-      {
-        "title": "Ethics and Professional Standards",
-        "children": [
-          {
-            "title": "The Role of Ethics and Professionalism",
-            "summary": "Why ethics and professionalism are central to the investment industry: how trust underpins the profession, how ethical conduct differs from merely legal conduct, and what professionalism demands of practitioners."
-          },
-          {
-            "title": "Challenges to Ethical Behavior",
-            "summary": "Why even well-intentioned people act unethically — situational pressures, incentives, overconfidence, and the gap between how we expect to behave and how we actually do."
-          },
-          {
-            "title": "A Framework for Ethical Decision-Making",
-            "summary": "A structured, repeatable process for working through ethical dilemmas: identify the issue and stakeholders, weigh options and consequences, decide, act, and reflect."
-          },
-          {
-            "title": "Industry Standards of Conduct",
-            "summary": "The standards of professional conduct that govern behavior in the investment industry, and how they guide real day-to-day decisions."
-          }
-        ]
-      },
-      {
         "title": "Global Economy",
         "children": [
           {
             "title": "International Trade",
             "summary": "Why countries trade, who gains, and how comparative advantage shapes the flow of goods across borders.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "International Trade" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "International Trade"
+              }
             ]
           },
           {
@@ -1923,29 +1715,78 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "Capital Flows and the FX Market",
             "summary": "How money moves between countries, and how currencies are exchanged in the world's largest market.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "The Foreign Exchange Market" },
-              { "title": "Managing Exchange Rates" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "The Foreign Exchange Market"
+              },
+              {
+                "title": "Managing Exchange Rates"
+              }
             ]
           },
           {
             "title": "Exchange Rate Calculations",
             "summary": "How exchange rates are quoted, and how to compute cross rates and currency returns.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Foreign Exchange Rates" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Foreign Exchange Rates"
+              }
             ]
           },
           {
             "title": "Introduction to Geopolitics",
             "summary": "How cooperation and rivalry between states shape trade, capital, and markets.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Geopolitics" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Geopolitics"
+              }
             ]
           }
         ]
       },
+      {
+        "title": "Behavioral Economics",
+        "children": [
+          {
+            "title": "decision-making"
+          },
+          {
+            "title": "biases"
+          },
+          {
+            "title": "incentives"
+          }
+        ]
+      },
+      {
+        "title": "Development Economics",
+        "children": [
+          {
+            "title": "growth"
+          },
+          {
+            "title": "poverty"
+          },
+          {
+            "title": "inequality"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Finance & Investments",
+    "slug": "finance-and-investments",
+    "description": "",
+    "tree": [
       {
         "title": "Quantitative Foundations",
         "summary": "The quantitative concepts and techniques used in financial analysis and investment decision-making — the time value of money, rates and returns, descriptive statistics, probability, and portfolio mathematics.",
@@ -2109,47 +1950,267 @@ const SUBJECTS: SubjectSpec[] = [
             "title": "Introduction to Linear Regression",
             "summary": "Fitting a straight line to describe how one variable depends on another, then judging how well it fits.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Linear Regression Basics" },
-              { "title": "Analysis of Variance (ANOVA) and Goodness of Fit" },
-              { "title": "Predicted Values and Functional Forms of Regression" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Linear Regression Basics"
+              },
+              {
+                "title": "Analysis of Variance (ANOVA) and Goodness of Fit"
+              },
+              {
+                "title": "Predicted Values and Functional Forms of Regression"
+              }
             ]
           },
           {
             "title": "Introduction to Big Data Techniques",
             "summary": "How large, fast, and varied data — and fintech tools — are transforming financial analysis.",
             "children": [
-              { "title": "Core Concepts" },
-              { "title": "Introduction to Fintech" }
+              {
+                "title": "Core Concepts"
+              },
+              {
+                "title": "Introduction to Fintech"
+              }
             ]
           }
         ]
       },
       {
-        "title": "Behavioral Economics",
+        "title": "Financial Statement Analysis",
         "children": [
           {
-            "title": "decision-making"
+            "title": "Introduction and Analysis Framework",
+            "summary": "A general framework for conducting financial statement analysis: what it sets out to answer, the steps from gathering data to drawing conclusions, and how analysts use the statements to judge a company's performance, health, and prospects."
           },
           {
-            "title": "biases"
+            "title": "Primary Financial Statements",
+            "summary": "The primary financial statements — the income statement, the balance sheet, the statement of cash flows, and the statement of changes in equity — what each one shows and how they link together."
           },
           {
-            "title": "incentives"
+            "title": "Financial Reporting Procedures",
+            "summary": "How economic transactions flow through the accounting system to become financial statements: the reporting process, the accounting equation, and accrual accounting."
+          },
+          {
+            "title": "Financial Reporting Standards and Disclosures",
+            "summary": "The standards that govern financial reporting and disclosure (such as IFRS and US GAAP), why they exist, and how required disclosures let users compare companies and judge quality."
+          },
+          {
+            "title": "Accounting Methods and Their Effects",
+            "summary": "How alternative accounting methods and choices — revenue recognition, inventory, depreciation, and off-balance-sheet structures — change the picture the statements paint, and how this can be abused. Use the Enron scandal as the cautionary case: off-balance-sheet entities hid debt and inflated earnings until the company collapsed in 2001, taking auditor Arthur Andersen with it and prompting the Sarbanes-Oxley Act."
           }
         ]
       },
       {
-        "title": "Development Economics",
+        "title": "Corporate Issuers",
+        "summary": "How companies are owned, financed, and governed: the stakeholders a company must balance, corporate governance, how environmental and social factors enter investing (ESG), how firms use leverage, and how they manage working capital to meet short-term needs.",
         "children": [
           {
-            "title": "growth"
+            "title": "Core Concepts",
+            "summary": "What a corporate issuer is, the main forms of business organization, and how companies raise and allocate capital; and the key players — shareholders, the board, management, creditors, and other stakeholders."
           },
           {
-            "title": "poverty"
+            "title": "Stakeholder Management",
+            "summary": "Identifying a company's stakeholders (shareholders, creditors, employees, customers, suppliers, regulators, and the community) and managing their sometimes-competing interests."
           },
           {
-            "title": "inequality"
+            "title": "Corporate Governance",
+            "summary": "Corporate governance — the system of controls and incentives that directs a company; the conflicts of interest among managers, shareholders, and other stakeholders, the mechanisms that manage them, and their risks and benefits."
+          },
+          {
+            "title": "ESG Considerations in Investing",
+            "summary": "How environmental and social considerations are integrated into investing (ESG), and why they matter to both issuers and investors."
+          },
+          {
+            "title": "Capital Structure and Leverage",
+            "summary": "How companies make use of leverage — financing with debt alongside equity — and the benefits and risks of doing so."
+          },
+          {
+            "title": "Working Capital and Liquidity",
+            "summary": "How companies manage working capital and liquidity to meet short-term operational needs."
+          }
+        ]
+      },
+      {
+        "title": "Equity Investments",
+        "children": [
+          {
+            "title": "Characteristics of Equity Securities",
+            "summary": "What equity investments are — ownership shares in a company — and their main types and features: common vs preferred stock, voting and ownership rights, and dividends, and how they differ across companies and markets."
+          },
+          {
+            "title": "Security Markets and Indexes",
+            "summary": "How security markets are organized, and how security market indexes are constructed, weighted, and used to measure and benchmark market performance."
+          },
+          {
+            "title": "Industry and Company Analysis",
+            "summary": "How to analyze an industry and an individual company — competitive position, business model, and value drivers — in order to evaluate an equity security."
+          },
+          {
+            "title": "Equity Valuation Models",
+            "summary": "Basic equity valuation models: present-value / dividend discount models, multiplier (multiples) models, and asset-based valuation."
+          },
+          {
+            "title": "Global Equities",
+            "summary": "Investing in equities around the world, and how global equity diversification supports longer-term growth and diversification objectives, in exchange for higher volatility than bonds."
+          }
+        ]
+      },
+      {
+        "title": "Fixed Income",
+        "children": [
+          {
+            "title": "Fixed-Income Securities",
+            "summary": "What fixed-income securities are — bonds and other debt instruments — and their key features: issuer, maturity, coupon, principal, seniority, covenants, and embedded options."
+          },
+          {
+            "title": "Fixed-Income Markets",
+            "summary": "How fixed-income markets are organized: who issues bonds (governments, corporations, agencies), how they are sold and traded, and the main market sectors and instruments."
+          },
+          {
+            "title": "Valuation of Fixed-Income Securities",
+            "summary": "How to calculate the value (price) of a fixed-income security by discounting its expected cash flows, and the drivers of that value — market yields, credit spreads, and the shape of the yield curve."
+          },
+          {
+            "title": "Yield Measures and Bond Returns",
+            "summary": "Yield measures (yield to maturity, current yield, spot and forward rates), how to calculate them, and the fundamentals of what drives a bond's total return."
+          },
+          {
+            "title": "Risk Factors",
+            "summary": "The main risks of holding bonds — interest rate risk (measured by duration and convexity), credit risk, liquidity risk, and inflation risk — and how they interact. Ground interest rate risk in real episodes such as Paul Volcker's Fed rate hikes around 1980 and the sharp 2022 bond selloff."
+          },
+          {
+            "title": "Securitization and Asset-Backed Securities",
+            "summary": "How pools of loans (mortgages, auto loans, credit-card receivables) are packaged into tradable securities — ABS, MBS, and CDOs. Anchor it in the 2007–2008 subprime mortgage crisis, when mispriced mortgage-backed securities and CDOs helped trigger a global financial crisis."
+          },
+          {
+            "title": "Introduction to Credit Analysis",
+            "summary": "The basic principles of credit analysis — assessing a borrower's ability and willingness to repay, credit ratings, and yield spreads — illustrated with real defaults and downgrades such as the 2011 US credit-rating downgrade and the Greek and Argentine debt crises."
+          }
+        ]
+      },
+      {
+        "title": "Derivatives",
+        "summary": "Contracts whose value derives from an underlying asset: forwards, futures, swaps, and contingent claims (options). How derivative markets work, how arbitrage keeps prices in line, and why a derivative's price is tied to the price of its underlying.",
+        "children": [
+          {
+            "title": "Core Concepts",
+            "summary": "What a derivative is and how derivative markets work; the two families — forward commitments (forwards, futures, swaps) and contingent claims (options) — and the benefits and risks of using them."
+          },
+          {
+            "title": "Forwards and Futures",
+            "summary": "Forward and futures contracts lock in a price today for a transaction later; how futures differ from forwards (exchange-traded, standardized, marked to market daily)."
+          },
+          {
+            "title": "Swaps",
+            "summary": "Swaps as a series of forward commitments to exchange cash flows over time, such as interest rate swaps."
+          },
+          {
+            "title": "Contingent Claims (Options)",
+            "summary": "Options as contingent claims — the right, but not the obligation, to buy (call) or sell (put) an underlying; their payoffs and basic uses."
+          },
+          {
+            "title": "Arbitrage and Replication",
+            "summary": "Arbitrage — a riskless profit from mispricing — and how replicating a derivative's payoff with the underlying plus cash enforces its price under the no-arbitrage condition."
+          },
+          {
+            "title": "Pricing Derivatives from the Underlying",
+            "summary": "Why a derivative's price is tied to the price of its underlying asset, using arbitrage, replication, and the cost of carry."
+          }
+        ]
+      },
+      {
+        "title": "Alternative Investments",
+        "summary": "Assets beyond public stocks and bonds — private equity, hedge funds, real estate, commodities, and infrastructure — and why investors use them: diversification (returns that don't move in lockstep with public markets) and the potential for higher returns, in exchange for less liquidity, higher fees, and greater complexity.",
+        "children": [
+          {
+            "title": "Core Concepts",
+            "summary": "What counts as an alternative investment and how it differs from traditional stocks and bonds; the main categories (private equity, hedge funds, real estate, commodities, infrastructure); and the case for holding them — diversification and the potential for higher returns, weighed against illiquidity, higher fees, leverage, and valuation difficulty."
+          },
+          {
+            "title": "Private Equity"
+          },
+          {
+            "title": "Hedge Funds"
+          },
+          {
+            "title": "Real Estate"
+          },
+          {
+            "title": "Commodities and Natural Resources"
+          },
+          {
+            "title": "Infrastructure"
+          }
+        ]
+      },
+      {
+        "title": "Portfolio Planning and Wealth Management",
+        "summary": "The fundamentals of portfolio and risk management — measuring return and risk, planning and constructing a portfolio — and how the needs of individual and institutional investors shape the investment solutions they choose.",
+        "children": [
+          {
+            "title": "Portfolio Management Overview",
+            "summary": "The fundamentals of portfolio and risk management: why investors hold diversified portfolios rather than single assets, the portfolio approach to return and risk, and the steps of the portfolio management process."
+          },
+          {
+            "title": "Return and Risk Measurement",
+            "summary": "How to measure a portfolio's return and its risk — expected return, variance and standard deviation — and how combining assets changes overall risk through diversification and correlation."
+          },
+          {
+            "title": "Portfolio Risk and Return",
+            "summary": "The trade-off between risk and return, how diversification reduces risk, and the efficient frontier. How the capital asset pricing model (CAPM) prices risk and is used to identify the optimal level of risk in a portfolio (the tangency/market portfolio and the security market line)."
+          },
+          {
+            "title": "Portfolio Planning and Construction",
+            "summary": "Turning an investor's goals and constraints into a real portfolio: the investment policy statement (IPS), risk tolerance and objectives, and strategic asset allocation."
+          },
+          {
+            "title": "Retail vs Institutional Investors",
+            "summary": "The basics — a retail (individual) investor manages their own or their household's money; an institutional investor (pension funds, endowments, insurers, sovereign wealth funds, mutual and hedge funds) invests large pools on behalf of others. How their goals, time horizons, resources, and interests diverge — vividly illustrated by the January 2021 GameStop short squeeze, when retail investors coordinating on Reddit's r/WallStreetBets drove the stock up and squeezed institutional hedge funds (such as Melvin Capital) that had shorted it."
+          },
+          {
+            "title": "Investment Solutions",
+            "summary": "The range of available investment solutions — from individual stocks and bonds to mutual funds, ETFs, separately managed accounts, and alternatives — and how each fits different investors' needs and constraints."
+          }
+        ]
+      },
+      {
+        "title": "Ethics and Professional Standards",
+        "children": [
+          {
+            "title": "The Role of Ethics and Professionalism",
+            "summary": "Why ethics and professionalism are central to the investment industry: how trust underpins the profession, how ethical conduct differs from merely legal conduct, and what professionalism demands of practitioners."
+          },
+          {
+            "title": "Challenges to Ethical Behavior",
+            "summary": "Why even well-intentioned people act unethically — situational pressures, incentives, overconfidence, and the gap between how we expect to behave and how we actually do."
+          },
+          {
+            "title": "A Framework for Ethical Decision-Making",
+            "summary": "A structured, repeatable process for working through ethical dilemmas: identify the issue and stakeholders, weigh options and consequences, decide, act, and reflect."
+          },
+          {
+            "title": "Industry Standards of Conduct",
+            "summary": "The standards of professional conduct that govern behavior in the investment industry, and how they guide real day-to-day decisions."
+          }
+        ]
+      },
+      {
+        "title": "Finance & Capital Markets",
+        "children": [
+          {
+            "title": "stocks & bonds"
+          },
+          {
+            "title": "funds & investment vehicles"
+          },
+          {
+            "title": "financial statements"
+          },
+          {
+            "title": "housing & mortgages"
           }
         ]
       }
