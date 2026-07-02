@@ -1,21 +1,20 @@
 import { Home, type HomeSubject } from "@/components/Home";
 import type { SearchItem } from "@/lib/types";
-import { getSubjects, getSubjectThemeCount, getFirstLeaf, getSearchIndex } from "@/lib/store";
+import { getSubjects, getSubjectThemeCount, getSearchIndex } from "@/lib/store";
 
 export default async function Page() {
   const subjectRows = await getSubjects();
 
   const subjects: HomeSubject[] = await Promise.all(
     subjectRows.map(async (s): Promise<HomeSubject> => {
-      const [themeCount, leaf] = await Promise.all([
-        getSubjectThemeCount(s.id),
-        getFirstLeaf(s.id),
-      ]);
+      const themeCount = await getSubjectThemeCount(s.id);
       return {
         name: s.name,
         slug: s.slug,
         themeCount,
-        href: leaf ? `/learn/${s.slug}/${leaf.path.join("/")}` : `/learn/${s.slug}`,
+        // Link to the subject index, which redirects to the current first topic
+        // at request time — so this static home never carries a stale deep link.
+        href: `/learn/${s.slug}`,
       };
     }),
   );
