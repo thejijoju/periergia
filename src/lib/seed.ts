@@ -1830,6 +1830,36 @@ const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
+        "title": "Portfolio Planning and Wealth Management",
+        "summary": "The fundamentals of portfolio and risk management — measuring return and risk, planning and constructing a portfolio — and how the needs of individual and institutional investors shape the investment solutions they choose.",
+        "children": [
+          {
+            "title": "Portfolio Management Overview",
+            "summary": "The fundamentals of portfolio and risk management: why investors hold diversified portfolios rather than single assets, the portfolio approach to return and risk, and the steps of the portfolio management process."
+          },
+          {
+            "title": "Return and Risk Measurement",
+            "summary": "How to measure a portfolio's return and its risk — expected return, variance and standard deviation — and how combining assets changes overall risk through diversification and correlation."
+          },
+          {
+            "title": "Portfolio Risk and Return",
+            "summary": "The trade-off between risk and return, how diversification reduces risk, and the efficient frontier. How the capital asset pricing model (CAPM) prices risk and is used to identify the optimal level of risk in a portfolio (the tangency/market portfolio and the security market line)."
+          },
+          {
+            "title": "Portfolio Planning and Construction",
+            "summary": "Turning an investor's goals and constraints into a real portfolio: the investment policy statement (IPS), risk tolerance and objectives, and strategic asset allocation."
+          },
+          {
+            "title": "Retail vs Institutional Investors",
+            "summary": "The basics — a retail (individual) investor manages their own or their household's money; an institutional investor (pension funds, endowments, insurers, sovereign wealth funds, mutual and hedge funds) invests large pools on behalf of others. How their goals, time horizons, resources, and interests diverge — vividly illustrated by the January 2021 GameStop short squeeze, when retail investors coordinating on Reddit's r/WallStreetBets drove the stock up and squeezed institutional hedge funds (such as Melvin Capital) that had shorted it."
+          },
+          {
+            "title": "Investment Solutions",
+            "summary": "The range of available investment solutions — from individual stocks and bonds to mutual funds, ETFs, separately managed accounts, and alternatives — and how each fits different investors' needs and constraints."
+          }
+        ]
+      },
+      {
         "title": "Financial Statement Analysis",
         "children": [
           {
