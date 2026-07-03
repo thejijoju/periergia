@@ -37,14 +37,16 @@ export async function POST(req: Request) {
   if (!nodeId || !level) {
     return NextResponse.json({ error: "Missing nodeId/level" }, { status: 400 });
   }
-  const node = await getNodeById(nodeId);
-  if (!node) return NextResponse.json({ error: "Unknown node" }, { status: 404 });
-
-  // Only trust a real (Claude-generated) cache hit; regenerate placeholder rows.
+  // Cache first — a hit is a single indexed lookup and skips loading the
+  // subject tree. Only trust a real (Claude-generated) hit; regenerate
+  // placeholder rows.
   const cached = await getCachedQuiz(nodeId, level);
   if (cached && cached.generated) {
     return NextResponse.json({ questions: cached.questions, generated: cached.generated });
   }
+
+  const node = await getNodeById(nodeId);
+  if (!node) return NextResponse.json({ error: "Unknown node" }, { status: 404 });
 
   const quiz = await generateQuiz(node, level);
   if (quiz.generated) await putCachedQuiz(quiz); // never cache placeholders

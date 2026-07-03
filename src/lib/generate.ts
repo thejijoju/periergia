@@ -72,13 +72,7 @@ async function nodeContext(node: Node): Promise<string> {
 
 // ---- Content -------------------------------------------------------------
 
-export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
-  const trail = await nodeContext(node);
-  const client = getAnthropic();
-  if (!client) {
-    return { ...key, body: placeholderContent(node, key, trail), generated: false };
-  }
-
+function contentPrompt(node: Node, key: ContentKey, trail: string): { system: string; prompt: string } {
   const mode = key.format as Mode; // the `format` field holds the learning mode
   const spec = getMode(mode);
 
@@ -106,6 +100,17 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     `${node.summary ? `Required coverage — you must include all of this, explained clearly (even at the easy level), never omitting any of it: ${node.summary}\n\n` : ""}` +
     `Create it now.`;
 
+  return { system, prompt };
+}
+
+export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
+  const trail = await nodeContext(node);
+  const client = getAnthropic();
+  if (!client) {
+    return { ...key, body: placeholderContent(node, key, trail), generated: false };
+  }
+
+  const { system, prompt } = contentPrompt(node, key, trail);
   const message = await client.messages.create({
     model: MODEL,
     max_tokens: 4096,
@@ -116,6 +121,25 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   const body = textOf(message.content).trim();
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
+}
+
+/**
+ * Stream a Claude generation for a cache miss so the route can forward text
+ * to the reader as it's written. Returns null when no key is configured —
+ * the caller falls back to generateContent's placeholder.
+ */
+export async function streamContent(node: Node, key: ContentKey) {
+  const client = getAnthropic();
+  if (!client) return null;
+  const trail = await nodeContext(node);
+  const { system, prompt } = contentPrompt(node, key, trail);
+  return client.messages.stream({
+    model: MODEL,
+    max_tokens: 4096,
+    thinking: { type: "adaptive" },
+    system,
+    messages: [{ role: "user", content: prompt }],
+  });
 }
 
 // Concatenate the text blocks of a Claude response.

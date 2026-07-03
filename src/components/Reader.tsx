@@ -49,6 +49,7 @@ export function Reader({ node }: { node: ReaderNode }) {
 
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
   const [generated, setGenerated] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
 
@@ -57,23 +58,58 @@ export function Reader({ node }: { node: ReaderNode }) {
     setShowQuiz(false);
   }, [node.id, markVisited]);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (signal?: AbortSignal) => {
     setLoading(true);
+    setFailed(false);
     try {
       const res = await fetch("/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nodeId: node.id, depth, level, mode }),
-      }).then((r) => r.json());
-      setBody(res.body ?? "");
-      setGenerated(!!res.generated);
+        signal,
+      });
+      if (!res.ok) throw new Error(`content request failed (${res.status})`);
+
+      const type = res.headers.get("content-type") ?? "";
+      if (type.includes("application/json")) {
+        // Cache hit or placeholder — the whole body at once.
+        const data = await res.json();
+        setBody(data.body ?? "");
+        setGenerated(!!data.generated);
+      } else if (res.body) {
+        // Fresh generation, streamed as it's written — render progressively.
+        setBody("");
+        setGenerated(true);
+        setLoading(false);
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let text = "";
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          text += decoder.decode(value, { stream: true });
+          setBody(text);
+        }
+        text += decoder.decode();
+        setBody(text);
+      }
+    } catch {
+      if (!signal?.aborted) {
+        setBody("");
+        setFailed(true);
+      }
     } finally {
-      setLoading(false);
+      if (!signal?.aborted) setLoading(false);
     }
   }, [node.id, depth, level, mode]);
 
   useEffect(() => {
-    if (hydrated) load();
+    if (!hydrated) return;
+    // Abort the in-flight request (incl. an open generation stream) when the
+    // node or prefs change mid-load, so stale chunks can't overwrite the body.
+    const controller = new AbortController();
+    load(controller.signal);
+    return () => controller.abort();
   }, [hydrated, load]);
 
   const isAudio = spec.kind === "audio";
@@ -139,6 +175,16 @@ export function Reader({ node }: { node: ReaderNode }) {
         <p className="font-sans italic text-[15px] text-faint">
           Composing this {spec.label.toLowerCase()}…
         </p>
+      ) : failed ? (
+        <div className="font-sans text-[15px] text-muted">
+          <p>Something went wrong loading this {spec.label.toLowerCase()}.</p>
+          <button
+            onClick={() => load()}
+            className="mt-3 border border-ink rounded-full px-4 py-1.5 text-[13px] font-medium text-ink hover:bg-pill transition-colors"
+          >
+            Try again
+          </button>
+        </div>
       ) : (
         <>
           {isAudio && (
@@ -166,14 +212,14 @@ export function Reader({ node }: { node: ReaderNode }) {
         </>
       )}
 
-      {!generated && !loading && (
+      {!generated && !loading && !failed && (
         <p className="mt-4 font-mono text-[10.5px] tracking-[0.04em] text-whisper uppercase">
           Placeholder — set ANTHROPIC_API_KEY for original content
         </p>
       )}
 
       {/* Test CTA */}
-      {!loading && (
+      {!loading && !failed && (
         <div className="mt-8">
           {!showQuiz ? (
             <button
