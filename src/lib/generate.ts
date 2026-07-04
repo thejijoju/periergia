@@ -91,13 +91,35 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   const mode = key.format as Mode; // the `format` field holds the learning mode
   const spec = getMode(mode);
 
+  // Discipline-aware math. Quantitative subjects render notation as LaTeX;
+  // everyone else (history, literature, law…) writes numbers as plain prose —
+  // otherwise '63 kg' and '40,000 chests' come out italicised in math font.
+  const QUANTITATIVE = new Set([
+    "mathematics",
+    "physics",
+    "chemistry",
+    "astronomy-and-space",
+    "engineering-and-technology",
+    "computer-science",
+    "statistics",
+    "economics",
+    "finance",
+  ]);
+  const mathRule = QUANTITATIVE.has(node.subjectSlug)
+    ? "Write all mathematics as LaTeX: inline math in $…$ (e.g. $r_e$, $\\beta_i$) and standalone " +
+      "equations in $$…$$ on their own lines — never as plain text or Unicode approximations. " +
+      "Escape literal dollar amounts as \\$ (e.g. \\$100) so currency is never mistaken for math.\n\n"
+    : "This is not a mathematical subject: do NOT use LaTeX or $…$/$$…$$ math notation anywhere. " +
+      "Write every number, quantity, range, and unit as ordinary prose text — '63–65 kg', " +
+      "'40,000 chests', 'about 2,560 tonnes a year' — never italicised or set as an equation. " +
+      "Write money with the currency named (e.g. '21 million silver dollars', '£5,000'), never " +
+      "with a bare $ sign, so nothing is mistaken for math.\n\n";
+
   const system =
     "You are Periergia, a living textbook for everything. You write clear, accurate, " +
     "engaging content that fits the reader's chosen mode, depth, and level. Output GitHub-flavored " +
     "Markdown only. No preamble, no meta-commentary, no closing summary.\n\n" +
-    "Write all mathematics as LaTeX: inline math in $…$ (e.g. $r_e$, $\\beta_i$) and standalone " +
-    "equations in $$…$$ on their own lines — never as plain text or Unicode approximations. " +
-    "Escape literal dollar amounts as \\$ (e.g. \\$100) so currency is never mistaken for math.\n\n" +
+    mathRule +
     "ALWAYS begin with a definition callout: a single Markdown blockquote (a line starting " +
     "with '> ') of one or two plain, jargon-free sentences that define the topic in simple " +
     "terms, starting with the term in bold — e.g. '> **State management** is a concept focused " +
