@@ -41,7 +41,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ body: cached.body, generated: cached.generated });
   }
 
-  const content = await generateContent(node, key);
-  if (content.generated) await putCachedContent(content); // never cache placeholders
-  return NextResponse.json({ body: content.body, generated: content.generated });
+  try {
+    const content = await generateContent(node, key);
+    if (content.generated) await putCachedContent(content); // never cache placeholders
+    return NextResponse.json({ body: content.body, generated: content.generated });
+  } catch (e) {
+    // Surface the real failure in Vercel logs instead of a silent 500 that the
+    // client renders as the "set ANTHROPIC_API_KEY" placeholder.
+    const err = e as { status?: number; message?: string };
+    console.error(`content generation failed for ${nodeId}:`, err.status, err.message ?? e);
+    return NextResponse.json(
+      { body: "", generated: false, error: String(err.message ?? e).slice(0, 300) },
+      { status: 200 },
+    );
+  }
 }
