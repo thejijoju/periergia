@@ -1326,6 +1326,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "classical & modern thinkers"
           },
           {
+            "title": "French Social Thought",
+            "summary": "The French lineage that remade the human sciences: Comte's invention of 'sociology'; Durkheim, the Année sociologique, and social facts; Mauss's The Gift; structuralism — from Saussure's linguistics to Lévi-Strauss's kinship and myth, Barthes's mythologies; the post-structuralist explosion — Foucault's power/knowledge and discipline, Derrida's deconstruction, Deleuze; Bourdieu — habitus, field, cultural capital, Distinction; Beauvoir and French feminism (Irigaray, Kristeva, Wittig); Latour, actor-network theory, and science studies; and the trans-Atlantic career of it all — how 'French Theory' (Cusset) conquered and divided the American academy."
+          },
+          {
             "title": "key frameworks"
           }
         ]
@@ -2363,8 +2367,16 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "sources of law"
           },
           {
-            "title": "Law and Colonialism",
+            "title": "Law and Colonialism (Colonial Law)",
             "summary": "The relationship between law and colonialism in Latin America, Africa, and Asia, in both the early modern and the modern period: how law facilitated colonialism — doctrines of discovery and terra nullius, papal bulls and colonial charters, the chartered companies — and how it limited it, from the School of Salamanca (Vitoria, Las Casas) debating empire's legality to metropolitan courts and abolition; how colonialism in turn modified the legal systems that existed previously — legal pluralism, the codification and invention of 'customary law', Hindu and Islamic law under the Raj, indirect rule; law as a political, religious, social, and economic agent — property and land-tenure regimes, labor codes, personal-status and caste law, missionary justice; the legal arena as a sphere for conflict resolution, negotiation, and identity formation — colonial courts as sites where subjects litigated, jurisdictional politics and forum shopping; read through the seminal works — Benton's Law and Colonial Cultures, Chanock's Law, Custom and Social Order, Cohn, Merry, the Comaroffs — down to the postcolonial legacies in today's mixed legal systems."
+          },
+          {
+            "title": "American Legal History",
+            "summary": "Law as America's language of power: the colonial reception of the common law; the founding — the Constitution, Marshall's court, and judicial review (Marbury); slavery in law — from the fugitive slave clauses to Dred Scott — and the Reconstruction Amendments' transformation; the Gilded Age courts, Lochner, and the freedom-of-contract era; legal realism and the New Deal settlement (the 1937 'switch in time'); Brown v. Board and the Warren Court's rights revolution; the conservative legal movement, originalism versus the living Constitution; and the profession itself — lawyers, Langdell's law school, and the bar's gatekeeping — as a history of who gets to speak law."
+          },
+          {
+            "title": "Law and Social Change: How Reform Movements Leverage the Law",
+            "summary": "How reform movements leverage the law — and when law delivers: the NAACP Legal Defense Fund's decades-long test-case road to Brown v. Board; legal mobilization theory (McCann) against Rosenberg's Hollow Hope skepticism about courts producing change; the campaigns — civil rights, the women's movement (Ginsburg's ACLU litigation strategy), LGBTQ rights from Lawrence to Obergefell, disability rights and the ADA, environmental litigation; cause lawyering and rights consciousness; the global repertoire — public interest litigation in India, South Africa's constitutional cases; and the recurring pattern of victory, backlash, and the long game between courtroom and street."
           },
           {
             "title": "courts"
@@ -2476,7 +2488,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Greece"
           },
           {
-            "title": "Rome"
+            "title": "Rome and the Ancient Roman World",
+            "summary": "From city-state to world empire: the republic and its institutions — SPQR, consuls, senate, tribunes; the Punic Wars and Hannibal; the republic's collapse — the Gracchi, Marius and Sulla, Caesar and the crossing of the Rubicon; Augustus and the principate; the Pax Romana and the empire at its height — roads, aqueducts, concrete, cities from Britain to Syria; Roman law from the Twelve Tables to Justinian's codification; slavery, spectacle, and the gladiators; women and the family; the rise of Christianity from persecution to Constantine; and the crisis of the third century opening onto the empire's fall (continued in The Fall of the Roman Empire)."
           },
           {
             "title": "The Fall of the Roman Empire",
@@ -2516,6 +2529,14 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "The Crusades",
             "summary": "Two centuries of holy war and their long shadow: Urban II's call at Clermont (1095); the First Crusade and the capture of Jerusalem (1099); the crusader states; Saladin, Hattin, and the Third Crusade with Richard the Lionheart (1187–92); the Fourth Crusade's sack of Constantinople (1204); the military orders — Templars and Hospitallers; the wider crusading world (the Reconquista, the Baltic crusades); the fall of Acre (1291); and the consequences for Christian-Muslim-Jewish relations, trade, and historical memory down to today."
+          },
+          {
+            "title": "Political Debates in the Empire of New Rome",
+            "summary": "Political thought and argument in Byzantium, the Empire of New Rome: Constantinople as New Rome and the imperial ideology built on it — Eusebius's Christian kingship, taxis (order) and oikonomia (accommodation); how far the empire remained a republic of the Romans (Kaldellis's monarchy-versus-republic debate); the people's politics — the circus factions and the Nika riot (532); iconoclasm as the empire's greatest political-theological argument; emperor and patriarch — symphonia and its breakdowns (Chrysostom's exile, the Photian schism); court rhetoric, advice literature, and panegyric as political speech; and the late debates — union with Rome versus Orthodox integrity, and Plethon's radical Hellenism on the eve of 1453."
+          },
+          {
+            "title": "Slavery in the global Middle Ages",
+            "summary": "Bondage between antiquity and the Atlantic system: the post-Roman slaveries of Europe and the Viking slave trade (Dublin's markets, the routes to the east that gave 'Slav' to 'slave'); the Mediterranean traffic of Venice, Genoa, and the Black Sea; the trans-Saharan, Red Sea, and Indian Ocean trades; military slavery and its paradoxes — the Mamluks who ruled Egypt, the Ottoman devshirme; slavery in law and religion — church, ulama, and the ransoming orders; the blurred line between serfdom and slavery; and how these medieval systems set patterns the Atlantic world would industrialize."
           },
           {
             "title": "Islamic Caliphate",
@@ -2560,6 +2581,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "The Ottomans",
             "summary": "The empire that bridged three continents for six centuries (c. 1299–1922): Osman's frontier principality; Mehmed II's conquest of Constantinople (1453); Suleiman the Magnificent — lawgiver, Vienna (1529), and the empire's classical age; the devshirme and the Janissaries; the millet system and religious pluralism; Lepanto (1571) and the contest for the Mediterranean; the second siege of Vienna (1683) and the long territorial retreat; the Tanzimat reforms and the 'sick man of Europe'; the Young Turks, the Balkan Wars, the First World War and the Armenian genocide; and the empire's dissolution into Atatürk's republic."
+          },
+          {
+            "title": "Ottoman Social and Cultural History",
+            "summary": "The Ottoman world from the inside: Istanbul's neighborhoods, markets, and waterfront; the coffeehouse revolution and the state's futile bans; the imperial harem and the 'sultanate of women' (Peirce); guilds, janissary-artisans, and urban protest; the Sufi orders and popular religion; everyday life in the millets — Greek, Armenian, Jewish, and Arab provincial worlds; slavery as lived institution; the long delay and arrival of Ottoman print (Müteferrika, 1727); Tanzimat-era cultural transformation — newspapers, photography, the fez; and how social history revises the old decline narrative."
           },
           {
             "title": "Atlantic Slave Wars",
@@ -2611,6 +2636,14 @@ export const SUBJECTS: SubjectSpec[] = [
             ]
           },
           {
+            "title": "Hitler and the Death of Democracy in Germany, 1918-1945",
+            "summary": "How a democracy died: Weimar's birth in defeat and revolution (1918–19) and its structural fragilities — Versailles's shadow, Article 48, fractured parties; the crises of 1923 (hyperinflation, the Beer Hall Putsch) and 1929; Hitler's road to power — Mein Kampf, the Nazi electoral surge of 1930–32, and the backroom deal of 30 January 1933; the Machtergreifung — the Reichstag fire, the Enabling Act, Gleichschaltung, the Night of the Long Knives; the Third Reich's mix of terror and consent — the Nuremberg Laws, propaganda, rearmament; the road to war and genocide; and 1945's reckoning — with Weimar's lessons for democratic fragility ever since."
+          },
+          {
+            "title": "France Under Nazi Occupation",
+            "summary": "The dark years, 1940–1944: the collapse of 1940 and the armistice; Vichy — Pétain's National Revolution, Laval, and collaboration d'État; the Statut des Juifs and the Vél d'Hiv roundup (1942), French complicity in deportation; the Milice; daily life — rationing, the démarcation line, the STO labor draft; resistance — de Gaulle's appeal of 18 June, Jean Moulin and unification, the maquis; liberation and the épuration; and the memory wars — the resistance myth, Paxton's revolution in the historiography, and the trials of Barbie, Touvier, and Papon."
+          },
+          {
             "title": "The Yalta Conference",
             "summary": "The February 1945 summit that sketched the postwar world: Roosevelt, Churchill, and Stalin at the Livadia Palace in Crimea; the agreements — the division of Germany into occupation zones and reparations, the Declaration on Liberated Europe and the promise of free elections in Poland, Soviet entry into the war against Japan in exchange for concessions in Asia, and the deal that made the United Nations possible (Security Council veto, founding conference at San Francisco); the context — the Red Army already held Eastern Europe, and FDR's failing health; what followed — the broken promises in Poland, Potsdam, and the descent into Cold War; and the long argument over whether Yalta was realistic statecraft or a 'betrayal' that conceded half of Europe."
           },
@@ -2623,11 +2656,11 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The US-Soviet confrontation that organized the world, 1945–1991: from Yalta to the Iron Curtain; containment (Kennan), the Truman Doctrine, and the Marshall Plan; the Berlin blockade and the Wall; NATO and the Warsaw Pact; the nuclear arms race — from the Manhattan Project and Hiroshima to the H-bomb, ICBMs, Sputnik, and mutual assured destruction — and its treaties (the Test Ban, SALT and ABM, INF, START) alongside proliferation; the Cuban Missile Crisis (1962); the hot wars in Korea and Vietnam; the Cold War in the Global South — Westad's 'global Cold War' of interventions in Angola, Afghanistan, and Latin America; the Sino-Soviet split and Nixon in China; détente and its collapse; Reagan, Gorbachev, the revolutions of 1989, and the Soviet dissolution."
           },
           {
-            "title": "Collapse of the Soviet Union and Eastern Europe",
+            "title": "Collapse of the Soviet Union and Eastern Europe: the End of the Cold War",
             "summary": "How the communist world came apart, 1985–1991: Gorbachev's glasnost and perestroika and the renunciation of the Brezhnev Doctrine; Poland — Solidarity, the Round Table, and the June 1989 elections; Hungary opens the border; the fall of the Berlin Wall (9 November 1989); Czechoslovakia's Velvet Revolution and the violent end of Ceaușescu's Romania; German reunification (1990); the Baltic drive for independence; the August 1991 coup, Yeltsin, and the dissolution of the USSR that December; shock therapy and the post-communist transitions; NATO and EU enlargement; and Yugoslavia's violent breakup as the era's dark counterpoint."
           },
           {
-            "title": "The Soviet Union",
+            "title": "The Soviet Union: History of the Soviet Empire",
             "summary": "The USSR from revolution to collapse (1917–1991): the February and October Revolutions, Lenin and the Bolsheviks, civil war and War Communism, the NEP; Stalin's rule — collectivization and the famines (including the Holodomor), the Five-Year Plans, the Great Terror, and the Gulag; the Great Patriotic War (Stalingrad, the Eastern Front's role in defeating Nazi Germany); superpower status in the Cold War — the nuclear arms race, Sputnik and the space race, the Warsaw Pact; Khrushchev's de-Stalinization and thaw, the Brezhnev era of stagnation, and dissidents like Solzhenitsyn and Sakharov; Gorbachev's glasnost and perestroika, the revolutions of 1989, and the dissolution of the USSR in 1991 — plus its contested legacy in Russia and the post-Soviet states."
           },
           {
@@ -2639,8 +2672,16 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "Three decades of war in Vietnam and its American convulsion: French Indochina and the First Indochina War — Dien Bien Phu (1954), the Geneva Accords, and partition; Diem's South and the National Liberation Front; the Gulf of Tonkin Resolution (1964) and Americanization — Rolling Thunder, search-and-destroy, the draft; the Tet Offensive (1968) as military defeat and political earthquake; My Lai; the antiwar movement, the media, and the credibility gap; Nixon's Vietnamization, the secret wars in Cambodia and Laos, and the Pentagon Papers; the Paris Accords (1973) and the fall of Saigon (1975); the costs — some 58,000 Americans and up to three million Vietnamese dead, plus the boat people; and the long aftermath in both countries, from the 'Vietnam syndrome' to the Memorial wall."
           },
           {
-            "title": "The May 1968 Movement",
-            "summary": "The year the postwar order shook: France in May–June 1968 — the student revolt from Nanterre to the Sorbonne, the barricades of the Latin Quarter, the general strike of some ten million workers, de Gaulle's vanishing act and return, the Grenelle accords, and the June elections; and the global 1968 around it — the Prague Spring and its crushing, Mexico's Tlatelolco massacre, the American upheavals (Tet, King's assassination, Columbia, the Chicago DNC), the West German and Italian movements; plus the long cultural afterlife: the New Left, second-wave feminism, environmentalism, and the endless argument over what 1968 changed."
+            "title": "Power and Protest in the Long 1960s: the May 1968 Movement",
+            "summary": "Power and protest in the long 1960s — the year the postwar order shook: France in May–June 1968 — the student revolt from Nanterre to the Sorbonne, the barricades of the Latin Quarter, the general strike of some ten million workers, de Gaulle's vanishing act and return, the Grenelle accords, and the June elections; and the global 1968 around it — the Prague Spring and its crushing, Mexico's Tlatelolco massacre, the American upheavals (Tet, King's assassination, Columbia, the Chicago DNC), the West German and Italian movements; plus the long cultural afterlife: the New Left, second-wave feminism, environmentalism, and the endless argument over what 1968 changed."
+          },
+          {
+            "title": "Partition and its Consequences: Ireland, India, Palestine",
+            "summary": "Partition as the British Empire's exit strategy, three times over: Ireland (1920–22) — the border, civil war, and the long road to the Troubles and the Good Friday Agreement; India (1947) — Mountbatten's timetable, the Radcliffe line, up to fifteen million displaced and perhaps a million dead in Punjab and Bengal, and Kashmir's unresolved fate; Palestine (1947–48) — the UN partition plan, the war, and the Nakba; the comparative questions — minorities and borders drawn in haste, population transfer as 'solution', violence at the moment of imperial withdrawal; and why all three partitions remain politically alive today."
+          },
+          {
+            "title": "The Neoliberal Age",
+            "summary": "The market revolution of our times: the 1970s crisis of the postwar Keynesian order — stagflation, the oil shocks, the end of Bretton Woods; the intellectual insurgency from Mont Pèlerin to Hayek and Friedman; the Volcker shock; Thatcher and Reagan — privatization, deregulation, tax cuts, and the defeats of the miners and PATCO; the Washington Consensus and structural adjustment in the Global South; the third way of Clinton and Blair; financialization and rising inequality; the 2008 crisis and the age's contested afterlife — populist backlash, industrial policy's return, and the debate (Gerstle) over whether the neoliberal order has ended."
           },
           {
             "title": "The Coming of the Civil War",
@@ -2655,6 +2696,14 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "China from the Opium Wars to superpower: Qing decline — the Opium Wars, the Taiping Rebellion, self-strengthening, and the Boxer Uprising; the 1911 Revolution and Sun Yat-sen; warlords, the May Fourth Movement, and the Nationalist-Communist struggle; the Japanese invasion and the Second Sino-Japanese War; 1949 and the People's Republic; Mao's rule — the Great Leap Forward famine and the Cultural Revolution; Deng Xiaoping's reform and opening (1978); Tiananmen (1989); WTO accession (2001) and the rise to the world's second economy; and the Xi Jinping era."
           },
           {
+            "title": "Maoism",
+            "summary": "Mao's remaking of Marxism and its world career: the sinification of Marxism — peasant revolution, the Yan'an way, the mass line, and continuous revolution; Maoism in power — collectivization, the Great Leap Forward and its famine, the Cultural Revolution; the cult — the Little Red Book, the badge and the poster; global Maoism (Lovell) — India's Naxalites, Peru's Shining Path, Nepal's Maoists, the Khmer Rouge's dark variant, and the Western intellectuals of the 1960s-70s; and the afterlife — Maoism's ambiguous place in Deng's and Xi's China."
+          },
+          {
+            "title": "The Cultural Revolution",
+            "summary": "China's decade of upheaval (1966–1976): Mao's motives after the Great Leap disaster; the Red Guards, big-character posters, and struggle sessions; smashing the 'Four Olds' and the assault on teachers, intellectuals, and heritage; the fall of Liu Shaoqi and Deng Xiaoping; violence, factional civil war, and the army's restoration of order; the sent-down youth; the Lin Biao affair (1971); the Gang of Four and the end in 1976; the human toll and the 1981 party resolution — and how memory of the decade is managed and suppressed in China today."
+          },
+          {
             "title": "China Today: the Economic Miracle and Infrastructural Revolution",
             "summary": "The Chinese economic miracle of the past 40 years and its monumental infrastructural revolution: Deng's reform and opening (1978), the Special Economic Zones — Shenzhen from fishing village to megacity — WTO accession, and the largest poverty reduction in history; the country's modern and extensive infrastructure — the world's largest dams (Three Gorges and its 1.3 million displaced), the South-North Water Transfer, the world's largest high-speed railway network built almost from scratch after 2008, expressways, the great ports, and gleaming new cities housing hundreds of millions of new urbanites (and the 'ghost city' debate); how it was built — state capacity, five-year plans, state-owned enterprises, and land-finance; the Belt and Road as the model exported; the costs — environmental damage, debt, displacement; and the open question of whether the miracle can continue amid demographic decline, the property crisis, and rivalry with the United States."
           }
@@ -2664,7 +2713,21 @@ export const SUBJECTS: SubjectSpec[] = [
         "title": "Regional Histories",
         "children": [
           {
-            "title": "Europe"
+            "title": "Europe",
+            "children": [
+              {
+                "title": "East European Identities: Russia and Ukraine",
+                "summary": "Two nations and a contested inheritance: Kyivan Rus and the rival claims to its legacy; Cossack Ukraine and the Hetmanate; imperial Russification and the Ukrainian national revival of the nineteenth century; revolution and short-lived independence (1917–21); Soviet Ukrainization reversed by the Holodomor (1932–33); the bloodlands of the Second World War (Snyder); 1991 and the divergent post-Soviet paths; the Orange Revolution and the Maidan (2014); Crimea and the Donbas; the full-scale invasion of 2022; and the war over history itself — Putin's 'historical unity' essay versus Plokhy and the Ukrainian historians."
+              },
+              {
+                "title": "The European Union",
+                "summary": "The improbable union: from the Schuman Declaration and the Coal and Steel Community (1951) through the Treaty of Rome (1957), the single market, and Maastricht (1992); the euro and its flawed architecture; the great eastward enlargement of 2004; how the institutions work — Commission, Council, Parliament, Court — and the democratic-deficit debate; the crisis decade — the eurozone and Greece, the 2015 migration crisis, Brexit; the EU as peace project versus neoliberal machine; and today's questions — enlargement to Ukraine, strategic autonomy, and the union's place between the US and China."
+              },
+              {
+                "title": "God Save the Queen: the British Monarchy",
+                "summary": "How the British monarchy survived the age of revolutions and everything since: the constitutional bargain of 1688 and Bagehot's 'dignified' crown; Victoria and the imperial monarchy — Empress of India, the invention of royal tradition; the world wars and the Windsors' rebranding; the abdication crisis (1936); Elizabeth II's seven decades — the Commonwealth, decolonization's managed retreat, Diana and the near-death of deference, devolution and republicanism (Australia's 1999 referendum); Charles III; and the anthem's double life — from national hymn to the Sex Pistols' 1977 detonation of it."
+              }
+            ]
           },
           {
             "title": "Asia",
@@ -2672,6 +2735,22 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "Chinese History",
                 "summary": "Four thousand years of Chinese history before the modern rupture: Shang oracle bones and the origins of the writing system; the Zhou and the Mandate of Heaven; the hundred schools — Confucius, Laozi, the Legalists; Qin unification and the First Emperor (the terracotta army, the Great Wall's beginnings); the Han synthesis and the Silk Road; the Tang's cosmopolitan golden age; the Song commercial and technological revolution — paper money, printing, gunpowder, the compass; the Mongol Yuan and Marco Polo's China; the Ming — Zheng He's voyages and the turn inward; the Qing at its height under Kangxi and Qianlong; the machinery of empire — the examination system, the scholar-official, the dynastic cycle; and how this deep past frames China's modern transformation (continued in Modern China)."
+              },
+              {
+                "title": "Modern South Asia",
+                "summary": "The subcontinent from the Mughals' decline to today: East India Company rule and the 1857 Rebellion; the Raj — railways, famines, and the drain debate; the nationalist movement — Congress, Gandhi's satyagraha, Jinnah and the Muslim League; Partition (1947) and its wounds; Nehru's India and Pakistan's turbulent path; the 1971 war and Bangladesh's birth; Sri Lanka's civil war; the Emergency; liberalization (1991) and India's rise; Kashmir, nuclear rivalry, and Hindutva politics — with the diaspora carrying South Asia worldwide."
+              },
+              {
+                "title": "Modern Southeast Asia",
+                "summary": "From colonial patchwork to ASEAN century: the colonial regimes — Dutch East Indies, British Malaya and Burma, French Indochina, the American Philippines, and Siam's exceptional independence; the Japanese occupation as rupture; the independence struggles and revolutions; the Cold War battleground — Vietnam, the Indonesian massacres of 1965–66, ASEAN's founding (1967); the tiger economies and the 1997 Asian financial crisis; Suharto, Marcos, and People Power; and the contemporary region — Singapore's model, Myanmar's coups, and Southeast Asia between China and the United States."
+              },
+              {
+                "title": "The Modern History of Rural China",
+                "summary": "The Chinese revolution and reform as the countryside lived them: the rural crisis of the republican era and why the CCP won the villages; land reform and the destruction of the landlord class; collectivization, the people's communes, and the Great Leap famine's rural devastation; the hukou system and the rural-urban divide it entrenched; the household responsibility system and the reform era's village boom (township and village enterprises); the great migration — 300 million migrant workers and the left-behind villages; rural taxation revolts, land grabs, and protest; and the poverty-alleviation and rural-revitalization campaigns of the Xi era."
+              },
+              {
+                "title": "Indochina and Modern Vietnam, 1880s-1980s",
+                "summary": "A century of colonialism and war in Indochina: French rule — rubber and rice, the mission civilisatrice and its contradictions; anticolonial currents and Ho Chi Minh's road to the Indochinese Communist Party; the Second World War, the Japanese coup, and the famine of 1945; the August Revolution and the First Indochina War — Dien Bien Phu (1954) and Geneva's partition; the American war (cross-referenced with The Vietnam War); Cambodia's descent — the Khmer Rouge genocide (1975–79); the Vietnamese invasion of Cambodia and the Sino-Vietnamese war (1979); the boat people; and đổi mới (1986) — modern Vietnam's turn."
               }
             ]
           },
@@ -2689,6 +2768,10 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "Health and Healing in African History",
                 "summary": "Sickness, healing, and the mind in African history: African therapeutic systems — healers and herbalists, divination, spirit possession and ngoma, and their ongoing pluralism alongside biomedicine; witchcraft, causation, and mental health — Evans-Pritchard's Azande and witchcraft as an explanation of misfortune, accusations and their modern resurgence; colonial medicine and psychiatry — the racialized invention of the 'African mind', asylums, and Fanon's critique; substance abuse — khat, cannabis, and alcohol under colonial regulation and after; violence and mental illness — war trauma, child soldiers, and the contested universality of PTSD; and the more recent links between HIV/AIDS, loss, and depression — from denialism to antiretrovirals, orphanhood, and grief — within today's global mental health debate over universal categories versus local idioms of distress."
+              },
+              {
+                "title": "History of Sport in Africa",
+                "summary": "Play, power, and the postcolony: indigenous sporting traditions — wrestling, stick-fighting, board games — and their meanings; colonial sport as discipline and 'civilizing' project, and how Africans made it their own; football's conquest of the continent — from mission schools to CAF and the Africa Cup of Nations; sport in the liberation struggle — the apartheid sports boycott and South Africa's isolation, the 1995 Rugby World Cup as reconciliation theater; the runners — Abebe Bikila barefoot in Rome (1960), Kip Keino, and East Africa's distance dynasty; the 2010 South African World Cup; and the political economy of the player migration to European leagues."
               }
             ]
           },
@@ -2698,11 +2781,21 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "Native American and Indigenous Studies",
                 "summary": "Indigenous histories of the Americas and the field that studies them: the deep past — Cahokia, the Mesoamerican and Andean civilizations, and the diverse nations of North America; contact, the demographic catastrophe, and the Columbian exchange; settler colonialism as a structure, not an event (Patrick Wolfe); treaties and dispossession — removal and the Trail of Tears, the Plains wars, allotment (Dawes Act), the boarding schools; twentieth-century policy from termination and relocation to self-determination; Red Power — Alcatraz, AIM, and Wounded Knee (1973); sovereignty and treaty rights today — NAGPRA, ICWA, Standing Rock; the global Indigenous movement and UNDRIP (2007); and the field's methods — oral tradition as evidence, decolonizing methodologies (Linda Tuhiwai Smith), and Indigenous scholars remaking how this history is told."
+              },
+              {
+                "title": "Afro-Indigenous Intersections in Early America",
+                "summary": "Where African and Native American histories met: Native slavery and the Carolina Indian slave trade alongside African slavery; Africans and Indigenous people intermarrying, allying, and building kin in colonial borderlands; maroon communities and the Black Seminoles; freedom suits that turned on Indigenous ancestry; how settler racial regimes divided the two — blood quantum for Native peoples, the one-drop rule for Black people — and the consequences; slavery within the Five Tribes and the Black freedmen's citizenship struggles that continue today; and the scholars recovering these entangled histories (Tiya Miles, Kyle Mays)."
               }
             ]
           },
           {
-            "title": "Middle East"
+            "title": "Middle East",
+            "children": [
+              {
+                "title": "The Making of the Modern Middle East",
+                "summary": "How the region's modern map and politics were made: late Ottoman reform and collapse; the First World War's triple promises — Sykes-Picot, the Balfour Declaration, the McMahon correspondence; the mandates and state-building in Iraq, Syria, Lebanon, Transjordan, and Palestine; oil and the making of the Gulf; Israel's founding and the Nakba (1948); Nasser, pan-Arabism, and Suez (1956); the wars of 1967 and 1973; Iran's 1979 revolution; Lebanon's civil war; the Gulf wars, Oslo and its collapse, the Arab Spring and its aftermath — and the patterns connecting a century of intervention, authoritarianism, and resistance."
+              }
+            ]
           },
           {
             "title": "The 'Settler Revolution' at the Edge of Empire: Australia, 1770-1901",
@@ -2717,10 +2810,11 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "economic"
           },
           {
-            "title": "social"
+            "title": "social history",
+            "summary": "History from below: how ordinary people — workers, peasants, women, servants, migrants, the poor — lived, worked, married, ate, and died; the field's revolutions — the Annales school and the longue durée, E. P. Thompson's The Making of the English Working Class and agency from below, microhistory (Ginzburg's The Cheese and the Worms); family and demography, childhood, food, housing, leisure, and everyday life; crime and punishment from below; the archives of the inarticulate — parish registers, court records, oral history; and how social history transformed what counts as historical evidence and whose lives count as history."
           },
           {
-            "title": "military",
+            "title": "military history",
             "summary": "War as a constant of the modern age — there was a war or other violent conflict somewhere in the world in every single year of the 19th and 20th centuries: the Napoleonic Wars and the Concert of Europe that failed to end war; the century of 'small wars' — colonial conquests, frontier violence, and imperial policing; Latin America's independence and interstate wars (including the Paraguayan War, proportionally the deadliest); the Taiping Rebellion, history's bloodiest civil war; Crimea, the wars of German and Italian unification, and the US Civil War as rehearsals of industrial war; the world wars and total war; and the post-1945 era's proxy wars, civil wars, and genocides that belie the 'long peace'. Alongside the fighting: military revolutions and technology, conscription and the nation in arms, logistics and economies, the laws of war from the Geneva Conventions onward, and how societies remember and forget their wars."
           },
           {
@@ -2739,6 +2833,30 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "America's role in the world from Washington to the present: the Farewell Address and the isolationist inheritance; the Monroe Doctrine (1823); continental expansion and the Mexican War; 1898 and the debate over empire; Wilson, the First World War, and the League fight; from neutrality to the Second World War and the architecture of the liberal order (UN, Bretton Woods, NATO); containment and its wars — Korea and Vietnam; Nixon-Kissinger realpolitik and the opening to China; Reagan and the Cold War's end; unipolarity, humanitarian intervention, 9/11 and the wars in Afghanistan and Iraq; and the turn to great-power competition with China."
           },
           {
+            "title": "Urban History",
+            "summary": "The city as history's great artifact: from Uruk and the first urban revolution through the classical, Islamic, and medieval city; the industrial city's shock — Manchester, Engels, cholera, and the sanitary reform it forced; planning and its hubris — Haussmann's Paris, the garden city, Le Corbusier's modernism, and Jane Jacobs versus Robert Moses; segregation built into space — redlining, ghettos, apartheid urbanism; suburbanization and sprawl; the Global South's urban century — megacities and informality (Davis's Planet of Slums); and the questions of the urban age — housing, gentrification, and the climate-adapted city."
+          },
+          {
+            "title": "Global History",
+            "summary": "History beyond the nation-state — the field and its methods: connections and comparisons across regions; world-systems theory (Wallerstein) and the Great Divergence debate (Pomeranz); commodities as global threads — Mintz's sugar, Beckert's cotton; oceans as units of analysis — Atlantic, Indian Ocean, Pacific worlds; mobilities — migration, disease, ideas; global microhistory and the biographies that cross empires; the critiques — Eurocentrism smuggled back in, the 'global' that ignores the immobile (Adelman) — and what global history reveals that national histories cannot."
+          },
+          {
+            "title": "Borders and Borderlands",
+            "summary": "How humanity drew its lines: from frontiers and marches to the surveyed boundary — natural-border myths, the cartographic state; the great line-drawings — the Berlin Conference's Africa, Sykes-Picot, the Radcliffe line, the DMZ; passports and papers — the First World War watershed and the 'invention of the passport' (Torpey); borderlands as worlds of their own — mixing, smuggling, and shifting identity (Sahlins, the US-Mexico borderlands school); walls from Hadrian to Berlin to today's border fortifications; Schengen's opening against the global hardening; and the border as industry, spectacle, and humanitarian crisis."
+          },
+          {
+            "title": "Cryo-History: Histories of Cold Places",
+            "summary": "The past read from ice: polar exploration and its dramas — Franklin's lost expedition, Scott and Amundsen's race, Shackleton's Endurance; the Indigenous Arctic — Inuit, Sámi, and the knowledge that explorers borrowed and erased; ice cores as archives — how Greenland and Antarctic ice record volcanoes, lead pollution, and ten thousand years of climate; the cold rush — whaling, sealing, and fur; refrigeration's revolution in food and cities (the cold chain); cryosphere geopolitics — the Antarctic Treaty (1959), Arctic sea routes and resources; and the melt itself as the great historical event of our time — permafrost, glaciers, and what their retreat exposes and unleashes."
+          },
+          {
+            "title": "Histories of Emotions: From the 'Rational Self' to Modern Neuroscience",
+            "summary": "Do feelings have a history? From the 'rational self' of Enlightenment thought to modern neuroscience: Febvre's call to write the history of sensibility; honor and shame societies; the eighteenth century's cult of sensibility and public weeping; Victorian restraint and the stiff upper lip; fear, love, anger, and grief as they changed across time; the field's tools — Stearns's emotionology, Rosenwein's emotional communities, Reddy's emotives; emotional labor (Hochschild) and the management of feeling in modern capitalism; and the neuroscience turn — LeDoux, Damasio, and Barrett's constructed emotion — in dialogue with history's evidence that emotions are made, not merely given."
+          },
+          {
+            "title": "History of Energy",
+            "summary": "Civilization as an energy story (Smil): muscle, fire, and biomass; water and wind — the medieval power revolution of mills and sails; the coal transition and why it happened in Britain (Wrigley's organic-economy escape); steam, railways, and fossil industrialization; oil's twentieth century and electricity's transformation of everything; nuclear promise and fear — from Hiroshima to Chernobyl and Fukushima; energy and power in both senses — Mitchell's Carbon Democracy on coal strikes versus oil's politics; energy poverty and global inequality; and the renewable transition now underway — solar's plunge, grids and storage, and whether this transition can be faster than all the ones before."
+          },
+          {
             "title": "The Role of Infrastructure in History: its Powers and Limitations",
             "summary": "Infrastructure as the skeleton of power and everyday life: the ancient systems — Roman roads and aqueducts, the Persian Royal Road, qanats, and China's Grand Canal; the industrial age's networks — the Erie, Suez, and Panama canals, the transcontinental railroads, submarine telegraph cables; sanitation and the public-health revolution (London's sewers after the Great Stink), electrification, and the American interstate system. Its powers: state-building and 'infrastructural power' (Michael Mann), empire's 'tools' (Headrick), markets made and cities transformed. Its limitations and dark sides: who gets served and who gets bypassed — redlining, Robert Moses's parkways, splintered cities; legibility's failures (Scott's Seeing Like a State); cost overruns, white elephants, deferred maintenance and collapse, path dependence; and the present stakes — the green and digital transitions, China's buildout versus the West's gridlock, and infrastructure as geopolitics (Belt and Road)."
           },
@@ -2755,7 +2873,7 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "How a settler republic became a global empire — and what that rise did to the planet: continental empire first (the Louisiana Purchase, Indian removal and the wars of dispossession, the Mexican cession); 1898 and the overseas turn — Cuba, Puerto Rico, the Philippines and its brutal war, Hawai'i and Guam; the Panama Canal, dollar diplomacy, and interventions in Latin America; the Second World War, the 'empire of bases,' Bretton Woods, and the Cold War national security state; the historians' debate — formal versus informal empire, Williams's 'empire as a way of life,' 'empire by invitation.' The same century saw profound transformations in natural ecologies worldwide — plantation economies (United Fruit), oil frontiers, the Green Revolution, nuclear testing in the Pacific, Agent Orange in Vietnam — and the answering rise of environmental movements, from conservation and Silent Spring to Earth Day, the EPA, environmental justice, and global environmentalism."
           },
           {
-            "title": "Global Capitalism: Past, Present, Future",
+            "title": "Global History of Capitalism: Past, Present, Future",
             "summary": "Capitalism as a world system across five centuries: merchant capitalism and the joint-stock revolution (the VOC, 1602); the Atlantic economy and slavery's role in early accumulation (the Williams thesis debate); the Industrial Revolution and factory capitalism; the gold standard and the first globalization (1870–1914); collapse — world wars and the Great Depression; Bretton Woods (1944) and the embedded-liberal postwar boom; the 1970s crisis, the end of dollar-gold convertibility (1971), and the neoliberal turn (Thatcher, Reagan, the Washington Consensus); China's reform era (1978) and global supply chains; the 2008 financial crisis; platform and digital capitalism; inequality and its critics (Piketty); and the contested future — climate change and the green transition, deglobalization, automation and AI — read through Smith, Marx, Keynes, Hayek, and Polanyi."
           },
           {
@@ -2990,6 +3108,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Habermas: Discourse Ethics and Communicative Reason after Metaphysics",
             "summary": "Habermas's attempt to rebuild a pragmatic-transcendentalist theory of ethical and discursive reason after the collapse of metaphysics: postmetaphysical thinking and the linguistic turn from the philosophy of consciousness to communication; The Theory of Communicative Action (1981) — communicative versus strategic action and the validity claims of truth, rightness, and sincerity; universal pragmatics and the quasi-transcendental argument from the unavoidable presuppositions of argumentation (the performative contradiction against the skeptic); discourse ethics — principles (U) and (D) as an intersubjective reconstruction of Kant; the public sphere and deliberative democracy (Between Facts and Norms); and the debates — with Gadamer, Luhmann, Rawls, and the postmodernists — in defense of Enlightenment reason as an 'unfinished project'."
+          },
+          {
+            "title": "Critical Theory",
+            "summary": "The Frankfurt School and the tradition of emancipatory critique: the Institute for Social Research (1923) and Horkheimer's program — theory that aims to liberate, not merely describe; Adorno and Horkheimer's Dialectic of Enlightenment and the culture industry; Benjamin's theses on history and the Arcades; Marcuse and the one-dimensional society's sixties explosion; Fromm; the second generation — Habermas's communicative turn; the third — Honneth on recognition, Forst on justification; the wider critical family — Foucault's genealogies, postcolonial critique, critical race theory, feminist critical theory; and the standing question: what grounds critique after the collapse of foundations?"
           },
           {
             "title": "contemporary thinkers"
@@ -4242,6 +4364,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "Black Power and After"
+          },
+          {
+            "title": "The Black Experience since 1865",
+            "summary": "African American life from emancipation to now, as one arc: Reconstruction's promise — citizenship, the vote, Black officeholders — and its violent overthrow; Jim Crow, disfranchisement, and lynching (Ida B. Wells's crusade); the Great Migration and the making of Black urban America; the Harlem Renaissance; the Second World War and the Double V; the civil rights revolution and Black Power; the post-1968 turn — deindustrialization, the drug war, and mass incarceration (Alexander's The New Jim Crow); Black culture's global reach from the blues to hip-hop; Obama, Black Lives Matter, and the 1619 debates; and the persistent racial wealth gap and the reparations question (Coates)."
           }
         ]
       },
