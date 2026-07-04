@@ -2475,17 +2475,37 @@ export const SUBJECTS: SubjectSpec[] = [
         "summary": "What historians study, how they know it, and where 'history' begins: written history opens only about six thousand years ago, with the invention of writing in Sumer (cuneiform, c. 3200 BCE) — so what about the tens of thousands of years of human existence described by archaeology? The Paleolithic longue durée, behavioral modernity and cave art, the migrations out of Africa, and the Neolithic revolution, known through artifacts, oral tradition, genetics, and climate proxies rather than texts; the history/prehistory divide and why 'deep history' and 'big history' challenge it; and the historian's craft — primary sources, evidence and interpretation, bias and perspective, from Herodotus and Thucydides through Ranke's archives to E. H. Carr's What is History? and the question of whether objective history is possible."
       },
       {
-        "title": "Ancient History",
+        "title": "Ancient Civilizations",
         "children": [
           {
             "title": "Mesopotamia"
           },
           {
-            "title": "Egypt",
+            "title": "Ancient Egypt",
             "summary": "Three thousand years of the Nile's civilization: unification under Narmer (c. 3100 BCE) and the divine kingship of the pharaohs; the Old Kingdom and the pyramids of Giza; the Middle Kingdom; the New Kingdom's imperial age — Hatshepsut, Akhenaten's religious revolution, Tutankhamun, Ramesses II and Kadesh; religion and the afterlife — mummification, the Book of the Dead, the gods of the Egyptian pantheon; hieroglyphs, the Rosetta Stone, and Champollion's decipherment; the Nile's flood rhythm as the economy's engine; Egypt in Africa — Nubia and the Kingdom of Kush, whose pharaohs ruled Egypt as the 25th Dynasty; the Late Period, the Ptolemies, and Cleopatra; and Egypt's afterlives — Egyptology, Egyptomania, and the debate over the Africanness of Egypt, from Cheikh Anta Diop and the 1974 UNESCO Cairo symposium to Bernal's Black Athena controversy."
           },
           {
-            "title": "Greece"
+            "title": "The Indus Valley Civilization",
+            "summary": "One of the world's first urban civilizations (c. 3300–1300 BCE): the sophisticated cities of Harappa and Mohenjo-daro along the Indus and Ghaggar-Hakra rivers — grid-planned streets, the Great Bath, standardized fired-brick construction, covered drainage, and weights; a vast trade network reaching Mesopotamia (the Meluhha of cuneiform texts); the still-undeciphered Indus script and the enigmatic seals; the absence of clear palaces, temples, or royal tombs and the debate over how it was governed; the eclipse of the cities around 1900 BCE (climate change, river shifts, and the end of the Aryan-invasion theory in favor of gradual transformation); and its place in the deep history of South Asia."
+          },
+          {
+            "title": "Ancient China: Shang, Zhou, and the Hundred Schools",
+            "summary": "The formation of Chinese civilization (c. 1600–221 BCE): the Bronze Age Shang dynasty — oracle-bone divination and the birth of the Chinese writing system, ritual bronzes, and Anyang; the Zhou conquest and the Mandate of Heaven that would justify every later dynasty; the Western Zhou feudal order and its collapse into the Spring and Autumn and Warring States periods; the flowering of thought in that chaos — Confucius, Laozi, Mozi, and the Legalists (the Hundred Schools); iron, coinage, and mass infantry warfare; and the road to Qin's unification in 221 BCE (which continues in Han History and Chinese History)."
+          },
+          {
+            "title": "Mesoamerican Cultures: Olmec, Maya, and Teotihuacan",
+            "summary": "The civilizations of ancient Mexico and Central America before the Aztecs (c. 1500 BCE–900 CE): the Olmec 'mother culture' and its colossal heads; the shared Mesoamerican world — maize agriculture, the 260-day and 365-day calendars, the ballgame, pyramids, and bloodletting ritual; Teotihuacan, the great planned metropolis of the Avenue of the Dead; and above all the Maya — city-states like Tikal and Palenque, the only fully developed writing system of the pre-Columbian Americas, Long Count astronomy and mathematics (including zero), and the 'collapse' of the southern lowlands. Sets up Moctezuma's Mexico and the Aztec world that the Spanish met."
+          },
+          {
+            "title": "early civilizations"
+          }
+        ]
+      },
+      {
+        "title": "Classical Antiquity",
+        "children": [
+          {
+            "title": "Ancient Greece"
           },
           {
             "title": "Rome and the Ancient Roman World",
@@ -2496,7 +2516,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "Why the ancient world's superpower came apart: the Crisis of the Third Century; Diocletian's and Constantine's reorganizations and the East-West division; pressure on the frontiers — the Goths' victory at Adrianople (378), Alaric's sack of Rome (410), the Vandal sack (455), and Attila's Huns; the deposition of Romulus Augustulus by Odoacer in 476; why the Eastern empire endured another thousand years; and the great debate over causes — Gibbon's classic account, overextension, plague and economic decline, the Christianity thesis, and the modern argument between 'transformation' (Peter Brown's late antiquity) and 'catastrophe' (Bryan Ward-Perkins)."
           },
           {
-            "title": "early civilizations"
+            "title": "The Persian Empire",
+            "summary": "The first world empire (c. 550–330 BCE) and its successors: Cyrus the Great's Achaemenid conquests and the famous tolerance of the Cyrus Cylinder; Darius I — the satrapy system, the Royal Road, the coinage, and Persepolis; Zoroastrianism; the Greco-Persian Wars (Marathon, Thermopylae, Salamis) seen from the Persian side rather than through Herodotus alone; Alexander's conquest and the burning of Persepolis; and the later Iranian empires that carried the tradition — the Parthians who fought Rome and the Sasanians, Rome's and then Byzantium's great rival, down to the Arab conquest."
           }
         ]
       },
@@ -2518,9 +2539,6 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "urban institutions",
             "summary": "The medieval town as a laboratory of self-government: the revival of towns from the eleventh century; charters, communes, and the fight for autonomy; merchant and craft guilds — apprenticeship, quality control, monopoly; town councils, mayors, and citizenship ('town air makes free'); markets and fairs (Champagne) and the commercial revolution; the Hanseatic League; the Italian city-republics — Venice, Genoa, Florence; universities (Bologna, Paris, Oxford) as urban corporations; hospitals, confraternities, and cathedral-building; and how urban institutions incubated law, finance, and representative practices that outlived the Middle Ages."
-          },
-          {
-            "title": "empires"
           },
           {
             "title": "The Middle Ages (medieval period)",
@@ -2560,19 +2578,36 @@ export const SUBJECTS: SubjectSpec[] = [
         ]
       },
       {
-        "title": "Early Modern History",
+        "title": "Renaissance and Reformation",
         "children": [
           {
             "title": "The Renaissance",
             "summary": "The rebirth that made the modern West's self-image: humanism from Petrarch to civic humanism; Florence and Medici patronage; the artistic revolution — Brunelleschi's dome and perspective, Donatello, Leonardo, Michelangelo, Raphael, Titian; Gutenberg's printing press and the spread of learning; Machiavelli's The Prince and new political thought; the Northern Renaissance — Erasmus, More, Dürer; women and the querelle des femmes; courts, diplomacy, and the Italian Wars; and the historiographical debate from Burckhardt's 'discovery of the individual' to modern revisions."
           },
           {
+            "title": "The Protestant and Catholic Reformations",
+            "summary": "The shattering of Latin Christendom: Luther's Ninety-five Theses (1517), justification by faith, and the printing press; Zwingli, the radical reformation, and Calvin's Geneva; Henry VIII and the English Reformation; the Catholic (Counter-) Reformation — the Council of Trent, Ignatius Loyola and the Jesuits, the Roman Inquisition and the Index, baroque piety; the wars of religion — the Schmalkaldic War and the Peace of Augsburg, the French wars and St. Bartholomew's Day (1572), the Dutch Revolt, and the Thirty Years' War ending at Westphalia (1648); and the Reformations' legacies for literacy, conscience, and the state."
+          },
+          {
             "title": "European Expansion Overseas (Age of Exploration)",
             "summary": "How Europe reached, mapped, and seized much of the globe (c. 1415–1600): motives — God, gold, and glory; Portuguese navigation down the African coast, Dias, and da Gama's sea route to India; Columbus (1492) and the Treaty of Tordesillas (1494); Magellan's circumnavigation; the conquests of the Aztec and Inca empires (Cortés, Pizarro) and why they succeeded — steel, horses, allies, and above all disease; Portugal's trading-post empire in Asia; the Spanish colonial system; the Dutch and English East India companies; and the demographic catastrophe and global connections that expansion set in motion."
           },
           {
-            "title": "The Protestant and Catholic Reformations",
-            "summary": "The shattering of Latin Christendom: Luther's Ninety-five Theses (1517), justification by faith, and the printing press; Zwingli, the radical reformation, and Calvin's Geneva; Henry VIII and the English Reformation; the Catholic (Counter-) Reformation — the Council of Trent, Ignatius Loyola and the Jesuits, the Roman Inquisition and the Index, baroque piety; the wars of religion — the Schmalkaldic War and the Peace of Augsburg, the French wars and St. Bartholomew's Day (1572), the Dutch Revolt, and the Thirty Years' War ending at Westphalia (1648); and the Reformations' legacies for literacy, conscience, and the state."
+            "title": "new world economy",
+            "summary": "How the encounter of hemispheres created the first global economy: the Columbian exchange of crops, animals, and diseases; Potosí and the silver flows that tied the Americas to Spain and China; the sugar revolution and the plantation complex; encomienda, coerced Indigenous labor, and the turn to African slavery; mercantilism, navigation acts, and the triangular trade; the Price Revolution in Europe; the commercial institutions born of Atlantic trade — joint-stock companies, marine insurance, the Amsterdam exchange; and how the New World economy transformed Europe, Africa, and the Americas alike."
+          },
+          {
+            "title": "Atlantic Slave Wars",
+            "summary": "The violence that made and unmade Atlantic slavery, c. 1500–1888: the transatlantic slave trade and the African wars and raiding that supplied it (Dahomey, Asante, the Kongo civil wars); the Middle Passage and shipboard revolts (the Amistad, 1839); maroon communities and their wars — Palmares in Brazil, Jamaica's First and Second Maroon Wars; the great uprisings — Stono (1739), Tacky's Revolt (1760), the Haitian Revolution (1791–1804, the only successful slave revolution, Toussaint Louverture), Demerara (1823), and the Baptist War in Jamaica (1831–32); how rebellion pushed abolition — Britain's 1807 trade ban and 1833 emancipation, the Royal Navy's suppression squadron; and emancipation's long endgame through the US Civil War to Brazil in 1888."
+          }
+        ]
+      },
+      {
+        "title": "Early Modern Period",
+        "children": [
+          {
+            "title": "The Enlightenment",
+            "summary": "The eighteenth century's revolution in ideas: Locke and Newton as founding inspirations; the philosophes — Voltaire's campaigns against fanaticism, Montesquieu's separation of powers, Rousseau's social contract, Diderot and d'Alembert's Encyclopédie; Kant's 'What is Enlightenment?' (dare to know); the republic of letters — salons, coffeehouses, academies, and the women who ran the salons; the Scottish Enlightenment — Hume and Adam Smith; deism, toleration, and the critique of religious authority; enlightened absolutism (Frederick II, Catherine II, Joseph II); the movement's blind spots on slavery, race, and gender; its imprint on the American and French Revolutions; and the counter-Enlightenment critique from Burke to today."
           },
           {
             "title": "the Scientific Revolution",
@@ -2583,8 +2618,16 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The early modern state's claim to total sovereignty: divine-right theory (Bodin, Bossuet, Hobbes's Leviathan); Richelieu, Mazarin, and the Fronde; Louis XIV — Versailles, court society, standing armies, Colbert's mercantilism, and the revocation of the Edict of Nantes; the military revolution and the fiscal-military state; Hohenzollern Prussia and the Great Elector; Peter the Great's transformation of Russia; the Habsburgs; and the English exception — civil war, the execution of Charles I, and the Glorious Revolution of 1688 that entrenched parliamentary limits absolutism could not cross."
           },
           {
-            "title": "new world economy",
-            "summary": "How the encounter of hemispheres created the first global economy: the Columbian exchange of crops, animals, and diseases; Potosí and the silver flows that tied the Americas to Spain and China; the sugar revolution and the plantation complex; encomienda, coerced Indigenous labor, and the turn to African slavery; mercantilism, navigation acts, and the triangular trade; the Price Revolution in Europe; the commercial institutions born of Atlantic trade — joint-stock companies, marine insurance, the Amsterdam exchange; and how the New World economy transformed Europe, Africa, and the Americas alike."
+            "title": "The Mughal Empire",
+            "summary": "India's last great empire (1526–1857), studied alongside its peers — the Mughal, British, and late Ottoman empires as the classic comparative set: Babur's conquest and the Timurid inheritance; Akbar's synthesis — sulh-i kul (peace with all), the Rajput alliances, the mansabdari system, and the din-i ilahi experiment; the imperial workshop — Persianate court culture, miniature painting, and the architecture from Fatehpur Sikri to Shah Jahan's Taj Mahal; the economy that made it the world's manufacturing giant; Aurangzeb — expansion, the jizya's return, and the contested reputation; the eighteenth-century decline and the successor states; the Company's shadow empire and the last emperor's exile after 1857; and the Mughal legacy fought over in Indian politics today."
+          },
+          {
+            "title": "Tokugawa Shogunate",
+            "summary": "Early modern Japan under the shoguns (1603–1868): Tokugawa Ieyasu's victory at Sekigahara and the founding of the Edo bakufu; the alternate-attendance system that bound the daimyo, the rigid four-class order, and two and a half centuries of internal peace (the Pax Tokugawa); sakoku, the 'closed country' policy, and the tiny Dutch window at Dejima; the growth of Edo into the world's largest city, a vibrant merchant economy, and the floating-world culture of kabuki, ukiyo-e, and haiku; rural stress and rebellion; and the arrival of Commodore Perry's black ships in 1853, which shattered the system and led into the Meiji Restoration."
+          },
+          {
+            "title": "Colonial America",
+            "summary": "The founding and growth of Britain's mainland American colonies (1607–1763): Jamestown, tobacco, and the terrible early years; Plymouth, the Puritans, and the 'city upon a hill'; the very different colonial worlds — the plantation South and the entrenchment of racial slavery, the middle colonies' diversity, New England's towns; relations with Native nations from trade to war (the Pequot War, King Philip's War); indentured servitude, Bacon's Rebellion, and the Salem trials; the Atlantic economy and the consumer revolution; the Great Awakening and colonial self-government; and the aftermath of the Seven Years' War that set the stage for revolution."
           },
           {
             "title": "The Ottomans",
@@ -2593,10 +2636,6 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Ottoman Social and Cultural History",
             "summary": "The Ottoman world from the inside: Istanbul's neighborhoods, markets, and waterfront; the coffeehouse revolution and the state's futile bans; the imperial harem and the 'sultanate of women' (Peirce); guilds, janissary-artisans, and urban protest; the Sufi orders and popular religion; everyday life in the millets — Greek, Armenian, Jewish, and Arab provincial worlds; slavery as lived institution; the long delay and arrival of Ottoman print (Müteferrika, 1727); Tanzimat-era cultural transformation — newspapers, photography, the fez; and how social history revises the old decline narrative."
-          },
-          {
-            "title": "Atlantic Slave Wars",
-            "summary": "The violence that made and unmade Atlantic slavery, c. 1500–1888: the transatlantic slave trade and the African wars and raiding that supplied it (Dahomey, Asante, the Kongo civil wars); the Middle Passage and shipboard revolts (the Amistad, 1839); maroon communities and their wars — Palmares in Brazil, Jamaica's First and Second Maroon Wars; the great uprisings — Stono (1739), Tacky's Revolt (1760), the Haitian Revolution (1791–1804, the only successful slave revolution, Toussaint Louverture), Demerara (1823), and the Baptist War in Jamaica (1831–32); how rebellion pushed abolition — Britain's 1807 trade ban and 1833 emancipation, the Royal Navy's suppression squadron; and emancipation's long endgame through the US Civil War to Brazil in 1888."
           },
           {
             "title": "revolutions",
@@ -2609,18 +2648,28 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Declarations of Independence: the American Revolution",
             "summary": "How thirteen colonies became a republic (1763–1789), starting from the causes: the constitutional, legal, economic, social, and political issues that prompted the imperial crisis after the Seven Years' War and resulted in the colonies' decision to break with Great Britain — parliamentary sovereignty versus colonial charters, taxation without representation, the Stamp Act, Townshend duties, the Boston Massacre and Tea Party, and the Coercive Acts; Lexington and Concord, Bunker Hill, and the Continental Congresses; Paine's Common Sense and the Declaration of Independence (July 4, 1776) — Jefferson's draft and the political philosophy of the Revolution: Locke's natural rights and the right of revolution, republicanism and civic virtue, the historians' argument between liberal and republican readings (Bailyn, Wood, Pocock), and the Declaration's contradictions on slavery; the war itself — Washington's army, Saratoga (1777) and the French alliance, Valley Forge, Yorktown (1781) and the Treaty of Paris (1783); how the Revolution affected people at all levels of society — the elite who occupied leadership roles, the regular citizens who mobilized for it, African Americans enslaved and free (Dunmore's Proclamation, Black Patriots and Black Loyalists), Loyalists and their exile, women (the homespun boycotts, Abigail Adams's 'Remember the Ladies'), Native nations, and immigrants; the Articles of Confederation, Shays's Rebellion, and the Constitutional Convention of 1787; and the Declaration's global afterlife as a template for later declarations of independence."
-          },
-          {
-            "title": "The Enlightenment",
-            "summary": "The eighteenth century's revolution in ideas: Locke and Newton as founding inspirations; the philosophes — Voltaire's campaigns against fanaticism, Montesquieu's separation of powers, Rousseau's social contract, Diderot and d'Alembert's Encyclopédie; Kant's 'What is Enlightenment?' (dare to know); the republic of letters — salons, coffeehouses, academies, and the women who ran the salons; the Scottish Enlightenment — Hume and Adam Smith; deism, toleration, and the critique of religious authority; enlightened absolutism (Frederick II, Catherine II, Joseph II); the movement's blind spots on slavery, race, and gender; its imprint on the American and French Revolutions; and the counter-Enlightenment critique from Burke to today."
           }
         ]
       },
       {
-        "title": "Modern History",
+        "title": "The Industrial Revolution",
         "children": [
           {
-            "title": "industrialization"
+            "title": "The Industrial Revolution",
+            "summary": "The transformation that made the modern world (c. 1760–1840): why it began in Britain — coal, capital, colonies, agricultural improvement, and useful knowledge; the breakthroughs in textiles (the spinning jenny, the water frame, the power loom) and the steam engine (Newcomen to Watt); the factory system and the new discipline of the clock; the human cost — child labor, the industrial city, and the world E. P. Thompson's working class was made in; iron, canals, and then railways; and the runaway debate over living standards, the environment, and whether it was liberation or catastrophe. The great divergence that separated Western incomes from the rest."
+          },
+          {
+            "title": "The Second Industrial Revolution",
+            "summary": "The second wave of industrialization (c. 1870–1914): the shift from coal and iron to steel (Bessemer), electricity, chemicals, and the internal-combustion engine; the new science-based industries and the corporate research lab; mass production, the assembly line, and Taylorism; the railway and telegraph networks that knit continents and the steamship and undersea cable that knit the globe; the United States and Germany overtaking Britain; the rise of big business, finance capital, and the modern corporation; and the transformation of everyday life through electric light, the telephone, the automobile, and the department store."
+          }
+        ]
+      },
+      {
+        "title": "Modern Era (19th Century)",
+        "children": [
+          {
+            "title": "The Victorian Era",
+            "summary": "Britain and its world at the zenith of empire (1837–1901): Queen Victoria as the age's symbol; industrial and urban transformation and its social costs — the world Dickens, Engels, and the sanitary reformers described; the expansion of the franchise, the rise of the middle class, and the cult of respectability, domesticity, and 'separate spheres'; the crisis of faith between Darwin and religion; the high noon of the British Empire and the scramble for Africa; poverty, public health, and reform (factory acts, the workhouse); and the science, literature, and moral earnestness — and hypocrisy — that gave the era its name."
           },
           {
             "title": "British Empire",
@@ -2630,6 +2679,27 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Imperial Expansion and Resistance",
             "summary": "The New Imperialism and the peoples who fought it, c. 1850–1914: the Scramble for Africa and the Berlin Conference (1884–85); the British Raj after the Indian Rebellion of 1857; the technologies of conquest — steamships, quinine, the Maxim gun — and the ideologies ('civilizing mission', social Darwinism); King Leopold's Congo; resistance and its outcomes — Ethiopia's victory at Adwa (1896), the Zulu and Ashanti wars, the Boxer Uprising, the Herero and Nama genocide, Maji Maji; the economics of empire and its critics (Hobson, Lenin); and how colonial resistance seeded the anticolonial nationalisms that would drive decolonization."
           },
+          {
+            "title": "The Coming of the Civil War",
+            "summary": "How slavery broke the American union, 1820–1861: the Missouri Compromise; nullification; the Mexican War and the Wilmot Proviso; the Compromise of 1850 and the Fugitive Slave Act; Uncle Tom's Cabin and Northern opinion; the Kansas-Nebraska Act (1854), Bleeding Kansas, and the birth of the Republican Party; the caning of Sumner; Dred Scott (1857); the Lincoln-Douglas debates; John Brown's raid on Harpers Ferry (1859); Lincoln's election (1860); secession, the Confederacy, and Fort Sumter."
+          },
+          {
+            "title": "The American Civil War",
+            "summary": "The war that remade the United States (1861–1865): Union and Confederate resources, strategies, and leadership (Lincoln, Davis, Grant, Lee); Antietam and the Emancipation Proclamation; Gettysburg and Vicksburg (1863) as the turning point; Black soldiers and the USCT; total war and Sherman's March; the home fronts, conscription, and dissent; Appomattox and Lincoln's assassination; some 750,000 dead; the 13th–15th Amendments and the stakes of Reconstruction; and the memory wars — emancipationist memory versus the 'Lost Cause'."
+          },
+          {
+            "title": "The Meiji Restoration",
+            "summary": "Japan's rush to modernity (1868–1912): the overthrow of the Tokugawa shogunate and the restoration of imperial rule under the Meiji Emperor; the slogan 'rich country, strong army' (fukoku kyohei); the abolition of the samurai class, the Iwakura Mission's study of the West, and the wholesale importing of railways, industry, a conscript army, and a Prussian-style constitution; rapid industrialization and the zaibatsu; victory over China (1895) and Russia (1905) — the first modern defeat of a European power by an Asian state; and the tensions of headlong Westernization that would shape imperial Japan into the twentieth century."
+          },
+          {
+            "title": "Modern China",
+            "summary": "China from the Opium Wars to superpower, pivoting on the revolutionary years of 1911, 1949, and 1978 — the empire's fall, the Communist victory, and reform's launch — and beginning with the decline of the Qing and the dramatic collapse of China's imperial system in 1911 — the Opium Wars and the unequal treaties, the Taiping Rebellion, self-strengthening and its failure, the Hundred Days' Reform, the Boxer Uprising, the New Policies that came too late, and the Wuchang uprising that ended two millennia of imperial rule; the 1911 Revolution and Sun Yat-sen; warlords, the May Fourth Movement, and the Nationalist-Communist struggle; the Japanese invasion and the Second Sino-Japanese War; 1949 and the People's Republic; Mao's rule — the Great Leap Forward famine and the Cultural Revolution; Deng Xiaoping's reform and opening (1978); Tiananmen (1989); WTO accession (2001) and the rise to the world's second economy; and the Xi Jinping era."
+          }
+        ]
+      },
+      {
+        "title": "20th Century History",
+        "children": [
           {
             "title": "world wars",
             "children": [
@@ -2644,8 +2714,16 @@ export const SUBJECTS: SubjectSpec[] = [
             ]
           },
           {
+            "title": "The Interwar Period",
+            "summary": "The fragile years between the world wars (1918–1939): the punitive peace of Versailles and the wounded world it left; the Roaring Twenties and the Jazz Age against the ruins of Europe; hyperinflation, the fleeting stabilization, and then the Great Depression that began with the 1929 Crash; the crisis of liberal democracy and the rise of fascism and Nazism (Mussolini, Hitler) and Stalinism; the Spanish Civil War as the era's rehearsal; the failure of the League of Nations, appeasement, and collective security; decolonization's first stirrings (Gandhi, the Arab revolt); and the slide toward a second world war."
+          },
+          {
             "title": "Hitler and the Death of Democracy in Germany, 1918-1945",
             "summary": "How a democracy died: Weimar's birth in defeat and revolution (1918–19) and its structural fragilities — Versailles's shadow, Article 48, fractured parties; the crises of 1923 (hyperinflation, the Beer Hall Putsch) and 1929; Hitler's road to power — Mein Kampf, the Nazi electoral surge of 1930–32, and the backroom deal of 30 January 1933; the Machtergreifung — the Reichstag fire, the Enabling Act, Gleichschaltung, the Night of the Long Knives; the Third Reich's mix of terror and consent — the Nuremberg Laws, propaganda, rearmament; the road to war and genocide; and 1945's reckoning — with Weimar's lessons for democratic fragility ever since."
+          },
+          {
+            "title": "The Holocaust",
+            "summary": "The Holocaust — 'the systematic, state-sponsored persecution and murder of six million Jews by the Nazi regime and its allies and collaborators,' in the US Holocaust Memorial Museum's definition — with each element of that definition unpacked: historical antisemitism from medieval Europe to modern racial pseudo-science; the First World War and the stab-in-the-back myth; Weimar Germany and the Nazi rise to power; Hitler's role in the Nazi dictatorship — and the intentionalist-functionalist debate about how the genocide was decided; the Nuremberg Laws (1935) and Kristallnacht (1938); ghettoization; the Einsatzgruppen killings in the occupied East; the Wannsee Conference (1942) and the machinery of the 'Final Solution'; Auschwitz-Birkenau, Treblinka, and the death camps; six million Jewish victims — and the persecution and murder of millions of people from other groups: Roma and Sinti, disabled people (the T4 program), Slavic peoples, Soviet prisoners of war, Black people in Nazi Germany, and gay, lesbian, bisexual, and transgender people (Paragraph 175, the pink triangle); Jewish responses to persecution — flight and the closing doors, hiding, spiritual resistance, the ghetto archives (Ringelblum), and armed revolt from the Warsaw Ghetto Uprising (1943) to Sobibor; the rescuers; the attitude of the Allied nations — the Evian Conference, the St. Louis turned away, immigration barriers, what was known and when, and the debate over bombing Auschwitz; liberation, the Nuremberg trials, and Raphael Lemkin's word 'genocide'; and the politics of memory, testimony, and denial since."
           },
           {
             "title": "France Under Nazi Occupation",
@@ -2656,20 +2734,16 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The February 1945 summit that sketched the postwar world: Roosevelt, Churchill, and Stalin at the Livadia Palace in Crimea; the agreements — the division of Germany into occupation zones and reparations, the Declaration on Liberated Europe and the promise of free elections in Poland, Soviet entry into the war against Japan in exchange for concessions in Asia, and the deal that made the United Nations possible (Security Council veto, founding conference at San Francisco); the context — the Red Army already held Eastern Europe, and FDR's failing health; what followed — the broken promises in Poland, Potsdam, and the descent into Cold War; and the long argument over whether Yalta was realistic statecraft or a 'betrayal' that conceded half of Europe."
           },
           {
-            "title": "The Holocaust",
-            "summary": "The Holocaust — 'the systematic, state-sponsored persecution and murder of six million Jews by the Nazi regime and its allies and collaborators,' in the US Holocaust Memorial Museum's definition — with each element of that definition unpacked: historical antisemitism from medieval Europe to modern racial pseudo-science; the First World War and the stab-in-the-back myth; Weimar Germany and the Nazi rise to power; Hitler's role in the Nazi dictatorship — and the intentionalist-functionalist debate about how the genocide was decided; the Nuremberg Laws (1935) and Kristallnacht (1938); ghettoization; the Einsatzgruppen killings in the occupied East; the Wannsee Conference (1942) and the machinery of the 'Final Solution'; Auschwitz-Birkenau, Treblinka, and the death camps; six million Jewish victims — and the persecution and murder of millions of people from other groups: Roma and Sinti, disabled people (the T4 program), Slavic peoples, Soviet prisoners of war, Black people in Nazi Germany, and gay, lesbian, bisexual, and transgender people (Paragraph 175, the pink triangle); Jewish responses to persecution — flight and the closing doors, hiding, spiritual resistance, the ghetto archives (Ringelblum), and armed revolt from the Warsaw Ghetto Uprising (1943) to Sobibor; the rescuers; the attitude of the Allied nations — the Evian Conference, the St. Louis turned away, immigration barriers, what was known and when, and the debate over bombing Auschwitz; liberation, the Nuremberg trials, and Raphael Lemkin's word 'genocide'; and the politics of memory, testimony, and denial since."
-          },
-          {
             "title": "Global Cold War and the Arms Race",
             "summary": "The US-Soviet confrontation that organized the world, 1945–1991 — the postwar order, the liberation of Europe's former colonies, and the violent and economic upheavals of the global Cold War: the order built after 1945 (the UN, Bretton Woods, the division of Europe) from Yalta to the Iron Curtain; the diplomatic legacy of the two world wars — Versailles's cautionary lessons, wartime summitry, and the architecture designed to prevent a third; containment (Kennan), the Truman Doctrine, and the Marshall Plan; the Berlin blockade and the Wall; NATO and the Warsaw Pact; the nuclear arms race — from the Manhattan Project and Hiroshima to the H-bomb, ICBMs, Sputnik, and mutual assured destruction — and its treaties (the Test Ban, SALT and ABM, INF, START) alongside proliferation; the major crises of the Cold War era — the Berlin crises, Suez and Hungary (1956), the Cuban Missile Crisis (1962), Prague (1968), the Euromissiles and Able Archer (1983); the role of diplomacy in preserving peace between the two nuclear superpowers — the Moscow-Washington hotline, summitry from Geneva to Reykjavik, and arms-control negotiation as statecraft; the hot wars in Korea and Vietnam; the Cold War in the Global South — Westad's 'global Cold War' of interventions in Angola, Afghanistan, and Latin America; the Sino-Soviet split and Nixon in China; détente and its collapse; Reagan, Gorbachev, the fall of the Berlin Wall (1989), and the disintegration of the Soviet Union (1991); and the making of the post-Cold War world order — unipolarity, NATO and EU enlargement, and the argument over how the peace was won and how it was squandered."
           },
           {
-            "title": "Collapse of the Soviet Union and Eastern Europe: the End of the Cold War",
-            "summary": "How the communist world came apart, 1985–1991: Gorbachev's glasnost and perestroika and the renunciation of the Brezhnev Doctrine; Poland — Solidarity, the Round Table, and the June 1989 elections; Hungary opens the border; the fall of the Berlin Wall (9 November 1989); Czechoslovakia's Velvet Revolution and the violent end of Ceaușescu's Romania; German reunification (1990); the Baltic drive for independence; the August 1991 coup, Yeltsin, and the dissolution of the USSR that December; shock therapy and the post-communist transitions; NATO and EU enlargement; and Yugoslavia's violent breakup as the era's dark counterpoint."
-          },
-          {
             "title": "The Soviet Union: History of the Soviet Empire",
             "summary": "The USSR from revolution to collapse (1917–1991): the February and October Revolutions, Lenin and the Bolsheviks, civil war and War Communism, the NEP; Stalin's rule — collectivization and the famines (including the Holodomor), the Five-Year Plans, the Great Terror, and the Gulag; the Great Patriotic War (Stalingrad, the Eastern Front's role in defeating Nazi Germany); superpower status in the Cold War — the nuclear arms race, Sputnik and the space race, the Warsaw Pact; Khrushchev's de-Stalinization and thaw, the Brezhnev era of stagnation, and dissidents like Solzhenitsyn and Sakharov; Gorbachev's glasnost and perestroika, the revolutions of 1989, and the dissolution of the USSR in 1991 — plus its contested legacy in Russia and the post-Soviet states."
+          },
+          {
+            "title": "Collapse of the Soviet Union and Eastern Europe: the End of the Cold War",
+            "summary": "How the communist world came apart, 1985–1991: Gorbachev's glasnost and perestroika and the renunciation of the Brezhnev Doctrine; Poland — Solidarity, the Round Table, and the June 1989 elections; Hungary opens the border; the fall of the Berlin Wall (9 November 1989); Czechoslovakia's Velvet Revolution and the violent end of Ceaușescu's Romania; German reunification (1990); the Baltic drive for independence; the August 1991 coup, Yeltsin, and the dissolution of the USSR that December; shock therapy and the post-communist transitions; NATO and EU enlargement; and Yugoslavia's violent breakup as the era's dark counterpoint."
           },
           {
             "title": "European decolonization",
@@ -2688,28 +2762,37 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The partitions of Ireland, India, and Palestine at the moment of British decolonization — partition as the empire's exit strategy, three times over: Ireland (1920–22) — the border, civil war, and the long road to the Troubles and the Good Friday Agreement; India (1947) — Mountbatten's timetable, the Radcliffe line, up to fifteen million displaced and perhaps a million dead in Punjab and Bengal, and Kashmir's unresolved fate; Palestine (1947–48) — the UN partition plan, the war, and the Nakba; the comparative questions — minorities and borders drawn in haste, population transfer as 'solution', violence at the moment of imperial withdrawal; and why all three partitions remain politically alive today."
           },
           {
-            "title": "The Neoliberal Age",
-            "summary": "The market revolution of our times: the 1970s crisis of the postwar Keynesian order — stagflation, the oil shocks, the end of Bretton Woods; the intellectual insurgency from Mont Pèlerin to Hayek and Friedman; the Volcker shock; Thatcher and Reagan — privatization, deregulation, tax cuts, and the defeats of the miners and PATCO; the Washington Consensus and structural adjustment in the Global South; the third way of Clinton and Blair; financialization and rising inequality; the 2008 crisis and the age's contested afterlife — populist backlash, industrial policy's return, and the debate (Gerstle) over whether the neoliberal order has ended."
-          },
-          {
-            "title": "The Coming of the Civil War",
-            "summary": "How slavery broke the American union, 1820–1861: the Missouri Compromise; nullification; the Mexican War and the Wilmot Proviso; the Compromise of 1850 and the Fugitive Slave Act; Uncle Tom's Cabin and Northern opinion; the Kansas-Nebraska Act (1854), Bleeding Kansas, and the birth of the Republican Party; the caning of Sumner; Dred Scott (1857); the Lincoln-Douglas debates; John Brown's raid on Harpers Ferry (1859); Lincoln's election (1860); secession, the Confederacy, and Fort Sumter."
-          },
-          {
-            "title": "The American Civil War",
-            "summary": "The war that remade the United States (1861–1865): Union and Confederate resources, strategies, and leadership (Lincoln, Davis, Grant, Lee); Antietam and the Emancipation Proclamation; Gettysburg and Vicksburg (1863) as the turning point; Black soldiers and the USCT; total war and Sherman's March; the home fronts, conscription, and dissent; Appomattox and Lincoln's assassination; some 750,000 dead; the 13th–15th Amendments and the stakes of Reconstruction; and the memory wars — emancipationist memory versus the 'Lost Cause'."
-          },
-          {
-            "title": "Modern China",
-            "summary": "China from the Opium Wars to superpower, pivoting on the revolutionary years of 1911, 1949, and 1978 — the empire's fall, the Communist victory, and reform's launch — and beginning with the decline of the Qing and the dramatic collapse of China's imperial system in 1911 — the Opium Wars and the unequal treaties, the Taiping Rebellion, self-strengthening and its failure, the Hundred Days' Reform, the Boxer Uprising, the New Policies that came too late, and the Wuchang uprising that ended two millennia of imperial rule; the 1911 Revolution and Sun Yat-sen; warlords, the May Fourth Movement, and the Nationalist-Communist struggle; the Japanese invasion and the Second Sino-Japanese War; 1949 and the People's Republic; Mao's rule — the Great Leap Forward famine and the Cultural Revolution; Deng Xiaoping's reform and opening (1978); Tiananmen (1989); WTO accession (2001) and the rise to the world's second economy; and the Xi Jinping era."
-          },
-          {
             "title": "Maoism",
             "summary": "Mao's remaking of Marxism and its world career: the sinification of Marxism — peasant revolution, the Yan'an way, the mass line, and continuous revolution; Maoism in power — collectivization, the Great Leap Forward and its famine, the Cultural Revolution; the cult — the Little Red Book, the badge and the poster; global Maoism (Lovell) — India's Naxalites, Peru's Shining Path, Nepal's Maoists, the Khmer Rouge's dark variant, and the Western intellectuals of the 1960s-70s; and the afterlife — Maoism's ambiguous place in Deng's and Xi's China."
           },
           {
             "title": "The Cultural Revolution",
             "summary": "China's decade of upheaval (1966–1976): Mao's motives after the Great Leap disaster; the Red Guards, big-character posters, and struggle sessions; smashing the 'Four Olds' and the assault on teachers, intellectuals, and heritage; the fall of Liu Shaoqi and Deng Xiaoping; violence, factional civil war, and the army's restoration of order; the sent-down youth; the Lin Biao affair (1971); the Gang of Four and the end in 1976; the human toll and the 1981 party resolution — and how memory of the decade is managed and suppressed in China today."
+          }
+        ]
+      },
+      {
+        "title": "Contemporary History",
+        "children": [
+          {
+            "title": "The Post-Cold War Era",
+            "summary": "The world after 1991: the 'unipolar moment' and American primacy; Fukuyama's 'end of history' against Huntington's 'clash of civilizations'; the wars of the Yugoslav breakup and the Rwandan genocide as the decade's dark answer to liberal optimism; the expansion of NATO and the EU eastward; the deepening of globalization and the rise of China and India; the September 11 attacks and the 'war on terror' that reshaped the 2000s; the 2008 financial crisis; the return of great-power competition, populism, and authoritarianism; and the pandemic, climate, and AI pressures defining the present."
+          },
+          {
+            "title": "The Neoliberal Age",
+            "summary": "The market revolution of our times: the 1970s crisis of the postwar Keynesian order — stagflation, the oil shocks, the end of Bretton Woods; the intellectual insurgency from Mont Pèlerin to Hayek and Friedman; the Volcker shock; Thatcher and Reagan — privatization, deregulation, tax cuts, and the defeats of the miners and PATCO; the Washington Consensus and structural adjustment in the Global South; the third way of Clinton and Blair; financialization and rising inequality; the 2008 crisis and the age's contested afterlife — populist backlash, industrial policy's return, and the debate (Gerstle) over whether the neoliberal order has ended."
+          },
+          {
+            "title": "Globalization",
+            "summary": "The making of an interconnected world and the fierce argument about it: the deep history — the Silk Roads, the Columbian exchange, and the first globalization of 1870–1914 — and the post-1945 acceleration through Bretton Woods, container shipping, and free-trade agreements; the hyper-globalization after 1990 — the WTO, global supply chains, offshoring, and the internet; who won and who lost — the rise of China and the emptying of Western factory towns; the anti-globalization and fair-trade movements from Seattle (1999) on; financial contagion; and the backlash — Brexit, trade wars, and 'deglobalization' — that now clouds its future."
+          },
+          {
+            "title": "Technological Advancements and the Digital Age",
+            "summary": "How the digital revolution remade the world (1945–present): from ENIAC and the transistor to the integrated circuit and Moore's Law; the ARPANET, the internet, and the World Wide Web; the personal computer, the smartphone, and social media; the platform giants and the surveillance-and-attention economy; the biotech revolution from the double helix to CRISPR and mRNA vaccines; artificial intelligence from symbolic AI to deep learning and large language models; and the debates that now define the age — privacy, misinformation, automation and work, and who governs the technologies reshaping human life."
+          },
+          {
+            "title": "Modern Conflicts since 1991",
+            "summary": "War and violence since the Cold War: the Gulf War (1991) and the 'new world order'; the wars of the Yugoslav breakup and the Srebrenica genocide; the Rwandan genocide (1994); the September 11 attacks and the long wars in Afghanistan and Iraq; the rise and fall of ISIS; the Arab Spring and its aftermath, including the Syrian civil war; insurgency, drones, and the changing character of war; Russia's wars in Georgia, Crimea, and the full-scale invasion of Ukraine (2022); and the humanitarian, refugee, and great-power stakes that make these conflicts the leading edge of contemporary history."
           },
           {
             "title": "China Today: the Economic Miracle and Infrastructural Revolution",
@@ -2755,10 +2838,6 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "Premodern Korean History",
                 "summary": "Korea before the modern rupture: Gojoseon and the peninsula's early states; the Three Kingdoms — Goguryeo, Baekje, Silla — and Silla's unification with Tang help (668); Goryeo — the celadon age, the Tripitaka Koreana carved against the Mongols, and the world's first metal movable type; the Joseon dynasty (1392–1897) — Neo-Confucian state-building, King Sejong and the invention of hangul (1443), the yangban aristocracy; the Imjin War — Hideyoshi's invasions and Admiral Yi Sun-sin's turtle ships (1592–98); the Manchu invasions and tributary ties to Qing China; the 'hermit kingdom' and its opening in 1876 — with the deep patterns that still shape both Koreas."
-              },
-              {
-                "title": "The Mughal Empire",
-                "summary": "India's last great empire (1526–1857), studied alongside its peers — the Mughal, British, and late Ottoman empires as the classic comparative set: Babur's conquest and the Timurid inheritance; Akbar's synthesis — sulh-i kul (peace with all), the Rajput alliances, the mansabdari system, and the din-i ilahi experiment; the imperial workshop — Persianate court culture, miniature painting, and the architecture from Fatehpur Sikri to Shah Jahan's Taj Mahal; the economy that made it the world's manufacturing giant; Aurangzeb — expansion, the jizya's return, and the contested reputation; the eighteenth-century decline and the successor states; the Company's shadow empire and the last emperor's exile after 1857; and the Mughal legacy fought over in Indian politics today."
               },
               {
                 "title": "Modern South Asia",
