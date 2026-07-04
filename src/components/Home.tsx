@@ -85,7 +85,7 @@ export function Home({
         width={432}
         height={230}
         priority
-        className="pointer-events-none select-none absolute top-4 right-4 sm:top-6 sm:right-8 w-[190px] sm:w-[260px] lg:w-[320px] h-auto hidden sm:block"
+        className="home-accent pointer-events-none select-none absolute top-4 right-4 sm:top-6 sm:right-8 w-[190px] sm:w-[260px] lg:w-[320px] h-auto"
       />
 
       {/* Brand */}

@@ -71,6 +71,17 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* Home pixel-grid accent: only in light mode (it washes out on a dark ground),
+   and only on wider screens. */
+.home-accent {
+  display: none;
+}
+@media (min-width: 640px) {
+  [data-theme="light"] .home-accent {
+    display: block;
+  }
+}
+
 /* Reader prose — airy, docs-style, easy to read */
 .prose-reading {
   color: var(--prose-text);
