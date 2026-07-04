@@ -2490,7 +2490,12 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The Eastern Roman Empire across eleven centuries (330–1453): Constantine's founding of Constantinople; Justinian and Theodora — the Corpus Juris Civilis, Hagia Sophia, and the attempted reconquest of the West; Greek fire and the Arab sieges; Iconoclasm; the Macedonian renaissance and Basil II; the conversion of the Slavs (Cyril and Methodius) and the Orthodox commonwealth; the Great Schism of 1054; Manzikert (1071) and the appeal that launched the Crusades; the Fourth Crusade's sack of Constantinople (1204) and the Palaiologan twilight; the fall to Mehmed II in 1453; and Byzantium's legacy — Roman law, Orthodox Christianity, and the Greek learning that fed the Renaissance."
           },
           {
-            "title": "feudalism"
+            "title": "feudalism",
+            "summary": "The web of lordship that organized medieval power: lords, vassals, fiefs, homage and fealty; knights, chivalry, and the castle; manorialism and serfdom as the economic base; the fragmentation of public authority after the Carolingians; the Church within feudal society; feudal monarchy and its slow reassertion (Domesday England, Capetian France); the system's decline with money, towns, plague, and gunpowder states; and the historians' quarrel — from Marc Bloch's classic account to Elizabeth A. R. Brown's and Susan Reynolds's challenge to the very concept of 'feudalism'."
+          },
+          {
+            "title": "urban institutions",
+            "summary": "The medieval town as a laboratory of self-government: the revival of towns from the eleventh century; charters, communes, and the fight for autonomy; merchant and craft guilds — apprenticeship, quality control, monopoly; town councils, mayors, and citizenship ('town air makes free'); markets and fairs (Champagne) and the commercial revolution; the Hanseatic League; the Italian city-republics — Venice, Genoa, Florence; universities (Bologna, Paris, Oxford) as urban corporations; hospitals, confraternities, and cathedral-building; and how urban institutions incubated law, finance, and representative practices that outlived the Middle Ages."
           },
           {
             "title": "empires"
@@ -2516,10 +2521,24 @@ export const SUBJECTS: SubjectSpec[] = [
         "title": "Early Modern History",
         "children": [
           {
-            "title": "Renaissance"
+            "title": "The Renaissance",
+            "summary": "The rebirth that made the modern West's self-image: humanism from Petrarch to civic humanism; Florence and Medici patronage; the artistic revolution — Brunelleschi's dome and perspective, Donatello, Leonardo, Michelangelo, Raphael, Titian; Gutenberg's printing press and the spread of learning; Machiavelli's The Prince and new political thought; the Northern Renaissance — Erasmus, More, Dürer; women and the querelle des femmes; courts, diplomacy, and the Italian Wars; and the historiographical debate from Burckhardt's 'discovery of the individual' to modern revisions."
           },
           {
-            "title": "exploration"
+            "title": "European Expansion Overseas (Age of Exploration)",
+            "summary": "How Europe reached, mapped, and seized much of the globe (c. 1415–1600): motives — God, gold, and glory; Portuguese navigation down the African coast, Dias, and da Gama's sea route to India; Columbus (1492) and the Treaty of Tordesillas (1494); Magellan's circumnavigation; the conquests of the Aztec and Inca empires (Cortés, Pizarro) and why they succeeded — steel, horses, allies, and above all disease; Portugal's trading-post empire in Asia; the Spanish colonial system; the Dutch and English East India companies; and the demographic catastrophe and global connections that expansion set in motion."
+          },
+          {
+            "title": "The Protestant and Catholic Reformations",
+            "summary": "The shattering of Latin Christendom: Luther's Ninety-five Theses (1517), justification by faith, and the printing press; Zwingli, the radical reformation, and Calvin's Geneva; Henry VIII and the English Reformation; the Catholic (Counter-) Reformation — the Council of Trent, Ignatius Loyola and the Jesuits, the Roman Inquisition and the Index, baroque piety; the wars of religion — the Schmalkaldic War and the Peace of Augsburg, the French wars and St. Bartholomew's Day (1572), the Dutch Revolt, and the Thirty Years' War ending at Westphalia (1648); and the Reformations' legacies for literacy, conscience, and the state."
+          },
+          {
+            "title": "the Scientific Revolution",
+            "summary": "The remaking of knowledge itself (c. 1543–1727): Copernicus's heliocentrism; Tycho's observations and Kepler's laws; Galileo — the telescope, mechanics, and the 1633 trial; Vesalius and Harvey in medicine; Bacon's empiricism and Descartes's mechanical philosophy; Newton's Principia (1687) uniting heavens and earth; the new institutions — the Royal Society (1660) and the Académie des sciences — and instruments, experiment, and mathematization as method; alchemy, astrology, and religion entangled with the new science; and the revolution's link forward to the Enlightenment and the debate over whether 'revolution' is the right word."
+          },
+          {
+            "title": "The Rise of Absolutism",
+            "summary": "The early modern state's claim to total sovereignty: divine-right theory (Bodin, Bossuet, Hobbes's Leviathan); Richelieu, Mazarin, and the Fronde; Louis XIV — Versailles, court society, standing armies, Colbert's mercantilism, and the revocation of the Edict of Nantes; the military revolution and the fiscal-military state; Hohenzollern Prussia and the Great Elector; Peter the Great's transformation of Russia; the Habsburgs; and the English exception — civil war, the execution of Charles I, and the Glorious Revolution of 1688 that entrenched parliamentary limits absolutism could not cross."
           },
           {
             "title": "new world economy",
@@ -2534,7 +2553,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The violence that made and unmade Atlantic slavery, c. 1500–1888: the transatlantic slave trade and the African wars and raiding that supplied it (Dahomey, Asante, the Kongo civil wars); the Middle Passage and shipboard revolts (the Amistad, 1839); maroon communities and their wars — Palmares in Brazil, Jamaica's First and Second Maroon Wars; the great uprisings — Stono (1739), Tacky's Revolt (1760), the Haitian Revolution (1791–1804, the only successful slave revolution, Toussaint Louverture), Demerara (1823), and the Baptist War in Jamaica (1831–32); how rebellion pushed abolition — Britain's 1807 trade ban and 1833 emancipation, the Royal Navy's suppression squadron; and emancipation's long endgame through the US Civil War to Brazil in 1888."
           },
           {
-            "title": "revolutions"
+            "title": "revolutions",
+            "summary": "Revolution as the engine of modern history: the Atlantic age of revolutions — American, French, Haitian, and the Spanish American independence wars (Bolívar, San Martín); 1848, the springtime of peoples, and its failures; the twentieth century's great revolutions — Russian, Chinese, Cuban, Iranian; what makes a revolution and how they run — radicalization, terror, Thermidor, restoration; the theorists from Tocqueville to Arendt to Skocpol; and the word's wider reach — industrial, scientific, and cultural revolutions — as a lens on transformative change."
           },
           {
             "title": "French and Haitian Revolutions",
@@ -2545,7 +2565,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "How thirteen colonies became a republic (1763–1789): the imperial crisis after the Seven Years' War — the Stamp Act, Townshend duties, the Boston Massacre and Tea Party, and the Coercive Acts; Lexington and Concord, Bunker Hill, and the Continental Congresses; Paine's Common Sense and the Declaration of Independence (July 4, 1776) — Jefferson's draft, its Enlightenment sources (Locke), and its contradictions on slavery; the war itself — Washington's army, Saratoga (1777) and the French alliance, Valley Forge, Yorktown (1781) and the Treaty of Paris (1783); loyalists, women, Native nations, and Black Americans in the Revolution; the Articles of Confederation, Shays's Rebellion, and the Constitutional Convention of 1787; and the Declaration's global afterlife as a template for later declarations of independence."
           },
           {
-            "title": "Enlightenment"
+            "title": "The Enlightenment",
+            "summary": "The eighteenth century's revolution in ideas: Locke and Newton as founding inspirations; the philosophes — Voltaire's campaigns against fanaticism, Montesquieu's separation of powers, Rousseau's social contract, Diderot and d'Alembert's Encyclopédie; Kant's 'What is Enlightenment?' (dare to know); the republic of letters — salons, coffeehouses, academies, and the women who ran the salons; the Scottish Enlightenment — Hume and Adam Smith; deism, toleration, and the critique of religious authority; enlightened absolutism (Frederick II, Catherine II, Joseph II); the movement's blind spots on slavery, race, and gender; its imprint on the American and French Revolutions; and the counter-Enlightenment critique from Burke to today."
           }
         ]
       },
@@ -2554,6 +2575,10 @@ export const SUBJECTS: SubjectSpec[] = [
         "children": [
           {
             "title": "industrialization"
+          },
+          {
+            "title": "British Empire",
+            "summary": "The empire on which the sun never set, c. 1600–1997: the first empire — Atlantic colonies, Caribbean sugar and slavery, Ireland — and its rupture with American independence (1783); the swing to the East — the East India Company, conquest of India, and the Raj after 1857; the settler dominions (Canada, Australia, New Zealand, South Africa) and responsible government; abolition (1807, 1833) alongside indentured labor; free-trade imperialism and the Victorian high noon — Victoria as Empress of India, the Scramble for Africa; the world wars as imperial wars and the empire's overstretch; Indian independence and Partition (1947); Suez (1956); African decolonization; Hong Kong's handover (1997); the Commonwealth; and the fierce ongoing debate over the empire's balance sheet."
           },
           {
             "title": "Imperial Expansion and Resistance",
@@ -2674,6 +2699,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Labor and the Political Economy in U.S. History",
             "summary": "Work, workers, and the organization of American capitalism from the colonial era to the present: unfree and free labor systems (indentured servitude, slavery, wage labor); industrialization and the factory system; the great labor conflicts — the Railroad Strike of 1877, Haymarket (1886), Homestead (1892), Pullman (1894); the Knights of Labor, the AFL under Samuel Gompers, and the IWW; the Triangle Shirtwaist fire (1911) and Progressive Era reform; the New Deal order — the Wagner Act (1935), the CIO, the Fair Labor Standards Act (1938); Taft-Hartley (1947) and the postwar labor-capital accord; deindustrialization, the PATCO strike (1981), and declining union density; and the running debates over tariffs, antitrust and monopoly, laissez-faire versus regulation, and neoliberalism."
+          },
+          {
+            "title": "slavery",
+            "summary": "Slavery as a world-historical institution: bondage in the ancient world (Greece, Rome's slave society); slavery and the medieval worlds — trans-Saharan and Indian Ocean trades, the Islamic world, and the distinction from serfdom; the Atlantic system — the plantation complex, the Middle Passage, and the racialization of slavery; law and life under slavery — family, culture, religion, and everyday resistance; revolt and marronage; abolitionism and the emancipations from Britain (1833) to the US Civil War to Brazil (1888); the afterlives — sharecropping, Jim Crow, and reparations debates; and modern slavery and human trafficking today."
           },
           {
             "title": "Abolitionist Women",
