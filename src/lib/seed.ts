@@ -2495,7 +2495,7 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "Europe and the Mediterranean from the fall of the Western Roman Empire (476) to about 1000: the barbarian successor kingdoms (Franks, Visigoths, Ostrogoths, Anglo-Saxons); Byzantium under Justinian and the survival of Roman law; the rise of Islam and the Arab conquests; the spread of Christianity and monasticism (Benedict, Irish and Anglo-Saxon missionaries); the Merovingians and Carolingians, Charlemagne's coronation in 800 and the Carolingian Renaissance; the Treaty of Verdun (843); the Viking, Magyar, and Saracen invasions; and why historians now reject the label 'Dark Ages'."
           },
           {
-            "title": "Byzantine World: the Greek Tradition (300–1500)",
+            "title": "Byzantine Civilization: the Greek Tradition (300–1500)",
             "summary": "The Eastern Roman Empire and the Greek tradition it carried across twelve centuries, from late antiquity to the end of the Middle Ages (c. 300–1500) — including the identity question at its heart: a people who called themselves Romans (Romaioi), were labeled 'Greeks' by the medieval West, and became 'Byzantine' only through modern historians — what 'Roman' and 'Greek' actually meant to them (Kaldellis's Romanland and the current debate): Constantine's founding of Constantinople; Justinian and Theodora — the Corpus Juris Civilis, Hagia Sophia, and the attempted reconquest of the West; Greek fire and the Arab sieges; Iconoclasm; the Macedonian renaissance and Basil II; the conversion of the Slavs (Cyril and Methodius) and the Orthodox commonwealth; the Great Schism of 1054; Manzikert (1071) and the appeal that launched the Crusades; the Fourth Crusade's sack of Constantinople (1204) and the Palaiologan twilight; the fall to Mehmed II in 1453; the society of the Eastern Roman Empire in the Middle Ages — Constantinopolitans and provincials, elites and people of lower social status: the court and the great families, but also peasants, artisans, merchants, soldiers, monks and nuns, women, and eunuchs, glimpsed through saints' lives, letters, and the Book of the Eparch; the Greek intellectual and religious tradition throughout — the Cappadocian Fathers and Chrysostom, John of Damascus and iconophile theology, Photios and the copying that preserved classical Greek literature, Psellos, hesychasm and Gregory Palamas; and Byzantium's legacy — Roman law, Orthodox Christianity, and the scholars and manuscripts (Plethon, Bessarion) that carried Greek learning to Renaissance Italy."
           },
           {
@@ -2693,7 +2693,13 @@ export const SUBJECTS: SubjectSpec[] = [
             ]
           },
           {
-            "title": "Americas"
+            "title": "Americas",
+            "children": [
+              {
+                "title": "Native American and Indigenous Studies",
+                "summary": "Indigenous histories of the Americas and the field that studies them: the deep past — Cahokia, the Mesoamerican and Andean civilizations, and the diverse nations of North America; contact, the demographic catastrophe, and the Columbian exchange; settler colonialism as a structure, not an event (Patrick Wolfe); treaties and dispossession — removal and the Trail of Tears, the Plains wars, allotment (Dawes Act), the boarding schools; twentieth-century policy from termination and relocation to self-determination; Red Power — Alcatraz, AIM, and Wounded Knee (1973); sovereignty and treaty rights today — NAGPRA, ICWA, Standing Rock; the global Indigenous movement and UNDRIP (2007); and the field's methods — oral tradition as evidence, decolonizing methodologies (Linda Tuhiwai Smith), and Indigenous scholars remaking how this history is told."
+              }
+            ]
           },
           {
             "title": "Middle East"
