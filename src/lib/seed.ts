@@ -2662,6 +2662,10 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "History of Sub-Saharan Africa to 1860",
                 "summary": "Africa on its own terms before the colonial partition: the Bantu migrations; Aksum and early Christian Ethiopia; the Sahelian empires — Ghana, Mali (Mansa Musa, Timbuktu), and Songhai — and the trans-Saharan trade; the Swahili coast and the Indian Ocean world; Great Zimbabwe; Kongo, Benin, and the forest kingdoms; the spread of Islam and Christianity; the Atlantic slave trade's demographic and political impact; the nineteenth-century transformations — the Sokoto Caliphate, the Zulu kingdom and the mfecane, Omani Zanzibar; and the continent on the eve of European conquest."
+              },
+              {
+                "title": "Modern African History since 1860",
+                "summary": "The continent from partition to the present: the Scramble for Africa and the Berlin Conference (1884–85); colonial rule and its varieties — direct and indirect rule, settler colonies, Leopold's Congo; resistance from Adwa (1896) to Maji Maji to Mau Mau; Africans in the world wars; the decolonization wave — Ghana (1957), the year of Africa (1960), the Algerian War, the Portuguese wars to 1975; the Congo crisis and Lumumba; apartheid South Africa and the liberation struggle — Sharpeville, Soweto, and Mandela's 1994 election; post-independence trajectories — nation-building, one-party states and coups, the Cold War's proxy wars in Angola and the Horn, structural adjustment; the Rwandan genocide (1994); and the twenty-first century — the African Union, demographic boom, mobile-money innovation, and Africa's contested place in a multipolar world."
               }
             ]
           },
@@ -2941,6 +2945,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "modern"
+          },
+          {
+            "title": "Hegel",
+            "summary": "The system-builder of German idealism (1770–1831): the Phenomenology of Spirit (1807) — consciousness's journey to absolute knowing, the master-slave dialectic, and recognition; dialectic itself — negation, sublation (Aufhebung), and why 'thesis-antithesis-synthesis' is a caricature; the Science of Logic and the claim that the rational is the real; the Philosophy of Right — freedom actualized in family, civil society, and the state; the philosophy of history — world spirit, the cunning of reason, and history as the progress of the consciousness of freedom ('the owl of Minerva flies at dusk'); art, religion, and philosophy as absolute spirit; the split inheritance — Right Hegelians, Left Hegelians (Feuerbach, the young Marx standing Hegel 'on his head'), Kojève and recognition, Fukuyama's end of history; and the critics from Kierkegaard to the analytic Hegel revival (Pippin, Brandom)."
           },
           {
             "title": "Nietzsche's Anti-Foundationalist Critique of Morality and Truth",
