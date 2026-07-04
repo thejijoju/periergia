@@ -2520,6 +2520,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "revolutions"
           },
           {
+            "title": "Declarations of Independence: the American Revolution",
+            "summary": "How thirteen colonies became a republic (1763–1789): the imperial crisis after the Seven Years' War — the Stamp Act, Townshend duties, the Boston Massacre and Tea Party, and the Coercive Acts; Lexington and Concord, Bunker Hill, and the Continental Congresses; Paine's Common Sense and the Declaration of Independence (July 4, 1776) — Jefferson's draft, its Enlightenment sources (Locke), and its contradictions on slavery; the war itself — Washington's army, Saratoga (1777) and the French alliance, Valley Forge, Yorktown (1781) and the Treaty of Paris (1783); loyalists, women, Native nations, and Black Americans in the Revolution; the Articles of Confederation, Shays's Rebellion, and the Constitutional Convention of 1787; and the Declaration's global afterlife as a template for later declarations of independence."
+          },
+          {
             "title": "Enlightenment"
           }
         ]
