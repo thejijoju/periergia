@@ -99,7 +99,16 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "concrete examples and the relevant historical, political, economic, or cultural events " +
     "that shaped or illustrate it — with real names, places, and dates. Give context for why " +
     "the idea emerged and why it matters. Where the topic naturally overlaps with other fields " +
-    "or topics, draw those connections so the reader sees how ideas link together.";
+    "or topics, draw those connections so the reader sees how ideas link together.\n\n" +
+    "Bring the topic's voices and artifacts into the text: where it enriches the material, " +
+    "quote short passages from primary sources — speeches, letters, poems, memoirs — with " +
+    "attribution, and point to specific images or photographs by name (e.g. 'the Ravenna " +
+    "mosaics of Justinian and Theodora', 'Dorothea Lange's Migrant Mother'). Unless the mode " +
+    "makes it inappropriate, close with a short '## Further exploration' section: an annotated " +
+    "list of real biographies, primary texts, autobiographies, narratives, poems, and notable " +
+    "images that invite the reader deeper — each named precisely (author, title, year) with one " +
+    "line on why it's worth their time. Name only real, verifiable works; never fabricate " +
+    "citations, quotations, or URLs — omit rather than invent.";
 
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
