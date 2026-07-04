@@ -2910,6 +2910,14 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "modern"
           },
           {
+            "title": "Nietzsche's Anti-Foundationalist Critique of Morality and Truth",
+            "summary": "Nietzsche's demolition of morality's and truth's foundations: the genealogy of morals — master and slave morality, ressentiment, and the ascetic ideal; the death of God (The Gay Science §125) and the specter of European nihilism; perspectivism and 'On Truth and Lies in a Nonmoral Sense' — truth as 'a mobile army of metaphors'; the critique of Kantian and Christian-Platonic foundations ('how the true world became a fable'); will to power; the revaluation of all values, the Übermensch, and eternal recurrence as affirmative responses; the self-reference problem — whether the critique undermines itself; and the legacy running through existentialism, Foucault's genealogies, and postmodern thought."
+          },
+          {
+            "title": "Habermas: Discourse Ethics and Communicative Reason after Metaphysics",
+            "summary": "Habermas's attempt to rebuild a pragmatic-transcendentalist theory of ethical and discursive reason after the collapse of metaphysics: postmetaphysical thinking and the linguistic turn from the philosophy of consciousness to communication; The Theory of Communicative Action (1981) — communicative versus strategic action and the validity claims of truth, rightness, and sincerity; universal pragmatics and the quasi-transcendental argument from the unavoidable presuppositions of argumentation (the performative contradiction against the skeptic); discourse ethics — principles (U) and (D) as an intersubjective reconstruction of Kant; the public sphere and deliberative democracy (Between Facts and Norms); and the debates — with Gadamer, Luhmann, Rawls, and the postmodernists — in defense of Enlightenment reason as an 'unfinished project'."
+          },
+          {
             "title": "contemporary thinkers"
           }
         ]
