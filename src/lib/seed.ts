@@ -2527,8 +2527,16 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "Europe c. 500–1500 as one arc: the early, high, and late medieval periods; manorialism and feudal bonds; the power of the Church — papacy, monasteries, the Investiture Controversy; the medieval agricultural revolution, the growth of towns, guilds, and universities; scholasticism (Aquinas); cathedrals and Gothic art; the Black Death (1347–51) and its social aftershocks; the Hundred Years' War and peasant revolts; and the late-medieval crises that shaded into the Renaissance."
           },
           {
+            "title": "Sex, Love, and Marriage in the Middle Ages",
+            "summary": "Intimacy under God's law: how the Church made marriage — the consent doctrine, indissolubility, and Fourth Lateran's rules; clerical celibacy and its enforcement; courtly love from the troubadours to the romances, and the debate over what it really was; the great lovers — Abelard and Heloise's letters; women's voices — Margery Kempe's negotiated celibacy, Christine de Pizan; peasant versus noble marriage — dowry, land, and strategy; the regulation of prostitution; medicine's ideas about sex and reproduction; same-sex desire and the Boswell debate; annulment as medieval divorce; and how these medieval frameworks still echo in modern marriage."
+          },
+          {
             "title": "The Crusades",
             "summary": "Two centuries of holy war and their long shadow: Urban II's call at Clermont (1095); the First Crusade and the capture of Jerusalem (1099); the crusader states; Saladin, Hattin, and the Third Crusade with Richard the Lionheart (1187–92); the Fourth Crusade's sack of Constantinople (1204); the military orders — Templars and Hospitallers; the wider crusading world (the Reconquista, the Baltic crusades); the fall of Acre (1291); and the consequences for Christian-Muslim-Jewish relations, trade, and historical memory down to today."
+          },
+          {
+            "title": "Constantinople",
+            "summary": "The city that was an empire's argument: Byzantium refounded as Constantine's New Rome (330); the Theodosian Walls that turned back a thousand years of sieges; Hagia Sophia and Justinian's 'Solomon, I have outdone thee'; the Hippodrome, the factions, and the ceremonial city; the harbors, the Golden Horn's chain, and the grain fleets; Greek fire against the Arab sieges; the city of relics and icons; 1204 — the Fourth Crusade's sack and the Latin interlude; the Palaiologan twilight; 29 May 1453 — Mehmed II, the great cannon, and the fall; and the afterlives — Ottoman Kostantiniyye and Istanbul, and Constantinople as memory in the Orthodox world."
           },
           {
             "title": "Political Debates in the Empire of New Rome",
@@ -2600,7 +2608,7 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "Declarations of Independence: the American Revolution",
-            "summary": "How thirteen colonies became a republic (1763–1789), starting from the causes: the constitutional, legal, economic, social, and political issues that prompted the imperial crisis after the Seven Years' War and resulted in the colonies' decision to break with Great Britain — parliamentary sovereignty versus colonial charters, taxation without representation, the Stamp Act, Townshend duties, the Boston Massacre and Tea Party, and the Coercive Acts; Lexington and Concord, Bunker Hill, and the Continental Congresses; Paine's Common Sense and the Declaration of Independence (July 4, 1776) — Jefferson's draft, its Enlightenment sources (Locke), and its contradictions on slavery; the war itself — Washington's army, Saratoga (1777) and the French alliance, Valley Forge, Yorktown (1781) and the Treaty of Paris (1783); how the Revolution affected people at all levels of society — the elite who occupied leadership roles, the regular citizens who mobilized for it, African Americans enslaved and free (Dunmore's Proclamation, Black Patriots and Black Loyalists), Loyalists and their exile, women (the homespun boycotts, Abigail Adams's 'Remember the Ladies'), Native nations, and immigrants; the Articles of Confederation, Shays's Rebellion, and the Constitutional Convention of 1787; and the Declaration's global afterlife as a template for later declarations of independence."
+            "summary": "How thirteen colonies became a republic (1763–1789), starting from the causes: the constitutional, legal, economic, social, and political issues that prompted the imperial crisis after the Seven Years' War and resulted in the colonies' decision to break with Great Britain — parliamentary sovereignty versus colonial charters, taxation without representation, the Stamp Act, Townshend duties, the Boston Massacre and Tea Party, and the Coercive Acts; Lexington and Concord, Bunker Hill, and the Continental Congresses; Paine's Common Sense and the Declaration of Independence (July 4, 1776) — Jefferson's draft and the political philosophy of the Revolution: Locke's natural rights and the right of revolution, republicanism and civic virtue, the historians' argument between liberal and republican readings (Bailyn, Wood, Pocock), and the Declaration's contradictions on slavery; the war itself — Washington's army, Saratoga (1777) and the French alliance, Valley Forge, Yorktown (1781) and the Treaty of Paris (1783); how the Revolution affected people at all levels of society — the elite who occupied leadership roles, the regular citizens who mobilized for it, African Americans enslaved and free (Dunmore's Proclamation, Black Patriots and Black Loyalists), Loyalists and their exile, women (the homespun boycotts, Abigail Adams's 'Remember the Ladies'), Native nations, and immigrants; the Articles of Confederation, Shays's Rebellion, and the Constitutional Convention of 1787; and the Declaration's global afterlife as a template for later declarations of independence."
           },
           {
             "title": "The Enlightenment",
@@ -2737,6 +2745,18 @@ export const SUBJECTS: SubjectSpec[] = [
                 "summary": "Four thousand years of Chinese history before the modern rupture: Shang oracle bones and the origins of the writing system; the Zhou and the Mandate of Heaven; the hundred schools — Confucius, Laozi, the Legalists; Qin unification and the First Emperor (the terracotta army, the Great Wall's beginnings); the Han synthesis and the Silk Road; the Tang's cosmopolitan golden age; the Song commercial and technological revolution — paper money, printing, gunpowder, the compass; the Mongol Yuan and Marco Polo's China; the Ming — Zheng He's voyages and the turn inward; the Qing at its height under Kangxi and Qianlong; the machinery of empire — the examination system, the scholar-official, the dynastic cycle; and how this deep past frames China's modern transformation (continued in Modern China)."
               },
               {
+                "title": "Han History",
+                "summary": "China's formative empire (206 BCE–220 CE): from Qin's collapse to Liu Bang's founding; Emperor Wu's expansion and the opening of the Silk Road (Zhang Qian's missions); the Confucian state — the imperial academy and the beginnings of the examination ideal; Sima Qian's Records of the Grand Historian, the model for all Chinese history-writing; paper's invention; Wang Mang's interregnum and the Eastern Han restoration; court politics — empresses, eunuchs, and the great families; the Yellow Turban revolt and the empire's dissolution into the Three Kingdoms; and why 'Han' became the name of the Chinese people themselves."
+              },
+              {
+                "title": "Ming-Qing History",
+                "summary": "China's last two dynasties (1368–1912): the Ming founding after the Mongols — the Hongwu autocracy, the Yongle emperor, Zheng He's ocean voyages and the turn inward, the Great Wall rebuilt; late-Ming commercial efflorescence — silver from the Americas, print culture, the Jiangnan cities; the Manchu conquest of 1644 and the Qing synthesis — banners, the queue, and rule over a multiethnic empire (Tibet, Xinjiang, Mongolia); the High Qing under Kangxi, Yongzheng, and Qianlong; the Jesuits at court; population explosion and its strains; the White Lotus rebellion and dynastic overstretch — setting the stage for the nineteenth century's crises (continued in Modern China)."
+              },
+              {
+                "title": "Premodern Korean History",
+                "summary": "Korea before the modern rupture: Gojoseon and the peninsula's early states; the Three Kingdoms — Goguryeo, Baekje, Silla — and Silla's unification with Tang help (668); Goryeo — the celadon age, the Tripitaka Koreana carved against the Mongols, and the world's first metal movable type; the Joseon dynasty (1392–1897) — Neo-Confucian state-building, King Sejong and the invention of hangul (1443), the yangban aristocracy; the Imjin War — Hideyoshi's invasions and Admiral Yi Sun-sin's turtle ships (1592–98); the Manchu invasions and tributary ties to Qing China; the 'hermit kingdom' and its opening in 1876 — with the deep patterns that still shape both Koreas."
+              },
+              {
                 "title": "Modern South Asia",
                 "summary": "The subcontinent from the Mughals' decline to today: East India Company rule and the 1857 Rebellion; the Raj — railways, famines, and the drain debate; the nationalist movement — Congress, Gandhi's satyagraha, Jinnah and the Muslim League; Partition (1947) and its wounds; Nehru's India and Pakistan's turbulent path; the 1971 war and Bangladesh's birth; Sri Lanka's civil war; the Emergency; liberalization (1991) and India's rise; Kashmir, nuclear rivalry, and Hindutva politics — with the diaspora carrying South Asia worldwide."
               },
@@ -2772,6 +2792,10 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "History of Sport in Africa",
                 "summary": "Play, power, and the postcolony: indigenous sporting traditions — wrestling, stick-fighting, board games — and their meanings; colonial sport as discipline and 'civilizing' project, and how Africans made it their own; football's conquest of the continent — from mission schools to CAF and the Africa Cup of Nations; sport in the liberation struggle — the apartheid sports boycott and South Africa's isolation, the 1995 Rugby World Cup as reconciliation theater; the runners — Abebe Bikila barefoot in Rome (1960), Kip Keino, and East Africa's distance dynasty; the 2010 South African World Cup; and the political economy of the player migration to European leagues."
+              },
+              {
+                "title": "Women in African History",
+                "summary": "African history with women at the center: queens and queen mothers — Amanirenas of Kush who fought Rome, Njinga of Ndongo and Matamba, the Asante queen mothers and Yaa Asantewaa's war (1900); women's economic power — the market women of West Africa; women in and against the slave trades; spiritual authority — priestesses, prophets (Kimpa Vita), and spirit mediums (Nehanda); how colonialism eroded women's institutions — and the resistance it provoked, from the Igbo Women's War (1929) to anticolonial heroines; nationalist and post-independence leaders — Funmilayo Ransome-Kuti, Ellen Johnson Sirleaf, Wangari Maathai; and the historiographical recovery of women's voices from sources that tried to erase them."
               }
             ]
           },
@@ -2785,6 +2809,18 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "Afro-Indigenous Intersections in Early America",
                 "summary": "Where African and Native American histories met: Native slavery and the Carolina Indian slave trade alongside African slavery; Africans and Indigenous people intermarrying, allying, and building kin in colonial borderlands; maroon communities and the Black Seminoles; freedom suits that turned on Indigenous ancestry; how settler racial regimes divided the two — blood quantum for Native peoples, the one-drop rule for Black people — and the consequences; slavery within the Five Tribes and the Black freedmen's citizenship struggles that continue today; and the scholars recovering these entangled histories (Tiya Miles, Kyle Mays)."
+              },
+              {
+                "title": "Moctezuma's Mexico",
+                "summary": "The Aztec world at its height and its catastrophic encounter: Tenochtitlan — the lake city of canals and chinampas that stunned the conquistadors; the Triple Alliance's tribute empire; Mexica religion, the temple precinct, and the meanings of sacrifice; merchants, markets (Tlatelolco), and everyday life; Moctezuma II — the ruler and the myths later wrapped around him; the conquest — Cortés, La Malinche, the Tlaxcalan alliance, the Noche Triste, smallpox, and the siege of 1521; how we know — the Florentine Codex and Nahua voices alongside Spanish chronicles (León-Portilla's Broken Spears); and the Aztec afterlife in colonial and modern Mexican identity."
+              },
+              {
+                "title": "Indigenous Economies and Environments",
+                "summary": "How Indigenous peoples of the Americas shaped and sustained their worlds: land management as science — fire regimes that made the prairies and California's abundance, clam gardens and salmon stewardship on the Northwest Coast, the buffalo economy of the Plains; agriculture — maize's domestication, the milpa and Three Sisters, Cahokia's fields and the Amazon's terra preta; exchange — continent-spanning trade in obsidian, dentalium, and copper, gift economies and the potlatch; the myth of untouched 'wilderness' (Cronon, Denevan's 'pristine myth'); dispossession's ecological consequences; and the present — traditional ecological knowledge, co-management, and Indigenous-led conservation."
+              },
+              {
+                "title": "Indigenous Oral Literatures of the Northwest Coast of North America",
+                "summary": "The great oral literatures of the Haida, Tlingit, Tsimshian, Kwakwaka'wakw, Nuu-chah-nulth, and Coast Salish peoples: the Raven cycle and the trickster's world-making; crest histories, clan prerogatives, and the oratory of the potlatch; stories as law and title — oral histories admitted as evidence in Delgamuukw v. British Columbia (1997); the tellers and the collectors — Boas and George Hunt's archive and its colonial entanglements; ethnopoetics (Hymes, Tedlock) and the argument over how to write oral performance; Bringhurst's Haida translations and the controversy they sparked; Harry Robinson's told-to narratives; and the living tradition — language revitalization and contemporary Indigenous storytellers carrying the canon forward."
               }
             ]
           },
@@ -2794,6 +2830,14 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "The Making of the Modern Middle East",
                 "summary": "How the region's modern map and politics were made: late Ottoman reform and collapse; the First World War's triple promises — Sykes-Picot, the Balfour Declaration, the McMahon correspondence; the mandates and state-building in Iraq, Syria, Lebanon, Transjordan, and Palestine; oil and the making of the Gulf; Israel's founding and the Nakba (1948); Nasser, pan-Arabism, and Suez (1956); the wars of 1967 and 1973; Iran's 1979 revolution; Lebanon's civil war; the Gulf wars, Oslo and its collapse, the Arab Spring and its aftermath — and the patterns connecting a century of intervention, authoritarianism, and resistance."
+              },
+              {
+                "title": "A History of Modern Syria",
+                "summary": "Syria from Ottoman province to shattered and remade state: greater Syria under the Ottomans; the French mandate — partition into statelets and the Great Revolt of 1925; independence (1946) and the coup-ridden decades; the Ba'th, the union with Egypt, and 1963; Hafez al-Assad's Syria — the security state, the Muslim Brotherhood uprising and Hama (1982); Bashar and the false spring; 2011 — the uprising and its descent into civil war; the actors — the regime and its Russian and Iranian patrons, the opposition, ISIS and the caliphate, the Kurds; barrel bombs, chemical attacks, and half the population displaced; the fall of the Assad regime in December 2024 and the uncertain transition since — with a century's lessons about minority rule, sectarianism, and outside powers."
+              },
+              {
+                "title": "Jerusalem, a History: From Antiquity to the Present",
+                "summary": "One city, three faiths, four thousand years: Bronze Age origins and the city David took; Solomon's Temple, the Babylonian destruction (586 BCE) and exile; the Second Temple, Herod's rebuilding, and Rome's destruction of it (70 CE); Aelia Capitolina; Byzantine Christian Jerusalem and the Holy Sepulchre; the Islamic conquest, the Dome of the Rock and al-Aqsa; the Crusader kingdom and Saladin's reconquest; Mamluk and Ottoman centuries (Suleiman's walls); British Mandate Jerusalem; 1948 and the divided city; 1967 and the contested unification; and the present — holy sites, sovereignty claims, and why Jerusalem remains the hardest question of the Israeli-Palestinian conflict (Montefiore's biography of the city as anchor text)."
               }
             ]
           },
@@ -2875,6 +2919,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Global History of Capitalism: Past, Present, Future",
             "summary": "Capitalism as a world system across five centuries: merchant capitalism and the joint-stock revolution (the VOC, 1602); the Atlantic economy and slavery's role in early accumulation (the Williams thesis debate); the Industrial Revolution and factory capitalism; the gold standard and the first globalization (1870–1914); collapse — world wars and the Great Depression; Bretton Woods (1944) and the embedded-liberal postwar boom; the 1970s crisis, the end of dollar-gold convertibility (1971), and the neoliberal turn (Thatcher, Reagan, the Washington Consensus); China's reform era (1978) and global supply chains; the 2008 financial crisis; platform and digital capitalism; inequality and its critics (Piketty); and the contested future — climate change and the green transition, deglobalization, automation and AI — read through Smith, Marx, Keynes, Hayek, and Polanyi."
+          },
+          {
+            "title": "American Food",
+            "summary": "The United States told through what it eats: Indigenous foodways and the Three Sisters; the Columbian exchange on the plate; enslaved cooks and the African roots of Southern and soul food; immigrant kitchens — how Italian, Chinese, Mexican, and Jewish food became 'American'; industrialization — canning, refrigeration, the meatpacking exposés (Sinclair's The Jungle) and the Pure Food and Drug Act (1906); the supermarket, the TV dinner, and the suburban kitchen; fast food's empire — McDonald's and the drive-thru nation; hunger and abundance — food stamps, food deserts, obesity; the counterculture's whole-earth cooking, Julia Child, and farm-to-table (Alice Waters); and food as identity, region, and argument — barbecue's borders and all."
           },
           {
             "title": "Scandals in History: Moral Panics, Repression, and Reform",
