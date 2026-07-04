@@ -2465,7 +2465,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Mesopotamia"
           },
           {
-            "title": "Egypt"
+            "title": "Egypt",
+            "summary": "Three thousand years of the Nile's civilization: unification under Narmer (c. 3100 BCE) and the divine kingship of the pharaohs; the Old Kingdom and the pyramids of Giza; the Middle Kingdom; the New Kingdom's imperial age — Hatshepsut, Akhenaten's religious revolution, Tutankhamun, Ramesses II and Kadesh; religion and the afterlife — mummification, the Book of the Dead, the gods of the Egyptian pantheon; hieroglyphs, the Rosetta Stone, and Champollion's decipherment; the Nile's flood rhythm as the economy's engine; Egypt in Africa — Nubia and the Kingdom of Kush, whose pharaohs ruled Egypt as the 25th Dynasty; the Late Period, the Ptolemies, and Cleopatra; and Egypt's afterlives — Egyptology, Egyptomania, and the debate over the Africanness of Egypt, from Cheikh Anta Diop and the 1974 UNESCO Cairo symposium to Bernal's Black Athena controversy."
           },
           {
             "title": "Greece"
@@ -2622,7 +2623,7 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The USSR from revolution to collapse (1917–1991): the February and October Revolutions, Lenin and the Bolsheviks, civil war and War Communism, the NEP; Stalin's rule — collectivization and the famines (including the Holodomor), the Five-Year Plans, the Great Terror, and the Gulag; the Great Patriotic War (Stalingrad, the Eastern Front's role in defeating Nazi Germany); superpower status in the Cold War — the nuclear arms race, Sputnik and the space race, the Warsaw Pact; Khrushchev's de-Stalinization and thaw, the Brezhnev era of stagnation, and dissidents like Solzhenitsyn and Sakharov; Gorbachev's glasnost and perestroika, the revolutions of 1989, and the dissolution of the USSR in 1991 — plus its contested legacy in Russia and the post-Soviet states."
           },
           {
-            "title": "decolonization",
+            "title": "European decolonization",
             "summary": "The end of the European empires after 1945: India and Pakistan's independence and Partition (1947); Indonesia; Indochina and Dien Bien Phu (1954); the Suez crisis (1956) as the end of imperial pretension; Ghana (1957) and the African wave of 1960; the Algerian War (1954–62); the Congo crisis and Lumumba; the late Portuguese decolonizations (1974–75); Bandung (1955), non-alignment, and Third World solidarity; the theorists — Fanon, Nkrumah's neocolonialism; and the contested legacies: borders, the Commonwealth, Françafrique, and the debates over empire's balance sheet."
           },
           {
@@ -2660,8 +2661,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Africa",
             "children": [
               {
-                "title": "History of Sub-Saharan Africa to 1860",
-                "summary": "Africa on its own terms before the colonial partition: the Bantu migrations; Aksum and early Christian Ethiopia; the Sahelian empires — Ghana, Mali (Mansa Musa, Timbuktu), and Songhai — and the trans-Saharan trade; the Swahili coast and the Indian Ocean world; Great Zimbabwe; Kongo, Benin, and the forest kingdoms; the spread of Islam and Christianity; the Atlantic slave trade's demographic and political impact; the nineteenth-century transformations — the Sokoto Caliphate, the Zulu kingdom and the mfecane, Omani Zanzibar; and the continent on the eve of European conquest."
+                "title": "History of Sub-Saharan Africa to 1860: Precolonial States and Societies",
+                "summary": "The histories of precolonial states, and Africa on its own terms before the colonial partition, recovered through its rich oral histories — the griots, the Sundiata epic of Mali, and Vansina's method of reading oral tradition as history — alongside archaeology and written sources: the Bantu migrations; Aksum and early Christian Ethiopia; the Sahelian empires — Ghana, Mali (Mansa Musa, Timbuktu), and Songhai — and the trans-Saharan trade; the Islamic intellectual tradition that flourished in West Africa from the sixteenth century — the Timbuktu manuscript libraries, Sankoré scholarship, Ahmad Baba, and ajami writing; the Swahili coast and the Indian Ocean world; Great Zimbabwe; Kongo, Benin, and the forest kingdoms; the spread of Islam and Christianity; the Atlantic slave trade's demographic and political impact; the nineteenth-century transformations — the Sokoto Caliphate of Usman dan Fodio and the scholar-poet Nana Asma'u, the Zulu kingdom and the mfecane, Omani Zanzibar; and the continent on the eve of European conquest."
               },
               {
                 "title": "Modern African History since 1860",
