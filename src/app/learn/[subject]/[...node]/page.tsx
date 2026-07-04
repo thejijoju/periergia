@@ -6,6 +6,7 @@ import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
 import {
   getSubject,
+  getSubjects,
   getNodeByPath,
   getNodes,
   getAncestors,
@@ -52,6 +53,15 @@ export default async function ReaderPage({
   const subjectHref = firstLeaf
     ? `/learn/${subj.slug}/${firstLeaf.path.join("/")}`
     : `/learn/${subj.slug}`;
+
+  // All subjects for the sidebar switcher dropdown. The bare /learn/[slug]
+  // route redirects to each subject's current first topic at request time.
+  const allSubjects = await getSubjects();
+  const subjectLinks = allSubjects.map((s) => ({
+    name: s.name,
+    slug: s.slug,
+    href: `/learn/${s.slug}`,
+  }));
 
   // Build the subject into a nested tree (sub-subject → topic → sub-topic → …).
   const childrenOf = (parentId: string | null): TreeItem[] =>
@@ -134,7 +144,9 @@ export default async function ReaderPage({
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
             <SubjectTree
               subjectName={subj.name}
+              subjectSlug={subj.slug}
               subjectHref={subjectHref}
+              subjects={subjectLinks}
               items={items}
               activeId={node.id}
             />
