@@ -40,25 +40,70 @@ async function lookupImage(title: string): Promise<{ url: string; page?: string 
   }
 }
 
-/** Replace {{image: Title | caption}} markers with real Wikipedia images. */
-export async function resolveImageMarkers(body: string): Promise<string> {
+/** Search Wikipedia for the best-matching article title (marker misses, node fallback). */
+async function searchTitle(query: string): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://en.wikipedia.org/w/rest.php/v1/search/title?q=${encodeURIComponent(query)}&limit=1`,
+      {
+        headers: { "User-Agent": "Periergia/1.0 (living textbook; article image lookup)" },
+        signal: AbortSignal.timeout(6000),
+      },
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as { pages?: { title: string }[] };
+    return data.pages?.[0]?.title ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Exact title first, then title search — so near-miss markers still resolve. */
+async function lookupWithSearch(title: string): Promise<{ url: string; page?: string } | null> {
+  const exact = await lookupImage(title);
+  if (exact) return exact;
+  const found = await searchTitle(title);
+  return found && found !== title ? lookupImage(found) : null;
+}
+
+const IMG_MD = (caption: string, img: { url: string; page?: string }) =>
+  `![${caption}](${img.url})\n\n*${caption}${img.page ? ` — [source](${img.page})` : ""}*`;
+
+/**
+ * Replace {{image: Title | caption}} markers with real Wikipedia images.
+ * Every article should carry at least one image: if no marker resolves, fall
+ * back to the topic's own Wikipedia lead image, placed after the opening
+ * definition blockquote.
+ */
+export async function resolveImageMarkers(body: string, topicTitle?: string): Promise<string> {
   const markers = [...body.matchAll(MARKER)];
-  if (markers.length === 0) return body;
 
   const resolved = await Promise.all(
     markers.map(async (m) => ({
       marker: m[0],
       caption: m[2].trim(),
-      img: await lookupImage(m[1]),
+      img: await lookupWithSearch(m[1]),
     })),
   );
 
   let out = body;
+  let placed = 0;
   for (const r of resolved) {
-    const replacement = r.img
-      ? `![${r.caption}](${r.img.url})\n\n*${r.caption}${r.img.page ? ` — [source](${r.img.page})` : ""}*`
-      : "";
-    out = out.replace(r.marker, replacement);
+    out = out.replace(r.marker, r.img ? IMG_MD(r.caption, r.img) : "");
+    if (r.img) placed++;
+  }
+
+  if (placed === 0 && topicTitle) {
+    const fallback = await lookupWithSearch(topicTitle);
+    if (fallback) {
+      const figure = IMG_MD(topicTitle, fallback);
+      // After the definition blockquote (first non-'>' gap), else at the top.
+      const lines = out.split("\n");
+      const end = lines.findIndex((l, i) => i > 0 && lines[i - 1].startsWith(">") && !l.startsWith(">"));
+      if (end > 0) lines.splice(end, 0, "", figure);
+      else lines.unshift(figure, "");
+      out = lines.join("\n");
+    }
   }
   return out;
 }

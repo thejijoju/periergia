@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -55,23 +55,39 @@ function extractText(node: React.ReactNode): string {
   return "";
 }
 
-export function Reader({ node }: { node: ReaderNode }) {
+export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBody?: string }) {
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
   const { depth, level, mode } = state.prefs;
   const spec = getMode(mode);
 
-  const [body, setBody] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [generated, setGenerated] = useState(false);
+  // initialBody is the server-rendered default-settings article (when cached):
+  // crawlers get real text, and default-prefs readers see it instantly. The
+  // first client fetch swaps in the user's own settings without a blank flash.
+  const [body, setBody] = useState(initialBody);
+  const [loading, setLoading] = useState(!initialBody);
+  const [generated, setGenerated] = useState(!!initialBody);
   const [showQuiz, setShowQuiz] = useState(false);
+  const firstLoad = useRef(true);
 
   useEffect(() => {
     markVisited(node.id);
     setShowQuiz(false);
   }, [node.id, markVisited]);
 
+  // On client-side navigation the page re-renders with a new node + body.
+  useEffect(() => {
+    setBody(initialBody);
+    setGenerated(!!initialBody);
+    setLoading(!initialBody);
+    firstLoad.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [node.id]);
+
   const load = useCallback(async () => {
-    setLoading(true);
+    // Keep showing the server-rendered body during the first fetch; show the
+    // composing state whenever the reader has nothing (or stale prefs) to show.
+    if (!(firstLoad.current && initialBody)) setLoading(true);
+    firstLoad.current = false;
     try {
       const res = await fetch("/api/content", {
         method: "POST",
@@ -83,6 +99,7 @@ export function Reader({ node }: { node: ReaderNode }) {
     } finally {
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node.id, depth, level, mode]);
 
   useEffect(() => {

@@ -11,7 +11,9 @@ import {
   getAncestors,
   getFirstLeaf,
   getSearchIndex,
+  getCachedContent,
 } from "@/lib/store";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -20,7 +22,18 @@ export async function generateMetadata({
 }) {
   const { subject, node } = await params;
   const n = await getNodeByPath(subject, node);
-  return { title: n ? `${n.title} · Periergia` : "Periergia" };
+  if (!n) return { title: "Periergia" };
+  const description = (
+    n.summary ||
+    `${n.title} — read it, listen to it, and test yourself, tuned to your depth and level. Free on Periergia, a living textbook for everything.`
+  ).slice(0, 300);
+  const url = `${SITE_URL}/learn/${subject}/${n.path.join("/")}`;
+  return {
+    title: `${n.title} · Periergia`,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title: n.title, description, url, type: "article", siteName: "Periergia" },
+  };
 }
 
 export default async function ReaderPage({
@@ -75,8 +88,34 @@ export default async function ReaderPage({
 
   const searchIndex = await getSearchIndex();
 
+  // Server-render the default-settings article when it's already cached, so
+  // crawlers (and default-prefs readers) get the full text in the HTML.
+  const cachedDefault = await getCachedContent({
+    nodeId: node.id,
+    depth: "medium",
+    level: "easy",
+    format: "read",
+  });
+  const initialBody = cachedDefault?.generated ? cachedDefault.body : undefined;
+
+  const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: node.title,
+    description: node.summary || undefined,
+    author: { "@type": "Organization", name: "Periergia" },
+    publisher: { "@type": "Organization", name: "Periergia", url: SITE_URL },
+    mainEntityOfPage: pageUrl,
+    isAccessibleForFree: true,
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Sticky header — wordmark + expandable search icon */}
       <header className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-line">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-8 py-3 flex items-center gap-4">
@@ -104,7 +143,7 @@ export default async function ReaderPage({
 
         {/* Center */}
         <div className="min-w-0">
-          <Reader node={readerNode} />
+          <Reader node={readerNode} initialBody={initialBody} />
         </div>
 
         {/* Right rail — "on this page" scroll-spy outline */}

@@ -56,11 +56,24 @@ async function loadTree(): Promise<Tree> {
   treePromise = (async () => {
     const supabase = getSupabase();
     if (supabase) {
-      const [{ data: subs }, { data: nds }] = await Promise.all([
-        supabase.from("subjects").select("*").order("position"),
-        supabase.from("nodes").select("*").order("position"),
-      ]);
-      if (subs && subs.length && nds && nds.length) {
+      const { data: subs } = await supabase.from("subjects").select("*").order("position");
+      // Supabase caps every query at 1000 rows and the taxonomy is past that —
+      // a single select silently drops the highest-position rows (later topics
+      // in every big theme). Page through explicitly, ordered by id for a
+      // stable cursor; consumers re-sort by depth/position themselves.
+      const nds: Parameters<typeof rowToNode>[0][] = [];
+      const page = 1000;
+      for (let from = 0; ; from += page) {
+        const { data } = await supabase
+          .from("nodes")
+          .select("*")
+          .order("id")
+          .range(from, from + page - 1);
+        if (!data || data.length === 0) break;
+        nds.push(...(data as Parameters<typeof rowToNode>[0][]));
+        if (data.length < page) break;
+      }
+      if (subs && subs.length && nds.length) {
         return {
           subjects: subs as Subject[],
           nodes: nds.map(rowToNode),
