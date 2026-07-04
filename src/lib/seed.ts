@@ -2426,6 +2426,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "humanitarian law"
+          },
+          {
+            "title": "Immigration Law",
+            "summary": "The law of who may enter, stay, and belong: citizenship and naturalization; visas, borders, and the machinery of admission; deportation and removal; asylum and refugee law — the 1951 Refugee Convention and the principle of non-refoulement; statelessness; family reunification and labor migration; the American arc — the Chinese Exclusion Act (1882), the 1924 national-origins quotas, the INA (1952), Hart-Celler (1965), IRCA (1986), and the plenary power doctrine; European counterparts — free movement, Schengen, and the Dublin asylum system; and the enduring tension between sovereign control of borders and individual rights."
           }
         ]
       },
@@ -2464,6 +2468,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "Rome"
+          },
+          {
+            "title": "The Fall of the Roman Empire",
+            "summary": "Why the ancient world's superpower came apart: the Crisis of the Third Century; Diocletian's and Constantine's reorganizations and the East-West division; pressure on the frontiers — the Goths' victory at Adrianople (378), Alaric's sack of Rome (410), the Vandal sack (455), and Attila's Huns; the deposition of Romulus Augustulus by Odoacer in 476; why the Eastern empire endured another thousand years; and the great debate over causes — Gibbon's classic account, overextension, plague and economic decline, the Christianity thesis, and the modern argument between 'transformation' (Peter Brown's late antiquity) and 'catastrophe' (Bryan Ward-Perkins)."
           },
           {
             "title": "early civilizations"
