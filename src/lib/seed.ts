@@ -2515,7 +2515,17 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "industrialization"
           },
           {
-            "title": "world wars"
+            "title": "world wars",
+            "children": [
+              {
+                "title": "The First World War",
+                "summary": "The Great War (1914–1918): the long fuse — alliance blocs, militarism, imperial rivalry, nationalism — lit at Sarajevo by the assassination of Franz Ferdinand; the failure of the Schlieffen Plan and the descent into trench warfare on the Western Front; Verdun, the Somme, Gallipoli, and the Eastern Front; total war, war economies, and propaganda; the U-boat campaign and American entry (1917); Russia's revolution and exit; the armistice of 11 November 1918; the Treaty of Versailles and the collapse of the German, Austro-Hungarian, Russian, and Ottoman empires; some 20 million dead and a legacy that set up the next war."
+              },
+              {
+                "title": "The Second World War",
+                "summary": "The deadliest conflict in history (1939–1945): its origins in Versailles grievances, the Great Depression, fascism and Nazi ideology, appeasement (Munich 1938) and the Molotov-Ribbentrop pact; the invasion of Poland, Blitzkrieg, the fall of France, and the Battle of Britain; Operation Barbarossa and the Eastern Front; Pearl Harbor and the Pacific war; the Holocaust — the systematic murder of six million Jews; the turning points at Stalingrad, Midway, and El Alamein; D-Day and the liberation of Europe; island-hopping, the atomic bombings of Hiroshima and Nagasaki, and Japan's surrender; Yalta and Potsdam; 70–85 million dead, the founding of the United Nations, and the postwar order that led into the Cold War."
+              }
+            ]
           },
           {
             "title": "Cold War"
@@ -2563,6 +2573,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "intellectual history"
+          },
+          {
+            "title": "Digital History",
+            "summary": "How computers and the internet changed the practice of history: the field's roots in humanities computing and pioneers like Roy Rosenzweig; mass digitization of archives, newspapers, and books; distant reading and text mining of large corpora; GIS and spatial history; network analysis of correspondence and trade; databases and quantitative history; crowdsourced transcription projects (e.g. Transcribe Bentham); public history on the web and digital exhibits; born-digital sources and web archives as the historical record of our own era; and the methodological debates — what counts as an argument, sustainability of projects, and the limits of quantification."
           },
           {
             "title": "Labor and the Political Economy in U.S. History",
