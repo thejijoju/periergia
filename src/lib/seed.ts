@@ -2455,6 +2455,10 @@ export const SUBJECTS: SubjectSpec[] = [
     "description": "",
     "tree": [
       {
+        "title": "What is History?",
+        "summary": "What historians study, how they know it, and where 'history' begins: written history opens only about six thousand years ago, with the invention of writing in Sumer (cuneiform, c. 3200 BCE) — so what about the tens of thousands of years of human existence described by archaeology? The Paleolithic longue durée, behavioral modernity and cave art, the migrations out of Africa, and the Neolithic revolution, known through artifacts, oral tradition, genetics, and climate proxies rather than texts; the history/prehistory divide and why 'deep history' and 'big history' challenge it; and the historian's craft — primary sources, evidence and interpretation, bias and perspective, from Herodotus and Thucydides through Ranke's archives to E. H. Carr's What is History? and the question of whether objective history is possible."
+      },
+      {
         "title": "Ancient History",
         "children": [
           {
