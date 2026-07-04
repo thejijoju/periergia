@@ -2602,6 +2602,10 @@ export const SUBJECTS: SubjectSpec[] = [
             ]
           },
           {
+            "title": "The Yalta Conference",
+            "summary": "The February 1945 summit that sketched the postwar world: Roosevelt, Churchill, and Stalin at the Livadia Palace in Crimea; the agreements — the division of Germany into occupation zones and reparations, the Declaration on Liberated Europe and the promise of free elections in Poland, Soviet entry into the war against Japan in exchange for concessions in Asia, and the deal that made the United Nations possible (Security Council veto, founding conference at San Francisco); the context — the Red Army already held Eastern Europe, and FDR's failing health; what followed — the broken promises in Poland, Potsdam, and the descent into Cold War; and the long argument over whether Yalta was realistic statecraft or a 'betrayal' that conceded half of Europe."
+          },
+          {
             "title": "The Holocaust",
             "summary": "The Nazi genocide of Europe's Jews: the ideological roots of Nazi antisemitism; the Nuremberg Laws (1935) and Kristallnacht (1938); ghettoization; the Einsatzgruppen killings in the occupied East; the Wannsee Conference (1942) and the machinery of the 'Final Solution'; Auschwitz-Birkenau, Treblinka, and the death camps; six million Jewish victims, alongside Roma, disabled people, Soviet POWs, and others; Jewish resistance — the Warsaw Ghetto Uprising (1943) — and the rescuers; liberation, the Nuremberg trials, and Raphael Lemkin's word 'genocide'; and the politics of memory, testimony, and denial since."
           },
