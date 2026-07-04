@@ -2496,7 +2496,16 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "empires"
           },
           {
-            "title": "the Middle Ages"
+            "title": "The Middle Ages (medieval period)",
+            "summary": "Europe c. 500–1500 as one arc: the early, high, and late medieval periods; manorialism and feudal bonds; the power of the Church — papacy, monasteries, the Investiture Controversy; the medieval agricultural revolution, the growth of towns, guilds, and universities; scholasticism (Aquinas); cathedrals and Gothic art; the Black Death (1347–51) and its social aftershocks; the Hundred Years' War and peasant revolts; and the late-medieval crises that shaded into the Renaissance."
+          },
+          {
+            "title": "The Crusades",
+            "summary": "Two centuries of holy war and their long shadow: Urban II's call at Clermont (1095); the First Crusade and the capture of Jerusalem (1099); the crusader states; Saladin, Hattin, and the Third Crusade with Richard the Lionheart (1187–92); the Fourth Crusade's sack of Constantinople (1204); the military orders — Templars and Hospitallers; the wider crusading world (the Reconquista, the Baltic crusades); the fall of Acre (1291); and the consequences for Christian-Muslim-Jewish relations, trade, and historical memory down to today."
+          },
+          {
+            "title": "Islamic Caliphate",
+            "summary": "The institution that led the Islamic world for thirteen centuries: the succession to Muhammad (632) and the Rashidun caliphs; the Sunni-Shia split and Karbala (680); the Umayyads in Damascus and the conquests from Spain to Central Asia (Tours, 732); the Abbasids in Baghdad (762) and the House of Wisdom; rival caliphates in Córdoba and Fatimid Cairo; the Mongol sack of Baghdad (1258); the Ottoman claim to the caliphate; its abolition by Atatürk in 1924; and the caliphate as an idea in modern Islamic and Islamist politics."
           },
           {
             "title": "Islamic golden age"
@@ -2513,11 +2522,23 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "exploration"
           },
           {
+            "title": "new world economy",
+            "summary": "How the encounter of hemispheres created the first global economy: the Columbian exchange of crops, animals, and diseases; Potosí and the silver flows that tied the Americas to Spain and China; the sugar revolution and the plantation complex; encomienda, coerced Indigenous labor, and the turn to African slavery; mercantilism, navigation acts, and the triangular trade; the Price Revolution in Europe; the commercial institutions born of Atlantic trade — joint-stock companies, marine insurance, the Amsterdam exchange; and how the New World economy transformed Europe, Africa, and the Americas alike."
+          },
+          {
+            "title": "The Ottomans",
+            "summary": "The empire that bridged three continents for six centuries (c. 1299–1922): Osman's frontier principality; Mehmed II's conquest of Constantinople (1453); Suleiman the Magnificent — lawgiver, Vienna (1529), and the empire's classical age; the devshirme and the Janissaries; the millet system and religious pluralism; Lepanto (1571) and the contest for the Mediterranean; the second siege of Vienna (1683) and the long territorial retreat; the Tanzimat reforms and the 'sick man of Europe'; the Young Turks, the Balkan Wars, the First World War and the Armenian genocide; and the empire's dissolution into Atatürk's republic."
+          },
+          {
             "title": "Atlantic Slave Wars",
             "summary": "The violence that made and unmade Atlantic slavery, c. 1500–1888: the transatlantic slave trade and the African wars and raiding that supplied it (Dahomey, Asante, the Kongo civil wars); the Middle Passage and shipboard revolts (the Amistad, 1839); maroon communities and their wars — Palmares in Brazil, Jamaica's First and Second Maroon Wars; the great uprisings — Stono (1739), Tacky's Revolt (1760), the Haitian Revolution (1791–1804, the only successful slave revolution, Toussaint Louverture), Demerara (1823), and the Baptist War in Jamaica (1831–32); how rebellion pushed abolition — Britain's 1807 trade ban and 1833 emancipation, the Royal Navy's suppression squadron; and emancipation's long endgame through the US Civil War to Brazil in 1888."
           },
           {
             "title": "revolutions"
+          },
+          {
+            "title": "French and Haitian Revolutions",
+            "summary": "The intertwined revolutions that redefined liberty — and exposed its limits: France 1789 — the Estates-General, the Bastille, the Declaration of the Rights of Man, the radical Republic and the Terror (Robespierre), Thermidor, and Napoleon; Saint-Domingue 1791 — the great slave uprising, Toussaint Louverture, the 1794 abolition, Napoleon's attempt to restore slavery, and Dessalines's declaration of Haitian independence (1804), the first Black republic; how each revolution forced the other's contradictions into the open (revolutionary universalism versus colonial slavery); Haiti's crushing 1825 indemnity to France; and both revolutions' global echoes through the Atlantic world and Latin America."
           },
           {
             "title": "Declarations of Independence: the American Revolution",
@@ -2535,27 +2556,57 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "industrialization"
           },
           {
+            "title": "Imperial Expansion and Resistance",
+            "summary": "The New Imperialism and the peoples who fought it, c. 1850–1914: the Scramble for Africa and the Berlin Conference (1884–85); the British Raj after the Indian Rebellion of 1857; the technologies of conquest — steamships, quinine, the Maxim gun — and the ideologies ('civilizing mission', social Darwinism); King Leopold's Congo; resistance and its outcomes — Ethiopia's victory at Adwa (1896), the Zulu and Ashanti wars, the Boxer Uprising, the Herero and Nama genocide, Maji Maji; the economics of empire and its critics (Hobson, Lenin); and how colonial resistance seeded the anticolonial nationalisms that would drive decolonization."
+          },
+          {
             "title": "world wars",
             "children": [
               {
-                "title": "The First World War",
+                "title": "The First World War (WW1)",
                 "summary": "The Great War (1914–1918): the long fuse — alliance blocs, militarism, imperial rivalry, nationalism — lit at Sarajevo by the assassination of Franz Ferdinand; the failure of the Schlieffen Plan and the descent into trench warfare on the Western Front; Verdun, the Somme, Gallipoli, and the Eastern Front; total war, war economies, and propaganda; the U-boat campaign and American entry (1917); Russia's revolution and exit; the armistice of 11 November 1918; the Treaty of Versailles and the collapse of the German, Austro-Hungarian, Russian, and Ottoman empires; some 20 million dead and a legacy that set up the next war."
               },
               {
-                "title": "The Second World War",
+                "title": "The Second World War (WW2)",
                 "summary": "The deadliest conflict in history (1939–1945): its origins in Versailles grievances, the Great Depression, fascism and Nazi ideology, appeasement (Munich 1938) and the Molotov-Ribbentrop pact; the invasion of Poland, Blitzkrieg, the fall of France, and the Battle of Britain; Operation Barbarossa and the Eastern Front; Pearl Harbor and the Pacific war; the Holocaust — the systematic murder of six million Jews; the turning points at Stalingrad, Midway, and El Alamein; D-Day and the liberation of Europe; island-hopping, the atomic bombings of Hiroshima and Nagasaki, and Japan's surrender; Yalta and Potsdam; 70–85 million dead, the founding of the United Nations, and the postwar order that led into the Cold War."
               }
             ]
           },
           {
-            "title": "Cold War"
+            "title": "The Holocaust",
+            "summary": "The Nazi genocide of Europe's Jews: the ideological roots of Nazi antisemitism; the Nuremberg Laws (1935) and Kristallnacht (1938); ghettoization; the Einsatzgruppen killings in the occupied East; the Wannsee Conference (1942) and the machinery of the 'Final Solution'; Auschwitz-Birkenau, Treblinka, and the death camps; six million Jewish victims, alongside Roma, disabled people, Soviet POWs, and others; Jewish resistance — the Warsaw Ghetto Uprising (1943) — and the rescuers; liberation, the Nuremberg trials, and Raphael Lemkin's word 'genocide'; and the politics of memory, testimony, and denial since."
+          },
+          {
+            "title": "Global Cold War and the Arms Race",
+            "summary": "The US-Soviet confrontation that organized the world, 1945–1991: from Yalta to the Iron Curtain; containment (Kennan), the Truman Doctrine, and the Marshall Plan; the Berlin blockade and the Wall; NATO and the Warsaw Pact; the nuclear arms race — from the Manhattan Project and Hiroshima to the H-bomb, ICBMs, Sputnik, and mutual assured destruction — and its treaties (the Test Ban, SALT and ABM, INF, START) alongside proliferation; the Cuban Missile Crisis (1962); the hot wars in Korea and Vietnam; the Cold War in the Global South — Westad's 'global Cold War' of interventions in Angola, Afghanistan, and Latin America; the Sino-Soviet split and Nixon in China; détente and its collapse; Reagan, Gorbachev, the revolutions of 1989, and the Soviet dissolution."
+          },
+          {
+            "title": "Collapse of the Soviet Union and Eastern Europe",
+            "summary": "How the communist world came apart, 1985–1991: Gorbachev's glasnost and perestroika and the renunciation of the Brezhnev Doctrine; Poland — Solidarity, the Round Table, and the June 1989 elections; Hungary opens the border; the fall of the Berlin Wall (9 November 1989); Czechoslovakia's Velvet Revolution and the violent end of Ceaușescu's Romania; German reunification (1990); the Baltic drive for independence; the August 1991 coup, Yeltsin, and the dissolution of the USSR that December; shock therapy and the post-communist transitions; NATO and EU enlargement; and Yugoslavia's violent breakup as the era's dark counterpoint."
           },
           {
             "title": "The Soviet Union",
             "summary": "The USSR from revolution to collapse (1917–1991): the February and October Revolutions, Lenin and the Bolsheviks, civil war and War Communism, the NEP; Stalin's rule — collectivization and the famines (including the Holodomor), the Five-Year Plans, the Great Terror, and the Gulag; the Great Patriotic War (Stalingrad, the Eastern Front's role in defeating Nazi Germany); superpower status in the Cold War — the nuclear arms race, Sputnik and the space race, the Warsaw Pact; Khrushchev's de-Stalinization and thaw, the Brezhnev era of stagnation, and dissidents like Solzhenitsyn and Sakharov; Gorbachev's glasnost and perestroika, the revolutions of 1989, and the dissolution of the USSR in 1991 — plus its contested legacy in Russia and the post-Soviet states."
           },
           {
-            "title": "decolonization"
+            "title": "decolonization",
+            "summary": "The end of the European empires after 1945: India and Pakistan's independence and Partition (1947); Indonesia; Indochina and Dien Bien Phu (1954); the Suez crisis (1956) as the end of imperial pretension; Ghana (1957) and the African wave of 1960; the Algerian War (1954–62); the Congo crisis and Lumumba; the late Portuguese decolonizations (1974–75); Bandung (1955), non-alignment, and Third World solidarity; the theorists — Fanon, Nkrumah's neocolonialism; and the contested legacies: borders, the Commonwealth, Françafrique, and the debates over empire's balance sheet."
+          },
+          {
+            "title": "The May 1968 Movement",
+            "summary": "The year the postwar order shook: France in May–June 1968 — the student revolt from Nanterre to the Sorbonne, the barricades of the Latin Quarter, the general strike of some ten million workers, de Gaulle's vanishing act and return, the Grenelle accords, and the June elections; and the global 1968 around it — the Prague Spring and its crushing, Mexico's Tlatelolco massacre, the American upheavals (Tet, King's assassination, Columbia, the Chicago DNC), the West German and Italian movements; plus the long cultural afterlife: the New Left, second-wave feminism, environmentalism, and the endless argument over what 1968 changed."
+          },
+          {
+            "title": "The Coming of the Civil War",
+            "summary": "How slavery broke the American union, 1820–1861: the Missouri Compromise; nullification; the Mexican War and the Wilmot Proviso; the Compromise of 1850 and the Fugitive Slave Act; Uncle Tom's Cabin and Northern opinion; the Kansas-Nebraska Act (1854), Bleeding Kansas, and the birth of the Republican Party; the caning of Sumner; Dred Scott (1857); the Lincoln-Douglas debates; John Brown's raid on Harpers Ferry (1859); Lincoln's election (1860); secession, the Confederacy, and Fort Sumter."
+          },
+          {
+            "title": "The American Civil War",
+            "summary": "The war that remade the United States (1861–1865): Union and Confederate resources, strategies, and leadership (Lincoln, Davis, Grant, Lee); Antietam and the Emancipation Proclamation; Gettysburg and Vicksburg (1863) as the turning point; Black soldiers and the USCT; total war and Sherman's March; the home fronts, conscription, and dissent; Appomattox and Lincoln's assassination; some 750,000 dead; the 13th–15th Amendments and the stakes of Reconstruction; and the memory wars — emancipationist memory versus the 'Lost Cause'."
+          },
+          {
+            "title": "Modern China",
+            "summary": "China from the Opium Wars to superpower: Qing decline — the Opium Wars, the Taiping Rebellion, self-strengthening, and the Boxer Uprising; the 1911 Revolution and Sun Yat-sen; warlords, the May Fourth Movement, and the Nationalist-Communist struggle; the Japanese invasion and the Second Sino-Japanese War; 1949 and the People's Republic; Mao's rule — the Great Leap Forward famine and the Cultural Revolution; Deng Xiaoping's reform and opening (1978); Tiananmen (1989); WTO accession (2001) and the rise to the world's second economy; and the Xi Jinping era."
           }
         ]
       },
@@ -2569,7 +2620,13 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Asia"
           },
           {
-            "title": "Africa"
+            "title": "Africa",
+            "children": [
+              {
+                "title": "History of Sub-Saharan Africa to 1860",
+                "summary": "Africa on its own terms before the colonial partition: the Bantu migrations; Aksum and early Christian Ethiopia; the Sahelian empires — Ghana, Mali (Mansa Musa, Timbuktu), and Songhai — and the trans-Saharan trade; the Swahili coast and the Indian Ocean world; Great Zimbabwe; Kongo, Benin, and the forest kingdoms; the spread of Islam and Christianity; the Atlantic slave trade's demographic and political impact; the nineteenth-century transformations — the Sokoto Caliphate, the Zulu kingdom and the mfecane, Omani Zanzibar; and the continent on the eve of European conquest."
+              }
+            ]
           },
           {
             "title": "Americas"
@@ -2597,6 +2654,14 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "intellectual history"
+          },
+          {
+            "title": "American Capitalism",
+            "summary": "The economic history of the United States as the history of its capitalism: colonial merchants and Hamilton's financial program; the market revolution — canals, railroads, the telegraph; slavery's cotton economy and the 'new history of capitalism' debate; the corporation and the Gilded Age titans (Rockefeller, Carnegie, J.P. Morgan) and the antitrust response; Fordism and mass consumption; the Crash of 1929 and the New Deal's remaking of the state-market bargain; the postwar boom and the consumer republic; deregulation and financialization from the 1970s; and Silicon Valley, venture capital, and the platform economy."
+          },
+          {
+            "title": "U.S. Foreign Policy",
+            "summary": "America's role in the world from Washington to the present: the Farewell Address and the isolationist inheritance; the Monroe Doctrine (1823); continental expansion and the Mexican War; 1898 and the debate over empire; Wilson, the First World War, and the League fight; from neutrality to the Second World War and the architecture of the liberal order (UN, Bretton Woods, NATO); containment and its wars — Korea and Vietnam; Nixon-Kissinger realpolitik and the opening to China; Reagan and the Cold War's end; unipolarity, humanitarian intervention, 9/11 and the wars in Afghanistan and Iraq; and the turn to great-power competition with China."
           },
           {
             "title": "Global Capitalism: Past, Present, Future",
