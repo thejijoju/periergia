@@ -2690,6 +2690,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "intellectual history"
           },
           {
+            "title": "History of Peace and Peacemaking",
+            "summary": "How wars end and how peace is made and kept: the great peace negotiations after wars — Westphalia (1648), the Congress of Vienna (1814–15) and the balance of power, the Paris Peace Conference (1919) with Wilson's Fourteen Points and the League of Nations, San Francisco and the UN (1945), and later settlements from Camp David to Dayton and the Good Friday Agreement; and the people who have advocated for peace — not just pacifists but also scientists (the Russell-Einstein Manifesto, Pugwash, Linus Pauling), academics (Galtung's positive versus negative peace), lawyers (the Hague Conventions, René Cassin and the UDHR, Lemkin), religious leaders (the Quakers, Desmond Tutu, the Dalai Lama), politicians (Wilson, Willy Brandt's Ostpolitik), freedom fighters and civil rights activists (Gandhi's satyagraha, Martin Luther King Jr., Mandela); the women's peace movement (Jane Addams, WILPF) and nuclear disarmament campaigns (CND, the freeze); truth and reconciliation commissions; and peace understood not merely as the absence of war but as social justice and respect for human dignity."
+          },
+          {
             "title": "American Capitalism",
             "summary": "The economic history of the United States as the history of its capitalism: colonial merchants and Hamilton's financial program; the market revolution — canals, railroads, the telegraph; slavery's cotton economy and the 'new history of capitalism' debate; the corporation and the Gilded Age titans (Rockefeller, Carnegie, J.P. Morgan) and the antitrust response; Fordism and mass consumption; the Crash of 1929 and the New Deal's remaking of the state-market bargain; the postwar boom and the consumer republic; deregulation and financialization from the 1970s; and Silicon Valley, venture capital, and the platform economy."
           },
