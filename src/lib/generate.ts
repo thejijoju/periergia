@@ -19,12 +19,20 @@ import { resolveImageMarkers } from "./images";
 // key is configured and otherwise returns a structured placeholder so the full
 // product loop works offline. Callers cache the results (see store.ts).
 
+// The depth ladder is the course progression — from a first-day orientation to
+// a doctoral-seminar chapter. Word targets are deliberate: the longer tiers
+// should read like real textbook sections/chapters, with headed subsections,
+// not a padded blurb. Length must always serve substance — more sections,
+// examples, causes/consequences, and evidence — never filler.
 const DEPTH_GUIDE: Record<Depth, string> = {
-  skim: "a 2–3 sentence orientation — just the gist",
-  definition: "a precise one-paragraph definition with the key terms",
-  medium: "a clear ~350-word explanation a curious learner can follow",
-  detailed: "a thorough ~700-word treatment with examples and nuance",
-  research: "a rigorous, research-grade account citing key thinkers and open questions",
+  skim: "a 2–3 sentence orientation — just the gist, no headings",
+  definition: "a precise ~150-word definition with the key terms, in one or two tight paragraphs",
+  medium:
+    "a clear, self-contained ~700-word explanation a curious learner can follow, organized into 3–4 short headed sections with concrete examples",
+  detailed:
+    "a thorough ~1,800-word treatment — a full textbook section with 5–7 headed subsections that cover origins, the core ideas or narrative, concrete examples with real names and dates, causes and consequences, and the nuances and debates. Go deep; do not stop at an overview",
+  research:
+    "a rigorous ~3,500-word, doctoral-seminar-grade chapter: the full narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. This should read like a serious chapter, not an article",
 };
 
 const LEVEL_GUIDE: Record<Level, string> = {
@@ -129,8 +137,9 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   const message = await client.messages.create({
     model: MODEL,
     // Hard cap on thinking + text combined: adaptive thinking spends from this
-    // same budget, so 4096 truncated deep articles mid-sentence.
-    max_tokens: 16000,
+    // same budget. The research tier targets ~3,500 words (~5k tokens of prose)
+    // plus thinking, so give it generous headroom to avoid mid-chapter cutoff.
+    max_tokens: 24000,
     thinking: { type: "adaptive" },
     system,
     messages: [{ role: "user", content: prompt }],
