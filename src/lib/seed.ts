@@ -3689,6 +3689,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "teaching methods"
           },
           {
+            "title": "Socratic teaching method",
+            "summary": "Teaching by asking rather than telling: Socrates in Plato's dialogues — the elenchus (cross-examination that exposes contradictions), aporia as productive puzzlement, and maieutics, the 'midwifery' of drawing knowledge out (the slave-boy geometry lesson in the Meno); Socratic irony and the stance of knowing that one does not know; the method's modern descendants — the Socratic seminar and Paideia model in schools, the law-school case method from Langdell onward; what the research says about questioning, dialogue, and active learning; the critiques — intimidation versus inquiry, and when the method works or fails; and the original cautionary tale: Athens put Socrates to death for his questions."
+          },
+          {
             "title": "lesson design"
           },
           {
