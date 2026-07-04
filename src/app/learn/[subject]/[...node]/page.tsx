@@ -135,7 +135,7 @@ export default async function ReaderPage({
       />
       {/* Sticky header — wordmark + expandable search icon */}
       <header className="sticky top-0 z-20 bg-page backdrop-blur border-b border-line">
-        <div className="mx-auto max-w-[1280px] px-5 sm:px-8 py-3 flex items-center gap-4">
+        <div className="pl-2 pr-4 sm:pl-3 sm:pr-6 py-3 flex items-center gap-4">
           <div className="shrink-0">
             <Wordmark size="sm" />
           </div>
@@ -146,8 +146,8 @@ export default async function ReaderPage({
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[240px_minmax(0,1fr)_210px] lg:gap-10 px-5 sm:px-8 py-8 lg:py-12">
-        {/* Left rail — full subject curriculum with purple current highlight */}
+      <div className="lg:grid lg:grid-cols-[248px_minmax(0,1fr)_240px] lg:gap-10 px-4 pr-4 sm:pr-6 lg:pl-2 lg:pr-8 py-8 lg:py-12">
+        {/* Left rail — full subject curriculum, hugging the left edge */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
             <SubjectTree
