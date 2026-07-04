@@ -2,13 +2,14 @@
   "name": "periergia",
   "version": "0.1.0",
   "private": true,
-  "description": "Periergia — a living textbook for everything. Read, listen, and test yourself on any subject.",
+  "description": "Periergia \u2014 a living textbook for everything. Read, listen, and test yourself on any subject.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "gen:seed": "tsx scripts/gen-seed-sql.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.107.0",
