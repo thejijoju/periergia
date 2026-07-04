@@ -120,7 +120,9 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
 
   const message = await client.messages.create({
     model: MODEL,
-    max_tokens: 4096,
+    // Hard cap on thinking + text combined: adaptive thinking spends from this
+    // same budget, so 4096 truncated deep articles mid-sentence.
+    max_tokens: 16000,
     thinking: { type: "adaptive" },
     system,
     messages: [{ role: "user", content: prompt }],
@@ -184,7 +186,7 @@ export async function generateQuiz(node: Node, level: Level): Promise<Quiz> {
 
   const res = await client.messages.create({
     model: MODEL,
-    max_tokens: 2048,
+    max_tokens: 8192,
     thinking: { type: "adaptive" },
     system,
     messages: [{ role: "user", content: prompt }],
@@ -248,7 +250,7 @@ export async function gradeOpenAnswer(
 
   const res = await client.messages.create({
     model: MODEL,
-    max_tokens: 512,
+    max_tokens: 2048,
     thinking: { type: "adaptive" },
     system,
     messages: [{ role: "user", content: prompt }],
