@@ -2663,7 +2663,13 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Europe"
           },
           {
-            "title": "Asia"
+            "title": "Asia",
+            "children": [
+              {
+                "title": "Chinese History",
+                "summary": "Four thousand years of Chinese history before the modern rupture: Shang oracle bones and the origins of the writing system; the Zhou and the Mandate of Heaven; the hundred schools — Confucius, Laozi, the Legalists; Qin unification and the First Emperor (the terracotta army, the Great Wall's beginnings); the Han synthesis and the Silk Road; the Tang's cosmopolitan golden age; the Song commercial and technological revolution — paper money, printing, gunpowder, the compass; the Mongol Yuan and Marco Polo's China; the Ming — Zheng He's voyages and the turn inward; the Qing at its height under Kangxi and Qianlong; the machinery of empire — the examination system, the scholar-official, the dynastic cycle; and how this deep past frames China's modern transformation (continued in Modern China)."
+              }
+            ]
           },
           {
             "title": "Africa",
