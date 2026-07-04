@@ -2478,6 +2478,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "Europe and the Mediterranean from the fall of the Western Roman Empire (476) to about 1000: the barbarian successor kingdoms (Franks, Visigoths, Ostrogoths, Anglo-Saxons); Byzantium under Justinian and the survival of Roman law; the rise of Islam and the Arab conquests; the spread of Christianity and monasticism (Benedict, Irish and Anglo-Saxon missionaries); the Merovingians and Carolingians, Charlemagne's coronation in 800 and the Carolingian Renaissance; the Treaty of Verdun (843); the Viking, Magyar, and Saracen invasions; and why historians now reject the label 'Dark Ages'."
           },
           {
+            "title": "Byzantine World",
+            "summary": "The Eastern Roman Empire across eleven centuries (330–1453): Constantine's founding of Constantinople; Justinian and Theodora — the Corpus Juris Civilis, Hagia Sophia, and the attempted reconquest of the West; Greek fire and the Arab sieges; Iconoclasm; the Macedonian renaissance and Basil II; the conversion of the Slavs (Cyril and Methodius) and the Orthodox commonwealth; the Great Schism of 1054; Manzikert (1071) and the appeal that launched the Crusades; the Fourth Crusade's sack of Constantinople (1204) and the Palaiologan twilight; the fall to Mehmed II in 1453; and Byzantium's legacy — Roman law, Orthodox Christianity, and the Greek learning that fed the Renaissance."
+          },
+          {
             "title": "feudalism"
           },
           {
@@ -2499,6 +2503,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "exploration"
+          },
+          {
+            "title": "Atlantic Slave Wars",
+            "summary": "The violence that made and unmade Atlantic slavery, c. 1500–1888: the transatlantic slave trade and the African wars and raiding that supplied it (Dahomey, Asante, the Kongo civil wars); the Middle Passage and shipboard revolts (the Amistad, 1839); maroon communities and their wars — Palmares in Brazil, Jamaica's First and Second Maroon Wars; the great uprisings — Stono (1739), Tacky's Revolt (1760), the Haitian Revolution (1791–1804, the only successful slave revolution, Toussaint Louverture), Demerara (1823), and the Baptist War in Jamaica (1831–32); how rebellion pushed abolition — Britain's 1807 trade ban and 1833 emancipation, the Royal Navy's suppression squadron; and emancipation's long endgame through the US Civil War to Brazil in 1888."
           },
           {
             "title": "revolutions"
@@ -2556,6 +2564,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "Middle East"
+          },
+          {
+            "title": "The 'Settler Revolution' at the Edge of Empire: Australia, 1770-1901",
+            "summary": "Australia from Cook to Federation: James Cook's 1770 charting and claim of the east coast; the doctrine of terra nullius; the First Fleet and the penal colony at Sydney Cove (1788) and the convict transportation system; frontier violence and the dispossession of Aboriginal peoples — epidemics, massacres, and resistance leaders like Pemulwuy; squatters, pastoral expansion, and the wool economy; the 'settler revolution' (James Belich's term) of explosive Anglo migration and boom-bust growth; the 1850s gold rushes and the Eureka Stockade (1854); colonial self-government; anti-Chinese agitation and the roots of White Australia; and the federation movement culminating in the Commonwealth of Australia on 1 January 1901 — with the century's enduring consequences for Indigenous Australians."
           }
         ]
       },
@@ -2581,6 +2593,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Labor and the Political Economy in U.S. History",
             "summary": "Work, workers, and the organization of American capitalism from the colonial era to the present: unfree and free labor systems (indentured servitude, slavery, wage labor); industrialization and the factory system; the great labor conflicts — the Railroad Strike of 1877, Haymarket (1886), Homestead (1892), Pullman (1894); the Knights of Labor, the AFL under Samuel Gompers, and the IWW; the Triangle Shirtwaist fire (1911) and Progressive Era reform; the New Deal order — the Wagner Act (1935), the CIO, the Fair Labor Standards Act (1938); Taft-Hartley (1947) and the postwar labor-capital accord; deindustrialization, the PATCO strike (1981), and declining union density; and the running debates over tariffs, antitrust and monopoly, laissez-faire versus regulation, and neoliberalism."
+          },
+          {
+            "title": "Abolitionist Women",
+            "summary": "The women who drove the fight against slavery on both sides of the Atlantic: Britain's pioneers — Elizabeth Heyrick's call for immediate emancipation and the women-led sugar boycotts; America's organizers and orators — the Grimké sisters, Lucretia Mott and the Philadelphia Female Anti-Slavery Society, Lydia Maria Child, and Maria Stewart; Black abolitionist women — Sojourner Truth ('Ain't I a Woman?'), Harriet Tubman and the Underground Railroad, Frances Ellen Watkins Harper; Harriet Beecher Stowe and the impact of Uncle Tom's Cabin (1852); the mass petition campaigns that made abolition a popular cause; and how exclusion — women barred from the 1840 World Anti-Slavery Convention — helped spark the women's rights movement at Seneca Falls (1848)."
           },
           {
             "title": "History of Civil Liberties",
