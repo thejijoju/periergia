@@ -134,16 +134,17 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     `${node.summary ? `Required coverage — you must include all of this, explained clearly (even at the easy level), never omitting any of it: ${node.summary}\n\n` : ""}` +
     `Create it now.`;
 
-  const message = await client.messages.create({
+  // Stream: at this max_tokens the SDK refuses a non-streaming call (it could
+  // exceed the HTTP timeout). Thinking + text share the budget; the research
+  // tier targets ~3,500 words, so keep generous headroom against a cutoff.
+  const stream = client.messages.stream({
     model: MODEL,
-    // Hard cap on thinking + text combined: adaptive thinking spends from this
-    // same budget. The research tier targets ~3,500 words (~5k tokens of prose)
-    // plus thinking, so give it generous headroom to avoid mid-chapter cutoff.
     max_tokens: 24000,
     thinking: { type: "adaptive" },
     system,
     messages: [{ role: "user", content: prompt }],
   });
+  const message = await stream.finalMessage();
   const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
