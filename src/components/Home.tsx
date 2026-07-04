@@ -15,7 +15,7 @@ export interface HomeSubject {
   href: string;
 }
 
-// The 8 subjects shown as quick pills on desktop (broad, representative mix).
+// The 9 subjects shown as quick pills on desktop (broad, representative mix).
 const CURATED_PILLS = [
   "mathematics",
   "physics",
@@ -24,6 +24,7 @@ const CURATED_PILLS = [
   "psychology",
   "history",
   "economics",
+  "finance-and-investments",
   "philosophy",
 ];
 
