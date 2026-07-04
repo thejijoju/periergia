@@ -2474,6 +2474,10 @@ export const SUBJECTS: SubjectSpec[] = [
         "title": "Medieval History",
         "children": [
           {
+            "title": "Early Medieval History",
+            "summary": "Europe and the Mediterranean from the fall of the Western Roman Empire (476) to about 1000: the barbarian successor kingdoms (Franks, Visigoths, Ostrogoths, Anglo-Saxons); Byzantium under Justinian and the survival of Roman law; the rise of Islam and the Arab conquests; the spread of Christianity and monasticism (Benedict, Irish and Anglo-Saxon missionaries); the Merovingians and Carolingians, Charlemagne's coronation in 800 and the Carolingian Renaissance; the Treaty of Verdun (843); the Viking, Magyar, and Saracen invasions; and why historians now reject the label 'Dark Ages'."
+          },
+          {
             "title": "feudalism"
           },
           {
@@ -2555,6 +2559,10 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "intellectual history"
+          },
+          {
+            "title": "History of Civil Liberties",
+            "summary": "How individual freedoms were won, defined, and defended — and repeatedly curtailed: Magna Carta (1215) and habeas corpus; the English Bill of Rights (1689); Enlightenment foundations (Locke, Montesquieu); the US Bill of Rights (1791) and the French Declaration of the Rights of Man and of the Citizen (1789); abolition of slavery; women's suffrage; the US civil rights movement (Brown v. Board 1954, Civil Rights Act 1964, Voting Rights Act 1965); the Universal Declaration of Human Rights (1948); free speech, press, assembly, religion, due process, and privacy; and the recurring wartime and security-era rollbacks (Alien and Sedition Acts, Japanese American internment, McCarthyism, post-9/11 surveillance) with defenders like the ACLU."
           }
         ]
       }
