@@ -4,6 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import { DEPTHS, LEVELS } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
 import { useProgress } from "@/lib/progress";
@@ -30,6 +33,16 @@ function headingId(children: React.ReactNode): string {
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+// Generated bodies write display math as single-line `$$…$$` (and sometimes
+// LaTeX `\[…\]` / `\(…\)`), but remark-math only treats `$$` fenced on its own
+// lines as display math. Normalize so equations render centered, textbook-style.
+function normalizeMath(md: string): string {
+  return md
+    .replace(/\\\[([\s\S]+?)\\\]/g, (_, m) => `\n$$\n${m}\n$$\n`)
+    .replace(/\\\((.+?)\\\)/g, (_, m) => `$${m}$`)
+    .replace(/^[ \t]*\$\$([^$\n]+?)\$\$[ \t]*$/gm, (_, m) => `$$\n${m}\n$$`);
 }
 
 function extractText(node: React.ReactNode): string {
@@ -154,13 +167,14 @@ export function Reader({ node }: { node: ReaderNode }) {
           )}
           <div id="reader-content" className="prose-reading max-w-none">
             <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
+              remarkPlugins={[remarkGfm, remarkMath]}
+              rehypePlugins={[rehypeKatex]}
               components={{
                 h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
                 h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
               }}
             >
-              {body}
+              {normalizeMath(body)}
             </ReactMarkdown>
           </div>
         </>

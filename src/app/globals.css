@@ -88,6 +88,20 @@ body {
   color: #4c1d95;
 }
 
+/* Mathematics — KaTeX, tuned to read like a printed textbook formula */
+.prose-reading :where(.katex) {
+  font-size: 1.08em;
+}
+.prose-reading :where(.katex-display) {
+  margin: 1.6em 0;
+  padding: 0.2em 0;
+  overflow-x: auto; /* long derivations scroll, never overflow the column */
+  overflow-y: hidden;
+}
+.prose-reading :where(.katex-display .katex) {
+  font-size: 1.18em;
+}
+
 /* Thin scholarly scrollbars */
 * {
   scrollbar-width: thin;

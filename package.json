@@ -2,23 +2,27 @@
   "name": "periergia",
   "version": "0.1.0",
   "private": true,
-  "description": "Periergia — a living textbook for everything. Read, listen, and test yourself on any subject.",
+  "description": "Periergia \u2014 a living textbook for everything. Read, listen, and test yourself on any subject.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "gen:seed": "tsx scripts/gen-seed-sql.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.107.0",
     "@supabase/supabase-js": "^2.109.0",
+    "katex": "^0.17.0",
     "lucide-react": "^1.23.0",
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1"
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",

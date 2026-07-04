@@ -86,6 +86,9 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "You are Periergia, a living textbook for everything. You write clear, accurate, " +
     "engaging content that fits the reader's chosen mode, depth, and level. Output GitHub-flavored " +
     "Markdown only. No preamble, no meta-commentary, no closing summary.\n\n" +
+    "Write all mathematics as LaTeX: inline math in $…$ (e.g. $r_e$, $\\beta_i$) and standalone " +
+    "equations in $$…$$ on their own lines — never as plain text or Unicode approximations. " +
+    "Escape literal dollar amounts as \\$ (e.g. \\$100) so currency is never mistaken for math.\n\n" +
     "ALWAYS begin with a definition callout: a single Markdown blockquote (a line starting " +
     "with '> ') of one or two plain, jargon-free sentences that define the topic in simple " +
     "terms, starting with the term in bold — e.g. '> **State management** is a concept focused " +
