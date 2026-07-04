@@ -2518,6 +2518,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The institution that led the Islamic world for thirteen centuries: the succession to Muhammad (632) and the Rashidun caliphs; the Sunni-Shia split and Karbala (680); the Umayyads in Damascus and the conquests from Spain to Central Asia (Tours, 732); the Abbasids in Baghdad (762) and the House of Wisdom; rival caliphates in Córdoba and Fatimid Cairo; the Mongol sack of Baghdad (1258); the Ottoman claim to the caliphate; its abolition by Atatürk in 1924; and the caliphate as an idea in modern Islamic and Islamist politics."
           },
           {
+            "title": "Medieval Islamic Commercial Revolution (800-1200 CE)",
+            "summary": "The world's first great commercial integration, centered on the Islamic lands from Baghdad to al-Andalus: the trade networks binding the Mediterranean, the Silk Roads, the Indian Ocean, and trans-Saharan routes; the instruments that made long-distance commerce possible — the suftaja (bill of exchange), sakk (cheque), qirad/commenda partnerships, and funduq caravanserais; gold dinars and silver dirhams as world currencies (found from Scandinavia to China); merchant diasporas and the Cairo Geniza's extraordinary record of Jewish and Muslim traders (Goitein); the commodities — textiles, paper (which spread from Samarkand westward), spices, slaves, gold; market institutions, hisba regulation, and Islamic commercial law; the urban boom of Baghdad, Cairo, and Córdoba; and the debate over how this commercial revolution prefigured — and shaped — Europe's later one."
+          },
+          {
             "title": "Islamic golden age"
           }
         ]
@@ -2667,6 +2671,10 @@ export const SUBJECTS: SubjectSpec[] = [
               {
                 "title": "Modern African History since 1860",
                 "summary": "The continent from partition to the present: the Scramble for Africa and the Berlin Conference (1884–85); colonial rule and its varieties — direct and indirect rule, settler colonies, Leopold's Congo; the impact of colonialism in Africa — economic extraction and cash-crop economies, arbitrary borders, missionary education, invented ethnic divisions, and the legacies anatomized by Fanon and Rodney's How Europe Underdeveloped Africa; resistance from Adwa (1896) to Maji Maji to Mau Mau; Africans in the world wars; the decolonization wave — Ghana (1957), the year of Africa (1960), the Algerian War, the Portuguese wars to 1975; the Congo crisis and Lumumba; apartheid South Africa and the liberation struggle — Sharpeville, Soweto, and Mandela's 1994 election; post-independence trajectories — nation-building, one-party states and coups, the Cold War's proxy wars in Angola and the Horn, structural adjustment; the Rwandan genocide (1994); and the twenty-first century — the African Union, demographic boom, mobile-money innovation, and Africa's contested place in a multipolar world."
+              },
+              {
+                "title": "Health and Healing in African History",
+                "summary": "Sickness, healing, and the mind in African history: African therapeutic systems — healers and herbalists, divination, spirit possession and ngoma, and their ongoing pluralism alongside biomedicine; witchcraft, causation, and mental health — Evans-Pritchard's Azande and witchcraft as an explanation of misfortune, accusations and their modern resurgence; colonial medicine and psychiatry — the racialized invention of the 'African mind', asylums, and Fanon's critique; substance abuse — khat, cannabis, and alcohol under colonial regulation and after; violence and mental illness — war trauma, child soldiers, and the contested universality of PTSD; and the more recent links between HIV/AIDS, loss, and depression — from denialism to antiretrovirals, orphanhood, and grief — within today's global mental health debate over universal categories versus local idioms of distress."
               }
             ]
           },
