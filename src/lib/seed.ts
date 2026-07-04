@@ -2363,6 +2363,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "sources of law"
           },
           {
+            "title": "Law and Colonialism",
+            "summary": "The relationship between law and colonialism in Latin America, Africa, and Asia, in both the early modern and the modern period: how law facilitated colonialism — doctrines of discovery and terra nullius, papal bulls and colonial charters, the chartered companies — and how it limited it, from the School of Salamanca (Vitoria, Las Casas) debating empire's legality to metropolitan courts and abolition; how colonialism in turn modified the legal systems that existed previously — legal pluralism, the codification and invention of 'customary law', Hindu and Islamic law under the Raj, indirect rule; law as a political, religious, social, and economic agent — property and land-tenure regimes, labor codes, personal-status and caste law, missionary justice; the legal arena as a sphere for conflict resolution, negotiation, and identity formation — colonial courts as sites where subjects litigated, jurisdictional politics and forum shopping; read through the seminal works — Benton's Law and Colonial Cultures, Chanock's Law, Custom and Social Order, Cohn, Merry, the Comaroffs — down to the postcolonial legacies in today's mixed legal systems."
+          },
+          {
             "title": "courts"
           }
         ]
