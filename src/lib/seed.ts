@@ -2683,7 +2683,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "social"
           },
           {
-            "title": "military"
+            "title": "military",
+            "summary": "War as a constant of the modern age — there was a war or other violent conflict somewhere in the world in every single year of the 19th and 20th centuries: the Napoleonic Wars and the Concert of Europe that failed to end war; the century of 'small wars' — colonial conquests, frontier violence, and imperial policing; Latin America's independence and interstate wars (including the Paraguayan War, proportionally the deadliest); the Taiping Rebellion, history's bloodiest civil war; Crimea, the wars of German and Italian unification, and the US Civil War as rehearsals of industrial war; the world wars and total war; and the post-1945 era's proxy wars, civil wars, and genocides that belie the 'long peace'. Alongside the fighting: military revolutions and technology, conscription and the nation in arms, logistics and economies, the laws of war from the Geneva Conventions onward, and how societies remember and forget their wars."
           },
           {
             "title": "intellectual history"
