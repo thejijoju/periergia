@@ -2561,6 +2561,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "intellectual history"
           },
           {
+            "title": "Labor and the Political Economy in U.S. History",
+            "summary": "Work, workers, and the organization of American capitalism from the colonial era to the present: unfree and free labor systems (indentured servitude, slavery, wage labor); industrialization and the factory system; the great labor conflicts — the Railroad Strike of 1877, Haymarket (1886), Homestead (1892), Pullman (1894); the Knights of Labor, the AFL under Samuel Gompers, and the IWW; the Triangle Shirtwaist fire (1911) and Progressive Era reform; the New Deal order — the Wagner Act (1935), the CIO, the Fair Labor Standards Act (1938); Taft-Hartley (1947) and the postwar labor-capital accord; deindustrialization, the PATCO strike (1981), and declining union density; and the running debates over tariffs, antitrust and monopoly, laissez-faire versus regulation, and neoliberalism."
+          },
+          {
             "title": "History of Civil Liberties",
             "summary": "How individual freedoms were won, defined, and defended — and repeatedly curtailed: Magna Carta (1215) and habeas corpus; the English Bill of Rights (1689); Enlightenment foundations (Locke, Montesquieu); the US Bill of Rights (1791) and the French Declaration of the Rights of Man and of the Citizen (1789); abolition of slavery; women's suffrage; the US civil rights movement (Brown v. Board 1954, Civil Rights Act 1964, Voting Rights Act 1965); the Universal Declaration of Human Rights (1948); free speech, press, assembly, religion, due process, and privacy; and the recurring wartime and security-era rollbacks (Alien and Sedition Acts, Japanese American internment, McCarthyism, post-9/11 surveillance) with defenders like the ACLU."
           }
