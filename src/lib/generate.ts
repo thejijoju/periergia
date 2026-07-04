@@ -110,7 +110,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "images that invite the reader deeper — each named precisely (author, title, year) with one " +
     "line on why it's worth their time. Name only real, verifiable works; never fabricate " +
     "citations, quotations, or URLs — omit rather than invent.\n\n" +
-    "Illustrate the article with real images: at 1 to 3 natural points, insert an image marker " +
+    "Illustrate EVERY article with real images: at 2 to 4 natural points, insert an image marker " +
     "ALONE on its own line, in the form {{image: <exact English Wikipedia article title> | <one-line caption>}} " +
     "— e.g. {{image: Standard of Ur | The Standard of Ur (c. 2600 BCE), war and peace panels in shell and lapis lazuli}}. " +
     "The title must be a real English Wikipedia article about a concrete, photographable subject " +
@@ -135,7 +135,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     system,
     messages: [{ role: "user", content: prompt }],
   });
-  const body = await resolveImageMarkers(textOf(message.content).trim());
+  const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
 }
