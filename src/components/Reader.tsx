@@ -60,14 +60,16 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
   const { depth, level, mode } = state.prefs;
   const spec = getMode(mode);
 
-  // initialBody is the server-rendered default-settings article (when cached):
-  // crawlers get real text, and default-prefs readers see it instantly. The
-  // first client fetch swaps in the user's own settings without a blank flash.
+  // initialBody is the server-rendered article (the richest cached variant):
+  // crawlers get the full text, and a visitor landing from search sees it
+  // immediately and keeps it — we do NOT re-fetch on mount when it's present,
+  // so the good article isn't replaced by a shorter regeneration. A fetch fires
+  // only when the reader changes depth/level/mode, or when nothing was cached.
   const [body, setBody] = useState(initialBody);
   const [loading, setLoading] = useState(!initialBody);
   const [generated, setGenerated] = useState(!!initialBody);
   const [showQuiz, setShowQuiz] = useState(false);
-  const firstLoad = useRef(true);
+  const skipInitialFetch = useRef(!!initialBody);
 
   useEffect(() => {
     markVisited(node.id);
@@ -79,15 +81,12 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
     setBody(initialBody);
     setGenerated(!!initialBody);
     setLoading(!initialBody);
-    firstLoad.current = true;
+    skipInitialFetch.current = !!initialBody;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node.id]);
 
   const load = useCallback(async () => {
-    // Keep showing the server-rendered body during the first fetch; show the
-    // composing state whenever the reader has nothing (or stale prefs) to show.
-    if (!(firstLoad.current && initialBody)) setLoading(true);
-    firstLoad.current = false;
+    setLoading(true);
     try {
       const res = await fetch("/api/content", {
         method: "POST",
@@ -103,7 +102,13 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
   }, [node.id, depth, level, mode]);
 
   useEffect(() => {
-    if (hydrated) load();
+    if (!hydrated) return;
+    // Keep the server-rendered article on first mount; only fetch on pref change.
+    if (skipInitialFetch.current) {
+      skipInitialFetch.current = false;
+      return;
+    }
+    load();
   }, [hydrated, load]);
 
   const isAudio = spec.kind === "audio";

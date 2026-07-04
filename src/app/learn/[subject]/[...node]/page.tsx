@@ -98,15 +98,21 @@ export default async function ReaderPage({
 
   const searchIndex = await getSearchIndex();
 
-  // Server-render the default-settings article when it's already cached, so
-  // crawlers (and default-prefs readers) get the full text in the HTML.
-  const cachedDefault = await getCachedContent({
-    nodeId: node.id,
-    depth: "medium",
-    level: "easy",
-    format: "read",
-  });
-  const initialBody = cachedDefault?.generated ? cachedDefault.body : undefined;
+  // Server-render an already-cached read article into the HTML, so crawlers and
+  // default-prefs readers get real text. Prefer the richest cached depth (a
+  // full Research chapter indexes far better than a skim) and fall back down.
+  const DEPTH_PREFERENCE = ["research", "detailed", "medium", "definition", "skim"] as const;
+  let initialBody: string | undefined;
+  for (const depth of DEPTH_PREFERENCE) {
+    for (const level of ["advanced", "easy", "expert"] as const) {
+      const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
+      if (cached?.generated) {
+        initialBody = cached.body;
+        break;
+      }
+    }
+    if (initialBody) break;
+  }
 
   const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
   const jsonLd = {
