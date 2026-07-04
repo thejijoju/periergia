@@ -2599,6 +2599,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "intellectual history"
           },
           {
+            "title": "Global Capitalism: Past, Present, Future",
+            "summary": "Capitalism as a world system across five centuries: merchant capitalism and the joint-stock revolution (the VOC, 1602); the Atlantic economy and slavery's role in early accumulation (the Williams thesis debate); the Industrial Revolution and factory capitalism; the gold standard and the first globalization (1870–1914); collapse — world wars and the Great Depression; Bretton Woods (1944) and the embedded-liberal postwar boom; the 1970s crisis, the end of dollar-gold convertibility (1971), and the neoliberal turn (Thatcher, Reagan, the Washington Consensus); China's reform era (1978) and global supply chains; the 2008 financial crisis; platform and digital capitalism; inequality and its critics (Piketty); and the contested future — climate change and the green transition, deglobalization, automation and AI — read through Smith, Marx, Keynes, Hayek, and Polanyi."
+          },
+          {
             "title": "Digital History",
             "summary": "How computers and the internet changed the practice of history: the field's roots in humanities computing and pioneers like Roy Rosenzweig; mass digitization of archives, newspapers, and books; distant reading and text mining of large corpora; GIS and spatial history; network analysis of correspondence and trade; databases and quantitative history; crowdsourced transcription projects (e.g. Transcribe Bentham); public history on the web and digital exhibits; born-digital sources and web archives as the historical record of our own era; and the methodological debates — what counts as an argument, sustainability of projects, and the limits of quantification."
           },
