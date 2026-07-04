@@ -13,7 +13,13 @@ export const maxDuration = 300;
 // Cache hit returns instantly; a miss generates with Claude (or a placeholder),
 // stores it, and returns. Generate-once per (node, depth, level, format).
 export async function POST(req: Request) {
-  let payload: { nodeId?: string; depth?: Depth; level?: Level; mode?: Mode };
+  let payload: {
+    nodeId?: string;
+    depth?: Depth;
+    level?: Level;
+    mode?: Mode;
+    refresh?: boolean;
+  };
   try {
     payload = await req.json();
   } catch {
@@ -36,9 +42,13 @@ export async function POST(req: Request) {
 
   // Only trust a real (Claude-generated) cache hit. Placeholder rows (from runs
   // without a key) are treated as a miss so they regenerate once a key is set.
-  const cached = await getCachedContent(key);
-  if (cached && cached.generated) {
-    return NextResponse.json({ body: cached.body, generated: cached.generated });
+  // refresh: true skips the cache and re-caches — for upgrading old articles
+  // after generation improvements (the fresh result overwrites the row).
+  if (!payload.refresh) {
+    const cached = await getCachedContent(key);
+    if (cached && cached.generated) {
+      return NextResponse.json({ body: cached.body, generated: cached.generated });
+    }
   }
 
   try {
