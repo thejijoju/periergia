@@ -5,7 +5,7 @@ import { generateQuiz, gradeOpenAnswer } from "@/lib/generate";
 
 export const runtime = "nodejs";
 // Quiz generation + open-answer grading call Claude — give headroom.
-export const maxDuration = 60;
+export const maxDuration = 300; // deep-depth Opus generations can exceed 60s (fluid compute allows 300)
 
 // Two actions on one route:
 //   { action: "quiz",  nodeId, level }              → { questions }   (cached generate-once)
