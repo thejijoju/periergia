@@ -26,9 +26,16 @@ export const metadata: Metadata = {
     "A living textbook for everything. Search any topic, then read it, listen to it, and test yourself — tuned to your depth, level, and way of learning.",
 };
 
+// Dark is the default. This runs before paint: if the visitor previously chose
+// light, flip the attribute now so there's no flash of the wrong theme.
+const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spectral.variable}`}>
+    <html lang="en" data-theme="dark" className={`${inter.variable} ${spectral.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
       <body>{children}</body>
     </html>
   );

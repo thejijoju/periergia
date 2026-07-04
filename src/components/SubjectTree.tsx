@@ -112,7 +112,7 @@ function SubjectSwitcher({
       {open && (
         <div
           role="listbox"
-          className="absolute left-0 top-full z-30 mt-1.5 w-[230px] max-h-[60vh] overflow-y-auto rounded-xl border border-line bg-white shadow-lg shadow-black/5 py-1.5"
+          className="absolute left-0 top-full z-30 mt-1.5 w-[230px] max-h-[60vh] overflow-y-auto rounded-xl border border-line bg-page shadow-lg shadow-black/5 py-1.5"
         >
           {subjects.map((s) => {
             const active = s.slug === currentSlug;

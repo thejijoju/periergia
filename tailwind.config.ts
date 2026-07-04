@@ -12,17 +12,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Colors are CSS variables so the whole app flips with the theme.
+      // Values live in globals.css (:root = dark default, [data-theme=light]).
       colors: {
-        ink: "#211d18",
-        maroon: "#7c2d2d",
-        purple: "#6d28d9",
-        "purple-soft": "#f3effb",
-        muted: "#6b6258",
-        faint: "#8a8076",
-        whisper: "#a59a8a",
-        numeral: "#bbae9c",
-        pill: "#f0e9da",
-        line: "rgba(33,29,24,.14)",
+        page: "var(--c-page)",
+        card: "var(--c-card)",
+        ink: "var(--c-ink)",
+        maroon: "var(--c-maroon)",
+        purple: "var(--c-purple)",
+        "purple-soft": "var(--c-purple-soft)",
+        muted: "var(--c-muted)",
+        faint: "var(--c-faint)",
+        whisper: "var(--c-whisper)",
+        numeral: "var(--c-numeral)",
+        pill: "var(--c-pill)",
+        line: "var(--c-line)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
