@@ -88,6 +88,22 @@ body {
   color: #4c1d95;
 }
 
+/* Article images — resolved from Wikipedia at generation time */
+.prose-reading :where(img) {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 1.8em auto 0;
+}
+.prose-reading :where(img + em, p:has(> img) + p > em:only-child) {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.82em;
+  color: rgba(33, 29, 24, 0.55);
+  text-align: center;
+}
+
 /* Mathematics — KaTeX, tuned to read like a printed textbook formula */
 .prose-reading :where(.katex) {
   font-size: 1.08em;

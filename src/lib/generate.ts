@@ -12,6 +12,7 @@ import type {
 import { type Mode, getMode } from "./modes";
 import { getAnthropic, MODEL } from "./anthropic";
 import { getAncestors } from "./store";
+import { resolveImageMarkers } from "./images";
 
 // ── Generation core ──────────────────────────────────────────────────────
 // Content, quizzes, and open-answer grading. Each function uses Claude when a
@@ -108,7 +109,14 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "list of real biographies, primary texts, autobiographies, narratives, poems, and notable " +
     "images that invite the reader deeper — each named precisely (author, title, year) with one " +
     "line on why it's worth their time. Name only real, verifiable works; never fabricate " +
-    "citations, quotations, or URLs — omit rather than invent.";
+    "citations, quotations, or URLs — omit rather than invent.\n\n" +
+    "Illustrate the article with real images: at 1 to 3 natural points, insert an image marker " +
+    "ALONE on its own line, in the form {{image: <exact English Wikipedia article title> | <one-line caption>}} " +
+    "— e.g. {{image: Standard of Ur | The Standard of Ur (c. 2600 BCE), war and peace panels in shell and lapis lazuli}}. " +
+    "The title must be a real English Wikipedia article about a concrete, photographable subject " +
+    "central to the topic — an artifact, person, building, artwork, map, or place — whose article " +
+    "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
+    "Never write image markdown or URLs yourself; the system resolves markers to real images.";
 
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
@@ -127,7 +135,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     system,
     messages: [{ role: "user", content: prompt }],
   });
-  const body = textOf(message.content).trim();
+  const body = await resolveImageMarkers(textOf(message.content).trim());
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
 }
