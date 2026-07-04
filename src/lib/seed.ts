@@ -2649,6 +2649,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Modern China",
             "summary": "China from the Opium Wars to superpower: Qing decline — the Opium Wars, the Taiping Rebellion, self-strengthening, and the Boxer Uprising; the 1911 Revolution and Sun Yat-sen; warlords, the May Fourth Movement, and the Nationalist-Communist struggle; the Japanese invasion and the Second Sino-Japanese War; 1949 and the People's Republic; Mao's rule — the Great Leap Forward famine and the Cultural Revolution; Deng Xiaoping's reform and opening (1978); Tiananmen (1989); WTO accession (2001) and the rise to the world's second economy; and the Xi Jinping era."
+          },
+          {
+            "title": "China Today: the Economic Miracle and Infrastructural Revolution",
+            "summary": "The Chinese economic miracle of the past 40 years and its monumental infrastructural revolution: Deng's reform and opening (1978), the Special Economic Zones — Shenzhen from fishing village to megacity — WTO accession, and the largest poverty reduction in history; the country's modern and extensive infrastructure — the world's largest dams (Three Gorges and its 1.3 million displaced), the South-North Water Transfer, the world's largest high-speed railway network built almost from scratch after 2008, expressways, the great ports, and gleaming new cities housing hundreds of millions of new urbanites (and the 'ghost city' debate); how it was built — state capacity, five-year plans, state-owned enterprises, and land-finance; the Belt and Road as the model exported; the costs — environmental damage, debt, displacement; and the open question of whether the miracle can continue amid demographic decline, the property crisis, and rivalry with the United States."
           }
         ]
       },
@@ -2717,6 +2721,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "U.S. Foreign Policy",
             "summary": "America's role in the world from Washington to the present: the Farewell Address and the isolationist inheritance; the Monroe Doctrine (1823); continental expansion and the Mexican War; 1898 and the debate over empire; Wilson, the First World War, and the League fight; from neutrality to the Second World War and the architecture of the liberal order (UN, Bretton Woods, NATO); containment and its wars — Korea and Vietnam; Nixon-Kissinger realpolitik and the opening to China; Reagan and the Cold War's end; unipolarity, humanitarian intervention, 9/11 and the wars in Afghanistan and Iraq; and the turn to great-power competition with China."
+          },
+          {
+            "title": "The Role of Infrastructure in History: its Powers and Limitations",
+            "summary": "Infrastructure as the skeleton of power and everyday life: the ancient systems — Roman roads and aqueducts, the Persian Royal Road, qanats, and China's Grand Canal; the industrial age's networks — the Erie, Suez, and Panama canals, the transcontinental railroads, submarine telegraph cables; sanitation and the public-health revolution (London's sewers after the Great Stink), electrification, and the American interstate system. Its powers: state-building and 'infrastructural power' (Michael Mann), empire's 'tools' (Headrick), markets made and cities transformed. Its limitations and dark sides: who gets served and who gets bypassed — redlining, Robert Moses's parkways, splintered cities; legibility's failures (Scott's Seeing Like a State); cost overruns, white elephants, deferred maintenance and collapse, path dependence; and the present stakes — the green and digital transitions, China's buildout versus the West's gridlock, and infrastructure as geopolitics (Belt and Road)."
           },
           {
             "title": "Oil and Empire",
