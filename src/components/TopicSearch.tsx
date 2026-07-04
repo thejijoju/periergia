@@ -70,7 +70,7 @@ export function TopicSearch({
         autoFocus={autoFocus}
       />
       {open && q && (
-        <div className="absolute z-30 left-0 right-0 mt-2 bg-white border border-line rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,.25)] overflow-hidden">
+        <div className="absolute z-30 left-0 right-0 mt-2 bg-page border border-line rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,.25)] overflow-hidden">
           {results.length === 0 ? (
             <p className="px-4 py-3 font-sans text-[13px] text-faint">
               No topics match “{query}”.

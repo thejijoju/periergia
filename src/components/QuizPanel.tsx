@@ -91,7 +91,7 @@ export function QuizPanel({
   }, [submitted, allOpenGraded]);
 
   return (
-    <div className="border border-maroon rounded-2xl p-5 sm:p-6 bg-white">
+    <div className="border border-maroon rounded-2xl p-5 sm:p-6 bg-page">
       <div className="flex items-baseline justify-between mb-4">
         <h2 className="font-sans font-semibold text-[18px] text-ink">Test yourself — {title}</h2>
         <button onClick={onClose} className="font-sans text-[13px] text-whisper hover:text-maroon">

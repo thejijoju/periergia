@@ -4,6 +4,7 @@ import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
 import { HeaderSearch } from "@/components/HeaderSearch";
 import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   getSubject,
   getSubjects,
@@ -127,19 +128,20 @@ export default async function ReaderPage({
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Sticky header — wordmark + expandable search icon */}
-      <header className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-line">
+      <header className="sticky top-0 z-20 bg-page backdrop-blur border-b border-line">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-8 py-3 flex items-center gap-4">
           <div className="shrink-0">
             <Wordmark size="sm" />
           </div>
-          <div className="ml-auto flex justify-end min-w-0">
+          <div className="ml-auto flex items-center gap-1 justify-end min-w-0">
             <HeaderSearch searchIndex={searchIndex} />
+            <ThemeToggle />
           </div>
         </div>
       </header>

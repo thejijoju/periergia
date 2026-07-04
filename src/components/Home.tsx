@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Wordmark } from "./Wordmark";
 import { SearchBar } from "./SearchBar";
+import { ThemeToggle } from "./ThemeToggle";
 import type { SearchItem } from "@/lib/types";
 
 export interface HomeSubject {
@@ -69,10 +70,14 @@ export function Home({
 
   // Outline chips — no fill colour, modern/Medium-like.
   const chip =
-    "flex-none font-sans text-[13px] sm:text-[13.5px] px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[rgba(33,29,24,.18)] text-ink bg-transparent hover:border-ink transition-colors whitespace-nowrap";
+    "flex-none font-sans text-[13px] sm:text-[13.5px] px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-line text-ink bg-transparent hover:border-ink transition-colors whitespace-nowrap";
 
   return (
-    <main className="relative min-h-screen bg-white text-ink flex flex-col overflow-hidden">
+    <main className="relative min-h-screen bg-page text-ink flex flex-col overflow-hidden">
+      {/* Theme toggle — top-left */}
+      <div className="absolute top-3 left-3 z-10">
+        <ThemeToggle />
+      </div>
       {/* Faint pixel-grid accent, top-right */}
       <Image
         src="/accent-pixels.png"

@@ -269,7 +269,7 @@ function ControlRow({
               onClick={() => onSelect(it.id)}
               className={`font-sans text-[11px] px-[10px] py-[4px] rounded-full transition-colors ${
                 active
-                  ? "border-[1.1px] border-ink bg-white text-ink"
+                  ? "border-[1.1px] border-ink bg-page text-ink"
                   : "border border-[rgba(33,29,24,.08)] bg-pill text-ink"
               }`}
             >
