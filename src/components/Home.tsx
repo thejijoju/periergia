@@ -24,7 +24,7 @@ const CURATED_PILLS = [
   "psychology",
   "history",
   "economics",
-  "finance-and-investments",
+  "finance",
   "philosophy",
 ];
 

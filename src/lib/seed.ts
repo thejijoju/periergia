@@ -1783,8 +1783,8 @@ export const SUBJECTS: SubjectSpec[] = [
     ]
   },
   {
-    "name": "Finance & Investments",
-    "slug": "finance-and-investments",
+    "name": "Finance",
+    "slug": "finance",
     "description": "",
     "tree": [
       {
