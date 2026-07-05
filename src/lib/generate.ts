@@ -89,13 +89,19 @@ async function nodeContext(node: Node): Promise<string> {
 // ---- Content -------------------------------------------------------------
 
 // The canonical, most-worked generation for a node: research depth, advanced
-// level, the plain "read" format. Every other (depth, level, mode) combo is
-// DERIVED from this one vetted text — instead of independently re-rolling a
-// fresh generation from raw notes for each of the ~45 combinations — so the
-// facts, quotes, and editorial judgment calls stay identical all the way down
-// the ladder. Only the master pays the full "write from scratch" cost; a
-// shorter depth or different level/mode is a tightly-constrained adaptation
-// of it that is forbidden from inventing anything the master doesn't contain.
+// level, the plain "read" format — the "ten-minute article". Every shorter
+// depth is DERIVED from this one vetted text (a tightly-constrained
+// adaptation, forbidden from inventing anything the master doesn't contain)
+// instead of independently re-rolling a fresh generation from raw notes for
+// each combination — so facts and editorial judgment stay identical all the
+// way down the ladder. Only the master pays the full "write from scratch" cost.
+//
+// Within Research depth itself, every level (easy/advanced/expert) serves the
+// master body VERBATIM — no rewrite pass at all. A "just reword it for this
+// level" pass is exactly the kind of extra generation that can quietly trim
+// or soften the flagship article, and there is no length ladder to justify
+// the risk at the top tier: Research is the ten-minute article, full stop,
+// at every level.
 const MASTER_DEPTH: Depth = "research";
 const MASTER_LEVEL: Level = "advanced";
 
@@ -150,8 +156,8 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     return { ...key, body: placeholderContent(node, key, trail), generated: false };
   }
 
-  const isMaster = key.depth === MASTER_DEPTH && key.level === MASTER_LEVEL && key.format === "read";
-  if (isMaster) return createMasterContent(node, key, trail, client);
+  const isMasterKey = key.depth === MASTER_DEPTH && key.level === MASTER_LEVEL && key.format === "read";
+  if (isMasterKey) return createMasterContent(node, key, trail, client);
 
   const masterKey: ContentKey = { nodeId: node.id, depth: MASTER_DEPTH, level: MASTER_LEVEL, format: "read" };
   let master = await getCachedContent(masterKey);
@@ -159,6 +165,13 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     master = await createMasterContent(node, masterKey, trail, client);
     if (master.generated) await putCachedContent(master);
   }
+
+  // Research depth, any level, "read" format: this IS the ten-minute article —
+  // serve it unchanged rather than risk a rewrite pass quietly shortening it.
+  if (key.depth === MASTER_DEPTH && key.format === "read") {
+    return { ...key, body: master.body, generated: master.generated };
+  }
+
   return distillContent(node, key, master.body, trail, client);
 }
 
@@ -199,18 +212,6 @@ async function createMasterContent(
       `Do not stop the narrative early, do not wave at later material with "continues in X", and ` +
       `do not relegate any of it to "Further exploration" — weave all of it into the article body ` +
       `itself, even if that means running well past the target length: ${node.summary}\n\n`
-    : "";
-
-  const strictCoverage = key.depth === "detailed" || key.depth === "research";
-  const coverageRule = node.summary
-    ? strictCoverage
-      ? `Required coverage — this is a hard requirement, not a suggestion: you must include ` +
-        `EVERY fact, name, date, quote, and figure below, explained clearly at the chosen level. ` +
-        `Do not stop the narrative early, do not wave at later material with "continues in X", and ` +
-        `do not relegate any of it to "Further exploration" — weave all of it into the article body ` +
-        `itself, even if that means running well past the target length: ${node.summary}\n\n`
-      : `Source material to draw from (compress to the highlights that fit this shorter depth; ` +
-        `never fabricate beyond it, but you don't need to include every detail): ${node.summary}\n\n`
     : "";
 
   const prompt =
