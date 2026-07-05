@@ -112,11 +112,15 @@ export default async function ReaderPage({
   // full Research chapter indexes far better than a skim) and fall back down.
   const DEPTH_PREFERENCE = ["research", "detailed", "medium", "definition", "skim"] as const;
   let initialBody: string | undefined;
+  let initialDepth: (typeof DEPTH_PREFERENCE)[number] | undefined;
+  let initialLevel: "advanced" | "easy" | "expert" | undefined;
   for (const depth of DEPTH_PREFERENCE) {
     for (const level of ["advanced", "easy", "expert"] as const) {
       const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
       if (cached?.generated) {
         initialBody = cached.body;
+        initialDepth = depth;
+        initialLevel = level;
         break;
       }
     }
@@ -171,7 +175,12 @@ export default async function ReaderPage({
 
         {/* Center */}
         <div className="min-w-0">
-          <Reader node={readerNode} initialBody={initialBody} />
+          <Reader
+            node={readerNode}
+            initialBody={initialBody}
+            initialDepth={initialDepth}
+            initialLevel={initialLevel}
+          />
         </div>
 
         {/* Right rail — "on this page" scroll-spy outline */}

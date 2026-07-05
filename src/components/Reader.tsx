@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
-import { DEPTHS, LEVELS } from "@/lib/types";
+import { DEPTHS, LEVELS, type Depth, type Level } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
 import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
@@ -55,16 +55,35 @@ function extractText(node: React.ReactNode): string {
   return "";
 }
 
-export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBody?: string }) {
+export function Reader({
+  node,
+  initialBody = "",
+  initialDepth,
+  initialLevel,
+}: {
+  node: ReaderNode;
+  initialBody?: string;
+  initialDepth?: Depth;
+  initialLevel?: Level;
+}) {
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
-  const { depth, level, mode } = state.prefs;
+  const { depth: prefDepth, level: prefLevel, mode } = state.prefs;
   const spec = getMode(mode);
 
-  // initialBody is the server-rendered article (the richest cached variant):
-  // crawlers get the full text, and a visitor landing from search sees it
-  // immediately and keeps it — we do NOT re-fetch on mount when it's present,
-  // so the good article isn't replaced by a shorter regeneration. A fetch fires
-  // only when the reader changes depth/level/mode, or when nothing was cached.
+  // initialBody is the server-rendered article (the richest cached variant, not
+  // necessarily the reader's own depth/level preference): crawlers get the full
+  // text, and a visitor landing from search sees it immediately and keeps it —
+  // we do NOT re-fetch on mount when it's present, so the good article isn't
+  // replaced by a shorter regeneration. A fetch fires only when the reader
+  // changes depth/level/mode, or when nothing was cached.
+  //
+  // `shown` tracks what's actually on screen, which starts from initialDepth/
+  // initialLevel (the SSR pick) rather than the sticky global pref — otherwise
+  // the pills would claim "Medium/Easy" while a Research/Advanced article is
+  // displayed, and switching mode alone would silently regenerate at the wrong,
+  // lower tier instead of the one the reader is looking at.
+  const [shownDepth, setShownDepth] = useState<Depth>(initialDepth ?? prefDepth);
+  const [shownLevel, setShownLevel] = useState<Level>(initialLevel ?? prefLevel);
   const [body, setBody] = useState(initialBody);
   const [loading, setLoading] = useState(!initialBody);
   const [generated, setGenerated] = useState(!!initialBody);
@@ -81,6 +100,8 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
     setBody(initialBody);
     setGenerated(!!initialBody);
     setLoading(!initialBody);
+    setShownDepth(initialDepth ?? prefDepth);
+    setShownLevel(initialLevel ?? prefLevel);
     skipInitialFetch.current = !!initialBody;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node.id]);
@@ -91,7 +112,7 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
       const res = await fetch("/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nodeId: node.id, depth, level, mode }),
+        body: JSON.stringify({ nodeId: node.id, depth: shownDepth, level: shownLevel, mode }),
       }).then((r) => r.json());
       setBody(res.body ?? "");
       setGenerated(!!res.generated);
@@ -99,7 +120,7 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
       setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [node.id, depth, level, mode]);
+  }, [node.id, shownDepth, shownLevel, mode]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -153,14 +174,20 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
         <ControlRow
           label="Depth"
           items={DEPTHS}
-          value={depth}
-          onSelect={(id) => setPrefs({ depth: id as typeof depth })}
+          value={shownDepth}
+          onSelect={(id) => {
+            setShownDepth(id as Depth);
+            setPrefs({ depth: id as Depth });
+          }}
         />
         <ControlRow
           label="Level"
           items={LEVELS}
-          value={level}
-          onSelect={(id) => setPrefs({ level: id as typeof level })}
+          value={shownLevel}
+          onSelect={(id) => {
+            setShownLevel(id as Level);
+            setPrefs({ level: id as Level });
+          }}
         />
       </div>
 
@@ -221,7 +248,7 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
           ) : (
             <QuizPanel
               nodeId={node.id}
-              level={level}
+              level={shownLevel}
               title={node.title}
               onClose={() => setShowQuiz(false)}
               onPassed={() => markCompleted(node.id)}
