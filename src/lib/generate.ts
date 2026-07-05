@@ -276,6 +276,16 @@ async function distillContent(
   const wantsImages = DEPTH_ORDER[key.depth] >= DEPTH_ORDER.medium;
   const brief = DEPTH_ORDER[key.depth] <= DEPTH_ORDER.definition;
 
+  const briefRule =
+    key.depth === "skim"
+      ? "This is a SKIM: output ONLY the opening definition callout blockquote — a 2–3 sentence " +
+        "orientation capturing the gist — and NOTHING after it. No further paragraphs, headings, " +
+        "lists, or images.\n\n"
+      : key.depth === "definition"
+        ? "This is a DEFINITION: output the definition callout blockquote and at most one tight " +
+          "paragraph, ~150 words total. No headings, lists, images, or 'Further exploration'.\n\n"
+        : "";
+
   const system =
     "You are Periergia, a living textbook for everything. You are given the full, already " +
     "researched and fact-checked canonical article on a topic below, and must adapt it into a " +
@@ -285,11 +295,7 @@ async function distillContent(
     mathRule(node) +
     DEFINITION_CALLOUT_RULE +
     (wantsImages ? IMAGE_RULE : "Do NOT include any images or image markers in this short entry.\n\n") +
-    (brief
-      ? "This is a SHORT entry. Output the opening definition callout blockquote and then ONLY the " +
-        "few sentences the depth allows — no section headings, no subheadings, no lists, no images, " +
-        "no 'Further exploration'. Obey the length target strictly; do not expand into a full article.\n\n"
-      : "");
+    briefRule;
 
   const shorter = DEPTH_ORDER[key.depth] < DEPTH_ORDER[MASTER_DEPTH];
   const coverageRule = shorter
@@ -317,7 +323,13 @@ async function distillContent(
     messages: [{ role: "user", content: prompt }],
   });
   const message = await stream.finalMessage();
-  const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
+  // Short depths get no images at all — pass no topicTitle so the "at least one
+  // image" fallback in resolveImageMarkers doesn't splice a lead image into a
+  // 2–3 sentence skim or a one-paragraph definition.
+  const body = await resolveImageMarkers(
+    textOf(message.content).trim(),
+    wantsImages ? node.title : undefined,
+  );
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true, reviewed: false };
 }
