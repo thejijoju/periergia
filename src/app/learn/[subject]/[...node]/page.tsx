@@ -5,6 +5,7 @@ import { HeaderSearch } from "@/components/HeaderSearch";
 import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { MobileNav } from "@/components/MobileNav";
 import {
   getSubject,
   getSubjects,
@@ -93,7 +94,8 @@ export default async function ReaderPage({
       const isSelf = i === ancestors.length - 1;
       return {
         label: n.title,
-        href: isSelf ? undefined : `/learn/${subj.slug}/${n.path.join("/")}`,
+        href: `/learn/${subj.slug}/${n.path.join("/")}`,
+        current: isSelf,
       };
     }),
   ];
@@ -147,9 +149,17 @@ export default async function ReaderPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Sticky header — wordmark + expandable search icon */}
+      {/* Sticky header — mobile menu (phones) + wordmark + search + theme */}
       <header className="sticky top-0 z-20 bg-page backdrop-blur border-b border-line">
-        <div className="pl-4 pr-4 sm:pr-6 lg:pl-[2cm] lg:pr-8 py-3 flex items-center gap-4">
+        <div className="pl-4 pr-4 sm:pr-6 lg:pl-[2cm] lg:pr-8 py-3 flex items-center gap-2 sm:gap-4">
+          <MobileNav
+            subjectName={subj.name}
+            subjectSlug={subj.slug}
+            subjectHref={subjectHref}
+            subjects={subjectLinks}
+            items={items}
+            activeId={node.id}
+          />
           <div className="shrink-0">
             <Wordmark size="sm" />
           </div>
