@@ -60,11 +60,13 @@ export function Reader({
   initialBody = "",
   initialDepth,
   initialLevel,
+  initialReviewed = false,
 }: {
   node: ReaderNode;
   initialBody?: string;
   initialDepth?: Depth;
   initialLevel?: Level;
+  initialReviewed?: boolean;
 }) {
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
   const { depth: prefDepth, level: prefLevel, mode } = state.prefs;
@@ -87,6 +89,7 @@ export function Reader({
   const [body, setBody] = useState(initialBody);
   const [loading, setLoading] = useState(!initialBody);
   const [generated, setGenerated] = useState(!!initialBody);
+  const [reviewed, setReviewed] = useState(initialReviewed);
   const [showQuiz, setShowQuiz] = useState(false);
   const skipInitialFetch = useRef(!!initialBody);
 
@@ -99,6 +102,7 @@ export function Reader({
   useEffect(() => {
     setBody(initialBody);
     setGenerated(!!initialBody);
+    setReviewed(initialReviewed);
     setLoading(!initialBody);
     setShownDepth(initialDepth ?? prefDepth);
     setShownLevel(initialLevel ?? prefLevel);
@@ -116,6 +120,7 @@ export function Reader({
       }).then((r) => r.json());
       setBody(res.body ?? "");
       setGenerated(!!res.generated);
+      setReviewed(!!res.reviewed);
     } finally {
       setLoading(false);
     }
@@ -163,6 +168,15 @@ export function Reader({
       <div className="mt-4 flex items-start gap-x-3 gap-y-1 flex-wrap">
         <h1 className="font-sans font-bold text-[32px] leading-[1.12] tracking-[-0.02em] text-ink">
           {node.title}
+          {reviewed && (
+            <span
+              title="This article has been reviewed by a human"
+              aria-label="Human-reviewed"
+              className="ml-1.5 align-super text-maroon text-[20px] select-none"
+            >
+              *
+            </span>
+          )}
         </h1>
         <div className="mt-2 flex-1 min-w-[120px]">
           <LearningModeRail active={mode} onSelect={(id: Mode) => setPrefs({ mode: id })} />

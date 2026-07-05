@@ -153,7 +153,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   const trail = await nodeContext(node);
   const client = getAnthropic();
   if (!client) {
-    return { ...key, body: placeholderContent(node, key, trail), generated: false };
+    return { ...key, body: placeholderContent(node, key, trail), generated: false, reviewed: false };
   }
 
   const isMasterKey = key.depth === MASTER_DEPTH && key.level === MASTER_LEVEL && key.format === "read";
@@ -168,8 +168,9 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
 
   // Research depth, any level, "read" format: this IS the ten-minute article —
   // serve it unchanged rather than risk a rewrite pass quietly shortening it.
+  // It inherits the master's reviewed flag too, since the text is identical.
   if (key.depth === MASTER_DEPTH && key.format === "read") {
-    return { ...key, body: master.body, generated: master.generated };
+    return { ...key, body: master.body, generated: master.generated, reviewed: master.reviewed };
   }
 
   return distillContent(node, key, master.body, trail, client);
@@ -235,7 +236,7 @@ async function createMasterContent(
   const message = await stream.finalMessage();
   const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
 
-  return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
+  return { ...key, body: body || placeholderContent(node, key, trail), generated: true, reviewed: false };
 }
 
 // Adapts the canonical master article into a different depth/level/mode.
@@ -290,7 +291,7 @@ async function distillContent(
   const message = await stream.finalMessage();
   const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
 
-  return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
+  return { ...key, body: body || placeholderContent(node, key, trail), generated: true, reviewed: false };
 }
 
 const DEPTH_ORDER: Record<Depth, number> = {
