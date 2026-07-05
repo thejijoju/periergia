@@ -190,7 +190,7 @@ export async function getCachedContent(k: ContentKey): Promise<Content | null> {
   if (supabase) {
     const { data } = await supabase
       .from("content")
-      .select("node_id, depth, level, format, body, generated")
+      .select("node_id, depth, level, format, body, generated, reviewed")
       .eq("node_id", k.nodeId)
       .eq("depth", k.depth)
       .eq("level", k.level)
@@ -204,6 +204,7 @@ export async function getCachedContent(k: ContentKey): Promise<Content | null> {
         format: data.format,
         body: data.body,
         generated: data.generated,
+        reviewed: !!data.reviewed,
       };
     }
     return null;
@@ -222,6 +223,7 @@ export async function putCachedContent(c: Content): Promise<void> {
         format: c.format,
         body: c.body,
         generated: c.generated,
+        reviewed: c.reviewed,
       },
       { onConflict: "node_id,depth,level,format" },
     );

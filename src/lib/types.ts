@@ -56,6 +56,8 @@ export interface Content extends ContentKey {
   /** Markdown body (for text); for voice the same body is read aloud client-side. */
   body: string;
   generated: boolean; // true when produced by Claude, false for placeholder
+  /** True once a human has read this exact text and signed off on it. */
+  reviewed: boolean;
 }
 
 export interface QuizQuestion {

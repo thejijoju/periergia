@@ -35,9 +35,13 @@ create table if not exists content (
   format     text not null,
   body       text not null,
   generated  boolean not null default false,
+  -- True once a human has read this exact text and signed off on it (shown as
+  -- a badge next to the article title). Set manually, never by generation.
+  reviewed   boolean not null default false,
   created_at timestamptz not null default now(),
   primary key (node_id, depth, level, format)
 );
+alter table content add column if not exists reviewed boolean not null default false;
 
 -- Generate-once quiz cache, keyed by (node, level)
 create table if not exists quizzes (

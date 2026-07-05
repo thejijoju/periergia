@@ -114,6 +114,7 @@ export default async function ReaderPage({
   let initialBody: string | undefined;
   let initialDepth: (typeof DEPTH_PREFERENCE)[number] | undefined;
   let initialLevel: "advanced" | "easy" | "expert" | undefined;
+  let initialReviewed = false;
   for (const depth of DEPTH_PREFERENCE) {
     for (const level of ["advanced", "easy", "expert"] as const) {
       const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
@@ -121,6 +122,7 @@ export default async function ReaderPage({
         initialBody = cached.body;
         initialDepth = depth;
         initialLevel = level;
+        initialReviewed = cached.reviewed;
         break;
       }
     }
@@ -180,6 +182,7 @@ export default async function ReaderPage({
             initialBody={initialBody}
             initialDepth={initialDepth}
             initialLevel={initialLevel}
+            initialReviewed={initialReviewed}
           />
         </div>
 
