@@ -269,6 +269,13 @@ async function distillContent(
   const mode = key.format as Mode;
   const spec = getMode(mode);
 
+  // Images and section structure scale with depth. A "skim" (2–3 sentences) or
+  // "definition" (~150 words) must not sprout images, headings, or sections —
+  // forcing the full article's "2–4 images + callout" rules onto them is what
+  // bloated them to 250–950 words. Only medium and up get images.
+  const wantsImages = DEPTH_ORDER[key.depth] >= DEPTH_ORDER.medium;
+  const brief = DEPTH_ORDER[key.depth] <= DEPTH_ORDER.definition;
+
   const system =
     "You are Periergia, a living textbook for everything. You are given the full, already " +
     "researched and fact-checked canonical article on a topic below, and must adapt it into a " +
@@ -277,7 +284,12 @@ async function distillContent(
     "only. No preamble, no meta-commentary, no closing summary.\n\n" +
     mathRule(node) +
     DEFINITION_CALLOUT_RULE +
-    IMAGE_RULE;
+    (wantsImages ? IMAGE_RULE : "Do NOT include any images or image markers in this short entry.\n\n") +
+    (brief
+      ? "This is a SHORT entry. Output the opening definition callout blockquote and then ONLY the " +
+        "few sentences the depth allows — no section headings, no subheadings, no lists, no images, " +
+        "no 'Further exploration'. Obey the length target strictly; do not expand into a full article.\n\n"
+      : "");
 
   const shorter = DEPTH_ORDER[key.depth] < DEPTH_ORDER[MASTER_DEPTH];
   const coverageRule = shorter
