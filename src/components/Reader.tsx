@@ -147,9 +147,6 @@ export function Reader({ node, initialBody = "" }: { node: ReaderNode; initialBo
           <LearningModeRail active={mode} onSelect={(id: Mode) => setPrefs({ mode: id })} />
         </div>
       </div>
-      {node.summary && (
-        <p className="mt-2 font-sans text-[15px] text-muted">{node.summary}</p>
-      )}
 
       {/* Depth + Level controls */}
       <div className="mt-4 space-y-2.5">
