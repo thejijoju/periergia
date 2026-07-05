@@ -16,7 +16,8 @@ import { QuizPanel } from "./QuizPanel";
 
 export interface Crumb {
   label: string;
-  href?: string; // omitted for the current page
+  href?: string;
+  current?: boolean; // the page you're on — styled distinctly, still tappable
 }
 
 export interface ReaderNode {
@@ -154,7 +155,15 @@ export function Reader({
           <span key={i} className="flex items-center gap-x-1.5">
             <Chevron />
             {c.href ? (
-              <Link href={c.href} className="hover:text-purple transition-colors">
+              <Link
+                href={c.href}
+                aria-current={c.current ? "page" : undefined}
+                className={
+                  c.current
+                    ? "text-ink font-medium hover:text-purple transition-colors"
+                    : "hover:text-purple transition-colors"
+                }
+              >
                 {c.label}
               </Link>
             ) : (
