@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   title: "Periergia — a free library of everything worth knowing",
   description:
     "A living textbook for everything. Search any topic, then read it, listen to it, and test yourself — tuned to your depth, level, and way of learning.",
+  manifest: "/manifest.json",
 };
 
 // Dark is the default. This runs before paint: if the visitor previously chose
