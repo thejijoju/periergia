@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Spectral } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 // Inter drives the modern, "younger" UI (Medium-like). Spectral stays available
 // for long-form reading in the reader.
@@ -20,7 +21,7 @@ const spectral = Spectral({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://periergia.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Periergia — a free library of everything worth knowing",
   description:
     "A living textbook for everything. Search any topic, then read it, listen to it, and test yourself — tuned to your depth, level, and way of learning.",
