@@ -11,7 +11,7 @@ import type {
 } from "./types";
 import { type Mode, getMode } from "./modes";
 import { getAnthropic, MODEL } from "./anthropic";
-import { getAncestors } from "./store";
+import { getAncestors, getCachedContent, putCachedContent } from "./store";
 import { resolveImageMarkers } from "./images";
 
 // ── Generation core ──────────────────────────────────────────────────────
@@ -88,6 +88,61 @@ async function nodeContext(node: Node): Promise<string> {
 
 // ---- Content -------------------------------------------------------------
 
+// The canonical, most-worked generation for a node: research depth, advanced
+// level, the plain "read" format. Every other (depth, level, mode) combo is
+// DERIVED from this one vetted text — instead of independently re-rolling a
+// fresh generation from raw notes for each of the ~45 combinations — so the
+// facts, quotes, and editorial judgment calls stay identical all the way down
+// the ladder. Only the master pays the full "write from scratch" cost; a
+// shorter depth or different level/mode is a tightly-constrained adaptation
+// of it that is forbidden from inventing anything the master doesn't contain.
+const MASTER_DEPTH: Depth = "research";
+const MASTER_LEVEL: Level = "advanced";
+
+// Discipline-aware math. Quantitative subjects render notation as LaTeX;
+// everyone else (history, literature, law…) writes numbers as plain prose —
+// otherwise '63 kg' and '40,000 chests' come out italicised in math font.
+const QUANTITATIVE_SUBJECTS = new Set([
+  "mathematics",
+  "physics",
+  "chemistry",
+  "astronomy-and-space",
+  "engineering-and-technology",
+  "computer-science",
+  "statistics",
+  "economics",
+  "finance",
+]);
+
+function mathRule(node: Node): string {
+  return QUANTITATIVE_SUBJECTS.has(node.subjectSlug)
+    ? "Write all mathematics as LaTeX: inline math in $…$ (e.g. $r_e$, $\\beta_i$) and standalone " +
+        "equations in $$…$$ on their own lines — never as plain text or Unicode approximations. " +
+        "Escape literal dollar amounts as \\$ (e.g. \\$100) so currency is never mistaken for math.\n\n"
+    : "This is not a mathematical subject: do NOT use LaTeX or $…$/$$…$$ math notation anywhere. " +
+        "Write every number, quantity, range, and unit as ordinary prose text — '63–65 kg', " +
+        "'40,000 chests', 'about 2,560 tonnes a year' — never italicised or set as an equation. " +
+        "Write money with the currency named (e.g. '21 million silver dollars', '£5,000'), never " +
+        "with a bare $ sign, so nothing is mistaken for math.\n\n";
+}
+
+const DEFINITION_CALLOUT_RULE =
+  "ALWAYS begin with a definition callout: a single Markdown blockquote (a line starting " +
+  "with '> ') of one or two plain, jargon-free sentences that define the topic in simple " +
+  "terms, starting with the term in bold — e.g. '> **State management** is a concept focused " +
+  "on maintaining and controlling the state of an application…'. Then continue with the " +
+  "requested content. (For song lyrics, still open with this one-line definition blockquote " +
+  "before the lyrics.)\n\n";
+
+const IMAGE_RULE =
+  "Illustrate EVERY article with real images: at 2 to 4 natural points, insert an image marker " +
+  "ALONE on its own line, in the form {{image: <exact English Wikipedia article title> | <one-line caption>}} " +
+  "— e.g. {{image: Standard of Ur | The Standard of Ur (c. 2600 BCE), war and peace panels in shell and lapis lazuli}}. " +
+  "The title must be a real English Wikipedia article about a concrete, photographable subject " +
+  "central to the topic — an artifact, person, building, artwork, map, or place — whose article " +
+  "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
+  "Never write image markdown or URLs yourself; the system resolves markers to real images.";
+
 export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
   const trail = await nodeContext(node);
   const client = getAnthropic();
@@ -95,44 +150,33 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     return { ...key, body: placeholderContent(node, key, trail), generated: false };
   }
 
+  const isMaster = key.depth === MASTER_DEPTH && key.level === MASTER_LEVEL && key.format === "read";
+  if (isMaster) return createMasterContent(node, key, trail, client);
+
+  const masterKey: ContentKey = { nodeId: node.id, depth: MASTER_DEPTH, level: MASTER_LEVEL, format: "read" };
+  let master = await getCachedContent(masterKey);
+  if (!master?.generated) {
+    master = await createMasterContent(node, masterKey, trail, client);
+    if (master.generated) await putCachedContent(master);
+  }
+  return distillContent(node, key, master.body, trail, client);
+}
+
+async function createMasterContent(
+  node: Node,
+  key: ContentKey,
+  trail: string,
+  client: NonNullable<ReturnType<typeof getAnthropic>>,
+): Promise<Content> {
   const mode = key.format as Mode; // the `format` field holds the learning mode
   const spec = getMode(mode);
-
-  // Discipline-aware math. Quantitative subjects render notation as LaTeX;
-  // everyone else (history, literature, law…) writes numbers as plain prose —
-  // otherwise '63 kg' and '40,000 chests' come out italicised in math font.
-  const QUANTITATIVE = new Set([
-    "mathematics",
-    "physics",
-    "chemistry",
-    "astronomy-and-space",
-    "engineering-and-technology",
-    "computer-science",
-    "statistics",
-    "economics",
-    "finance",
-  ]);
-  const mathRule = QUANTITATIVE.has(node.subjectSlug)
-    ? "Write all mathematics as LaTeX: inline math in $…$ (e.g. $r_e$, $\\beta_i$) and standalone " +
-      "equations in $$…$$ on their own lines — never as plain text or Unicode approximations. " +
-      "Escape literal dollar amounts as \\$ (e.g. \\$100) so currency is never mistaken for math.\n\n"
-    : "This is not a mathematical subject: do NOT use LaTeX or $…$/$$…$$ math notation anywhere. " +
-      "Write every number, quantity, range, and unit as ordinary prose text — '63–65 kg', " +
-      "'40,000 chests', 'about 2,560 tonnes a year' — never italicised or set as an equation. " +
-      "Write money with the currency named (e.g. '21 million silver dollars', '£5,000'), never " +
-      "with a bare $ sign, so nothing is mistaken for math.\n\n";
 
   const system =
     "You are Periergia, a living textbook for everything. You write clear, accurate, " +
     "engaging content that fits the reader's chosen mode, depth, and level. Output GitHub-flavored " +
     "Markdown only. No preamble, no meta-commentary, no closing summary.\n\n" +
-    mathRule +
-    "ALWAYS begin with a definition callout: a single Markdown blockquote (a line starting " +
-    "with '> ') of one or two plain, jargon-free sentences that define the topic in simple " +
-    "terms, starting with the term in bold — e.g. '> **State management** is a concept focused " +
-    "on maintaining and controlling the state of an application…'. Then continue with the " +
-    "requested content. (For song lyrics, still open with this one-line definition blockquote " +
-    "before the lyrics.)\n\n" +
+    mathRule(node) +
+    DEFINITION_CALLOUT_RULE +
     "NEVER present a topic as dry, abstract theory. Ground it in the real world: weave in " +
     "concrete examples and the relevant historical, political, economic, or cultural events " +
     "that shaped or illustrate it — with real names, places, and dates. Give context for why " +
@@ -147,24 +191,14 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "images that invite the reader deeper — each named precisely (author, title, year) with one " +
     "line on why it's worth their time. Name only real, verifiable works; never fabricate " +
     "citations, quotations, or URLs — omit rather than invent.\n\n" +
-    "Illustrate EVERY article with real images: at 2 to 4 natural points, insert an image marker " +
-    "ALONE on its own line, in the form {{image: <exact English Wikipedia article title> | <one-line caption>}} " +
-    "— e.g. {{image: Standard of Ur | The Standard of Ur (c. 2600 BCE), war and peace panels in shell and lapis lazuli}}. " +
-    "The title must be a real English Wikipedia article about a concrete, photographable subject " +
-    "central to the topic — an artifact, person, building, artwork, map, or place — whose article " +
-    "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
-    "Never write image markdown or URLs yourself; the system resolves markers to real images.";
+    IMAGE_RULE;
 
-  const strictCoverage = key.depth === "detailed" || key.depth === "research";
   const coverageRule = node.summary
-    ? strictCoverage
-      ? `Required coverage — this is a hard requirement, not a suggestion: you must include ` +
-        `EVERY fact, name, date, quote, and figure below, explained clearly at the chosen level. ` +
-        `Do not stop the narrative early, do not wave at later material with "continues in X", and ` +
-        `do not relegate any of it to "Further exploration" — weave all of it into the article body ` +
-        `itself, even if that means running well past the target length: ${node.summary}\n\n`
-      : `Source material to draw from (compress to the highlights that fit this shorter depth; ` +
-        `never fabricate beyond it, but you don't need to include every detail): ${node.summary}\n\n`
+    ? `Required coverage — this is a hard requirement, not a suggestion: you must include ` +
+      `EVERY fact, name, date, quote, and figure below, explained clearly at the chosen level. ` +
+      `Do not stop the narrative early, do not wave at later material with "continues in X", and ` +
+      `do not relegate any of it to "Further exploration" — weave all of it into the article body ` +
+      `itself, even if that means running well past the target length: ${node.summary}\n\n`
     : "";
 
   const prompt =
@@ -190,6 +224,69 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
 }
+
+// Adapts the canonical master article into a different depth/level/mode.
+// Constrained to the master's own facts — this is what keeps every rung of
+// the ladder consistent with the one excellent, fact-checked source instead
+// of each being its own independent (and independently fallible) generation.
+async function distillContent(
+  node: Node,
+  key: ContentKey,
+  masterBody: string,
+  trail: string,
+  client: NonNullable<ReturnType<typeof getAnthropic>>,
+): Promise<Content> {
+  const mode = key.format as Mode;
+  const spec = getMode(mode);
+
+  const system =
+    "You are Periergia, a living textbook for everything. You are given the full, already " +
+    "researched and fact-checked canonical article on a topic below, and must adapt it into a " +
+    "different depth, level, and format — never introducing a single fact, name, date, quote, or " +
+    "figure that is not already present in that canonical text. Output GitHub-flavored Markdown " +
+    "only. No preamble, no meta-commentary, no closing summary.\n\n" +
+    mathRule(node) +
+    DEFINITION_CALLOUT_RULE +
+    IMAGE_RULE;
+
+  const shorter = DEPTH_ORDER[key.depth] < DEPTH_ORDER[MASTER_DEPTH];
+  const coverageRule = shorter
+    ? `Select only the most essential facts from the canonical article to fit this shorter depth. ` +
+      `You do not need everything, but add nothing beyond what the canonical article contains.\n\n`
+    : `Preserve every fact, name, date, quote, and figure from the canonical article — this is the ` +
+      `same depth tier as the canonical article, so this should carry the same substance, just in ` +
+      `the requested level's register and the requested mode's form.\n\n`;
+
+  const prompt =
+    `Canonical article on **${node.title}** (${trail}) — your ONLY source of facts:\n\n` +
+    `"""\n${masterBody}\n"""\n\n` +
+    `Adapt it into a **${spec.label}**.\n` +
+    `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
+    `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
+    `Level: ${key.level}. ${LEVEL_GUIDE[key.level]} ${LEVEL_LENGTH_GUARD}\n\n` +
+    coverageRule +
+    `Create it now.`;
+
+  const stream = client.messages.stream({
+    model: MODEL,
+    max_tokens: 16000,
+    thinking: { type: "adaptive" },
+    system,
+    messages: [{ role: "user", content: prompt }],
+  });
+  const message = await stream.finalMessage();
+  const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
+
+  return { ...key, body: body || placeholderContent(node, key, trail), generated: true };
+}
+
+const DEPTH_ORDER: Record<Depth, number> = {
+  skim: 0,
+  definition: 1,
+  medium: 2,
+  detailed: 3,
+  research: 4,
+};
 
 // Concatenate the text blocks of a Claude response.
 function textOf(content: { type: string }[]): string {
