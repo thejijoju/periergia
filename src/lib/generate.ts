@@ -13,6 +13,7 @@ import { type Mode, getMode } from "./modes";
 import { getAnthropic, MODEL } from "./anthropic";
 import { getAncestors, getCachedContent, putCachedContent } from "./store";
 import { resolveImageMarkers } from "./images";
+import { fetchWikipediaContext } from "./wikipedia";
 
 // ── Generation core ──────────────────────────────────────────────────────
 // Content, quizzes, and open-answer grading. Each function uses Claude when a
@@ -215,12 +216,27 @@ async function createMasterContent(
       `itself, even if that means running well past the target length: ${node.summary}\n\n`
     : "";
 
+  // Ground the master in the live Wikipedia article: real dates, names, and
+  // figures to verify against, plus material the model's memory may lack. On
+  // any conflict the curated node.summary wins (it carries our own editorial
+  // corrections); a fetch failure just means generating ungrounded.
+  const wiki = await fetchWikipediaContext(node.title);
+  const groundingRule = wiki
+    ? `Reference material — the current English Wikipedia article "${wiki.title}" is included ` +
+      `below. Use it to VERIFY every date, name, number, and sequence of events you write, and ` +
+      `mine it for substance worth covering — but write entirely in your own words and structure ` +
+      `(never copy or lightly paraphrase its sentences; it is CC BY-SA licensed), go beyond it ` +
+      `in depth and narrative quality, and where it conflicts with the required coverage above, ` +
+      `the required coverage wins.\n\n<wikipedia>\n${wiki.extract}\n</wikipedia>\n\n`
+    : "";
+
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
     `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
     `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
     `Level: ${key.level}. ${LEVEL_GUIDE[key.level]} ${LEVEL_LENGTH_GUARD}\n\n` +
     coverageRule +
+    groundingRule +
     `Create it now.`;
 
   // Stream: at this max_tokens the SDK refuses a non-streaming call (it could
