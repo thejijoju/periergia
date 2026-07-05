@@ -30,9 +30,9 @@ const DEPTH_GUIDE: Record<Depth, string> = {
   medium:
     "a clear, self-contained ~700-word explanation a curious learner can follow, organized into 3–4 short headed sections with concrete examples",
   detailed:
-    "a thorough ~1,800-word treatment — a full textbook section with 5–7 headed subsections that cover origins, the core ideas or narrative, concrete examples with real names and dates, causes and consequences, and the nuances and debates. Go deep; do not stop at an overview",
+    "a thorough ~1,800-word-MINIMUM treatment — a full textbook section with 5–7 headed subsections that cover origins, the core ideas or narrative, concrete examples with real names and dates, causes and consequences, and the nuances and debates. Go deep; do not stop at an overview. If the required coverage below is richer than ~1,800 words can hold, run longer rather than cut any of it",
   research:
-    "a rigorous ~3,500-word, doctoral-seminar-grade chapter: the full narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. This should read like a serious chapter, not an article",
+    "a rigorous ~3,500-word-MINIMUM, doctoral-seminar-grade chapter: the full narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. This should read like a serious chapter, not an article. If the required coverage below is richer than ~3,500 words can hold, run longer rather than cut any of it",
 };
 
 const LEVEL_GUIDE: Record<Level, string> = {
@@ -40,6 +40,13 @@ const LEVEL_GUIDE: Record<Level, string> = {
   advanced: "Explain for an advanced student. Assume fundamentals; use correct terminology.",
   expert: "Explain for an expert. Be precise and dense; engage edge cases and debates.",
 };
+// Level changes vocabulary and assumed background ONLY — never length or which
+// facts appear. Only the depth tier above controls how much ground is covered.
+const LEVEL_LENGTH_GUARD =
+  "The level below changes how you explain things — plainer or more technical language, more or " +
+  "fewer worked-through basics — but it must NEVER shorten the article or drop any required " +
+  "coverage. An 'advanced' or 'expert' reader still gets the full depth-tier length and every " +
+  "required fact, just explained with more assumed background and precision, not less content.";
 
 // How each learning mode should render the topic. All modes produce Markdown;
 // visual/immersive modes produce a described storyboard/experience (real image,
@@ -148,12 +155,24 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
     "Never write image markdown or URLs yourself; the system resolves markers to real images.";
 
+  const strictCoverage = key.depth === "detailed" || key.depth === "research";
+  const coverageRule = node.summary
+    ? strictCoverage
+      ? `Required coverage — this is a hard requirement, not a suggestion: you must include ` +
+        `EVERY fact, name, date, quote, and figure below, explained clearly at the chosen level. ` +
+        `Do not stop the narrative early, do not wave at later material with "continues in X", and ` +
+        `do not relegate any of it to "Further exploration" — weave all of it into the article body ` +
+        `itself, even if that means running well past the target length: ${node.summary}\n\n`
+      : `Source material to draw from (compress to the highlights that fit this shorter depth; ` +
+        `never fabricate beyond it, but you don't need to include every detail): ${node.summary}\n\n`
+    : "";
+
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
     `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
     `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
-    `Level: ${key.level}. ${LEVEL_GUIDE[key.level]}\n\n` +
-    `${node.summary ? `Required coverage — you must include all of this, explained clearly (even at the easy level), never omitting any of it: ${node.summary}\n\n` : ""}` +
+    `Level: ${key.level}. ${LEVEL_GUIDE[key.level]} ${LEVEL_LENGTH_GUARD}\n\n` +
+    coverageRule +
     `Create it now.`;
 
   // Stream: at this max_tokens the SDK refuses a non-streaming call (it could
