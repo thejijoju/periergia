@@ -25,8 +25,16 @@ export async function generateMetadata({
   const { subject, node } = await params;
   const n = await getNodeByPath(subject, node);
   if (!n) return { title: "Periergia" };
+  // Summaries double as generation specs (they can contain image markers and
+  // ALL-CAPS instructions like "GIVE …"/"do NOT …"). Strip that machinery so a
+  // clean human sentence reaches the search snippet — cut at the first
+  // instruction sentinel, drop {{image}} markers, and trim to a sentence.
+  const cleanSummary = (n.summary || "")
+    .replace(/\{\{[^}]*\}\}/g, "")
+    .split(/\s(?:GIVE|Place an image|Include an image|Quote from|Then read|Note the chronology|do NOT|Continues in)\b/)[0]
+    .trim();
   const description = (
-    n.summary ||
+    cleanSummary ||
     `${n.title} — read it, listen to it, and test yourself, tuned to your depth and level. Free on Periergia, a living textbook for everything.`
   ).slice(0, 300);
   const url = `${SITE_URL}/learn/${subject}/${n.path.join("/")}`;
