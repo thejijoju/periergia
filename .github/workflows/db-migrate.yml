@@ -28,6 +28,19 @@ jobs:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -f supabase/seed.sql
 
+      # Co-written, human-reviewed articles live as idempotent upserts in
+      # supabase/content/ — version-controlled canon that replays on every
+      # migration, so a database incident can never lose them.
+      - name: Apply human-reviewed content
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          shopt -s nullglob
+          for f in supabase/content/*.sql; do
+            echo "Applying $f"
+            psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -f "$f"
+          done
+
       - name: Report counts
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
