@@ -2,14 +2,22 @@
 -- history/modern-era-19th-century/the-opium-wars @ research/advanced/read.
 -- Applied by the db-migrate workflow after seed.sql; idempotent upsert, so it
 -- also restores the article after any database incident.
+--
+-- Every other depth/level/mode for this node is a cached distillation DERIVED
+-- from this master (see src/lib/generate.ts), so when the master body changes
+-- those rows are stale. The upsert only touches the row when something actually
+-- differs, and the delete below fires only in that case — dropping the derived
+-- caches so the next request re-distills from the updated master. Replaying an
+-- unchanged file is a complete no-op.
 
-insert into content (node_id, depth, level, format, body, generated, reviewed)
-values (
-  'history/modern-era-19th-century/the-opium-wars',
-  'research',
-  'advanced',
-  'read',
-  $opium_master$> **The Opium Wars** were two nineteenth-century conflicts (1839–1842 and 1856–1860) in which Britain, and later France, used military force to compel Qing China to keep its markets — including the market for illegal opium — open to Western trade. They mark the moment when an industrializing Europe broke the political and economic autonomy of the world's largest empire.
+with master as (
+  insert into content (node_id, depth, level, format, body, generated, reviewed)
+  values (
+    'history/modern-era-19th-century/the-opium-wars',
+    'research',
+    'advanced',
+    'read',
+    $opium_master$> **The Opium Wars** were two nineteenth-century conflicts (1839–1842 and 1856–1860) in which Britain, and later France, used military force to compel Qing China to keep its markets — including the market for illegal opium — open to Western trade. They mark the moment when an industrializing Europe broke the political and economic autonomy of the world's largest empire.
 
 ## The Shape of the Problem: Silver, Tea, and a One-Way Trade
 
@@ -65,6 +73,12 @@ The tragedy is that this argument was addressed to a mercantilist empire that me
 
 And there is a final, almost literary irony: the letter almost certainly never reached the Queen. Lin entrusted a version to a merchant ship; the exact fate of the document is uncertain, but there is no evidence Victoria ever read it. It was later published in the Times of London, where it served as a curiosity rather than a summons to conscience. The most eloquent moral appeal of the crisis fell, quite literally, on no royal ears at all.
 
+## The Spark: A Killing at Kowloon and the Question of Jurisdiction
+
+War did not follow the destruction at Humen automatically; it arrived through a chain of escalations in the second half of 1839, and the link that mattered most was legal, not military. In July, drunken British sailors rioting in the village of Tsim Sha Tsui, on the Kowloon shore, beat a local villager named Lin Weixi to death. Commissioner Lin demanded that the culprit be surrendered to Chinese justice — a murderer, under Chinese law, for a murder committed on Chinese soil. Charles Elliot, the British superintendent of trade, refused. He paid compensation to the dead man's family, convened his own makeshift court, and tried six sailors aboard a ship in the harbour; the convictions were later quietly set aside in England, where his improvised tribunal was held to have no jurisdiction at all — leaving the killing of Lin Weixi punished by no court on earth.
+
+The refusal was momentous out of all proportion to the crime. Here, in embryo, was the doctrine of extraterritoriality that would soon be written into the treaties: the claim that British subjects on Chinese soil answered only to British law. To Lin Zexu it was an intolerable confession that the foreigners considered themselves beyond the reach of the very empire whose laws they were already violating by the shipload. He answered by cutting off food supplies to the British community and pressing the Portuguese authorities to expel the British from Macau; the merchants and their families took refuge aboard ships anchored off a thinly peopled island called Hong Kong. In September 1839 Elliot's vessels exchanged fire with war-junks off Kowloon in a skirmish over provisions. In November, at Chuenpi, British warships sank several junks in a confrontation that began, absurdly, with Elliot firing on a British merchantman — he was determined to stop his own countrymen from signing the bond Lin demanded, which would have submitted them to Chinese law and its capital penalties in exchange for resuming trade. By the time London got around to debating the war, the shooting had already begun.
+
 ## The First Opium War, 1839–1842
 
 Lin's blockade and destruction gave the British government the pretext it had, in some quarters, been waiting for. The superintendent of trade, Charles Elliot, had induced the merchants to surrender their opium by promising them Crown compensation — thereby converting a private smuggling loss into a public debt and giving London a fiscal motive to force redress from China. The chief lobbyist for war was the merchant house of Jardine, Matheson & Co., whose principal, William Jardine, supplied the Foreign Secretary Lord Palmerston with maps, intelligence, and a plan of campaign.
@@ -73,7 +87,7 @@ The parliamentary debate of April 1840 is one of the great set pieces of Victori
 
 > "A war more unjust in its origin, a war more calculated in its progress to cover this country with permanent disgrace, I do not know and I have not read of."
 
-The government won the vote 271 to 262 — a majority of just nine; a swing of five members would have reversed it. The war it authorized was less a war than a demonstration of the technological gulf that the Industrial Revolution had opened. The Royal Navy's steam-powered iron gunboat *Nemesis*, drawing little water and mounting pivot guns, could ascend rivers, ignore wind and tide, and shatter Chinese war-junks and shore batteries with impunity. British forces took Chusan, blockaded key ports, and drove up the Yangzi to threaten Nanjing and sever the Grand Canal — the artery carrying tribute grain to Beijing. Qing armies fought with courage in places (the Manchu garrison at Zhenjiang resisted to near annihilation in 1842), but coordination, cannon, and command were generations behind. The court, its lifeline cut, capitulated.
+The government won the vote 271 to 262 — a majority of just nine; a swing of five members would have reversed it. The war it authorized was less a war than a demonstration of the technological gulf that the Industrial Revolution had opened. The Royal Navy's steam-powered iron gunboat *Nemesis*, drawing little water and mounting pivot guns, could ascend rivers, ignore wind and tide, and shatter Chinese war-junks and shore batteries with impunity. British forces took Chusan and blockaded key ports, and in January 1841 Elliot negotiated a preliminary settlement, the Convention of Chuenpi, which ceded Hong Kong Island — and satisfied no one. The Daoguang Emperor had his negotiator, Qishan, hauled back to Beijing in chains for conceding too much; Palmerston recalled Elliot in contempt for accepting too little — "a barren island with hardly a house upon it." Elliot's successor, Sir Henry Pottinger, prosecuted the war to its conclusion, driving up the Yangzi to threaten Nanjing and sever the Grand Canal — the artery carrying tribute grain to Beijing. Qing armies fought with courage in places (the Manchu garrison at Zhenjiang resisted to near annihilation in 1842), but coordination, cannon, and command were generations behind. The court, its lifeline cut, capitulated.
 
 ![The East India Company's iron steamer Nemesis destroying Chinese war-junks in Anson's Bay, January 1841](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/HEIC_Nemesis.jpg/960px-HEIC_Nemesis.jpg)
 
@@ -86,11 +100,14 @@ The Treaty of Nanjing (August 1842), signed aboard HMS Cornwallis, was the first
 - Cession of Hong Kong Island to Britain in perpetuity, giving the empire a fortified base at the mouth of the Pearl River.
 - Opening of five treaty ports — Canton, Amoy (Xiamen), Foochow (Fuzhou), Ningpo (Ningbo), and Shanghai — where British subjects could reside and trade.
 - Abolition of the Cohong monopoly, freeing British merchants to trade with whom they pleased.
+- A "fair and regular" tariff, fixed in the supplementary trade regulations at roughly five per cent — stripping China of the sovereign power to set its own customs duties. Tariff autonomy, once signed away, was not recovered until 1930.
 - An indemnity of \$21 million (silver dollars): \$6 million for the destroyed opium, \$3 million for merchant debts, and \$12 million for the cost of the war — Britain, in effect, billing China for the expense of invading it.
 
 The supplementary Treaty of the Bogue (1843) added the two devices that would most corrode Chinese sovereignty. Extraterritoriality exempted British subjects from Chinese law, placing them under their own consular courts — a foreigner who killed a Chinese subject would be tried by British, not Chinese, authority. And the most-favoured-nation clause guaranteed that any concession China granted to any other power automatically extended to Britain — a ratchet ensuring that every future humiliation compounded. The United States (Treaty of Wanghia, 1844) and France (Treaty of Whampoa, 1844) swiftly secured their own versions.
 
 Crucially, the Treaty of Nanjing said nothing about opium. The drug remained technically illegal, yet the trade now flowed unchecked under the protection of British power. This silence was itself a kind of statement: the war had not been fought to legalize opium, but to force China to abandon any capacity to regulate its own commerce or defend its own laws against British force.
+
+As for Lin Zexu, the one official who had tried to enforce those laws: the court made him the scapegoat for the war his obedience had provoked. Dismissed in disgrace in 1840, he was exiled to Ili, on the Central Asian frontier of Xinjiang, where he served the empire with undimmed diligence — surveying land, organizing irrigation — until his gradual rehabilitation. He died in 1850, en route to a new imperial commission: suppressing the uprising in Guangxi that was about to become the Taiping Rebellion. The man who had staked everything on the principle that a state must be able to enforce its own laws spent his last years watching that principle dismantled, and posthumously became the incorruptible hero of the national story that grew from its ruins.
 
 ## The Second Opium War, 1856–1860
 
@@ -98,7 +115,9 @@ The first war did not resolve the underlying tensions; it institutionalized them
 
 The Second Opium War (also the Arrow War) unfolded against the backdrop of two other cataclysms that reveal how far the Qing had been driven toward collapse. The Taiping Rebellion (1850–1864), a millenarian civil war whose leader claimed to be the younger brother of Jesus Christ, was devastating the Yangzi heartland and would kill perhaps twenty million people — a convulsion whose roots lay partly in the very social and fiscal breakdown the opium economy had accelerated. Meanwhile Russia, exploiting Qing weakness, extracted vast Amur territories through the treaties of Aigun (1858) and Peking (1860). China was being dismembered on multiple fronts at once.
 
-The Anglo-French campaign captured Canton, then moved north. The Treaties of Tianjin (1858) opened eleven more ports, permitted foreign navigation of the Yangzi and travel in the interior, guaranteed toleration of Christian missionaries, extracted fresh indemnities, and — decisively — legalized the opium trade at last. When the Qing court resisted ratification and Chinese forts fired on an allied fleet at the Taku (Dagu) forts, the war resumed with greater violence.
+The Anglo-French campaign captured Canton, then moved north. The Treaties of Tianjin (1858) opened eleven more ports, permitted foreign navigation of the Yangzi and travel in the interior, guaranteed toleration of Christian missionaries, extracted fresh indemnities, and — decisively — legalized the opium trade at last.
+
+When the Qing court resisted ratification, the allies attempted in June 1859 to force the Peiho River route to Beijing — and suffered the one unambiguous Chinese victory of the entire opium-war era. At the Taku (Dagu) forts, rebuilt and rearmed under the Mongol general Sengge Rinchen, Qing gunners sank or disabled four British gunboats and shredded a landing party in the mudflats, inflicting hundreds of casualties; a watching American commodore, Josiah Tattnall, abandoned his country's neutrality to tow British marines into the fight, explaining afterwards that "blood is thicker than water." The victory proved a poisoned one. It stung the allies into returning in 1860 with an expedition of some 18,000 British and French troops, who took the forts from the landward side, and the road to Beijing lay open. The war resumed with greater violence.
 
 ### The Burning of the Old Summer Palace
 
@@ -150,8 +169,16 @@ This is why the wars are not a settled matter of antiquarian interest but a livi
 - **Victor Hugo, "Letter to Captain Butler" (1861).** A brief, blazing condemnation of the burning of the Yuanmingyuan; the conscience of Europe turned against its own empires.
 
 The story continues in *Modern China*, where the treaty-port order, the collapse of the Qing, and the forging of Chinese nationalism carry the consequences of the opium century into the twentieth.$opium_master$,
-  true,
-  true
+    true,
+    true
+  )
+  on conflict (node_id, depth, level, format) do update
+    set body = excluded.body, generated = excluded.generated, reviewed = excluded.reviewed
+    where content.body is distinct from excluded.body
+       or content.generated is distinct from excluded.generated
+       or content.reviewed is distinct from excluded.reviewed
+  returning node_id
 )
-on conflict (node_id, depth, level, format) do update
-  set body = excluded.body, generated = true, reviewed = true;
+delete from content
+where node_id in (select node_id from master)
+  and not (depth = 'research' and level = 'advanced' and format = 'read');
