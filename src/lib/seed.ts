@@ -1504,6 +1504,15 @@ export const SUBJECTS: SubjectSpec[] = [
     "description": "",
     "tree": [
       {
+        "title": "Introduction",
+        "children": [
+          {
+            "title": "Interest Rates",
+            "summary": "What an interest rate is and the three equivalent ways to interpret it. An interest rate, r, reflects the relationship between differently dated cash flows — the price that links money today to money in the future (if 9,500 today and 10,000 in one year are equally attractive, the implied rate is 500/9,500 ≈ 5.26%). The three interpretations, each the same number read from a different angle: (1) a required rate of return — the minimum return an investor demands to postpone consumption and accept an investment; (2) a discount rate — the rate used to translate a future cash flow into its equivalent value today, which is why 'interest rate' and 'discount rate' are often used interchangeably; and (3) an opportunity cost — the value forgone by choosing one use of money over another, e.g., what a saver gives up by consuming now rather than saving and investing."
+          }
+        ]
+      },
+      {
         "title": "Microeconomics",
         "children": [
           {
@@ -1688,10 +1697,6 @@ export const SUBJECTS: SubjectSpec[] = [
                 "title": "Fiscal Policy Tools and Implementation"
               }
             ]
-          },
-          {
-            "title": "Interest Rates",
-            "summary": "What an interest rate is and the three equivalent ways to interpret it. An interest rate, r, reflects the relationship between differently dated cash flows — the price that links money today to money in the future (if 9,500 today and 10,000 in one year are equally attractive, the implied rate is 500/9,500 ≈ 5.26%). The three interpretations, each the same number read from a different angle: (1) a required rate of return — the minimum return an investor demands to postpone consumption and accept an investment; (2) a discount rate — the rate used to translate a future cash flow into its equivalent value today, which is why 'interest rate' and 'discount rate' are often used interchangeably; and (3) an opportunity cost — the value forgone by choosing one use of money over another, e.g., what a saver gives up by consuming now rather than saving and investing."
           },
           {
             "title": "stabilization policies & their limits"
