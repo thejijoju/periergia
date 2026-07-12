@@ -7,7 +7,11 @@ import { MODES, type Mode } from "./modes";
 // Browser-saved progress + reader preferences. No accounts in v1 — everything
 // lives in localStorage. Swappable for Supabase Auth + a `progress` table later.
 
-const KEY = "periergia.v1";
+const KEY = "periergia.v2";
+// Previous key. The default reading prefs changed (deep-by-default), so on
+// migration we keep the reader's progress but re-adopt the new default prefs
+// instead of carrying the old medium/easy choice forward.
+const LEGACY_KEY = "periergia.v1";
 
 interface ProgressState {
   visited: string[]; // node ids opened
@@ -18,14 +22,29 @@ interface ProgressState {
 const DEFAULT: ProgressState = {
   visited: [],
   completed: [],
-  prefs: { depth: "medium", level: "easy", mode: "read" },
+  // Open at the deep, human-validated master version by default (masters are
+  // authored at research/advanced). Simpler/shorter variants are one click away.
+  prefs: { depth: "research", level: "advanced", mode: "read" },
 };
 
 function load(): ProgressState {
   if (typeof window === "undefined") return DEFAULT;
   try {
     const raw = window.localStorage.getItem(KEY);
-    if (!raw) return DEFAULT;
+    if (!raw) {
+      // One-time migration from the previous key: keep the reader's progress,
+      // but adopt the new deep-by-default prefs rather than the old ones.
+      const legacy = window.localStorage.getItem(LEGACY_KEY);
+      if (legacy) {
+        const old = JSON.parse(legacy) as Partial<ProgressState>;
+        return {
+          visited: old.visited ?? [],
+          completed: old.completed ?? [],
+          prefs: DEFAULT.prefs,
+        };
+      }
+      return DEFAULT;
+    }
     const parsed = JSON.parse(raw) as Partial<ProgressState> & {
       prefs?: Partial<ProgressState["prefs"]> & { format?: string };
     };
