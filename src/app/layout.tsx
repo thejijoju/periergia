@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Spectral } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 // Inter drives the modern, "younger" UI (Medium-like). Spectral stays available
 // for long-form reading in the reader.
@@ -38,7 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

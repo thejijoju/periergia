@@ -2,7 +2,7 @@
   "name": "periergia",
   "version": "0.1.0",
   "private": true,
-  "description": "Periergia \u2014 a living textbook for everything. Read, listen, and test yourself on any subject.",
+  "description": "Periergia — a living textbook for everything. Read, listen, and test yourself on any subject.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,6 +14,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.107.0",
     "@supabase/supabase-js": "^2.109.0",
+    "@vercel/analytics": "^2.0.1",
     "katex": "^0.17.0",
     "lucide-react": "^1.23.0",
     "next": "^15.1.6",
