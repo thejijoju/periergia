@@ -111,32 +111,69 @@ export function QuizPanel({
               </p>
 
               {q.type === "mcq" && q.options && (
-                <div className="space-y-2">
-                  {q.options.map((opt, oi) => {
-                    const chosen = picks[q.id] === oi;
-                    const reveal = submitted;
-                    const correct = oi === q.answerIndex;
-                    const tone = reveal
-                      ? correct
-                        ? "border-maroon bg-[#faf3f0]"
-                        : chosen
-                          ? "border-line opacity-60 line-through"
-                          : "border-line"
-                      : chosen
-                        ? "border-ink"
-                        : "border-line hover:border-ink";
-                    return (
-                      <button
-                        key={oi}
-                        disabled={submitted}
-                        onClick={() => setPicks((p) => ({ ...p, [q.id]: oi }))}
-                        className={`block w-full text-left font-sans text-[14px] px-4 py-2 rounded-xl border ${tone} transition-colors`}
-                      >
-                        {opt}
-                      </button>
-                    );
-                  })}
-                </div>
+                <>
+                  <div className="space-y-2">
+                    {q.options.map((opt, oi) => {
+                      const chosen = picks[q.id] === oi;
+                      const isCorrect = oi === q.answerIndex;
+                      // After submit, every state pairs an explicit text colour
+                      // with its background so nothing is ever light-on-light.
+                      let tone: string;
+                      let badge: string | null = null;
+                      if (!submitted) {
+                        tone = chosen
+                          ? "border-ink text-ink"
+                          : "border-line text-ink hover:border-ink";
+                      } else if (isCorrect) {
+                        tone =
+                          "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-text)] font-medium";
+                        badge = "Correct answer";
+                      } else if (chosen) {
+                        tone =
+                          "border-[var(--bad-border)] bg-[var(--bad-bg)] text-[var(--bad-text)]";
+                        badge = "Your answer";
+                      } else {
+                        tone = "border-line text-faint";
+                      }
+                      return (
+                        <button
+                          key={oi}
+                          disabled={submitted}
+                          onClick={() => setPicks((p) => ({ ...p, [q.id]: oi }))}
+                          className={`flex w-full items-center gap-3 text-left font-sans text-[14px] px-4 py-2 rounded-xl border ${tone} transition-colors disabled:cursor-default`}
+                        >
+                          <span className="flex-1">{opt}</span>
+                          {badge && (
+                            <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.1em]">
+                              {badge}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {submitted && (
+                    <div className="mt-2.5">
+                      {picks[q.id] === q.answerIndex ? (
+                        <p className="font-sans text-[13px] font-semibold text-[var(--ok-text)]">
+                          ✓ Correct
+                        </p>
+                      ) : (
+                        <p className="font-sans text-[13px] font-semibold text-[var(--bad-text)]">
+                          ✗ Wrong answer
+                          {picks[q.id] === undefined ? " — nothing selected" : ""} · the
+                          correct choice is highlighted above
+                        </p>
+                      )}
+                      {q.explanation && (
+                        <p className="mt-1 font-sans text-[13px] leading-relaxed text-muted">
+                          {q.explanation}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </>
               )}
 
               {q.type === "open" && (
@@ -147,17 +184,25 @@ export function QuizPanel({
                     disabled={submitted}
                     rows={3}
                     placeholder="Write your answer…"
-                    className="w-full font-sans text-[14px] border border-line rounded-xl px-4 py-3 outline-none focus:border-ink disabled:opacity-70"
+                    className="w-full font-sans text-[14px] text-ink bg-page border border-line rounded-xl px-4 py-3 outline-none focus:border-ink disabled:opacity-100"
                   />
                   {submitted && grades[q.id] && !grades[q.id].loading && (
-                    <p
-                      className={`mt-2 font-sans text-[13px] ${
-                        grades[q.id].correct ? "text-maroon" : "text-muted"
-                      }`}
-                    >
-                      {grades[q.id].correct ? "✓ " : "→ "}
-                      {grades[q.id].feedback}
-                    </p>
+                    <div className="mt-2">
+                      <p
+                        className={`font-sans text-[13px] font-semibold ${
+                          grades[q.id].correct
+                            ? "text-[var(--ok-text)]"
+                            : "text-[var(--bad-text)]"
+                        }`}
+                      >
+                        {grades[q.id].correct ? "✓ Correct" : "✗ Not quite"}
+                      </p>
+                      {grades[q.id].feedback && (
+                        <p className="mt-1 font-sans text-[13px] leading-relaxed text-muted">
+                          {grades[q.id].feedback}
+                        </p>
+                      )}
+                    </div>
                   )}
                   {submitted && grades[q.id]?.loading && (
                     <p className="mt-2 font-sans italic text-[13px] text-faint">Grading…</p>
