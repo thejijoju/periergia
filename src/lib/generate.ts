@@ -141,21 +141,51 @@ const DEFINITION_CALLOUT_RULE =
   "requested content. (For song lyrics, still open with this one-line definition blockquote " +
   "before the lyrics.)\n\n";
 
-const IMAGE_RULE =
-  "Illustrate EVERY article with real images: at 2 to 4 natural points, insert an image marker " +
-  "ALONE on its own line, in the form {{image: <exact English Wikipedia article title> | <one-line caption>}} " +
-  "— e.g. {{image: Standard of Ur | The Standard of Ur (c. 2600 BCE), war and peace panels in shell and lapis lazuli}}. " +
-  "The title must be a real English Wikipedia article about a concrete, photographable subject " +
-  "central to the topic — an artifact, person, building, artwork, map, or place — whose article " +
-  "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
-  "Abstract or quantitative subjects (economics, finance, mathematics, law, philosophy) are NOT " +
-  "an exception — every article still needs its 2–4 images. Reach for the concrete people, " +
-  "places, institutions, artifacts, and events behind the idea: portraits of the key economists " +
-  "or thinkers (e.g. John Maynard Keynes, Milton Friedman, Irving Fisher), the institutions and " +
-  "places (a central bank building, a stock exchange floor, the Bretton Woods hotel), physical " +
-  "artifacts (banknotes, coins, a bond certificate, a ledger), and the real episodes the concept " +
-  "explains (a bank run, the 1929 crash, Weimar hyperinflation). " +
-  "Never write image markdown or URLs yourself; the system resolves markers to real images.";
+// Image density is subject-aware. Most subjects illustrate a narrative with
+// 2–4 images; content-dense subjects (economics) are carried by the ideas, not
+// a visual storyline, so they cap at 2.
+const IMAGE_LIGHT_SUBJECTS = new Set(["economics"]);
+const MAX_IMAGES_LIGHT = 2;
+
+function imageRule(node: Node): string {
+  const light = IMAGE_LIGHT_SUBJECTS.has(node.subjectSlug);
+  const density = light
+    ? `insert AT MOST ${MAX_IMAGES_LIGHT} image markers — this is a content-dense subject carried ` +
+      "by its ideas, not a visual storyline, so use images sparingly (aim for one or two) and only " +
+      "where a picture genuinely clarifies a concept"
+    : "at 2 to 4 natural points, insert an image marker";
+  const guidance = light
+    ? "When you do include an image, reach for the concrete people, institutions, artifacts, and " +
+      "events behind the idea — a portrait of a key economist (e.g. John Maynard Keynes, Milton " +
+      "Friedman, Irving Fisher), a central bank or stock exchange, a banknote or bond certificate, " +
+      "a famous episode (a bank run, the 1929 crash, Weimar hyperinflation) — never an abstract " +
+      "diagram of the concept itself. "
+    : "Abstract or quantitative subjects (finance, mathematics, law, philosophy) are NOT an " +
+      "exception — every article still needs its 2–4 images. Reach for the concrete people, places, " +
+      "institutions, artifacts, and events behind the idea: portraits of key thinkers, the " +
+      "institutions and places, physical artifacts, and the real episodes the concept explains. ";
+  return (
+    "Illustrate the article with real images: " +
+    density +
+    ", each ALONE on its own line, in the form {{image: <exact English Wikipedia article title> | <one-line caption>}} " +
+    "— e.g. {{image: Standard of Ur | The Standard of Ur (c. 2600 BCE), war and peace panels in shell and lapis lazuli}}. " +
+    "The title must be a real English Wikipedia article about a concrete, photographable subject " +
+    "central to the topic — an artifact, person, building, artwork, map, or place — whose article " +
+    "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
+    guidance +
+    "Never write image markdown or URLs yourself; the system resolves markers to real images."
+  );
+}
+
+// Belt-and-suspenders: strip any image markers beyond `max` so a content-dense
+// subject can never exceed its cap even if the model over-illustrates.
+function capImageMarkers(body: string, max: number): string {
+  let n = 0;
+  return body.replace(
+    /^[ \t]*\{\{\s*image:[^{}\n]*\}\}[ \t]*$/gm,
+    (marker) => (++n <= max ? marker : ""),
+  );
+}
 
 export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
   const trail = await nodeContext(node);
@@ -213,7 +243,7 @@ async function createMasterContent(
     "images that invite the reader deeper — each named precisely (author, title, year) with one " +
     "line on why it's worth their time. Name only real, verifiable works; never fabricate " +
     "citations, quotations, or URLs — omit rather than invent.\n\n" +
-    IMAGE_RULE;
+    imageRule(node);
 
   const coverageRule = node.summary
     ? `Required coverage — this is a hard requirement, not a suggestion: you must include ` +
@@ -257,7 +287,9 @@ async function createMasterContent(
     messages: [{ role: "user", content: prompt }],
   });
   const message = await stream.finalMessage();
-  const body = await resolveImageMarkers(textOf(message.content).trim(), node.title);
+  let raw = textOf(message.content).trim();
+  if (IMAGE_LIGHT_SUBJECTS.has(node.subjectSlug)) raw = capImageMarkers(raw, MAX_IMAGES_LIGHT);
+  const body = await resolveImageMarkers(raw, node.title);
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true, reviewed: false };
 }
@@ -301,7 +333,7 @@ async function distillContent(
     "only. No preamble, no meta-commentary, no closing summary.\n\n" +
     mathRule(node) +
     DEFINITION_CALLOUT_RULE +
-    (wantsImages ? IMAGE_RULE : "Do NOT include any images or image markers in this short entry.\n\n") +
+    (wantsImages ? imageRule(node) : "Do NOT include any images or image markers in this short entry.\n\n") +
     briefRule;
 
   const shorter = DEPTH_ORDER[key.depth] < DEPTH_ORDER[MASTER_DEPTH];
@@ -333,10 +365,11 @@ async function distillContent(
   // Short depths get no images at all — pass no topicTitle so the "at least one
   // image" fallback in resolveImageMarkers doesn't splice a lead image into a
   // 2–3 sentence skim or a one-paragraph definition.
-  const body = await resolveImageMarkers(
-    textOf(message.content).trim(),
-    wantsImages ? node.title : undefined,
-  );
+  let raw = textOf(message.content).trim();
+  if (wantsImages && IMAGE_LIGHT_SUBJECTS.has(node.subjectSlug)) {
+    raw = capImageMarkers(raw, MAX_IMAGES_LIGHT);
+  }
+  const body = await resolveImageMarkers(raw, wantsImages ? node.title : undefined);
 
   return { ...key, body: body || placeholderContent(node, key, trail), generated: true, reviewed: false };
 }
