@@ -97,7 +97,7 @@ $$FV = PV\,e^{rn}$$
 
 ---
 
-An interest rate is the price of money over *time*. What an investment actually *earns* — and how that return is measured — is the subject of a companion topic, **Rates of Return**. (A required rate of return, after all, is itself a rate — which is where the two meet.)$ir_master$,
+An interest rate is the price of money over *time*. What an investment actually *earns* — and how that return is measured — is the subject of a companion topic, [**Rates of Return**](/learn/economics/introduction/rates-of-return). (A required rate of return, after all, is itself a rate — which is where the two meet.)$ir_master$,
     true,
     true
   )

@@ -202,6 +202,78 @@ body {
   font-size: 1.18em;
 }
 
+/* Interactive "Your turn" practice box — poses a randomized problem, reveals a
+   full worked solution, regenerates infinitely. A maroon accent distinguishes it
+   from the definition callout (purple) and the formula box (quote ground). */
+.prose-reading .worked-example {
+  margin: 1.9em 0;
+  padding: 1.1em 1.25em;
+  background: var(--callout-bg);
+  border: 1px solid var(--quote-border);
+  border-left: 3px solid var(--c-maroon);
+  border-radius: 12px;
+}
+.prose-reading .worked-example .we-head {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-maroon);
+  margin-bottom: 0.55em;
+}
+.prose-reading .worked-example .we-q {
+  margin: 0 0 0.3em;
+  color: var(--prose-heading);
+  font-weight: 500;
+}
+.prose-reading .worked-example .we-step {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* Neutralize the global formula-box styling on equations INSIDE this box —
+   they're already inside the practice callout, so no nested box. */
+.prose-reading .worked-example .we-step .katex-display {
+  margin: 0.35em 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+.prose-reading .worked-example .we-note {
+  margin: 0.7em 0 0;
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+.prose-reading .worked-example .we-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 0.9em;
+}
+.prose-reading .worked-example .we-actions button {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 12.5px;
+  padding: 0.42em 0.95em;
+  border-radius: 999px;
+  border: 1px solid var(--c-maroon);
+  color: var(--c-maroon);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.prose-reading .worked-example .we-actions button:hover {
+  background: var(--c-maroon);
+  color: var(--c-page);
+}
+.prose-reading .worked-example .we-actions button.we-secondary {
+  border-color: var(--quote-border);
+  color: var(--c-muted);
+}
+.prose-reading .worked-example .we-actions button.we-secondary:hover {
+  background: var(--quote-border);
+  color: var(--prose-heading);
+}
+
 /* Thin scholarly scrollbars */
 * {
   scrollbar-width: thin;

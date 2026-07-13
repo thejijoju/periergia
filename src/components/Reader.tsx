@@ -13,6 +13,7 @@ import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
 import { VoiceButton } from "./VoiceButton";
 import { QuizPanel } from "./QuizPanel";
+import { WorkedExample } from "./WorkedExample";
 
 export interface Crumb {
   label: string;
@@ -241,6 +242,23 @@ export function Reader({
               components={{
                 h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
                 h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
+                // A fenced ```example block becomes an interactive "Your turn"
+                // practice box. We intercept at the <pre> so the surrounding
+                // <pre><code> code styling never wraps the widget.
+                pre: ({ children }) => {
+                  const child = Array.isArray(children) ? children[0] : children;
+                  const cls =
+                    child && typeof child === "object" && "props" in child
+                      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        ((child as any).props?.className ?? "")
+                      : "";
+                  if (typeof cls === "string" && /language-example\b/.test(cls)) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const spec = extractText((child as any).props?.children).trim();
+                    return <WorkedExample spec={spec} />;
+                  }
+                  return <pre>{children}</pre>;
+                },
               }}
             >
               {normalizeMath(body)}
