@@ -1509,6 +1509,10 @@ export const SUBJECTS: SubjectSpec[] = [
           {
             "title": "Interest Rates*",
             "summary": "The price that links money today to money in the future — read as a required return, a discount rate, or an opportunity cost, and built from a real risk-free rate plus premiums for inflation, default, liquidity, and maturity risk."
+          },
+          {
+            "title": "Rates of Return*",
+            "summary": "What an investment actually earns — income plus price change — and how to measure it: holding-period return, the arithmetic, geometric, and harmonic means, time- versus money-weighted return, and what's left after fees, taxes, inflation, and leverage."
           }
         ]
       },
