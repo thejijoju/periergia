@@ -30,6 +30,14 @@
   --quote-text: #cfc7dd;
   --callout-bg: #241f33;
   --scrollbar: #3a3340;
+
+  /* Quiz feedback — a light-on-dark pair, readable on the dark ground */
+  --ok-bg: #16271d;
+  --ok-border: #2e5b40;
+  --ok-text: #6ee7a0;
+  --bad-bg: #2a1a1d;
+  --bad-border: #6d3238;
+  --bad-text: #f1a3a3;
 }
 
 [data-theme="light"] {
@@ -56,6 +64,14 @@
   --quote-text: #2b2620;
   --callout-bg: #f3effb;
   --scrollbar: #d8cfbf;
+
+  /* Quiz feedback — a dark-on-light pair, readable on the light ground */
+  --ok-bg: #eafbf1;
+  --ok-border: #b7e6c9;
+  --ok-text: #147a45;
+  --bad-bg: #fdecec;
+  --bad-border: #f2c9c9;
+  --bad-text: #b42318;
 }
 
 html,

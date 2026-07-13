@@ -66,6 +66,7 @@ export interface QuizQuestion {
   prompt: string;
   options?: string[]; // mcq only
   answerIndex?: number; // mcq only
+  explanation?: string; // mcq only — why the answer is right, shown after submit
   rubric?: string; // open only — what a correct answer must contain
 }
 
