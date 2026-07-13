@@ -177,7 +177,11 @@ export function Reader({
       {/* Title with the inline learning-mode rail beside it */}
       <div className="mt-4 flex items-start gap-x-3 gap-y-1 flex-wrap">
         <h1 className="font-sans font-bold text-[32px] leading-[1.12] tracking-[-0.02em] text-ink">
-          {node.title}
+          {/* Strip any literal trailing "*" from the title: the reviewed marker
+              below is the single, styled source of the asterisk on the heading
+              (the seed "*" still flags the topic in the tree, which has no
+              reviewed signal of its own). */}
+          {node.title.replace(/\s*\*+$/, "")}
           {reviewed && (
             <span
               title="This article has been reviewed by a human"
