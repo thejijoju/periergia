@@ -21,11 +21,15 @@ with master as (
     'read',
     $ir_master$> **Interest rate (r)** — the price that links money today to money in the future; a rate of return that makes cash flows on different dates comparable.
 
+## What is an interest rate? The time value of money
+
 The **time value of money** is the idea that a sum of cash is worth different amounts depending on *when* it arrives: money in hand today is worth more than the same money promised later, because it can be put to work in the meantime. To compare financial instruments whose cash flows fall on different dates, we therefore need one consistent rate that converts between "now" and "later." That rate is the interest rate (or yield), written r.
 
 Suppose someone is genuinely indifferent between receiving \$2,000 today and \$2,120 a year from now. The \$120 difference is the compensation they require for waiting, and expressing it as a rate of return on the \$2,000 given up gives the interest rate:
 
 $$\$2{,}120 - \$2{,}000 = \$120 \qquad\Longrightarrow\qquad r = \frac{\$120}{\$2{,}000} = 0.06 = 6\%$$
+
+### Required return, discount rate, or opportunity cost
 
 The same number can be read three ways:
 
@@ -33,7 +37,7 @@ The same number can be read three ways:
 2. **A discount rate** — the rate that pulls a future amount back to its value today. Here, 6% is the rate at which \$2,120 a year out is equivalent to \$2,000 now — which is why "interest rate" and "discount rate" are used almost interchangeably.
 3. **An opportunity cost** — the value given up by choosing one course of action over another. Had the person who put up the \$2,000 spent it today instead, they would have surrendered the 6% they could have earned by saving — so 6% is the opportunity cost of consuming now.
 
-## What a rate is made of
+## What an interest rate is made of: risk premiums
 
 In a market, interest rates are set where **supply meets demand** — investors supplying funds, borrowers bidding for their use — and the rate that clears the market is the price of that borrowing. Seen from the investor's side, that rate can be *built up* from parts.
 
@@ -55,6 +59,8 @@ The longer a bond still has to run, the more its price reacts to a change in int
 
 $$r = \text{(real risk-free rate)} + \text{(inflation + default + liquidity + maturity premiums)}$$
 
+## The nominal risk-free rate
+
 Bundle just the first two and you get the **nominal risk-free rate** — the rate quoted on safe, short-term government debt:
 
 $$\text{Nominal risk-free rate} = \text{Real risk-free rate} + \text{Inflation premium}$$
@@ -69,9 +75,11 @@ In practice, a country's short-term government debt stands in for *the* nominal 
 
 One reading convention matters throughout: interest rates are quoted in *annual* terms. A 90-day bill quoted at 3.8% is stating an **annualized** rate — the return actually earned over those 90 days is only about a quarter of it (roughly 0.9%), not 3.8%.
 
+## Why interest rates change
+
 Whichever lens you use — required return, discount rate, or opportunity cost — the number resolves to the same thing: a real risk-free rate plus premia (inflation, default, liquidity, maturity) sized to the particular cash flows. And none of those building blocks stands still. The real risk-free rate drifts and every premium shifts as expectations change, so interest rates are in constant motion. How far a given rate moves depends on the economic fundamentals beneath it — and just as much on how markets *expect* those fundamentals to change.
 
-## Compounding more often than once a year
+## Compound interest: compounding more than once a year
 
 Interest doesn't only accrue annually — it can be paid or charged quarterly, monthly, even daily. When it compounds more often than once a year, you can't drop the annual rate straight into a present- or future-value calculation. You scale the rate *down* to the length of a single compounding period and scale the *number* of periods *up* to match, so the two stay consistent.
 
