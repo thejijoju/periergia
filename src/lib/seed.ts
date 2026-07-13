@@ -1508,7 +1508,7 @@ export const SUBJECTS: SubjectSpec[] = [
         "children": [
           {
             "title": "Interest Rates*",
-            "summary": "An interest rate (or yield), written r, expresses how money at one date relates in value to money at another. Because a dollar in hand today is worth more than a promised dollar later, we need one consistent rate to compare cash flows that arrive at different times. Imagine someone is equally content receiving $2,000 now or $2,120 a year from now: the $120 gap is the reward they require for waiting, and dividing it by the $2,000 they give up today gives a rate of 120/2,000 = 6%. The same number can be read three ways. (1) As a required rate of return — the least an investor will accept to part with money now and hold the investment. (2) As a discount rate — the rate that shrinks a future amount back to its present value; here 6% is the rate at which $2,120 next year is worth $2,000 today, which is why 'interest rate' and 'discount rate' are used almost interchangeably. (3) As an opportunity cost — what you forgo by choosing one use of money over another; a saver who instead spent the $2,000 today gives up the 6% they could have earned, so 6% is the opportunity cost of consuming now."
+            "summary": "The price that links money today to money in the future — read as a required return, a discount rate, or an opportunity cost, and built from a real risk-free rate plus premiums for inflation, default, liquidity, and maturity risk."
           }
         ]
       },
