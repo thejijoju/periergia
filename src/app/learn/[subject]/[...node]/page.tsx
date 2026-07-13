@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
+import { SectionLanding } from "@/components/SectionLanding";
 import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
 import { HeaderSearch } from "@/components/HeaderSearch";
 import { OnThisPage } from "@/components/OnThisPage";
@@ -18,6 +19,18 @@ import {
 } from "@/lib/store";
 import { SITE_URL } from "@/lib/site";
 
+// Summaries double as generation specs — they can carry {{image}} markers and
+// ALL-CAPS instruction sentinels. Strip that machinery so a clean human
+// sentence reaches search snippets and section-landing cards.
+function cleanNodeSummary(summary: string | null | undefined): string {
+  return (summary || "")
+    .replace(/\{\{[^}]*\}\}/g, "")
+    .split(
+      /\s(?:GIVE|Place an image|Include an image|Quote from|Then read|Note the chronology|do NOT|Continues in)\b/,
+    )[0]
+    .trim();
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -30,12 +43,8 @@ export async function generateMetadata({
   // ALL-CAPS instructions like "GIVE …"/"do NOT …"). Strip that machinery so a
   // clean human sentence reaches the search snippet — cut at the first
   // instruction sentinel, drop {{image}} markers, and trim to a sentence.
-  const cleanSummary = (n.summary || "")
-    .replace(/\{\{[^}]*\}\}/g, "")
-    .split(/\s(?:GIVE|Place an image|Include an image|Quote from|Then read|Note the chronology|do NOT|Continues in)\b/)[0]
-    .trim();
   const description = (
-    cleanSummary ||
+    cleanNodeSummary(n.summary) ||
     `${n.title} — read it, listen to it, and test yourself, tuned to your depth and level. Free on Periergia, a living textbook for everything.`
   ).slice(0, 300);
   const url = `${SITE_URL}/learn/${subject}/${n.path.join("/")}`;
@@ -86,6 +95,14 @@ export default async function ReaderPage({
       }));
   const items = childrenOf(null);
 
+  // A node with children is a *section* (e.g. an "Introduction" chapter), not a
+  // topic — show a landing that lists its topics rather than generating an
+  // article that would try to "define" the section's title.
+  const sectionChildren = subjectNodes
+    .filter((n) => n.parentId === node.id)
+    .sort((a, b) => a.position - b.position);
+  const isSection = sectionChildren.length > 0;
+
   // Breadcrumb: subject → ancestors → current (current has no href).
   const ancestors = await getAncestors(node); // includes self as last element
   const crumbs: Crumb[] = [
@@ -117,18 +134,20 @@ export default async function ReaderPage({
   let initialDepth: (typeof DEPTH_PREFERENCE)[number] | undefined;
   let initialLevel: "advanced" | "easy" | "expert" | undefined;
   let initialReviewed = false;
-  for (const depth of DEPTH_PREFERENCE) {
-    for (const level of ["advanced", "easy", "expert"] as const) {
-      const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
-      if (cached?.generated) {
-        initialBody = cached.body;
-        initialDepth = depth;
-        initialLevel = level;
-        initialReviewed = cached.reviewed;
-        break;
+  if (!isSection) {
+    for (const depth of DEPTH_PREFERENCE) {
+      for (const level of ["advanced", "easy", "expert"] as const) {
+        const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
+        if (cached?.generated) {
+          initialBody = cached.body;
+          initialDepth = depth;
+          initialLevel = level;
+          initialReviewed = cached.reviewed;
+          break;
+        }
       }
+      if (initialBody) break;
     }
-    if (initialBody) break;
   }
 
   const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
@@ -187,13 +206,25 @@ export default async function ReaderPage({
 
         {/* Center */}
         <div className="min-w-0">
-          <Reader
-            node={readerNode}
-            initialBody={initialBody}
-            initialDepth={initialDepth}
-            initialLevel={initialLevel}
-            initialReviewed={initialReviewed}
-          />
+          {isSection ? (
+            <SectionLanding
+              title={node.title}
+              subjectName={subj.name}
+              items={sectionChildren.map((c) => ({
+                title: c.title,
+                href: `/learn/${subj.slug}/${c.path.join("/")}`,
+                summary: cleanNodeSummary(c.summary),
+              }))}
+            />
+          ) : (
+            <Reader
+              node={readerNode}
+              initialBody={initialBody}
+              initialDepth={initialDepth}
+              initialLevel={initialLevel}
+              initialReviewed={initialReviewed}
+            />
+          )}
         </div>
 
         {/* Right rail — "on this page" scroll-spy outline */}

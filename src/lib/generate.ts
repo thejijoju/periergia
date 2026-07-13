@@ -148,6 +148,13 @@ const IMAGE_RULE =
   "The title must be a real English Wikipedia article about a concrete, photographable subject " +
   "central to the topic — an artifact, person, building, artwork, map, or place — whose article " +
   "will carry a good lead image (prefer specific artifacts and people over abstract concepts). " +
+  "Abstract or quantitative subjects (economics, finance, mathematics, law, philosophy) are NOT " +
+  "an exception — every article still needs its 2–4 images. Reach for the concrete people, " +
+  "places, institutions, artifacts, and events behind the idea: portraits of the key economists " +
+  "or thinkers (e.g. John Maynard Keynes, Milton Friedman, Irving Fisher), the institutions and " +
+  "places (a central bank building, a stock exchange floor, the Bretton Woods hotel), physical " +
+  "artifacts (banknotes, coins, a bond certificate, a ledger), and the real episodes the concept " +
+  "explains (a bank run, the 1929 crash, Weimar hyperinflation). " +
   "Never write image markdown or URLs yourself; the system resolves markers to real images.";
 
 export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
