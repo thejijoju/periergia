@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 interface Item {
   id: string;
   title: string;
+  level: number; // 2 = section (h2), 3 = subsection (h3, indented)
 }
 
 // Right-rail table of contents for the current entry. Reads the section
-// headings straight from the rendered article (#reader-content h2[id]),
+// headings straight from the rendered article (#reader-content h2/h3[id]),
 // rebuilds when the content changes, and highlights the section you're on
-// (violet) as you scroll — like the FlutterFlow docs outline.
+// (violet) as you scroll — like the FlutterFlow docs outline. Subsections
+// (h3) are indented under their section so the outline mirrors the article.
 export function OnThisPage() {
   const [items, setItems] = useState<Item[]>([]);
   const [active, setActive] = useState<string>("");
@@ -20,8 +22,16 @@ export function OnThisPage() {
     let contentMo: MutationObserver | null = null;
 
     const build = (root: HTMLElement) => {
-      const hs = Array.from(root.querySelectorAll<HTMLElement>("h2[id]"));
-      setItems(hs.map((h) => ({ id: h.id, title: h.textContent ?? "" })));
+      const hs = Array.from(
+        root.querySelectorAll<HTMLElement>("h2[id], h3[id]"),
+      );
+      setItems(
+        hs.map((h) => ({
+          id: h.id,
+          title: h.textContent ?? "",
+          level: h.tagName === "H3" ? 3 : 2,
+        })),
+      );
       spy?.disconnect();
       spy = new IntersectionObserver(
         (entries) => {
@@ -79,7 +89,9 @@ export function OnThisPage() {
               <a
                 href={`#${it.id}`}
                 onClick={() => setActive(it.id)}
-                className={`block py-1.5 pl-3 -ml-px border-l-2 transition-colors ${
+                className={`block py-1.5 -ml-px border-l-2 transition-colors ${
+                  it.level === 3 ? "pl-6 text-[12px]" : "pl-3"
+                } ${
                   on
                     ? "border-purple text-purple font-medium"
                     : "border-transparent text-muted hover:text-purple"
