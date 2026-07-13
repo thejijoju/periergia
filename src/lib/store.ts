@@ -25,6 +25,31 @@ interface Tree {
 
 let treePromise: Promise<Tree> | null = null;
 
+// Some seed titles were authored lowercase ("elasticity", "consumer choice").
+// Present every title in Title Case for a consistent tree/breadcrumb/heading —
+// but never re-case a token that already carries an uppercase letter, so
+// acronyms and proper forms survive intact ("IS-LM", "GDP", "Keynesian"), and
+// lowercase the small connecting words unless they lead the title.
+const MINOR_WORDS = new Set([
+  "a", "an", "and", "the", "of", "or", "for", "to", "in", "on", "at", "by",
+  "vs", "with", "from", "but", "nor", "per", "via", "&",
+]);
+function titleCase(raw: string): string {
+  let wordIndex = 0;
+  return raw
+    .split(/(\s+)/)
+    .map((tok) => {
+      if (/^\s+$/.test(tok) || tok === "") return tok;
+      const isFirst = wordIndex === 0;
+      wordIndex += 1;
+      if (/[A-Z]/.test(tok)) return tok; // keep acronyms / proper forms as-is
+      const lower = tok.toLowerCase();
+      if (!isFirst && MINOR_WORDS.has(lower)) return lower;
+      return tok.charAt(0).toUpperCase() + tok.slice(1);
+    })
+    .join("");
+}
+
 // DB rows are snake_case; the node id encodes its path (`subject/seg/seg`), so
 // `subjectSlug` and `path` are reconstructed rather than stored.
 function rowToNode(r: {
@@ -42,7 +67,7 @@ function rowToNode(r: {
     subjectId: r.subject_id,
     subjectSlug: r.subject_id,
     parentId: r.parent_id,
-    title: r.title,
+    title: titleCase(r.title),
     slug: r.slug,
     summary: r.summary ?? "",
     position: r.position,
