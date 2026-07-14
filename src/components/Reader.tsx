@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -45,6 +46,18 @@ function normalizeMath(md: string): string {
     .replace(/\\\[([\s\S]+?)\\\]/g, (_, m) => `\n$$\n${m}\n$$\n`)
     .replace(/\\\((.+?)\\\)/g, (_, m) => `$${m}$`)
     .replace(/^[ \t]*\$\$([^$\n]+?)\$\$[ \t]*$/gm, (_, m) => `$$\n${m}\n$$`);
+}
+
+// Coarse dwell buckets — Vercel Web Analytics shows a custom-event property as a
+// clean breakdown, so a labelled range reads better on the dashboard than raw
+// seconds (which we also send, for export).
+function dwellBucket(seconds: number): string {
+  if (seconds < 10) return "0–10s";
+  if (seconds < 30) return "10–30s";
+  if (seconds < 60) return "30–60s";
+  if (seconds < 180) return "1–3 min";
+  if (seconds < 600) return "3–10 min";
+  return "10 min+";
 }
 
 function extractText(node: React.ReactNode): string {
@@ -138,6 +151,41 @@ export function Reader({
     }
     load();
   }, [hydrated, load]);
+
+  // Engagement tracking: how long a reader actually stays on an article, plus
+  // which depth/level they read it at. Vercel Web Analytics already reports real
+  // visitors, per-article page views, and location; this custom event adds the
+  // dwell time it can't measure on its own. Fires once, on leaving the article
+  // (tab hidden, tab/page close, client-side nav, or a depth/level switch).
+  useEffect(() => {
+    if (loading || !generated) return;
+    const startedAt = Date.now();
+    let sent = false;
+    const title = node.title.replace(/\s*\*+$/, "");
+    const fire = () => {
+      if (sent) return;
+      const seconds = Math.round((Date.now() - startedAt) / 1000);
+      if (seconds < 3) return; // ignore flickers and instant bounces
+      sent = true;
+      track("article_read", {
+        title,
+        depth: shownDepth,
+        level: shownLevel,
+        seconds,
+        dwell: dwellBucket(seconds),
+      });
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") fire();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pagehide", fire);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pagehide", fire);
+      fire(); // client-side navigation away, unmount, or depth/level change
+    };
+  }, [node.id, loading, generated, shownDepth, shownLevel]);
 
   const isAudio = spec.kind === "audio";
   const isVisual = spec.kind === "visual";
