@@ -1515,12 +1515,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The 16th- to 18th-century doctrine that a nation's wealth lay in its hoard of gold and silver, pursued through trade surpluses, protective tariffs, colonies, and state power."
           },
           {
-            "title": "Money, the Gold Standard, and Central Banks",
-            "summary": "How money itself evolved — from commodity money redeemable for gold and bank notes issued by private banks, to state central banks as the legal monopoly suppliers of a currency, the gold standard and its collapse between the World Wars (Britain leaving in 1931), and the modern age of fiat money."
-          },
-          {
-            "title": "Fractional Reserve Banking and Money Creation",
-            "summary": "How paper money and modern banking were born — from goldsmiths issuing receipts for deposited gold, to promissory notes traded in place of the metal, to banks lending out the reserves they knew wouldn't all be withdrawn at once and creating money in the process. The origins, mechanics, and fragility of fractional reserve banking."
+            "title": "The History of Money*",
+            "summary": "Why money exists and how it evolved: the barter economy and its frictions (the double coincidence of wants, indivisibility, perishability, and the lack of a common measure of value); money as a medium of exchange, unit of account, and store of value; commodity money and the gold standard; goldsmiths, promissory notes, and the birth of paper money; fractional reserve banking and money creation; and the modern age of central banks and fiat money."
           },
           {
             "title": "The Physiocrats",
