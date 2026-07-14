@@ -1519,6 +1519,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "How money itself evolved — from commodity money redeemable for gold and bank notes issued by private banks, to state central banks as the legal monopoly suppliers of a currency, the gold standard and its collapse between the World Wars (Britain leaving in 1931), and the modern age of fiat money."
           },
           {
+            "title": "Fractional Reserve Banking and Money Creation",
+            "summary": "How paper money and modern banking were born — from goldsmiths issuing receipts for deposited gold, to promissory notes traded in place of the metal, to banks lending out the reserves they knew wouldn't all be withdrawn at once and creating money in the process. The origins, mechanics, and fragility of fractional reserve banking."
+          },
+          {
             "title": "The Physiocrats",
             "summary": "The 18th-century French school of Quesnay and Turgot, who held that land and agriculture were the true source of wealth, mapped the economy in the Tableau Économique, and gave us the phrase laissez-faire."
           },
