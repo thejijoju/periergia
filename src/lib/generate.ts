@@ -31,7 +31,7 @@ const DEPTH_GUIDE: Record<Depth, string> = {
   medium:
     "a clear, self-contained ~700-word explanation a curious learner can follow, organized into 3–4 short headed sections with concrete examples",
   detailed:
-    "a thorough ~1,800-word-MINIMUM treatment — a full textbook section with 5–7 headed subsections that cover origins, the core ideas or narrative, concrete examples with real names and dates, causes and consequences, and the nuances and debates. Go deep; do not stop at an overview. If the required coverage below is richer than ~1,800 words can hold, run longer rather than cut any of it",
+    "a thorough ~2,600-word-MINIMUM treatment — a full, self-contained textbook chapter with 6–8 headed subsections that cover origins, the core ideas or narrative, worked or concrete examples with real names, numbers, and dates, causes and consequences, real-world applications, and the nuances and debates. Go deep and be genuinely comprehensive; never stop at an overview or trail off into a summary. If the required coverage below is richer than ~2,600 words can hold, run longer rather than cut any of it",
   research:
     "a rigorous ~3,500-word-MINIMUM, doctoral-seminar-grade chapter: the full narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. This should read like a serious chapter, not an article. If the required coverage below is richer than ~3,500 words can hold, run longer rather than cut any of it",
 };
