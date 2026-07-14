@@ -53,6 +53,29 @@ create table if not exists quizzes (
   primary key (node_id, level)
 );
 
+-- Self-hosted engagement analytics. One row per reader interaction (currently
+-- 'article_read', fired when a reader leaves an article), written server-side by
+-- /api/track and read back as JSON by the token-gated /api/events. Kept in our
+-- own DB so the data is fully ours — no dependence on a paid analytics tier.
+create table if not exists events (
+  id       bigserial primary key,
+  ts       timestamptz not null default now(),
+  name     text not null,
+  node_id  text,
+  title    text,
+  path     text,
+  depth    text,
+  level    text,
+  seconds  integer,
+  dwell    text,
+  country  text,
+  city     text,
+  referrer text,
+  ua       text
+);
+create index if not exists events_ts_idx   on events (ts desc);
+create index if not exists events_name_idx on events (name);
+
 -- ── Row-level security ────────────────────────────────────────────────────
 -- Public app: everyone may READ. WRITES happen server-side with the service
 -- role, which bypasses RLS — so no write policies are defined (writes via the
@@ -61,6 +84,10 @@ alter table subjects enable row level security;
 alter table nodes    enable row level security;
 alter table content  enable row level security;
 alter table quizzes  enable row level security;
+-- events has RLS on and NO policy: neither read nor write is allowed via the
+-- anon key. Only the server's service-role client (which bypasses RLS) touches
+-- it, keeping the analytics private.
+alter table events   enable row level security;
 
 do $$
 begin

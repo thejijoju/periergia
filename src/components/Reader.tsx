@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { track } from "@vercel/analytics";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -167,13 +166,31 @@ export function Reader({
       const seconds = Math.round((Date.now() - startedAt) / 1000);
       if (seconds < 3) return; // ignore flickers and instant bounces
       sent = true;
-      track("article_read", {
+      const payload = JSON.stringify({
+        name: "article_read",
+        nodeId: node.id,
         title,
+        path: window.location.pathname,
         depth: shownDepth,
         level: shownLevel,
         seconds,
         dwell: dwellBucket(seconds),
+        referrer: document.referrer || null,
       });
+      // Beacon so it still sends while the page is unloading; keepalive fetch
+      // is the fallback. Fully fire-and-forget — never blocks or throws.
+      try {
+        const blob = new Blob([payload], { type: "application/json" });
+        if (navigator.sendBeacon?.("/api/track", blob)) return;
+        fetch("/api/track", {
+          method: "POST",
+          body: payload,
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+        }).catch(() => {});
+      } catch {
+        // ignore — analytics must never affect the reading experience
+      }
     };
     const onVisibility = () => {
       if (document.visibilityState === "hidden") fire();
