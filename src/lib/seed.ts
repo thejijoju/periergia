@@ -1515,6 +1515,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "summary": "The 16th- to 18th-century doctrine that a nation's wealth lay in its hoard of gold and silver, pursued through trade surpluses, protective tariffs, colonies, and state power."
           },
           {
+            "title": "Money, the Gold Standard, and Central Banks",
+            "summary": "How money itself evolved — from commodity money redeemable for gold and bank notes issued by private banks, to state central banks as the legal monopoly suppliers of a currency, the gold standard and its collapse between the World Wars (Britain leaving in 1931), and the modern age of fiat money."
+          },
+          {
             "title": "The Physiocrats",
             "summary": "The 18th-century French school of Quesnay and Turgot, who held that land and agriculture were the true source of wealth, mapped the economy in the Tableau Économique, and gave us the phrase laissez-faire."
           },
