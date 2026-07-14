@@ -1504,6 +1504,67 @@ export const SUBJECTS: SubjectSpec[] = [
     "description": "",
     "tree": [
       {
+        "title": "History of Economics",
+        "children": [
+          {
+            "title": "Ancient and Medieval Economic Thought",
+            "summary": "How Aristotle, the Scholastics, and other pre-modern thinkers reasoned about value, money, the 'just price,' and the ethics of trade and lending — long before economics was a discipline of its own."
+          },
+          {
+            "title": "Mercantilism and the Age of Trade",
+            "summary": "The 16th- to 18th-century doctrine that a nation's wealth lay in its hoard of gold and silver, pursued through trade surpluses, protective tariffs, colonies, and state power."
+          },
+          {
+            "title": "The Physiocrats",
+            "summary": "The 18th-century French school of Quesnay and Turgot, who held that land and agriculture were the true source of wealth, mapped the economy in the Tableau Économique, and gave us the phrase laissez-faire."
+          },
+          {
+            "title": "Adam Smith and the Birth of Classical Economics",
+            "summary": "Adam Smith's 1776 Wealth of Nations: the division of labor, the role of self-interest, and the 'invisible hand' by which individual choices coordinate, unplanned, into shared prosperity."
+          },
+          {
+            "title": "David Ricardo and Comparative Advantage",
+            "summary": "Ricardo's theories of rent, the labor theory of value, and comparative advantage — still the central argument for why nations gain from trade even when one can produce everything more cheaply."
+          },
+          {
+            "title": "Thomas Malthus and the Population Question",
+            "summary": "Malthus's warning that population tends to outrun the food supply, how it helped earn economics the label 'the dismal science,' and how the grim prediction actually fared."
+          },
+          {
+            "title": "Karl Marx and Political Economy",
+            "summary": "Marx's critique of capitalism in Das Kapital: the labor theory of value, surplus value and exploitation, class conflict, and the crises he argued were built into the system."
+          },
+          {
+            "title": "The Marginal Revolution",
+            "summary": "The 1870s breakthrough of Jevons, Menger, and Walras — value springs not from labor but from marginal utility, the worth of one more unit — recasting economics around subjective choice."
+          },
+          {
+            "title": "Alfred Marshall and Neoclassical Economics",
+            "summary": "Marshall's 1890 Principles, where supply and demand became the two blades of a scissors and the modern tools of partial equilibrium, elasticity, and marginal analysis took shape."
+          },
+          {
+            "title": "The Austrian School",
+            "summary": "Menger, Mises, and Hayek on subjective value, the market as a process for discovering and using dispersed knowledge, and the monetary roots of the business cycle."
+          },
+          {
+            "title": "Keynes and the Keynesian Revolution",
+            "summary": "Keynes's 1936 General Theory, forged in the Great Depression: how shortfalls in aggregate demand cause mass unemployment, and the case for active fiscal and monetary policy."
+          },
+          {
+            "title": "Monetarism and Milton Friedman",
+            "summary": "Friedman and the Chicago school's counter-revolution — the money supply as the prime mover of inflation and output, and a sharp challenge to Keynesian demand management."
+          },
+          {
+            "title": "Modern Schools of Thought",
+            "summary": "From rational expectations and new classical models to new Keynesian economics — how the discipline splintered and re-synthesized in the decades after the 1970s."
+          },
+          {
+            "title": "The Rise of Behavioral Economics",
+            "summary": "How Kahneman, Tversky, and later Thaler folded psychology back into economics, replacing the perfectly rational agent with a more human, boundedly rational one."
+          }
+        ]
+      },
+      {
         "title": "Introduction",
         "children": [
           {
