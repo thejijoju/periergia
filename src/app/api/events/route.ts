@@ -35,16 +35,23 @@ function tally(rows: EventRow[], key: (r: EventRow) => string | null) {
 }
 
 export async function GET(req: Request) {
-  const token = process.env.ANALYTICS_TOKEN;
+  const token = process.env.ANALYTICS_TOKEN?.trim();
   const url = new URL(req.url);
   if (!token) {
     return NextResponse.json(
-      { error: "ANALYTICS_TOKEN is not set on the server — analytics view disabled." },
+      {
+        error:
+          "ANALYTICS_TOKEN is not set on this deployment. Add it in Vercel → Settings → " +
+          "Environment Variables (Production), then redeploy so the change takes effect.",
+      },
       { status: 503 },
     );
   }
-  if (url.searchParams.get("token") !== token) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  if ((url.searchParams.get("token") ?? "").trim() !== token) {
+    return NextResponse.json(
+      { error: "Unauthorized — the ?token= value does not match ANALYTICS_TOKEN." },
+      { status: 401 },
+    );
   }
 
   const supabase = getSupabase();

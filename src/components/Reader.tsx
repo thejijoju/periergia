@@ -59,6 +59,14 @@ function dwellBucket(seconds: number): string {
   return "10 min+";
 }
 
+// Co-authored masters are stored verbatim, so any {{image: Title | caption}}
+// markers they carry never went through the generator's image step. Detect them
+// (HAS) so the Reader can resolve them via /api/resolve-images on Vercel, and
+// STRIP any that remain (pre-resolution, or a marker that didn't resolve) so a
+// raw marker is never shown as literal text.
+const HAS_IMAGE_MARKER = /\{\{\s*image:/;
+const STRIP_IMAGE_MARKER = /^[ \t]*\{\{\s*image:[^{}\n]*\}\}[ \t]*$/gm;
+
 function extractText(node: React.ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(extractText).join("");
@@ -123,6 +131,32 @@ export function Reader({
     skipInitialFetch.current = !!initialBody;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node.id]);
+
+  // Resolve {{image}} markers in a co-authored master to real Wikipedia images.
+  // Runs on the server route (which can reach Wikipedia); we swap the resolved
+  // body in once. Guarded by a ref so it fires once per distinct body, and it's
+  // a no-op for generated bodies (their images were already spliced in).
+  const imgResolvedFor = useRef<string>("");
+  useEffect(() => {
+    if (loading || !body || !HAS_IMAGE_MARKER.test(body)) return;
+    if (imgResolvedFor.current === body) return;
+    const target = body;
+    imgResolvedFor.current = target;
+    let alive = true;
+    fetch("/api/resolve-images", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ body: target, topicTitle: node.title.replace(/\s*\*+$/, "") }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        if (alive && d?.body && d.body !== target) setBody(d.body);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [body, loading, node.id, node.title]);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -330,7 +364,7 @@ export function Reader({
                 },
               }}
             >
-              {normalizeMath(body)}
+              {normalizeMath(body.replace(STRIP_IMAGE_MARKER, ""))}
             </ReactMarkdown>
           </div>
         </>
