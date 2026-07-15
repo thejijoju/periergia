@@ -26,6 +26,8 @@ Picture an economy where the only way to obtain a good or a service is to hand o
 
 > **Barter economy** — an economy with no money, in which goods and services are exchanged directly for other goods and services.
 
+{{image: Barter | Barter in practice: goods traded directly for other goods — an exchange that can happen only when each party happens to want exactly what the other is offering.}}
+
 It sounds workable, but barter creaks under four problems that quickly make anything beyond the simplest trade almost impossible.
 
 **You both have to want what the other has.** A trade can happen only if each party wants precisely what the other is offering — a **double coincidence of wants**. The baker who needs shoes must find not just any shoemaker but a shoemaker who happens to want bread, right then, in the right quantity. Most days the search alone would cost more than the trade is worth.
