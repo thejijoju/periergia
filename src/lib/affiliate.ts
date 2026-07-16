@@ -151,29 +151,29 @@ function bookshopSearchUrl(query: string, country?: string): string {
   return `https://${m.host}/a/${encodeURIComponent(m.id)}/beta-search?keywords=${enc(query)}`;
 }
 
-// The trailing affiliate tag(s) appended to a book bullet. When both stores are
-// live each is named ("Amazon ↗ · Bookshop ↗"); with a single store a neutral
-// "Find it ↗" reads cleaner.
-function affiliateTrailer(query: string, country?: string): string {
+// The stores that can serve this reader, primary first (Amazon leads: it's
+// present for everyone and geo-routed; Bookshop is the US-only second option).
+function storesFor(query: string, country?: string): Array<{ name: string; url: string }> {
   const stores: Array<{ name: string; url: string }> = [];
   const amazonUrl = amazonSearchUrl(query, country);
   if (amazonUrl) stores.push({ name: "Amazon", url: amazonUrl });
   const bookshopUrl = bookshopSearchUrl(query, country);
   if (bookshopUrl) stores.push({ name: "Bookshop", url: bookshopUrl });
-  if (stores.length === 0) return "";
-  if (stores.length === 1) return ` · [Find it ↗](${stores[0].url})`;
-  return " · " + stores.map((s) => `[${s.name} ↗](${s.url})`).join(" · ");
+  return stores;
 }
 
-// Given a single "- ..." bullet, return the affiliated version, or null to
-// leave the bullet exactly as it was.
+// Given a "- ..." bullet, make the BOOK TITLE itself the affiliate link (so it
+// reads as an obvious, tappable link rather than a subtle trailing tag), and
+// append a small "· Bookshop ↗" for any additional store. Returns null to leave
+// the bullet unchanged.
 function affiliateBullet(line: string, country?: string): string | null {
-  // Parse ONLY the bold citation head — never the trailing description, which
-  // may itself contain quotes or italics (e.g. Hobsbawm's "short twentieth
-  // century") that would fool the book/article test.
-  const head = line.match(/^\s*[-*]\s+\*\*(.+?)\*\*/);
-  if (!head) return null;
-  const citation = head[1];
+  // Split the bullet into: lead ("- **"), the bold CITATION head, the closing
+  // "**", and the trailing description. We only ever touch the citation — never
+  // the description, which may carry its own quotes/italics (e.g. Hobsbawm's
+  // "short twentieth century") that would fool the book/article test.
+  const parts = line.match(/^(\s*[-*]\s+\*\*)([\s\S]+?)(\*\*)([\s\S]*)$/);
+  if (!parts) return null;
+  const [, lead, citation, closeBold, rest] = parts;
 
   if (citation.includes('"')) return null; // quoted title ⇒ article/paper
 
@@ -190,9 +190,17 @@ function affiliateBullet(line: string, country?: string): string | null {
     .trim();
   if (!author || /^(the|an?)$/i.test(author)) return null; // reference work / site
 
-  const trailer = affiliateTrailer(`${title} ${author}`, country);
-  if (!trailer) return null;
-  return `${line.replace(/\s+$/, "")}${trailer}`;
+  const stores = storesFor(`${title} ${author}`, country);
+  if (stores.length === 0) return null;
+  const [primary, ...secondary] = stores;
+
+  // Wrap the title italic (the first `*…*` in the citation) in the primary
+  // store's link, keeping it italic: `*Title*` → `[*Title*](url)`.
+  const linkedCitation = citation.replace(/\*[^*]+\*/, (t) => `[${t}](${primary.url})`);
+  const trailer = secondary.length
+    ? " · " + secondary.map((s) => `[${s.name} ↗](${s.url})`).join(" · ")
+    : "";
+  return `${lead}${linkedCitation}${closeBold}${rest.replace(/\s+$/, "")}${trailer}`;
 }
 
 // Rewrite a full markdown body: within each Further Reading/Exploration
