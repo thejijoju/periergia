@@ -9,6 +9,7 @@ import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import { DEPTHS, LEVELS, type Depth, type Level } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
+import { injectAffiliateLinks } from "@/lib/affiliate";
 import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
 import { VoiceButton } from "./VoiceButton";
@@ -345,6 +346,25 @@ export function Reader({
               components={{
                 h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
                 h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
+                // External links open in a new tab. Affiliate links (our tagged
+                // Amazon search URLs) are additionally marked rel="sponsored
+                // nofollow" per Google/FTC guidance and styled as a subtle,
+                // clearly-commercial trailing tag rather than a citation link.
+                a: ({ href, children }) => {
+                  const url = typeof href === "string" ? href : "";
+                  if (!/^https?:\/\//.test(url)) return <a href={url}>{children}</a>;
+                  const affiliate = /[?&]tag=/.test(url) && /amazon\./.test(url);
+                  return (
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel={affiliate ? "sponsored nofollow noopener noreferrer" : "noopener noreferrer"}
+                      className={affiliate ? "affiliate-link" : undefined}
+                    >
+                      {children}
+                    </a>
+                  );
+                },
                 // A fenced ```example block becomes an interactive "Your turn"
                 // practice box. We intercept at the <pre> so the surrounding
                 // <pre><code> code styling never wraps the widget.
@@ -364,7 +384,7 @@ export function Reader({
                 },
               }}
             >
-              {normalizeMath(body.replace(STRIP_IMAGE_MARKER, ""))}
+              {normalizeMath(injectAffiliateLinks(body.replace(STRIP_IMAGE_MARKER, "")))}
             </ReactMarkdown>
           </div>
         </>
