@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SectionLanding } from "@/components/SectionLanding";
 import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
@@ -126,6 +127,10 @@ export default async function ReaderPage({
 
   const searchIndex = await getSearchIndex();
 
+  // Reader's country (Vercel geo header) picks the local Amazon marketplace and
+  // matching Associates tag for the Further Reading affiliate links.
+  const country = (await headers()).get("x-vercel-ip-country") || undefined;
+
   // Server-render an already-cached read article into the HTML, so crawlers and
   // default-prefs readers get real text. Prefer the richest cached depth (a
   // full Research chapter indexes far better than a skim) and fall back down.
@@ -242,6 +247,7 @@ export default async function ReaderPage({
                 initialDepth={initialDepth}
                 initialLevel={initialLevel}
                 initialReviewed={initialReviewed}
+                country={country}
               />
               {isSection && (
                 <SectionLanding

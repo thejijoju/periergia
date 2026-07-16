@@ -84,12 +84,14 @@ export function Reader({
   initialDepth,
   initialLevel,
   initialReviewed = false,
+  country,
 }: {
   node: ReaderNode;
   initialBody?: string;
   initialDepth?: Depth;
   initialLevel?: Level;
   initialReviewed?: boolean;
+  country?: string;
 }) {
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
   const { depth: prefDepth, level: prefLevel, mode } = state.prefs;
@@ -386,7 +388,7 @@ export function Reader({
                 },
               }}
             >
-              {normalizeMath(injectAffiliateLinks(body.replace(STRIP_IMAGE_MARKER, "")))}
+              {normalizeMath(injectAffiliateLinks(body.replace(STRIP_IMAGE_MARKER, ""), country))}
             </ReactMarkdown>
           </div>
         </>
