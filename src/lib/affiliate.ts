@@ -14,13 +14,15 @@
 //   • reference works and free sites with no personal author (e.g. "The
 //     *Stanford Encyclopedia of Philosophy*.").
 //
-// The tag is read from NEXT_PUBLIC_AMAZON_TAG. It is inlined at build time and
-// safe to expose — an Amazon Associates tag is public by design (it rides in
-// every affiliate URL). With NO tag configured the input is returned untouched,
-// so nothing half-built ever ships: set the env var in Vercel and redeploy to
-// switch monetization on.
+// The tag defaults to our Amazon Associates ID and can be overridden by
+// NEXT_PUBLIC_AMAZON_TAG (inlined at build). It is safe to keep in source and
+// to expose — an Associates tag is public by design (it rides in every
+// affiliate URL). Set the env var to an empty string to disable monetization
+// entirely without a code change.
 
-const TAG = (process.env.NEXT_PUBLIC_AMAZON_TAG ?? "").trim();
+const DEFAULT_TAG = "periergialear-20";
+const ENV_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG;
+const TAG = (ENV_TAG === undefined ? DEFAULT_TAG : ENV_TAG).trim();
 
 // Amazon's required associate disclosure, verbatim in spirit (FTC + Associates
 // Operating Agreement). Rendered once, directly under the section heading.
