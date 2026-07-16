@@ -4062,7 +4062,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "how people learn"
           },
           {
-            "title": "memory"
+            "title": "Learning and Memory",
+            "summary": "How experience leaves a durable physical trace in the brain — and what that means for how to study. The engram from the remembered event down to the molecule; memory as distinct systems (working versus long-term; declarative versus procedural) and the patient H.M., who located consolidation in the hippocampus; Hebb's rule and its embodiment in long-term potentiation (the NMDA receptor as coincidence detector); Kandel's sea slug and the half-billion-year-old machinery it shares with us; consolidation, sleep, and replay; reconsolidation and why every recall rewrites the memory; place and grid cells; emotional (flashbulb) memory; forgetting as an active function; the prodigies and mnemonists — eidetic memory, the memory palace, Shereshevsky, and highly superior autobiographical memory; the engram found and edited with optogenetics; the clinical failures from amnesia to Alzheimer's; and the applied science of studying — retrieval, spacing, interleaving, teaching to learn, and sleep."
           },
           {
             "title": "motivation"
@@ -4400,8 +4401,7 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Attention"
           },
           {
-            "title": "Learning and Memory",
-            "summary": "How experience leaves a durable physical trace in the brain — the science of the engram from the remembered event down to the molecule and back. Memory as a set of distinct systems (working versus long-term; declarative versus procedural) and the patient H.M., whose surgery split them apart and located consolidation in the hippocampus; Hebb's rule and its molecular embodiment in long-term potentiation — the NMDA receptor as coincidence detector, CaMKII and CREB, and the protein-synthesis threshold between short- and long-term memory; Kandel's sea slug and the half-billion-year-old machinery it shares with us; synaptic and systems consolidation, and the role of sleep and replay; reconsolidation and why every recall rewrites the memory; place cells, grid cells, and the brain's map; the amygdala and emotional (flashbulb) memory; forgetting as an active function; the engram found and edited with optogenetics; the clinical failures from amnesia to Alzheimer's; and what it all implies for how to study — retrieval, spacing, interleaving, and sleep."
+            "title": "Learning and Memory"
           },
           {
             "title": "Language"
