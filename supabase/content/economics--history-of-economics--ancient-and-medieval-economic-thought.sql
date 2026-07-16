@@ -90,7 +90,16 @@ Third, the **continuities into modernity are real but crooked**. The line from A
 
 ## Further Reading
 
-Joseph Schumpeter, *History of Economic Analysis* (1954), Part II, remains the erudite, opinionated foundation — read alongside S. M. Ghazanfar (ed.), *Medieval Islamic Economic Thought* (2003), which dismantles its "Great Gap." Odd Langholm, *Economics in the Medieval Schools* (1992), and Diana Wood, *Medieval Economic Thought* (2002), are the standard scholastic treatments; Raymond de Roover's essays (collected in *Business, Banking, and Economic Thought*, 1974) reset the just-price debate. On antiquity: M. I. Finley, *The Ancient Economy* (1973), with the countervailing *Cambridge Economic History of the Greco-Roman World* (2007); Michael Hudson, *...and forgive them their debts* (2018), on Near Eastern debt cancellation. Ibn Khaldun's *Muqaddimah* (Rosenthal translation, abridged by Dawood) and Oresme's *De Moneta* (Johnson translation) are short enough to read whole — and should be. For the Chinese material, the *Guanzi* in Rickett's translation and Esson Gale's rendering of the *Discourses on Salt and Iron* are the points of entry.$am_master$,
+- **Joseph Schumpeter, *History of Economic Analysis* (1954), Part II.** The erudite, opinionated foundation — and the source of the "Great Gap" thesis this article contests.
+- **S. M. Ghazanfar (ed.), *Medieval Islamic Economic Thought* (2003).** The collection that dismantles Schumpeter's gap.
+- **Odd Langholm, *Economics in the Medieval Schools* (1992).** The exhaustive corpus study of scholastic value, price, and usury theory.
+- **Diana Wood, *Medieval Economic Thought* (2002).** The best accessible synthesis of the medieval material.
+- **Raymond de Roover, *Business, Banking, and Economic Thought* (1974).** The revisionist essays that reset the just-price debate.
+- **M. I. Finley, *The Ancient Economy* (1973).** The provocation that antiquity had no "economy" to analyze — read with the countervailing *Cambridge Economic History of the Greco-Roman World* (2007).
+- **Michael Hudson, *…and forgive them their debts* (2018).** On Near Eastern debt cancellation and the jubilee tradition.
+- **Ibn Khaldun, *The Muqaddimah* (Rosenthal translation, Dawood abridgment).** Short enough to read whole — and should be.
+- **Nicole Oresme, *De Moneta* (Johnson translation, c. 1358).** The first Western treatise devoted to a single economic subject.
+- **The *Guanzi* (Rickett translation) and Esson Gale's *Discourses on Salt and Iron*.** The points of entry to the Chinese policy tradition.$am_master$,
     true,
     true
   )

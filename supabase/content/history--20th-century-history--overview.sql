@@ -98,7 +98,19 @@ How, then, to hold the century's two ledgers together? The tempting narratives f
 
 ## Further Reading
 
-Eric Hobsbawm, *The Age of Extremes* (1994), remains the indispensable single volume, best read against its critics — Tony Judt's *Postwar* (2005) for Europe after 1945, and Odd Arne Westad, *The Global Cold War* (2005), for the view from the South. On the wars: Christopher Clark, *The Sleepwalkers* (2012); Ian Kershaw, *To Hell and Back* (2015); Timothy Snyder, *Bloodlands* (2010) on the Hitler–Stalin killing zone; Christopher Browning, *Ordinary Men* (1992). On empire's end: Erez Manela, *The Wilsonian Moment* (2007), and Frederick Cooper's work on decolonization. On the economy: Barry Eichengreen, *Globalizing Capital*; Thomas Piketty, *Capital in the Twenty-First Century* (2013) for the inequality U-curve. Zygmunt Bauman, *Modernity and the Holocaust* (1989), and Samuel Moyn, *The Last Utopia* (2010), supply the interpretive provocations this article has leaned on; Vaclav Smil, *Creating the Twentieth Century* (2005), covers the technical foundations everything else stood on.$tc_master$,
+- **Eric Hobsbawm, *The Age of Extremes* (1994).** The indispensable single volume on the "short twentieth century" — best read against its critics.
+- **Tony Judt, *Postwar* (2005).** The standard history of Europe after 1945.
+- **Odd Arne Westad, *The Global Cold War* (2005).** Relocates the Cold War from Berlin to the Third World, where it killed millions.
+- **Christopher Clark, *The Sleepwalkers* (2012).** The most influential recent account of how Europe walked into war in 1914.
+- **Ian Kershaw, *To Hell and Back* (2015).** A lucid narrative history of Europe from 1914 to 1949.
+- **Timothy Snyder, *Bloodlands* (2010).** On the Hitler–Stalin killing zone between Berlin and Moscow.
+- **Christopher Browning, *Ordinary Men* (1992).** How conformity and brutalization turned middle-aged policemen into killers.
+- **Erez Manela, *The Wilsonian Moment* (2007).** The colonial world's disillusionment with self-determination after 1919.
+- **Barry Eichengreen, *Globalizing Capital* (1996).** The gold standard, Bretton Woods, and the international monetary system.
+- **Thomas Piketty, *Capital in the Twenty-First Century* (2013).** For the century's inequality U-curve.
+- **Zygmunt Bauman, *Modernity and the Holocaust* (1989).** The provocation that the Holocaust was a possibility of modernity itself.
+- **Samuel Moyn, *The Last Utopia* (2010).** Argues human rights became the reigning moral language only in the 1970s.
+- **Vaclav Smil, *Creating the Twentieth Century* (2005).** The technical foundations everything else stood on.$tc_master$,
     true,
     true
   )
