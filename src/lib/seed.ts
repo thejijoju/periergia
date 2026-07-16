@@ -3302,6 +3302,7 @@ export const SUBJECTS: SubjectSpec[] = [
       },
       {
         "title": "History of Philosophy",
+        "summary": "Why living philosophers still argue with Plato, Hume, and Kant — the whole story as one continuous argument rather than a graveyard of errors. The two ways of reading that history (rational reconstruction versus Skinner's contextualism); the Greek achievement that turned reasoning into a public, disputable practice — Socrates' elenchus, Plato's Forms, Aristotle's logic and systematizing; the non-Western traditions taken as philosophy full stop — India's no-self debates and Nyaya logic, China's Confucian, Mohist, and Daoist argument over the Way; the medieval synthesis of faith and reason across the Islamic, Jewish, and Christian worlds (Avicenna, Averroes, Maimonides, Aquinas); the early-modern break — the scientific revolution, rationalists and empiricists, and Kant's 'Copernican revolution' that made the mind the condition of experience; the nineteenth century's masters of suspicion (Hegel, Marx, Nietzsche, Freud); and the twentieth century's split into analytic and continental streams — the linguistic turn, phenomenology, existentialism, and critical theory — with the recurring question of which philosophical problems belong to reason as such and which are creatures of a particular language and age.",
         "children": [
           {
             "title": "ancient"
