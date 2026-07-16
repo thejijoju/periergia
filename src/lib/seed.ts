@@ -2778,6 +2778,7 @@ export const SUBJECTS: SubjectSpec[] = [
       },
       {
         "title": "20th Century History",
+        "summary": "An age of extremes: the century that killed on the order of 150–200 million yet doubled human lifespans — the world wars and total war, the Russian Revolution and the contest of liberalism, communism, and fascism, the Depression, the Holocaust and the atomic bomb, the Cold War, the end of empire, and the social, scientific, and economic revolutions that remade daily life.",
         "children": [
           {
             "title": "world wars",

@@ -158,7 +158,7 @@ insert into nodes (id, subject_id, parent_id, title, slug, summary, position, de
   ('geography/human-geography', 'geography', null, 'Human Geography', 'human-geography', '', 1, 0),
   ('geography/physical-geography', 'geography', null, 'Physical Geography', 'physical-geography', '', 0, 0),
   ('geography/regional-geography', 'geography', null, 'Regional Geography', 'regional-geography', '', 4, 0),
-  ('history/20th-century-history', 'history', null, '20th Century History', '20th-century-history', '', 8, 0),
+  ('history/20th-century-history', 'history', null, '20th Century History', '20th-century-history', 'An age of extremes: the century that killed on the order of 150–200 million yet doubled human lifespans — the world wars and total war, the Russian Revolution and the contest of liberalism, communism, and fascism, the Depression, the Holocaust and the atomic bomb, the Cold War, the end of empire, and the social, scientific, and economic revolutions that remade daily life.', 8, 0),
   ('history/ancient-civilizations', 'history', null, 'Ancient Civilizations', 'ancient-civilizations', '', 1, 0),
   ('history/classical-antiquity', 'history', null, 'Classical Antiquity', 'classical-antiquity', '', 2, 0),
   ('history/contemporary-history', 'history', null, 'Contemporary History', 'contemporary-history', '', 9, 0),
