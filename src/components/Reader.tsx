@@ -353,7 +353,9 @@ export function Reader({
                 a: ({ href, children }) => {
                   const url = typeof href === "string" ? href : "";
                   if (!/^https?:\/\//.test(url)) return <a href={url}>{children}</a>;
-                  const affiliate = /[?&]tag=/.test(url) && /amazon\./.test(url);
+                  const affiliate =
+                    (/amazon\./.test(url) && /[?&]tag=/.test(url)) ||
+                    /bookshop\.org\/a\//.test(url);
                   return (
                     <a
                       href={url}
