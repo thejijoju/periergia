@@ -14,24 +14,74 @@
 //     *Stanford Encyclopedia of Philosophy*.").
 //
 // Two stores are supported and shown side by side when both are configured:
-//   • Amazon Associates — widest catalog, global reach. Tag from
-//     NEXT_PUBLIC_AMAZON_TAG, defaulting to our live Associates ID.
+//   • Amazon Associates — widest catalog, global reach. GEO-ROUTED: each reader
+//     is sent to their local Amazon marketplace (amazon.co.uk, amazon.de, …)
+//     with the tag registered for that marketplace, because an Associates tag
+//     only earns on the store it belongs to. Amazon tags are per-region:
+//     the "-20" suffix is the North-America program (amazon.com/.ca/.com.mx)
+//     and "-21" is the UK/EU program (amazon.co.uk/.de/.fr/.it/.es/…). Tags come
+//     from NEXT_PUBLIC_AMAZON_TAG (North America) and NEXT_PUBLIC_AMAZON_TAG_EU
+//     (UK/EU), each defaulting to our live Associates IDs.
 //   • Bookshop.org — supports independent bookstores, pays 10%, US/UK only.
 //     Numeric affiliate id from NEXT_PUBLIC_BOOKSHOP_ID (no default; empty =
 //     Bookshop links off).
 //
-// Both identifiers are public by design — they ride in every affiliate URL —
-// so keeping the Amazon default in source is fine. Set an env var to an empty
-// string to turn that store off without a code change; with NEITHER store
+// All identifiers are public by design — they ride in every affiliate URL — so
+// keeping the Amazon defaults in source is fine. Set an env var to an empty
+// string to turn that store/region off without a code change; with NOTHING
 // configured the transform is a no-op and nothing changes.
 
 // NOTE: Next.js only inlines process.env.NEXT_PUBLIC_* when accessed as a
 // static literal member expression, so each id is read on its own line.
-const AMAZON_ENV = process.env.NEXT_PUBLIC_AMAZON_TAG;
-const AMAZON_TAG = (AMAZON_ENV === undefined ? "periergialear-20" : AMAZON_ENV).trim();
+const AMAZON_NA_ENV = process.env.NEXT_PUBLIC_AMAZON_TAG;
+const AMAZON_TAG_NA = (AMAZON_NA_ENV === undefined ? "periergialear-20" : AMAZON_NA_ENV).trim();
+
+const AMAZON_EU_ENV = process.env.NEXT_PUBLIC_AMAZON_TAG_EU;
+const AMAZON_TAG_EU = (AMAZON_EU_ENV === undefined ? "periergialear-21" : AMAZON_EU_ENV).trim();
 
 const BOOKSHOP_ENV = process.env.NEXT_PUBLIC_BOOKSHOP_ID;
 const BOOKSHOP_ID = (BOOKSHOP_ENV === undefined ? "" : BOOKSHOP_ENV).trim();
+
+// Whether any Amazon tag is configured at all (either region).
+const AMAZON_ENABLED = !!(AMAZON_TAG_NA || AMAZON_TAG_EU);
+
+// Country (ISO-2, from Vercel's x-vercel-ip-country) → local Amazon host. The
+// North-America hosts bill against the "-20" tag; the European hosts against
+// "-21". Anything not listed (incl. unknown/rest-of-world) falls back to
+// amazon.com on the North-America tag, which still earns on any .com purchase.
+const AMAZON_HOSTS_NA: Record<string, string> = {
+  US: "www.amazon.com",
+  CA: "www.amazon.ca",
+  MX: "www.amazon.com.mx",
+};
+const AMAZON_HOSTS_EU: Record<string, string> = {
+  GB: "www.amazon.co.uk",
+  UK: "www.amazon.co.uk",
+  IE: "www.amazon.co.uk",
+  DE: "www.amazon.de",
+  AT: "www.amazon.de",
+  FR: "www.amazon.fr",
+  BE: "www.amazon.fr",
+  LU: "www.amazon.fr",
+  IT: "www.amazon.it",
+  ES: "www.amazon.es",
+  PT: "www.amazon.es",
+  NL: "www.amazon.nl",
+  SE: "www.amazon.se",
+  PL: "www.amazon.pl",
+};
+
+// Resolve a reader's country to the Amazon host + the tag that earns there.
+// Returns an empty tag when that region's tag is not configured, so the caller
+// can skip the Amazon link for that reader.
+function amazonMarket(country?: string): { host: string; tag: string } {
+  const c = (country ?? "").toUpperCase();
+  const euHost = AMAZON_HOSTS_EU[c];
+  if (euHost) return { host: euHost, tag: AMAZON_TAG_EU };
+  const naHost = AMAZON_HOSTS_NA[c];
+  if (naHost) return { host: naHost, tag: AMAZON_TAG_NA };
+  return { host: "www.amazon.com", tag: AMAZON_TAG_NA }; // rest of world
+}
 
 const HEADING = /^##\s+Further\s+(?:Reading|Exploration)\b/i;
 const ANY_HEADING = /^#{1,6}\s+/;
@@ -40,7 +90,7 @@ const BULLET = /^\s*[-*]\s+/;
 // The disclosure required under the heading (FTC + Amazon Associates Operating
 // Agreement), phrased for whichever stores are actually live.
 function disclosure(): string {
-  const a = !!AMAZON_TAG;
+  const a = AMAZON_ENABLED;
   const b = !!BOOKSHOP_ID;
   if (a && b) {
     return "_Some titles below are affiliate links to Amazon and Bookshop.org (which supports independent bookstores). As an Amazon Associate, periergia earns from qualifying purchases, and we earn a commission from Bookshop.org — at no extra cost to you._";
@@ -55,10 +105,13 @@ function enc(query: string): string {
   return encodeURIComponent(query.replace(/\s+/g, " ").trim());
 }
 
-// A tagged Amazon books search — robust when we have a title + author but no
-// ISBN. `i=stripbooks` scopes to Books so results land on real editions.
-function amazonSearchUrl(query: string): string {
-  return `https://www.amazon.com/s?k=${enc(query)}&i=stripbooks&tag=${encodeURIComponent(AMAZON_TAG)}`;
+// A tagged Amazon books search on the reader's local marketplace — robust when
+// we have a title + author but no ISBN. `i=stripbooks` scopes to Books so
+// results land on real editions. Empty string when the region's tag is unset.
+function amazonSearchUrl(query: string, country?: string): string {
+  const { host, tag } = amazonMarket(country);
+  if (!tag) return "";
+  return `https://${host}/s?k=${enc(query)}&i=stripbooks&tag=${encodeURIComponent(tag)}`;
 }
 
 // A Bookshop.org keyword search behind our affiliate prefix. The `/a/<id>/`
@@ -72,9 +125,10 @@ function bookshopSearchUrl(query: string): string {
 // The trailing affiliate tag(s) appended to a book bullet. When both stores are
 // live each is named ("Amazon ↗ · Bookshop ↗"); with a single store a neutral
 // "Find it ↗" reads cleaner.
-function affiliateTrailer(query: string): string {
+function affiliateTrailer(query: string, country?: string): string {
   const stores: Array<{ name: string; url: string }> = [];
-  if (AMAZON_TAG) stores.push({ name: "Amazon", url: amazonSearchUrl(query) });
+  const amazonUrl = amazonSearchUrl(query, country);
+  if (amazonUrl) stores.push({ name: "Amazon", url: amazonUrl });
   if (BOOKSHOP_ID) stores.push({ name: "Bookshop", url: bookshopSearchUrl(query) });
   if (stores.length === 0) return "";
   if (stores.length === 1) return ` · [Find it ↗](${stores[0].url})`;
@@ -83,7 +137,7 @@ function affiliateTrailer(query: string): string {
 
 // Given a single "- ..." bullet, return the affiliated version, or null to
 // leave the bullet exactly as it was.
-function affiliateBullet(line: string): string | null {
+function affiliateBullet(line: string, country?: string): string | null {
   // Parse ONLY the bold citation head — never the trailing description, which
   // may itself contain quotes or italics (e.g. Hobsbawm's "short twentieth
   // century") that would fool the book/article test.
@@ -106,7 +160,7 @@ function affiliateBullet(line: string): string | null {
     .trim();
   if (!author || /^(the|an?)$/i.test(author)) return null; // reference work / site
 
-  const trailer = affiliateTrailer(`${title} ${author}`);
+  const trailer = affiliateTrailer(`${title} ${author}`, country);
   if (!trailer) return null;
   return `${line.replace(/\s+$/, "")}${trailer}`;
 }
@@ -114,8 +168,8 @@ function affiliateBullet(line: string): string | null {
 // Rewrite a full markdown body: within each Further Reading/Exploration
 // section, affiliate the book bullets and drop the disclosure under the
 // heading. No-op when no store is configured or the body has no such section.
-export function injectAffiliateLinks(md: string): string {
-  if ((!AMAZON_TAG && !BOOKSHOP_ID) || !md) return md;
+export function injectAffiliateLinks(md: string, country?: string): string {
+  if ((!AMAZON_ENABLED && !BOOKSHOP_ID) || !md) return md;
 
   const lines = md.split("\n");
   const out: string[] = [];
@@ -147,7 +201,7 @@ export function injectAffiliateLinks(md: string): string {
       continue;
     }
     if (inSection && BULLET.test(line)) {
-      const aff = affiliateBullet(line);
+      const aff = affiliateBullet(line, country);
       if (aff) {
         out.push(aff);
         linkedInSection++;
