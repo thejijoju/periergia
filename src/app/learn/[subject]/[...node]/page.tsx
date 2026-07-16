@@ -134,7 +134,23 @@ export default async function ReaderPage({
   let initialDepth: (typeof DEPTH_PREFERENCE)[number] | undefined;
   let initialLevel: "advanced" | "easy" | "expert" | undefined;
   let initialReviewed = false;
-  if (!isSection) {
+  if (isSection) {
+    // A section (chapter) normally shows a landing that lists its topics. But if
+    // it carries a curated OVERVIEW master (research/advanced/read), render that
+    // article instead, with the chapter's topics linked beneath it.
+    const cached = await getCachedContent({
+      nodeId: node.id,
+      depth: "research",
+      level: "advanced",
+      format: "read",
+    });
+    if (cached?.generated) {
+      initialBody = cached.body;
+      initialDepth = "research";
+      initialLevel = "advanced";
+      initialReviewed = cached.reviewed;
+    }
+  } else {
     for (const depth of DEPTH_PREFERENCE) {
       for (const level of ["advanced", "easy", "expert"] as const) {
         const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
@@ -149,6 +165,8 @@ export default async function ReaderPage({
       if (initialBody) break;
     }
   }
+  // A section with no overview article falls back to the plain topic-list landing.
+  const showLanding = isSection && !initialBody;
 
   const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
   const jsonLd = {
@@ -206,7 +224,7 @@ export default async function ReaderPage({
 
         {/* Center */}
         <div className="min-w-0">
-          {isSection ? (
+          {showLanding ? (
             <SectionLanding
               title={node.title}
               subjectName={subj.name}
@@ -217,13 +235,27 @@ export default async function ReaderPage({
               }))}
             />
           ) : (
-            <Reader
-              node={readerNode}
-              initialBody={initialBody}
-              initialDepth={initialDepth}
-              initialLevel={initialLevel}
-              initialReviewed={initialReviewed}
-            />
+            <>
+              <Reader
+                node={readerNode}
+                initialBody={initialBody}
+                initialDepth={initialDepth}
+                initialLevel={initialLevel}
+                initialReviewed={initialReviewed}
+              />
+              {isSection && (
+                <SectionLanding
+                  variant="compact"
+                  title={node.title}
+                  subjectName={subj.name}
+                  items={sectionChildren.map((c) => ({
+                    title: c.title,
+                    href: `/learn/${subj.slug}/${c.path.join("/")}`,
+                    summary: cleanNodeSummary(c.summary),
+                  }))}
+                />
+              )}
+            </>
           )}
         </div>
 
