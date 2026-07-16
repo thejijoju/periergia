@@ -349,21 +349,23 @@ export function Reader({
                 h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
                 h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
                 // External links open in a new tab. Affiliate links (our tagged
-                // Amazon search URLs) are additionally marked rel="sponsored
-                // nofollow" per Google/FTC guidance and styled as a subtle,
-                // clearly-commercial trailing tag rather than a citation link.
+                // Amazon/Bookshop URLs) are marked rel="sponsored nofollow" per
+                // Google/FTC guidance. A linkified book TITLE keeps the normal
+                // prominent link style so it's obviously tappable; only the
+                // small trailing store tag (its text carries the "↗") is muted.
                 a: ({ href, children }) => {
                   const url = typeof href === "string" ? href : "";
                   if (!/^https?:\/\//.test(url)) return <a href={url}>{children}</a>;
                   const affiliate =
                     (/amazon\./.test(url) && /[?&]tag=/.test(url)) ||
                     /bookshop\.org\/a\//.test(url);
+                  const compact = affiliate && /↗/.test(extractText(children));
                   return (
                     <a
                       href={url}
                       target="_blank"
                       rel={affiliate ? "sponsored nofollow noopener noreferrer" : "noopener noreferrer"}
-                      className={affiliate ? "affiliate-link" : undefined}
+                      className={compact ? "affiliate-link" : undefined}
                     >
                       {children}
                     </a>
