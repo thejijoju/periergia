@@ -131,6 +131,7 @@ export function Reader({
   const [gate, setGate] = useState(false); // gated "Research" tier panel shown?
   const [body, setBody] = useState(initialBody);
   const [loading, setLoading] = useState(!initialBody);
+  const [streaming, setStreaming] = useState(false); // article is writing itself
   const [generated, setGenerated] = useState(!!initialBody);
   const [reviewed, setReviewed] = useState(initialReviewed);
   const [showQuiz, setShowQuiz] = useState(false);
@@ -161,7 +162,7 @@ export function Reader({
   // a no-op for generated bodies (their images were already spliced in).
   const imgResolvedFor = useRef<string>("");
   useEffect(() => {
-    if (loading || !body || !HAS_IMAGE_MARKER.test(body)) return;
+    if (streaming || loading || !body || !HAS_IMAGE_MARKER.test(body)) return;
     if (imgResolvedFor.current === body) return;
     const target = body;
     imgResolvedFor.current = target;
@@ -179,21 +180,57 @@ export function Reader({
     return () => {
       alive = false;
     };
-  }, [body, loading, node.id, node.title]);
+  }, [body, loading, streaming, node.id, node.title]);
 
   const load = useCallback(async () => {
     setLoading(true);
+    setStreaming(false);
     try {
-      const res = await fetch("/api/content", {
+      const res = await fetch("/api/content/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nodeId: node.id, depth: shownDepth, level: shownLevel, mode, lang }),
-      }).then((r) => r.json());
-      setBody(res.body ?? "");
-      setGenerated(!!res.generated);
-      setReviewed(!!res.reviewed);
+      });
+      const genHeader = res.headers.get("x-generated") === "1";
+      setReviewed(res.headers.get("x-reviewed") === "1");
+
+      if (!res.body) {
+        const text = await res.text();
+        setBody(text);
+        setGenerated(genHeader && text.length > 0);
+        return;
+      }
+
+      // Stream the article in as it's written. First byte clears the "Composing…"
+      // state; repaints are throttled (~90ms) so re-rendering the growing Markdown
+      // tree on every token doesn't choke the main thread.
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let acc = "";
+      let started = false;
+      let lastPaint = 0;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        acc += decoder.decode(value, { stream: true });
+        if (!started) {
+          started = true;
+          setGenerated(genHeader);
+          setLoading(false);
+          setStreaming(true);
+        }
+        const now = Date.now();
+        if (now - lastPaint > 90) {
+          lastPaint = now;
+          setBody(acc);
+        }
+      }
+      acc += decoder.decode();
+      setBody(acc);
+      setGenerated(genHeader && acc.length > 0);
     } finally {
       setLoading(false);
+      setStreaming(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node.id, shownDepth, shownLevel, mode]);
@@ -464,6 +501,11 @@ export function Reader({
               {normalizeMath(injectAffiliateLinks(body.replace(STRIP_IMAGE_MARKER, ""), country))}
             </ReactMarkdown>
           </div>
+          {streaming && (
+            <p className="mt-3 font-sans text-[13px] text-faint animate-pulse" aria-live="polite">
+              {t(lang, "composing")}
+            </p>
+          )}
         </>
       )}
 
@@ -473,8 +515,8 @@ export function Reader({
         </p>
       )}
 
-      {/* Test CTA */}
-      {!loading && (
+      {/* Test CTA — held back until the article finishes streaming. */}
+      {!loading && !streaming && (
         <div className="mt-8">
           {!showQuiz ? (
             <button
