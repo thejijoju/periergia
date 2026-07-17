@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Spectral } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import { AnalyticsGate } from "@/components/AnalyticsGate";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
 
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <Analytics />
+        <AnalyticsGate />
       </body>
     </html>
   );

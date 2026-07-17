@@ -10,6 +10,7 @@ import "katex/dist/katex.min.css";
 import { DEPTHS, LEVELS, type Depth, type Level } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
 import { injectAffiliateLinks } from "@/lib/affiliate";
+import { isExcludedVisitor } from "@/lib/analyticsOptOut";
 import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
 import { VoiceButton } from "./VoiceButton";
@@ -200,6 +201,7 @@ export function Reader({
     const title = node.title.replace(/\s*\*+$/, "");
     const fire = () => {
       if (sent) return;
+      if (isExcludedVisitor()) return; // owner opted this browser out (?mine)
       const seconds = Math.round((Date.now() - startedAt) / 1000);
       if (seconds < 3) return; // ignore flickers and instant bounces
       sent = true;
