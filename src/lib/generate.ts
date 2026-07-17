@@ -188,7 +188,15 @@ function capImageMarkers(body: string, max: number): string {
   );
 }
 
-export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
+// `onText`, when passed, receives the model's text deltas as they stream in, so
+// a caller (the /api/content/stream route) can forward them to the reader and
+// the article visibly writes itself instead of appearing after a 20–50s blank.
+// The returned Content is still the final, image-resolved body for caching.
+export async function generateContent(
+  node: Node,
+  key: ContentKey,
+  onText?: (t: string) => void,
+): Promise<Content> {
   const trail = await nodeContext(node);
   const client = getAnthropic();
 
@@ -216,11 +224,13 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   }
 
   const isMasterKey = key.depth === MASTER_DEPTH && key.level === MASTER_LEVEL && key.format === "read";
-  if (isMasterKey) return createMasterContent(node, key, trail, client);
+  if (isMasterKey) return createMasterContent(node, key, trail, client, onText);
 
   const masterKey: ContentKey = { nodeId: node.id, depth: MASTER_DEPTH, level: MASTER_LEVEL, format: "read" };
   let master = await getCachedContent(masterKey);
   if (!master?.generated) {
+    // Building the master silently (no stream) is unavoidable here — the reader
+    // asked for a shorter tier, so we stream that, not the master underneath.
     master = await createMasterContent(node, masterKey, trail, client);
     if (master.generated) await putCachedContent(master);
   }
@@ -232,7 +242,7 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
     return { ...key, body: master.body, generated: master.generated, reviewed: master.reviewed };
   }
 
-  return distillContent(node, key, master.body, trail, client);
+  return distillContent(node, key, master.body, trail, client, onText);
 }
 
 // Translate a finished English article into another language while preserving
@@ -272,6 +282,7 @@ async function createMasterContent(
   key: ContentKey,
   trail: string,
   client: NonNullable<ReturnType<typeof getAnthropic>>,
+  onText?: (t: string) => void,
 ): Promise<Content> {
   const mode = key.format as Mode; // the `format` field holds the learning mode
   const spec = getMode(mode);
@@ -339,6 +350,7 @@ async function createMasterContent(
     system,
     messages: [{ role: "user", content: prompt }],
   });
+  if (onText) stream.on("text", onText);
   const message = await stream.finalMessage();
   let raw = textOf(message.content).trim();
   if (IMAGE_LIGHT_SUBJECTS.has(node.subjectSlug)) raw = capImageMarkers(raw, MAX_IMAGES_LIGHT);
@@ -357,6 +369,7 @@ async function distillContent(
   masterBody: string,
   trail: string,
   client: NonNullable<ReturnType<typeof getAnthropic>>,
+  onText?: (t: string) => void,
 ): Promise<Content> {
   const mode = key.format as Mode;
   const spec = getMode(mode);
@@ -414,6 +427,7 @@ async function distillContent(
     system,
     messages: [{ role: "user", content: prompt }],
   });
+  if (onText) stream.on("text", onText);
   const message = await stream.finalMessage();
   // Short depths get no images at all — pass no topicTitle so the "at least one
   // image" fallback in resolveImageMarkers doesn't splice a lead image into a
