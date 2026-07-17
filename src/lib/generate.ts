@@ -11,6 +11,7 @@ import type {
 } from "./types";
 import { type Mode, getMode } from "./modes";
 import { getAnthropic, MODEL } from "./anthropic";
+import { normalizeLang, getLang } from "./i18n";
 import { getAncestors, getCachedContent, putCachedContent } from "./store";
 import { resolveImageMarkers } from "./images";
 import { fetchWikipediaContext } from "./wikipedia";
@@ -190,6 +191,26 @@ function capImageMarkers(body: string, max: number): string {
 export async function generateContent(node: Node, key: ContentKey): Promise<Content> {
   const trail = await nodeContext(node);
   const client = getAnthropic();
+
+  // Non-English reading language: build (and cache) the vetted English version
+  // at this exact depth/level/format, then TRANSLATE it — so every language
+  // inherits the same fact-checked article rather than regenerating from
+  // scratch. Falls back to the English text if we can't translate.
+  const lang = normalizeLang(key.lang);
+  if (lang !== "en") {
+    const enKey: ContentKey = { ...key, lang: "en" };
+    let en = await getCachedContent(enKey);
+    if (!en?.generated) {
+      en = await generateContent(node, enKey);
+      if (en.generated) await putCachedContent(en);
+    }
+    if (!client || !en.generated) {
+      return { ...key, body: en.body, generated: en.generated, reviewed: false };
+    }
+    const body = await translateBody(en.body, lang, client);
+    return { ...key, body, generated: true, reviewed: false };
+  }
+
   if (!client) {
     return { ...key, body: placeholderContent(node, key, trail), generated: false, reviewed: false };
   }
@@ -212,6 +233,38 @@ export async function generateContent(node: Node, key: ContentKey): Promise<Cont
   }
 
   return distillContent(node, key, master.body, trail, client);
+}
+
+// Translate a finished English article into another language while preserving
+// everything that isn't prose: Markdown structure, LaTeX math, image URLs, and
+// — critically — the identifier inside a ```example block (it's a program key,
+// not text). Proper nouns and work titles stay in the original so reference
+// lists and affiliate links still point to the real books.
+async function translateBody(
+  body: string,
+  lang: string,
+  client: NonNullable<ReturnType<typeof getAnthropic>>,
+): Promise<string> {
+  const langName = getLang(lang).englishName;
+  const system =
+    `You are an expert literary and technical translator. Translate the GitHub-flavored Markdown ` +
+    `article the user sends into ${langName}, for an educated reader. Render it naturally and ` +
+    `idiomatically — not word for word — preserving meaning, tone, and structure.\n\n` +
+    `Output ONLY the translated Markdown, with no preamble or notes. Obey these rules exactly:\n` +
+    `- Keep ALL Markdown syntax intact: heading levels (##), lists, tables, blockquotes, bold/italic markers, and links.\n` +
+    `- Do NOT alter anything inside a fenced code block (\`\`\` … \`\`\`). In particular, leave a \`\`\`example block and the identifier on the line inside it (e.g. factor-of-safety) EXACTLY as written — it is a program key, not prose.\n` +
+    `- Do NOT translate mathematics: leave every $…$ and $$…$$ LaTeX expression byte-for-byte unchanged.\n` +
+    `- Leave URLs and image links unchanged. For an {{image: Title | caption}} marker, keep the Title unchanged and translate only the caption after the "|".\n` +
+    `- Keep people's names and the ORIGINAL titles of books and works as they are (you may append a translation of a title in parentheses); never translate them away, so reference lists still name the real works.`;
+  const stream = client.messages.stream({
+    model: MODEL,
+    max_tokens: 24000,
+    thinking: { type: "adaptive" },
+    system,
+    messages: [{ role: "user", content: body }],
+  });
+  const message = await stream.finalMessage();
+  return textOf(message.content).trim() || body;
 }
 
 async function createMasterContent(

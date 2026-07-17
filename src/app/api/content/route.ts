@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { Depth, Level } from "@/lib/types";
 import { type Mode, contentMode, getMode } from "@/lib/modes";
+import { normalizeLang } from "@/lib/i18n";
 import { getNodeById, getCachedContent, putCachedContent } from "@/lib/store";
 import { generateContent } from "@/lib/generate";
 
@@ -18,6 +19,7 @@ export async function POST(req: Request) {
     depth?: Depth;
     level?: Level;
     mode?: Mode;
+    lang?: string;
     refresh?: boolean;
   };
   try {
@@ -38,7 +40,7 @@ export async function POST(req: Request) {
 
   // "Listen" reads the article aloud client-side (Web Speech API), so it shares
   // the "read" cache rather than generating a separate body.
-  const key = { nodeId, depth, level, format: contentMode(mode) };
+  const key = { nodeId, depth, level, format: contentMode(mode), lang: normalizeLang(payload.lang) };
 
   // Only trust a real (Claude-generated) cache hit. Placeholder rows (from runs
   // without a key) are treated as a miss so they regenerate once a key is set.

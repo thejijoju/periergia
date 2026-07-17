@@ -10,6 +10,7 @@ import "katex/dist/katex.min.css";
 import { DEPTHS, LEVELS, type Depth, type Level } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
 import { injectAffiliateLinks } from "@/lib/affiliate";
+import { isRtl } from "@/lib/i18n";
 import { isExcludedVisitor } from "@/lib/analyticsOptOut";
 import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
@@ -86,6 +87,7 @@ export function Reader({
   initialLevel,
   initialReviewed = false,
   country,
+  lang = "en",
 }: {
   node: ReaderNode;
   initialBody?: string;
@@ -93,6 +95,7 @@ export function Reader({
   initialLevel?: Level;
   initialReviewed?: boolean;
   country?: string;
+  lang?: string;
 }) {
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
   const { depth: prefDepth, level: prefLevel, mode } = state.prefs;
@@ -168,7 +171,7 @@ export function Reader({
       const res = await fetch("/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nodeId: node.id, depth: shownDepth, level: shownLevel, mode }),
+        body: JSON.stringify({ nodeId: node.id, depth: shownDepth, level: shownLevel, mode, lang }),
       }).then((r) => r.json());
       setBody(res.body ?? "");
       setGenerated(!!res.generated);
@@ -343,7 +346,11 @@ export function Reader({
               {spec.label.toLowerCase()} described in words.
             </p>
           )}
-          <div id="reader-content" className="prose-reading max-w-none">
+          <div
+            id="reader-content"
+            className="prose-reading max-w-none"
+            dir={isRtl(lang) ? "rtl" : "ltr"}
+          >
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}
