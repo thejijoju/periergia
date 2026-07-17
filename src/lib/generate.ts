@@ -34,7 +34,7 @@ const DEPTH_GUIDE: Record<Depth, string> = {
   detailed:
     "a thorough ~2,600-word-MINIMUM treatment — a full, self-contained textbook chapter with 6–8 headed subsections that cover origins, the core ideas or narrative, worked or concrete examples with real names, numbers, and dates, causes and consequences, real-world applications, and the nuances and debates. Go deep and be genuinely comprehensive; never stop at an overview or trail off into a summary. If the required coverage below is richer than ~2,600 words can hold, run longer rather than cut any of it",
   research:
-    "a rigorous ~3,500-word-MINIMUM, doctoral-seminar-grade chapter: the full narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. This should read like a serious chapter, not an article. If the required coverage below is richer than ~3,500 words can hold, run longer rather than cut any of it",
+    "an Ivy-League-lecture-grade chapter of ~4,000 words and up — running to 6,000+ whenever the topic genuinely warrants it — the length of a full lecture, not an article: the complete narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. Be genuinely exhaustive; if the required coverage below is richer than the target can hold, run longer rather than cut any of it",
 };
 
 const LEVEL_GUIDE: Record<Level, string> = {
@@ -307,6 +307,16 @@ async function createMasterContent(
     "images that invite the reader deeper — each named precisely (author, title, year) with one " +
     "line on why it's worth their time. Name only real, verifiable works; never fabricate " +
     "citations, quotations, or URLs — omit rather than invent.\n\n" +
+    "Hold yourself to the standard of a distinguished university lecturer delivering the " +
+    "definitive lecture on this topic: rigorous, deeply informed, and genuinely illuminating — " +
+    "the reader should come away understanding not just what is true but why, how it came to be " +
+    "known, and where it is still contested. For any quantitative or technical subject " +
+    "(mathematics, statistics, physics, engineering, economics, finance, computer science), work " +
+    "through fully solved examples in the body — state the problem, show every step, give the " +
+    "result — and where practice would cement the skill, add a short '## Practice' section of 2–4 " +
+    "problems, each immediately followed by its complete worked solution. Use a Markdown table " +
+    "whenever a set of figures, cases, or comparisons reads more clearly tabulated. Every formula " +
+    "must be correct and every worked number must actually check out.\n\n" +
     imageRule(node);
 
   const coverageRule = node.summary
@@ -347,6 +357,10 @@ async function createMasterContent(
     model: MODEL,
     max_tokens: 24000,
     thinking: { type: "adaptive" },
+    // The master is the flagship generation — every shorter tier is derived from
+    // it — so we spend for quality: high effort makes the model deliberate more
+    // over structure, accuracy, and depth. Cost/latency are the accepted price.
+    output_config: { effort: "xhigh" },
     system,
     messages: [{ role: "user", content: prompt }],
   });
