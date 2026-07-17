@@ -43,10 +43,19 @@ const AMAZON_TAG_EU = (AMAZON_EU_ENV === undefined ? "periergialear-21" : AMAZON
 
 // Bookshop.org runs two independent stores, each with its own affiliate id:
 // the US store (bookshop.org, ships within the US) and the UK store
-// (uk.bookshop.org, ships within the UK). NEXT_PUBLIC_BOOKSHOP_ID is the US id
-// (default: our live id); NEXT_PUBLIC_BOOKSHOP_ID_UK is the UK id (no default).
+// (uk.bookshop.org, ships within the UK). NEXT_PUBLIC_BOOKSHOP_ID is the US id;
+// NEXT_PUBLIC_BOOKSHOP_ID_UK is the UK id.
+//
+// PARKED: our approved US id is 126258, but Bookshop only attributes affiliate
+// links that wrap a specific BOOK PAGE (/a/<id>/p/books/<slug>/<hash>?ean=<ISBN>),
+// and its /a/<id>/ prefix does not wrap a keyword search — so a title+author
+// link can't both point at the right book AND earn. Until we resolve a link
+// format that is confirmed to attribute (e.g. a curated ISBN map, or a verified
+// storefront/search parameter), the default is empty, so no Bookshop link is
+// shown and Amazon (which works everywhere) stands alone. Set the env var to
+// 126258 to re-enable once the URL format in bookshopSearchUrl is fixed.
 const BOOKSHOP_US_ENV = process.env.NEXT_PUBLIC_BOOKSHOP_ID;
-const BOOKSHOP_ID_US = (BOOKSHOP_US_ENV === undefined ? "126258" : BOOKSHOP_US_ENV).trim();
+const BOOKSHOP_ID_US = (BOOKSHOP_US_ENV === undefined ? "" : BOOKSHOP_US_ENV).trim();
 
 const BOOKSHOP_UK_ENV = process.env.NEXT_PUBLIC_BOOKSHOP_ID_UK;
 const BOOKSHOP_ID_UK = (BOOKSHOP_UK_ENV === undefined ? "" : BOOKSHOP_UK_ENV).trim();
