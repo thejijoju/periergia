@@ -20,11 +20,16 @@ function cap(v: string | null | undefined, n: number): string | null {
   return s ? s.slice(0, n) : null;
 }
 
-export async function logArticleRequest(opts: {
-  nodeId: string;
-  title: string;
+// Log any page load. `name` is "article_request" for reader pages (carrying the
+// `cold` flag for the warming worklist) or "page_view" for everything else (the
+// homepage, subject indexes) so the dashboard can show ALL world traffic, not
+// just article requests.
+export async function logPageRequest(opts: {
+  name: "article_request" | "page_view";
   path: string;
-  cold: boolean;
+  title?: string;
+  nodeId?: string;
+  cold?: boolean;
   headers: Headers;
 }): Promise<void> {
   const supabase = getSupabase();
@@ -33,11 +38,11 @@ export async function logArticleRequest(opts: {
   const h = opts.headers;
   const ua = h.get("user-agent") ?? "";
   const row = {
-    name: "article_request",
-    node_id: cap(opts.nodeId, 200),
-    title: cap(opts.title, 300),
+    name: opts.name,
+    node_id: cap(opts.nodeId ?? null, 200),
+    title: cap(opts.title ?? null, 300),
     path: cap(opts.path, 300),
-    cold: opts.cold,
+    cold: opts.cold ?? null,
     bot: BOT.test(ua),
     country: cap(h.get("x-vercel-ip-country"), 8),
     city: cap(decodeURIComponent(h.get("x-vercel-ip-city") ?? ""), 120),

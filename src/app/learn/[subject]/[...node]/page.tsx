@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { after } from "next/server";
 import { headers, cookies } from "next/headers";
 import { normalizeLang, LANG_COOKIE, subjectName } from "@/lib/i18n";
-import { logArticleRequest } from "@/lib/demand";
+import { logPageRequest } from "@/lib/demand";
 import { EXCLUDE_KEY } from "@/lib/analyticsOptOut";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SectionLanding } from "@/components/SectionLanding";
@@ -196,7 +196,8 @@ export default async function ReaderPage({
     const cold = !initialBody && !showLanding;
     const reqPath = `/learn/${subj.slug}/${node.path.join("/")}`;
     after(() =>
-      logArticleRequest({
+      logPageRequest({
+        name: "article_request",
         nodeId: node.id,
         title: node.title.replace(/\s*\*+$/, ""),
         path: reqPath,
