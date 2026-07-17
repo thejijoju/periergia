@@ -140,6 +140,95 @@ const GENERATORS: Record<string, Generator> = {
       note: `The plain mean is ${f(mean(sorted))}%. Trimmed drops the outliers; winsorized keeps all five observations but caps the extremes at the nearest kept value.`,
     };
   },
+
+  // ── Machine design — stress, shafts, and fasteners ────────────────────────
+
+  "factor-of-safety": (rng) => {
+    const Sy = sample(rng, [250, 300, 350, 400, 450, 500, 620], 1)[0];
+    const sigma = sample(rng, [80, 100, 120, 140, 160, 180, 200], 1)[0];
+    const n = Sy / sigma;
+    return {
+      title: "Factor of safety",
+      question: `A steel component with yield strength Sy = ${Sy} MPa carries a working stress of σ = ${sigma} MPa. What is its factor of safety against yielding?`,
+      steps: [`n = \\frac{S_y}{\\sigma} = \\frac{${Sy}}{${sigma}} = ${n.toFixed(2)}`],
+      note: `A factor of safety of ${n.toFixed(2)} means the part carries about ${n.toFixed(2)}× the stress needed to begin yielding. Static machine design typically uses n ≈ 1.5–3 with known loads and materials, and more when either is uncertain; n < 1 would already have failed.`,
+    };
+  },
+
+  "axial-stress": (rng) => {
+    const F = sample(rng, [5, 10, 15, 20, 25, 30, 40, 50], 1)[0]; // kN
+    const d = sample(rng, [8, 10, 12, 16, 20, 25], 1)[0]; // mm
+    const A = (Math.PI * d * d) / 4; // mm^2
+    const sigma = (F * 1000) / A; // MPa
+    return {
+      title: "Axial (normal) stress",
+      question: `A round rod of diameter d = ${d} mm carries an axial tensile load F = ${F} kN. Find the normal stress in the rod.`,
+      steps: [
+        `A = \\frac{\\pi d^2}{4} = \\frac{\\pi (${d})^2}{4} = ${A.toFixed(1)}\\ \\text{mm}^2`,
+        `\\sigma = \\frac{F}{A} = \\frac{${F * 1000}\\ \\text{N}}{${A.toFixed(1)}\\ \\text{mm}^2} = ${sigma.toFixed(1)}\\ \\text{MPa}`,
+      ],
+      note: `Stress is force per unit area — the same load through a thinner rod means higher stress. Because 1 N/mm² equals 1 MPa, working in newtons and millimetres gives megapascals directly.`,
+    };
+  },
+
+  "shaft-torsion-stress": (rng) => {
+    const T = sample(rng, [50, 80, 100, 150, 200, 300, 400], 1)[0]; // N·m
+    const d = sample(rng, [20, 25, 30, 35, 40, 50], 1)[0]; // mm
+    const tau = (16 * (T * 1000)) / (Math.PI * d ** 3); // MPa
+    return {
+      title: "Torsional shear stress in a shaft",
+      question: `A solid circular shaft of diameter d = ${d} mm transmits a torque T = ${T} N·m. Find the maximum torsional shear stress at the surface.`,
+      steps: [
+        `\\tau_{\\max} = \\frac{16 T}{\\pi d^3} = \\frac{16\\,(${T * 1000}\\ \\text{N·mm})}{\\pi (${d})^3} = ${tau.toFixed(1)}\\ \\text{MPa}`,
+      ],
+      note: `The shear stress is greatest at the outer surface and zero at the centre. Note the strong dependence on size: τ scales as 1/d³, so a modest increase in diameter sharply reduces the stress.`,
+    };
+  },
+
+  "shaft-diameter-design": (rng) => {
+    const T = sample(rng, [50, 100, 150, 200, 250, 300], 1)[0]; // N·m
+    const tauA = sample(rng, [40, 50, 60], 1)[0]; // MPa allowable
+    const d = Math.cbrt((16 * (T * 1000)) / (Math.PI * tauA)); // mm
+    const std = Math.ceil(d / 5) * 5;
+    return {
+      title: "Designing a shaft diameter",
+      question: `A solid shaft must transmit T = ${T} N·m without its shear stress exceeding the allowable τ_allow = ${tauA} MPa. Find the minimum required diameter.`,
+      steps: [
+        `d = \\left(\\frac{16 T}{\\pi\\,\\tau_{\\text{allow}}}\\right)^{1/3} = \\left(\\frac{16\\,(${T * 1000})}{\\pi (${tauA})}\\right)^{1/3} = ${d.toFixed(1)}\\ \\text{mm}`,
+        `\\Rightarrow\\ \\text{use a standard } ${std}\\ \\text{mm shaft}`,
+      ],
+      note: `This just inverts the torsion formula to solve for d. In practice you round UP to the next standard size (here ${std} mm), which also builds in a little extra margin.`,
+    };
+  },
+
+  "bending-stress-shaft": (rng) => {
+    const M = sample(rng, [50, 100, 150, 200, 250, 300, 400], 1)[0]; // N·m
+    const d = sample(rng, [20, 25, 30, 40, 50], 1)[0]; // mm
+    const sigma = (32 * (M * 1000)) / (Math.PI * d ** 3); // MPa
+    return {
+      title: "Bending stress in a round shaft",
+      question: `A solid round shaft of diameter d = ${d} mm carries a bending moment M = ${M} N·m. Find the maximum bending stress.`,
+      steps: [
+        `\\sigma = \\frac{32 M}{\\pi d^3} = \\frac{32\\,(${M * 1000}\\ \\text{N·mm})}{\\pi (${d})^3} = ${sigma.toFixed(1)}\\ \\text{MPa}`,
+      ],
+      note: `For a solid circular cross-section, σ = 32M/(πd³). Like torsional stress, bending stress falls off as 1/d³, and its maximum is at the surface farthest from the neutral axis.`,
+    };
+  },
+
+  "bolt-tightening-torque": (rng) => {
+    const F = sample(rng, [10, 15, 20, 25, 30], 1)[0]; // kN preload
+    const d = sample(rng, [8, 10, 12, 16, 20], 1)[0]; // mm
+    const K = 0.2;
+    const T = K * (F * 1000) * (d / 1000); // N·m
+    return {
+      title: "Bolt tightening torque",
+      question: `A bolt of nominal diameter d = ${d} mm must reach a preload of F = ${F} kN. Using a nut factor K = ${K}, estimate the tightening torque.`,
+      steps: [
+        `T = K F d = (${K})(${F * 1000}\\ \\text{N})(${(d / 1000).toFixed(3)}\\ \\text{m}) = ${T.toFixed(1)}\\ \\text{N·m}`,
+      ],
+      note: `The nut factor K (≈ 0.2 for dry steel) bundles thread and head friction — most of the torque fights friction, not bolt stretch. That is why torque is only a rough proxy for preload, and why critical joints use angle-of-turn or direct-tension methods instead.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
