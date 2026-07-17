@@ -7,11 +7,11 @@ import { MODES, type Mode } from "./modes";
 // Browser-saved progress + reader preferences. No accounts in v1 — everything
 // lives in localStorage. Swappable for Supabase Auth + a `progress` table later.
 
-const KEY = "periergia.v3";
-// Previous key. The default reading prefs changed (Detailed by default, down
-// from Research), so on migration we keep the reader's progress but re-adopt
-// the new default prefs instead of carrying the old choice forward.
-const LEGACY_KEY = "periergia.v2";
+const KEY = "periergia.v4";
+// Previous key. The default reading prefs changed (the reviewed master is now
+// the free "Detailed & Expert" default), so on migration we keep the reader's
+// progress but re-adopt the new default prefs instead of the old choice.
+const LEGACY_KEY = "periergia.v3";
 
 interface ProgressState {
   visited: string[]; // node ids opened
@@ -22,11 +22,12 @@ interface ProgressState {
 const DEFAULT: ProgressState = {
   visited: [],
   completed: [],
-  // Open at Detailed/Advanced by default: a thorough ~1,800-word treatment that
-  // reads fast and generates far quicker than the ~3,500-word Research tier.
-  // Curated pages still server-render their reviewed Research master when it's
-  // cached; deeper or simpler variants are one click away.
-  prefs: { depth: "detailed", level: "advanced", mode: "read" },
+  // Open at the master, badged "Detailed & Expert" — the fullest reviewed
+  // article, and the cheapest cold generation (no extra distillation pass).
+  // Internally the master lives at the "research" rung; the reader presents it
+  // as "Detailed" and reserves "Research" for a separate, gated frontier tier.
+  // Shorter variants (Medium/Definition/Skim) are one click away.
+  prefs: { depth: "research", level: "expert", mode: "read" },
 };
 
 function load(): ProgressState {
