@@ -76,6 +76,21 @@ create table if not exists events (
 create index if not exists events_ts_idx   on events (ts desc);
 create index if not exists events_name_idx on events (name);
 
+-- Interest list for the gated "Research" tier. One row per email (upserted, so
+-- a repeat signup refreshes rather than duplicates). Written server-side by
+-- /api/research-signup; read back however the events dashboard is (token-gated).
+create table if not exists research_signups (
+  email    text primary key,
+  ts       timestamptz not null default now(),
+  node_id  text,
+  title    text,
+  path     text,
+  country  text,
+  referrer text,
+  ua       text
+);
+create index if not exists research_signups_ts_idx on research_signups (ts desc);
+
 -- ── Row-level security ────────────────────────────────────────────────────
 -- Public app: everyone may READ. WRITES happen server-side with the service
 -- role, which bypasses RLS — so no write policies are defined (writes via the
@@ -88,6 +103,9 @@ alter table quizzes  enable row level security;
 -- anon key. Only the server's service-role client (which bypasses RLS) touches
 -- it, keeping the analytics private.
 alter table events   enable row level security;
+-- research_signups holds email addresses (PII): RLS on, NO policy, so only the
+-- server's service-role client can read or write it. Never exposed to anon.
+alter table research_signups enable row level security;
 
 do $$
 begin

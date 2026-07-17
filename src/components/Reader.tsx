@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
-import { DEPTHS, LEVELS, type Depth, type Level } from "@/lib/types";
+import { LEVELS, type Depth, type Level } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
 import { injectAffiliateLinks } from "@/lib/affiliate";
 import { isRtl, t } from "@/lib/i18n";
@@ -19,6 +19,7 @@ import { QuizPanel } from "./QuizPanel";
 import { WorkedExample } from "./WorkedExample";
 import { SupplyDemandChart } from "./SupplyDemandChart";
 import { Quotation } from "./Quotation";
+import { ResearchGate } from "./ResearchGate";
 
 export interface Crumb {
   label: string;
@@ -115,8 +116,19 @@ export function Reader({
   // the pills would claim "Medium/Easy" while a Research/Advanced article is
   // displayed, and switching mode alone would silently regenerate at the wrong,
   // lower tier instead of the one the reader is looking at.
-  const [shownDepth, setShownDepth] = useState<Depth>(initialDepth ?? prefDepth);
-  const [shownLevel, setShownLevel] = useState<Level>(initialLevel ?? prefLevel);
+  // Resolve the depth/level to open at. The old "detailed" distillation rung is
+  // retired from the UI, so coerce it to the master ("research", badged
+  // "Detailed"); and the master reads as "Expert" by default (it's served
+  // verbatim at every level, so the badge is cosmetic — "Detailed & Expert").
+  const resolveInitial = () => {
+    const raw = initialDepth === "detailed" ? "research" : initialDepth;
+    const d: Depth = raw ?? prefDepth;
+    const l: Level = d === "research" ? "expert" : (initialLevel ?? prefLevel);
+    return { d, l };
+  };
+  const [shownDepth, setShownDepth] = useState<Depth>(() => resolveInitial().d);
+  const [shownLevel, setShownLevel] = useState<Level>(() => resolveInitial().l);
+  const [gate, setGate] = useState(false); // gated "Research" tier panel shown?
   const [body, setBody] = useState(initialBody);
   const [loading, setLoading] = useState(!initialBody);
   const [generated, setGenerated] = useState(!!initialBody);
@@ -135,8 +147,10 @@ export function Reader({
     setGenerated(!!initialBody);
     setReviewed(initialReviewed);
     setLoading(!initialBody);
-    setShownDepth(initialDepth ?? prefDepth);
-    setShownLevel(initialLevel ?? prefLevel);
+    const { d, l } = resolveInitial();
+    setShownDepth(d);
+    setShownLevel(l);
+    setGate(false);
     skipInitialFetch.current = !!initialBody;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node.id]);
@@ -306,30 +320,63 @@ export function Reader({
         </div>
       </div>
 
-      {/* Depth + Level controls */}
+      {/* Depth + Level controls. The reviewed master is the free "Detailed"
+          tier (default); "Research" is a separate, gated frontier tier that
+          locks to Expert — nothing written is hidden behind it. */}
       <div className="mt-4 space-y-2.5">
-        <ControlRow
-          labelKey="depth"
-          lang={lang}
-          items={DEPTHS}
-          value={shownDepth}
-          onSelect={(id) => {
-            setShownDepth(id as Depth);
-            setPrefs({ depth: id as Depth });
-          }}
-        />
-        <ControlRow
-          labelKey="level"
-          lang={lang}
-          items={LEVELS}
-          value={shownLevel}
-          onSelect={(id) => {
-            setShownLevel(id as Level);
-            setPrefs({ level: id as Level });
-          }}
-        />
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-whisper w-[42px] shrink-0">
+            {t(lang, "depth")}
+          </span>
+          <div className="flex flex-wrap gap-[6px]">
+            {DEPTH_TIERS.map((it) => (
+              <button
+                key={it.id}
+                onClick={() => {
+                  setGate(false);
+                  setShownDepth(it.id);
+                  setPrefs({ depth: it.id });
+                }}
+                className={chipCls(!gate && it.id === shownDepth)}
+              >
+                {t(lang, it.key)}
+              </button>
+            ))}
+            {/* Gated frontier tier — locks to Expert, opens the signup panel. */}
+            <button
+              onClick={() => {
+                setGate(true);
+                setShownLevel("expert");
+                setPrefs({ level: "expert" });
+              }}
+              className={`${chipCls(gate)} inline-flex items-center gap-[3px]`}
+            >
+              <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-maroon">
+                <rect x="3" y="7" width="10" height="7" rx="1.5" />
+                <path d="M5 7V5a3 3 0 0 1 6 0v2" />
+              </svg>
+              {t(lang, "research")}
+            </button>
+          </div>
+        </div>
+        {!gate && (
+          <ControlRow
+            labelKey="level"
+            lang={lang}
+            items={LEVELS}
+            value={shownLevel}
+            onSelect={(id) => {
+              setShownLevel(id as Level);
+              setPrefs({ level: id as Level });
+            }}
+          />
+        )}
       </div>
 
+      {gate ? (
+        <ResearchGate nodeId={node.id} title={node.title.replace(/\s*\*+$/, "")} />
+      ) : (
+        <>
       <hr className="my-7 border-line" />
 
       {/* Body */}
@@ -451,6 +498,8 @@ export function Reader({
           )}
         </div>
       )}
+        </>
+      )}
     </article>
   );
 }
@@ -462,6 +511,26 @@ function Chevron() {
     </svg>
   );
 }
+
+// Reader depth tiers. The reviewed master (stored internally at the "research"
+// rung) is presented as the free, default "Detailed" tier — every written
+// article moved down a notch in NAME only, nothing hidden. A separate, gated
+// "Research" tier sits above it (rendered specially, not in this list): a
+// coming-soon frontier of articles written by working researchers.
+const DEPTH_TIERS: { id: Depth; key: string }[] = [
+  { id: "skim", key: "skim" },
+  { id: "definition", key: "definition" },
+  { id: "medium", key: "medium" },
+  { id: "research", key: "detailed" }, // the master, badged "Detailed"
+];
+
+// Shared pill styling for the depth chips (mirrors ControlRow's buttons).
+const chipCls = (active: boolean) =>
+  `font-sans text-[11px] px-[10px] py-[4px] rounded-full transition-colors ${
+    active
+      ? "border-[1.1px] border-ink bg-page text-ink"
+      : "border border-[rgba(33,29,24,.08)] bg-pill text-ink"
+  }`;
 
 function ControlRow({
   labelKey,
