@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
+import { normalizeLang, LANG_COOKIE } from "@/lib/i18n";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SectionLanding } from "@/components/SectionLanding";
 import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
@@ -7,6 +8,7 @@ import { HeaderSearch } from "@/components/HeaderSearch";
 import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MobileNav } from "@/components/MobileNav";
 import {
   getSubject,
@@ -131,6 +133,11 @@ export default async function ReaderPage({
   // matching Associates tag for the Further Reading affiliate links.
   const country = (await headers()).get("x-vercel-ip-country") || undefined;
 
+  // Reading language (cookie set by the language switcher). English = the
+  // authored masters; other languages load a cached translation if one exists,
+  // else the Reader generates it on mount.
+  const lang = normalizeLang((await cookies()).get(LANG_COOKIE)?.value);
+
   // Server-render an already-cached read article into the HTML, so crawlers and
   // default-prefs readers get real text. Prefer the richest cached depth (a
   // full Research chapter indexes far better than a skim) and fall back down.
@@ -148,6 +155,7 @@ export default async function ReaderPage({
       depth: "research",
       level: "advanced",
       format: "read",
+      lang,
     });
     if (cached?.generated) {
       initialBody = cached.body;
@@ -158,7 +166,7 @@ export default async function ReaderPage({
   } else {
     for (const depth of DEPTH_PREFERENCE) {
       for (const level of ["advanced", "easy", "expert"] as const) {
-        const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read" });
+        const cached = await getCachedContent({ nodeId: node.id, depth, level, format: "read", lang });
         if (cached?.generated) {
           initialBody = cached.body;
           initialDepth = depth;
@@ -207,6 +215,7 @@ export default async function ReaderPage({
           </div>
           <div className="ml-auto flex items-center gap-1 justify-end min-w-0">
             <HeaderSearch searchIndex={searchIndex} />
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
         </div>
@@ -248,6 +257,7 @@ export default async function ReaderPage({
                 initialLevel={initialLevel}
                 initialReviewed={initialReviewed}
                 country={country}
+                lang={lang}
               />
               {isSection && (
                 <SectionLanding

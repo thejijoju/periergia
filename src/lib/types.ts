@@ -50,6 +50,8 @@ export interface ContentKey {
   level: Level;
   /** The learning mode (read/listen/podcast/…). Named `format` to match the DB column. */
   format: Mode;
+  /** Reading language (ISO code). Omitted or "en" = the authored English content. */
+  lang?: string;
 }
 
 export interface Content extends ContentKey {

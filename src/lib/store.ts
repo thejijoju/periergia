@@ -2,6 +2,7 @@ import "server-only";
 import type { Content, ContentKey, Node, Quiz, SearchItem, Subject } from "./types";
 import { SEED_NODES, SEED_SUBJECTS } from "./seed";
 import { getSupabase } from "./supabase";
+import { normalizeLang, DEFAULT_LANG } from "./i18n";
 
 // ── Data store ───────────────────────────────────────────────────────────
 // One interface over two backends:
@@ -207,26 +208,42 @@ export async function getSearchIndex(): Promise<SearchItem[]> {
 const memContent = new Map<string, Content>();
 const memQuiz = new Map<string, Quiz>();
 
-const contentKey = (k: ContentKey) => `${k.nodeId}::${k.depth}::${k.level}::${k.format}`;
-const quizKey = (nodeId: string, level: string) => `${nodeId}::${level}`;
+// Non-English content is cached under a lang-suffixed format/level so a new
+// reading language needs NO schema migration: English rows keep the plain
+// value ("read", "advanced"); other languages get "read__ru", "advanced__ru".
+// Isolated to this layer — callers use key.lang cleanly.
+const langFormat = (format: string, lang?: string) => {
+  const l = normalizeLang(lang);
+  return l === DEFAULT_LANG ? format : `${format}__${l}`;
+};
+const langLevel = (level: string, lang?: string) => {
+  const l = normalizeLang(lang);
+  return l === DEFAULT_LANG ? level : `${level}__${l}`;
+};
+
+const contentKey = (k: ContentKey) =>
+  `${k.nodeId}::${k.depth}::${k.level}::${k.format}::${normalizeLang(k.lang)}`;
+const quizKey = (nodeId: string, level: string, lang?: string) =>
+  `${nodeId}::${langLevel(level, lang)}`;
 
 export async function getCachedContent(k: ContentKey): Promise<Content | null> {
   const supabase = getSupabase();
   if (supabase) {
     const { data } = await supabase
       .from("content")
-      .select("node_id, depth, level, format, body, generated, reviewed")
+      .select("body, generated, reviewed")
       .eq("node_id", k.nodeId)
       .eq("depth", k.depth)
       .eq("level", k.level)
-      .eq("format", k.format)
+      .eq("format", langFormat(k.format, k.lang))
       .maybeSingle();
     if (data) {
       return {
-        nodeId: data.node_id,
-        depth: data.depth,
-        level: data.level,
-        format: data.format,
+        nodeId: k.nodeId,
+        depth: k.depth,
+        level: k.level,
+        format: k.format,
+        lang: normalizeLang(k.lang),
         body: data.body,
         generated: data.generated,
         reviewed: !!data.reviewed,
@@ -245,7 +262,7 @@ export async function putCachedContent(c: Content): Promise<void> {
         node_id: c.nodeId,
         depth: c.depth,
         level: c.level,
-        format: c.format,
+        format: langFormat(c.format, c.lang),
         body: c.body,
         generated: c.generated,
         reviewed: c.reviewed,
@@ -257,36 +274,40 @@ export async function putCachedContent(c: Content): Promise<void> {
   memContent.set(contentKey(c), c);
 }
 
-export async function getCachedQuiz(nodeId: string, level: string): Promise<Quiz | null> {
+export async function getCachedQuiz(
+  nodeId: string,
+  level: string,
+  lang?: string,
+): Promise<Quiz | null> {
   const supabase = getSupabase();
   if (supabase) {
     const { data } = await supabase
       .from("quizzes")
-      .select("node_id, level, questions, generated")
+      .select("questions, generated")
       .eq("node_id", nodeId)
-      .eq("level", level)
+      .eq("level", langLevel(level, lang))
       .maybeSingle();
     if (data) {
       return {
-        nodeId: data.node_id,
-        level: data.level,
+        nodeId,
+        level: level as Quiz["level"],
         questions: data.questions,
         generated: data.generated,
       };
     }
     return null;
   }
-  return memQuiz.get(quizKey(nodeId, level)) ?? null;
+  return memQuiz.get(quizKey(nodeId, level, lang)) ?? null;
 }
 
-export async function putCachedQuiz(q: Quiz): Promise<void> {
+export async function putCachedQuiz(q: Quiz, lang?: string): Promise<void> {
   const supabase = getSupabase();
   if (supabase) {
     await supabase.from("quizzes").upsert(
-      { node_id: q.nodeId, level: q.level, questions: q.questions, generated: q.generated },
+      { node_id: q.nodeId, level: langLevel(q.level, lang), questions: q.questions, generated: q.generated },
       { onConflict: "node_id,level" },
     );
     return;
   }
-  memQuiz.set(quizKey(q.nodeId, q.level), q);
+  memQuiz.set(quizKey(q.nodeId, q.level, lang), q);
 }
