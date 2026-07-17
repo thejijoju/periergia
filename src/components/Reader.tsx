@@ -18,6 +18,7 @@ import { VoiceButton } from "./VoiceButton";
 import { QuizPanel } from "./QuizPanel";
 import { WorkedExample } from "./WorkedExample";
 import { SupplyDemandChart } from "./SupplyDemandChart";
+import { Quotation } from "./Quotation";
 
 export interface Crumb {
   label: string;
@@ -402,6 +403,12 @@ export function Reader({
                   // supply-and-demand diagram with shift sliders.
                   if (typeof cls === "string" && /language-supplydemand\b/.test(cls)) {
                     return <SupplyDemandChart />;
+                  }
+                  // A fenced ```quote block becomes a portrait + historical quote.
+                  if (typeof cls === "string" && /language-quote\b/.test(cls)) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const spec = extractText((child as any).props?.children).trim();
+                    return <Quotation spec={spec} />;
                   }
                   return <pre>{children}</pre>;
                 },
