@@ -204,6 +204,66 @@ body {
   color: var(--prose-link);
 }
 
+/* Historical quotation — a small portrait on the left, the quote on the right.
+   Deliberately distinct from the purple definition callout above: a bare maroon
+   rule and a serif italic voice, so a landmark quote reads as a quote, not a
+   definition. */
+.prose-reading .quotation {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  margin: 2em 0;
+  padding-left: 1.1em;
+  border-left: 3px solid var(--c-maroon);
+}
+.prose-reading .quotation .q-portrait {
+  flex: none;
+  width: 60px;
+  height: 60px;
+  margin: 0.2em 0 0;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--quote-border);
+  background: var(--callout-bg);
+}
+.prose-reading .quotation .q-main {
+  flex: 1;
+  min-width: 0;
+}
+.prose-reading .quotation blockquote {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  font-size: 1em;
+}
+.prose-reading .quotation .q-trans {
+  margin: 0 0 0.3em;
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: var(--prose-heading);
+}
+.prose-reading .quotation .q-orig {
+  margin: 0 0 0.35em;
+  font-size: 1.12em;
+  line-height: 1.7;
+  font-weight: 500;
+  color: var(--prose-heading);
+}
+.prose-reading .quotation figcaption {
+  margin-top: 0.55em;
+  font-size: 0.85em;
+  color: var(--c-faint);
+}
+.prose-reading .quotation figcaption em {
+  font-style: italic;
+}
+
 /* Article images — resolved from Wikipedia at generation time */
 .prose-reading :where(img) {
   display: block;

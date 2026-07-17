@@ -37,6 +37,27 @@ The field divides into two branches that examine the same economy from different
 
 Macroeconomics works with economy-wide totals such as national output and national income. But those totals do not float free: each is the summed result of millions of separate decisions to buy, sell, hire, and produce. In that sense macroeconomics is grounded in microeconomics — which is why microeconomics is the natural place to begin the study of economics.
 
+## Older than its name
+
+The word *economics* is young — it edged out the older phrase *political economy* only in the late nineteenth century — but the questions are ancient. People reasoned about scarcity, prices, and self-interested exchange for thousands of years before any of it was called a science. Around 91 BCE the Chinese historian Sima Qian described a market coordinating itself through prices, with no one in charge:
+
+```quote
+img: https://commons.wikimedia.org/wiki/Special:FilePath/Sima%20Qian%20%28painting%29.jpg?width=160
+「物賤之徵貴，貴之徵賤……不召而自來，不求而民出之。」
+"When a thing is cheap, that is the sign it will grow dear; when it is dear, the sign it will grow cheap. … Unsummoned, the goods come of themselves; unbidden, the people bring them forth."
+司馬遷 Sima Qian · Records of the Grand Historian (史記) · c. 91 BCE
+```
+
+Some eighteen centuries later, at what is usually taken as the modern subject's starting point, Adam Smith put the same insight — order emerging from self-interest — at the centre of *The Wealth of Nations*:
+
+```quote
+img: https://commons.wikimedia.org/wiki/Special:FilePath/Adam%20Smith%20The%20Muir%20portrait.jpg?width=160
+"It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest."
+Adam Smith · The Wealth of Nations · 1776
+```
+
+Neither writer had the curves and equations of the pages that follow. But both had already seen the thing those tools describe: countless self-interested choices, coordinated by prices, settling into an order no one designed.
+
 ## The two decision-makers: households and firms
 
 Microeconomics sorts the private economy into two kinds of actor and builds a "theory" of each.
