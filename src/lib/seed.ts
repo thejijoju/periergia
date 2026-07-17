@@ -953,7 +953,8 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "thermodynamics"
           },
           {
-            "title": "machine design"
+            "title": "Machine Design",
+            "summary": "Turning a required function into a specific piece of metal that will not break — the discipline of comparing the stress a load produces to the strength a material offers. Stress and strength (yield versus ultimate, ductile versus brittle); the factor of safety and how it is chosen; the simple stresses — axial, shear, and bearing; static failure theories (maximum-shear and the distortion-energy/von Mises criterion for ductile metals, maximum-normal-stress for brittle); torsion and the design of shafts (τ = 16T/πd³ and its inversion for diameter); bending; combined loading via von Mises; bolted joints and the central role of preload (and why torque only roughly controls it); and fatigue — the S-N curve, endurance limit, stress concentration, and mean stress that cause the great majority of real machine failures. With interactive 'your turn' practice boxes for factor of safety, axial stress, shaft torsion and design, bending, and bolt torque."
           }
         ]
       },
