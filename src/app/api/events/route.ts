@@ -44,8 +44,12 @@ function summarize(rows: EventRow[]) {
   //    predate the `name`/`bot` columns, so treat a missing name as a read.
   const human = rows.filter((r) => !r.bot);
   const requests = human.filter((r) => r.name === "article_request");
-  const reads = human.filter((r) => r.name !== "article_request"); // article_read + legacy
-  const crawlerRequests = rows.filter((r) => r.bot && r.name === "article_request").length;
+  const pageviews = human.filter((r) => r.name === "page_view");
+  const reads = human.filter((r) => r.name !== "article_request" && r.name !== "page_view"); // article_read + legacy
+  // Every human page load — articles + homepage/other — i.e. all world traffic.
+  const pageLoads = [...requests, ...pageviews];
+  const isLoad = (r: EventRow) => r.name === "article_request" || r.name === "page_view";
+  const crawlerLoads = rows.filter((r) => r.bot && isLoad(r)).length;
 
   // Engagement (reads) — dwell metrics on the read beacon.
   const perArticle = new Map<string, { reads: number; totalSeconds: number }>();
@@ -95,18 +99,20 @@ function summarize(rows: EventRow[]) {
 
   const coldRequests = requests.filter((r) => r.cold).length;
 
-  // Geography spans all human activity (requests + reads), so "places in the
-  // world" reflects everyone who showed up, not only those who stayed to read.
-  const byCountry = tally(human, (r) => r.country);
-  const byCity = tally(human, (r) => (r.city && r.country ? `${r.city}, ${r.country}` : r.city));
+  // Geography + "by page" span ALL human page loads (articles + homepage), so
+  // the dashboard shows everyone who showed up, from everywhere.
+  const byCountry = tally(pageLoads, (r) => r.country);
+  const byCity = tally(pageLoads, (r) => (r.city && r.country ? `${r.city}, ${r.country}` : r.city));
+  const byPage = tally(pageLoads, (r) => r.path);
 
   return {
     generatedAt: new Date().toISOString(),
     window: { events: rows.length, newest: rows[0]?.ts ?? null, oldest: rows.at(-1)?.ts ?? null },
     totals: {
+      pageLoads: pageLoads.length,
       requests: requests.length,
       coldRequests,
-      crawlerRequests,
+      crawlerLoads,
       reads: reads.length,
       avgSeconds,
       medianSeconds,
@@ -116,13 +122,14 @@ function summarize(rows: EventRow[]) {
     },
     requested,
     byArticle: articles,
+    byPage,
     byCountry,
     byCity,
-    byCityRaw: tally(human, (r) => r.city), // raw city name, for delete-by-city
+    byCityRaw: tally(pageLoads, (r) => r.city), // raw city name, for delete-by-city
     byDwellBucket: tally(reads, (r) => r.dwell),
     byDepth: tally(reads, (r) => r.depth),
     byLevel: tally(reads, (r) => r.level),
-    byReferrer: tally(human, (r) => r.referrer),
+    byReferrer: tally(pageLoads, (r) => r.referrer),
     recent: human.slice(0, 100),
   };
 }
@@ -174,12 +181,12 @@ function rankTable(
 function renderHtml(s: ReturnType<typeof summarize>): string {
   const t = s.totals;
   const tiles = [
-    { label: "Requests", value: String(t.requests) },
+    { label: "Page loads", value: String(t.pageLoads) },
+    { label: "Article requests", value: String(t.requests) },
     { label: "Cold (to warm)", value: String(t.coldRequests) },
     { label: "Reads", value: String(t.reads) },
-    { label: "Avg dwell", value: fmtDur(t.avgSeconds) },
     { label: "Countries", value: String(t.countries) },
-    { label: "Crawler hits", value: String(t.crawlerRequests) },
+    { label: "Crawler hits", value: String(t.crawlerLoads) },
   ]
     .map(
       (x) => `<div class="tile"><div class="v">${esc(x.value)}</div><div class="l">${esc(x.label)}</div></div>`,
@@ -216,7 +223,14 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
   const recentRows = s.recent
     .slice(0, 40)
     .map((r) => {
-      const kind = r.name === "article_request" ? (r.cold ? "cold" : "cached") : "read";
+      const kind =
+        r.name === "page_view"
+          ? "view"
+          : r.name === "article_request"
+            ? r.cold
+              ? "cold"
+              : "cached"
+            : "read";
       return `<tr><td>${fmtWhen(r.ts)}</td><td class="${kind === "cold" ? "kind cold" : "kind"}">${kind}</td><td class="k">${esc(r.title ?? r.path ?? "—")}</td><td>${esc(r.city && r.country ? `${r.city}, ${r.country}` : r.country ?? "—")}</td></tr>`;
     })
     .join("");
@@ -279,10 +293,11 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
 ${worklistCard}
 ${articlesCard}
 <div class="grid">
+${rankTable("Traffic by page", s.byPage)}
+${rankTable("Referrers", s.byReferrer)}
 ${rankTable("Countries", s.byCountry, { deleteScope: "country" })}
 ${rankTable("Cities", s.byCityRaw, { deleteScope: "city" })}
 ${rankTable("Dwell time", s.byDwellBucket)}
-${rankTable("Referrers", s.byReferrer)}
 ${rankTable("Depth", s.byDepth)}
 ${rankTable("Level", s.byLevel)}
 </div>
@@ -290,7 +305,7 @@ ${recentCard}
 <section class="card wide danger"><h2>Danger zone</h2>
 <p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
 <button data-del data-scope="all" class="wipe">Wipe all events</button></section>
-<footer><b>Requests</b> = every article page load (logged server-side, so it counts visitors who bounce during a slow cold generation and people landing from search); crawlers are counted separately as “Crawler hits.” <b>Cold</b> = requests that hit an uncached page — your warming worklist. <b>Reads</b> = the dwell beacon (≥3s), so it under-counts by design. Neither counts unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
+<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = the dwell beacon (≥3s), so it under-counts by design. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
 </div>
 <script>
 document.addEventListener('click', function (e) {

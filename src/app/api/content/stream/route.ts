@@ -1,6 +1,7 @@
 import type { Depth, Level } from "@/lib/types";
 import { type Mode, contentMode, getMode } from "@/lib/modes";
 import { normalizeLang } from "@/lib/i18n";
+import { after } from "next/server";
 import { getNodeById, getCachedContent, putCachedContent } from "@/lib/store";
 import { generateContent } from "@/lib/generate";
 import { getAnthropic } from "@/lib/anthropic";
@@ -68,6 +69,13 @@ export async function POST(req: Request) {
 
   const encoder = new TextEncoder();
   let streamed = "";
+  // Resolves when generation + caching finish. We hand this to `after()` so the
+  // function stays alive to completion EVEN IF THE READER BOUNCES mid-stream —
+  // their abandoned request finishes generating and caches, warming the page for
+  // the next visitor instead of being thrown away.
+  let settle: () => void;
+  const done = new Promise<void>((r) => (settle = r));
+
   const readable = new ReadableStream({
     async start(controller) {
       const enqueue = (text: string) => {
@@ -91,10 +99,16 @@ export async function POST(req: Request) {
       } catch (e) {
         console.error(`stream generation failed for ${nodeId}:`, (e as Error)?.message ?? e);
       } finally {
-        controller.close();
+        try {
+          controller.close();
+        } catch {
+          /* already closed by a client disconnect */
+        }
+        settle();
       }
     },
   });
 
+  after(done);
   return new Response(readable, { headers: headers(true, false) });
 }
