@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Wordmark } from "./Wordmark";
 import { SearchBar } from "./SearchBar";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { SearchItem } from "@/lib/types";
 
 export interface HomeSubject {
@@ -74,9 +75,10 @@ export function Home({
 
   return (
     <main className="relative min-h-screen bg-page text-ink flex flex-col overflow-hidden">
-      {/* Theme toggle — top-left */}
-      <div className="absolute top-3 left-3 z-10">
+      {/* Theme toggle + language — top-left */}
+      <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
         <ThemeToggle />
+        <LanguageSwitcher />
       </div>
       {/* Faint pixel-grid accent, top-right */}
       <Image

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { headers, cookies } from "next/headers";
-import { normalizeLang, LANG_COOKIE } from "@/lib/i18n";
+import { normalizeLang, LANG_COOKIE, subjectName } from "@/lib/i18n";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SectionLanding } from "@/components/SectionLanding";
 import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
@@ -70,6 +70,11 @@ export default async function ReaderPage({
   const node = await getNodeByPath(subject, nodePath);
   if (!node) notFound();
 
+  // Reading language (cookie set by the switcher). Subject names translate to it
+  // wherever they appear; deeper topic titles stay English for now.
+  const lang = normalizeLang((await cookies()).get(LANG_COOKIE)?.value);
+  const subjName = subjectName(lang, subj.slug, subj.name);
+
   const subjectNodes = await getNodes(subj.id);
   const firstLeaf = await getFirstLeaf(subj.id);
   const subjectHref = firstLeaf
@@ -80,7 +85,7 @@ export default async function ReaderPage({
   // route redirects to each subject's current first topic at request time.
   const allSubjects = await getSubjects();
   const subjectLinks = allSubjects.map((s) => ({
-    name: s.name,
+    name: subjectName(lang, s.slug, s.name),
     slug: s.slug,
     href: `/learn/${s.slug}`,
   }));
@@ -109,7 +114,7 @@ export default async function ReaderPage({
   // Breadcrumb: subject → ancestors → current (current has no href).
   const ancestors = await getAncestors(node); // includes self as last element
   const crumbs: Crumb[] = [
-    { label: subj.name, href: subjectHref },
+    { label: subjName, href: subjectHref },
     ...ancestors.map((n, i) => {
       const isSelf = i === ancestors.length - 1;
       return {
@@ -132,11 +137,6 @@ export default async function ReaderPage({
   // Reader's country (Vercel geo header) picks the local Amazon marketplace and
   // matching Associates tag for the Further Reading affiliate links.
   const country = (await headers()).get("x-vercel-ip-country") || undefined;
-
-  // Reading language (cookie set by the language switcher). English = the
-  // authored masters; other languages load a cached translation if one exists,
-  // else the Reader generates it on mount.
-  const lang = normalizeLang((await cookies()).get(LANG_COOKIE)?.value);
 
   // Server-render an already-cached read article into the HTML, so crawlers and
   // default-prefs readers get real text. Prefer the richest cached depth (a
@@ -203,7 +203,7 @@ export default async function ReaderPage({
       <header className="sticky top-0 z-20 bg-page backdrop-blur border-b border-line">
         <div className="pl-4 pr-4 sm:pr-6 lg:pl-[2cm] lg:pr-8 py-3 flex items-center gap-2 sm:gap-4">
           <MobileNav
-            subjectName={subj.name}
+            subjectName={subjName}
             subjectSlug={subj.slug}
             subjectHref={subjectHref}
             subjects={subjectLinks}
@@ -226,7 +226,7 @@ export default async function ReaderPage({
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
             <SubjectTree
-              subjectName={subj.name}
+              subjectName={subjName}
               subjectSlug={subj.slug}
               subjectHref={subjectHref}
               subjects={subjectLinks}
@@ -241,7 +241,7 @@ export default async function ReaderPage({
           {showLanding ? (
             <SectionLanding
               title={node.title}
-              subjectName={subj.name}
+              subjectName={subjName}
               items={sectionChildren.map((c) => ({
                 title: c.title,
                 href: `/learn/${subj.slug}/${c.path.join("/")}`,
@@ -263,7 +263,7 @@ export default async function ReaderPage({
                 <SectionLanding
                   variant="compact"
                   title={node.title}
-                  subjectName={subj.name}
+                  subjectName={subjName}
                   items={sectionChildren.map((c) => ({
                     title: c.title,
                     href: `/learn/${subj.slug}/${c.path.join("/")}`,

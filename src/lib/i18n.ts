@@ -73,3 +73,55 @@ export function t(lang: string | null | undefined, key: string): string {
   if (!row) return key;
   return row[l] ?? row.en ?? key;
 }
+
+// ── Subject names ─────────────────────────────────────────────────────────
+// The 37 top-level subjects, translated by hand (they're finite and highly
+// visible — homepage pills, sidebar, breadcrumbs). Keyed by slug → langCode.
+// Deeper topic titles are NOT here (they'd be batch-translated later).
+// (hi/bn/ur worth a native review.)
+const SUBJECT_NAMES: Record<string, Record<string, string>> = {
+  mathematics: { zh: "数学", hi: "गणित", es: "Matemáticas", fr: "Mathématiques", ar: "الرياضيات", bn: "গণিত", pt: "Matemática", ru: "Математика", ur: "ریاضی" },
+  physics: { zh: "物理学", hi: "भौतिकी", es: "Física", fr: "Physique", ar: "الفيزياء", bn: "পদার্থবিজ্ঞান", pt: "Física", ru: "Физика", ur: "طبیعیات" },
+  chemistry: { zh: "化学", hi: "रसायन विज्ञान", es: "Química", fr: "Chimie", ar: "الكيمياء", bn: "রসায়ন", pt: "Química", ru: "Химия", ur: "کیمیا" },
+  biology: { zh: "生物学", hi: "जीव विज्ञान", es: "Biología", fr: "Biologie", ar: "الأحياء", bn: "জীববিজ্ঞান", pt: "Biologia", ru: "Биология", ur: "حیاتیات" },
+  "earth-and-environmental-science": { zh: "地球与环境科学", hi: "पृथ्वी एवं पर्यावरण विज्ञान", es: "Ciencias de la Tierra y el Medio Ambiente", fr: "Sciences de la Terre et de l’environnement", ar: "علوم الأرض والبيئة", bn: "ভূ ও পরিবেশ বিজ্ঞান", pt: "Ciências da Terra e do Ambiente", ru: "Науки о Земле и окружающей среде", ur: "ارضی و ماحولیاتی سائنس" },
+  "astronomy-and-space": { zh: "天文与太空", hi: "खगोल विज्ञान एवं अंतरिक्ष", es: "Astronomía y Espacio", fr: "Astronomie et espace", ar: "علم الفلك والفضاء", bn: "জ্যোতির্বিজ্ঞান ও মহাকাশ", pt: "Astronomia e Espaço", ru: "Астрономия и космос", ur: "فلکیات و خلا" },
+  "computer-science": { zh: "计算机科学", hi: "कंप्यूटर विज्ञान", es: "Informática", fr: "Informatique", ar: "علوم الحاسوب", bn: "কম্পিউটার বিজ্ঞান", pt: "Ciência da Computação", ru: "Информатика", ur: "کمپیوٹر سائنس" },
+  "engineering-and-technology": { zh: "工程与技术", hi: "इंजीनियरिंग एवं प्रौद्योगिकी", es: "Ingeniería y Tecnología", fr: "Ingénierie et technologie", ar: "الهندسة والتكنولوجيا", bn: "প্রকৌশল ও প্রযুক্তি", pt: "Engenharia e Tecnologia", ru: "Инженерия и технологии", ur: "انجینئرنگ و ٹیکنالوجی" },
+  "medicine-and-health": { zh: "医学与健康", hi: "चिकित्सा एवं स्वास्थ्य", es: "Medicina y Salud", fr: "Médecine et santé", ar: "الطب والصحة", bn: "চিকিৎসা ও স্বাস্থ্য", pt: "Medicina e Saúde", ru: "Медицина и здоровье", ur: "طب و صحت" },
+  psychology: { zh: "心理学", hi: "मनोविज्ञान", es: "Psicología", fr: "Psychologie", ar: "علم النفس", bn: "মনোবিজ্ঞান", pt: "Psicologia", ru: "Психология", ur: "نفسیات" },
+  "sociology-and-anthropology": { zh: "社会学与人类学", hi: "समाजशास्त्र एवं मानवविज्ञान", es: "Sociología y Antropología", fr: "Sociologie et anthropologie", ar: "علم الاجتماع والأنثروبولوجيا", bn: "সমাজবিজ্ঞান ও নৃবিজ্ঞান", pt: "Sociologia e Antropologia", ru: "Социология и антропология", ur: "عمرانیات و بشریات" },
+  "political-science-and-international-relations": { zh: "政治学与国际关系", hi: "राजनीति विज्ञान एवं अंतर्राष्ट्रीय संबंध", es: "Ciencias Políticas y Relaciones Internacionales", fr: "Sciences politiques et relations internationales", ar: "العلوم السياسية والعلاقات الدولية", bn: "রাষ্ট্রবিজ্ঞান ও আন্তর্জাতিক সম্পর্ক", pt: "Ciência Política e Relações Internacionais", ru: "Политология и международные отношения", ur: "سیاسیات و بین الاقوامی تعلقات" },
+  economics: { zh: "经济学", hi: "अर्थशास्त्र", es: "Economía", fr: "Économie", ar: "الاقتصاد", bn: "অর্থনীতি", pt: "Economia", ru: "Экономика", ur: "معاشیات" },
+  finance: { zh: "金融", hi: "वित्त", es: "Finanzas", fr: "Finance", ar: "التمويل", bn: "ফাইন্যান্স", pt: "Finanças", ru: "Финансы", ur: "مالیات" },
+  "business-and-management": { zh: "商业与管理", hi: "व्यवसाय एवं प्रबंधन", es: "Negocios y Gestión", fr: "Commerce et gestion", ar: "الأعمال والإدارة", bn: "ব্যবসা ও ব্যবস্থাপনা", pt: "Negócios e Gestão", ru: "Бизнес и менеджмент", ur: "کاروبار و انتظام" },
+  law: { zh: "法学", hi: "विधि", es: "Derecho", fr: "Droit", ar: "القانون", bn: "আইন", pt: "Direito", ru: "Право", ur: "قانون" },
+  history: { zh: "历史学", hi: "इतिहास", es: "Historia", fr: "Histoire", ar: "التاريخ", bn: "ইতিহাস", pt: "História", ru: "История", ur: "تاریخ" },
+  geography: { zh: "地理学", hi: "भूगोल", es: "Geografía", fr: "Géographie", ar: "الجغرافيا", bn: "ভূগোল", pt: "Geografia", ru: "География", ur: "جغرافیہ" },
+  philosophy: { zh: "哲学", hi: "दर्शनशास्त्र", es: "Filosofía", fr: "Philosophie", ar: "الفلسفة", bn: "দর্শন", pt: "Filosofia", ru: "Философия", ur: "فلسفہ" },
+  "religion-and-theology": { zh: "宗教与神学", hi: "धर्म एवं धर्मशास्त्र", es: "Religión y Teología", fr: "Religion et théologie", ar: "الدين واللاهوت", bn: "ধর্ম ও ধর্মতত্ত্ব", pt: "Religião e Teologia", ru: "Религия и богословие", ur: "مذہب و الٰہیات" },
+  "languages-and-linguistics": { zh: "语言与语言学", hi: "भाषाएँ एवं भाषाविज्ञान", es: "Lenguas y Lingüística", fr: "Langues et linguistique", ar: "اللغات واللسانيات", bn: "ভাষা ও ভাষাবিজ্ঞান", pt: "Línguas e Linguística", ru: "Языки и лингвистика", ur: "زبانیں و لسانیات" },
+  "literature-and-writing": { zh: "文学与写作", hi: "साहित्य एवं लेखन", es: "Literatura y Escritura", fr: "Littérature et écriture", ar: "الأدب والكتابة", bn: "সাহিত্য ও রচনা", pt: "Literatura e Escrita", ru: "Литература и письмо", ur: "ادب و تحریر" },
+  "visual-arts": { zh: "视觉艺术", hi: "दृश्य कला", es: "Artes Visuales", fr: "Arts visuels", ar: "الفنون البصرية", bn: "চাক্ষুষ কলা", pt: "Artes Visuais", ru: "Изобразительное искусство", ur: "بصری فنون" },
+  music: { zh: "音乐", hi: "संगीत", es: "Música", fr: "Musique", ar: "الموسيقى", bn: "সঙ্গীত", pt: "Música", ru: "Музыка", ur: "موسیقی" },
+  "performing-arts": { zh: "表演艺术", hi: "प्रदर्शन कला", es: "Artes Escénicas", fr: "Arts du spectacle", ar: "الفنون الأدائية", bn: "পরিবেশন কলা", pt: "Artes Cênicas", ru: "Исполнительские искусства", ur: "پرفارمنگ آرٹس" },
+  "design-and-architecture": { zh: "设计与建筑", hi: "डिज़ाइन एवं वास्तुकला", es: "Diseño y Arquitectura", fr: "Design et architecture", ar: "التصميم والعمارة", bn: "ডিজাইন ও স্থাপত্য", pt: "Design e Arquitetura", ru: "Дизайн и архитектура", ur: "ڈیزائن و فنِ تعمیر" },
+  "media-and-communication": { zh: "媒体与传播", hi: "मीडिया एवं संचार", es: "Medios y Comunicación", fr: "Médias et communication", ar: "الإعلام والاتصال", bn: "মিডিয়া ও যোগাযোগ", pt: "Media e Comunicação", ru: "Медиа и коммуникация", ur: "میڈیا و ابلاغ" },
+  "education-and-learning": { zh: "教育与学习", hi: "शिक्षा एवं अधिगम", es: "Educación y Aprendizaje", fr: "Éducation et apprentissage", ar: "التعليم والتعلم", bn: "শিক্ষা ও শিখন", pt: "Educação e Aprendizagem", ru: "Образование и обучение", ur: "تعلیم و سیکھنا" },
+  "practical-and-life-skills": { zh: "实用与生活技能", hi: "व्यावहारिक एवं जीवन कौशल", es: "Habilidades Prácticas y para la Vida", fr: "Compétences pratiques et de vie", ar: "المهارات العملية والحياتية", bn: "ব্যবহারিক ও জীবন দক্ষতা", pt: "Competências Práticas e de Vida", ru: "Практические и жизненные навыки", ur: "عملی و زندگی کی مہارتیں" },
+  classics: { zh: "古典学", hi: "क्लासिक्स", es: "Clásicas", fr: "Lettres classiques", ar: "الدراسات الكلاسيكية", bn: "ক্লাসিকস", pt: "Estudos Clássicos", ru: "Классические науки", ur: "کلاسیکی علوم" },
+  neuroscience: { zh: "神经科学", hi: "तंत्रिका विज्ञान", es: "Neurociencia", fr: "Neurosciences", ar: "علم الأعصاب", bn: "স্নায়ুবিজ্ঞান", pt: "Neurociência", ru: "Нейронаука", ur: "اعصابی سائنس" },
+  statistics: { zh: "统计学", hi: "सांख्यिकी", es: "Estadística", fr: "Statistiques", ar: "الإحصاء", bn: "পরিসংখ্যান", pt: "Estatística", ru: "Статистика", ur: "شماریات" },
+  "africana-studies": { zh: "非洲研究", hi: "अफ़्रीकाना अध्ययन", es: "Estudios Africanos", fr: "Études africaines", ar: "الدراسات الأفريقية", bn: "আফ্রিকানা স্টাডিজ", pt: "Estudos Africanos", ru: "Африканские исследования", ur: "افریقی مطالعات" },
+  "asian-studies": { zh: "亚洲研究", hi: "एशियाई अध्ययन", es: "Estudios Asiáticos", fr: "Études asiatiques", ar: "الدراسات الآسيوية", bn: "এশীয় অধ্যয়ন", pt: "Estudos Asiáticos", ru: "Азиатские исследования", ur: "ایشیائی مطالعات" },
+  "gender-studies": { zh: "性别研究", hi: "लैंगिक अध्ययन", es: "Estudios de Género", fr: "Études de genre", ar: "دراسات النوع الاجتماعي", bn: "জেন্ডার স্টাডিজ", pt: "Estudos de Género", ru: "Гендерные исследования", ur: "صنفی مطالعات" },
+  "folklore-and-mythology": { zh: "民俗与神话", hi: "लोककथा एवं पुराण", es: "Folclore y Mitología", fr: "Folklore et mythologie", ar: "الفولكلور والأساطير", bn: "লোককাহিনি ও পুরাণ", pt: "Folclore e Mitologia", ru: "Фольклор и мифология", ur: "لوک داستان و اساطیر" },
+  film: { zh: "电影", hi: "फ़िल्म", es: "Cine", fr: "Cinéma", ar: "السينما", bn: "চলচ্চিত্র", pt: "Cinema", ru: "Кино", ur: "فلم" },
+};
+
+// Translated subject name, falling back to the English name we already have.
+export function subjectName(lang: string | null | undefined, slug: string, english: string): string {
+  const l = normalizeLang(lang);
+  if (l === "en") return english;
+  return SUBJECT_NAMES[slug]?.[l] ?? english;
+}
