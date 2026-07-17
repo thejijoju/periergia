@@ -278,7 +278,7 @@ export default async function ReaderPage({
         {/* Right rail — "on this page" scroll-spy outline */}
         <aside className="hidden lg:block">
           <div className="sticky top-24">
-            <OnThisPage />
+            <OnThisPage lang={lang} />
           </div>
         </aside>
       </div>
