@@ -360,7 +360,7 @@ export function Reader({
                   if (!/^https?:\/\//.test(url)) return <a href={url}>{children}</a>;
                   const affiliate =
                     (/amazon\./.test(url) && /[?&]tag=/.test(url)) ||
-                    /bookshop\.org\/a\//.test(url);
+                    /bookshop\.org\//.test(url);
                   const compact = affiliate && /↗/.test(extractText(children));
                   return (
                     <a
