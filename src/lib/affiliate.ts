@@ -41,28 +41,23 @@ const AMAZON_TAG_NA = (AMAZON_NA_ENV === undefined ? "periergialear-20" : AMAZON
 const AMAZON_EU_ENV = process.env.NEXT_PUBLIC_AMAZON_TAG_EU;
 const AMAZON_TAG_EU = (AMAZON_EU_ENV === undefined ? "periergialear-21" : AMAZON_EU_ENV).trim();
 
-// Bookshop.org runs two independent stores, each with its own affiliate id:
-// the US store (bookshop.org, ships within the US) and the UK store
-// (uk.bookshop.org, ships within the UK). NEXT_PUBLIC_BOOKSHOP_ID is the US id;
-// NEXT_PUBLIC_BOOKSHOP_ID_UK is the UK id.
+// Bookshop.org runs two independent stores that each ship within their own
+// country: the US store (bookshop.org) and the UK store (uk.bookshop.org).
 //
-// PARKED: our approved US id is 126258, but Bookshop only attributes affiliate
-// links that wrap a specific BOOK PAGE (/a/<id>/p/books/<slug>/<hash>?ean=<ISBN>),
-// and its /a/<id>/ prefix does not wrap a keyword search — so a title+author
-// link can't both point at the right book AND earn. Until we resolve a link
-// format that is confirmed to attribute (e.g. a curated ISBN map, or a verified
-// storefront/search parameter), the default is empty, so no Bookshop link is
-// shown and Amazon (which works everywhere) stands alone. Set the env var to
-// 126258 to re-enable once the URL format in bookshopSearchUrl is fixed.
-const BOOKSHOP_US_ENV = process.env.NEXT_PUBLIC_BOOKSHOP_ID;
-const BOOKSHOP_ID_US = (BOOKSHOP_US_ENV === undefined ? "" : BOOKSHOP_US_ENV).trim();
-
-const BOOKSHOP_UK_ENV = process.env.NEXT_PUBLIC_BOOKSHOP_ID_UK;
-const BOOKSHOP_ID_UK = (BOOKSHOP_UK_ENV === undefined ? "" : BOOKSHOP_UK_ENV).trim();
+// Per Bookshop's own guidance, a STOREFRONT url automatically carries the
+// affiliate cookie, so any purchase a reader makes in that session is credited
+// to us — no per-book ISBN needed. (Per-book /a/<id>/ product links attribute
+// too but require each book's page URL, which we can't derive from a title +
+// author; a keyword search does NOT carry the cookie.) So each "Bookshop ↗"
+// points at our storefront: the reader lands on our Bookshop store, searches,
+// and any purchase credits us. Configure by storefront SLUG (the name in
+// bookshop.org/shop/<slug>), which is the enable switch — empty means no link.
+const BOOKSHOP_STOREFRONT_US = (process.env.NEXT_PUBLIC_BOOKSHOP_STOREFRONT ?? "periergia").trim();
+const BOOKSHOP_STOREFRONT_UK = (process.env.NEXT_PUBLIC_BOOKSHOP_STOREFRONT_UK ?? "").trim();
 
 // Whether any Amazon tag / Bookshop id is configured at all.
 const AMAZON_ENABLED = !!(AMAZON_TAG_NA || AMAZON_TAG_EU);
-const BOOKSHOP_ENABLED = !!(BOOKSHOP_ID_US || BOOKSHOP_ID_UK);
+const BOOKSHOP_ENABLED = !!(BOOKSHOP_STOREFRONT_US || BOOKSHOP_STOREFRONT_UK);
 
 // Country (ISO-2, from Vercel's x-vercel-ip-country) → local Amazon host. The
 // North-America hosts bill against the "-20" tag; the European hosts against
@@ -135,29 +130,32 @@ function amazonSearchUrl(query: string, country?: string): string {
   return `https://${host}/s?k=${enc(query)}&i=stripbooks&tag=${encodeURIComponent(tag)}`;
 }
 
-// Resolve a reader's country to the Bookshop store that can serve them. Only
-// the US and UK stores exist, each shipping within its own country, so readers
-// elsewhere get no Bookshop link (they keep their local Amazon link). Returns
-// null when there's no serviceable, configured store for this reader.
-function bookshopMarket(country?: string): { host: string; id: string } | null {
+// Resolve a reader's country to the Bookshop STOREFRONT that can serve them.
+// Only the US and UK stores exist, each shipping within its own country, so
+// readers elsewhere get no Bookshop link (they keep their local Amazon link).
+// Returns null when there's no serviceable, configured storefront.
+function bookshopMarket(country?: string): { host: string; slug: string } | null {
   const c = (country ?? "").toUpperCase();
-  if ((c === "GB" || c === "UK") && BOOKSHOP_ID_UK) {
-    return { host: "uk.bookshop.org", id: BOOKSHOP_ID_UK };
+  if ((c === "GB" || c === "UK") && BOOKSHOP_STOREFRONT_UK) {
+    return { host: "uk.bookshop.org", slug: BOOKSHOP_STOREFRONT_UK };
   }
-  if (c === "US" && BOOKSHOP_ID_US) {
-    return { host: "bookshop.org", id: BOOKSHOP_ID_US };
+  if (c === "US" && BOOKSHOP_STOREFRONT_US) {
+    return { host: "bookshop.org", slug: BOOKSHOP_STOREFRONT_US };
   }
   return null;
 }
 
-// A Bookshop.org keyword search behind our affiliate prefix. The `/a/<id>/`
-// segment sets the affiliate cookie (last-touch attribution, 10% commission);
-// the reader lands on the search results and any purchase in that session is
-// credited to us. Empty string when Bookshop can't serve this reader.
+// Our Bookshop.org storefront URL. Bookshop's guidance: a storefront url
+// automatically carries the affiliate cookie, so any purchase the reader makes
+// in that session is credited to us (10% commission) — no per-book ISBN needed.
+// The reader lands on our store and searches for the book from there. The
+// `query` is unused (search urls don't carry the cookie) but kept in the
+// signature to mirror amazonSearchUrl. Empty when Bookshop can't serve them.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function bookshopSearchUrl(query: string, country?: string): string {
   const m = bookshopMarket(country);
   if (!m) return "";
-  return `https://${m.host}/a/${encodeURIComponent(m.id)}/beta-search?keywords=${enc(query)}`;
+  return `https://${m.host}/shop/${encodeURIComponent(m.slug)}`;
 }
 
 // The stores that can serve this reader, primary first (Amazon leads: it's
