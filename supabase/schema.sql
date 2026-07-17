@@ -73,6 +73,12 @@ create table if not exists events (
   referrer text,
   ua       text
 );
+-- Demand log fields (article_request events, written server-side on page load):
+-- `bot` flags a crawler UA (kept, not dropped, so we can see crawl demand for
+-- SEO); `cold` marks a request that hit an UNCACHED article — i.e. the exact
+-- pages worth pre-warming.
+alter table events add column if not exists bot  boolean;
+alter table events add column if not exists cold boolean;
 create index if not exists events_ts_idx   on events (ts desc);
 create index if not exists events_name_idx on events (name);
 

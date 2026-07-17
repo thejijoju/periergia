@@ -21,6 +21,8 @@ interface EventRow {
   country: string | null;
   city: string | null;
   referrer: string | null;
+  bot: boolean | null;
+  cold: boolean | null;
 }
 
 function tally(rows: EventRow[], key: (r: EventRow) => string | null) {
@@ -34,8 +36,20 @@ function tally(rows: EventRow[], key: (r: EventRow) => string | null) {
 }
 
 function summarize(rows: EventRow[]) {
+  // Two distinct signals live in the events table:
+  //  • DEMAND  — `article_request` rows (logged server-side on every page load,
+  //    including bounces during the slow cold generation). These drive the
+  //    warming worklist. Crawlers are flagged (`bot`), so exclude them here.
+  //  • ENGAGEMENT — `article_read` rows (the client dwell beacon). Legacy rows
+  //    predate the `name`/`bot` columns, so treat a missing name as a read.
+  const human = rows.filter((r) => !r.bot);
+  const requests = human.filter((r) => r.name === "article_request");
+  const reads = human.filter((r) => r.name !== "article_request"); // article_read + legacy
+  const crawlerRequests = rows.filter((r) => r.bot && r.name === "article_request").length;
+
+  // Engagement (reads) — dwell metrics on the read beacon.
   const perArticle = new Map<string, { reads: number; totalSeconds: number }>();
-  for (const r of rows) {
+  for (const r of reads) {
     const t = r.title ?? r.path ?? "(unknown)";
     const a = perArticle.get(t) ?? { reads: 0, totalSeconds: 0 };
     a.reads += 1;
@@ -50,36 +64,66 @@ function summarize(rows: EventRow[]) {
     }))
     .sort((a, b) => b.reads - a.reads);
 
-  const withSeconds = rows.map((r) => r.seconds ?? 0).filter((s) => s > 0);
+  const withSeconds = reads.map((r) => r.seconds ?? 0).filter((s) => s > 0);
   const avgSeconds = withSeconds.length
     ? Math.round(withSeconds.reduce((x, y) => x + y, 0) / withSeconds.length)
     : 0;
   const sorted = [...withSeconds].sort((a, b) => a - b);
   const medianSeconds = sorted.length ? sorted[Math.floor(sorted.length / 2)] : 0;
 
-  const byCountry = tally(rows, (r) => r.country);
-  const byCity = tally(rows, (r) => (r.city && r.country ? `${r.city}, ${r.country}` : r.city));
+  // Demand (requests) — the warming worklist: most-requested articles, how many
+  // of those hits were COLD (uncached → worth pre-generating), and where from.
+  const perReq = new Map<string, { requests: number; cold: number; path: string | null; locs: Map<string, number> }>();
+  for (const r of requests) {
+    const t = r.title ?? r.path ?? "(unknown)";
+    const a = perReq.get(t) ?? { requests: 0, cold: 0, path: r.path, locs: new Map() };
+    a.requests += 1;
+    if (r.cold) a.cold += 1;
+    const loc = r.city && r.country ? `${r.city}, ${r.country}` : r.country;
+    if (loc) a.locs.set(loc, (a.locs.get(loc) ?? 0) + 1);
+    perReq.set(t, a);
+  }
+  const requested = [...perReq.entries()]
+    .map(([title, a]) => ({
+      title,
+      path: a.path,
+      requests: a.requests,
+      cold: a.cold,
+      topLoc: [...a.locs.entries()].sort((x, y) => y[1] - x[1])[0]?.[0] ?? "—",
+    }))
+    .sort((a, b) => b.requests - a.requests || b.cold - a.cold);
+
+  const coldRequests = requests.filter((r) => r.cold).length;
+
+  // Geography spans all human activity (requests + reads), so "places in the
+  // world" reflects everyone who showed up, not only those who stayed to read.
+  const byCountry = tally(human, (r) => r.country);
+  const byCity = tally(human, (r) => (r.city && r.country ? `${r.city}, ${r.country}` : r.city));
 
   return {
     generatedAt: new Date().toISOString(),
     window: { events: rows.length, newest: rows[0]?.ts ?? null, oldest: rows.at(-1)?.ts ?? null },
     totals: {
-      reads: rows.length,
+      requests: requests.length,
+      coldRequests,
+      crawlerRequests,
+      reads: reads.length,
       avgSeconds,
       medianSeconds,
       articles: articles.length,
       countries: Object.keys(byCountry).length,
       locations: Object.keys(byCity).length,
     },
+    requested,
     byArticle: articles,
     byCountry,
     byCity,
-    byCityRaw: tally(rows, (r) => r.city), // raw city name, for delete-by-city
-    byDwellBucket: tally(rows, (r) => r.dwell),
-    byDepth: tally(rows, (r) => r.depth),
-    byLevel: tally(rows, (r) => r.level),
-    byReferrer: tally(rows, (r) => r.referrer),
-    recent: rows.slice(0, 100),
+    byCityRaw: tally(human, (r) => r.city), // raw city name, for delete-by-city
+    byDwellBucket: tally(reads, (r) => r.dwell),
+    byDepth: tally(reads, (r) => r.depth),
+    byLevel: tally(reads, (r) => r.level),
+    byReferrer: tally(human, (r) => r.referrer),
+    recent: human.slice(0, 100),
   };
 }
 
@@ -130,17 +174,33 @@ function rankTable(
 function renderHtml(s: ReturnType<typeof summarize>): string {
   const t = s.totals;
   const tiles = [
+    { label: "Requests", value: String(t.requests) },
+    { label: "Cold (to warm)", value: String(t.coldRequests) },
     { label: "Reads", value: String(t.reads) },
-    { label: "Articles", value: String(t.articles) },
     { label: "Avg dwell", value: fmtDur(t.avgSeconds) },
-    { label: "Median dwell", value: fmtDur(t.medianSeconds) },
     { label: "Countries", value: String(t.countries) },
-    { label: "Locations", value: String(t.locations) },
+    { label: "Crawler hits", value: String(t.crawlerRequests) },
   ]
     .map(
       (x) => `<div class="tile"><div class="v">${esc(x.value)}</div><div class="l">${esc(x.label)}</div></div>`,
     )
     .join("");
+
+  // Warming worklist — the whole point: which articles people ask for, and how
+  // many of those hits were cold (uncached). Warm the ones with high Cold.
+  const requestedRows = s.requested
+    .slice(0, 30)
+    .map((a) => {
+      const link = a.path
+        ? `<a href="${esc(a.path)}" target="_blank" rel="noopener">${esc(a.title)}</a>`
+        : esc(a.title);
+      const cold = a.cold ? `<td class="n cold">${a.cold}</td>` : `<td class="n">—</td>`;
+      return `<tr><td class="k">${link}</td><td class="n">${a.requests}</td>${cold}<td class="k loc">${esc(a.topLoc)}</td></tr>`;
+    })
+    .join("");
+  const worklistCard = requestedRows
+    ? `<section class="card wide"><h2>Most-requested articles · warming worklist</h2><table><thead><tr><th>Article</th><th>Requests</th><th>Cold</th><th>Top location</th></tr></thead>${requestedRows}</table><p class="hint"><b>Cold</b> = requests that hit an <i>uncached</i> page. Open those, wait once for them to generate, and the next visitor (and Google's crawler) gets an instant, already-written page.</p></section>`
+    : `<section class="card wide"><h2>Most-requested articles · warming worklist</h2><p class="empty">No article requests recorded yet — this fills once real visitors (or crawlers) hit article pages.</p></section>`;
 
   const articleRows = s.byArticle
     .slice(0, 25)
@@ -150,18 +210,18 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
     )
     .join("");
   const articlesCard = articleRows
-    ? `<section class="card wide"><h2>Top articles</h2><table><thead><tr><th>Article</th><th>Reads</th><th>Avg dwell</th></tr></thead>${articleRows}</table></section>`
-    : `<section class="card wide"><h2>Top articles</h2><p class="empty">No reads recorded yet.</p></section>`;
+    ? `<section class="card wide"><h2>Top articles by reads (dwell ≥ 3s)</h2><table><thead><tr><th>Article</th><th>Reads</th><th>Avg dwell</th></tr></thead>${articleRows}</table></section>`
+    : "";
 
   const recentRows = s.recent
     .slice(0, 40)
-    .map(
-      (r) =>
-        `<tr><td>${fmtWhen(r.ts)}</td><td class="k">${esc(r.title ?? r.path ?? "—")}</td><td>${fmtDur(r.seconds ?? 0)}</td><td>${esc(r.city && r.country ? `${r.city}, ${r.country}` : r.country ?? "—")}</td></tr>`,
-    )
+    .map((r) => {
+      const kind = r.name === "article_request" ? (r.cold ? "cold" : "cached") : "read";
+      return `<tr><td>${fmtWhen(r.ts)}</td><td class="${kind === "cold" ? "kind cold" : "kind"}">${kind}</td><td class="k">${esc(r.title ?? r.path ?? "—")}</td><td>${esc(r.city && r.country ? `${r.city}, ${r.country}` : r.country ?? "—")}</td></tr>`;
+    })
     .join("");
   const recentCard = recentRows
-    ? `<section class="card wide"><h2>Recent reads</h2><table><thead><tr><th>When</th><th>Article</th><th>Dwell</th><th>Location</th></tr></thead>${recentRows}</table></section>`
+    ? `<section class="card wide"><h2>Recent activity</h2><table><thead><tr><th>When</th><th>Type</th><th>Article</th><th>Location</th></tr></thead>${recentRows}</table></section>`
     : "";
 
   const range = `${fmtWhen(s.window.oldest)} → ${fmtWhen(s.window.newest)}`;
@@ -195,6 +255,13 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
   td.bar{width:90px}
   td.bar span{display:block;height:8px;border-radius:5px;background:var(--accent);min-width:3px}
   .card table td.bar span{background:var(--accent)}
+  td.cold{color:#c0392b;font-weight:700}
+  td.loc{color:var(--muted);max-width:180px}
+  td.kind{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;width:1%;white-space:nowrap}
+  td.kind.cold{color:#c0392b;font-weight:600}
+  td.k a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+  td.k a:hover{border-color:var(--accent)}
+  .hint{color:var(--muted);font-size:12px;margin:10px 0 0;line-height:1.5}
   .empty{color:var(--muted);font-size:13px}
   td.x{width:1%;padding-left:6px}
   [data-del]{cursor:pointer;font:inherit;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;line-height:1}
@@ -209,6 +276,7 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
 <header><h1>periergia · analytics</h1>
 <span class="meta">${s.window.events} events · ${range}</span></header>
 <div class="tiles">${tiles}</div>
+${worklistCard}
 ${articlesCard}
 <div class="grid">
 ${rankTable("Countries", s.byCountry, { deleteScope: "country" })}
@@ -222,7 +290,7 @@ ${recentCard}
 <section class="card wide danger"><h2>Danger zone</h2>
 <p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
 <button data-del data-scope="all" class="wipe">Wipe all events</button></section>
-<footer>Self-hosted engagement data — article reads and dwell time, bots filtered. "Reads" counts article views, not unique people; for unique-visitor counts see the Vercel Web Analytics dashboard. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
+<footer><b>Requests</b> = every article page load (logged server-side, so it counts visitors who bounce during a slow cold generation and people landing from search); crawlers are counted separately as “Crawler hits.” <b>Cold</b> = requests that hit an uncached page — your warming worklist. <b>Reads</b> = the dwell beacon (≥3s), so it under-counts by design. Neither counts unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
 </div>
 <script>
 document.addEventListener('click', function (e) {
@@ -270,7 +338,7 @@ export async function GET(req: Request) {
   const window = Math.min(5000, Math.max(1, Number(url.searchParams.get("limit")) || 2000));
   const { data, error } = await supabase
     .from("events")
-    .select("ts,name,title,path,depth,level,seconds,dwell,country,city,referrer")
+    .select("ts,name,title,path,depth,level,seconds,dwell,country,city,referrer,bot,cold")
     .order("ts", { ascending: false })
     .limit(window);
 

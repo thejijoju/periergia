@@ -21,6 +21,19 @@ export function isExcludedVisitor(): boolean {
   }
 }
 
+// Mirror the opt-out into a cookie so the SERVER can honor it too (the demand
+// log in page.tsx runs server-side and can't read localStorage). Same name.
+function setExcludeCookie(on: boolean): void {
+  if (typeof document === "undefined") return;
+  try {
+    document.cookie = on
+      ? `${EXCLUDE_KEY}=1; path=/; max-age=31536000; samesite=lax`
+      : `${EXCLUDE_KEY}=; path=/; max-age=0; samesite=lax`;
+  } catch {
+    // ignore — never let analytics wiring break a page
+  }
+}
+
 // Read the URL for the opt-out toggle and persist it. Returns the new state
 // when the URL changed it (so the caller can confirm to the user), else null.
 export function syncExcludeFromUrl(): boolean | null {
@@ -31,10 +44,12 @@ export function syncExcludeFromUrl(): boolean | null {
       const on = q.get("mine") !== "0" && q.get("mine") !== "false";
       if (on) window.localStorage.setItem(EXCLUDE_KEY, "1");
       else window.localStorage.removeItem(EXCLUDE_KEY);
+      setExcludeCookie(on);
       return on;
     }
     if (q.has("trackme")) {
       window.localStorage.removeItem(EXCLUDE_KEY);
+      setExcludeCookie(false);
       return false;
     }
   } catch {

@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
+import { after } from "next/server";
 import { headers, cookies } from "next/headers";
 import { normalizeLang, LANG_COOKIE, subjectName } from "@/lib/i18n";
+import { logArticleRequest } from "@/lib/demand";
+import { EXCLUDE_KEY } from "@/lib/analyticsOptOut";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SectionLanding } from "@/components/SectionLanding";
 import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
@@ -136,7 +139,8 @@ export default async function ReaderPage({
 
   // Reader's country (Vercel geo header) picks the local Amazon marketplace and
   // matching Associates tag for the Further Reading affiliate links.
-  const country = (await headers()).get("x-vercel-ip-country") || undefined;
+  const hdrs = await headers();
+  const country = hdrs.get("x-vercel-ip-country") || undefined;
 
   // Server-render an already-cached read article into the HTML, so crawlers and
   // default-prefs readers get real text. Prefer the richest cached depth (a
@@ -180,6 +184,27 @@ export default async function ReaderPage({
   }
   // A section with no overview article falls back to the plain topic-list landing.
   const showLanding = isSection && !initialBody;
+
+  // Demand log for the warming worklist: record this article request server-side
+  // AFTER the response (next/server `after`), so it adds no latency. Skip Next's
+  // speculative link prefetches and the owner's own visits (?mine sets the
+  // exclude cookie), and mark the request "cold" when nothing was cached — those
+  // are the exact pages worth pre-generating for the next visitor and for SEO.
+  const isPrefetch = hdrs.get("next-router-prefetch") === "1";
+  const optedOut = (await cookies()).get(EXCLUDE_KEY)?.value === "1";
+  if (!isPrefetch && !optedOut) {
+    const cold = !initialBody && !showLanding;
+    const reqPath = `/learn/${subj.slug}/${node.path.join("/")}`;
+    after(() =>
+      logArticleRequest({
+        nodeId: node.id,
+        title: node.title.replace(/\s*\*+$/, ""),
+        path: reqPath,
+        cold,
+        headers: hdrs,
+      }),
+    );
+  }
 
   const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
   const jsonLd = {
