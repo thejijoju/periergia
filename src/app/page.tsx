@@ -24,5 +24,5 @@ export default async function Page() {
 
   const searchIndex: SearchItem[] = await getSearchIndex();
 
-  return <Home subjects={subjects} searchIndex={searchIndex} />;
+  return <Home subjects={subjects} searchIndex={searchIndex} lang={lang} />;
 }

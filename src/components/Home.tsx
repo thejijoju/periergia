@@ -8,6 +8,7 @@ import { Wordmark } from "./Wordmark";
 import { SearchBar } from "./SearchBar";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { t } from "@/lib/i18n";
 import type { SearchItem } from "@/lib/types";
 
 export interface HomeSubject {
@@ -33,9 +34,11 @@ const CURATED_PILLS = [
 export function Home({
   subjects,
   searchIndex,
+  lang = "en",
 }: {
   subjects: HomeSubject[];
   searchIndex: SearchItem[];
+  lang?: string;
 }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
@@ -92,7 +95,7 @@ export function Home({
 
       {/* Brand */}
       <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 pt-16 sm:pt-24 lg:pt-28 text-center">
-        <Wordmark size="lg" tagline />
+        <Wordmark size="lg" tagline lang={lang} />
       </div>
 
       {/* Full-bleed library strip — the Long Room, Trinity College Dublin */}
@@ -110,7 +113,7 @@ export function Home({
 
       {/* Controls */}
       <div className="mx-auto w-full max-w-[760px] px-6 sm:px-8 mt-10 sm:mt-14 pb-24 sm:pb-32">
-        <SearchBar value={query} onChange={setQuery} onSubmit={goTop} size="lg" />
+        <SearchBar value={query} onChange={setQuery} onSubmit={goTop} size="lg" placeholder={t(lang, "searchTopic")} lang={lang} />
 
         {searching ? (
           /* Search → matching topics; Enter or click drops into the reader */
@@ -129,7 +132,7 @@ export function Home({
             ))}
             {results.length === 0 && (
               <p className="py-8 font-sans text-[14px] text-faint">
-                No topics match “{query}”. Try another keyword.
+                {t(lang, "noMatch")} “{query}”. {t(lang, "tryKeyword")}
               </p>
             )}
           </div>
@@ -162,7 +165,7 @@ export function Home({
                     {s.name}
                   </span>
                   <span className="font-sans text-[13px] text-whisper group-hover:text-maroon transition-colors">
-                    {s.themeCount} themes&nbsp;›
+                    {s.themeCount} {t(lang, "themes")}&nbsp;›
                   </span>
                 </Link>
               ))}

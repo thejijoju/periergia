@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { SubjectTree, type TreeItem, type SubjectLink } from "./SubjectTree";
+import { t } from "@/lib/i18n";
 
 // Mobile-only navigation. On desktop the full syllabus tree lives in the left
 // rail; on a phone that rail is hidden, so tapping a subject would strand the
@@ -17,6 +18,7 @@ export function MobileNav({
   subjects,
   items,
   activeId,
+  lang = "en",
 }: {
   subjectName: string;
   subjectSlug: string;
@@ -24,6 +26,7 @@ export function MobileNav({
   subjects: SubjectLink[];
   items: TreeItem[];
   activeId: string;
+  lang?: string;
 }) {
   const [open, setOpen] = useState(false);
   // Portal the drawer to <body>: the sticky header uses backdrop-blur, and a
@@ -55,7 +58,7 @@ export function MobileNav({
     <div className="lg:hidden">
       <button
         onClick={() => setOpen(true)}
-        aria-label="Open navigation"
+        aria-label={t(lang, "openNav")}
         aria-expanded={open}
         className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-lg text-ink hover:bg-pill transition-colors"
       >
@@ -70,17 +73,17 @@ export function MobileNav({
           <div className="lg:hidden fixed inset-0 z-50">
             {/* Backdrop */}
             <button
-              aria-label="Close navigation"
+              aria-label={t(lang, "closeNav")}
               onClick={() => setOpen(false)}
               className="absolute inset-0 bg-black/50"
             />
             {/* Drawer */}
             <div className="absolute left-0 top-0 h-full w-[86%] max-w-[340px] bg-card border-r border-line shadow-2xl shadow-black/40 flex flex-col">
               <div className="flex items-center justify-between px-4 h-14 border-b border-line shrink-0">
-                <span className="font-sans font-semibold text-[15px] text-ink">Browse</span>
+                <span className="font-sans font-semibold text-[15px] text-ink">{t(lang, "browse")}</span>
                 <button
                   onClick={() => setOpen(false)}
-                  aria-label="Close navigation"
+                  aria-label={t(lang, "closeNav")}
                   className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-lg text-muted hover:bg-pill transition-colors"
                 >
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
