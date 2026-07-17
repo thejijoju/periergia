@@ -69,6 +69,11 @@ A market comes to rest at the price where the plans of buyers and sellers are co
 
 If the price sits *above* equilibrium, sellers offer more than buyers will take — a **surplus** — and competition among sellers pushes the price down. If the price sits *below* equilibrium, buyers want more than is offered — a **shortage** — and competition among buyers pushes the price up. Only at the equilibrium price do the two quantities match and the pressure disappear.
 
+The diagram below puts the two curves on one pair of axes: the downward **demand** curve, the upward **supply** curve, and the equilibrium where they cross. Drag the sliders to shift a curve and watch the equilibrium price and quantity move.
+
+```supplydemand
+```
+
 A small worked example. Suppose a local market for some good has the following schedule:
 
 | Price | Quantity demanded | Quantity supplied |

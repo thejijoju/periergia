@@ -17,6 +17,7 @@ import { LearningModeRail } from "./LearningModeRail";
 import { VoiceButton } from "./VoiceButton";
 import { QuizPanel } from "./QuizPanel";
 import { WorkedExample } from "./WorkedExample";
+import { SupplyDemandChart } from "./SupplyDemandChart";
 
 export interface Crumb {
   label: string;
@@ -396,6 +397,11 @@ export function Reader({
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const spec = extractText((child as any).props?.children).trim();
                     return <WorkedExample spec={spec} lang={lang} />;
+                  }
+                  // A fenced ```supplydemand block becomes an interactive
+                  // supply-and-demand diagram with shift sliders.
+                  if (typeof cls === "string" && /language-supplydemand\b/.test(cls)) {
+                    return <SupplyDemandChart />;
                   }
                   return <pre>{children}</pre>;
                 },
