@@ -27,11 +27,7 @@ with master as (
 
 Satellites are what you build when you can only afford to climb 300 km. Telescopes are what you build when you can't afford to climb at all and must instead let the universe come to you. Crewed missions are what happens when you insist on bringing along the single worst payload ever devised — a wet, fragile, complaining, oxygen-guzzling primate. And astrobiology is the reason anyone signs the check.
 
-So: one argument, five movements. When you finish, you should be able to reconstruct the entire enterprise from a single equation and a few numbers on the back of an envelope. That is what it means to actually understand a field, as opposed to having read about it.
-
-**A note on the arithmetic.** I do the arithmetic on the board. Not because you need to be an engineer, but because the numbers are where the drama lives. "Space is hard" is a bumper sticker. "Your payload is 3.6% of your liftoff mass and there is no clever way around it" is an *education*.
-
-**Constants you'll want, taped to the inside of your skull:**
+**Constants worth keeping to hand:**
 
 | Symbol | Value | What it is |
 |---|---|---|
@@ -44,7 +40,7 @@ So: one argument, five movements. When you finish, you should be able to reconst
 
 ---
 
-## Movement 0 — The Cold Open
+## The Cold Open
 
 In 1903, two things happened that a reasonable person would have said were unrelated.
 
@@ -56,7 +52,7 @@ He had no laboratory. He had no funding. He had a pencil.
 
 And he wrote down the equation that this entire lecture is about.
 
-Here is what I want you to sit with. Tsiolkovsky's equation is not a *design*. It is a **constraint** — as inescapable as the second law of thermodynamics, and considerably more annoying. It does not tell you how to build a rocket. It tells you what no rocket may do. Every single subsequent development in this field — staging, reusability, ion drives, gravity assists, aerobraking, the entire architecture of the Apollo program, the reason your GPS satellite is at 20,200 km and not somewhere more convenient, the reason the James Webb Space Telescope had to unfold itself like an origami crane a million miles from any help — is a **negotiation with that constraint**.
+The crucial point: Tsiolkovsky's equation is not a *design*. It is a **constraint** — as inescapable as the second law of thermodynamics, and considerably more annoying. It does not tell you how to build a rocket. It tells you what no rocket may do. Every single subsequent development in this field — staging, reusability, ion drives, gravity assists, aerobraking, the entire architecture of the Apollo program, the reason your GPS satellite is at 20,200 km and not somewhere more convenient, the reason the James Webb Space Telescope had to unfold itself like an origami crane a million miles from any help — is a **negotiation with that constraint**.
 
 Nobody has ever beaten it. Not once. Not in 120 years.
 
@@ -64,9 +60,9 @@ Let's find out why.
 
 ---
 
-# MOVEMENT I — Rockets: The Exponential Tax
+# Rockets: The Exponential Tax
 
-## 1.1 The one equation
+## The one equation
 
 A rocket has no road to push against. It moves by the only means available in a vacuum: **it throws part of itself backwards, very fast, forever.** That's it. That's the whole idea. A rocket is a machine that commits slow-motion suicide in a useful direction.
 
@@ -78,7 +74,7 @@ Divide, integrate from initial mass $m_0$ to final mass $m_f$:
 
 $$\boxed{\ \Delta v = v_e \ln\!\left(\frac{m_0}{m_f}\right) = I_{sp}\, g_0 \ln\!\left(\frac{m_0}{m_f}\right)}$$
 
-This is the **Tsiolkovsky rocket equation**, and I want you to notice the single most consequential character in it: the **logarithm**.
+This is the **Tsiolkovsky rocket equation**, and its single most consequential character is the **logarithm**.
 
 Read it backwards, which is how engineers actually use it:
 
@@ -88,7 +84,7 @@ $$\frac{m_0}{m_f} = e^{\Delta v / v_e}$$
 
 This is why space is hard. Not the vacuum. Not the radiation. Not the cold. **The logarithm.**
 
-## 1.2 Specific impulse: the exchange rate
+## Specific impulse: the exchange rate
 
 $I_{sp}$ (specific impulse) is $v_e / g_0$, measured in seconds — a unit that confuses everyone, and rightly so. Think of it as **the fuel economy of a rocket**: how many seconds of one-Earth-gravity thrust you get per unit weight of propellant. Higher is better, in the way that "miles per gallon" is better, except it sits inside an exponential, so improvements are worth far more than they look.
 
@@ -109,7 +105,7 @@ Look at the gap. Chemical rockets are stuck in a narrow band — roughly 250 to 
 
 So $v_e \approx 3\text{–}4.5$ km/s is roughly fixed. Which means the *only* free variable in the rocket equation is the mass ratio. And that's where the horror begins.
 
-## 1.3 The Δv budget — the true map of the solar system
+## The Δv budget — the true map of the solar system
 
 Forget kilometres. Distance is *almost irrelevant* in space. The currency is **Δv** — velocity change — because that's what propellant buys. The Moon is 384,400 km away and Mars is 200 times farther, yet landing on the Moon costs *more* Δv from low Earth orbit than merely reaching Mars orbit. Distance is free; **changing your state of motion is not.**
 
@@ -141,7 +137,7 @@ So 7.67 km/s of the bill is the physics of orbit itself. The remaining ~1.7 km/s
 - **Steering losses**: thrust not perfectly aligned with velocity.
 - You get a **rebate** of up to 0.46 km/s by launching eastward from near the equator, stealing Earth's rotation. This is why Kourou (5°N) is worth more than Baikonur (46°N), and why nearly everything launches east over water.
 
-## 1.4 The board work: why single-stage-to-orbit is (basically) impossible
+## The board work: why single-stage-to-orbit is (basically) impossible
 
 Let's build a rocket. One stage. Good methane engine, $I_{sp} = 350$ s, so $v_e = 3.432$ km/s. Mission: LEO, Δv = 9.4 km/s.
 
@@ -169,7 +165,7 @@ $$m_{\text{payload}} = m_f - m_s = 6.45 - 8.13 = \mathbf{-1.68}$$
 
 *This is the single most important calculation in the history of spaceflight.* Everyone who has ever seriously proposed single-stage-to-orbit — and there have been many, and some of them were brilliant — has been fighting this line. It's not quite absolutely impossible (with hydrogen at $I_{sp}=450$ and $\varepsilon = 0.05$ you can squeak into positive payload), but the margin is so thin that a single kilogram of unplanned mass eats the entire mission. The X-33 / VentureStar program of the 1990s died precisely here: a composite hydrogen tank failed, the fix added mass, and the mass ate the payload, and there was no payload left to eat.
 
-## 1.5 The escape hatch: throw away the empties
+## The escape hatch: throw away the empties
 
 Tsiolkovsky's answer, in 1903, before anyone had flown anything: **stop carrying dead tanks.**
 
@@ -193,7 +189,7 @@ And now check the model against reality:
 
 Our back-of-envelope, built from one logarithm and one structural coefficient, predicted the Saturn V to within a percentage point. **This is what it feels like when you actually understand something.**
 
-## 1.6 The two ways out — and why one of them can't leave the ground
+## The two ways out — and why one of them can't leave the ground
 
 Since $v_e$ is capped by chemistry, the obvious move is to escape chemistry.
 
@@ -205,7 +201,7 @@ There's a deep trade here worth naming: for a given electrical power $P$, thrust
 
 **Nuclear thermal.** Skip combustion; heat pure hydrogen in a fission reactor and blast it out. Because $v_e$ scales roughly as $\sqrt{T/M}$, and hydrogen's molecular weight of 2 is unbeatable, you get $I_{sp} \approx 900$ s — double the best chemical engine, with thrust in the tens of tonnes. **This was built and tested.** Project NERVA, 1955–1973, ran engines in the Nevada desert for hours. The Phoebus-2A reactor hit 4,000 megawatts. It worked. It was cancelled because Nixon cancelled Mars, and an engine for a trip you're not taking is a line item.
 
-## 1.7 The other exponential: cost
+## The other exponential: cost
 
 Here is where the last two decades changed the field, and it wasn't physics.
 
@@ -215,52 +211,52 @@ Reusability doesn't beat the rocket equation — you *pay* it, in propellant res
 
 The result: Space Shuttle, roughly **\$54,500 per kilogram** to LEO (all-in program cost divided by all mass delivered). Falcon 9, roughly **\$2,700/kg**. That is a factor of twenty in a single generation, and it is the reason this decade looks different from the last five. Not a new equation. A new **business model wrapped around the same equation.**
 
-And this is the lesson I most want you to take from Movement I: **when the physics is immovable, the leverage moves to economics, logistics, and manufacturing.** The rocket equation of 2026 is identical to the one of 1903. Everything else changed.
+And this is the central lesson of the rocket problem: **when the physics is immovable, the leverage moves to economics, logistics, and manufacturing.** The rocket equation of 2026 is identical to the one of 1903. Everything else changed.
 
 ---
 
-## 📝 Problem Set I — Rockets
+## Problem Set: Rockets
 
-*Work these before reading the answers. The answers are directly below. I trust you. I also know you.*
+*Work these before reading the answers, which follow directly below.*
 
-**I.1.** A stage has $I_{sp} = 450$ s (hydrolox). It must deliver Δv = 3.12 km/s (trans-lunar injection). What mass ratio is required? If the stack at ignition is 140 t, how much propellant is burned?
+**1.** A stage has $I_{sp} = 450$ s (hydrolox). It must deliver Δv = 3.12 km/s (trans-lunar injection). What mass ratio is required? If the stack at ignition is 140 t, how much propellant is burned?
 
-**I.2.** Two rockets both deliver 9.4 km/s. Rocket A: $I_{sp} = 350$ s. Rocket B: $I_{sp} = 380$ s. Compare their required mass ratios. Comment on why an 8.5% improvement in $I_{sp}$ is such a big deal.
+**2.** Two rockets both deliver 9.4 km/s. Rocket A: $I_{sp} = 350$ s. Rocket B: $I_{sp} = 380$ s. Compare their required mass ratios. Comment on why an 8.5% improvement in $I_{sp}$ is such a big deal.
 
-**I.3.** *Conceptual.* Explain why gravity losses can be reduced but never eliminated, and why a rocket that could accelerate instantaneously would pay none of them.
+**3.** *Conceptual.* Explain why gravity losses can be reduced but never eliminated, and why a rocket that could accelerate instantaneously would pay none of them.
 
-**I.4.** An ion engine has $I_{sp} = 3{,}100$ s and produces 90 mN of thrust on a 1,000 kg spacecraft. (a) What acceleration? (b) How long, thrusting continuously, to accumulate 5 km/s of Δv (ignore mass loss)? (c) What does this tell you about mission design?
+**4.** An ion engine has $I_{sp} = 3{,}100$ s and produces 90 mN of thrust on a 1,000 kg spacecraft. (a) What acceleration? (b) How long, thrusting continuously, to accumulate 5 km/s of Δv (ignore mass loss)? (c) What does this tell you about mission design?
 
-**I.5.** *Hard.* Using $\varepsilon = 0.08$, $I_{sp} = 350$ s, and Δv = 9.4 km/s, redo the two-stage calculation but split the Δv **unevenly**: 6.0 km/s for stage 1 and 3.4 km/s for stage 2. Is the payload fraction better or worse than the even split (3.59%)? What does this suggest about optimal staging?
+**5.** *Hard.* Using $\varepsilon = 0.08$, $I_{sp} = 350$ s, and Δv = 9.4 km/s, redo the two-stage calculation but split the Δv **unevenly**: 6.0 km/s for stage 1 and 3.4 km/s for stage 2. Is the payload fraction better or worse than the even split (3.59%)? What does this suggest about optimal staging?
 
 ---
 
-### ✅ Answers to Problem Set I
+### Answers
 
-**I.1.** $v_e = 450 \times 9.80665 = 4{,}413$ m/s. Mass ratio $= e^{3120/4413} = e^{0.7070} = \mathbf{2.028}$.
+**1.** $v_e = 450 \times 9.80665 = 4{,}413$ m/s. Mass ratio $= e^{3120/4413} = e^{0.7070} = \mathbf{2.028}$.
 Final mass $= 140/2.028 = 69.0$ t, so propellant burned $= 140 - 69.0 = \mathbf{71.0\ t}$.
 *Reality check:* the Saturn V's S-IVB burned about 73 t for TLI with a ~140 t stack. Our envelope is within 3%. The equation is not a toy.
 
-**I.2.** A: $v_e = 3{,}432$ m/s, ratio $= e^{2.739} = \mathbf{15.5}$.
+**2.** A: $v_e = 3{,}432$ m/s, ratio $= e^{2.739} = \mathbf{15.5}$.
 B: $v_e = 3{,}726$ m/s, ratio $= e^{2.523} = \mathbf{12.5}$.
 An 8.5% gain in $I_{sp}$ cut the mass ratio by 19%. But the real story is the *payload*: recall payload lives in the thin sliver left after structure. Going from ratio 15.5 to 12.5 means burnout mass rises from 6.45% to 8.0% of liftoff — and since structure is roughly fixed, **nearly all of that 1.55 percentage points is pure payload.** Payload didn't rise 8.5%; it roughly doubled. This is why engine teams will fight a two-year war over three seconds of $I_{sp}$, and why they're right to.
 
-**I.3.** Gravity loss accrues as $\int g \sin\gamma \, dt$, where $\gamma$ is the flight-path angle above the horizon. You reduce it by making $\gamma$ small fast (pitch over early — the gravity turn) and by making $dt$ small (high thrust-to-weight). But you cannot make $\gamma = 0$ immediately, because you're standing in an atmosphere that would tear the vehicle apart at those speeds and low altitudes. And you cannot make $dt = 0$ with finite thrust. An *impulsive* burn — infinite thrust, zero duration — integrates over zero time and therefore pays **zero** gravity loss. Every real rocket is an approximation to that ideal, and gravity loss is precisely the measure of how badly it fails. Note the corollary: high thrust-to-weight is worth real $I_{sp}$. This is why solid boosters, with mediocre $I_{sp}$, earn their place at liftoff — they cut $dt$.
+**3.** Gravity loss accrues as $\int g \sin\gamma \, dt$, where $\gamma$ is the flight-path angle above the horizon. You reduce it by making $\gamma$ small fast (pitch over early — the gravity turn) and by making $dt$ small (high thrust-to-weight). But you cannot make $\gamma = 0$ immediately, because you're standing in an atmosphere that would tear the vehicle apart at those speeds and low altitudes. And you cannot make $dt = 0$ with finite thrust. An *impulsive* burn — infinite thrust, zero duration — integrates over zero time and therefore pays **zero** gravity loss. Every real rocket is an approximation to that ideal, and gravity loss is precisely the measure of how badly it fails. Note the corollary: high thrust-to-weight is worth real $I_{sp}$. This is why solid boosters, with mediocre $I_{sp}$, earn their place at liftoff — they cut $dt$.
 
-**I.4.** (a) $a = F/m = 0.090/1000 = 9\times10^{-5}$ m/s². That is **nine millionths of a g**. A falling feather is a drag racer by comparison.
+**4.** (a) $a = F/m = 0.090/1000 = 9\times10^{-5}$ m/s². That is **nine millionths of a g**. A falling feather is a drag racer by comparison.
 (b) $t = \Delta v / a = 5000 / 9\times10^{-5} = 5.56\times10^{7}$ s = **643 days** of continuous thrusting. (Mass loss actually helps a bit; Dawn did better.)
 (c) Ion missions are **duration-limited, not propellant-limited** — the exact inverse of chemical missions. Your constraints become solar panel degradation, engine grid erosion, and the patience of the funding agency. Dawn's engines logged over 5.9 years of thrust. Mission design stops being "how much propellant?" and becomes "how many years of the operations team's salary?"
 
-**I.5.** Stage 1: ratio $= e^{6000/3432} = e^{1.7483} = 5.745$. From $m_0=100$: burnout $=17.41$, propellant $=82.59$, $m_{s1} = 0.08(m_{s1}+82.59) \Rightarrow m_{s1}=7.18$. Continuing mass $= 17.41 - 7.18 = 10.23$.
+**5.** Stage 1: ratio $= e^{6000/3432} = e^{1.7483} = 5.745$. From $m_0=100$: burnout $=17.41$, propellant $=82.59$, $m_{s1} = 0.08(m_{s1}+82.59) \Rightarrow m_{s1}=7.18$. Continuing mass $= 17.41 - 7.18 = 10.23$.
 Stage 2: ratio $= e^{3400/3432} = e^{0.9907} = 2.693$. Burnout $= 10.23/2.693 = 3.80$, propellant $= 6.43$, $m_{s2} = 0.08(m_{s2}+6.43) \Rightarrow m_{s2}=0.559$.
 Payload $= 3.80 - 0.559 = \mathbf{3.24}$ — **worse** than 3.59.
 **The lesson:** with identical $I_{sp}$ and identical $\varepsilon$, the even split is optimal, and deviating from it costs you. Real vehicles split unevenly (Saturn V's first stage did only ~2.7 km/s of a ~9.4 km/s job) precisely *because* their stages are **not** identical — the first stage has a poor sea-level $I_{sp}$ and must fight through the atmosphere, so you want it to hand off early to the efficient vacuum-optimized upper stage. Optimal staging is a Lagrange-multiplier problem, and the intuition it yields is: **give more Δv to the stage with better $I_{sp}$ and lighter structure.**
 
 ---
 
-# MOVEMENT II — Satellites: The Geometry of Falling
+# Satellites: The Geometry of Falling
 
-## 2.1 Newton's cannonball, and the thing everyone gets wrong
+## Newton's cannonball, and the thing everyone gets wrong
 
 Ask a stranger why astronauts float and you will hear: *"because there's no gravity up there."*
 
@@ -288,7 +284,7 @@ which is Kepler's third law, derived in one line, seventy years after Kepler fou
 
 **Check:** ISS at $r = 6{,}771$ km → $T = 2\pi\sqrt{(6.771\times10^6)^3 / 3.986\times10^{14}} = 5{,}545$ s = **92.4 minutes**. Sixteen sunrises a day.
 
-## 2.2 Why altitude is a *choice*, and every choice is a bribe
+## Why altitude is a *choice*, and every choice is a bribe
 
 Notice something profound in $v = \sqrt{\mu/r}$: **higher orbits are slower.** The ISS at 400 km does 7.67 km/s; a GPS satellite at 20,200 km altitude does 3.87 km/s; a geostationary satellite at 35,786 km does 3.07 km/s. The universe charges you Δv to climb *and* gives you back a slower, lazier orbit as a consolation prize.
 
@@ -304,7 +300,7 @@ The satellite now hangs motionless in the sky. Your dish never moves. Three of t
 
 **Medium Earth Orbit / GPS (20,200 km).** Why *there*? Because it gives a 12-hour period, so each satellite traces the same ground track twice a day — operationally elegant — and because from that altitude a satellite sees a huge swath of Earth, so **24 satellites** suffice to guarantee that at least four are visible from anywhere at any time. Four, because you're solving for four unknowns: $x$, $y$, $z$, and — critically — **your receiver's clock error**.
 
-**Sun-synchronous orbit (~600–800 km, inclination ~98°, retrograde).** This one is my favourite piece of cleverness in all of orbital mechanics. Earth is not a sphere; it bulges at the equator by 21 km. That bulge exerts a torque on any inclined orbit, causing the orbital plane to slowly precess. Normally this is a nuisance. But if you choose your altitude and inclination just right, you can tune the precession rate to **exactly 360° per year** — so the orbital plane rotates in perfect lockstep with Earth's march around the Sun. The satellite then crosses the equator at the *same local solar time* every single orbit, forever. Every image has identical lighting. Shadows are comparable across years. You can actually measure change instead of measuring the time of day.
+**Sun-synchronous orbit (~600–800 km, inclination ~98°, retrograde).** This is one of the most elegant tricks in all of orbital mechanics. Earth is not a sphere; it bulges at the equator by 21 km. That bulge exerts a torque on any inclined orbit, causing the orbital plane to slowly precess. Normally this is a nuisance. But if you choose your altitude and inclination just right, you can tune the precession rate to **exactly 360° per year** — so the orbital plane rotates in perfect lockstep with Earth's march around the Sun. The satellite then crosses the equator at the *same local solar time* every single orbit, forever. Every image has identical lighting. Shadows are comparable across years. You can actually measure change instead of measuring the time of day.
 
 Sit with that. We took Earth's biggest imperfection — the fact that it isn't the sphere the textbook wants — and **turned the defect into the mechanism.** Nearly every Earth-observation satellite you rely on for weather, agriculture, deforestation monitoring, and climate records lives in this orbit. Landsat has been in one since 1972, which is why we have a continuous, comparable, half-century photographic record of the surface of our planet.
 
@@ -312,7 +308,7 @@ Sit with that. We took Earth's biggest imperfection — the fact that it isn't t
 
 **Lagrange points.** Where the combined gravity of two bodies plus the centrifugal effect of co-rotation cancels. Five of them. L1 (Sun-side, home of SOHO and DSCOVR — permanent solar weather station), L2 (anti-Sun side, 1.5 million km out, home of JWST, Gaia, Euclid — permanent night, permanent cold, we'll return to this), L3 (hidden behind the Sun, beloved of pulp fiction, useless), and L4/L5, which are **stable** — they collect debris. Jupiter's L4 and L5 hold over a million Trojan asteroids, a natural experiment in celestial mechanics running for 4.5 billion years.
 
-## 2.3 The counterintuitive part: to catch up, slow down
+## The counterintuitive part: to catch up, slow down
 
 Here is the thing that breaks every pilot's brain, and it's why Gemini 4 failed to rendezvous in 1965. Jim McDivitt saw the spent Titan booster ahead of him, pointed at it, and thrust. It moved *away*. He thrust harder. It moved away faster. He burned so much propellant chasing it that the attempt was abandoned.
 
@@ -322,7 +318,7 @@ Thrusting forward raises your orbit. A higher orbit has a *longer period* (Keple
 
 This is not a curiosity. This is why rendezvous had to be *invented*, why NASA burned much of the Gemini program learning to do it, and why the Apollo lunar-orbit-rendezvous architecture — which is the *only* reason Apollo fit inside a Saturn V — was terrifying to the people who had to sign off on it. If the ascent stage missed the rendezvous, two men were in a solo orbit around the Moon with no way home and the world listening.
 
-## 2.4 The Hohmann transfer, and the Oberth effect
+## The Hohmann transfer, and the Oberth effect
 
 **Hohmann transfer.** Want to go from a circular orbit at $r_1$ to one at $r_2$? Walter Hohmann worked out the cheapest way in 1925 — in his spare time, while employed as the city architect of Essen. Two burns: one to enter an ellipse that kisses both circles, one at the far end to circularize.
 
@@ -355,7 +351,7 @@ The **Voyager Grand Tour** exists because of a 1965 realization by a JPL graduat
 
 The Parker Solar Probe used the mirror-image trick: **seven Venus flybys to shed energy**, dropping ever closer to the Sun. In December 2024 it passed 6.1 million km from the solar surface at roughly **192 km/s** — the fastest object humans have ever made, a speed at which you would cross the continental United States in 21 seconds.
 
-## 2.5 The tragedy of the orbital commons
+## The tragedy of the orbital commons
 
 Now the dark side, and it is genuinely dark.
 
@@ -375,28 +371,28 @@ There's a partial saving grace. Below ~600 km, residual atmosphere drags things 
 
 ---
 
-## 📝 Problem Set II — Satellites & Orbits
+## Problem Set: Satellites & Orbits
 
-**II.1.** Compute the orbital period of a satellite at 20,200 km *altitude* (GPS). Show that it's a half-sidereal-day orbit. ($r = 6{,}371 + 20{,}200 = 26{,}571$ km. Use 26,560 km, the standard value.)
+**1.** Compute the orbital period of a satellite at 20,200 km *altitude* (GPS). Show that it's a half-sidereal-day orbit. ($r = 6{,}371 + 20{,}200 = 26{,}571$ km. Use 26,560 km, the standard value.)
 
-**II.2.** *The GPS relativity problem — the finest applied physics problem in existence.* GPS satellites orbit at $r = 26{,}560$ km with $v = 3{,}874$ m/s.
+**2.** *The GPS relativity problem — the finest applied physics problem in existence.* GPS satellites orbit at $r = 26{,}560$ km with $v = 3{,}874$ m/s.
 (a) Special relativity: their motion makes their clocks run **slow**. Compute the fractional rate difference $-v^2/2c^2$, in microseconds per day.
 (b) General relativity: they're higher in the gravitational well, so their clocks run **fast**. Compute $\Delta\Phi/c^2 = \frac{\mu}{c^2}\left(\frac{1}{R_\oplus} - \frac{1}{r}\right)$, in μs/day.
 (c) Net effect? If uncorrected, how large a *positioning* error accumulates per day?
 
-**II.3.** *Conceptual.* You are in a circular orbit, 100 km behind the space station in the same orbit. Describe the maneuver to reach it. Why can't you just point at it and thrust?
+**3.** *Conceptual.* You are in a circular orbit, 100 km behind the space station in the same orbit. Describe the maneuver to reach it. Why can't you just point at it and thrust?
 
-**II.4.** Why is there only one geostationary orbit but an infinite number of sun-synchronous ones? Why must a sun-synchronous orbit be *retrograde* (inclination > 90°)?
+**4.** Why is there only one geostationary orbit but an infinite number of sun-synchronous ones? Why must a sun-synchronous orbit be *retrograde* (inclination > 90°)?
 
-**II.5.** *Hard.* A 500 kg satellite at 800 km altitude is hit by a 1 gram fragment at 14 km/s. (a) Kinetic energy of the fragment? (b) Express in grams of TNT (1 g TNT = 4,184 J). (c) Given that decay times at 800 km are measured in centuries, explain why the 2007 ASAT test at 865 km was categorically worse than a test at 300 km would have been.
+**5.** *Hard.* A 500 kg satellite at 800 km altitude is hit by a 1 gram fragment at 14 km/s. (a) Kinetic energy of the fragment? (b) Express in grams of TNT (1 g TNT = 4,184 J). (c) Given that decay times at 800 km are measured in centuries, explain why the 2007 ASAT test at 865 km was categorically worse than a test at 300 km would have been.
 
 ---
 
-### ✅ Answers to Problem Set II
+### Answers
 
-**II.1.** $T = 2\pi\sqrt{(2.656\times10^7)^3 / 3.986\times10^{14}}$. Numerator: $(2.656\times10^7)^3 = 1.8735\times10^{22}$. Divide: $4.700\times10^{7}$. Square root: 6,856. Times $2\pi$: **43,077 s = 11 h 58 min**. A sidereal day is 86,164 s; half is 43,082 s. Match to within 5 seconds — which is our rounding, not physics. Each satellite repeats its ground track twice daily, which makes the constellation's geometry predictable decades out. That predictability is the product.
+**1.** $T = 2\pi\sqrt{(2.656\times10^7)^3 / 3.986\times10^{14}}$. Numerator: $(2.656\times10^7)^3 = 1.8735\times10^{22}$. Divide: $4.700\times10^{7}$. Square root: 6,856. Times $2\pi$: **43,077 s = 11 h 58 min**. A sidereal day is 86,164 s; half is 43,082 s. Match to within 5 seconds — which is our rounding, not physics. Each satellite repeats its ground track twice daily, which makes the constellation's geometry predictable decades out. That predictability is the product.
 
-**II.2.**
+**2.**
 (a) $-v^2/2c^2 = -(3874)^2 / (2 \times (3\times10^8)^2) = -1.5008\times10^7 / 1.8\times10^{17} = -8.34\times10^{-11}$.
 Per day: $-8.34\times10^{-11} \times 86{,}400 = \mathbf{-7.2\ \mu s/day}$ (clock runs slow).
 (b) $\frac{\mu}{c^2}\left(\frac{1}{6.371\times10^6} - \frac{1}{2.656\times10^7}\right) = \frac{3.986\times10^{14}}{9\times10^{16}} \times (1.5696\times10^{-7} - 3.765\times10^{-8})$
@@ -405,21 +401,21 @@ Per day: $5.28\times10^{-10} \times 86{,}400 = \mathbf{+45.6\ \mu s/day}$ (clock
 (c) Net: $+45.6 - 7.2 = \mathbf{+38.4\ \mu s/day}$. GPS works by timing light. Error $= 38.4\times10^{-6}\ \mathrm{s} \times 3\times10^8\ \mathrm{m/s} = \mathbf{11.5\ km\ per\ day}$.
 **Your phone's map would be wrong by the width of a city within 24 hours, and by 4,000 km within a year.** Einstein's field equations are not philosophy. They are a firmware requirement. The GPS satellites' clocks are deliberately manufactured to tick at 10.22999999543 MHz instead of 10.23 MHz, so that once they're in orbit and time dilation kicks in, they tick at exactly 10.23. There is general relativity **compiled into the hardware at the factory**, and it has been there since 1977.
 
-**II.3.** You must **thrust retrograde** (brake). This lowers your orbit; a lower orbit has a shorter period, so you circulate faster and gain angular position on the target from below. When your phase angle is right, you thrust prograde to raise your orbit back up and rise to meet it — a mini-Hohmann. You cannot point-and-thrust because thrusting toward a target that is *ahead of you in the same orbit* adds energy, raises your apogee, lengthens your period, and makes you **arrive later**. Intuition built on roads and air is not merely useless here; it is precisely inverted. Gemini 4 proved this expensively in 1965.
+**3.** You must **thrust retrograde** (brake). This lowers your orbit; a lower orbit has a shorter period, so you circulate faster and gain angular position on the target from below. When your phase angle is right, you thrust prograde to raise your orbit back up and rise to meet it — a mini-Hohmann. You cannot point-and-thrust because thrusting toward a target that is *ahead of you in the same orbit* adds energy, raises your apogee, lengthens your period, and makes you **arrive later**. Intuition built on roads and air is not merely useless here; it is precisely inverted. Gemini 4 proved this expensively in 1965.
 
-**II.4.** GEO requires a *specific period* (one sidereal day) → a specific $r$, by Kepler. And it requires **zero inclination and zero eccentricity**, or the satellite traces a figure-eight or wanders east-west and stops being *stationary*. Three simultaneous conditions → exactly one orbit. Sun-synchronicity, by contrast, requires only that the nodal precession rate equal 0.9856°/day, and that's a *relationship* between altitude and inclination — a one-dimensional family of solutions, so infinitely many valid orbits (600 km at 97.8°, 800 km at 98.6°, etc.).
+**4.** GEO requires a *specific period* (one sidereal day) → a specific $r$, by Kepler. And it requires **zero inclination and zero eccentricity**, or the satellite traces a figure-eight or wanders east-west and stops being *stationary*. Three simultaneous conditions → exactly one orbit. Sun-synchronicity, by contrast, requires only that the nodal precession rate equal 0.9856°/day, and that's a *relationship* between altitude and inclination — a one-dimensional family of solutions, so infinitely many valid orbits (600 km at 97.8°, 800 km at 98.6°, etc.).
 **Retrograde:** the equatorial bulge causes nodal regression *westward* for prograde orbits ($i < 90°$) — the wrong direction. To precess *eastward*, keeping pace with Earth's orbital motion around the Sun, you need $\cos i < 0$, hence $i > 90°$. The orbit must lean *backwards* against Earth's spin. Beautiful and slightly perverse.
 
-**II.5.**
+**5.**
 (a) $E = \tfrac12 m v^2 = 0.5 \times 0.001 \times (14{,}000)^2 = \mathbf{98{,}000\ J = 98\ kJ}$.
 (b) $98{,}000 / 4{,}184 = \mathbf{23.4\ grams of TNT}$ — from something the mass of a paperclip. This is why shielding is nearly hopeless: you cannot armour against a hand grenade that arrives without warning from any direction. (The Whipple shield — a thin sacrificial bumper spaced from the hull — doesn't stop the fragment; it *vaporizes* it into a diffuse plasma cloud that the main wall can survive. You defeat it by making it worse, faster.)
 (c) At 300 km, atmospheric drag deorbits debris in **months to a few years** — nature cleans up. At 865 km, drag is negligible and orbital lifetimes run to **centuries**. So a test at 300 km is a mess; a test at 865 km is a **permanent contamination of a shell of space that every polar-orbiting satellite must cross**. The fragments also spread in inclination and eccentricity, so they don't stay in a neat cloud — they smear into a shell that intersects everything. The 2007 test didn't damage one orbit. It taxed all of them, for longer than the People's Republic has existed, several times over.
 
 ---
 
-# MOVEMENT III — Telescopes: Buying Photons, Buying Time
+# Telescopes: Buying Photons, Buying Time
 
-## 3.1 Why leave the ground at all?
+## Why leave the ground at all?
 
 Here's a fair objection. Telescopes are heavy. The rocket equation hates heavy. A ground telescope can be 39 metres across (the Extremely Large Telescope, under construction in Chile) and repaired with a ladder. So why on Earth — precisely, why *off* Earth — would you launch one?
 
@@ -445,7 +441,7 @@ $$\theta = \frac{1.22 \times 500\times10^{-9}}{2.4} = 2.54\times10^{-7}\ \mathrm
 
 That's the currency: **a telescope buys photons, and long exposures buy more of them.** For a background-limited observation, signal-to-noise $\propto \sqrt{t}$. Want twice the sensitivity? Take **four times** as long. Want ten times? A hundred times as long. There's a rocket-equation-shaped cruelty in astronomy too, and this is it.
 
-## 3.2 Hubble: the most instructive failure in science
+## Hubble: the most instructive failure in science
 
 Launched April 1990. Twenty years of work, \$1.5 billion, the flagship of American astronomy.
 
@@ -453,7 +449,7 @@ First light: **the images were blurred.**
 
 The primary mirror — 2.4 m, ground to what was supposed to be the most precise optical surface ever manufactured — was wrong. Too flat at the edge by **2.2 micrometres**. About 1/50th the width of a human hair. The result was **spherical aberration**: light from the edge focused in a different place than light from the centre, and every star became a fuzzy disk with a spike of light in the middle.
 
-How? A test device called a null corrector had been assembled with **a lens spaced 1.3 mm out of position**, because a technician had used a field cap with a worn spot as a reference surface instead of the intended surface. The corrector then confidently certified a wrong mirror as perfect. And here's the part that should keep you awake: **two other, independent test instruments disagreed** and said the mirror was aberrated. Those results were dismissed, because the fancy null corrector was considered more reliable, and because the schedule was tight, and because the people who thought the mirror was fine outranked the people who didn't.
+How? A test device called a null corrector had been assembled with **a lens spaced 1.3 mm out of position**, because a technician had used a field cap with a worn spot as a reference surface instead of the intended surface. The corrector then confidently certified a wrong mirror as perfect. And here is the part that ought to unsettle: **two other, independent test instruments disagreed** and said the mirror was aberrated. Those results were dismissed, because the fancy null corrector was considered more reliable, and because the schedule was tight, and because the people who thought the mirror was fine outranked the people who didn't.
 
 **The mirror was not the failure. The organization was the failure.** The mirror was ground exactly as instructed, to extraordinary precision, to the wrong shape. NASA had built a system that could measure a mirror to a millionth of a metre but could not hear a junior engineer say "the other test says otherwise."
 
@@ -463,9 +459,9 @@ Hubble went on to serve for over three decades: measuring the Hubble constant to
 
 **It was only fixable because it was in low Earth orbit and the Shuttle could reach it.** Remember that. It's about to matter enormously.
 
-## 3.3 JWST: physics as architecture
+## JWST: physics as architecture
 
-Now the hardest engineering problem I know of, and I want to show you that **every single feature of the James Webb Space Telescope is forced.** Not chosen. *Forced*, by a chain of physics with no branches.
+Now the hardest engineering problem in the field — and the point to establish is that **every single feature of the James Webb Space Telescope is forced.** Not chosen. *Forced*, by a chain of physics with no branches.
 
 **Start with the science goal:** see the *first* galaxies, the ones that lit up a few hundred million years after the Big Bang.
 
@@ -503,7 +499,7 @@ Each segment has **7 actuators** for position and tilt plus a **radius-of-curvat
 
 **Ten billion dollars, twenty-five years, and a launch date that slipped fourteen times.** It nearly got cancelled by Congress in 2011. It consumed a generation of astronomers' careers and, for a while, most of NASA's astrophysics budget. Was it worth it? Ask again in 2050, when we know whether it found the first light.
 
-## 3.4 The thing that makes physicists smile
+## The thing that makes physicists smile
 
 One more, because it's too good to leave out.
 
@@ -517,50 +513,50 @@ So they built one. The **Event Horizon Telescope** used radio dishes from Hawaii
 
 ---
 
-## 📝 Problem Set III — Telescopes
+## Problem Set: Telescopes
 
-**III.1.** Compute the diffraction-limited resolution of JWST at $\lambda = 2\ \mu$m, $D = 6.5$ m, in arcseconds. Compare to Hubble at 500 nm (0.052"). Is JWST "sharper" than Hubble? Discuss carefully.
+**1.** Compute the diffraction-limited resolution of JWST at $\lambda = 2\ \mu$m, $D = 6.5$ m, in arcseconds. Compare to Hubble at 500 nm (0.052"). Is JWST "sharper" than Hubble? Discuss carefully.
 
-**III.2.** A galaxy has redshift $z = 7$. (a) At what wavelength do we observe its rest-frame Lyman-alpha (121.6 nm)? (b) Could Hubble (cutoff 1.7 μm) see it? (c) At what redshift does Lyman-alpha pass out of Hubble's reach?
+**2.** A galaxy has redshift $z = 7$. (a) At what wavelength do we observe its rest-frame Lyman-alpha (121.6 nm)? (b) Could Hubble (cutoff 1.7 μm) see it? (c) At what redshift does Lyman-alpha pass out of Hubble's reach?
 
-**III.3.** A telescope operates at 300 K. Using Wien's law, find its peak thermal emission wavelength. Why is this catastrophic for a mid-infrared instrument? What temperature is needed to push the peak beyond 60 μm?
+**3.** A telescope operates at 300 K. Using Wien's law, find its peak thermal emission wavelength. Why is this catastrophic for a mid-infrared instrument? What temperature is needed to push the peak beyond 60 μm?
 
-**III.4.** *Conceptual.* Hubble is in a 540 km orbit; JWST is at L2, 1.5 million km away. Give **two** reasons JWST *had* to go to L2 and **one** serious cost of that decision.
+**4.** *Conceptual.* Hubble is in a 540 km orbit; JWST is at L2, 1.5 million km away. Give **two** reasons JWST *had* to go to L2 and **one** serious cost of that decision.
 
-**III.5.** *Hard.* You need SNR = 50 on a faint source. A one-hour exposure yields SNR = 5. Assuming background-limited performance ($\mathrm{SNR}\propto\sqrt{t}$), how long must you expose? Now suppose a competitor's telescope has twice your mirror diameter. How long does *it* need? What does this tell you about the value of aperture?
+**5.** *Hard.* You need SNR = 50 on a faint source. A one-hour exposure yields SNR = 5. Assuming background-limited performance ($\mathrm{SNR}\propto\sqrt{t}$), how long must you expose? Now suppose a competitor's telescope has twice your mirror diameter. How long does *it* need? What does this tell you about the value of aperture?
 
 ---
 
-### ✅ Answers to Problem Set III
+### Answers
 
-**III.1.** $\theta = 1.22 \times 2\times10^{-6} / 6.5 = 3.754\times10^{-7}$ rad $\times\ 206{,}265 = \mathbf{0.077\ arcsec}$.
+**1.** $\theta = 1.22 \times 2\times10^{-6} / 6.5 = 3.754\times10^{-7}$ rad $\times\ 206{,}265 = \mathbf{0.077\ arcsec}$.
 So JWST at 2 μm is *less* sharp than Hubble at 500 nm (0.052"). **JWST is not a sharper telescope. It is a deeper one.** Its bigger mirror is fighting a longer wavelength, and the wavelength wins — resolution scales as $\lambda/D$, and JWST's $\lambda$ went up by 4× while $D$ went up by only 2.7×. What JWST buys you is (a) 5.6× the photons and (b) **access to a waveband that is physically unavailable to Hubble**. If you want to see something dim and old, that's everything. If you want a pretty sharp picture of Jupiter, Hubble is your instrument. The correct question about a telescope is never "how sharp?" It's "sharp *at what wavelength*, and how many photons?"
 
-**III.2.**
+**2.**
 (a) $\lambda_{\text{obs}} = 121.6 \times (1+7) = \mathbf{972.8\ nm}$ — near-infrared, but within Hubble's reach.
 (b) **Yes** — 973 nm < 1,700 nm. Hubble's WFC3/IR did exactly this work, and found galaxies out to $z\approx11$ by heroic effort.
 (c) Set $121.6(1+z) = 1{,}700 \Rightarrow 1+z = 13.98 \Rightarrow \mathbf{z \approx 13}$.
 But that's the naive limit. In practice Hubble was far worse off, because at 1.7 μm it was working at the ragged edge of its sensitivity with a *warm* telescope glowing at it. JWST reaches 28 μm, which for Lyman-alpha corresponds to $z \approx 229$ — a redshift beyond the existence of stars. **JWST is not redshift-limited. It's limited by whether there was anything there to see.** That is the correct way to build an instrument: overshoot the physics so the universe, not your engineering, sets the answer.
 
-**III.3.** $\lambda_{\max} = 2898/300 = \mathbf{9.66\ \mu m}$. Catastrophic because MIRI's science band is 5–28 μm — **the telescope's own thermal glow peaks squarely inside the signal band**, and it's not a faint contribution: a 300 K surface is *blindingly* bright at 10 μm compared to a galaxy at $z=10$. You'd be trying to detect a candle inside a furnace.
+**3.** $\lambda_{\max} = 2898/300 = \mathbf{9.66\ \mu m}$. Catastrophic because MIRI's science band is 5–28 μm — **the telescope's own thermal glow peaks squarely inside the signal band**, and it's not a faint contribution: a 300 K surface is *blindingly* bright at 10 μm compared to a galaxy at $z=10$. You'd be trying to detect a candle inside a furnace.
 For $\lambda_{\max} > 60\ \mu$m: $T < 2898/60 = \mathbf{48.3\ K}$. JWST's 40 K passive target clears this. MIRI goes further to 7 K ($\lambda_{\max} = 414\ \mu$m) because it needs the Planck tail at 10 μm to be *utterly* negligible, not merely small — and that last 33 K of cooling required an entire dedicated cryocooler, one of the most expensive subsystems on the observatory. **The last few kelvin cost more than the first two hundred.**
 
-**III.4.** **Two reasons for L2:**
+**4.** **Two reasons for L2:**
 1. **Thermal.** In LEO, Earth is a 288 K infrared source filling a large solid angle, and its direction relative to the Sun changes every 45 minutes. No fixed shield can block Sun, Earth, and Moon simultaneously. At L2 all three lie within one small cone — a single shield does the whole job passively, forever.
 2. **Continuity of observation.** At L2 there's no 45-minute Earth occultation each orbit and no radiation-belt passage. You can stare at a target for days, uninterrupted. Given SNR ∝ √t, uninterrupted staring *is* sensitivity.
 **One serious cost:** **it cannot be serviced.** Hubble was saved by a Shuttle crew with a wrench. If JWST's sunshield had snagged, or if a single one of 344 single-point failures had failed, there was no recovery — a \$10 billion instrument, permanently dead, 1.5 million km away. The design also forced folding, which *created* most of those 344 failure points. This is a real, defensible engineering trade and reasonable people argued about it for years: **JWST bought thermal perfection by surrendering the possibility of repair.** (It also carries only ~20 years of station-keeping propellant. The lucky launch accuracy from Ariane 5 saved so much fuel that the mission life roughly doubled — a rocket's precision, converted directly into decades of astronomy.)
 
-**III.5.** $\mathrm{SNR} \propto \sqrt{t}$. To go from 5 to 50 is 10×, so $t$ must rise by $10^2 = 100$. **100 hours** — about 4.2 days of continuous observation on a single target.
+**5.** $\mathrm{SNR} \propto \sqrt{t}$. To go from 5 to 50 is 10×, so $t$ must rise by $10^2 = 100$. **100 hours** — about 4.2 days of continuous observation on a single target.
 A telescope with 2× the diameter has 4× the area, hence 4× the photon rate, hence SNR = 10 in one hour (since SNR ∝ √(photons) ∝ D). To reach 50 it needs $(50/10)^2 = 25$ hours.
 **100 hours versus 25 hours.** Aperture is not a linear luxury — it's a *quadratic* one, and observing time is the scarcest resource in astronomy (JWST is oversubscribed roughly 9-to-1; most proposals from excellent astronomers are simply rejected). Doubling your mirror doesn't make your telescope twice as good; it makes it **four times as productive**, forever, and that is why astronomers will spend twenty-five years and ten billion dollars to build one large mirror rather than four small ones. It's also why the fight is always, always about diameter.
 
 ---
 
-# MOVEMENT IV — Crewed Missions: The Payload That Complains
+# Crewed Missions: The Payload That Complains
 
-## 4.1 The worst cargo imaginable
+## The worst cargo imaginable
 
-Let us be clinical about this. Consider the specification of a human being as a payload:
+Consider, clinically, the specification of a human being as a payload:
 
 - Operating temperature range: **~15 K wide**, and lethal outside it
 - Required pressure: **~1 atm** (or at least 0.3 atm of oxygen), maintained continuously, in a vacuum
@@ -575,9 +571,9 @@ Let us be clinical about this. Consider the specification of a human being as a 
 
 Compare: a Mars rover. Operating range: 200 K wide. Consumables: none. Radiation tolerance: excellent, with shielded electronics. Failure mode: a stuck wheel. Mass: 899 kg (Curiosity), of which nearly all is *instrument and mobility* — the useful part.
 
-**A robot is a payload. A human is a payload with a payload.** Every kilogram of astronaut drags behind it a hundred kilograms of habitat, shielding, water, food, air, spares, and a way home — because unlike a rover, a human is a mission you have to *undo*. Opportunity was designed for 90 days and worked for **5,111**. It did not need to come back. That asymmetry is the entire argument, and we will have it out properly in §4.5.
+**A robot is a payload. A human is a payload with a payload.** Every kilogram of astronaut drags behind it a hundred kilograms of habitat, shielding, water, food, air, spares, and a way home — because unlike a rover, a human is a mission you have to *undo*. Opportunity was designed for 90 days and worked for **5,111**. It did not need to come back. That asymmetry is the entire argument, and it gets settled properly in the section on whether to send humans at all.
 
-## 4.2 What space does to a body
+## What space does to a body
 
 We have flown humans continuously for a quarter century, and the data are not reassuring.
 
@@ -609,13 +605,13 @@ For scale: an ISS crew member gets ~0.3 mSv/day (Earth's magnetosphere is doing 
 
 **One Mars mission is roughly 1,000 mSv.** The mission exceeds the career limit by 67%, in one trip.
 
-There is no engineering fix on the table. The options are: (a) accept higher risk and say so honestly; (b) go faster, so that nuclear propulsion is not a luxury but the **only medical countermeasure that scales** — cut transit from 180 days to 90 and you halve the largest term; (c) bury the crew in mass; (d) develop radioprotective pharmacology, which is speculative. That's the list. **Notice that (b) hands the problem straight back to Movement I.** Every road leads back to the rocket equation.
+There is no engineering fix on the table. The options are: (a) accept higher risk and say so honestly; (b) go faster, so that nuclear propulsion is not a luxury but the **only medical countermeasure that scales** — cut transit from 180 days to 90 and you halve the largest term; (c) bury the crew in mass; (d) develop radioprotective pharmacology, which is speculative. That's the list. **Option (b) hands the problem straight back to the rocket equation.** Every road leads back to it.
 
 **And the mind.** Three years, in a volume smaller than a studio apartment, with the same five people, no resupply, no rescue, and — after the first few weeks — **a 20-minute one-way communication delay**, so that "Houston, we have a problem" is followed by forty minutes of silence. Every conversation with Earth becomes correspondence. Every emergency is handled alone. Earth becomes a blue star. **The psychological architecture of every mission humanity has ever flown has depended on Earth being *there*, on the radio, in real time. Mars is the first mission where it isn't.** We have never tested this. Analogue studies — Antarctic winter-overs, submarine deployments, the Mars-500 isolation experiment — are suggestive, and what they suggest is that the crew's biggest problem is usually **the crew**, and its second biggest is **mission control**.
 
-## 4.3 Apollo was not a space program
+## Apollo was not a space program
 
-I need to say this plainly, because the mythology gets in the way of the lesson.
+This needs saying plainly, because the mythology gets in the way of the lesson.
 
 **Apollo was a Cold War weapons demonstration conducted with cameras instead of warheads.** Kennedy's own words, in a taped 1962 meeting with NASA administrator James Webb, are startlingly candid: he says he isn't that interested in space, that he's only interested because of the Soviet Union, and that otherwise the money shouldn't be spent. He asks Webb to make the lunar landing the agency's top priority for that reason. He said this **privately, to the man running the program.**
 
@@ -641,9 +637,9 @@ During Apollo 11's descent, at 33,000 feet, the AGC threw a **1202 alarm**. Then
 
 He said go because **Margaret Hamilton's software** was **priority-scheduled**: when overloaded, it did not crash and it did not hang. It shed the lowest-priority tasks, restarted cleanly, and kept the landing job running. The computer was *reporting* that it was dropping work it had correctly judged unimportant. Hamilton had fought for that architecture, and for the asynchronous restart protection, against colleagues who argued the errors it guarded against "would never happen" because astronauts were trained professionals who don't make mistakes.
 
-**The first Moon landing succeeded because someone insisted on handling an error that could never occur.** If you take one engineering lesson from this entire lecture, take that one. Hamilton also, in the process, coined the term "software engineering," largely to get people to stop treating it as an afterthought. She was ridiculed for the phrase.
+**The first Moon landing succeeded because someone insisted on handling an error that could never occur.** It is the single most important engineering lesson in this entire lecture. Hamilton also, in the process, coined the term "software engineering," largely to get people to stop treating it as an afterthought. She was ridiculed for the phrase.
 
-## 4.4 The ISS: 450 tonnes of foreign policy
+## The ISS: 450 tonnes of foreign policy
 
 The International Space Station is the most expensive object ever built — roughly **\$150 billion** — and if you evaluate it purely as a laboratory, it is a poor deal. You could have done most of the science cheaper, and some of it not at all.
 
@@ -659,9 +655,9 @@ For 25 years, humans have been continuously off Earth. Not one day's break since
 
 **The single greatest achievement of Biosphere 2 was proving how astonishingly hard it is to be Earth.** That is a genuinely valuable, and genuinely humbling, scientific result.
 
-## 4.5 The argument you should be able to have
+## The argument worth having
 
-Should we send humans at all? This is a real dispute among serious people, and I'm going to steelman both sides, because you will meet both and you should not be defenceless.
+Should we send humans at all? This is a real dispute among serious people, and both sides deserve a fair steelman.
 
 **The robotic case.** It is *overwhelming* on cost-effectiveness. Curiosity cost \$2.5B and has worked for 14 years; a crewed Mars mission is projected at \$100B+ for a few weeks of surface time. Robots don't need return trips, don't get cancer, don't need food, and don't generate a political catastrophe when they die — and they *will* die. New Horizons, Cassini, Voyager, the Mars rovers: every image you have ever seen of another world was taken by a machine. There is no scientific question answerable by a human on Mars that could not be answered by a well-designed robot at 1% of the cost. Money spent on crewed programs is money **not** spent on the seven robotic missions it would otherwise fund. And it is not a coincidence that the great scientific returns of the last thirty years have all been robotic.
 
@@ -671,9 +667,9 @@ The weak one is **operational tempo**. Opportunity drove 45 km in 14 years. A ge
 
 The strong one is that **it was never a scientific argument.** Apollo wasn't science. The ISS isn't really science. Sending humans is about what a civilization decides it is — an assertion, a demonstration, a claim about the future. It is far closer to cathedral-building than to laboratory work, and cathedral-building is not irrational just because it fails a cost-benefit analysis. You can argue it's a *bad* use of \$100B — that's a legitimate position, and reasonable people hold it. But you cannot dismiss it as a *category error*, because it was never in the science category to begin with. And the survival-of-the-species argument, however grandiose, isn't nothing: every species that has ever existed on this planet has gone extinct, and we're the only one that has noticed.
 
-**My own view, which you should feel free to reject:** the robotic case wins on every metric that the crewed program was never actually trying to optimize. Both sides are arguing past each other, and have been since 1961. What we should stop doing is **pretending the crewed program is a science program** in order to fund it out of the science budget, because that dishonesty distorts both.
+**One defensible view:** the robotic case wins on every metric that the crewed program was never actually trying to optimize. Both sides are arguing past each other, and have been since 1961. What we should stop doing is **pretending the crewed program is a science program** in order to fund it out of the science budget, because that dishonesty distorts both.
 
-## 4.6 The trip you cannot cancel
+## The trip you cannot cancel
 
 One last piece of arithmetic, because it reframes everything about Mars.
 
@@ -685,7 +681,7 @@ The transfer itself: $a = (1.0 + 1.524)/2 = 1.262$ AU, so by Kepler $T = 1.262^{
 
 So the **conjunction-class** mission is: 180–260 days out, **~500 days on the surface waiting for the planets to line back up**, 180–260 days back. **Roughly 900 days. Two and a half years.**
 
-And here is the thing I want burned into your memory: **there is no abort.** Not "abort is difficult." There is *no abort*. Once you commit to trans-Mars injection, you are going to Mars, and you are staying until the geometry releases you, and then you are coming back. If someone gets appendicitis on day 400, that is a **surgical problem to be solved on Mars**. If a critical system fails, there is no resupply — the next window is 26 months out and the cargo takes 9 months to arrive. Apollo 13's crew were saved because they were **four days from home**, with a functioning lunar module as a lifeboat, and Earth was on the radio in real time doing the arithmetic for them. **Mars offers none of these three things.**
+And here is the point that reframes everything: **there is no abort.** Not "abort is difficult." There is *no abort*. Once you commit to trans-Mars injection, you are going to Mars, and you are staying until the geometry releases you, and then you are coming back. If someone gets appendicitis on day 400, that is a **surgical problem to be solved on Mars**. If a critical system fails, there is no resupply — the next window is 26 months out and the cargo takes 9 months to arrive. Apollo 13's crew were saved because they were **four days from home**, with a functioning lunar module as a lifeboat, and Earth was on the radio in real time doing the arithmetic for them. **Mars offers none of these three things.**
 
 (There is an alternative, the **opposition-class** mission: ~600 days total, but with only 30–60 days on the surface, a much larger Δv bill, and often a Venus swing-by that takes you *closer to the Sun* — increasing radiation exposure and thermal load. You pay more, get less science, and glow. It is not obviously better.)
 
@@ -693,40 +689,40 @@ And here is the thing I want burned into your memory: **there is no abort.** Not
 
 ---
 
-## 📝 Problem Set IV — Crewed Missions
+## Problem Set: Crewed Missions
 
-**IV.1.** A crew of 4 flies a 900-day Mars mission. Assume 5.0 kg/day/person of consumables (O₂ + water + food). (a) Total open-loop mass? (b) If water and O₂ (4.34 kg of the 5.0) are recycled at 95%, and food (0.66 kg) is 0% closed, what's the new consumable mass? (c) Comment.
+**1.** A crew of 4 flies a 900-day Mars mission. Assume 5.0 kg/day/person of consumables (O₂ + water + food). (a) Total open-loop mass? (b) If water and O₂ (4.34 kg of the 5.0) are recycled at 95%, and food (0.66 kg) is 0% closed, what's the new consumable mass? (c) Comment.
 
-**IV.2.** Using RAD data (1.8 mSv/day cruise; 0.7 mSv/day on the surface): compute total dose for a conjunction mission of 360 days cruise + 500 days surface. Compare to NASA's 600 mSv career limit. What single engineering change most reduces this, and which Movement of this lecture does that hand the problem to?
+**2.** Using RAD data (1.8 mSv/day cruise; 0.7 mSv/day on the surface): compute total dose for a conjunction mission of 360 days cruise + 500 days surface. Compare to NASA's 600 mSv career limit. What single engineering change most reduces this, and which earlier part of this lecture does that hand the problem back to?
 
-**IV.3.** *Conceptual.* Explain why thin aluminium shielding can make GCR exposure **worse**, and why polyethylene or water is preferred.
+**3.** *Conceptual.* Explain why thin aluminium shielding can make GCR exposure **worse**, and why polyethylene or water is preferred.
 
-**IV.4.** Derive the Earth–Mars synodic period from $T_\oplus = 1.0$ yr and $T_{\mathrm{M}} = 1.881$ yr. Why does this number, more than any propulsion consideration, define crewed Mars mission architecture?
+**4.** Derive the Earth–Mars synodic period from $T_\oplus = 1.0$ yr and $T_{\mathrm{M}} = 1.881$ yr. Why does this number, more than any propulsion consideration, define crewed Mars mission architecture?
 
-**IV.5.** *Hard, and the real point of this Movement.* Lunar Orbit Rendezvous saved Apollo. Consider a simplified Direct Ascent: land a 15 t vehicle on the Moon that must then lift **all 15 t** back to lunar orbit (Δv = 1.87 km/s, $I_{sp} = 311$ s). Versus LOR: land a lander whose 4.7 t ascent stage must lift only itself. (a) Propellant for each? (b) Now note that this propellant must itself be *landed*, which needs its own propellant, and *that* must be pushed from LEO... explain qualitatively why the saving compounds. (c) Why is this the same insight as staging in Movement I?
+**5.** *Hard, and the real point of the crewed-missions section.* Lunar Orbit Rendezvous saved Apollo. Consider a simplified Direct Ascent: land a 15 t vehicle on the Moon that must then lift **all 15 t** back to lunar orbit (Δv = 1.87 km/s, $I_{sp} = 311$ s). Versus LOR: land a lander whose 4.7 t ascent stage must lift only itself. (a) Propellant for each? (b) Now note that this propellant must itself be *landed*, which needs its own propellant, and *that* must be pushed from LEO... explain qualitatively why the saving compounds. (c) Why is this the same insight as staging in the rockets section?
 
 ---
 
-### ✅ Answers to Problem Set IV
+### Answers
 
-**IV.1.**
+**1.**
 (a) $4 \times 900 \times 5.0 = \mathbf{18{,}000\ kg = 18\ tonnes}$ of pure consumables — more than the entire dry mass of an Apollo Command and Service Module, and it's just air, water, and lunch.
 (b) Recycled portion: $4 \times 900 \times 4.34 = 15{,}624$ kg needed, but at 95% closure you only launch 5%: $\mathbf{781\ kg}$. Food: $4 \times 900 \times 0.66 = \mathbf{2{,}376\ kg}$, all launched. Total: $781 + 2{,}376 = \mathbf{3{,}157\ kg}$.
-(c) Recycling cut 18 t to 3.2 t — an **82% reduction**, and remember every one of those kilograms sits inside an exponential from Movement I, so the saving on the launch pad is *far* larger than 15 t. But look at what dominates now: **food is 75% of what's left.** Closure of the air/water loop is largely solved; closure of the *carbon* loop — actually growing food — is not, and Biosphere 2 is the cautionary tale. This is why "can we grow potatoes on Mars" is not a whimsical question from a novel. It's the **critical path**. (Also note: the ECLSS hardware to do 95% recycling has mass of its own, and it must not break for 900 days. There is a break-even mission duration below which you should just bring the water. For short missions, Apollo simply *carried* everything and vented the excess overboard.)
+(c) Recycling cut 18 t to 3.2 t — an **82% reduction**, and remember every one of those kilograms sits inside the rocket equation's exponential, so the saving on the launch pad is *far* larger than 15 t. But look at what dominates now: **food is 75% of what's left.** Closure of the air/water loop is largely solved; closure of the *carbon* loop — actually growing food — is not, and Biosphere 2 is the cautionary tale. This is why "can we grow potatoes on Mars" is not a whimsical question from a novel. It's the **critical path**. (Also note: the ECLSS hardware to do 95% recycling has mass of its own, and it must not break for 900 days. There is a break-even mission duration below which you should just bring the water. For short missions, Apollo simply *carried* everything and vented the excess overboard.)
 
-**IV.2.** Cruise: $360 \times 1.8 = 648$ mSv. Surface: $500 \times 0.7 = 350$ mSv. **Total ≈ 998 mSv ≈ 1 Sv.**
+**2.** Cruise: $360 \times 1.8 = 648$ mSv. Surface: $500 \times 0.7 = 350$ mSv. **Total ≈ 998 mSv ≈ 1 Sv.**
 That's **166% of the entire career limit**, in one mission — and it's a *career* limit, so the astronaut may never fly again, having flown once.
 **The single most effective change: go faster.** The cruise phase is 65% of the dose and it's the phase with no planetary shielding. Halving transit time to 90 days each way cuts the total to ~674 mSv — still over the limit, but *within argument*. Nothing else on the table moves the number that much: shielding fails against GCR, and the surface stay is set by orbital mechanics.
-**And "go faster" is a Δv problem.** It hands you straight back to **Movement I**, and specifically to nuclear thermal propulsion, which is why NERVA keeps getting resurrected every fifteen years. **The medical problem is a propulsion problem.** This is the deepest connection in the entire lecture: the reason to build a nuclear rocket is not speed for its own sake — it's *oncology*.
+**And "go faster" is a Δv problem.** It hands straight back to **the rocket equation**, and specifically to nuclear thermal propulsion, which is why NERVA keeps getting resurrected every fifteen years. **The medical problem is a propulsion problem.** This is the deepest connection in the entire lecture: the reason to build a nuclear rocket is not speed for its own sake — it's *oncology*.
 
-**IV.3.** A GCR primary — say an iron nucleus at 1 GeV/nucleon — hitting an aluminium nucleus doesn't stop. It **shatters** it, in a spallation reaction, producing a cascade of secondary protons, neutrons, and lighter nuclei. If the shield is thin, the primary is converted into *many* biologically active particles which then exit into the crew — you have turned one bullet into a shotgun blast. Dose can locally *increase* with added thin shielding before it eventually decreases with a great deal of it.
+**3.** A GCR primary — say an iron nucleus at 1 GeV/nucleon — hitting an aluminium nucleus doesn't stop. It **shatters** it, in a spallation reaction, producing a cascade of secondary protons, neutrons, and lighter nuclei. If the shield is thin, the primary is converted into *many* biologically active particles which then exit into the crew — you have turned one bullet into a shotgun blast. Dose can locally *increase* with added thin shielding before it eventually decreases with a great deal of it.
 **Hydrogen is the answer**, for two reasons. First, hydrogen has the highest number of electrons per unit mass of any element, so per kilogram it's the best stopper. Second — and this is the elegant part — in a collision, energy transfer is maximized between particles of **equal mass** (think Newton's cradle). A proton hitting a hydrogen nucleus (which *is* a proton) transfers energy beautifully and produces no heavy nuclear fragments. So: polyethylene (CH₂, hydrogen-rich, structural), water (which you need anyway — so line the storm shelter with the water tanks, and the crew's own waste; NASA has seriously proposed both), and liquid hydrogen fuel, which you also need anyway. **The best shield is one that was already on the manifest for another reason.**
 
-**IV.4.** Relative angular rate: $\omega_\oplus - \omega_\mars = 2\pi(1/1.0 - 1/1.881)$. One full lap of relative geometry takes:
+**4.** Relative angular rate: $\omega_\oplus - \omega_\mars = 2\pi(1/1.0 - 1/1.881)$. One full lap of relative geometry takes:
 $$T_{syn} = \frac{1}{|1/1.0 - 1/1.881|} = \frac{1}{1 - 0.5316} = \frac{1}{0.4684} = \mathbf{2.135\ yr = 780\ days}$$
 **Why it defines everything:** because it makes the mission **uncancellable and un-reschedulable**. If your launch slips by three weeks, you don't launch three weeks late — **you launch 26 months late**, because the window is ~30 days wide and the next one is two years out. If a crew member falls ill on the surface on day 100, they wait 400 more days. If your habitat's water recycler fails, the spares arrive in three years. Propulsion sets *how hard*; the synodic period sets *how long you are committed*, and commitment — not thrust — is what kills people. It converts an engineering project into a **survival expedition** with a fixed, externally-imposed, planetary-mechanics-enforced duration. **Mars doesn't care about your schedule; it *is* your schedule.**
 
-**IV.5.**
+**5.**
 (a) $v_e = 311 \times 9.80665 = 3{,}050$ m/s. Mass ratio $= e^{1870/3050} = e^{0.613} = 1.846$.
 **Direct Ascent:** to lift 15 t to lunar orbit, $m_0 = 15 \times 1.846 = 27.7$ t, so propellant $= \mathbf{12.7\ t}$.
 **LOR:** to lift the 4.7 t ascent stage, $m_0 = 4.7 \times 1.846 = 8.68$ t, so propellant $= \mathbf{3.98\ t}$.
@@ -737,9 +733,9 @@ Saving on the surface: **8.7 t**.
 
 ---
 
-# MOVEMENT V — Astrobiology: The Question That Signs the Cheque
+# Astrobiology: The Question That Signs the Cheque
 
-## 5.1 The embarrassing foundation
+## The embarrassing foundation
 
 Astrobiology has a problem that no other science has, and it's worth being blunt about it: **it is the study of a phenomenon of which we have exactly one example.**
 
@@ -751,9 +747,9 @@ Given that, what do we actually think is required? The consensus list is deliber
 
 1. **A solvent** — for chemistry to happen in. Water is the default: liquid over a wide range, superb at dissolving polar molecules, and (the underrated bit) **ice floats**, so a freezing ocean insulates itself instead of freezing solid from the bottom up. Ammonia, methane, supercritical CO₂ are alternatives, all with drawbacks.
 2. **Complex chemistry** — carbon, almost certainly, because it forms four stable bonds and long chains at reasonable temperatures. Silicon is the perennial science-fiction alternative and it's genuinely poor: Si–Si bonds are weak, and silicon's oxide is a *rock*, not a gas you can exhale.
-3. **An energy gradient.** And this is the one people miss, and it's the most important. **Life is not powered by energy. Life is powered by disequilibrium.** A universe at uniform temperature with all reactions at equilibrium is *full* of energy and utterly dead. Life is a machine for riding a gradient downhill, and it doesn't much care whether the gradient is sunlight, or a redox couple between hydrogen and CO₂, or a thermal gradient at a vent. **Any disequilibrium will do.** Remember this in twenty paragraphs; it's the hinge of the whole Movement.
+3. **An energy gradient.** And this is the one people miss, and it's the most important. **Life is not powered by energy. Life is powered by disequilibrium.** A universe at uniform temperature with all reactions at equilibrium is *full* of energy and utterly dead. Life is a machine for riding a gradient downhill, and it doesn't much care whether the gradient is sunlight, or a redox couple between hydrogen and CO₂, or a thermal gradient at a vent. **Any disequilibrium will do.** This recurs below; it is the hinge of the whole astrobiology problem.
 
-## 5.2 The habitable zone, and why it's the wrong idea
+## The habitable zone, and why it's the wrong idea
 
 The classic framing: the **habitable zone** is the orbital band where a planet's surface temperature permits liquid water. For the Sun, roughly 0.95 to 1.7 AU on the optimistic estimates. It's a lovely, teachable concept — Goldilocks, not too hot, not too cold — and it is **badly misleading**, in a way that has actively distorted the field's priorities.
 
@@ -779,15 +775,15 @@ Cassini — an orbiter designed years before anyone knew the plumes existed, car
 
 We have found, on a moon the size of Spain, orbiting nine times farther from the Sun than Earth, **a habitat that meets every criterion we know how to state** — and we found it with a spacecraft that was flying past for other reasons.
 
-**We have not found life.** Let me be exact about this, because the distinction is the whole discipline: we have found a place where, on Earth, life *would be*. Whether it *is* — nobody knows, and Cassini's instruments could not have told us. It was launched in 1997. Its mass spectrometer was designed to sniff Titan's atmosphere.
+**We have not found life.** The distinction is the whole discipline, and it must be stated exactly: we have found a place where, on Earth, life *would be*. Whether it *is* — nobody knows, and Cassini's instruments could not have told us. It was launched in 1997. Its mass spectrometer was designed to sniff Titan's atmosphere.
 
 **Titan.** The strangest world we know. Thicker atmosphere than Earth's, 94 K, with a full **methane hydrological cycle**: methane clouds, methane rain, methane rivers carving channels into water-ice bedrock, methane lakes and seas at the poles (Kraken Mare is larger than the Caspian). Complex organic haze falls from the sky like snow. It's an entire chemistry set the size of a planet, running for four billion years, at a temperature where water is granite. There's probably also a water ocean deep beneath. **Dragonfly** — a nuclear-powered eight-rotor drone, because Titan's thick air and low gravity make flying almost trivially easy — launches in 2028 and arrives in 2034. It will *fly between sites*, doing chemistry on each. It is the most audacious mission ever approved and hardly anyone knows it exists.
 
 **Mars.** Wet for its first billion years — Perseverance is parked in Jezero Crater, an unmistakable river delta. The problem is Mars lost its magnetic field around 4 billion years ago, and then the solar wind stripped the atmosphere, and the water went to space and underground. **If life started there, the window was early, and the evidence is now a fossil problem, not a biology problem.**
 
-## 5.3 Three cautionary tales, or: how do you know?
+## Three cautionary tales, or: how do you know?
 
-Astrobiology's real intellectual content isn't chemistry. It's **epistemology under conditions of overwhelming desire to believe.** Three case studies, and I want you to notice they're all the same story.
+Astrobiology's real intellectual content isn't chemistry. It's **epistemology under conditions of overwhelming desire to believe.** Three case studies — and they are all the same story.
 
 **(1) Viking, 1976.** NASA landed two biology labs on Mars. The **Labeled Release** experiment, designed by Gilbert Levin, dripped nutrients tagged with radioactive carbon-14 onto Martian soil and watched for radioactive CO₂ — metabolism. **It got a strong positive.** Textbook positive. And the control — heat the soil to 160°C first, killing anything alive — **went negative**, exactly as it should. By the pre-registered criteria the experiment had been *designed* around, that is a **detection of life**.
 
@@ -815,11 +811,11 @@ The original team pushed back, published follow-ups, and the argument continues.
 
 That's not timidity. That's a discipline that has been burned three times and learned. **Every other science should be so honest about its own weakness.**
 
-## 5.4 What would count? Biosignatures and the disequilibrium trick
+## What would count? Biosignatures and the disequilibrium trick
 
 So what would actually convince us, on a planet we can never visit?
 
-The best idea is old, and it's the one from §5.1. In the 1960s, **James Lovelock** was consulting for NASA's Viking program, and he asked the question backwards. Instead of "how do we detect life," he asked: **how would an alien detect life on Earth, from far away, with a spectrometer?**
+The best idea is old, and it is the disequilibrium argument raised earlier. In the 1960s, **James Lovelock** was consulting for NASA's Viking program, and he asked the question backwards. Instead of "how do we detect life," he asked: **how would an alien detect life on Earth, from far away, with a spectrometer?**
 
 His answer was **atmospheric disequilibrium**. Earth's atmosphere contains 21% oxygen — a violently reactive gas that should oxidize the crust and vanish geologically fast. It *also* contains methane, which oxygen should destroy in about a decade. **Oxygen and methane cannot coexist.** Their simultaneous presence means something is **replenishing both, continuously, against thermodynamics.** No known geology does this. **Life does.**
 
@@ -829,13 +825,13 @@ Lovelock told NASA they could answer the Mars question with a telescope — Mars
 
 The hard part is that **every candidate biosignature has an abiotic mimic.** Oxygen can build up abiotically when UV photolysis splits water and a low-gravity planet loses the hydrogen to space — leaving oxygen with no life whatsoever. So you need context: oxygen *and* methane, *and* no obvious runaway-water-loss history, *and* the right star. **The evidence is never a molecule. It's a story that only life can tell.**
 
-Which brings us to **K2-18b**, and I include it because the ink is still wet. It's a "sub-Neptune" 124 light-years away, possibly a "hycean" world — a deep ocean under a hydrogen atmosphere. JWST observations were reported in 2023, and more strongly in 2025, as showing hints of **dimethyl sulphide (DMS)** — a molecule produced on Earth almost exclusively by marine phytoplankton. Headlines, inevitably, said *aliens*.
+Which brings us to **K2-18b**, included here because the ink is still wet. It's a "sub-Neptune" 124 light-years away, possibly a "hycean" world — a deep ocean under a hydrogen atmosphere. JWST observations were reported in 2023, and more strongly in 2025, as showing hints of **dimethyl sulphide (DMS)** — a molecule produced on Earth almost exclusively by marine phytoplankton. Headlines, inevitably, said *aliens*.
 
 The field's response was immediate and skeptical: the statistical significance is contested, independent reanalyses of the same data have found the signal weakens or vanishes depending on modelling choices, DMS and methane have overlapping features in the relevant band, and abiotic DMS has since been found on a comet — which rather undermines the "only life makes this" premise. **As of now, it is not a detection. It is a hint that has not survived contact with other people's software.**
 
-If that sounds familiar — Viking, ALH84001, phosphine — **it should.** That's the point of §5.3. You have now watched the same movie four times and you should be able to predict the third act.
+If that sounds familiar — Viking, ALH84001, phosphine — **it should.** That is the point of the three cautionary tales above: the same movie has now played four times, and its third act is predictable.
 
-## 5.5 Drake, Fermi, and the silence
+## Drake, Fermi, and the silence
 
 **The Drake equation**, written by Frank Drake in 1961 for a meeting of ten people at Green Bank:
 
@@ -865,9 +861,9 @@ Proposed resolutions, none satisfying:
 - **The Great Filter** (Robin Hanson, 1996). Something, somewhere on the path from chemistry to galactic civilization, is nearly impossible. If it's **behind us** — abiogenesis, or eukaryogenesis — we're the lucky ones and the future is open. If it's **ahead of us**, then everyone dies before spreading, and we will too. And here's the sting: **every discovery of independent life elsewhere makes our situation worse**, because it moves the filter forward, past the step we just showed is easy. Finding a fossil microbe on Mars would be the most exciting scientific event in history and, arguably, **very bad news.** Nick Bostrom has argued exactly this, seriously, in print.
 - **We've barely looked.** SETI's cumulative search, in a much-cited framing, has sampled a volume of the relevant search space equivalent to **a hot tub's worth of Earth's oceans**. We're not scanning the sky; we're glancing.
 - **They're not using radio.** Our own radio leakage is *declining* — we've moved to fibre, tight beams, and low-power digital modulation. Earth was loudest in the 1970s. **A civilization is radio-loud for perhaps a century**, which is a terrifyingly narrow window for anyone listening. Which is why the field has pivoted to **technosignatures**: industrial pollutants like CFCs in an exoplanet atmosphere, waste heat, megastructures.
-- **The zoo hypothesis, the dark forest, the simulation.** These are not scientific hypotheses. They are unfalsifiable, and I mention them only so you can recognize them as literature.
+- **The zoo hypothesis, the dark forest, the simulation.** These are not scientific hypotheses. They are unfalsifiable, and are noted here only so they can be recognized as literature rather than science.
 
-## 5.6 The dirtiest problem: planetary protection
+## The dirtiest problem: planetary protection
 
 A closing thought that most treatments skip.
 
@@ -879,47 +875,47 @@ So COSPAR maintains **planetary protection** categories, and they have teeth. **
 
 And then, in 2019, the Israeli lunar lander **Beresheet** crashed on the Moon carrying, without meaningful oversight, a payload that included **dehydrated tardigrades**. (They're almost certainly dead, or at least permanently dormant — tardigrades need liquid water to revive and the Moon has none. But nobody asked anyone's permission, and the mechanism to *make* them ask barely exists.)
 
-**Here is the tension you should leave with.** Planetary protection is a real cost — it makes missions vastly more expensive, and there is a serious argument that we have over-protected Mars and delayed the search for decades out of an abundance of caution about a contamination risk that may be small. And simultaneously: **the samples we bring back from Mars in the 2030s will be the most scientifically valuable objects ever handled by humans**, and if they're contaminated, or if we contaminated the site, the answer to the biggest question our species has asked is **permanently unavailable**. Not delayed. *Unavailable.* You cannot un-contaminate a planet.
+**Here is the central tension.** Planetary protection is a real cost — it makes missions vastly more expensive, and there is a serious argument that we have over-protected Mars and delayed the search for decades out of an abundance of caution about a contamination risk that may be small. And simultaneously: **the samples we bring back from Mars in the 2030s will be the most scientifically valuable objects ever handled by humans**, and if they're contaminated, or if we contaminated the site, the answer to the biggest question our species has asked is **permanently unavailable**. Not delayed. *Unavailable.* You cannot un-contaminate a planet.
 
 **We get exactly one chance to look at a pristine Mars, and we are already spending it.**
 
 ---
 
-## 📝 Problem Set V — Astrobiology
+## Problem Set: Astrobiology
 
-**V.1.** Enceladus is 9.5 AU from the Sun. (a) What fraction of Earth's solar flux does it receive? (b) Given that, explain in energy terms how it sustains a subsurface ocean and hydrothermal vents. (c) Why does this falsify the habitable-zone concept as a *search strategy*?
+**1.** Enceladus is 9.5 AU from the Sun. (a) What fraction of Earth's solar flux does it receive? (b) Given that, explain in energy terms how it sustains a subsurface ocean and hydrothermal vents. (c) Why does this falsify the habitable-zone concept as a *search strategy*?
 
-**V.2.** Explain why the co-detection of **O₂ and CH₄** in an exoplanet atmosphere is a stronger biosignature than either alone. Give one abiotic mimic for oxygen and explain how you'd rule it out.
+**2.** Explain why the co-detection of **O₂ and CH₄** in an exoplanet atmosphere is a stronger biosignature than either alone. Give one abiotic mimic for oxygen and explain how you'd rule it out.
 
-**V.3.** *Conceptual.* The Viking Labeled Release experiment returned a positive result and its heat-sterilized control returned a negative — the textbook signature of biology. Why is this still not accepted as a detection of life? What does the 2008 discovery of perchlorates do to the argument?
+**3.** *Conceptual.* The Viking Labeled Release experiment returned a positive result and its heat-sterilized control returned a negative — the textbook signature of biology. Why is this still not accepted as a detection of life? What does the 2008 discovery of perchlorates do to the argument?
 
-**V.4.** In the Drake equation, which terms have been transformed from speculation into measurement since 1961, and which remain unknown? What follows about what $N$ now depends on?
+**4.** In the Drake equation, which terms have been transformed from speculation into measurement since 1961, and which remain unknown? What follows about what $N$ now depends on?
 
-**V.5.** *Hard, and philosophical.* Explain the **Great Filter** argument, and then explain why the discovery of an independent second origin of life on Mars would be, from a certain point of view, alarming. Then give the strongest objection to that reasoning.
+**5.** *Hard, and philosophical.* Explain the **Great Filter** argument, and then explain why the discovery of an independent second origin of life on Mars would be, from a certain point of view, alarming. Then give the strongest objection to that reasoning.
 
 ---
 
-### ✅ Answers to Problem Set V
+### Answers
 
-**V.1.**
+**1.**
 (a) Flux $\propto 1/r^2$, so $1/9.5^2 = 1/90.25 = \mathbf{1.1\%}$ of Earth's — about 15 W/m² versus Earth's 1,361. Equilibrium temperature is around 60–75 K. Water on the surface isn't liquid; it's **structural rock**.
 (b) The energy is **gravitational, not stellar**. Enceladus is in a **2:1 mean-motion resonance with Dione**, which continually pumps its orbital eccentricity. An eccentric orbit means the tidal bulge Saturn raises in Enceladus **changes shape and position** through each orbit, flexing the moon; internal friction dissipates that flexing as heat. The energy is drawn from the orbital dynamics of the Saturn system — an enormous, slowly-draining reservoir. This can maintain hydrothermal circulation for billions of years with no sunlight at all, and Cassini's silica nanoparticles show it's doing so at **above 90°C** right now.
 (c) Because the habitable zone assumes **the star is the only heat source and the surface is the only habitat.** Both assumptions fail. Correct the first with tidal heating and radiogenic heating; correct the second by noting that on Earth itself, a large fraction of the biomass lives in **the deep subsurface**, kilometres down, in rock, having no relationship whatsoever with the Sun. **A habitable zone based on surface temperature would classify Earth's own deep biosphere as impossible.** As a *first-cut filter for exoplanet target lists*, the HZ remains useful — we can only see surfaces from 100 light-years away. As a *description of where life can be*, it's provincial. The two most promising worlds we know of would both be excluded by it.
 
-**V.2.** O₂ and CH₄ are **thermodynamically incompatible**: methane in an oxygen atmosphere oxidizes to CO₂ and water within about a decade. Their simultaneous presence at detectable levels means **both are being replenished continuously and rapidly**, maintaining a standing disequilibrium against a strong thermodynamic gradient. **A gradient that persists is a gradient someone is defending.** No known abiotic process maintains both at Earth-like levels.
+**2.** O₂ and CH₄ are **thermodynamically incompatible**: methane in an oxygen atmosphere oxidizes to CO₂ and water within about a decade. Their simultaneous presence at detectable levels means **both are being replenished continuously and rapidly**, maintaining a standing disequilibrium against a strong thermodynamic gradient. **A gradient that persists is a gradient someone is defending.** No known abiotic process maintains both at Earth-like levels.
 Either alone is weak: methane has plentiful abiotic sources (serpentinization, cometary delivery — Titan is drowning in it and nobody thinks Titan has a biosphere).
 **Abiotic O₂ mimic:** on a planet with a runaway greenhouse, UV photolysis splits H₂O into H and O; hydrogen is light and escapes to space (especially at low gravity or high stellar XUV flux), leaving oxygen accumulating with no biology at all. **Ruling it out** requires *context*: (i) look for the smoking gun of massive hydrogen escape — an **O₂–O₂ collision-induced absorption feature** implies implausibly high O₂ pressure consistent with photolytic buildup; (ii) check for **O₄ and abundant CO**, which signal an abiotic photochemistry-dominated atmosphere; (iii) check the star — M dwarfs bake young planets with XUV for hundreds of millions of years and are the prime suspects; (iv) check for **water still present**, since the runaway route requires having lost an ocean. **The molecule is never the evidence. The molecule plus its history is the evidence.**
 
-**V.3.** Because a positive result plus a good control still only demonstrates **a heat-labile process that liberates carbon from nutrients** — and "heat-labile" describes a great many oxidizing chemical reactions as well as it describes metabolism. The specific killer at the time was the **GCMS finding no organics at all**, at sensitivity down to parts per billion. Metabolism without organic molecules is incoherent, so the LR result had to be chemistry.
+**3.** Because a positive result plus a good control still only demonstrates **a heat-labile process that liberates carbon from nutrients** — and "heat-labile" describes a great many oxidizing chemical reactions as well as it describes metabolism. The specific killer at the time was the **GCMS finding no organics at all**, at sensitivity down to parts per billion. Metabolism without organic molecules is incoherent, so the LR result had to be chemistry.
 **Perchlorates detonate that reasoning.** They're strong oxidizers, present at ~0.5% in Martian soil, and the GCMS worked by **pyrolysis — heating samples to several hundred degrees.** Heating perchlorate-laden soil combusts any organics present into CO₂ and chlorinated fragments. So the GCMS may have been **destroying the evidence in the act of looking for it**, and its null result is not the clean refutation everyone treated it as. (Supporting this: Curiosity's SAM instrument later did find chlorinated organics on Mars — exactly the signature of organics that met perchlorate in a hot oven.)
 **Where this leaves us:** the LR result is *still not explained* by any single agreed-upon abiotic mechanism, and it is *still not accepted* as life. Both of those statements are true at once, and living with them is what intellectual honesty costs. **The deepest lesson is about experimental design: Viking's instruments could not distinguish between "no organics" and "we burned the organics."** A well-designed experiment must be able to detect its own failure mode. Viking's could not, and fifty years later we're still arguing.
 
-**V.4.**
+**4.**
 **Measured:** $R_*$ (star formation rate, ~1.5–3/yr), $f_p$ (fraction of stars with planets — essentially **1**; this is arguably the single greatest observational surprise of the last thirty years), $n_e$ (habitable-zone terrestrial planets per system — roughly 0.2 for Sun-like stars, from Kepler statistics).
 **Unknown, by orders of magnitude:** $f_l$ (abiogenesis), $f_i$ (intelligence), $f_c$ (communication), $L$ (lifetime).
 **What follows:** since the astronomical terms are now pinned and jointly give a large number (billions of habitable-zone planets in this galaxy), **$N$ is determined entirely by the four terms we cannot measure.** The equation has ceased to be an astronomy problem. It's now a question about **the probability of abiogenesis** — a chemistry problem with n = 1 — and about **$L$**, which is a question about whether technological civilizations tend to persist, i.e. a question about *us*. **Drake's equation, after sixty years of spectacular progress, has resolved into a mirror.** That is a genuinely strange thing for an equation to do.
 
-**V.5. The Great Filter** (Hanson, 1996): the observed transition rate from dead matter to visible galactic civilization is, empirically, approximately **zero** — the galaxy is silent. Therefore at least one step in the chain (abiogenesis → prokaryotes → eukaryotes → complexity → intelligence → technology → interstellar expansion) must be **extraordinarily improbable**. Something filters. The question is only *where*.
+**5. The Great Filter** (Hanson, 1996): the observed transition rate from dead matter to visible galactic civilization is, empirically, approximately **zero** — the galaxy is silent. Therefore at least one step in the chain (abiogenesis → prokaryotes → eukaryotes → complexity → intelligence → technology → interstellar expansion) must be **extraordinarily improbable**. Something filters. The question is only *where*.
 **Why finding life on Mars is alarming:** if life arose independently *twice* in one solar system, then abiogenesis is **easy** — it happens whenever conditions permit. That eliminates $f_l$ as the filter. But the galaxy is still silent, so the filter must be **somewhere else** — and every step we eliminate behind us pushes the filter closer to, or past, our own position. If life is common and the sky is empty, then **something reliably stops civilizations**, and it is a step we have not yet passed. The lesson generalizes horribly: the more life we find, the worse our prospects. **Every good day for astrobiology is a bad day for us.** (Bostrom's formulation: he would rather Mars sample return come back empty. He means it.)
 **Strongest objection — and there are several, so pick your favourite:**
 1. **The filter needn't be a catastrophe.** $L$ could be short because civilizations go *quiet*, not because they go extinct — they stop broadcasting, move to fibre and tight beams, or simply lose interest in expansion. A galaxy of contented, non-expansionist civilizations is silent and perfectly happy. Our own radio leakage peaked in the 1970s and has been falling since. **We are, right now, in the process of becoming undetectable, and it isn't because we died.**
@@ -928,9 +924,9 @@ Either alone is weak: methane has plentiful abiotic sources (serpentinization, c
 
 ---
 
-# CODA — The Through-Line
+# The Through-Line
 
-Let me collect the argument, because if you take nothing else, take this.
+The argument, collected — because if nothing else from this lecture survives, this should.
 
 **One equation runs the whole field:**
 
@@ -953,10 +949,10 @@ And then, downstream, the constraint propagates:
 
 - **Satellites** are where they are because Kepler's third law converts *altitude* into *period* into *business model*. Starlink needs thousands of satellites because it wants low latency; GPS needs 24 because it wants global visibility; there is exactly one geostationary orbit and the ITU rents it out like beachfront. **Orbital mechanics is industrial policy.**
 - **Telescopes** go up because the atmosphere eats X-rays, UV, and infrared, and because SNR ∝ √t and the ground only offers half of every day. And JWST's every feature — infrared, 40 K, L2, sunshield, folded, beryllium, gold, 344 single-point failures, no possibility of repair — **falls out of one decision: look at redshift 10.** Nothing about it was a preference. The physics wrote the spec.
-- **Crews** are the hardest payload because a human is a payload with a hundred-fold payload of its own, and because the radiation problem's only real solution is *go faster*, which is a Δv problem, which is Movement I again, wearing a lab coat. The medical problem is a propulsion problem.
+- **Crews** are the hardest payload because a human is a payload with a hundred-fold payload of its own, and because the radiation problem's only real solution is *go faster*, which is a Δv problem, which is the rocket equation again, wearing a lab coat. The medical problem is a propulsion problem.
 - **Astrobiology** is the reason any of this gets funded, and its two best targets — Europa and Enceladus — are both outside the habitable zone, powered by tidal flexing rather than sunlight, which means our best framework for where to look **was wrong**, and we found the good stuff by accident, with instruments built for other purposes, flying past.
 
-And there is one more thread I want to pull, because I think it's the real one.
+And there is one more thread worth pulling, because it may be the real one.
 
 **Look at how often the crucial thing was a person being difficult.**
 
@@ -964,7 +960,7 @@ Houbolt going over his bosses' heads with a mission architecture nobody wanted, 
 
 **The physics is fixed. The equation has not changed since 1903 and it will not change.** Every genuine advance in this field has come from someone noticing that a *constraint everyone accepted was actually a choice* — and then being annoying enough about it to win.
 
-That is not a lesson about space. **You can carry it out of this room and use it on Monday.**
+That is not a lesson about space alone; it applies far beyond it.
 
 Tsiolkovsky, in his village, deaf, with a pencil, wrote that the Earth is the cradle of humanity — but that one cannot live in a cradle forever.
 
@@ -972,25 +968,25 @@ He was right about the equation. We're still finding out about the rest.
 
 ---
 
-# 🎓 FINAL EXAMINATION
+# Final Examination
 
-*Integrative. Each question deliberately crosses Movements. Worked answers follow. Do not skip ahead; the point of an exam is what happens in your head before you see the answer.*
+*Integrative. Each question deliberately crosses topics. Worked answers follow. Do not skip ahead; the point of an exam is what happens in your head before you see the answer.*
 
-**F.1 — The chain of consequence.** A mission proposes to place a 1,000 kg infrared telescope at Earth–Sun L2 using a two-stage vehicle with $I_{sp} = 350$ s and $\varepsilon = 0.08$. Total Δv from the ground: 9.4 (LEO) + 3.2 (escape) ≈ 12.6 km/s. (a) With the even-split two-stage architecture we built in §1.5, what liftoff mass is needed? (b) Name **three** design features the telescope must have, and derive each from physics rather than asserting it.
+**1 — The chain of consequence.** A mission proposes to place a 1,000 kg infrared telescope at Earth–Sun L2 using a two-stage vehicle with $I_{sp} = 350$ s and $\varepsilon = 0.08$. Total Δv from the ground: 9.4 (LEO) + 3.2 (escape) ≈ 12.6 km/s. (a) With the even-split two-stage architecture built earlier in the rockets section, what liftoff mass is needed? (b) Name **three** design features the telescope must have, and derive each from physics rather than asserting it.
 
-**F.2 — Why this orbit?** Explain, from first principles and with numbers where possible, why: (a) GPS is at 20,200 km rather than in LEO; (b) Starlink is at ~550 km rather than in GEO; (c) JWST is at L2 rather than in LEO; (d) Landsat is in a retrograde 98° orbit. In each case identify the **constraint that forced the choice** and what was sacrificed.
+**2 — Why this orbit?** Explain, from first principles and with numbers where possible, why: (a) GPS is at 20,200 km rather than in LEO; (b) Starlink is at ~550 km rather than in GEO; (c) JWST is at L2 rather than in LEO; (d) Landsat is in a retrograde 98° orbit. In each case identify the **constraint that forced the choice** and what was sacrificed.
 
-**F.3 — The synthesis question.** Argue, in a paragraph, that *the case for nuclear thermal propulsion is fundamentally a medical argument, not a propulsion argument.* Use numbers.
+**3 — The synthesis question.** Argue, in a paragraph, that *the case for nuclear thermal propulsion is fundamentally a medical argument, not a propulsion argument.* Use numbers.
 
-**F.4 — Epistemology.** You are on a review panel. A team reports a 4σ detection of dimethyl sulphide in an exoplanet's transit spectrum and requests a press conference announcing "possible biosignature." Drawing on **at least two** historical cases from this lecture, write the three questions you ask them, and state what you'd need to see before agreeing.
+**4 — Epistemology.** You are on a review panel. A team reports a 4σ detection of dimethyl sulphide in an exoplanet's transit spectrum and requests a press conference announcing "possible biosignature." Drawing on **at least two** historical cases from this lecture, write the three questions you ask them, and state what you'd need to see before agreeing.
 
-**F.5 — The one that ties it all together.** Explain how the rocket equation is *causally upstream* of: (a) the number of satellites in the Starlink constellation; (b) the fact that JWST could not be repaired; (c) the ~1 Sv radiation dose of a Mars mission; (d) the fact that we have never landed on Europa. One paragraph each. This is the whole lecture; if you can do this, you have it.
+**5 — The one that ties it all together.** Explain how the rocket equation is *causally upstream* of: (a) the number of satellites in the Starlink constellation; (b) the fact that JWST could not be repaired; (c) the ~1 Sv radiation dose of a Mars mission; (d) the fact that we have never landed on Europa. One paragraph each. This is the whole lecture; if you can do this, you have it.
 
 ---
 
-### ✅ Answers to the Final Examination
+### Answers to the Final Examination
 
-**F.1.**
+**1.**
 (a) $v_e = 3{,}432$ m/s. Even split: 6.3 km/s per stage. Mass ratio per stage $= e^{6300/3432} = e^{1.8357} = 6.269$.
 Work backwards from the payload. **Stage 2:** let its ignition mass be $M_2$. Burnout $= M_2/6.269 = 0.1595 M_2$; propellant $= 0.8405 M_2$; structure $m_{s2} = 0.08(m_{s2} + 0.8405M_2) \Rightarrow m_{s2} = 0.0731 M_2$. Payload $= 0.1595M_2 - 0.0731M_2 = 0.0864 M_2$. For 1,000 kg of payload: $M_2 = 11{,}574$ kg.
 **Stage 1:** ignition mass $M_1$. Burnout $= 0.1595M_1$; propellant $= 0.8405M_1$; structure $= 0.0731M_1$. What continues $= 0.0864M_1 = M_2 = 11{,}574 \Rightarrow M_1 = \mathbf{133{,}958\ kg \approx 134\ tonnes}$.
@@ -1000,35 +996,35 @@ Work backwards from the payload. **Stage 2:** let its ignition mass be $M_2$. Bu
 2. **A halo orbit around L2, with station-keeping propellant.** L2 is a **saddle point — unstable**. The vehicle must burn every few weeks to stay on the ridge, and when the propellant runs out, the mission ends and drifts away. **Mission lifetime is a fuel-tank size**, decided years before launch. (JWST's lucky Ariane insertion accuracy roughly doubled its life. A rocket's precision, banked as decades of astronomy.)
 3. **Autonomous, unserviceable deployment.** From (a), payload fraction to L2 is under 1%, so the observatory must be **as large as possible for its mass** → thin segmented optics and a huge shield → won't fit any fairing → must fold → **hundreds of single-point failures** → and L2 is 1.5 million km away, so **no repair mission is possible**. The chain runs: *rocket equation → mass limit → folded architecture → irreversibility.* **The telescope's greatest vulnerability was manufactured by the propulsion physics, four steps upstream.**
 
-**F.2.**
+**2.**
 (a) **GPS at 20,200 km.** Constraint: you need **≥4 satellites visible from everywhere, always** (four unknowns: $x,y,z$, and the receiver's clock bias). Coverage per satellite grows with altitude; a satellite at 20,200 km sees a huge cap of Earth. At LEO altitudes you'd need thousands of satellites for the same guarantee. The 12-hour period ($T = 2\pi\sqrt{r^3/\mu} = 43{,}077$ s) also gives a repeating ground track — operationally clean. **Sacrificed:** Δv to get there, signal power (falls as $1/r^2$, so GPS signals arrive *below the thermal noise floor* and must be dug out by correlation), and the relativistic correction becomes mandatory (+38 μs/day → 11.5 km/day). **Accepted:** all of it, to get 24 satellites instead of 3,000.
 (b) **Starlink at ~550 km.** Constraint: **latency**. Round-trip to GEO is ~240 ms minimum, set by $c$ — physics, not engineering, and enough to ruin interactive use. At 550 km it's ~5–20 ms, competitive with terrestrial fibre. **Sacrificed:** each satellite covers a tiny footprint for a few minutes per pass, so you need **thousands** of them plus inter-satellite laser links and constant handover — an enormous operational burden. Second sacrifice: **drag**. Residual atmosphere at 550 km requires continuous station-keeping (they use krypton/argon Hall thrusters). But that's also the **saving grace** — dead satellites deorbit in ~5 years, so the constellation is largely self-cleaning and can't Kessler its own shell. **Kepler's third law wrote Starlink's business plan and its debris policy.**
 (c) **JWST at L2.** Constraint: **thermal**. In LEO, Earth is a 288 K infrared floodlight filling a large solid angle, and its direction relative to the Sun changes every 45 minutes — no fixed shield can block Sun, Earth, and Moon at once. At L2, all three occupy one small cone. One shield, permanently, passively. Bonus: no 45-minute occultations, so uninterrupted integration, and since SNR ∝ √t, **staring is sensitivity**. **Sacrificed:** serviceability (fatally), plus an unstable orbit requiring station-keeping that sets mission lifetime. **Accepted**, because there was no thermal alternative.
 (d) **Landsat at 98°, retrograde.** Constraint: **consistent illumination**. Earth's equatorial bulge precesses orbital planes; choose altitude and inclination so precession is exactly 0.9856°/day, matching Earth's orbital motion, and you cross the equator at the same local solar time forever. Identical shadows, comparable images, decades of change detection. Retrograde because prograde orbits precess **westward** — the wrong way; you need $\cos i < 0$. **Sacrificed:** you can't use the equatorial rotation rebate (you're launching *against* Earth's spin, costing ~0.4 km/s), your orbit is more expensive, and you're stuck at one local time. **The defect in the Earth's shape became the mechanism.**
 
-**F.3.** The Mars radiation dose is ~1 Sv against a 600 mSv career limit — the mission exceeds a *lifetime* allowance by 67%. Break it down: 648 mSv of that is **cruise** (360 days at 1.8 mSv/day), 350 mSv is **surface** (500 days at 0.7 mSv/day, where Mars's bulk blocks half the sky). The surface term is **fixed by celestial mechanics** — the 780-day synodic period dictates the ~500-day wait, and no engineering touches it. The cruise term is *not* fixed; it's the transit time, and transit time is a Δv problem. Chemical propulsion ($I_{sp} \approx 450$ s at best) can't buy a faster trajectory without a mass ratio that makes the mission impossible — and shielding cannot help, because GCR are GeV nuclei that thin aluminium converts into **secondary showers**, making matters worse, while sufficient shielding means metres of hydrogen-rich mass, which the rocket equation forbids you from lifting. **NERVA-class nuclear thermal doubles $I_{sp}$ to ~900 s at high thrust**, which is precisely what a fast transit needs. Halve the transit to 90 days each way and the cruise dose falls from 648 to ~324 mSv, taking the mission from ~1,000 mSv to ~674 — from *disqualifying* to *arguable*. Meanwhile, every other physiological insult scales with duration too: bone loss at 1–1.5%/month, SANS, muscle atrophy, and the psychological load of isolation. **So: NERVA's true product is not thrust. It is dose reduction, bone mass, and eyesight. The engine is a medical device, and the reason to build it is oncology.** The 1970s cancelled it because Mars was cancelled; the reason to revive it is not that we want to go faster but that **we cannot go at all at chemical speeds without accepting a level of harm to the crew we have not been willing to state out loud.**
+**3.** The Mars radiation dose is ~1 Sv against a 600 mSv career limit — the mission exceeds a *lifetime* allowance by 67%. Break it down: 648 mSv of that is **cruise** (360 days at 1.8 mSv/day), 350 mSv is **surface** (500 days at 0.7 mSv/day, where Mars's bulk blocks half the sky). The surface term is **fixed by celestial mechanics** — the 780-day synodic period dictates the ~500-day wait, and no engineering touches it. The cruise term is *not* fixed; it's the transit time, and transit time is a Δv problem. Chemical propulsion ($I_{sp} \approx 450$ s at best) can't buy a faster trajectory without a mass ratio that makes the mission impossible — and shielding cannot help, because GCR are GeV nuclei that thin aluminium converts into **secondary showers**, making matters worse, while sufficient shielding means metres of hydrogen-rich mass, which the rocket equation forbids you from lifting. **NERVA-class nuclear thermal doubles $I_{sp}$ to ~900 s at high thrust**, which is precisely what a fast transit needs. Halve the transit to 90 days each way and the cruise dose falls from 648 to ~324 mSv, taking the mission from ~1,000 mSv to ~674 — from *disqualifying* to *arguable*. Meanwhile, every other physiological insult scales with duration too: bone loss at 1–1.5%/month, SANS, muscle atrophy, and the psychological load of isolation. **So: NERVA's true product is not thrust. It is dose reduction, bone mass, and eyesight. The engine is a medical device, and the reason to build it is oncology.** The 1970s cancelled it because Mars was cancelled; the reason to revive it is not that we want to go faster but that **we cannot go at all at chemical speeds without accepting a level of harm to the crew we have not been willing to state out loud.**
 
-**F.4.** **Three questions:**
+**4.** **Three questions:**
 1. **"What is your abiotic mimic, and how have you excluded it?"** *(The phosphine lesson.)* The Venus PH₃ claim collapsed substantially because **SO₂ has a spectral line adjacent to phosphine's** and could account for the feature. For DMS the analogous problem is methane's overlapping features in the same band, plus — decisively — **abiotic DMS has now been detected on a comet**, so the premise "only life makes this" is already falsified. *If they cannot name their mimic, they have not done the work.*
 2. **"Has an independent team, with independent reduction software, recovered your signal from your raw data?"** *(The phosphine lesson again, and Hubble's mirror.)* The Venus signal shrank dramatically when the baseline-fitting choices were varied and when ALMA reprocessed a calibration error. K2-18b's DMS has repeatedly weakened under independent reanalysis. **A 4σ result whose significance depends on modelling choices is not a 4σ result; it's a modelling choice.** And note the Hubble lesson: the deepest failure mode is not a bad measurement — it's an **organization that dismisses the instrument that disagrees.** Ask them explicitly: *what disagreed, and why did you set it aside?*
 3. **"What is your context, not just your molecule?"** *(The Lovelock lesson.)* No molecule is a biosignature. **Disequilibrium is.** What else is in this atmosphere? What's the star? Is there a plausible photochemical or geochemical source? Is the planet even what you think it is — "hycean" is itself a contested interpretation of a mass and radius, and if the planet is actually a mini-Neptune with a magma ocean, the whole biological framing evaporates.
-**What I'd need before agreeing:** independent reanalysis of the raw data by a team with no stake, using different pipelines, recovering the feature. A **quantitative, published abiotic hypothesis** and its rejection at stated confidence. Detection of a **second, thermodynamically incompatible** species (a genuine disequilibrium, not a lone molecule). And language calibrated to a **biosignature confidence scale** — "level 2 of 7, here is what would move us to 3" — not "possible biosignature," which the press will translate to "aliens" before the embargo lifts.
-**And I'd tell them the actual history.** ALH84001 got a President on the White House lawn and is now consensus **not-life**; the nanofossils were partly artifacts of the gold coating applied for imaging. Viking got a *textbook positive with a working control* and is **still** unresolved fifty years later. Phosphine got global headlines and then five years of retraction-by-attrition. **Astrobiology has, four times, announced and then walked back. The field's credibility is a finite resource and it is not theirs to spend.** The right move — and I would say this kindly, because these people are not fools, they're just human and they want it to be true — is to publish the measurement, state the ambiguity plainly, and let the press conference wait for the confirmation. **If it's real, it will still be real in three years. That is the one genuine advantage of studying something that has been there for four billion years.**
+**What would be needed before agreeing:** independent reanalysis of the raw data by a team with no stake, using different pipelines, recovering the feature. A **quantitative, published abiotic hypothesis** and its rejection at stated confidence. Detection of a **second, thermodynamically incompatible** species (a genuine disequilibrium, not a lone molecule). And language calibrated to a **biosignature confidence scale** — "level 2 of 7, here is what would move us to 3" — not "possible biosignature," which the press will translate to "aliens" before the embargo lifts.
+**And the actual history bears telling.** ALH84001 got a President on the White House lawn and is now consensus **not-life**; the nanofossils were partly artifacts of the gold coating applied for imaging. Viking got a *textbook positive with a working control* and is **still** unresolved fifty years later. Phosphine got global headlines and then five years of retraction-by-attrition. **Astrobiology has, four times, announced and then walked back. The field's credibility is a finite resource and it is not theirs to spend.** The right move — and this can be said kindly, because these people are not fools; they are human and they want it to be true — is to publish the measurement, state the ambiguity plainly, and let the press conference wait for the confirmation. **If it's real, it will still be real in three years. That is the one genuine advantage of studying something that has been there for four billion years.**
 
-**F.5.**
+**5.**
 **(a) Starlink's satellite count.** The rocket equation makes **altitude expensive** — 9.4 km/s to LEO, another 3.9 to GEO — but that's not the causal path here. The path is: physics ($c$) fixes GEO's latency at ~240 ms, which is unacceptable for interactive use, forcing LEO. Kepler's third law then converts low altitude into a 92-minute period and a small ground footprint, so a single satellite serves any given point for only minutes per day. **Continuous coverage from LEO therefore *requires* thousands of satellites** — the number isn't a strategy, it's a quotient. And this only became *affordable* when reusability broke the cost side of the rocket equation, taking \$/kg from \$54,500 (Shuttle) to ~\$2,700 (Falcon 9). **Starlink's satellite count is Kepler's third law divided by Elon Musk's marginal launch cost.** Neither factor is negotiable; only the second one moved.
 **(b) JWST's unrepairability.** Chain: the science requires infrared (redshift), which requires 40 K (Wien), which requires permanent shade from Sun+Earth+Moon simultaneously, which requires **L2** (the only place they're co-aligned). But L2 is a huge Δv, and from F.1 the payload fraction there is under 1%. So the observatory must be **maximally large per kilogram** → thin segments and a gossamer shield → far too big for any fairing → **must fold** → 178 release mechanisms and 344 single-point failures. And L2 is 1.5 million km away, which is not merely far — it's **beyond any crewed vehicle's reach**, again by the rocket equation. **Hubble was fixable because it was in LEO. JWST wasn't, because 40 K isn't available in LEO.** The unrepairability is not a decision anyone made; it's the terminal node of a physics chain that began with the word "redshift."
 **(c) The Mars dose.** The dose is dominated by **transit time** (648 of ~1,000 mSv) because GCR flux is constant and you're in it, unshielded, for 360 days. Faster transit needs more Δv; more Δv is exponential in propellant; chemical $v_e$ is capped at ~4.4 km/s by chemistry. **Shielding is the obvious alternative and the rocket equation forbids it** — you'd need metres of hydrogen-rich mass, hundreds of tonnes, and each tonne costs $e^{\Delta v/v_e}$ of propellant. Worse, thin shielding *increases* dose via spallation, so partial solutions are counterproductive. **The astronaut's cancer risk is a direct readout of $v_e$ for chemical combustion.** Change the exhaust velocity and the medicine changes. That's the whole argument for NERVA, and it's why the constraint that kills a Mars crew was set by the periodic table around the time the Earth cooled.
 **(d) Never landing on Europa.** Four independent walls, and every one is the same equation. **(i)** Δv: Jupiter is deep. You must escape Earth, cross five AU, then **shed enormous energy** to capture into the Jovian system and then into Europa orbit — and Europa has no atmosphere, so you cannot aerobrake; every km/s is **propulsive**. Landing costs more still. **(ii)** Power: at 5.2 AU sunlight is 1/27th of Earth's, so solar panels must be enormous — Juno's are 20 m² each — or you use plutonium-238, which the United States nearly stopped producing and of which the world's supply is measured in **kilograms**. **(iii)** Radiation: Europa sits inside Jupiter's magnetosphere, receiving roughly **5.4 Sv per day** at the surface — a human dose lethal in minutes and enough to kill electronics in weeks. Shielding is mass; mass is the equation. **This is why Europa Clipper *flies past 49 times rather than orbiting* — it hides outside the radiation belts between encounters and dips in briefly.** That's not caution; that's the only architecture the physics permits. **(iv)** Planetary protection: a lander must be sterile to a standard we can barely achieve, because contaminating the best habitat in the solar system with terrestrial spores would **permanently destroy** the answer to the question that justifies the mission. Sterilization costs mass, money, and margin.
 **So: the most promising habitat we know of is unreachable because $v_e \approx 4$ km/s, because $1/r^2$, because Jupiter has a magnetic field, and because we are the contamination.** Tsiolkovsky's logarithm, written by a deaf schoolteacher in Kaluga in 1903, is the reason we have never touched the ocean of Europa.
 
-**That's the lecture. Go argue with it.**
+**That is the whole argument.**
 
 ---
 
-# 📎 Appendix
+# Appendix
 
-## A. Δv quick reference (km/s)
+## Δv quick reference (km/s)
 
 | From → To | Δv |
 |---|---|
@@ -1044,7 +1040,7 @@ Work backwards from the payload. **Stage 2:** let its ignition mass be $M_2$. Bu
 | Mars orbit → surface (propulsive) | ~4.1 |
 | LEO → Jupiter transfer | ~6.3 |
 
-## B. Formulae worth owning
+## Formulae worth owning
 
 | | |
 |---|---|
@@ -1059,7 +1055,7 @@ Work backwards from the payload. **Stage 2:** let its ignition mass be $M_2$. Bu
 | Background-limited SNR | $\mathrm{SNR} \propto \sqrt{t}\,$, and $\propto D$ |
 | Electric propulsion trade | $F = 2P/v_e$ |
 
-## C. Glossary of the terms that actually matter
+## Glossary of the terms that actually matter
 
 **Δv** — velocity change; the true currency of spaceflight, the thing propellant buys.
 **Specific impulse ($I_{sp}$)** — exhaust velocity over $g_0$, in seconds. The exchange rate between propellant mass and Δv.
@@ -1077,14 +1073,14 @@ Work backwards from the payload. **Stage 2:** let its ignition mass be $M_2$. Bu
 **Biosignature** — evidence of life. The good ones are never molecules; they're **disequilibria**.
 **Great Filter** — whichever step from chemistry to galactic civilization is nearly impossible. Nobody knows if it's behind us.
 
-## D. If you want to go further
+## If you want to go further
 
 - Konstantin Tsiolkovsky, *Exploration of Outer Space by Means of Rocket Devices* (1903) — the founding document, and readable.
 - John D. Clark, *Ignition!: An Informal History of Liquid Rocket Propellants* — the funniest book ever written about chemicals that want you dead.
 - Michael Collins, *Carrying the Fire* — the best astronaut memoir, by a considerable margin, and one of the best memoirs of anything.
 - Richard Feynman, Appendix F to the *Rogers Commission Report* on Challenger — six pages on how organizations lie to themselves. Required reading for anyone who will ever work in an institution.
 - Steven Squyres, *Roving Mars* — what it actually feels like to do planetary science.
-- Robert Zubrin, *The Case for Mars* — the strongest version of the argument I spent §4.5 partially disagreeing with. Read the other side from the best person making it.
+- Robert Zubrin, *The Case for Mars* — the strongest version of the argument the crewed-missions section partially disagrees with. Read the other side from the best person making it.
 - David Grinspoon, *Lonely Planets* — astrobiology with its epistemology on display.
 $space_master$,
     true,
