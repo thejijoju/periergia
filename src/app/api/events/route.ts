@@ -74,6 +74,7 @@ function summarize(rows: EventRow[]) {
     byArticle: articles,
     byCountry,
     byCity,
+    byCityRaw: tally(rows, (r) => r.city), // raw city name, for delete-by-city
     byDwellBucket: tally(rows, (r) => r.dwell),
     byDepth: tally(rows, (r) => r.depth),
     byLevel: tally(rows, (r) => r.level),
@@ -106,15 +107,22 @@ function fmtWhen(ts: string | null): string {
   return esc(ts.replace("T", " ").replace(/\.\d+Z$/, " UTC").replace("Z", " UTC"));
 }
 
-function rankTable(title: string, obj: Record<string, number>, limit = 12): string {
+function rankTable(
+  title: string,
+  obj: Record<string, number>,
+  opts: { limit?: number; deleteScope?: string } = {},
+): string {
+  const { limit = 12, deleteScope } = opts;
   const entries = Object.entries(obj).slice(0, limit);
   if (!entries.length) return "";
   const max = entries[0][1] || 1;
   const rows = entries
-    .map(
-      ([k, n]) => `<tr><td class="k">${esc(k)}</td><td class="n">${n}</td>
-      <td class="bar"><span style="width:${Math.round((n / max) * 100)}%"></span></td></tr>`,
-    )
+    .map(([k, n]) => {
+      const del = deleteScope
+        ? `<td class="x"><button data-del data-scope="${esc(deleteScope)}" data-value="${esc(k)}" title="Delete these events">✕</button></td>`
+        : "";
+      return `<tr><td class="k">${esc(k)}</td><td class="n">${n}</td><td class="bar"><span style="width:${Math.round((n / max) * 100)}%"></span></td>${del}</tr>`;
+    })
     .join("");
   return `<section class="card"><h2>${esc(title)}</h2><table>${rows}</table></section>`;
 }
@@ -188,6 +196,13 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
   td.bar span{display:block;height:8px;border-radius:5px;background:var(--accent);min-width:3px}
   .card table td.bar span{background:var(--accent)}
   .empty{color:var(--muted);font-size:13px}
+  td.x{width:1%;padding-left:6px}
+  [data-del]{cursor:pointer;font:inherit;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;line-height:1}
+  td.x button{padding:1px 6px;font-size:12px}
+  [data-del]:hover{color:#c0392b;border-color:#c0392b}
+  [data-del]:disabled{opacity:.4;cursor:default}
+  .danger p{font-size:13px;color:var(--muted);margin:0 0 12px}
+  button.wipe{padding:7px 14px;font-weight:600;border-color:#c0392b;color:#c0392b}
   footer{color:var(--muted);font-size:12px;margin-top:22px;line-height:1.7}
   @media(max-width:640px){.grid{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
@@ -196,16 +211,35 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
 <div class="tiles">${tiles}</div>
 ${articlesCard}
 <div class="grid">
-${rankTable("Countries", s.byCountry)}
-${rankTable("Cities", s.byCity)}
+${rankTable("Countries", s.byCountry, { deleteScope: "country" })}
+${rankTable("Cities", s.byCityRaw, { deleteScope: "city" })}
 ${rankTable("Dwell time", s.byDwellBucket)}
 ${rankTable("Referrers", s.byReferrer)}
 ${rankTable("Depth", s.byDepth)}
 ${rankTable("Level", s.byLevel)}
 </div>
 ${recentCard}
+<section class="card wide danger"><h2>Danger zone</h2>
+<p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
+<button data-del data-scope="all" class="wipe">Wipe all events</button></section>
 <footer>Self-hosted engagement data — article reads and dwell time, bots filtered. "Reads" counts article views, not unique people; for unique-visitor counts see the Vercel Web Analytics dashboard. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
-</div></body></html>`;
+</div>
+<script>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-del]'); if (!b) return;
+  var scope = b.getAttribute('data-scope'), value = b.getAttribute('data-value') || '';
+  var token = new URLSearchParams(location.search).get('token') || '';
+  var label = scope === 'all' ? 'ALL events (a clean slate)' : (scope + ' = "' + value + '"');
+  if (!confirm('Delete ' + label + '?\\nThis cannot be undone.')) return;
+  var u = '/api/events?token=' + encodeURIComponent(token) + '&scope=' + encodeURIComponent(scope) + (value ? '&value=' + encodeURIComponent(value) : '');
+  b.disabled = true;
+  fetch(u, { method: 'DELETE' }).then(function (r) { return r.json(); }).then(function (d) {
+    alert(d && d.deleted != null ? ('Deleted ' + d.deleted + ' events.') : ((d && d.error) || 'Done.'));
+    location.reload();
+  }).catch(function (err) { alert('Failed: ' + err); b.disabled = false; });
+});
+</script>
+</body></html>`;
 }
 
 // ---- Handler -------------------------------------------------------------
@@ -257,4 +291,56 @@ export async function GET(req: Request) {
   }
 
   return NextResponse.json(summary, { headers: { "cache-control": "no-store" } });
+}
+
+// Token-gated deletion, so the owner can remove their own recorded visits.
+//   DELETE /api/events?token=...&scope=city&value=Berlin   (raw city name)
+//   DELETE /api/events?token=...&scope=country&value=DE
+//   DELETE /api/events?token=...&scope=before&value=2026-07-01   (ISO date/time)
+//   DELETE /api/events?token=...&scope=all                  (wipe everything)
+// The dashboard's ✕ buttons and "Wipe all events" call this.
+export async function DELETE(req: Request) {
+  const token = process.env.ANALYTICS_TOKEN?.trim();
+  const url = new URL(req.url);
+  if (!token) {
+    return NextResponse.json({ error: "ANALYTICS_TOKEN is not set on this deployment." }, { status: 503 });
+  }
+  if ((url.searchParams.get("token") ?? "").trim() !== token) {
+    return NextResponse.json(
+      { error: "Unauthorized — the ?token= value does not match ANALYTICS_TOKEN." },
+      { status: 401 },
+    );
+  }
+
+  const supabase = getSupabase();
+  if (!supabase) return NextResponse.json({ error: "database not configured" }, { status: 503 });
+
+  const scope = (url.searchParams.get("scope") ?? "").trim();
+  const value = (url.searchParams.get("value") ?? "").trim();
+
+  let q = supabase.from("events").delete({ count: "exact" });
+  if (scope === "all") {
+    q = q.gte("ts", "1970-01-01T00:00:00Z"); // Supabase requires a filter; this matches every row
+  } else if (scope === "city") {
+    if (!value) return NextResponse.json({ error: "scope=city needs a value" }, { status: 400 });
+    q = q.eq("city", value);
+  } else if (scope === "country") {
+    if (!value) return NextResponse.json({ error: "scope=country needs a value" }, { status: 400 });
+    q = q.eq("country", value);
+  } else if (scope === "before") {
+    if (!value) return NextResponse.json({ error: "scope=before needs an ISO date value" }, { status: 400 });
+    q = q.lt("ts", value);
+  } else {
+    return NextResponse.json(
+      { error: "scope must be one of: all, city, country, before" },
+      { status: 400 },
+    );
+  }
+
+  const { error, count } = await q;
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(
+    { ok: true, scope, value: value || null, deleted: count ?? null },
+    { headers: { "cache-control": "no-store" } },
+  );
 }
