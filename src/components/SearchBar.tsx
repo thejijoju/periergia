@@ -1,6 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { t } from "@/lib/i18n";
+
+// Web Speech API wants a BCP-47 locale, not our bare language code.
+const SPEECH_LOCALE: Record<string, string> = {
+  en: "en-US", zh: "zh-CN", hi: "hi-IN", es: "es-ES", fr: "fr-FR",
+  ar: "ar-SA", bn: "bn-BD", pt: "pt-BR", ru: "ru-RU", ur: "ur-PK",
+};
 
 // Rounded search field with a maroon voice-search mic (Web Speech API).
 // Speech recognition is progressive-enhancement: the mic only appears when the
@@ -12,6 +19,7 @@ export function SearchBar({
   placeholder = "Search any topic…",
   size = "lg",
   autoFocus = false,
+  lang = "en",
 }: {
   value: string;
   onChange: (v: string) => void;
@@ -19,6 +27,7 @@ export function SearchBar({
   placeholder?: string;
   size?: "sm" | "lg";
   autoFocus?: boolean;
+  lang?: string;
 }) {
   const [supportsVoice, setSupportsVoice] = useState(false);
   const [listening, setListening] = useState(false);
@@ -34,7 +43,7 @@ export function SearchBar({
       const rec = new SR();
       rec.continuous = false;
       rec.interimResults = false;
-      rec.lang = "en-US";
+      rec.lang = SPEECH_LOCALE[lang] ?? "en-US";
       rec.onresult = (e: { results: { [k: number]: { [k: number]: { transcript: string } } } }) => {
         onChange(e.results[0][0].transcript);
       };
@@ -86,7 +95,7 @@ export function SearchBar({
         <button
           type="button"
           onClick={toggleVoice}
-          aria-label="Voice search"
+          aria-label={t(lang, "voiceSearch")}
           className={listening ? "text-maroon animate-pulse" : "text-maroon"}
         >
           <svg width="16" height="17" viewBox="0 0 16 17" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">

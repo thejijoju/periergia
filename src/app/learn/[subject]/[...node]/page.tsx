@@ -204,6 +204,7 @@ export default async function ReaderPage({
         <div className="pl-4 pr-4 sm:pr-6 lg:pl-[2cm] lg:pr-8 py-3 flex items-center gap-2 sm:gap-4">
           <MobileNav
             subjectName={subjName}
+            lang={lang}
             subjectSlug={subj.slug}
             subjectHref={subjectHref}
             subjects={subjectLinks}
@@ -214,7 +215,7 @@ export default async function ReaderPage({
             <Wordmark size="sm" />
           </div>
           <div className="ml-auto flex items-center gap-1 justify-end min-w-0">
-            <HeaderSearch searchIndex={searchIndex} />
+            <HeaderSearch searchIndex={searchIndex} lang={lang} />
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
@@ -242,6 +243,7 @@ export default async function ReaderPage({
             <SectionLanding
               title={node.title}
               subjectName={subjName}
+              lang={lang}
               items={sectionChildren.map((c) => ({
                 title: c.title,
                 href: `/learn/${subj.slug}/${c.path.join("/")}`,
@@ -264,6 +266,7 @@ export default async function ReaderPage({
                   variant="compact"
                   title={node.title}
                   subjectName={subjName}
+                  lang={lang}
                   items={sectionChildren.map((c) => ({
                     title: c.title,
                     href: `/learn/${subj.slug}/${c.path.join("/")}`,

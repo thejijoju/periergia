@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { t } from "@/lib/i18n";
 
 export interface SectionItem {
   title: string;
@@ -18,10 +19,12 @@ export function SectionLanding({
   subjectName,
   items,
   variant = "full",
+  lang = "en",
 }: {
   title: string;
   subjectName: string;
   items: SectionItem[];
+  lang?: string;
   // "full": the chapter's own landing page (big header + topic cards).
   // "compact": the same cards under a chapter overview article — no page header,
   // just a labeled "explore this chapter" list.
@@ -31,7 +34,7 @@ export function SectionLanding({
     return (
       <nav className="mx-auto mt-12 max-w-[720px] border-t border-line pt-6">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-whisper">
-          Explore this chapter
+          {t(lang, "exploreChapter")}
         </p>
         <ul className="mt-4 space-y-3">
           {items.map((it) => (
@@ -59,7 +62,7 @@ export function SectionLanding({
       <p className="text-xs font-semibold uppercase tracking-wide text-faint">{subjectName}</p>
       <h1 className="mt-1 text-3xl font-bold tracking-tight text-ink">{title}</h1>
       <p className="mt-2 text-muted">
-        {items.length} {items.length === 1 ? "topic" : "topics"} in this section.
+        {items.length} {items.length === 1 ? t(lang, "topic") : t(lang, "topics")}
       </p>
 
       <ul className="mt-8 space-y-3">

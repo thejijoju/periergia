@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SearchBar } from "./SearchBar";
+import { t } from "@/lib/i18n";
 import type { SearchItem } from "@/lib/types";
 
 // Search-any-topic box with a results dropdown. Enter or click jumps straight
@@ -10,16 +11,18 @@ import type { SearchItem } from "@/lib/types";
 // home's inline results too).
 export function TopicSearch({
   searchIndex,
-  placeholder = "Search any topic…",
+  placeholder,
   size = "sm",
   autoFocus = false,
   onClose,
+  lang = "en",
 }: {
   searchIndex: SearchItem[];
   placeholder?: string;
   size?: "sm" | "lg";
   autoFocus?: boolean;
   onClose?: () => void;
+  lang?: string;
 }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
@@ -65,15 +68,16 @@ export function TopicSearch({
           setOpen(true);
         }}
         onSubmit={() => results[0] && go(results[0].href)}
-        placeholder={placeholder}
+        placeholder={placeholder ?? t(lang, "searchTopic")}
         size={size}
         autoFocus={autoFocus}
+        lang={lang}
       />
       {open && q && (
         <div className="absolute z-30 left-0 right-0 mt-2 bg-page border border-line rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,.25)] overflow-hidden">
           {results.length === 0 ? (
             <p className="px-4 py-3 font-sans text-[13px] text-faint">
-              No topics match “{query}”.
+              {t(lang, "noMatch")} “{query}”.
             </p>
           ) : (
             results.map((it) => (

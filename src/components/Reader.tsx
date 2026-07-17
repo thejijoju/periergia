@@ -339,7 +339,7 @@ export function Reader({
         <>
           {isAudio && (
             <div className="mb-5">
-              <VoiceButton text={body} />
+              <VoiceButton text={body} lang={lang} />
             </div>
           )}
           {isVisual && (
@@ -433,6 +433,7 @@ export function Reader({
               title={node.title}
               onClose={() => setShowQuiz(false)}
               onPassed={() => markCompleted(node.id)}
+              lang={lang}
             />
           )}
         </div>

@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { t } from "@/lib/i18n";
 
 // The underlined "Periergia" wordmark — Inter Semibold (600) with a black rule.
 export function Wordmark({
   size = "lg",
   tagline = false,
+  lang = "en",
 }: {
   size?: "sm" | "lg";
   tagline?: boolean;
+  lang?: string;
 }) {
   // Real text underline (skips ink around the "g" descender), black rule.
   const text =
@@ -23,7 +26,7 @@ export function Wordmark({
       </Link>
       {tagline && (
         <div className="mt-4 sm:mt-5 font-sans text-[14px] sm:text-[16px] leading-[1.5] text-muted">
-          A free library of everything worth knowing.
+          {t(lang, "tagline")}
         </div>
       )}
     </div>

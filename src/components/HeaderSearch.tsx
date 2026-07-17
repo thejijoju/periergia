@@ -2,12 +2,19 @@
 
 import { useState } from "react";
 import { TopicSearch } from "./TopicSearch";
+import { t } from "@/lib/i18n";
 import type { SearchItem } from "@/lib/types";
 
 // Header search that starts as a small, discreet icon and expands into a full
 // search field when clicked (FlutterFlow-docs style). Collapses back to the
 // icon when it loses focus while empty.
-export function HeaderSearch({ searchIndex }: { searchIndex: SearchItem[] }) {
+export function HeaderSearch({
+  searchIndex,
+  lang = "en",
+}: {
+  searchIndex: SearchItem[];
+  lang?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   if (!open) {
@@ -15,7 +22,7 @@ export function HeaderSearch({ searchIndex }: { searchIndex: SearchItem[] }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Search any topic"
+        aria-label={t(lang, "searchTopic")}
         className="grid place-items-center h-9 w-9 rounded-full text-muted hover:text-purple hover:bg-purple-soft transition-colors"
       >
         <svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -32,6 +39,7 @@ export function HeaderSearch({ searchIndex }: { searchIndex: SearchItem[] }) {
         searchIndex={searchIndex}
         autoFocus
         onClose={() => setOpen(false)}
+        lang={lang}
       />
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { GradeResult, Level, QuizQuestion } from "@/lib/types";
+import { t } from "@/lib/i18n";
 
 interface OpenGrade extends GradeResult {
   loading?: boolean;
@@ -13,12 +14,14 @@ export function QuizPanel({
   title,
   onClose,
   onPassed,
+  lang = "en",
 }: {
   nodeId: string;
   level: Level;
   title: string;
   onClose: () => void;
   onPassed: () => void;
+  lang?: string;
 }) {
   const [questions, setQuestions] = useState<QuizQuestion[] | null>(null);
   const [loading, setLoading] = useState(true);
@@ -93,13 +96,13 @@ export function QuizPanel({
   return (
     <div className="border border-maroon rounded-2xl p-5 sm:p-6 bg-page">
       <div className="flex items-baseline justify-between mb-4">
-        <h2 className="font-sans font-semibold text-[18px] text-ink">Test yourself — {title}</h2>
+        <h2 className="font-sans font-semibold text-[18px] text-ink">{t(lang, "testYourself")} — {title}</h2>
         <button onClick={onClose} className="font-sans text-[13px] text-whisper hover:text-maroon">
-          Close
+          {t(lang, "close")}
         </button>
       </div>
 
-      {loading && <p className="font-sans italic text-[14px] text-faint">Preparing your questions…</p>}
+      {loading && <p className="font-sans italic text-[14px] text-faint">{t(lang, "preparingQuestions")}</p>}
 
       {!loading && questions && (
         <div className="space-y-6">
@@ -127,11 +130,11 @@ export function QuizPanel({
                       } else if (isCorrect) {
                         tone =
                           "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-text)] font-medium";
-                        badge = "Correct answer";
+                        badge = t(lang, "correctAnswer");
                       } else if (chosen) {
                         tone =
                           "border-[var(--bad-border)] bg-[var(--bad-bg)] text-[var(--bad-text)]";
-                        badge = "Your answer";
+                        badge = t(lang, "yourAnswer");
                       } else {
                         tone = "border-line text-faint";
                       }
@@ -157,13 +160,14 @@ export function QuizPanel({
                     <div className="mt-2.5">
                       {picks[q.id] === q.answerIndex ? (
                         <p className="font-sans text-[13px] font-semibold text-[var(--ok-text)]">
-                          ✓ Correct
+                          {"✓ "}{t(lang, "correct")}
                         </p>
                       ) : (
                         <p className="font-sans text-[13px] font-semibold text-[var(--bad-text)]">
-                          ✗ Wrong answer
-                          {picks[q.id] === undefined ? " — nothing selected" : ""} · the
-                          correct choice is highlighted above
+                          {"✗ "}
+                          {t(lang, "wrongAnswer")}
+                          {picks[q.id] === undefined ? ` — ${t(lang, "nothingSelected")}` : ""} ·{" "}
+                          {t(lang, "correctHighlighted")}
                         </p>
                       )}
                       {q.explanation && (
@@ -183,7 +187,7 @@ export function QuizPanel({
                     onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
                     disabled={submitted}
                     rows={3}
-                    placeholder="Write your answer…"
+                    placeholder={t(lang, "writeAnswer")}
                     className="w-full font-sans text-[14px] text-ink bg-page border border-line rounded-xl px-4 py-3 outline-none focus:border-ink disabled:opacity-100"
                   />
                   {submitted && grades[q.id] && !grades[q.id].loading && (
@@ -195,7 +199,7 @@ export function QuizPanel({
                             : "text-[var(--bad-text)]"
                         }`}
                       >
-                        {grades[q.id].correct ? "✓ Correct" : "✗ Not quite"}
+                        {grades[q.id].correct ? "✓ " + t(lang, "correct") : "✗ " + t(lang, "notQuite")}
                       </p>
                       {grades[q.id].feedback && (
                         <p className="mt-1 font-sans text-[13px] leading-relaxed text-muted">
@@ -205,7 +209,7 @@ export function QuizPanel({
                     </div>
                   )}
                   {submitted && grades[q.id]?.loading && (
-                    <p className="mt-2 font-sans italic text-[13px] text-faint">Grading…</p>
+                    <p className="mt-2 font-sans italic text-[13px] text-faint">{t(lang, "grading")}</p>
                   )}
                 </div>
               )}
@@ -217,14 +221,14 @@ export function QuizPanel({
               onClick={submit}
               className="font-sans text-[14px] text-white bg-maroon rounded-full px-6 py-2.5 hover:opacity-90"
             >
-              Submit answers
+              {t(lang, "submitAnswers")}
             </button>
           ) : (
             allOpenGraded && (
               <div className="border-t border-line pt-4">
                 <p className="font-sans text-[16px] text-ink">
-                  You scored <strong>{got}</strong> / {total}.{" "}
-                  {got / total >= 0.6 ? "Well done — entry complete." : "Review the entry and try again."}
+                  {t(lang, "youScored")} <strong>{got}</strong> / {total}.{" "}
+                  {got / total >= 0.6 ? t(lang, "wellDone") : t(lang, "reviewTryAgain")}
                 </p>
               </div>
             )

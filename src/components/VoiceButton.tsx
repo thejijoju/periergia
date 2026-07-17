@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { t } from "@/lib/i18n";
 
 // Reads the current entry aloud via the Web Speech API (free, zero infra).
 // Strips markdown to plain prose before speaking.
@@ -13,7 +14,7 @@ function toPlain(md: string): string {
     .trim();
 }
 
-export function VoiceButton({ text }: { text: string }) {
+export function VoiceButton({ text, lang = "en" }: { text: string; lang?: string }) {
   const [supported, setSupported] = useState(false);
   const [speaking, setSpeaking] = useState(false);
 
@@ -73,7 +74,7 @@ export function VoiceButton({ text }: { text: string }) {
           <polygon points="4,3 13,8.5 4,14" fill="currentColor" stroke="none" />
         )}
       </svg>
-      {speaking ? "Pause narration" : "Listen to this entry"}
+      {speaking ? t(lang, "pauseNarration") : t(lang, "listen")}
     </button>
   );
 }
