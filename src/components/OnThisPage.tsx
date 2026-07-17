@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { t } from "@/lib/i18n";
 
 interface Item {
   id: string;
@@ -13,7 +14,7 @@ interface Item {
 // rebuilds when the content changes, and highlights the section you're on
 // (violet) as you scroll — like the FlutterFlow docs outline. Subsections
 // (h3) are indented under their section so the outline mirrors the article.
-export function OnThisPage() {
+export function OnThisPage({ lang = "en" }: { lang?: string }) {
   const [items, setItems] = useState<Item[]>([]);
   const [active, setActive] = useState<string>("");
 
@@ -79,7 +80,7 @@ export function OnThisPage() {
   return (
     <nav className="text-[13px]">
       <div className="font-mono font-semibold text-[10px] tracking-[0.12em] uppercase text-whisper">
-        On this page
+        {t(lang, "onThisPage")}
       </div>
       <ul className="mt-3 border-l border-line">
         {items.map((it) => {

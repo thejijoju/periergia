@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import katex from "katex";
+import { t } from "@/lib/i18n";
 
 // An interactive, infinitely-regenerating practice box embedded in an article
 // via a fenced ```example block (see Reader's `pre` override). It poses a
@@ -239,7 +240,7 @@ function Tex({ tex }: { tex: string }) {
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-export function WorkedExample({ spec }: { spec: string }) {
+export function WorkedExample({ spec, lang = "en" }: { spec: string; lang?: string }) {
   const kind = spec.trim();
   const gen = GENERATORS[kind];
   const [seed, setSeed] = useState(0);
@@ -251,7 +252,7 @@ export function WorkedExample({ spec }: { spec: string }) {
 
   return (
     <div className="worked-example">
-      <div className="we-head">{example.title} · your turn</div>
+      <div className="we-head">{example.title} · {t(lang, "yourTurn")}</div>
       <p className="we-q">{example.question}</p>
 
       {revealed && (
@@ -268,7 +269,7 @@ export function WorkedExample({ spec }: { spec: string }) {
       <div className="we-actions">
         {!revealed && (
           <button type="button" onClick={() => setRevealed(true)}>
-            Reveal answer
+            {t(lang, "reveal")}
           </button>
         )}
         <button
@@ -279,7 +280,7 @@ export function WorkedExample({ spec }: { spec: string }) {
             setRevealed(false);
           }}
         >
-          Try another &#8635;
+          {t(lang, "tryAnother")} &#8635;
         </button>
       </div>
     </div>

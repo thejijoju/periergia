@@ -10,7 +10,7 @@ import "katex/dist/katex.min.css";
 import { DEPTHS, LEVELS, type Depth, type Level } from "@/lib/types";
 import { getMode, type Mode } from "@/lib/modes";
 import { injectAffiliateLinks } from "@/lib/affiliate";
-import { isRtl } from "@/lib/i18n";
+import { isRtl, t } from "@/lib/i18n";
 import { isExcludedVisitor } from "@/lib/analyticsOptOut";
 import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
@@ -307,7 +307,8 @@ export function Reader({
       {/* Depth + Level controls */}
       <div className="mt-4 space-y-2.5">
         <ControlRow
-          label="Depth"
+          labelKey="depth"
+          lang={lang}
           items={DEPTHS}
           value={shownDepth}
           onSelect={(id) => {
@@ -316,7 +317,8 @@ export function Reader({
           }}
         />
         <ControlRow
-          label="Level"
+          labelKey="level"
+          lang={lang}
           items={LEVELS}
           value={shownLevel}
           onSelect={(id) => {
@@ -331,7 +333,7 @@ export function Reader({
       {/* Body */}
       {loading ? (
         <p className="font-sans italic text-[15px] text-faint">
-          Composing this {spec.label.toLowerCase()}…
+          {t(lang, "composing")}
         </p>
       ) : (
         <>
@@ -393,7 +395,7 @@ export function Reader({
                   if (typeof cls === "string" && /language-example\b/.test(cls)) {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const spec = extractText((child as any).props?.children).trim();
-                    return <WorkedExample spec={spec} />;
+                    return <WorkedExample spec={spec} lang={lang} />;
                   }
                   return <pre>{children}</pre>;
                 },
@@ -420,7 +422,7 @@ export function Reader({
               className="w-full flex justify-between items-center border border-maroon rounded-full px-5 py-3 hover:bg-[#faf3f0] transition-colors"
             >
               <span className="font-sans font-medium text-[14px] text-ink">
-                Test yourself — 6 questions
+                {t(lang, "testYourself")}
               </span>
               <span className="font-sans font-semibold text-[16px] text-maroon">→</span>
             </button>
@@ -448,12 +450,14 @@ function Chevron() {
 }
 
 function ControlRow({
-  label,
+  labelKey,
+  lang,
   items,
   value,
   onSelect,
 }: {
-  label: string;
+  labelKey: string;
+  lang: string;
   items: { id: string; label: string }[];
   value: string;
   onSelect: (id: string) => void;
@@ -461,7 +465,7 @@ function ControlRow({
   return (
     <div className="flex items-center gap-3 flex-wrap">
       <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-whisper w-[42px] shrink-0">
-        {label}
+        {t(lang, labelKey)}
       </span>
       <div className="flex flex-wrap gap-[6px]">
         {items.map((it) => {
@@ -476,7 +480,7 @@ function ControlRow({
                   : "border border-[rgba(33,29,24,.08)] bg-pill text-ink"
               }`}
             >
-              {it.label}
+              {t(lang, it.id)}
             </button>
           );
         })}
