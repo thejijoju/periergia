@@ -3,6 +3,10 @@ import { getSupabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
+// A "read" only counts if the reader stayed at least this long (3 minutes).
+// Anything shorter is a skim, not a read.
+const READ_MIN_SECONDS = 180;
+
 // Private analytics view. Open in a browser as
 //   /api/events?token=YOUR_ANALYTICS_TOKEN
 // and it renders a readable dashboard; scripts get JSON (Accept header, or
@@ -25,6 +29,16 @@ interface EventRow {
   cold: boolean | null;
 }
 
+// People who asked to be notified when the gated "Research" tier ships. Stored
+// server-side in the research_signups table (one row per email, upserted).
+interface SignupRow {
+  email: string;
+  ts: string;
+  title: string | null;
+  path: string | null;
+  country: string | null;
+}
+
 function tally(rows: EventRow[], key: (r: EventRow) => string | null) {
   const m = new Map<string, number>();
   for (const r of rows) {
@@ -45,7 +59,12 @@ function summarize(rows: EventRow[]) {
   const human = rows.filter((r) => !r.bot);
   const requests = human.filter((r) => r.name === "article_request");
   const pageviews = human.filter((r) => r.name === "page_view");
-  const reads = human.filter((r) => r.name !== "article_request" && r.name !== "page_view"); // article_read + legacy
+  // A genuine READ requires real dwell: at least 3 minutes on the page. A shorter
+  // article_read beacon is a "skim" — the reader opened the article but plainly
+  // didn't read it — so it is tracked (dwell distribution) but never counted as a
+  // read. Legacy rows with no recorded dwell fall below the bar and don't count.
+  const allReads = human.filter((r) => r.name !== "article_request" && r.name !== "page_view"); // article_read + legacy
+  const reads = allReads.filter((r) => (r.seconds ?? 0) >= READ_MIN_SECONDS);
   // Every human page load — articles + homepage/other — i.e. all world traffic.
   const pageLoads = [...requests, ...pageviews];
   const isLoad = (r: EventRow) => r.name === "article_request" || r.name === "page_view";
@@ -126,7 +145,7 @@ function summarize(rows: EventRow[]) {
     byCountry,
     byCity,
     byCityRaw: tally(pageLoads, (r) => r.city), // raw city name, for delete-by-city
-    byDwellBucket: tally(reads, (r) => r.dwell),
+    byDwellBucket: tally(allReads, (r) => r.dwell),
     byDepth: tally(reads, (r) => r.depth),
     byLevel: tally(reads, (r) => r.level),
     byReferrer: tally(pageLoads, (r) => r.referrer),
@@ -178,13 +197,28 @@ function rankTable(
   return `<section class="card"><h2>${esc(title)}</h2><table>${rows}</table></section>`;
 }
 
-function renderHtml(s: ReturnType<typeof summarize>): string {
+function signupsCard(signups: SignupRow[]): string {
+  if (!signups.length) {
+    return `<section class="card wide"><h2>Research interest · emails</h2><p class="empty">No one has asked to be notified about research-tier articles yet. This fills as visitors submit the email form on the gated Research panel.</p></section>`;
+  }
+  const rows = signups
+    .slice(0, 500)
+    .map(
+      (u) =>
+        `<tr><td class="k"><a href="mailto:${esc(u.email)}">${esc(u.email)}</a></td><td class="k loc">${esc(u.country ?? "—")}</td><td class="k">${esc(u.title ?? u.path ?? "—")}</td><td>${fmtWhen(u.ts)}</td></tr>`,
+    )
+    .join("");
+  return `<section class="card wide"><h2>Research interest · ${signups.length} email${signups.length === 1 ? "" : "s"}</h2><table><thead><tr><th>Email</th><th>Country</th><th>Signed up from</th><th>When</th></tr></thead>${rows}</table><p class="hint">Everyone who asked to be notified when research-tier articles ship, newest first. Stored in Supabase (<code>research_signups</code>), one row per email — reach back out when that path opens.</p></section>`;
+}
+
+function renderHtml(s: ReturnType<typeof summarize>, signups: SignupRow[]): string {
   const t = s.totals;
   const tiles = [
     { label: "Page loads", value: String(t.pageLoads) },
     { label: "Article requests", value: String(t.requests) },
     { label: "Cold (to warm)", value: String(t.coldRequests) },
-    { label: "Reads", value: String(t.reads) },
+    { label: "Reads (≥3m)", value: String(t.reads) },
+    { label: "Research signups", value: String(signups.length) },
     { label: "Countries", value: String(t.countries) },
     { label: "Crawler hits", value: String(t.crawlerLoads) },
   ]
@@ -217,7 +251,7 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
     )
     .join("");
   const articlesCard = articleRows
-    ? `<section class="card wide"><h2>Top articles by reads (dwell ≥ 3s)</h2><table><thead><tr><th>Article</th><th>Reads</th><th>Avg dwell</th></tr></thead>${articleRows}</table></section>`
+    ? `<section class="card wide"><h2>Top articles by reads (dwell ≥ 3 min)</h2><table><thead><tr><th>Article</th><th>Reads</th><th>Avg dwell</th></tr></thead>${articleRows}</table></section>`
     : "";
 
   const recentRows = s.recent
@@ -230,8 +264,11 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
             ? r.cold
               ? "cold"
               : "cached"
-            : "read";
-      return `<tr><td>${fmtWhen(r.ts)}</td><td class="${kind === "cold" ? "kind cold" : "kind"}">${kind}</td><td class="k">${esc(r.title ?? r.path ?? "—")}</td><td>${esc(r.city && r.country ? `${r.city}, ${r.country}` : r.country ?? "—")}</td></tr>`;
+            : (r.seconds ?? 0) >= READ_MIN_SECONDS
+              ? "read"
+              : "skim";
+      const kindCls = kind === "cold" ? "kind cold" : kind === "read" ? "kind read" : "kind";
+      return `<tr><td>${fmtWhen(r.ts)}</td><td class="${kindCls}">${kind}</td><td class="k">${esc(r.title ?? r.path ?? "—")}</td><td>${esc(r.city && r.country ? `${r.city}, ${r.country}` : r.country ?? "—")}</td></tr>`;
     })
     .join("");
   const recentCard = recentRows
@@ -273,6 +310,8 @@ function renderHtml(s: ReturnType<typeof summarize>): string {
   td.loc{color:var(--muted);max-width:180px}
   td.kind{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;width:1%;white-space:nowrap}
   td.kind.cold{color:#c0392b;font-weight:600}
+  td.kind.read{color:#1f9d4d;font-weight:700}
+  @media(prefers-color-scheme:dark){td.kind.read{color:#5fd07f}}
   td.k a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
   td.k a:hover{border-color:var(--accent)}
   .hint{color:var(--muted);font-size:12px;margin:10px 0 0;line-height:1.5}
@@ -302,10 +341,11 @@ ${rankTable("Depth", s.byDepth)}
 ${rankTable("Level", s.byLevel)}
 </div>
 ${recentCard}
+${signupsCard(signups)}
 <section class="card wide danger"><h2>Danger zone</h2>
 <p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
 <button data-del data-scope="all" class="wipe">Wipe all events</button></section>
-<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = the dwell beacon (≥3s), so it under-counts by design. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
+<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = genuine reads only — the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are logged as <b>skim</b> and never counted as reads. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
 </div>
 <script>
 document.addEventListener('click', function (e) {
@@ -361,6 +401,14 @@ export async function GET(req: Request) {
   const rows = (data ?? []) as EventRow[];
   const summary = summarize(rows);
 
+  // Research-tier interest list (owner-only view, so showing the emails is fine).
+  const { data: signupData } = await supabase
+    .from("research_signups")
+    .select("email,ts,title,path,country")
+    .order("ts", { ascending: false })
+    .limit(1000);
+  const signups = (signupData ?? []) as SignupRow[];
+
   // Browsers get the dashboard; scripts get JSON. Force either with &format=.
   const format = url.searchParams.get("format");
   const wantsHtml =
@@ -368,12 +416,12 @@ export async function GET(req: Request) {
     (format !== "json" && (req.headers.get("accept") ?? "").includes("text/html"));
 
   if (wantsHtml) {
-    return new NextResponse(renderHtml(summary), {
+    return new NextResponse(renderHtml(summary, signups), {
       headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
     });
   }
 
-  return NextResponse.json(summary, { headers: { "cache-control": "no-store" } });
+  return NextResponse.json({ ...summary, signups }, { headers: { "cache-control": "no-store" } });
 }
 
 // Token-gated deletion, so the owner can remove their own recorded visits.
