@@ -459,6 +459,70 @@ const GENERATORS: Record<string, Generator> = {
       note: `Only +${gain.toFixed(2)} points of payload for a whole extra stage — another engine, another set of avionics, and another separation event that can kill the mission. The gains collapse after two stages while the costs stay flat, which is why real rockets stop at two or three.`,
     };
   },
+
+  // ── Ascent — the loss budget of getting off a planet ──────────────────────
+
+  "orbital-velocity": (rng) => {
+    const mu = 3.986e14;
+    const Re = 6371; // km
+    const alt = sample(rng, [200, 400, 800, 1200, 2000, 20200, 35786], 1)[0];
+    const r = (Re + alt) * 1000; // m
+    const v = Math.sqrt(mu / r);
+    return {
+      title: "Circular orbital velocity",
+      question: `How fast must a satellite move to hold a circular orbit ${alt} km above Earth's surface? (μ = 3.986×10¹⁴ m³/s², R⊕ = 6,371 km.)`,
+      steps: [
+        `r = R_\\oplus + h = 6371 + ${alt} = ${Re + alt}\\ \\text{km}`,
+        `v = \\sqrt{\\frac{\\mu}{r}} = \\sqrt{\\frac{3.986\\times10^{14}}{${(r / 1e6).toFixed(3)}\\times10^{6}}} = ${v.toFixed(0)}\\ \\text{m/s}`,
+      ],
+      note: `Higher orbits are SLOWER — v ∝ 1/√r — because gravity is weaker up high, so less centripetal force is needed to hold the circle. The ISS at 400 km does 7,673 m/s; a geostationary satellite at 35,786 km only about 3,070.`,
+    };
+  },
+
+  "gravity-loss": (rng) => {
+    const g0 = 9.80665;
+    const sg = sample(rng, [0.3, 0.35, 0.4, 0.5, 1.0], 1)[0];
+    const t = sample(rng, [300, 420, 480, 540], 1)[0];
+    const dv = g0 * sg * t;
+    return {
+      title: "Gravity loss during ascent",
+      question: `A rocket burns for ${t} s at an average flight-path sine of sin γ = ${sg} (a value of 1 means straight up the whole way). How much Δv does it lose to gravity?`,
+      steps: [
+        `\\Delta v_{\\text{grav}} = \\int g\\sin\\gamma\\,dt \\approx g_0\\,\\overline{\\sin\\gamma}\\,t = 9.80665\\times ${sg}\\times ${t} = ${dv.toFixed(0)}\\ \\text{m/s}`,
+      ],
+      note:
+        sg >= 1
+          ? `Straight up the whole way bleeds ${(dv / 1000).toFixed(2)} km/s to gravity — enough to make orbit nearly impossible. This is why rockets pitch over as fast as they safely can.`
+          : `At sin γ = ${sg} the loss is ${(dv / 1000).toFixed(2)} km/s, versus ${((g0 * 1 * t) / 1000).toFixed(2)} km/s if it had gone straight up for the same time. Gravity loss is the price of time spent climbing slowly, so the whole game is to get horizontal fast.`,
+    };
+  },
+
+  "launch-rebate": (rng) => {
+    const sites = [
+      { n: "Kourou", lat: 5 },
+      { n: "Cape Canaveral", lat: 28.5 },
+      { n: "Baikonur", lat: 46 },
+      { n: "a mid-latitude site", lat: 51 },
+      { n: "a polar site", lat: 90 },
+    ];
+    const s = sites[sample(rng, [0, 1, 2, 3, 4], 1)[0]];
+    const dir = sample(rng, [0, 1], 1)[0] === 0 ? "east" : "west";
+    const rebate = 465 * Math.cos((s.lat * Math.PI) / 180);
+    return {
+      title: "Earth-rotation rebate",
+      question: `A rocket launches ${dir}ward from ${s.n} (latitude ${s.lat}°). How much velocity does Earth's rotation give it — or cost it? (Equatorial surface speed 465 m/s.)`,
+      steps: [
+        `v_{\\text{rot}} = 465\\cos(${s.lat}°) = ${rebate.toFixed(0)}\\ \\text{m/s}`,
+        dir === "east"
+          ? `\\text{eastward} \\Rightarrow \\text{a free head start of } +${rebate.toFixed(0)}\\ \\text{m/s}`
+          : `\\text{westward} \\Rightarrow \\text{forgo it AND cancel it}: -2\\times${rebate.toFixed(0)} = -${(2 * rebate).toFixed(0)}\\ \\text{m/s}`,
+      ],
+      note:
+        dir === "east"
+          ? `Launching east near the equator is nearly free Δv — which is why spaceports cluster on east-facing coastlines close to the equator (Kourou, at 5°, collects almost the full 465).`
+          : `Launching west pays the rebate twice, as a penalty. Only Israel does it — over the Mediterranean, to avoid overflying hostile neighbours — at the cost of roughly a fifth of its payload, spent on geopolitics.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
