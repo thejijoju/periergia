@@ -59,6 +59,14 @@ function f(x: number): string {
   return Number.isInteger(r) ? `${r}` : r.toFixed(1);
 }
 
+// Scientific notation as KaTeX, e.g. 7.7e-5 -> "7.7\times10^{-5}".
+function sci(x: number, d = 1): string {
+  if (x === 0) return "0";
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  const m = x / Math.pow(10, e);
+  return `${m.toFixed(d)}\\times10^{${e}}`;
+}
+
 // Signed sum, e.g. [-40, 25, 30] -> "-40 + 25 + 30".
 function sumExpr(nums: number[]): string {
   return nums
@@ -718,6 +726,75 @@ const GENERATORS: Record<string, Generator> = {
         `E_1 = ${it[0].toFixed(4)},\\quad E_2 = ${it[1].toFixed(4)},\\quad E_3 = ${it[2].toFixed(5)}\\ \\text{rad}`,
       ],
       note: `Kepler's equation is transcendental — E cannot be isolated by any formula (and that has been proven), so it must be solved numerically. Newton's method converges in three or four iterations, and every GPS receiver solves it this way billions of times a day. "Exactly solvable" is not the same as "has a closed-form formula."`,
+    };
+  },
+
+  // ── Escaping chemistry — the power–thrust trade beyond the wall ────────────
+
+  "power-thrust-trade": (rng) => {
+    const P = sample(rng, [2, 5, 10, 25], 1)[0]; // kW, fixed power
+    const veHigh = sample(rng, [20, 30, 40], 1)[0]; // km/s, ion-like
+    const veLow = sample(rng, [3, 4], 1)[0]; // km/s, chemical-like
+    const Fh = (2 * (P * 1000)) / (veHigh * 1000); // N
+    const Fl = (2 * (P * 1000)) / (veLow * 1000); // N
+    const ratio = veHigh / veLow;
+    return {
+      title: "The power–thrust trade: F = 2P/v_e",
+      question: `A thruster is fed a fixed ${P} kW of power. What ideal thrust does it make at an ion-like v_e = ${veHigh} km/s, versus a chemical-like v_e = ${veLow} km/s?`,
+      steps: [
+        `F = \\frac{2P}{v_e}:\\quad F_{\\text{ion}} = \\frac{2\\times ${P}{\\times}10^3}{${veHigh}{\\times}10^3} = ${(Fh * 1000).toFixed(0)}\\ \\text{mN}`,
+        `F_{\\text{chem}} = \\frac{2\\times ${P}{\\times}10^3}{${veLow}{\\times}10^3} = ${(Fl * 1000).toFixed(0)}\\ \\text{mN}`,
+        `\\frac{F_{\\text{chem}}}{F_{\\text{ion}}} = \\frac{${veHigh}}{${veLow}} = ${ratio.toFixed(1)}\\times`,
+      ],
+      note: `At fixed power, thrust and exhaust velocity are inversely proportional: ${ratio.toFixed(
+        1,
+      )}× more v_e buys ${ratio.toFixed(1)}× less thrust. Chemistry hides this because combustion delivers gigawatts — the trade never bites until you leave chemistry and your power collapses to kilowatts.`,
+    };
+  },
+
+  "ion-thrust-time": (rng) => {
+    const P = sample(rng, [2300, 4000, 7000], 1)[0]; // W
+    const ve = sample(rng, [20000, 30000, 40000], 1)[0]; // m/s
+    const eff = sample(rng, [60, 65, 70], 1)[0] / 100;
+    const m = sample(rng, [1000, 1200, 1500, 2000], 1)[0]; // kg
+    const dv = sample(rng, [5, 8, 11.5], 1)[0]; // km/s
+    const F = (eff * 2 * P) / ve; // N
+    const a = F / m; // m/s^2
+    const years = (dv * 1000) / a / (3600 * 24 * 365.25);
+    return {
+      title: "Ion propulsion: the thrust, and the years it must run",
+      question: `An ion thruster runs at ${(P / 1000).toFixed(
+        1,
+      )} kW and v_e = ${(ve / 1000).toFixed(0)} km/s, ${Math.round(
+        eff * 100,
+      )}% efficient, on a ${m} kg spacecraft. Find its thrust and acceleration, then the continuous thrust time to build ${dv} km/s of Δv.`,
+      steps: [
+        `F = \\eta\\,\\frac{2P}{v_e} = ${eff.toFixed(2)}\\times\\frac{2\\times ${P}}{${ve}} = ${(F * 1000).toFixed(0)}\\ \\text{mN}`,
+        `a = \\frac{F}{m} = \\frac{${F.toFixed(3)}}{${m}} = ${sci(a)}\\ \\text{m/s}^2 \\approx ${sci(a / 9.80665)}\\,g`,
+        `t = \\frac{\\Delta v}{a} = \\frac{${dv}{\\times}10^3}{${sci(a)}} = ${years.toFixed(1)}\\ \\text{years of continuous thrust}`,
+      ],
+      note: `A push the weight of a couple of coins, sustained for years, out-performs a rocket launch. Ion missions are limited not by propellant (a wardrobe of xenon suffices) but by TIME and POWER — the exact inversion of every chemical mission.`,
+    };
+  },
+
+  "nuclear-ve-lever": (rng) => {
+    const Tn = sample(rng, [2700, 2900, 3000], 1)[0]; // K, nuclear (H2)
+    const Tc = sample(rng, [3400, 3600], 1)[0]; // K, chemical
+    const Mc = sample(rng, [16, 18, 20], 1)[0]; // chemical products
+    const ratio = Math.sqrt(Tn / 2 / (Tc / Mc));
+    return {
+      title: "Nuclear thermal: the molecular-weight lever",
+      question: `Nuclear thermal heats pure hydrogen (M = 2) to ${Tn} K; a chemical engine burns to products (M ≈ ${Mc}) at ${Tc} K. Using v_e ∝ √(T/M), which wins, and by how much?`,
+      steps: [
+        `\\frac{v_{e,\\text{nuc}}}{v_{e,\\text{chem}}} = \\sqrt{\\frac{T_n/M_n}{T_c/M_c}} = \\sqrt{\\frac{${Tn}/2}{${Tc}/${Mc}}}`,
+        `= \\sqrt{\\frac{${(Tn / 2).toFixed(0)}}{${(Tc / Mc).toFixed(0)}}} = \\sqrt{${(Tn / 2 / (Tc / Mc)).toFixed(2)}} = ${ratio.toFixed(2)}`,
+        `\\text{nuclear wins by } ${ratio.toFixed(2)}\\times\\ \\text{despite running } ${Tc - Tn}\\ \\text{K cooler}`,
+      ],
+      note: `Molecular weight is the lever: dropping M from ${Mc} to 2 is a factor of ${(
+        Mc / 2
+      ).toFixed(
+        0,
+      )} inside the square root, which crushes the modest temperature disadvantage. Nuclear thermal pulls M to its floor of 2 by heating pure hydrogen with fission instead of burning a heavy oxidizer.`,
     };
   },
 };
