@@ -382,6 +382,83 @@ const GENERATORS: Record<string, Generator> = {
       note: detail,
     };
   },
+
+  // ── Staging — the loophole, and its diminishing returns ───────────────────
+
+  "staging-payload-fraction": (rng) => {
+    const g0 = 9.80665;
+    const isp = sample(rng, [300, 320, 350, 380, 420], 1)[0];
+    const eps = sample(rng, [0.06, 0.08, 0.09, 0.1, 0.12], 1)[0];
+    const dv = sample(rng, [9.0, 9.4, 10.0], 1)[0]; // km/s total
+    const n = sample(rng, [1, 2, 3, 4], 1)[0];
+    const ve = isp * g0;
+    const dvi = (dv * 1000) / n;
+    const Ri = Math.exp(dvi / ve);
+    const li = (1 / Ri - eps) / (1 - eps);
+    const impossible = li < 0;
+    const lt = impossible ? li : Math.pow(li, n);
+    return {
+      title: "Staged payload fraction",
+      question: `A rocket with I_sp = ${isp} s and structural coefficient ε = ${eps} per stage must deliver Δv = ${dv} km/s, split evenly across ${n} stage${n === 1 ? "" : "s"}. What payload fraction reaches orbit?`,
+      steps: [
+        `v_e = ${isp}\\times 9.80665 = ${ve.toFixed(0)}\\ \\text{m/s}, \\quad \\Delta v_{\\text{stage}} = ${dv}/${n} = ${(dvi / 1000).toFixed(2)}\\ \\text{km/s}`,
+        `R_i = e^{\\Delta v_{\\text{stage}}/v_e} = ${Ri.toFixed(3)}, \\quad \\lambda_i = \\frac{1/R_i - \\varepsilon}{1-\\varepsilon} = ${(li * 100).toFixed(2)}\\%`,
+        impossible
+          ? `\\lambda_i < 0 \\Rightarrow \\text{the stage cannot lift its own empty tanks}`
+          : `\\lambda_{\\text{total}} = \\lambda_i^{${n}} = ${(lt * 100).toFixed(2)}\\%`,
+      ],
+      note: impossible
+        ? `Negative per-stage payload: ${n} stage${n === 1 ? "" : "s"} is not enough — this design is impossible, dragging empty tanks through Δv they don't need. Split the mission across more stages and the payloads multiply into a positive number.`
+        : `The per-stage payload fractions MULTIPLY, because each stage's payload is everything above it. Going from one stage to ${n} turned an often-impossible mission into ${(lt * 100).toFixed(2)}% to orbit — with the same engine and materials, just by dropping dead tanks.`,
+    };
+  },
+
+  "staging-min-stages": (rng) => {
+    const g0 = 9.80665;
+    const isp = sample(rng, [300, 320, 350, 380], 1)[0];
+    const eps = sample(rng, [0.06, 0.08, 0.09, 0.1], 1)[0];
+    const dv = sample(rng, [9.0, 9.4, 12.0, 13.0], 1)[0]; // km/s
+    const ve = isp * g0;
+    const dvmax = ve * Math.log(1 / eps); // one stage, zero payload
+    let n = 1;
+    while ((dv * 1000) / n >= dvmax) n++;
+    return {
+      title: "Minimum stages to reach the target",
+      question: `An engine gives I_sp = ${isp} s, every stage has ε = ${eps}, and the mission needs Δv = ${dv} km/s. What is the most Δv a single stage can ever deliver, and the fewest stages needed for a positive payload?`,
+      steps: [
+        `\\Delta v_{\\max} = v_e\\ln(1/\\varepsilon) = ${ve.toFixed(0)}\\ln(1/${eps}) = ${dvmax.toFixed(0)}\\ \\text{m/s}`,
+        `\\text{one stage carrying zero payload tops out here} < ${(dv * 1000).toFixed(0)}\\ \\text{m/s (the mission)}`,
+        `\\text{smallest } n \\text{ with } \\tfrac{${(dv * 1000).toFixed(0)}}{n} < \\Delta v_{\\max}: \\quad n_{\\min} = ${n}`,
+      ],
+      note: `The impossibility theorem caps one stage at Δv_max = v_e ln(1/ε) — carrying nothing. Staging chains that reach as many times as needed, so any mission beyond Δv_max forces at least ${n} stage${n === 1 ? "" : "s"}. This is the quantitative link between the ceiling and the loophole.`,
+    };
+  },
+
+  "staging-marginal-gain": (rng) => {
+    const g0 = 9.80665;
+    const isp = sample(rng, [320, 350, 380], 1)[0];
+    const eps = sample(rng, [0.08, 0.09, 0.1], 1)[0];
+    const dv = sample(rng, [9.0, 9.4], 1)[0]; // km/s
+    const n = sample(rng, [2, 3, 4], 1)[0];
+    const ve = isp * g0;
+    const lam = (k: number) => {
+      const Ri = Math.exp((dv * 1000) / k / ve);
+      const li = (1 / Ri - eps) / (1 - eps);
+      return Math.pow(li, k);
+    };
+    const a = lam(n);
+    const b = lam(n + 1);
+    const gain = (b - a) * 100;
+    return {
+      title: "The marginal value of one more stage",
+      question: `With I_sp = ${isp} s, ε = ${eps}, and Δv = ${dv} km/s split evenly, compare the payload fraction at ${n} stages versus ${n + 1}. How much does the extra stage buy?`,
+      steps: [
+        `\\lambda_{${n}} = ${(a * 100).toFixed(2)}\\%, \\quad \\lambda_{${n + 1}} = ${(b * 100).toFixed(2)}\\%`,
+        `\\text{gain} = \\lambda_{${n + 1}} - \\lambda_{${n}} = ${gain.toFixed(2)}\\text{ points}`,
+      ],
+      note: `Only +${gain.toFixed(2)} points of payload for a whole extra stage — another engine, another set of avionics, and another separation event that can kill the mission. The gains collapse after two stages while the costs stay flat, which is why real rockets stop at two or three.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
