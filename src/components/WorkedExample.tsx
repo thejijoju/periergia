@@ -291,6 +291,97 @@ const GENERATORS: Record<string, Generator> = {
       note: `Propulsive efficiency peaks at 100% when v = v_e — there the exhaust is left exactly at rest in the ground frame, keeping none of the energy. Here u = ${u.toFixed(2)} gives ${(eta * 100).toFixed(1)}%. This is why launch (where v starts at zero) is so wasteful, and why an ion drive — huge v_e, modest v — throws most of its jet power away and is right not to care.`,
     };
   },
+
+  // ── Thermochemistry & the nozzle — where v_e comes from and why it is capped ─
+
+  "rocket-exhaust-velocity": (rng) => {
+    const Ru = 8.314;
+    const props = [
+      { n: "hydrolox (fuel-rich)", Tc: 3400, M: 11, g: 1.22 },
+      { n: "methalox", Tc: 3550, M: 19, g: 1.2 },
+      { n: "kerolox", Tc: 3670, M: 23, g: 1.22 },
+      { n: "hydrogen/fluorine", Tc: 4000, M: 20, g: 1.23 },
+    ];
+    const p = props[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const brk = sample(rng, [0.75, 0.8, 0.85], 1)[0];
+    const A = (2 * p.g) / (p.g - 1);
+    const core = (Ru * p.Tc) / (p.M / 1000); // m^2/s^2
+    const ve = Math.sqrt(A * core * brk);
+    return {
+      title: "Ideal exhaust velocity",
+      question: `A ${p.n} engine has chamber temperature T_c = ${p.Tc} K, mean exhaust molecular weight M = ${p.M} g/mol, and γ = ${p.g}, expanding to a bracket value of ${brk}. Find its ideal exhaust velocity.`,
+      steps: [
+        `\\frac{2\\gamma}{\\gamma-1} = \\frac{2(${p.g})}{${p.g}-1} = ${A.toFixed(2)}`,
+        `\\frac{R_u T_c}{M} = \\frac{8.314\\times ${p.Tc}}{${(p.M / 1000).toFixed(3)}} = ${(core / 1e6).toFixed(3)}\\times 10^{6}\\ \\text{m}^2/\\text{s}^2`,
+        `v_e = \\sqrt{${A.toFixed(2)}\\times ${(core / 1e6).toFixed(3)}\\times 10^{6}\\times ${brk}} = ${ve.toFixed(0)}\\ \\text{m/s}`,
+      ],
+      note: `Real engines reach roughly 90–97% of this ideal (frozen-flow and boundary-layer losses). The whole result rides on T_c/M — a hot flame helps, but a light exhaust molecule helps far more, which is why the number is stuck near 4.5 km/s.`,
+    };
+  },
+
+  "rocket-propellant-comparison": (rng) => {
+    const props = [
+      { n: "hydrolox", Tc: 3400, M: 11 },
+      { n: "methalox", Tc: 3550, M: 19 },
+      { n: "kerolox", Tc: 3670, M: 23 },
+      { n: "hypergolic", Tc: 3400, M: 25 },
+      { n: "solid (APCP)", Tc: 3000, M: 28 },
+    ];
+    const [ia, ib] = sample(rng, [0, 1, 2, 3, 4], 2);
+    const a = props[ia];
+    const b = props[ib];
+    const ratio = Math.sqrt(a.Tc / a.M / (b.Tc / b.M));
+    const winner = ratio >= 1 ? a : b;
+    const pct = (ratio >= 1 ? ratio - 1 : 1 / ratio - 1) * 100;
+    return {
+      title: "Which propellant has the higher exhaust velocity?",
+      question: `Propellant A (${a.n}) burns at T_c = ${a.Tc} K with exhaust M = ${a.M} g/mol. Propellant B (${b.n}) burns at T_c = ${b.Tc} K with M = ${b.M} g/mol. Using v_e ∝ √(T_c/M), which wins, and by what factor?`,
+      steps: [
+        `\\frac{v_{e,A}}{v_{e,B}} = \\sqrt{\\frac{T_A/M_A}{T_B/M_B}} = \\sqrt{\\frac{${a.Tc}/${a.M}}{${b.Tc}/${b.M}}} = ${ratio.toFixed(3)}`,
+      ],
+      note: `${winner.n} wins, by about ${pct.toFixed(0)}%. Flame temperature barely varies across chemical propellants (all pinned near 3,400 K by dissociation and melting), so the ranking is set almost entirely by molecular weight — light exhaust is destiny.`,
+    };
+  },
+
+  "nozzle-expansion-regime": (rng) => {
+    const pe = sample(rng, [0.1, 0.15, 0.2, 0.3, 0.5, 0.7], 1)[0]; // bar
+    const pa = sample(rng, [0, 0.3, 1.0], 1)[0]; // bar
+    let regime: string;
+    let safe: boolean;
+    let detail: string;
+    if (pa === 0) {
+      regime = "under-expanded";
+      safe = true;
+      detail =
+        "In vacuum there is no ambient pressure, so p_e always exceeds p_a: the plume simply keeps expanding outside the bell. Separation is impossible — a vacuum nozzle can be made as large as mass allows.";
+    } else if (Math.abs(pe - pa) < 1e-9) {
+      regime = "matched";
+      safe = true;
+      detail = "Exit pressure equals ambient — perfectly matched at this altitude, and all the extractable energy is in the jet.";
+    } else if (pe > pa) {
+      regime = "under-expanded";
+      safe = true;
+      detail = "Exit pressure exceeds ambient: a modest performance loss as the gas finishes expanding outside the bell, but safe — nothing separates.";
+    } else {
+      const sep = pe < 0.35 * pa;
+      regime = "over-expanded";
+      safe = !sep;
+      detail = sep
+        ? "Over-expanded past the Summerfield threshold: the flow separates from the wall, asymmetrically and unsteadily, driving oscillating side loads that can crack the nozzle or tear it off the engine."
+        : "Over-expanded but still above the Summerfield threshold: the flow stays attached and safe, at a small performance cost.";
+    }
+    return {
+      title: "Nozzle expansion regime and flow separation",
+      question: `A nozzle exhausts at p_e = ${pe} bar into ambient pressure p_a = ${pa} bar${pa === 0 ? " (vacuum)" : ""}. Classify the expansion and determine whether the flow separates.`,
+      steps: [
+        `p_e = ${pe}\\ \\text{bar}, \\quad p_a = ${pa}\\ \\text{bar} \\;\\Rightarrow\\; \\text{${regime}}`,
+        pa === 0
+          ? `\\text{vacuum: no ambient pressure, so separation cannot occur}`
+          : `\\text{Summerfield: separates if } p_e < 0.35\\,p_a = ${(0.35 * pa).toFixed(3)}\\ \\text{bar} \\;\\Rightarrow\\; \\text{${safe ? "attached (safe)" : "separates — side loads"}}`,
+      ],
+      note: detail,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
