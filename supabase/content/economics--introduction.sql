@@ -37,6 +37,28 @@ The field divides into two branches that examine the same economy from different
 
 Macroeconomics works with economy-wide totals such as national output and national income. But those totals do not float free: each is the summed result of millions of separate decisions to buy, sell, hire, and produce. In that sense macroeconomics is grounded in microeconomics — which is why microeconomics is the natural place to begin the study of economics.
 
+## Limitations
+
+Almost everything that follows — the demand and supply curves, the equilibrium where they cross, and the equations of later chapters — is built from mathematical models, and it is worth being clear from the outset about what that machinery is and is not worth. Expressing its ideas in mathematics is what let economics call itself a science: it gives the field precision, internal consistency, and sharp, testable predictions — a rigour that set the modern subject apart from the discursive *political economy* it grew out of, and much of its authority in public life rests on that mathematical dress.
+
+That authority has to be handled with care, because the rigour is real but conditional. **A model is only ever as good as the assumptions fed into it**, and economic assumptions are deliberate simplifications of an incomparably more complicated world. The precision is genuine; whether it describes *this* market, in *this* place, at *this* moment, is a separate question the mathematics cannot answer on its own. A few limitations are worth keeping in view:
+
+> - **Simplifying assumptions.** The standard supply-and-demand models assume people are consistent utility-maximizers and firms single-minded profit-maximizers, that information is good, and — the workhorse phrase — that "all else is held equal." Real people are only boundedly rational, information is patchy and unequally held, and all else is never equal. The field of behavioural economics exists largely to study where these assumptions break.
+
+> - **Oversimplification and false precision.** A clean equation returns a confident, exact-looking answer even when its inputs were rough guesses. The mathematics does not know its assumptions were crude; it hands back a strong conclusion either way. Precision on the page is not the same thing as accuracy about the world, and an elegant model can lend a shaky idea an authority it has not earned.
+
+> - **Wrong or context-bound assumptions.** A result derived under one set of conditions — a particular institution, culture, era, or market structure — can simply be false somewhere else. A model that fits one economy may mislead in another, and the algebra gives no warning when it is being used out of the context it was built for.
+
+> - **Hard to test.** Unlike a laboratory science, economics can rarely run controlled experiments, so telling a wrong model from a right one is genuinely difficult, and a flawed set of assumptions can survive unchallenged for a long time.
+
+> - **People react to the model.** Economic actors read the forecasts and respond to the policies, which changes the very relationships a model assumed were fixed — a reflexivity that physics never has to contend with. (A cousin of this is Goodhart's law: once a measure becomes a target, it stops measuring what it used to.)
+
+> - **The experts themselves disagree.** On many consequential questions — how to pull an economy out of a recession, whether a particular policy helps or harms, sometimes even how to model everyday behaviour — capable economists reach opposing conclusions from the very same evidence, because they begin from different assumptions and traditions. A finding presented as settled is often one position in a live, unresolved argument, and part of understanding the subject is learning which of its questions are genuinely contested rather than closed.
+
+**Macroeconomics is more exposed to all of this than microeconomics.** It works with economy-wide aggregates assembled by summing millions of dissimilar households and firms into a handful of representative numbers; it has far fewer clean natural experiments to check itself against; and its subjects — expectations, confidence, entire economies — are the hardest of all to hold still. The confident precision of a macro model should therefore be read with *more* suspicion, not less.
+
+None of this is a reason to abandon the mathematics — it is the reason to pair it with judgement. The equations of the chapters ahead are powerful tools for organizing thought and drawing out consequences that intuition alone would miss. But the mathematics is only objective *downstream* of a choice: which simplifications to make, which behaviours to assume, which forces to hold equal are all decided *before* the algebra begins — and that is where the subjectivity, and much of the disagreement above, actually lives. A conclusion is only ever as trustworthy as the assumptions beneath it, and reading those assumptions critically — asking whether they fit the case in front of you — is as much a part of economics as the algebra itself.
+
 ## Older than its name
 
 The word *economics* is young — it edged out the older phrase *political economy* only in the late nineteenth century — but the questions are ancient. People reasoned about scarcity, prices, and self-interested exchange for thousands of years before any of it was called a science. Around 91 BCE the Chinese historian Sima Qian described a market coordinating itself through prices, with no one in charge:
@@ -108,26 +130,6 @@ A small worked example. Suppose a local market for some good has the following s
 At \$4 buyers want 300 units and sellers offer 300: quantity demanded equals quantity supplied, so **\$4 is the equilibrium price** and **300 the equilibrium quantity**. At \$5 sellers would offer 400 but buyers take only 200 — a surplus of 200 that drives the price back down toward \$4. At \$3 buyers want 400 but sellers offer only 200 — a shortage of 200 that pushes the price back up.
 
 When demand or supply shifts, the equilibrium moves in a predictable direction: an outward shift in demand (say, higher income) raises both the equilibrium price and quantity, while an outward shift in supply (say, a cheaper input) lowers the price but raises the quantity. This apparatus — two curves and the point where they cross — is the workhorse of microeconomics, and the foundation on which almost everything that follows is built.
-
-## What the mathematics can and cannot do
-
-The curves and equations of the previous sections are what let economics call itself a science. Reducing a messy market to two lines that cross gives the field precision, internal consistency, and sharp, testable predictions — a rigour that set modern economics apart from the discursive *political economy* it grew out of, and much of the discipline's authority in public life rests on that mathematical dress.
-
-That authority has to be handled with care, because the rigour is real but conditional. **A model is only ever as good as the assumptions fed into it**, and economic assumptions are deliberate simplifications of an incomparably more complicated world. The precision is genuine; whether it describes *this* market, in *this* place, at *this* moment, is a separate question the mathematics cannot answer on its own. A few limitations are worth keeping in view:
-
-> - **Simplifying assumptions.** The demand and supply curves assume people are consistent utility-maximizers and firms single-minded profit-maximizers, that information is good, and — the workhorse phrase — that "all else is held equal." Real people are only boundedly rational, information is patchy and unequally held, and all else is never equal. The field of behavioural economics exists largely to study where these assumptions break.
-
-> - **Oversimplification and false precision.** A clean equation returns a confident, exact-looking answer even when its inputs were rough guesses. The mathematics does not know its assumptions were crude; it hands back a strong conclusion either way. Precision on the page is not the same thing as accuracy about the world, and an elegant model can lend a shaky idea an authority it has not earned.
-
-> - **Wrong or context-bound assumptions.** A result derived under one set of conditions — a particular institution, culture, era, or market structure — can simply be false somewhere else. A model that fits one economy may mislead in another, and the algebra gives no warning when it is being used out of the context it was built for.
-
-> - **Hard to test.** Unlike a laboratory science, economics can rarely run controlled experiments, so telling a wrong model from a right one is genuinely difficult, and a flawed set of assumptions can survive unchallenged for a long time.
-
-> - **People react to the model.** Economic actors read the forecasts and respond to the policies, which changes the very relationships a model assumed were fixed — a reflexivity that physics never has to contend with. (A cousin of this is Goodhart's law: once a measure becomes a target, it stops measuring what it used to.)
-
-**Macroeconomics is more exposed to all of this than microeconomics.** It works with economy-wide aggregates assembled by summing millions of dissimilar households and firms into a handful of representative numbers; it has far fewer clean natural experiments to check itself against; and its subjects — expectations, confidence, entire economies — are the hardest of all to hold still. The confident precision of a macro model should therefore be read with *more* suspicion, not less.
-
-None of this is a reason to abandon the mathematics — it is the reason to pair it with judgement. The equations of the chapters ahead are powerful tools for organizing thought and drawing out consequences that intuition alone would miss. But a conclusion is only ever as trustworthy as the assumptions beneath it, and reading those assumptions critically — asking whether they fit the case in front of you — is as much a part of economics as the algebra itself.
 
 ---
 
