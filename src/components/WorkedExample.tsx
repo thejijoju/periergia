@@ -585,6 +585,74 @@ const GENERATORS: Record<string, Generator> = {
       note: `Scaling up ${k}× leaves the walls able to supply only 1/${k} of the power the pump now needs — surface-to-volume falls as 1/r. This square–cube squeeze confines the expander cycle to small upper-stage engines like the RL10; it can never power a booster.`,
     };
   },
+
+  // ── Reusability — when the physics is locked, the leverage is economics ────
+
+  "propellant-fraction": (rng) => {
+    const tot = sample(rng, [400, 450, 500], 1)[0]; // tonnes of propellant
+    const ratio = 2.6; // oxidizer:fuel by mass
+    const fuel = tot / (1 + ratio); // t
+    const ox = tot - fuel; // t
+    const cost = ox * 1000 * 0.1 + fuel * 1000 * 2.0; // $ (LOX $0.10/kg, RP-1 $2/kg)
+    const launch = sample(rng, [50, 60, 70], 1)[0] * 1e6; // $ total launch
+    const frac = (cost / launch) * 100;
+    return {
+      title: "Propellant is nearly free",
+      question: `A kerolox rocket burns ${tot} tonnes of propellant at a 2.6:1 oxidizer:fuel mass ratio. Liquid oxygen costs $0.10/kg and RP-1 kerosene $2.00/kg, and the whole launch costs $${launch / 1e6} million. What is the propellant bill, and what fraction of the launch is it?`,
+      steps: [
+        `\\text{fuel} = \\frac{${tot}}{1+2.6} = ${fuel.toFixed(1)}\\ \\text{t},\\quad \\text{oxidizer} = ${ox.toFixed(1)}\\ \\text{t}`,
+        `\\text{cost} = ${ox.toFixed(1)}{\\times}10^3{\\times}0.10 + ${fuel.toFixed(1)}{\\times}10^3{\\times}2.00 \\approx \\$${(cost / 1e3).toFixed(0)}\\text{k}`,
+        `\\frac{\\text{propellant}}{\\text{launch}} = \\frac{\\$${(cost / 1e3).toFixed(0)}\\text{k}}{\\$${(launch / 1e6).toFixed(0)}\\text{M}} = ${frac.toFixed(2)}\\%`,
+      ],
+      note: `Propellant is a fraction of a percent of the launch cost — liquid oxygen is cheaper than milk by volume. The machine you burn it in is the entire expense, which is exactly why recovering that machine (reusability) is worth a brutal payload penalty: you re-pay only the nearly-free propellant, not the vehicle.`,
+    };
+  },
+
+  "reuse-breakeven": (rng) => {
+    const B = sample(rng, [30, 40, 50], 1)[0]; // first-stage build, $M
+    const R = sample(rng, [1, 2, 3], 1)[0]; // refurbishment, $M
+    const S = sample(rng, [10, 15, 20], 1)[0]; // new second stage, $M
+    const F = sample(rng, [8, 10, 12], 1)[0]; // fixed ops, $M
+    const N = sample(rng, [2, 5, 10, 20], 1)[0]; // flights per booster
+    const expend = B + S + 0.5 + F;
+    const reused = B / N + R + S + 0.5 + F;
+    const save = expend - reused;
+    return {
+      title: "The reusability break-even",
+      question: `A first stage costs $${B}M to build; refurbishing it between flights costs $${R}M; a fresh expendable second stage is $${S}M; propellant is $0.5M; fixed operations are $${F}M per flight. Compare an expendable flight with a reused flight on the booster's ${N}th flight (amortize the build across ${N} flights).`,
+      steps: [
+        `\\text{expendable} = ${B} + ${S} + 0.5 + ${F} = \\$${expend.toFixed(1)}\\text{M}`,
+        `\\text{reused }(N{=}${N}) = \\frac{${B}}{${N}} + ${R} + ${S} + 0.5 + ${F} = \\$${reused.toFixed(1)}\\text{M}`,
+        `\\text{saving} = ${expend.toFixed(1)} - ${reused.toFixed(1)} = \\$${save.toFixed(1)}\\text{M per flight}`,
+      ],
+      note: `Amortizing the $${B}M booster across ${N} flights cuts its per-flight share from $${B}M to $${(B / N).toFixed(1)}M. The gains flatten fast — most of the benefit lands in the first several reuses — so the payoff needs a high flight rate, the lever the Space Shuttle could never pull.`,
+    };
+  },
+
+  "reuse-dollar-per-kg": (rng) => {
+    const expCost = sample(rng, [60, 65, 70], 1)[0]; // $M expendable total
+    const expPay = sample(rng, [21, 22, 23], 1)[0]; // t to LEO expendable
+    const tax = sample(rng, [30, 32, 35, 40], 1)[0] / 100; // payload penalty
+    const reuPay = expPay * (1 - tax);
+    const reuCost = sample(rng, [28, 30, 32], 1)[0]; // $M reused total
+    const expPerKg = (expCost * 1e6) / (expPay * 1000);
+    const reuPerKg = (reuCost * 1e6) / (reuPay * 1000);
+    const ratio = expPerKg / reuPerKg;
+    return {
+      title: "Does reuse still win on $/kg?",
+      question: `Expendable: $${expCost}M delivers ${expPay} t to LEO. Recovering the first stage costs ${Math.round(
+        tax * 100,
+      )}% of the payload but drops the total to $${reuCost}M. Work out the cost per kilogram each way — does reuse still win?`,
+      steps: [
+        `\\text{expendable} = \\frac{\\$${expCost}\\text{M}}{${expPay}\\ \\text{t}} = \\$${expPerKg.toFixed(0)}\\text{/kg}`,
+        `\\text{reused payload} = ${expPay}{\\times}(1-${tax.toFixed(2)}) = ${reuPay.toFixed(1)}\\ \\text{t}`,
+        `\\text{reused} = \\frac{\\$${reuCost}\\text{M}}{${reuPay.toFixed(1)}\\ \\text{t}} = \\$${reuPerKg.toFixed(0)}\\text{/kg}\\quad(${ratio.toFixed(2)}\\times\\text{ cheaper})`,
+      ],
+      note: `Reuse carries ${Math.round(
+        tax * 100,
+      )}% less payload yet still wins on $/kg, because the cost fell faster than the payload did. That is the whole trade: concede a third of the payload to the rocket equation, and cut the cost per kilogram anyway — the first move in the field that gives up the physics battle to win the economics war.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
