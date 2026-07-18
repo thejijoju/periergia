@@ -653,6 +653,73 @@ const GENERATORS: Record<string, Generator> = {
       )}% less payload yet still wins on $/kg, because the cost fell faster than the payload did. That is the whole trade: concede a third of the payload to the rocket equation, and cut the cost per kilogram anyway — the first move in the field that gives up the physics battle to win the economics war.`,
     };
   },
+
+  // ── Two-body problem — the geometry of falling ─────────────────────────────
+
+  "kepler-third-law": (rng) => {
+    const mu = 3.986e14;
+    const Re = 6371; // km
+    const alt = sample(rng, [400, 800, 1200, 2000, 20200, 35786], 1)[0]; // km
+    const a = (Re + alt) * 1000; // m (circular ⇒ a = r)
+    const T = 2 * Math.PI * Math.sqrt(a ** 3 / mu); // s
+    return {
+      title: "Kepler's Third Law: the period of an orbit",
+      question: `A satellite is in a circular orbit ${alt} km above Earth's surface. How long does one orbit take? (μ = 3.986×10¹⁴ m³/s², R⊕ = 6,371 km.)`,
+      steps: [
+        `a = R_\\oplus + h = 6371 + ${alt} = ${Re + alt}\\ \\text{km}`,
+        `T = 2\\pi\\sqrt{\\frac{a^3}{\\mu}} = 2\\pi\\sqrt{\\frac{(${((Re + alt) / 1000).toFixed(3)}\\times10^{6})^3}{3.986\\times10^{14}}} = ${T.toFixed(0)}\\ \\text{s}`,
+        `T = ${T.toFixed(0)}\\ \\text{s} = ${(T / 60).toFixed(1)}\\ \\text{min} = ${(T / 3600).toFixed(2)}\\ \\text{h}`,
+      ],
+      note: `Higher orbits are slower in BOTH speed and period — T grows as a^(3/2). The ISS at 400 km takes ~92 min; a GPS satellite at 20,200 km takes ~12 h; geostationary at 35,786 km takes exactly one day and so hangs motionless in the sky. This "higher is slower" fact is the whole mechanism behind slowing down to catch up.`,
+    };
+  },
+
+  "vis-viva": (rng) => {
+    const mu = 3.986e14;
+    const Re = 6371; // km
+    const hp = sample(rng, [200, 300, 400, 500], 1)[0]; // perigee altitude, km
+    const ha = sample(rng, [1000, 3000, 5000, 20000, 35786], 1)[0]; // apogee altitude, km
+    const rp = (Re + hp) * 1000;
+    const ra = (Re + ha) * 1000;
+    const a = (rp + ra) / 2;
+    const vp = Math.sqrt(mu * (2 / rp - 1 / a));
+    const va = Math.sqrt(mu * (2 / ra - 1 / a));
+    return {
+      title: "Vis-viva: speed at perigee and apogee",
+      question: `An elliptical orbit has perigee altitude ${hp} km and apogee altitude ${ha} km. Find the speed at each end. (μ = 3.986×10¹⁴ m³/s², R⊕ = 6,371 km.)`,
+      steps: [
+        `r_p = ${Re + hp}\\ \\text{km},\\quad r_a = ${Re + ha}\\ \\text{km},\\quad a = \\frac{r_p+r_a}{2} = ${((rp + ra) / 2 / 1000).toFixed(0)}\\ \\text{km}`,
+        `v_p = \\sqrt{\\mu\\left(\\frac{2}{r_p}-\\frac{1}{a}\\right)} = ${vp.toFixed(0)}\\ \\text{m/s}`,
+        `v_a = \\sqrt{\\mu\\left(\\frac{2}{r_a}-\\frac{1}{a}\\right)} = ${va.toFixed(0)}\\ \\text{m/s}`,
+      ],
+      note: `The body races through perigee (${(vp / 1000).toFixed(2)} km/s) and crawls through apogee (${(va / 1000).toFixed(2)} km/s) — Kepler's Second Law, equal areas in equal times. Vis-viva gives the speed anywhere in any orbit from just two numbers: where you are (r) and the size of the orbit (a).`,
+    };
+  },
+
+  "kepler-equation": (rng) => {
+    const e = sample(rng, [10, 20, 30, 40], 1)[0] / 100; // eccentricity
+    const Tmin = sample(rng, [90, 100, 120], 1)[0]; // period, minutes
+    const tmin = sample(rng, [10, 15, 20, 25], 1)[0]; // time since perigee, minutes
+    const M = (2 * Math.PI * tmin) / Tmin; // rad
+    let E = M;
+    const it: number[] = [];
+    for (let i = 0; i < 3; i++) {
+      const f = E - e * Math.sin(E) - M;
+      const fp = 1 - e * Math.cos(E);
+      E = E - f / fp;
+      it.push(E);
+    }
+    return {
+      title: "Kepler's equation: where is the satellite at time t?",
+      question: `A satellite has period ${Tmin} min and eccentricity e = ${e}. At ${tmin} minutes past perigee, find the eccentric anomaly E by solving Kepler's equation M = E − e·sin E with Newton's method (start E₀ = M).`,
+      steps: [
+        `M = \\frac{2\\pi}{T}(t-t_0) = \\frac{2\\pi\\times ${tmin}}{${Tmin}} = ${M.toFixed(4)}\\ \\text{rad}`,
+        `E_{n+1} = E_n - \\frac{E_n - ${e}\\sin E_n - M}{1 - ${e}\\cos E_n}`,
+        `E_1 = ${it[0].toFixed(4)},\\quad E_2 = ${it[1].toFixed(4)},\\quad E_3 = ${it[2].toFixed(5)}\\ \\text{rad}`,
+      ],
+      note: `Kepler's equation is transcendental — E cannot be isolated by any formula (and that has been proven), so it must be solved numerically. Newton's method converges in three or four iterations, and every GPS receiver solves it this way billions of times a day. "Exactly solvable" is not the same as "has a closed-form formula."`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
