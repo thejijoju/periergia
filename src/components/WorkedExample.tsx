@@ -523,6 +523,68 @@ const GENERATORS: Record<string, Generator> = {
           : `Launching west pays the rebate twice, as a penalty. Only Israel does it — over the Mediterranean, to avoid overflying hostile neighbours — at the cost of roughly a fifth of its payload, spent on geopolitics.`,
     };
   },
+
+  // ── Engine cycles — the machine that squeezes the fixed lemon ──────────────
+
+  "pump-power": (rng) => {
+    const mdot = sample(rng, [150, 200, 250, 300, 500], 1)[0];
+    const pc = sample(rng, [250, 300, 350], 1)[0]; // chamber / injection, bar
+    const pt = sample(rng, [3, 4, 5], 1)[0]; // tank, bar
+    const rho = sample(rng, [810, 1000, 1140], 1)[0]; // RP-1, water-ish, LOX
+    const dp = (pc - pt) * 1e5; // Pa
+    const Phyd = (mdot * dp) / rho; // W
+    const eta = sample(rng, [55, 60, 65, 70], 1)[0] / 100;
+    const Pturb = Phyd / eta;
+    return {
+      title: "Turbopump power balance",
+      question: `A turbopump moves ${mdot} kg/s of propellant (density ${rho} kg/m³) from a ${pt}-bar tank up to a ${pc}-bar injection pressure. (a) What hydraulic power does that take? (b) If the turbopump is ${Math.round(eta * 100)}% efficient overall, how much power must the turbine extract from the hot preburner gas?`,
+      steps: [
+        `\\Delta p = (${pc} - ${pt})\\times10^5 = ${(dp / 1e7).toFixed(2)}\\times10^{7}\\ \\text{Pa}`,
+        `P_{\\text{hyd}} = \\frac{\\dot m\\,\\Delta p}{\\rho} = \\frac{${mdot}\\times ${(dp / 1e7).toFixed(2)}\\times10^{7}}{${rho}} = ${(Phyd / 1e6).toFixed(2)}\\ \\text{MW}`,
+        `P_{\\text{turb}} = \\frac{P_{\\text{hyd}}}{\\eta} = \\frac{${(Phyd / 1e6).toFixed(2)}}{${eta.toFixed(2)}} = ${(Pturb / 1e6).toFixed(2)}\\ \\text{MW}\\ (\\approx ${(Pturb / 745700).toFixed(0)}\\ \\text{hp})`,
+      ],
+      note: `That power comes from burning propellant in the preburner — the engine spends a small power-station's worth of energy just to feed itself. The RD-170's real turbopump runs at ~190 MW, more than a widebody airliner's takeoff power, in a package the size of a refrigerator — the highest power-density machine ever built.`,
+    };
+  },
+
+  "gg-penalty": (rng) => {
+    const fgg = sample(rng, [2, 3, 4, 5], 1)[0] / 100; // fraction dumped
+    const ggIsp = sample(rng, [80, 100, 120], 1)[0]; // s, poorly expanded
+    const main = sample(rng, [330, 350, 360], 1)[0]; // s
+    const eff = (1 - fgg) * main + fgg * ggIsp;
+    const pen = main - eff;
+    const penPct = (pen / main) * 100;
+    const payload = penPct * 4; // 1% Isp ~ 4% payload, two-stage
+    return {
+      title: "The gas-generator penalty",
+      question: `A gas-generator engine burns ${Math.round(
+        fgg * 100,
+      )}% of its propellant in the gas generator, whose dumped exhaust delivers an effective specific impulse of only ${ggIsp} s; the main chamber gives ${main} s. (a) What is the vehicle's effective Isp? (b) How much is lost versus an ideal closed cycle that routes that exhaust into the chamber? (c) At 1% Isp ≈ 4% payload for a two-stage vehicle, what does it cost in payload?`,
+      steps: [
+        `I_{sp,\\text{eff}} = (1-${fgg})\\times ${main} + ${fgg}\\times ${ggIsp} = ${eff.toFixed(1)}\\ \\text{s}`,
+        `\\Delta I_{sp} = ${main} - ${eff.toFixed(1)} = ${pen.toFixed(1)}\\ \\text{s} = ${penPct.toFixed(2)}\\%`,
+        `\\text{payload cost} \\approx ${penPct.toFixed(2)}\\% \\times 4 = ${payload.toFixed(1)}\\%`,
+      ],
+      note: `Dumping a few percent of propellant overboard to spin the pump costs a few percent of Isp — and through the rocket equation's exponential, that is roughly ${payload.toFixed(0)}% of payload on every flight, forever. Clawing it back is exactly why staged combustion endures the oxygen-rich metallurgy nightmare.`,
+    };
+  },
+
+  "expander-scaling": (rng) => {
+    const k = sample(rng, [2, 3, 4, 5], 1)[0]; // linear scale factor
+    const need = k ** 3;
+    const avail = k ** 2;
+    const frac = avail / need; // = 1/k
+    return {
+      title: "Why a big expander-cycle engine can't exist",
+      question: `An expander cycle drives its turbopump only with heat the fuel picks up from the chamber wall. Scale a working expander engine up by a linear factor of ${k} (every dimension ×${k}). Required pump power grows with propellant flow (∝ volume, r³); available wall-heating power grows with surface area (r²). What fraction of the required power can the walls still supply?`,
+      steps: [
+        `\\text{required power} \\propto r^3 \\Rightarrow \\times ${k}^3 = ${need}`,
+        `\\text{available heating} \\propto r^2 \\Rightarrow \\times ${k}^2 = ${avail}`,
+        `\\frac{\\text{available}}{\\text{required}} = \\frac{${avail}}{${need}} = \\frac{1}{${k}} \\approx ${frac.toFixed(2)}`,
+      ],
+      note: `Scaling up ${k}× leaves the walls able to supply only 1/${k} of the power the pump now needs — surface-to-volume falls as 1/r. This square–cube squeeze confines the expander cycle to small upper-stage engines like the RL10; it can never power a booster.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
