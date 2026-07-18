@@ -561,6 +561,14 @@ Real is $3727/3862 = \mathbf{96.5\%}$ of ideal. **Gap: ~3.5%.** Accounted for by
 **What this implies for progress.** If $v_e$ is permanently capped by chemistry, and the structural coefficient $\varepsilon$ is floored by the fact that tanks are made of matter, then **both free variables in the rocket equation are nearly seized**, and progress in spaceflight cannot come from finding a better chemical fuel — that search is finished, and it finished sixty years ago. Progress must come from elsewhere: from **architecture** (staging, orbital assembly, refueling — arranging fixed components cleverly), from **economics** (reusability, cheaper manufacturing — attacking cost when you can't attack physics), and from **leaving chemistry altogether** (ion drives and nuclear thermal, which move $v_e$ by paying in thrust or reactors). The wall is real, permanent, and mapped. Understanding that it cannot be broken is what tells you where to push instead — and the rest of the course is that "elsewhere."
 
 ---
+
+
+---
+
+## Further reading
+
+- **George P. Sutton & Oscar Biblarz, *Rocket Propulsion Elements*.** The chapters on thermochemistry and the de Laval nozzle cover this material in full engineering detail.
+- **John D. Clark, *Ignition!: An Informal History of Liquid Rocket Propellants*.** The chemistry of the propellants that reach the wall, chlorine trifluoride included, told by the man who handled them and lived.
 $l2_master$,
     true,
     true

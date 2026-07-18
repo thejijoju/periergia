@@ -544,6 +544,14 @@ The equation is $\Delta v = v_e \ln(m_0/m_f)$, and inverting it reveals the real
 **And the whole unit reduces to one sentence, which is also the sentence for the entire course:** *never carry anything through a Δv it does not need to experience.* Staging is that sentence applied to empty tanks. Choosing propellant by position (dense low, light high) is that sentence applied to which fuel goes where. And later — LOR (the chapter on mission architecture), propellant depots, aerobraking, ISRU — will be the same sentence applied to heat shields, to fuel, to return propellant. The rocket equation cannot be beaten; it has been undefeated since 1903, and the graveyard is full of people who tried. But it grants exactly one concession — *don't carry the dead* — and the entire enterprise of spaceflight is the disciplined, relentless, endlessly-reapplied exploitation of that single concession. Tsiolkovsky saw all of this from a schoolteacher's desk, deaf, with a pencil, before anyone had flown anything, because he took the equation seriously and asked it the right question. That's the unit. That's the method. That's the whole thing.
 
 ---
+
+
+---
+
+## Further reading
+
+- **Ronald W. Humble, Gary N. Henry & Wiley J. Larson, *Space Propulsion Analysis and Design*.** Develops staging and the optimal-split mathematics in the engineering detail this chapter sketches.
+- **George P. Sutton & Oscar Biblarz, *Rocket Propulsion Elements*.** The companion reference for the engine and stage hardware behind the arithmetic.
 $l3_master$,
     true,
     true

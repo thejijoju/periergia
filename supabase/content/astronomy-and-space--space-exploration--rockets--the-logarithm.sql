@@ -1489,6 +1489,14 @@ And then — because this course does not let you off — **read the bill.** Sta
 The next chapter (the thermochemical ceiling): why $v_e$ is stuck, and the people who set themselves on fire finding out.
 
 ---
+
+
+---
+
+## Further reading
+
+- **George P. Sutton & Oscar Biblarz, *Rocket Propulsion Elements*.** The standard reference on how rocket engines work; its opening chapters build the rocket equation and specific impulse from first principles.
+- **John D. Clark, *Ignition!: An Informal History of Liquid Rocket Propellants*.** The funniest book ever written about substances that want you dead — and the definitive account of why exhaust velocity refuses to move.
 $l1_master$,
     true,
     true
