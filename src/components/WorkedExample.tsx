@@ -230,6 +230,67 @@ const GENERATORS: Record<string, Generator> = {
       note: `The nut factor K (≈ 0.2 for dry steel) bundles thread and head friction — most of the torque fights friction, not bolt stretch. That is why torque is only a rough proxy for preload, and why critical joints use angle-of-turn or direct-tension methods instead.`,
     };
   },
+
+  // ── Rockets — the Tsiolkovsky equation and what falls out of it ────────────
+
+  "rocket-mass-ratio": (rng) => {
+    const g0 = 9.80665;
+    const dv = sample(rng, [3.12, 3.9, 5.0, 6.0, 9.4, 12.0], 1)[0]; // km/s
+    const isp = sample(rng, [300, 320, 350, 380, 420, 450], 1)[0]; // s
+    const ve = isp * g0; // m/s
+    const x = (dv * 1000) / ve;
+    const R = Math.exp(x);
+    const zeta = 1 - 1 / R;
+    return {
+      title: "Mass ratio and propellant fraction",
+      question: `A stage must deliver Δv = ${dv} km/s using an engine of specific impulse I_sp = ${isp} s. Find its required mass ratio R and the fraction ζ of liftoff mass that is propellant.`,
+      steps: [
+        `v_e = I_{sp}\\,g_0 = ${isp}\\times 9.80665 = ${ve.toFixed(0)}\\ \\text{m/s}`,
+        `x = \\frac{\\Delta v}{v_e} = \\frac{${(dv * 1000).toFixed(0)}}{${ve.toFixed(0)}} = ${x.toFixed(3)}`,
+        `R = e^{x} = e^{${x.toFixed(3)}} = ${R.toFixed(2)}`,
+        `\\zeta = 1 - \\frac{1}{R} = ${(zeta * 100).toFixed(1)}\\%`,
+      ],
+      note: `Every exhaust velocity worth of Δv costs a factor of e in mass ratio. At x = ${x.toFixed(2)}, the stage is ${(zeta * 100).toFixed(1)}% propellant, leaving only ${(100 - zeta * 100).toFixed(1)}% for tanks, engines, structure, and payload combined.`,
+    };
+  },
+
+  "rocket-payload-fraction": (rng) => {
+    const g0 = 9.80665;
+    const dv = sample(rng, [7.0, 8.0, 9.4], 1)[0]; // km/s
+    const isp = sample(rng, [320, 350, 380, 420, 450], 1)[0]; // s
+    const eps = sample(rng, [0.05, 0.06, 0.08, 0.1, 0.12], 1)[0];
+    const ve = isp * g0;
+    const R = Math.exp((dv * 1000) / ve);
+    const lam = (1 / R - eps) / (1 - eps);
+    return {
+      title: "Payload fraction of a single stage",
+      question: `A single stage has structural coefficient ε = ${eps} and specific impulse I_sp = ${isp} s. What payload fraction λ can it deliver for a Δv of ${dv} km/s (to low Earth orbit)?`,
+      steps: [
+        `R = e^{\\Delta v / v_e} = e^{${(dv * 1000).toFixed(0)}/${ve.toFixed(0)}} = ${R.toFixed(2)}`,
+        `\\lambda = \\frac{1/R - \\varepsilon}{1 - \\varepsilon} = \\frac{${(1 / R).toFixed(4)} - ${eps}}{1 - ${eps}} = ${(lam * 100).toFixed(2)}\\%`,
+      ],
+      note:
+        lam < 0
+          ? `Negative — the algebra forbids this vehicle. Its structure alone outweighs everything that reaches orbit, so there is nothing left for payload: it cannot lift itself, let alone cargo. This is exactly why single-stage-to-orbit is so nearly impossible.`
+          : `The payload lives in the thin sliver left after propellant and structure. Only ${(lam * 100).toFixed(2)}% of liftoff mass arrives as payload here, and a small rise in ε would erase even that. Margin, not average performance, is what kills single-stage designs.`,
+    };
+  },
+
+  "rocket-propulsive-efficiency": (rng) => {
+    const ve = sample(rng, [2.8, 3.0, 3.4, 4.4], 1)[0]; // km/s
+    const v = sample(rng, [1, 2, 3, 4, 6, 8], 1)[0]; // km/s
+    const u = v / ve;
+    const eta = (2 * u) / (1 + u * u);
+    return {
+      title: "Propulsive efficiency",
+      question: `A vehicle with exhaust velocity v_e = ${ve} km/s is moving at v = ${v} km/s. What fraction of the engine's jet power actually goes into the vehicle — its propulsive efficiency?`,
+      steps: [
+        `u = \\frac{v}{v_e} = \\frac{${v}}{${ve}} = ${u.toFixed(3)}`,
+        `\\eta_p = \\frac{2u}{1 + u^2} = \\frac{${(2 * u).toFixed(3)}}{${(1 + u * u).toFixed(3)}} = ${(eta * 100).toFixed(1)}\\%`,
+      ],
+      note: `Propulsive efficiency peaks at 100% when v = v_e — there the exhaust is left exactly at rest in the ground frame, keeping none of the energy. Here u = ${u.toFixed(2)} gives ${(eta * 100).toFixed(1)}%. This is why launch (where v starts at zero) is so wasteful, and why an ion drive — huge v_e, modest v — throws most of its jet power away and is right not to care.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
