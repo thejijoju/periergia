@@ -868,6 +868,78 @@ const GENERATORS: Record<string, Generator> = {
       note: `The factor (5cos²i − 1) vanishes at i = 63.43° (cos²i = 1/5), so the argument of perigee stops drifting and the apogee stays locked over the far north for free. Every Molniya satellite flies at 63.4° — J2 tuned against itself.`,
     };
   },
+
+  // ── Rendezvous — the great inversion ──────────────────────────────────────
+
+  "hohmann-transfer": (rng) => {
+    const mu = 3.986e5; // km³/s²
+    const Re = 6378;
+    const alt1 = sample(rng, [300, 400, 500], 1)[0];
+    const alt2 = sample(rng, [20200, 35786], 1)[0]; // GPS or GEO
+    const r1 = Re + alt1;
+    const r2 = Re + alt2;
+    const at = (r1 + r2) / 2;
+    const v1 = Math.sqrt(mu / r1);
+    const v2 = Math.sqrt(mu / r2);
+    const vp = Math.sqrt(mu * (2 / r1 - 1 / at));
+    const va = Math.sqrt(mu * (2 / r2 - 1 / at));
+    const dv1 = vp - v1;
+    const dv2 = v2 - va;
+    const hours = (Math.PI * Math.sqrt(at ** 3 / mu)) / 3600;
+    return {
+      title: "A Hohmann transfer, via vis-viva",
+      question: `Move from a ${alt1} km circular orbit up to a ${alt2} km circular orbit. Find both burns and the total Δv. (μ = 3.986×10⁵ km³/s², R⊕ = 6,378 km.)`,
+      steps: [
+        `v_1 = \\sqrt{\\mu/r_1} = ${v1.toFixed(3)},\\quad v_2 = \\sqrt{\\mu/r_2} = ${v2.toFixed(3)}\\ \\text{km/s}\\quad(a_t = ${at.toFixed(0)}\\ \\text{km})`,
+        `v_p = \\sqrt{\\mu(2/r_1 - 1/a_t)} = ${vp.toFixed(3)},\\quad v_a = \\sqrt{\\mu(2/r_2 - 1/a_t)} = ${va.toFixed(3)}\\ \\text{km/s}`,
+        `\\Delta v = (v_p - v_1) + (v_2 - v_a) = ${dv1.toFixed(3)} + ${dv2.toFixed(3)} = ${(dv1 + dv2).toFixed(3)}\\ \\text{km/s}`,
+      ],
+      note: `Two prograde burns, joined by a half-ellipse coast of about ${hours.toFixed(1)} hours. Note the apogee crawl: at ${va.toFixed(2)} km/s you arrive slower than the ${v2.toFixed(2)} km/s circular speed, so the second burn speeds you UP to stay high — higher is slower. That Δv then becomes propellant through the rocket equation: vis-viva is the exchange rate between where things go and what it costs.`,
+    };
+  },
+
+  "plane-change": (rng) => {
+    const theta = sample(rng, [28.5, 45, 51.6, 63], 1)[0]; // deg
+    const vLow = sample(rng, [7.67, 7.73, 7.79], 1)[0]; // LEO speed, km/s
+    const vHigh = sample(rng, [1.5, 1.6, 1.8], 1)[0]; // slow apogee speed
+    const dvLow = 2 * vLow * Math.sin((theta * Math.PI) / 360);
+    const dvHigh = 2 * vHigh * Math.sin((theta * Math.PI) / 360);
+    return {
+      title: "The plane-change penalty: turn where you are slow",
+      question: `Tilt an orbital plane by ${theta}°. What does it cost at LEO speed (${vLow} km/s), versus at a slow ${vHigh} km/s apogee? (Δv = 2v·sin(θ/2).)`,
+      steps: [
+        `\\Delta v = 2v\\sin(\\theta/2) = 2v\\sin(${(theta / 2).toFixed(2)}°)`,
+        `\\text{at LEO: } 2(${vLow})\\sin(${(theta / 2).toFixed(2)}°) = ${dvLow.toFixed(2)}\\ \\text{km/s}`,
+        `\\text{at apogee: } 2(${vHigh})\\sin(${(theta / 2).toFixed(2)}°) = ${dvHigh.toFixed(2)}\\ \\text{km/s}\\quad(${(dvLow / dvHigh).toFixed(1)}\\times\\text{ cheaper})`,
+      ],
+      note: `Changing direction is ruinous: a ${theta}° tilt at LEO costs ${dvLow.toFixed(
+        1,
+      )} km/s — comparable to an entire LEO-to-GEO transfer — because you are rotating a long velocity vector. The cost is ∝ v, so you turn where you are slow (high up). This is also why launch latitude matters: geography sets your starting plane, and plane changes reach all the way up to GEO.`,
+    };
+  },
+
+  "phasing": (rng) => {
+    const mu = 3.986e5;
+    const r = 6771; // ISS-like radius, km
+    const drop = sample(rng, [10, 20, 30, 50], 1)[0]; // km lower
+    const gap = sample(rng, [8, 12, 16, 20], 1)[0]; // deg behind
+    const T = (2 * Math.PI * Math.sqrt(r ** 3 / mu)) / 60; // min
+    const Tph = (2 * Math.PI * Math.sqrt((r - drop) ** 3 / mu)) / 60;
+    const perOrbit = 360 * ((T - Tph) / T); // deg gained per orbit
+    const orbits = gap / perOrbit;
+    return {
+      title: "Phasing: catch up by dropping down",
+      question: `You trail a target by ${gap}° in a ${r - 6371} km orbit (period ${T.toFixed(1)} min). Drop ${drop} km into a lower phasing orbit — how fast do you close the gap, and in how many orbits? (μ = 3.986×10⁵ km³/s².)`,
+      steps: [
+        `T_{\\text{phasing}} = 2\\pi\\sqrt{(r-${drop})^3/\\mu} = ${Tph.toFixed(2)}\\ \\text{min}\\quad(\\text{vs } ${T.toFixed(2)})`,
+        `\\text{angle gained/orbit} = 360°\\times\\frac{T - T_{\\text{ph}}}{T} = ${perOrbit.toFixed(2)}°`,
+        `\\text{orbits to close } ${gap}° = ${gap}/${perOrbit.toFixed(2)} \\approx ${orbits.toFixed(1)}\\ \\text{orbits}`,
+      ],
+      note: `Dropping lower makes your orbit FASTER (shorter period), so you gain ${perOrbit.toFixed(
+        2,
+      )}° on the target every lap and catch it from below — then rise back to match. To catch something ahead, you slow down. Altitude is the throttle for relative angular position; the catch-up is gentle, which is why rendezvous takes hours to days.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
