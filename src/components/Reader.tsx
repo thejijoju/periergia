@@ -18,6 +18,8 @@ import { VoiceButton } from "./VoiceButton";
 import { QuizPanel } from "./QuizPanel";
 import { WorkedExample } from "./WorkedExample";
 import { SupplyDemandChart } from "./SupplyDemandChart";
+import { IncomeGoodChart } from "./IncomeGoodChart";
+import { GiffenChart } from "./GiffenChart";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -487,6 +489,16 @@ export function Reader({
                   // supply-and-demand diagram with shift sliders.
                   if (typeof cls === "string" && /language-supplydemand\b/.test(cls)) {
                     return <SupplyDemandChart />;
+                  }
+                  // A fenced ```incomegood block becomes an interactive diagram
+                  // of a demand curve shifting with income (normal vs inferior).
+                  if (typeof cls === "string" && /language-incomegood\b/.test(cls)) {
+                    return <IncomeGoodChart />;
+                  }
+                  // A fenced ```giffen block decomposes a price rise into its
+                  // substitution and income effects (normal / inferior / Giffen).
+                  if (typeof cls === "string" && /language-giffen\b/.test(cls)) {
+                    return <GiffenChart />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
