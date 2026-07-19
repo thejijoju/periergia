@@ -1211,6 +1211,88 @@ const GENERATORS: Record<string, Generator> = {
           )}× more than red — which is why the day sky is blue (scattered blue fills it), sunsets are red (blue scattered out of the long horizon path), and objects low on the horizon look reddened and dimmed to astronomers.`,
     };
   },
+
+  // ── Three bodies — the unsolvable problem and its five points ──────────────
+
+  "lagrange-distance": (rng) => {
+    const systems = [
+      { name: "Sun–Earth", R: 1.496e8, mu: 3.0e-6, tag: "where JWST and SOHO sit" },
+      { name: "Sun–Jupiter", R: 7.784e8, mu: 9.54e-4, tag: "Jupiter's Hill radius" },
+      { name: "Earth–Moon", R: 3.844e5, mu: 1.215e-2, tag: "the cislunar gateway region" },
+    ];
+    const s = systems[sample(rng, [0, 1, 2], 1)[0]];
+    const r = s.R * Math.cbrt(s.mu / 3);
+    const pct = (100 * r) / s.R;
+    return {
+      title: "Locating L1 and L2 with the Hill radius",
+      question: `In the ${s.name} system (mass parameter μ = ${sci(
+        s.mu,
+        2,
+      ).replace("\\times10^{", "×10^").replace("}", "")}, separation R = ${sci(s.R, 3)
+        .replace("\\times10^{", "×10^")
+        .replace("}", "")} km), estimate the distance from the smaller body to L1 and L2 using r ≈ R·(μ/3)^(1/3).`,
+      steps: [
+        `r \\approx R\\left(\\tfrac{\\mu}{3}\\right)^{1/3} = ${sci(s.R, 3)}\\left(\\tfrac{${sci(
+          s.mu,
+          2,
+        )}}{3}\\right)^{1/3}`,
+        `r \\approx ${sci(r, 3)}\\ \\text{km} \\approx ${pct.toFixed(2)}\\%\\ \\text{of } R`,
+      ],
+      note: `Both L1 (sunward/inner) and L2 (anti-sunward/outer) sit at roughly this same distance — the Hill radius, where the smaller body's gravity perturbs the orbital period to match. For ${s.name} that is ${s.tag}. L1 and L2 are unstable saddles, so a spacecraft flies a looping halo orbit around the empty point and station-keeps with a few m/s per year.`,
+    };
+  },
+
+  "lagrange-stability": (rng) => {
+    const systems = [
+      { name: "Sun–Earth", ratio: 333000 },
+      { name: "Sun–Jupiter", ratio: 1048 },
+      { name: "Earth–Moon", ratio: 81.3 },
+      { name: "Pluto–Charon", ratio: 8.1 },
+      { name: "an equal-mass binary star", ratio: 1 },
+    ];
+    const s = systems[sample(rng, [0, 1, 2, 3, 4], 1)[0]];
+    const thresh = (25 + Math.sqrt(621)) / 2;
+    const stable = s.ratio > thresh;
+    return {
+      title: "Are the triangular points L4 and L5 stable?",
+      question: `The triangular Lagrange points are stable only if the primaries' mass ratio exceeds (25+√621)/2. For ${s.name} (mass ratio ${s.ratio.toLocaleString(
+        "en-US",
+      )}), are L4 and L5 stable?`,
+      steps: [
+        `\\text{threshold} = \\tfrac{25+\\sqrt{621}}{2} = ${thresh.toFixed(2)}`,
+        `m_1/m_2 = ${s.ratio.toLocaleString("en-US")} \\ ${
+          stable ? ">" : "<"
+        }\\ ${thresh.toFixed(2)} \\Rightarrow \\textbf{${stable ? "stable" : "unstable"}}`,
+      ],
+      note: stable
+        ? `A large mass hierarchy makes L4/L5 stable — so they trap material for the age of the solar system. This is why Sun–Jupiter L4/L5 hold over a million Trojan asteroids in two swarms (60° ahead and behind), and why Earth–Moon L4/L5 are proposed for space colonies (free station-keeping). The stability is counterintuitive: L4/L5 are potential-energy MAXIMA, and the Coriolis force in the rotating frame curls an escaping body back into a loop.`
+        : `Below the 24.96 threshold the triangular points cannot hold a population — a body there drifts away. Comparable-mass systems (equal binaries, Pluto–Charon) have no stable Trojans. Stability is a gift of a strong mass hierarchy, delivered by the Coriolis force in the rotating frame.`,
+    };
+  },
+
+  "lyapunov-horizon": (rng) => {
+    const systems = [
+      { name: "the solar system", tau: 5, unit: "Myr" },
+      { name: "Pluto's orbit", tau: 15, unit: "Myr" },
+      { name: "Hyperion's tumble", tau: 40, unit: "days" },
+    ];
+    const s = systems[sample(rng, [0, 1, 2], 1)[0]];
+    const nTau = sample(rng, [10, 20, 30], 1)[0];
+    const t = nTau * s.tau;
+    const amp = Math.exp(nTau);
+    return {
+      title: "The prediction horizon: determined, yet unknowable",
+      question: `A chaotic system's errors grow as e^(t/τ). ${s.name.charAt(0).toUpperCase() + s.name.slice(1)} has a Lyapunov time τ ≈ ${s.tau} ${s.unit}. By how much is a tiny initial uncertainty amplified after ${nTau} Lyapunov times, and how long is that?`,
+      steps: [
+        `t = ${nTau}\\,\\tau = ${t.toLocaleString("en-US")}\\ \\text{${s.unit}}`,
+        `\\text{amplification} = e^{t/\\tau} = e^{${nTau}} = ${sci(amp, 2)}`,
+      ],
+      note: `After ~20 Lyapunov times a ${sci(amp, 1).replace(
+        "\\times10^{",
+        "×10^",
+      ).replace("}", "")}-fold blow-up swallows any measurement, so the future is uncomputable — not from randomness but from exponential error growth. Each extra digit of initial precision buys only ONE more Lyapunov time (logarithmic), so no instrument can reach far. Determinism ≠ predictability: this is the chaos Poincaré glimpsed in 1890.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
