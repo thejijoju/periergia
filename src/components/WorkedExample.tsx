@@ -1293,6 +1293,77 @@ const GENERATORS: Record<string, Generator> = {
       ).replace("}", "")}-fold blow-up swallows any measurement, so the future is uncomputable — not from randomness but from exponential error growth. Each extra digit of initial precision buys only ONE more Lyapunov time (logarithmic), so no instrument can reach far. Determinism ≠ predictability: this is the chaos Poincaré glimpsed in 1890.`,
     };
   },
+
+  // ── The photon economy — counting scarce light ────────────────────────────
+
+  "magnitude-flux": (rng) => {
+    const bright = [
+      { name: "the Sun", m: -26.7 },
+      { name: "Vega", m: 0 },
+      { name: "a naked-eye star", m: 2 },
+      { name: "the faintest naked-eye star", m: 6 },
+    ];
+    const faint = [
+      { name: "a small-telescope star", m: 12 },
+      { name: "a Hubble Deep Field galaxy", m: 25 },
+      { name: "the faintest detected galaxy", m: 30 },
+    ];
+    const b = bright[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const f = faint[sample(rng, [0, 1, 2], 1)[0]];
+    const dm = f.m - b.m;
+    const ratio = 10 ** (0.4 * dm);
+    return {
+      title: "Magnitude arithmetic: a difference is a ratio",
+      question: `How many times fainter is ${f.name} (magnitude ${f.m}) than ${b.name} (magnitude ${b.m})? Use m₁ − m₂ = −2.5·log₁₀(F₁/F₂).`,
+      steps: [
+        `\\Delta m = ${f.m} - (${b.m}) = ${dm.toFixed(1)}\\ \\text{mag}`,
+        `F_{\\text{bright}}/F_{\\text{faint}} = 10^{0.4\\,\\Delta m} = 10^{${(0.4 * dm).toFixed(
+          2,
+        )}} = ${ratio >= 1e4 ? sci(ratio, 1) : Math.round(ratio).toLocaleString("en-US")}`,
+      ],
+      note: `Five magnitudes is defined as exactly 100× in brightness, so the scale is logarithmic — a magnitude DIFFERENCE is a flux RATIO, never a sum. And it runs backward: brighter means a smaller (even negative) number, a 3,000-year-old inheritance from Hipparchus counting stars by eye. The one payoff: it compresses the universe's ~10²³ range of brightness into a handful of readable numbers.`,
+    };
+  },
+
+  "distance-modulus": (rng) => {
+    const M = sample(rng, [-5, -2, 1, 3, 5], 1)[0];
+    const dmod = sample(rng, [5, 10, 15, 20, 25], 1)[0]; // m − M
+    const m = M + dmod;
+    const dPc = 10 * 10 ** (dmod / 5);
+    const dLy = dPc * 3.26;
+    return {
+      title: "The distance modulus: brightness into distance",
+      question: `A standard candle has absolute magnitude M = ${M} and is observed at apparent magnitude m = ${m}. How far away is it? Use m − M = 5·log₁₀(d/10 pc).`,
+      steps: [
+        `m - M = ${m} - (${M}) = ${dmod}`,
+        `d = 10\\cdot 10^{(m-M)/5} = 10\\cdot 10^{${(dmod / 5).toFixed(
+          1,
+        )}} = ${sci(dPc, 2)}\\ \\text{pc}`,
+        `\\quad = ${sci(dLy, 2)}\\ \\text{ly}\\quad(1\\,\\text{pc}=3.26\\,\\text{ly})`,
+      ],
+      note: `This is the inverse-square law written as a subtraction: knowing an object's true brightness (M) and measuring how faint it looks (m), the gap m − M gives its distance. Identify a "standard candle" — a Cepheid, a Type Ia supernova — and every rung of the cosmic distance ladder is this one equation. The great dimmer is also the great measuring stick.`,
+    };
+  },
+
+  "snr-integration": (rng) => {
+    const snr1 = sample(rng, [5, 10, 20], 1)[0];
+    const t1 = sample(rng, [1, 2, 4], 1)[0]; // hours
+    const snr2 = sample(rng, [40, 50, 100], 1)[0];
+    const N1 = snr1 ** 2;
+    const factor = (snr2 / snr1) ** 2;
+    const t2 = t1 * factor;
+    return {
+      title: "The tyranny of the square root",
+      question: `Photons arrive at random, so a count of N has noise √N and SNR = √N. You reach SNR = ${snr1} in ${t1} h on a source. How many photons was that, and how long to reach SNR = ${snr2}?`,
+      steps: [
+        `N = \\text{SNR}^2 = ${snr1}^2 = ${N1}\\ \\text{photons for SNR}=${snr1}`,
+        `\\text{SNR}\\propto\\sqrt{t}\\ \\Rightarrow\\ t_2 = t_1\\left(\\tfrac{\\text{SNR}_2}{\\text{SNR}_1}\\right)^2 = ${t1}\\times${factor.toFixed(
+          0,
+        )} = ${t2.toLocaleString("en-US")}\\ \\text{h}`,
+      ],
+      note: `Because SNR grows only as √N, precision is brutally expensive: doubling SNR needs 4× the light, ten times deeper needs 100×. This is why deep astronomy is time-hungry — the Hubble Deep Field stared ~10 days to pull 3,000 galaxies from "empty" sky — and why aperture is prized (area ∝ D²: photons, hence SNR, scale with the square of the mirror).`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
