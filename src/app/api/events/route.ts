@@ -7,41 +7,25 @@ export const runtime = "nodejs";
 // Anything shorter is a skim, not a read.
 const READ_MIN_SECONDS = 180;
 
-// Datacenter / cloud regions whose "visits" are almost all bots, scanners, and
-// proxied traffic rather than real readers. They aren't flagged as crawlers by
-// the bot heuristic (no bot UA), so they'd otherwise inflate human metrics.
-// Excluded from every human metric (page loads, reads, dwell, geography, recent)
-// and tallied separately as "Datacenter hits". Matched case-insensitively on the
-// raw city name. NOTE: Singapore and Frankfurt are also real cities with real
-// readers — excluding them trades a little genuine signal for a lot less noise;
-// trim this list if you'd rather keep them.
-const EXCLUDED_CITIES = new Set([
-  "santa clara",
-  "ashburn",
-  "singapore",
-  "frankfurt am main",
-]);
-
-function isExcludedCity(r: { city: string | null }): boolean {
-  return !!r.city && EXCLUDED_CITIES.has(r.city.trim().toLowerCase());
-}
-
-// Non-human traffic to strip from the human metrics. Two rules, both on page
-// loads only (never on read beacons, so a genuine read is never dropped):
-//   1. datacenter/cloud regions (above);
-//   2. a load with NEITHER a geolocated city NOR a referrer — an un-flagged
-//      bot/scraper. Real browsers geolocate to a city (even on a direct hit or
-//      bookmark) or arrive with a referer (search, internal links), so a load
-//      with neither is a headless fetch. (The "hops across unrelated topics"
-//      signal would need per-session/IP grouping, which the events table does
-//      not store; no-city-and-no-referrer captures the same traffic from the
-//      fields we have.) Small false-positive risk: a real visitor on a network
-//      Vercel can't geolocate who also typed the URL directly — rare, and they
-//      bounce without a read anyway.
-function isExcludedNonBot(r: EventRow): boolean {
-  if (isExcludedCity(r)) return true;
-  const isLoad = r.name === "article_request" || r.name === "page_view";
-  return isLoad && !r.city && !r.referrer;
+// A "page load" is a server-side request row — `article_request` (logged on
+// EVERY reader-page fetch, for the warming worklist) or `page_view` (homepage
+// and other pages). These are fetched by real browsers AND by every crawler,
+// scraper, and proxy alike, so a raw load proves nothing about a human. We keep
+// them only as the operational demand signal (the warming worklist) and never
+// count them toward readership.
+//
+// The human signal is the SEPARATE `article_read` dwell beacon — client-side JS
+// that only a real browser fires, after rendering the page and staying a few
+// seconds (see summarize). Bots fetch HTML and never run it, so they cannot
+// forge it. That is why this dashboard no longer excludes traffic by city: a
+// datacenter/cloud exit (San Jose, Santa Clara, an iCloud Private Relay egress)
+// is a real person if — and only if — the beacon fired, and a bot there never
+// fires it. The beacon judges the visitor, not the city, so a genuine reader
+// behind a corporate VPN or Private Relay is counted, and a scraper in the same
+// city is not. City-based exclusion was a crude proxy that did the opposite:
+// it dropped real Private-Relay readers while missing browser-spoofing bots.
+function isLoad(r: EventRow): boolean {
+  return r.name === "article_request" || r.name === "page_view";
 }
 
 // Private analytics view. Open in a browser as
@@ -88,30 +72,30 @@ function tally(rows: EventRow[], key: (r: EventRow) => string | null) {
 
 function summarize(rows: EventRow[]) {
   // Two distinct signals live in the events table:
-  //  • DEMAND  — `article_request` rows (logged server-side on every page load,
-  //    including bounces during the slow cold generation). These drive the
-  //    warming worklist. Crawlers are flagged (`bot`), so exclude them here.
-  //  • ENGAGEMENT — `article_read` rows (the client dwell beacon). Legacy rows
-  //    predate the `name`/`bot` columns, so treat a missing name as a read.
-  // "Human" = a real reader: not a flagged crawler, not from a datacenter
-  // region, and not an un-flagged no-geo/no-referrer bot (see isExcludedNonBot).
-  const human = rows.filter((r) => !r.bot && !isExcludedNonBot(r));
-  const requests = human.filter((r) => r.name === "article_request");
-  const pageviews = human.filter((r) => r.name === "page_view");
+  //  • ENGAGEMENT — `article_read` rows: the client dwell beacon, fired only by a
+  //    real browser that rendered the page and stayed at least a few seconds.
+  //    Bots and scrapers just fetch HTML and never run the JS, so they cannot
+  //    forge it. THIS is the human signal — every human number below derives from
+  //    it, and nothing is excluded by city, because the beacon already tells a
+  //    reader (who fired it) from a bot (who didn't), whatever the city.
+  //  • DEMAND — `article_request` rows (logged server-side on EVERY reader-page
+  //    fetch, including bounces during a slow cold generation, and including
+  //    crawlers/scrapers). These drive the warming worklist ONLY; they are not a
+  //    human metric. Flagged crawlers (`bot`) are dropped even from the worklist.
+  //
+  // Legacy `article_read` rows predate the `name`/`bot` columns; a non-load,
+  // non-bot row is treated as a read.
+  const humanReads = rows.filter((r) => !r.bot && !isLoad(r)); // article_read + legacy
+  const engaged = humanReads.length;
   // A genuine READ requires real dwell: at least 3 minutes on the page. A shorter
-  // article_read beacon is a "skim" — the reader opened the article but plainly
-  // didn't read it — so it is tracked (dwell distribution) but never counted as a
-  // read. Legacy rows with no recorded dwell fall below the bar and don't count.
-  const allReads = human.filter((r) => r.name !== "article_request" && r.name !== "page_view"); // article_read + legacy
-  const reads = allReads.filter((r) => (r.seconds ?? 0) >= READ_MIN_SECONDS);
-  // Every human page load — articles + homepage/other — i.e. all world traffic.
-  const pageLoads = [...requests, ...pageviews];
-  const isLoad = (r: EventRow) => r.name === "article_request" || r.name === "page_view";
+  // beacon is a "skim" — the reader opened the article but plainly didn't read it
+  // — tracked (dwell distribution) but never counted as a read.
+  const reads = humanReads.filter((r) => (r.seconds ?? 0) >= READ_MIN_SECONDS);
+  // Warming worklist / demand — server-side requests. Bot-inclusive BY DESIGN
+  // (it is an operational pre-generation signal, not a readership count); only
+  // flagged crawlers are dropped so the worklist isn't pure crawler noise.
+  const requests = rows.filter((r) => !r.bot && r.name === "article_request");
   const crawlerLoads = rows.filter((r) => r.bot && isLoad(r)).length;
-  // Non-human loads excluded from the human metrics above (datacenter regions +
-  // un-flagged no-geo/no-referrer bots) — surfaced so the excluded volume is
-  // visible, not silently dropped.
-  const excludedLoads = rows.filter((r) => !r.bot && isExcludedNonBot(r) && isLoad(r)).length;
 
   // Engagement (reads) — dwell metrics on the read beacon.
   const perArticle = new Map<string, { reads: number; totalSeconds: number }>();
@@ -161,27 +145,26 @@ function summarize(rows: EventRow[]) {
 
   const coldRequests = requests.filter((r) => r.cold).length;
 
-  // Geography + "by page" span ALL human page loads (articles + homepage), so
-  // the dashboard shows everyone who showed up, from everywhere.
-  const byCountry = tally(pageLoads, (r) => r.country);
-  const byCity = tally(pageLoads, (r) => (r.city && r.country ? `${r.city}, ${r.country}` : r.city));
-  const byPage = tally(pageLoads, (r) => r.path);
+  // Geography, "by page", and referrers span the VERIFIED HUMANS (the dwell
+  // beacon, which the /api/track route geo-tags), so the map shows where real
+  // readers are — not where bots and proxies hit.
+  const byCountry = tally(humanReads, (r) => r.country);
+  const byCity = tally(humanReads, (r) => (r.city && r.country ? `${r.city}, ${r.country}` : r.city));
+  const byPage = tally(humanReads, (r) => r.path);
 
   return {
     generatedAt: new Date().toISOString(),
     window: { events: rows.length, newest: rows[0]?.ts ?? null, oldest: rows.at(-1)?.ts ?? null },
     totals: {
-      pageLoads: pageLoads.length,
-      requests: requests.length,
+      // Headline human signal: every article_read beacon is client-side JS that
+      // only fires in a real browser that rendered the page and stayed ≥3s. Bots
+      // and scrapers (which just fetch HTML) never fire it, so this cannot be
+      // inflated by crawler/proxy traffic the way raw page loads can.
+      engaged,
+      reads: reads.length,
+      requests: requests.length, // warming demand only — bot-inclusive, not human
       coldRequests,
       crawlerLoads,
-      excludedLoads,
-      // The truest human signal: every article_read beacon is client-side JS that
-      // only fires in a real browser that rendered the page and stayed ≥3s. Bots
-      // and scrapers (which just fetch HTML) never fire it, so this can't be
-      // inflated by crawler/proxy traffic the way page loads can.
-      engaged: allReads.length,
-      reads: reads.length,
       avgSeconds,
       medianSeconds,
       articles: articles.length,
@@ -193,12 +176,12 @@ function summarize(rows: EventRow[]) {
     byPage,
     byCountry,
     byCity,
-    byCityRaw: tally(pageLoads, (r) => r.city), // raw city name, for delete-by-city
-    byDwellBucket: tally(allReads, (r) => r.dwell),
+    byCityRaw: tally(humanReads, (r) => r.city), // raw city name, for delete-by-city
+    byDwellBucket: tally(humanReads, (r) => r.dwell),
     byDepth: tally(reads, (r) => r.depth),
     byLevel: tally(reads, (r) => r.level),
-    byReferrer: tally(pageLoads, (r) => r.referrer),
-    recent: human.slice(0, 100),
+    byReferrer: tally(humanReads, (r) => r.referrer),
+    recent: humanReads.slice(0, 100),
   };
 }
 
@@ -263,15 +246,13 @@ function signupsCard(signups: SignupRow[]): string {
 function renderHtml(s: ReturnType<typeof summarize>, signups: SignupRow[]): string {
   const t = s.totals;
   const tiles = [
-    { label: "Page loads", value: String(t.pageLoads) },
     { label: "Engaged humans", value: String(t.engaged) },
-    { label: "Article requests", value: String(t.requests) },
-    { label: "Cold (to warm)", value: String(t.coldRequests) },
     { label: "Reads (≥3m)", value: String(t.reads) },
     { label: "Research signups", value: String(signups.length) },
     { label: "Countries", value: String(t.countries) },
+    { label: "Requests (server-side)", value: String(t.requests) },
+    { label: "Cold (to warm)", value: String(t.coldRequests) },
     { label: "Crawler hits", value: String(t.crawlerLoads) },
-    { label: "Non-human (excluded)", value: String(t.excludedLoads) },
   ]
     .map(
       (x) => `<div class="tile"><div class="v">${esc(x.value)}</div><div class="l">${esc(x.label)}</div></div>`,
@@ -396,7 +377,7 @@ ${signupsCard(signups)}
 <section class="card wide danger"><h2>Danger zone</h2>
 <p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
 <button data-del data-scope="all" class="wipe">Wipe all events</button></section>
-<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” Non-human traffic is excluded from every human metric and tallied separately as “Non-human (excluded)”: datacenter/cloud regions (Santa Clara, Ashburn, Singapore, Frankfurt), plus any page load with <i>neither a geolocated city nor a referrer</i> — the fingerprint of un-flagged bots and scrapers (real browsers geolocate to a city or arrive with a referrer). <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = genuine reads only — the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are logged as <b>skim</b> and never counted as reads. <b>Engaged humans</b> = real browsers that opened an article and stayed at least a few seconds, firing the client-side dwell beacon; bots and scrapers only fetch HTML and never fire it, so this is the truest human count (and the honest denominator for reads). None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
+<footer><b>Engaged humans</b> is the headline, and every human number here is built from it: a real browser that opened an article and stayed at least a few seconds fires a client-side <b>dwell beacon</b>; bots and scrapers only fetch HTML and never run the JS, so they cannot forge it. That is why nothing is excluded by city anymore — a datacenter/cloud exit (San Jose, Santa Clara, an iCloud Private Relay egress) counts as a person if <i>and only if</i> the beacon fired, so a real reader behind a VPN or Private Relay is kept, and a scraper in the same city is not. The beacon judges the visitor, not the city. Geography, top pages, and Recent activity all reflect these verified humans. <b>Reads</b> = the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are <b>skims</b> and never counted as reads. <b>Requests (server-side)</b> is a different thing: every reader-page fetch is logged server-side for the <b>warming worklist</b>, and it is fetched by real browsers AND every crawler/proxy alike — so it is <i>not</i> a human metric, only an operational signal for which pages to pre-generate. Each request is <b>cold</b> (hit an uncached page — slow, worth warming) or cached; flagged crawlers are tallied separately as <b>Crawler hits</b>. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
 </div>
 <script>
 document.addEventListener('click', function (e) {
