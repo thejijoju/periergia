@@ -1059,6 +1059,84 @@ const GENERATORS: Record<string, Generator> = {
       )}). Fly closer and you turn more, but into worse radiation. The energy is stolen from ${p.name}, which slows in its orbit by roughly 10⁻²⁴ km/s.`,
     };
   },
+
+  // ── The orbital commons — hypervelocity debris ────────────────────────────
+
+  "debris-energy": (rng) => {
+    const grams = sample(rng, [0.5, 1, 5, 10, 100], 1)[0];
+    const v = sample(rng, [8, 10, 12, 14], 1)[0]; // km/s
+    const m = grams / 1000; // kg
+    const vms = v * 1000; // m/s
+    const KE = 0.5 * m * vms ** 2; // J
+    const tnt = KE / 4184; // grams of TNT
+    const bullet = 0.5 * 0.004 * 900 ** 2; // 4 g at 900 m/s = 1620 J
+    const ratio = KE / bullet;
+    const tntStr = tnt >= 1000 ? `${(tnt / 1000).toFixed(1)} kg` : `${tnt.toFixed(0)} g`;
+    return {
+      title: "A fleck of paint hits like a bullet",
+      question: `A ${grams}-gram debris fragment strikes a satellite at ${v} km/s. Find its kinetic energy, its TNT equivalent, and how it compares to a high-powered rifle bullet (4 g at 900 m/s ≈ 1,620 J). (1 g TNT = 4,184 J.)`,
+      steps: [
+        `KE = \\tfrac{1}{2}mv^2 = \\tfrac{1}{2}(${m}\\,\\text{kg})(${vms.toLocaleString(
+          "en-US",
+        )}\\,\\text{m/s})^2 = ${sci(KE, 2)}\\ \\text{J}`,
+        `\\text{TNT-equivalent} = ${Math.round(KE).toLocaleString("en-US")}/4184 = ${tnt.toFixed(
+          0,
+        )}\\ \\text{g of TNT}`,
+        `\\text{vs a rifle bullet: } ${Math.round(KE).toLocaleString(
+          "en-US",
+        )}/1620 \\approx ${ratio.toFixed(0)}\\times`,
+      ],
+      note: `Kinetic energy scales as v², and orbital speed is so high that a mere ${grams}-gram fragment carries the punch of ${tntStr} of TNT — about ${ratio.toFixed(
+        0,
+      )}× a rifle bullet. This is why a lost bolt is a bomb and a paint chip has cratered Shuttle windows. The 1–10 cm population is the deadliest: lethal, yet too small to track and dodge.`,
+    };
+  },
+
+  "debris-closing-speed": (rng) => {
+    const mu = 3.986e5; // km³/s²
+    const Re = 6378;
+    const alt = sample(rng, [400, 800, 1200], 1)[0];
+    const v = Math.sqrt(mu / (Re + alt)); // km/s
+    const theta = sample(rng, [15, 45, 90, 150, 180], 1)[0]; // crossing angle, deg
+    const vrel = 2 * v * Math.sin((theta * Math.PI) / 360);
+    return {
+      title: "Why the crossing angle sets the lethality",
+      question: `Two objects share a ${alt} km circular orbit altitude but cross at ${theta}°. How fast do they close? (μ = 3.986×10⁵ km³/s², R⊕ = 6,378 km.)`,
+      steps: [
+        `v = \\sqrt{\\mu/(R_\\oplus + ${alt})} = ${v.toFixed(3)}\\ \\text{km/s}\\quad(\\text{both objects})`,
+        `v_{\\text{rel}} = 2v\\sin(\\theta/2) = 2(${v.toFixed(2)})\\sin(${(theta / 2).toFixed(
+          1,
+        )}°) = ${vrel.toFixed(2)}\\ \\text{km/s}`,
+      ],
+      note: `Same speed, different directions: the closing speed is the vector difference, 2v·sin(θ/2) — near zero for a co-moving pair, √2·v for a right-angle crossing, up to 2v ≈ ${(
+        2 * v
+      ).toFixed(
+        1,
+      )} km/s head-on. The ~10 km/s typical collision is why debris is hypervelocity. It is the very same 2v·sin(θ/2) as the plane-change penalty — geometry rotating a velocity vector.`,
+    };
+  },
+
+  "collision-pairs": (rng) => {
+    const n = sample(rng, [2000, 5000, 10000, 40000], 1)[0];
+    const pairs = (n * (n - 1)) / 2;
+    const n2 = n * 2;
+    const pairs2 = (n2 * (n2 - 1)) / 2;
+    const growth = pairs2 / pairs;
+    return {
+      title: "Why collisions grow as the square of the population",
+      question: `Low Earth orbit holds about ${n.toLocaleString(
+        "en-US",
+      )} tracked objects. How many distinct pairs could collide — and what happens to that count if the population doubles?`,
+      steps: [
+        `\\text{pairs} = \\frac{n(n-1)}{2} = \\frac{${n.toLocaleString(
+          "en-US",
+        )}\\cdot${(n - 1).toLocaleString("en-US")}}{2} = ${sci(pairs, 2)}`,
+        `\\text{double to } ${n2.toLocaleString("en-US")}:\\ \\frac{n(n-1)}{2} = ${sci(pairs2, 2)}`,
+        `\\text{ratio} = ${growth.toFixed(2)}\\times \\approx 4\\times\\quad(\\text{grows as } n^2)`,
+      ],
+      note: `Collisions need pairs, and the pair count grows as n²/2 — so doubling the population roughly quadruples the collision opportunities. Each collision spawns thousands of fragments that add to n, raising the rate again: the quadratic feedback behind the Kessler cascade. Past a critical density each collision causes more than one more — an orbital R₀ > 1 — and it runs away.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
