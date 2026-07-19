@@ -940,6 +940,125 @@ const GENERATORS: Record<string, Generator> = {
       )}° on the target every lap and catch it from below — then rise back to match. To catch something ahead, you slow down. Altitude is the throttle for relative angular position; the catch-up is gentle, which is why rendezvous takes hours to days.`,
     };
   },
+
+  // ── Interplanetary — patched conics and theft ─────────────────────────────
+
+  "interplanetary-transfer": (rng) => {
+    const muSun = 1.327e11; // km³/s²
+    const AU = 1.496e8; // km
+    const dests = [
+      { name: "Mars", au: 1.524 },
+      { name: "Venus", au: 0.723 },
+      { name: "Jupiter", au: 5.203 },
+    ];
+    const dest = dests[sample(rng, [0, 1, 2], 1)[0]];
+    const r1 = AU;
+    const r2 = dest.au * AU;
+    const v1 = Math.sqrt(muSun / r1);
+    const v2 = Math.sqrt(muSun / r2);
+    const at = (r1 + r2) / 2;
+    const vt1 = Math.sqrt(muSun * (2 / r1 - 1 / at)); // transfer speed at Earth's orbit
+    const vt2 = Math.sqrt(muSun * (2 / r2 - 1 / at)); // transfer speed at the planet's orbit
+    const vDep = Math.abs(vt1 - v1);
+    const vArr = Math.abs(v2 - vt2);
+    const days = (Math.PI * Math.sqrt(at ** 3 / muSun)) / 86400;
+    const outer = dest.au > 1;
+    return {
+      title: "An interplanetary Hohmann transfer, in the Sun's frame",
+      question: `Design a heliocentric transfer from Earth (1.000 AU) to ${dest.name} (${dest.au.toFixed(
+        3,
+      )} AU). Find the departure and arrival hyperbolic-excess speeds and the trip time. (μ_☉ = 1.327×10¹¹ km³/s², 1 AU = 1.496×10⁸ km.)`,
+      steps: [
+        `v_1 = \\sqrt{\\mu_\\odot/r_1} = ${v1.toFixed(3)},\\quad v_2 = \\sqrt{\\mu_\\odot/r_2} = ${v2.toFixed(3)}\\ \\text{km/s}\\quad(a_t = ${(
+          at / AU
+        ).toFixed(3)}\\ \\text{AU})`,
+        `v_{t1} = \\sqrt{\\mu_\\odot(2/r_1 - 1/a_t)} = ${vt1.toFixed(3)},\\quad v_{t2} = \\sqrt{\\mu_\\odot(2/r_2 - 1/a_t)} = ${vt2.toFixed(3)}\\ \\text{km/s}`,
+        `v_\\infty^{\\text{dep}} = |v_{t1} - v_1| = ${vDep.toFixed(3)},\\quad v_\\infty^{\\text{arr}} = |v_2 - v_{t2}| = ${vArr.toFixed(3)}\\ \\text{km/s}`,
+        `t = \\pi\\sqrt{a_t^3/\\mu_\\odot} = ${days.toFixed(1)}\\ \\text{days} \\approx ${(
+          days / 30.44
+        ).toFixed(1)}\\ \\text{months}`,
+      ],
+      note: `Earth is a free ${v1.toFixed(
+        1,
+      )} km/s launch platform: you inherit its orbital speed and pay only the ${vDep.toFixed(
+        2,
+      )} km/s of excess. Departing ${
+        outer
+          ? "prograde (with Earth's motion) climbs you outward"
+          : "retrograde (against Earth's motion) drops you sunward"
+      } — ${dest.name} is ${
+        outer ? "higher and slower" : "lower and faster"
+      }. These v∞ are speeds relative to the planets at the sphere-of-influence boundaries, not engine burns; the actual burn is smaller, by the Oberth effect.`,
+    };
+  },
+
+  "oberth-departure": (rng) => {
+    const muE = 3.986e5; // km³/s²
+    const Re = 6378;
+    const alt = sample(rng, [200, 300, 400], 1)[0];
+    const vinf = sample(rng, [2.9, 3.2, 3.5, 3.8], 1)[0];
+    const r = Re + alt;
+    const vPark = Math.sqrt(muE / r);
+    const vEsc = Math.sqrt((2 * muE) / r);
+    const vHyp = Math.sqrt(vinf ** 2 + vEsc ** 2);
+    const oberth = vHyp - vPark;
+    const naive = vEsc - vPark + vinf;
+    const saving = naive - oberth;
+    const pct = (100 * saving) / naive;
+    return {
+      title: "The Oberth effect: one deep burn beats escape-then-add",
+      question: `From a ${alt} km parking orbit you need a hyperbolic excess of v∞ = ${vinf} km/s to depart. Compare the single deep burn against escaping first and adding v∞ out in slow space. (μ⊕ = 3.986×10⁵ km³/s², R⊕ = 6,378 km.)`,
+      steps: [
+        `v_{\\text{park}} = \\sqrt{\\mu/r} = ${vPark.toFixed(3)},\\quad v_{\\text{esc}} = \\sqrt{2\\mu/r} = ${vEsc.toFixed(3)}\\ \\text{km/s}`,
+        `\\Delta v_{\\text{Oberth}} = \\sqrt{v_\\infty^2 + v_{\\text{esc}}^2} - v_{\\text{park}} = ${vHyp.toFixed(3)} - ${vPark.toFixed(3)} = ${oberth.toFixed(3)}\\ \\text{km/s}`,
+        `\\Delta v_{\\text{naive}} = (v_{\\text{esc}} - v_{\\text{park}}) + v_\\infty = ${(
+          vEsc - vPark
+        ).toFixed(3)} + ${vinf} = ${naive.toFixed(3)}\\ \\text{km/s}\\quad(\\text{saves } ${saving.toFixed(
+          3,
+        )},\\ ${pct.toFixed(0)}\\%)`,
+      ],
+      note: `The energy a burn adds is v·Δv — proportional to how fast you already move. Down deep at ${vPark.toFixed(
+        1,
+      )} km/s you are moving fastest, so one hard burn there dumps the propellant's whole energy into the ship; escaping first and adding v∞ out where you crawl wastes energy in the exhaust. Burn deep, burn fast, burn once. This is the "trans-Mars injection" kick, and it is why you never spiral out slowly.`,
+    };
+  },
+
+  "gravity-assist": (rng) => {
+    const planets = [
+      { name: "Jupiter", mu: 1.267e8, muStr: "1.267×10⁸", R: 71492 },
+      { name: "Saturn", mu: 3.793e7, muStr: "3.793×10⁷", R: 60268 },
+    ];
+    const p = planets[sample(rng, [0, 1], 1)[0]];
+    const vinf = sample(rng, [4, 5, 6, 7], 1)[0];
+    const mult = sample(rng, [3, 5, 10], 1)[0];
+    const rp = mult * p.R;
+    const e = 1 + (rp * vinf ** 2) / p.mu;
+    const delta = 2 * Math.asin(1 / e) * (180 / Math.PI);
+    const maxGain = 2 * vinf;
+    const massRatio = Math.exp(maxGain / 4.4);
+    return {
+      title: "A gravity assist: the turn angle and the free Δv",
+      question: `A spacecraft flies past ${p.name} with v∞ = ${vinf} km/s at a periapsis of ${mult} ${p.name} radii. Find the flyby eccentricity, the turn angle, and the maximum heliocentric speed it can gain. (μ = ${p.muStr} km³/s², R = ${p.R.toLocaleString(
+        "en-US",
+      )} km.)`,
+      steps: [
+        `r_p = ${mult}R = ${rp.toLocaleString("en-US")}\\ \\text{km},\\quad e = 1 + \\frac{r_p v_\\infty^2}{\\mu} = ${e.toFixed(
+          3,
+        )}`,
+        `\\delta = 2\\arcsin(1/e) = 2\\arcsin(${(1 / e).toFixed(3)}) = ${delta.toFixed(1)}°`,
+        `\\Delta v_{\\max} = 2v_\\infty = ${maxGain.toFixed(1)}\\ \\text{km/s}\\quad(\\text{a rocket would need mass ratio } e^{\\Delta v/v_e} \\approx ${massRatio.toFixed(
+          0,
+        )})`,
+      ],
+      note: `Relative to ${p.name} the speed in equals the speed out — gravity only ROTATES the velocity by ${delta.toFixed(
+        0,
+      )}°. But added back to ${p.name}'s motion around the Sun, that rotation changes the heliocentric speed by up to 2v∞ = ${maxGain.toFixed(
+        1,
+      )} km/s — free Δv no chemical rocket could carry (mass ratio ≈ ${massRatio.toFixed(
+        0,
+      )}). Fly closer and you turn more, but into worse radiation. The energy is stolen from ${p.name}, which slows in its orbit by roughly 10⁻²⁴ km/s.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
