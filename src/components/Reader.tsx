@@ -21,6 +21,7 @@ import { SupplyDemandChart } from "./SupplyDemandChart";
 import { IncomeGoodChart } from "./IncomeGoodChart";
 import { GiffenChart } from "./GiffenChart";
 import { BlackbodyChart } from "./BlackbodyChart";
+import { SegmentedMirror } from "./SegmentedMirror";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -505,6 +506,11 @@ export function Reader({
                   // "thermometer of violence" (Wien's law, temperature slider).
                   if (typeof cls === "string" && /language-blackbody\b/.test(cls)) {
                     return <BlackbodyChart />;
+                  }
+                  // A fenced ```segmentedmirror block becomes the drag-to-rotate
+                  // 3D hexagonal segmented-mirror model.
+                  if (typeof cls === "string" && /language-segmentedmirror\b/.test(cls)) {
+                    return <SegmentedMirror />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

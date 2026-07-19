@@ -1460,6 +1460,88 @@ const GENERATORS: Record<string, Generator> = {
       )}° of the surface, so an X-ray mirror is a long, nearly-cylindrical barrel, not a dish — and to gather enough of the scarce X-rays, dozens of shells are nested inside one another (Chandra's Wolter optics, polished to atomic smoothness for 0.5″ vision). Higher energies graze shallower, which is why hard X-rays are so hard to focus — and gamma rays cannot be focused at all.`,
     };
   },
+
+  // ── The great collectors — aperture and the sag wall ──────────────────────
+
+  "light-gathering": (rng) => {
+    const scopes = [
+      { name: "the human eye", D: 0.007 },
+      { name: "Galileo's telescope", D: 0.04 },
+      { name: "the Hale 200-inch", D: 5.08 },
+      { name: "a Keck telescope", D: 10 },
+    ];
+    const i = sample(rng, [0, 1, 2, 3], 1)[0];
+    const big = sample(rng, [10, 39], 1)[0]; // Keck or ELT
+    const small = scopes[i];
+    const bigName = big === 39 ? "the ELT" : "a Keck telescope";
+    // avoid comparing Keck to Keck
+    const sm = small.name === "a Keck telescope" && big === 10 ? scopes[2] : small;
+    const ratio = (big / sm.D) ** 2;
+    const mags = 2.5 * Math.log10(ratio);
+    return {
+      title: "Aperture is king: light-gathering",
+      question: `A telescope's collecting area scales as D². How many times more light does ${bigName} (${big} m) gather than ${sm.name} (${sm.D} m)?`,
+      steps: [
+        `\\frac{A_{\\text{big}}}{A_{\\text{small}}} = \\left(\\frac{D_{\\text{big}}}{D_{\\text{small}}}\\right)^2 = \\left(\\frac{${big}}{${sm.D}}\\right)^2 = ${
+          ratio >= 1e4 ? sci(ratio, 1) : Math.round(ratio).toLocaleString("en-US")
+        }\\times`,
+        `\\text{depth gain} = 2.5\\log_{10}(${
+          ratio >= 1e4 ? sci(ratio, 1) : Math.round(ratio)
+        }) = ${mags.toFixed(1)}\\ \\text{magnitudes fainter}`,
+      ],
+      note: `Double the diameter, quadruple the light; ten times the diameter, a hundred times the light. Because detection is a matter of collecting enough photons (the photon economy), ${bigName} can reach objects ~${
+        ratio >= 1e4 ? sci(ratio, 1).replace("\\times10^{", "×10^").replace("}", "") : Math.round(ratio).toLocaleString("en-US")
+      }× fainter than ${sm.name} in the same exposure — ${mags.toFixed(
+        1,
+      )} magnitudes deeper. Every jump in aperture is a jump into the faint, distant, early universe. Aperture is the currency that buys faintness.`,
+    };
+  },
+
+  "mirror-sag-mass": (rng) => {
+    const D = sample(rng, [8, 10, 20, 39], 1)[0]; // target diameter, m
+    const D0 = 5.08; // Hale
+    const m0 = 14.5; // tonnes
+    const massRatio = (D / D0) ** 3; // rigid mirror mass ∝ D³
+    const mass = m0 * massRatio;
+    const sagRatio = (D / D0) ** 4; // sag ∝ D⁴ at fixed thickness
+    return {
+      title: "The sag wall: why a rigid giant is impossible",
+      question: `A rigid mirror's droop scales as D⁴ and, once thickened to stay stiff, its mass as D³. The Hale mirror is ${D0} m and 14.5 tonnes. Scale that design to ${D} m: how much would it sag, and weigh?`,
+      steps: [
+        `\\text{sag} \\propto D^4:\\ \\left(\\tfrac{${D}}{${D0}}\\right)^4 = ${sagRatio.toFixed(
+          sagRatio < 100 ? 1 : 0,
+        )}\\times\\ \\text{worse (at fixed thickness)}`,
+        `\\text{mass} \\propto D^3:\\ 14.5\\times\\left(\\tfrac{${D}}{${D0}}\\right)^3 = ${
+          mass >= 1000 ? Math.round(mass).toLocaleString("en-US") : mass.toFixed(0)
+        }\\ \\text{tonnes}`,
+      ],
+      note: `${
+        mass > 1000
+          ? `${Math.round(mass).toLocaleString("en-US")} tonnes — as much as a warship. `
+          : `${mass.toFixed(0)} tonnes. `
+      }You cannot cast it (14.5 tonnes already took 8 months to cool without cracking), support it, or slew it across the sky. Fighting the D⁴ sag by thickening the glass drives the mass up as D³, and the mass wins — so the rigid-mirror paradigm dies near 5–8 m. The escape isn't a better rigid mirror; it's abandoning rigidity: a thin actively-controlled meniscus, or a mosaic of small hexagonal segments.`,
+    };
+  },
+
+  "aperture-depth": (rng) => {
+    const D1 = sample(rng, [1, 2, 4], 1)[0];
+    const D2 = sample(rng, [8, 10, 39], 1)[0];
+    const areaRatio = (D2 / D1) ** 2;
+    const mags = 2.5 * Math.log10(areaRatio);
+    return {
+      title: "Aperture and limiting magnitude",
+      question: `The faintest detectable object improves by 2.5 magnitudes for every factor of 100 in collected photons. How many magnitudes deeper does a ${D2} m telescope reach than a ${D1} m one (same exposure)?`,
+      steps: [
+        `\\text{light ratio} = (D_2/D_1)^2 = (${D2}/${D1})^2 = ${Math.round(areaRatio).toLocaleString(
+          "en-US",
+        )}\\times`,
+        `\\Delta m = 2.5\\log_{10}(${Math.round(areaRatio).toLocaleString("en-US")}) = ${mags.toFixed(
+          2,
+        )}\\ \\text{magnitudes deeper}`,
+      ],
+      note: `Doubling the diameter is worth exactly 2.5·log₁₀(4) = 1.5 magnitudes of depth — and each 1.5 magnitudes roughly doubles the volume of space (and the number of objects) within reach. That is why the four-century quest for aperture never stopped: every factor of 2 in mirror size is a large, permanent expansion of the observable universe. (On the ground the resolution payoff, θ = 1.22λ/D, is stolen by seeing unless adaptive optics recovers it — but light-gathering is always realized.)`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
