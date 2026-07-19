@@ -7,6 +7,25 @@ export const runtime = "nodejs";
 // Anything shorter is a skim, not a read.
 const READ_MIN_SECONDS = 180;
 
+// Datacenter / cloud regions whose "visits" are almost all bots, scanners, and
+// proxied traffic rather than real readers. They aren't flagged as crawlers by
+// the bot heuristic (no bot UA), so they'd otherwise inflate human metrics.
+// Excluded from every human metric (page loads, reads, dwell, geography, recent)
+// and tallied separately as "Datacenter hits". Matched case-insensitively on the
+// raw city name. NOTE: Singapore and Frankfurt are also real cities with real
+// readers — excluding them trades a little genuine signal for a lot less noise;
+// trim this list if you'd rather keep them.
+const EXCLUDED_CITIES = new Set([
+  "santa clara",
+  "ashburn",
+  "singapore",
+  "frankfurt am main",
+]);
+
+function isExcludedCity(r: { city: string | null }): boolean {
+  return !!r.city && EXCLUDED_CITIES.has(r.city.trim().toLowerCase());
+}
+
 // Private analytics view. Open in a browser as
 //   /api/events?token=YOUR_ANALYTICS_TOKEN
 // and it renders a readable dashboard; scripts get JSON (Accept header, or
@@ -56,7 +75,9 @@ function summarize(rows: EventRow[]) {
   //    warming worklist. Crawlers are flagged (`bot`), so exclude them here.
   //  • ENGAGEMENT — `article_read` rows (the client dwell beacon). Legacy rows
   //    predate the `name`/`bot` columns, so treat a missing name as a read.
-  const human = rows.filter((r) => !r.bot);
+  // "Human" = a real reader: not a flagged crawler, and not from a datacenter
+  // region (those are excluded so they don't masquerade as readers).
+  const human = rows.filter((r) => !r.bot && !isExcludedCity(r));
   const requests = human.filter((r) => r.name === "article_request");
   const pageviews = human.filter((r) => r.name === "page_view");
   // A genuine READ requires real dwell: at least 3 minutes on the page. A shorter
@@ -69,6 +90,9 @@ function summarize(rows: EventRow[]) {
   const pageLoads = [...requests, ...pageviews];
   const isLoad = (r: EventRow) => r.name === "article_request" || r.name === "page_view";
   const crawlerLoads = rows.filter((r) => r.bot && isLoad(r)).length;
+  // Datacenter-region loads excluded from human metrics above — surfaced so the
+  // excluded volume is visible, not silently dropped.
+  const datacenterLoads = rows.filter((r) => !r.bot && isExcludedCity(r) && isLoad(r)).length;
 
   // Engagement (reads) — dwell metrics on the read beacon.
   const perArticle = new Map<string, { reads: number; totalSeconds: number }>();
@@ -132,6 +156,7 @@ function summarize(rows: EventRow[]) {
       requests: requests.length,
       coldRequests,
       crawlerLoads,
+      datacenterLoads,
       reads: reads.length,
       avgSeconds,
       medianSeconds,
@@ -221,6 +246,7 @@ function renderHtml(s: ReturnType<typeof summarize>, signups: SignupRow[]): stri
     { label: "Research signups", value: String(signups.length) },
     { label: "Countries", value: String(t.countries) },
     { label: "Crawler hits", value: String(t.crawlerLoads) },
+    { label: "Datacenter (excluded)", value: String(t.datacenterLoads) },
   ]
     .map(
       (x) => `<div class="tile"><div class="v">${esc(x.value)}</div><div class="l">${esc(x.label)}</div></div>`,
@@ -345,7 +371,7 @@ ${signupsCard(signups)}
 <section class="card wide danger"><h2>Danger zone</h2>
 <p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
 <button data-del data-scope="all" class="wipe">Wipe all events</button></section>
-<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = genuine reads only — the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are logged as <b>skim</b> and never counted as reads. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
+<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” Traffic from datacenter/cloud regions (Santa Clara, Ashburn, Singapore, Frankfurt) is excluded from every human metric — it's almost all bots and proxies, not readers — and tallied separately as “Datacenter (excluded).” <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = genuine reads only — the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are logged as <b>skim</b> and never counted as reads. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
 </div>
 <script>
 document.addEventListener('click', function (e) {
