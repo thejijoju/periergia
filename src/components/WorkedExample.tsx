@@ -797,6 +797,77 @@ const GENERATORS: Record<string, Generator> = {
       )} inside the square root, which crushes the modest temperature disadvantage. Nuclear thermal pulls M to its floor of 2 by heating pure hydrogen with fission instead of burning a heavy oxidizer.`,
     };
   },
+
+  // ── Perturbations — tuning the Earth's flaws into tools ────────────────────
+
+  "nodal-precession": (rng) => {
+    const J2 = 1.0826e-3;
+    const Re = 6378; // km
+    const mu = 3.986e5; // km³/s²
+    const alt = sample(rng, [400, 600, 800, 1000, 1200], 1)[0];
+    const inc = sample(rng, [28, 45, 52, 63, 90, 98], 1)[0]; // deg
+    const a = Re + alt;
+    const n = Math.sqrt(mu / a ** 3); // rad/s
+    const OmegaDot = -1.5 * J2 * (Re / a) ** 2 * n * Math.cos((inc * Math.PI) / 180); // rad/s
+    const degDay = OmegaDot * (180 / Math.PI) * 86400;
+    return {
+      title: "J2 nodal precession: how fast the orbit plane swivels",
+      question: `A circular orbit at ${alt} km altitude and inclination ${inc}° has its ascending node dragged around by Earth's equatorial bulge (J2). How many degrees per day does the node move, and which way? (J2 = 1.0826×10⁻³, R⊕ = 6,378 km, μ = 3.986×10⁵ km³/s².)`,
+      steps: [
+        `a = 6378 + ${alt} = ${a}\\ \\text{km},\\quad n = \\sqrt{\\mu/a^3} = ${sci(n)}\\ \\text{rad/s}`,
+        `\\dot\\Omega = -\\tfrac{3}{2}J_2\\left(\\tfrac{R_\\oplus}{a}\\right)^2 n\\cos i = -\\tfrac{3}{2}(1.0826{\\times}10^{-3})(${(Re / a).toFixed(4)})^2(${sci(n)})\\cos ${inc}°`,
+        `\\dot\\Omega = ${degDay.toFixed(3)}\\ \\text{°/day}\\quad(${degDay < 0 ? "\\text{westward regression}" : degDay > 0 ? "\\text{eastward advance}" : "\\text{no precession}"})`,
+      ],
+      note: `J2 is the master perturbation of low orbit — about 1000× any other. Prograde orbits (i<90°) regress westward; a polar orbit (90°) doesn't precess at all; retrograde orbits (i>90°) advance eastward — which is exactly what sun-synchronous orbits exploit.`,
+    };
+  },
+
+  "sun-synchronous": (rng) => {
+    const J2 = 1.0826e-3;
+    const Re = 6378;
+    const mu = 3.986e5;
+    const alt = sample(rng, [500, 600, 700, 800, 1000], 1)[0];
+    const a = Re + alt;
+    const n = Math.sqrt(mu / a ** 3);
+    const target = (0.9856 * (Math.PI / 180)) / 86400; // rad/s, eastward
+    const cosI = target / (-1.5 * J2 * (Re / a) ** 2 * n);
+    const i = (Math.acos(cosI) * 180) / Math.PI;
+    return {
+      title: "Designing a sun-synchronous orbit",
+      question: `A sun-synchronous orbit must precess its node eastward at 0.9856°/day to track the Sun. What inclination achieves that at ${alt} km altitude (circular)? (J2 = 1.0826×10⁻³, R⊕ = 6,378 km, μ = 3.986×10⁵ km³/s².)`,
+      steps: [
+        `a = 6378 + ${alt} = ${a}\\ \\text{km},\\quad n = \\sqrt{\\mu/a^3} = ${sci(n)}\\ \\text{rad/s}`,
+        `\\dot\\Omega = +0.9856°/\\text{day} = ${sci(target)}\\ \\text{rad/s}`,
+        `\\cos i = \\frac{\\dot\\Omega}{-\\tfrac{3}{2}J_2 (R_\\oplus/a)^2 n} = ${cosI.toFixed(4)}\\;\\Rightarrow\\; i = ${i.toFixed(1)}°`,
+      ],
+      note: `The inclination lands just past polar (retrograde, i>90°) — every Earth-observation satellite sits near 98°. Eastward precession requires cos i < 0, so a sun-synchronous orbit MUST be retrograde. The bulge that ruins the two-body ellipse freezes the lighting for free, forever.`,
+    };
+  },
+
+  "critical-inclination": (rng) => {
+    const J2 = 1.0826e-3;
+    const Re = 6378;
+    const mu = 3.986e5;
+    const a = 26560; // km — a Molniya-class semi-major axis
+    const e = 0.74;
+    const inc = sample(rng, [45, 55, 63.4, 70, 90], 1)[0];
+    const n = Math.sqrt(mu / a ** 3);
+    const factor = 5 * Math.cos((inc * Math.PI) / 180) ** 2 - 1;
+    const wDot = 0.75 * J2 * (Re ** 2 / (a ** 2 * (1 - e ** 2) ** 2)) * n * factor; // rad/s
+    const degDay = wDot * (180 / Math.PI) * 86400;
+    return {
+      title: "The critical inclination: freezing the apogee",
+      question: `A Molniya-class orbit (a = 26,560 km, e = 0.74) at inclination ${inc}°: how fast does its argument of perigee drift, and what does that do to the apogee held over the far north? (J2 = 1.0826×10⁻³, R⊕ = 6,378 km, μ = 3.986×10⁵ km³/s².)`,
+      steps: [
+        `5\\cos^2 i - 1 = 5\\cos^2 ${inc}° - 1 = ${factor.toFixed(3)}`,
+        `\\dot\\omega = \\tfrac{3}{4}J_2\\frac{R_\\oplus^2}{a^2(1-e^2)^2}\\,n\\,(5\\cos^2 i - 1) = ${degDay.toFixed(3)}\\ \\text{°/day}`,
+        inc === 63.4
+          ? `\\text{At }63.4°,\\ 5\\cos^2 i - 1 = 0 \\Rightarrow \\dot\\omega = 0:\\ \\text{the apogee is frozen in place.}`
+          : `\\text{The apogee migrates }${Math.abs(degDay).toFixed(2)}°/\\text{day — it will not stay over the north.}`,
+      ],
+      note: `The factor (5cos²i − 1) vanishes at i = 63.43° (cos²i = 1/5), so the argument of perigee stops drifting and the apogee stays locked over the far north for free. Every Molniya satellite flies at 63.4° — J2 tuned against itself.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
