@@ -20,6 +20,7 @@ import { WorkedExample } from "./WorkedExample";
 import { SupplyDemandChart } from "./SupplyDemandChart";
 import { IncomeGoodChart } from "./IncomeGoodChart";
 import { GiffenChart } from "./GiffenChart";
+import { BlackbodyChart } from "./BlackbodyChart";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -499,6 +500,11 @@ export function Reader({
                   // substitution and income effects (normal / inferior / Giffen).
                   if (typeof cls === "string" && /language-giffen\b/.test(cls)) {
                     return <GiffenChart />;
+                  }
+                  // A fenced ```blackbody block becomes the interactive spectrum
+                  // "thermometer of violence" (Wien's law, temperature slider).
+                  if (typeof cls === "string" && /language-blackbody\b/.test(cls)) {
+                    return <BlackbodyChart />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
