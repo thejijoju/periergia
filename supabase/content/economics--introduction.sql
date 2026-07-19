@@ -192,19 +192,7 @@ A small worked example. Suppose a local market for some good has the following s
 
 At \$4 buyers want 300 units and sellers offer 300: quantity demanded equals quantity supplied, so **\$4 is the equilibrium price** and **300 the equilibrium quantity**. At \$5 sellers would offer 400 but buyers take only 200 — a surplus of 200 that drives the price back down toward \$4. At \$3 buyers want 400 but sellers offer only 200 — a shortage of 200 that pushes the price back up. The market has no manager; the price itself does the allocating, exactly as Sima Qian and Adam Smith described long before anyone drew the curves.
 
-## Limitations of the model: rational actors and perfect information
-
-The crossing point is clean because two large assumptions sit quietly beneath it, and both deserve to be named here, where the model is at its most persuasive.
-
-The first is **rationality**. Every curve above is drawn as if each actor optimises without error — households choosing the bundle that maximises their utility, firms the output that maximises their profit. Humans are not reliably like this: they lean on habit, are swayed by emotion, misjudge probabilities, and value the same outcome differently depending on how it is framed — the very departures that behavioural economics exists to chart. Nor are firms, which are run by people and pulled by internal politics as much as by any calculation on a spreadsheet; nor governments, whose choices answer to elections, ideology, and pressure at least as often as to a cool weighing of the public good. A model built on flawless optimisers describes a world none of its actors quite inhabit.
-
-The second is **perfect and equally shared information**. The tidy meeting of supply and demand assumes both sides know the good's quality, the prices on offer, and their own wants — and that they know the *same* things. Real markets run on information that is patchy and unevenly held. The seller of a used car knows its faults and the buyer does not; an insurer cannot tell the careful customer from the reckless one; a shopper cannot compare every price before choosing.
-
-> **Information asymmetry** — the condition where one side of a transaction knows materially more than the other. It can distort a market, or unravel one the diagram says should clear smoothly, and dropping the assumption of perfect information is the starting point of a large part of modern microeconomics.
-
-Neither point overturns the apparatus; both are reminders that the place where the curves cross is a first approximation of a messier reality — orderly where people are only roughly rational, and fully informed where they are not.
-
-This apparatus — two curves and the point where they cross — is the workhorse of microeconomics and the foundation on which almost everything ahead is built. But keep the warning in hand: every curve here is drawn *ceteris paribus*, and the real world never holds still.
+This apparatus — two curves and the point where they cross — is the workhorse of microeconomics and the foundation on which almost everything ahead is built. But keep the earlier warnings in hand each time a model like this one appears. This equilibrium is drawn *ceteris paribus*, and the real world never holds still. It assumes, too, that its actors are **rational** — and real humans are not always rational, nor are firms, nor governments, all of which act on habit, emotion, politics, and pressure as much as on any cool calculation. And — most quietly of all — it assumes buyers and sellers share the same **perfect information**, when real markets run on knowledge that is patchy and unevenly held (the seller of a used car knows its faults; the buyer does not). None of the three holds cleanly, so the tidy crossing is a first approximation of a messier reality, not the last word.
 
 ---
 
