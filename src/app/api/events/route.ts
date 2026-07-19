@@ -176,6 +176,11 @@ function summarize(rows: EventRow[]) {
       coldRequests,
       crawlerLoads,
       excludedLoads,
+      // The truest human signal: every article_read beacon is client-side JS that
+      // only fires in a real browser that rendered the page and stayed ≥3s. Bots
+      // and scrapers (which just fetch HTML) never fire it, so this can't be
+      // inflated by crawler/proxy traffic the way page loads can.
+      engaged: allReads.length,
       reads: reads.length,
       avgSeconds,
       medianSeconds,
@@ -259,6 +264,7 @@ function renderHtml(s: ReturnType<typeof summarize>, signups: SignupRow[]): stri
   const t = s.totals;
   const tiles = [
     { label: "Page loads", value: String(t.pageLoads) },
+    { label: "Engaged humans", value: String(t.engaged) },
     { label: "Article requests", value: String(t.requests) },
     { label: "Cold (to warm)", value: String(t.coldRequests) },
     { label: "Reads (≥3m)", value: String(t.reads) },
@@ -390,7 +396,7 @@ ${signupsCard(signups)}
 <section class="card wide danger"><h2>Danger zone</h2>
 <p>The <code>?mine</code> flag stops counting you going forward, but it can't remove visits already recorded. To take your own test-visits out, delete the ✕ next to <b>your city</b> in the Cities panel above. Or start completely fresh:</p>
 <button data-del data-scope="all" class="wipe">Wipe all events</button></section>
-<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” Non-human traffic is excluded from every human metric and tallied separately as “Non-human (excluded)”: datacenter/cloud regions (Santa Clara, Ashburn, Singapore, Frankfurt), plus any page load with <i>neither a geolocated city nor a referrer</i> — the fingerprint of un-flagged bots and scrapers (real browsers geolocate to a city or arrive with a referrer). <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = genuine reads only — the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are logged as <b>skim</b> and never counted as reads. None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
+<footer><b>Page loads</b> = every page a real visitor opens — homepage and articles — logged server-side (so it counts bounces during a slow generation and people landing from search); crawlers are tallied separately as “Crawler hits.” Non-human traffic is excluded from every human metric and tallied separately as “Non-human (excluded)”: datacenter/cloud regions (Santa Clara, Ashburn, Singapore, Frankfurt), plus any page load with <i>neither a geolocated city nor a referrer</i> — the fingerprint of un-flagged bots and scrapers (real browsers geolocate to a city or arrive with a referrer). <b>Article requests</b> are the article subset. Each article hit is <b>cold</b> (landed on an uncached page — had to generate, slow → your warming worklist) or <b>cached</b> (the page was already generated and loaded instantly). <b>Reads</b> = genuine reads only — the reader stayed at least <b>3 minutes</b> (shown green in Recent activity); shorter dwells are logged as <b>skim</b> and never counted as reads. <b>Engaged humans</b> = real browsers that opened an article and stayed at least a few seconds, firing the client-side dwell beacon; bots and scrapers only fetch HTML and never fire it, so this is the truest human count (and the honest denominator for reads). None of these count unique people; for that see Vercel Web Analytics. Your own visits are excluded once you open any page with <code>?mine</code>. Add <code>&amp;limit=5000</code> to widen the window, or <code>&amp;format=json</code> for raw JSON.</footer>
 </div>
 <script>
 document.addEventListener('click', function (e) {
