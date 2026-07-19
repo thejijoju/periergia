@@ -1364,6 +1364,102 @@ const GENERATORS: Record<string, Generator> = {
       note: `Because SNR grows only as √N, precision is brutally expensive: doubling SNR needs 4× the light, ten times deeper needs 100×. This is why deep astronomy is time-hungry — the Hubble Deep Field stared ~10 days to pull 3,000 galaxies from "empty" sky — and why aperture is prized (area ∝ D²: photons, hence SNR, scale with the square of the mirror).`,
     };
   },
+
+  // ── The high-energy universe — the light of violence ──────────────────────
+
+  "wien-temperature": (rng) => {
+    const b = 2.898e-3; // m·K
+    const objects = [
+      { name: "a red giant's surface", T: 3000 },
+      { name: "the Sun's surface", T: 5800 },
+      { name: "a hot blue star", T: 30000 },
+      { name: "supernova-shocked gas", T: 3e6 },
+      { name: "a neutron-star accretion disk", T: 2e7 },
+    ];
+    const o = objects[sample(rng, [0, 1, 2, 3, 4], 1)[0]];
+    const lam = b / o.T; // m
+    const nm = lam * 1e9;
+    const eV = (1.986e-25 / lam) / 1.602e-19;
+    const band =
+      nm > 750 ? "infrared" : nm > 380 ? "visible" : nm > 10 ? "ultraviolet" : nm > 0.01 ? "X-ray" : "gamma-ray";
+    const lamStr = nm >= 1000 ? `${(nm / 1000).toFixed(1)}\\ \\mu\\text{m}` : nm >= 1 ? `${nm.toFixed(nm < 10 ? 2 : 0)}\\ \\text{nm}` : `${(nm * 1000).toFixed(1)}\\ \\text{pm}`;
+    const eStr = eV >= 1000 ? `${(eV / 1000).toFixed(1)}\\ \\text{keV}` : `${eV.toFixed(2)}\\ \\text{eV}`;
+    const Tstr = o.T >= 1e6 ? `${(o.T / 1e6).toFixed(0)}\\times10^6` : o.T.toLocaleString("en-US");
+    return {
+      title: "Wien's law: what temperature emits X-rays?",
+      question: `At what wavelength does ${o.name} (T = ${o.T.toLocaleString(
+        "en-US",
+      )} K) radiate most strongly, and in which band? Use λ_peak = b/T with b = 2.898×10⁻³ m·K.`,
+      steps: [
+        `\\lambda_{\\text{peak}} = \\frac{b}{T} = \\frac{2.898\\times10^{-3}}{${Tstr}} = ${lamStr}`,
+        `E_{\\text{peak}} = hc/\\lambda \\approx ${eStr}\\ \\Rightarrow\\ \\textbf{${band}}`,
+      ],
+      note: `Hotter means shorter-wavelength, higher-energy light. The Sun at ~5,800 K peaks in the visible (why we see it). To peak in the X-ray you need MILLIONS of degrees — a temperature ordinary stars never reach, found only where matter falls into a compact object or is shock-heated by an explosion. X-rays are the light of million-degree matter, and million-degree matter is the signature of violence.`,
+    };
+  },
+
+  "accretion-efficiency": (rng) => {
+    const G = 6.674e-11;
+    const c = 3e8;
+    const Msun = 1.989e30;
+    const bodies = [
+      { name: "a neutron star", M: 1.4, R: 10 }, // R in km
+      { name: "a white dwarf", M: 0.6, R: 7000 },
+      { name: "a 10 M☉ black hole (ISCO)", M: 10, R: 89 }, // ~3 Schwarzschild radii
+    ];
+    const o = bodies[sample(rng, [0, 1, 2], 1)[0]];
+    const M = o.M * Msun;
+    const R = o.R * 1000; // m
+    const ePerKg = (G * M) / R; // J/kg
+    const frac = ePerKg / c ** 2; // fraction of mc²
+    const vsFusion = frac / 0.007;
+    return {
+      title: "Accretion vs fusion: the most efficient furnace",
+      question: `How much energy is released per kilogram of matter falling onto ${o.name} (M = ${o.M} M☉, R = ${o.R.toLocaleString(
+        "en-US",
+      )} km)? Express it as a fraction of mc², and compare to fusion (0.7%). Use E/m ≈ GM/R.`,
+      steps: [
+        `E/m = GM/R = \\frac{(6.674\\times10^{-11})(${o.M}\\times1.989\\times10^{30})}{${(
+          R
+        ).toLocaleString("en-US")}} = ${sci(ePerKg, 2)}\\ \\text{J/kg}`,
+        `\\frac{E}{mc^2} = \\frac{${sci(ePerKg, 2)}}{(3\\times10^8)^2} = ${(frac * 100).toFixed(
+          frac < 0.01 ? 3 : 1,
+        )}\\%`,
+        `\\text{vs fusion's } 0.7\\%:\\ ${vsFusion.toFixed(vsFusion < 1 ? 2 : 0)}\\times`,
+      ],
+      note: `${
+        frac > 0.05
+          ? `Falling onto ${o.name} converts ~${(frac * 100).toFixed(
+              0,
+            )}% of rest-mass energy to radiation — roughly ${vsFusion.toFixed(
+              0,
+            )}× more efficient than the fusion that lights the stars.`
+          : `A white dwarf is far less compact (big radius, shallow well), so it yields only ~${(
+              frac * 100
+            ).toFixed(2)}% — far less than a neutron star.`
+      } Compactness is everything: the energy scales as M/R, so the deepest wells (neutron stars, black holes) blaze in X-rays as infalling matter dies. Scorpius X-1, the first cosmic X-ray source, is a neutron star doing exactly this.`,
+    };
+  },
+
+  "grazing-angle": (rng) => {
+    const E = sample(rng, [2, 5, 10, 30], 1)[0]; // keV
+    const refE = 1; // keV → ~1°
+    const refAngle = 1; // degree
+    const angle = refAngle * (refE / E); // critical angle ~ 1/E
+    const arcmin = angle * 60;
+    return {
+      title: "The grazing-incidence telescope: skipping X-rays",
+      question: `X-rays reflect only if they strike a mirror within the critical grazing angle, which scales roughly as 1/E. If 1 keV X-rays reflect within ~1° of the surface, what is the critical angle for ${E} keV X-rays?`,
+      steps: [
+        `\\theta_c \\approx 1° \\times \\frac{1\\ \\text{keV}}{E} = 1° \\times \\frac{1}{${E}} = ${angle.toFixed(
+          2,
+        )}° = ${arcmin.toFixed(1)}'`,
+      ],
+      note: `An X-ray struck head-on plows into a mirror and is absorbed — it will only "skip" off a surface hit nearly edge-on, like a stone grazing water. At ${E} keV that means within ${angle.toFixed(
+        2,
+      )}° of the surface, so an X-ray mirror is a long, nearly-cylindrical barrel, not a dish — and to gather enough of the scarce X-rays, dozens of shells are nested inside one another (Chandra's Wolter optics, polished to atomic smoothness for 0.5″ vision). Higher energies graze shallower, which is why hard X-rays are so hard to focus — and gamma rays cannot be focused at all.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
