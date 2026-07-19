@@ -1137,6 +1137,80 @@ const GENERATORS: Record<string, Generator> = {
       note: `Collisions need pairs, and the pair count grows as n²/2 — so doubling the population roughly quadruples the collision opportunities. Each collision spawns thousands of fragments that add to n, raising the rate again: the quadratic feedback behind the Kessler cascade. Past a critical density each collision causes more than one more — an orbital R₀ > 1 — and it runs away.`,
     };
   },
+
+  // ── Seeing through the atmosphere — telescopes ────────────────────────────
+
+  "atmosphere-scale-height": (rng) => {
+    const H = 8; // km, teaching value for the scale height
+    const sites = [
+      { name: "Mauna Kea", alt: 4.2 },
+      { name: "the Atacama plateau", alt: 5.1 },
+      { name: "a cruising airliner", alt: 12 },
+      { name: "a stratospheric balloon", alt: 35 },
+    ];
+    const s = sites[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const above = Math.exp(-s.alt / H);
+    const below = 1 - above;
+    const h90 = H * Math.log(10);
+    return {
+      title: "The exponential ocean of air",
+      question: `Earth's atmosphere thins as P(h) = P₀·e^(−h/H) with scale height H ≈ 8 km. ${s.name.charAt(0).toUpperCase() + s.name.slice(1)} sits at ${s.alt} km. What fraction of the atmosphere's mass lies below it, and how high must you climb to get above 90% of the air?`,
+      steps: [
+        `\\text{fraction above} = e^{-h/H} = e^{-${s.alt}/8} = ${above.toFixed(3)}`,
+        `\\text{fraction below} = 1 - e^{-h/H} = ${below.toFixed(3)} \\approx ${(below * 100).toFixed(
+          0,
+        )}\\%`,
+        `\\text{above }90\\%:\\ h = H\\ln 10 = 8(2.303) = ${h90.toFixed(1)}\\ \\text{km}`,
+      ],
+      note: `At ${s.alt} km you are already above ${(below * 100).toFixed(
+        0,
+      )}% of the atmosphere — and an even larger share of its water vapor, which hugs the ground. The exponential fall-off means a modest climb escapes a lot of barrier, which is the whole reason observatories crowd onto a few high, dry peaks (and why balloons go to ~35 km, above 99%).`,
+    };
+  },
+
+  "seeing-limit": (rng) => {
+    const D = sample(rng, [4, 8, 10, 39], 1)[0]; // m
+    const lambdaNm = sample(rng, [500, 550, 700], 1)[0]; // visible only — keeps 1.22λ/r0 valid
+    const r0cm = sample(rng, [10, 15, 20], 1)[0]; // Fried parameter, cm
+    const lam = lambdaNm * 1e-9;
+    const arc = 206265;
+    const diffAs = (1.22 * lam / D) * arc;
+    const seeAs = (1.22 * lam / (r0cm / 100)) * arc;
+    const factor = seeAs / diffAs; // = D / r0
+    return {
+      title: "The seeing limit: why a giant sees like a toy",
+      question: `A ${D}-meter telescope observes at ${lambdaNm} nm. Compare its diffraction-limited resolution (θ = 1.22λ/D) with what the atmosphere allows, given a Fried parameter r₀ = ${r0cm} cm. (1 rad = 206,265″.)`,
+      steps: [
+        `\\theta_{\\text{diff}} = 1.22\\lambda/D = ${diffAs.toFixed(4)}''`,
+        `\\theta_{\\text{seeing}} = 1.22\\lambda/r_0 = ${seeAs.toFixed(2)}''\\quad(r_0 = ${r0cm}\\ \\text{cm})`,
+        `\\text{degradation} = D/r_0 = ${factor.toFixed(0)}\\times\\ \\Rightarrow\\ \\text{the ${D} m mirror resolves like a ${r0cm} cm one}`,
+      ],
+      note: `Beyond ~${r0cm} cm of aperture, a bigger ground telescope buys only LIGHT (area ∝ D²), not sharpness — its resolution is pinned at r₀ by turbulence. This is why big ground scopes are "seeing-limited," why the 2.4 m Hubble out-resolves an 8 m from the ground (vacuum, no seeing), and why adaptive optics exists: to win the diffraction limit back.`,
+    };
+  },
+
+  "rayleigh-scattering": (rng) => {
+    const shortNm = sample(rng, [400, 450, 500], 1)[0];
+    const longNm = sample(rng, [700, 1000, 2200], 1)[0];
+    const ratio = (longNm / shortNm) ** 4;
+    const isIR = longNm >= 1000;
+    return {
+      title: "Why the sky is blue and the infrared sees through dust",
+      question: `Rayleigh scattering scales as 1/λ⁴. How much more strongly is ${shortNm} nm light scattered than ${longNm} nm light?`,
+      steps: [
+        `\\frac{\\text{scatter}(${shortNm})}{\\text{scatter}(${longNm})} = \\left(\\frac{${longNm}}{${shortNm}}\\right)^4 = ${
+          ratio >= 100 ? Math.round(ratio) : ratio.toFixed(1)
+        }\\times`,
+      ],
+      note: isIR
+        ? `Because scattering collapses as 1/λ⁴, ${longNm} nm infrared light is scattered ~${Math.round(
+            ratio,
+          )}× LESS than ${shortNm} nm — so it slips through haze and interstellar dust that stop visible light. This is why infrared astronomy sees into dusty stellar nurseries and the galactic center that optical telescopes cannot.`
+        : `Blue is scattered ~${ratio.toFixed(
+            1,
+          )}× more than red — which is why the day sky is blue (scattered blue fills it), sunsets are red (blue scattered out of the long horizon path), and objects low on the horizon look reddened and dimmed to astronomers.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
