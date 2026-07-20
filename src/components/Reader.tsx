@@ -24,6 +24,7 @@ import { BlackbodyChart } from "./BlackbodyChart";
 import { SegmentedMirror } from "./SegmentedMirror";
 import { RocketEquation } from "./RocketEquation";
 import { StagingSplit } from "./StagingSplit";
+import { PowerThrustTrade } from "./PowerThrustTrade";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -523,6 +524,11 @@ export function Reader({
                   // two-stage Δv-split payload explorer.
                   if (typeof cls === "string" && /language-stagingsplit\b/.test(cls)) {
                     return <StagingSplit />;
+                  }
+                  // A fenced ```powerthrust block becomes the interactive
+                  // F = 2P/v_e thrust-vs-exhaust-velocity tradeoff (log-log).
+                  if (typeof cls === "string" && /language-powerthrust\b/.test(cls)) {
+                    return <PowerThrustTrade />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
