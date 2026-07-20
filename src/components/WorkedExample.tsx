@@ -1542,6 +1542,154 @@ const GENERATORS: Record<string, Generator> = {
       note: `Doubling the diameter is worth exactly 2.5·log₁₀(4) = 1.5 magnitudes of depth — and each 1.5 magnitudes roughly doubles the volume of space (and the number of objects) within reach. That is why the four-century quest for aperture never stopped: every factor of 2 in mirror size is a large, permanent expansion of the observable universe. (On the ground the resolution payoff, θ = 1.22λ/D, is stolen by seeing unless adaptive optics recovers it — but light-gathering is always realized.)`,
     };
   },
+  // ── Space telescopes (building-jwst) ──
+  "redshift-band": (rng) => {
+    const lines = [
+      { name: "Lyman-α", rest: 121.6 },
+      { name: "the 4000-Å break", rest: 400 },
+      { name: "Hα", rest: 656.3 },
+    ];
+    const li = sample(rng, [0, 1, 2], 1)[0];
+    const z = sample(rng, [7, 8, 9, 10, 11, 13], 1)[0];
+    const line = lines[li];
+    const obs = line.rest * (1 + z); // nm
+    const obsUm = obs / 1000;
+    const past = obs > 1700;
+    return {
+      title: "Redshift into the infrared",
+      question: `Cosmic expansion stretches every wavelength by a factor (1 + z). At what wavelength is ${line.name} (rest ${line.rest} nm) observed if it comes from a galaxy at z = ${z}? Hubble's reach ends near 1.7 µm.`,
+      steps: [
+        `\\lambda_{\\text{obs}} = \\lambda_{\\text{rest}}(1+z) = ${line.rest}\\,\\text{nm}\\times(1+${z}) = ${Math.round(
+          obs,
+        ).toLocaleString("en-US")}\\,\\text{nm} = ${obsUm.toFixed(2)}\\,\\mu\\text{m}`,
+      ],
+      note: `${obsUm.toFixed(2)} µm — ${
+        past
+          ? "well past Hubble's ~1.7 µm cutoff, so only an infrared telescope like JWST can see it"
+          : "still within reach of Hubble's near-infrared channel"
+      }. This is the first link in JWST's forced-design chain: to see the early universe you must build an infrared telescope, and everything else — the cold, L2, the sunshield, the folding — follows from that one redshift.`,
+    };
+  },
+
+  "wien-selfglow": (rng) => {
+    const T = sample(rng, [40, 80, 150, 300], 1)[0];
+    const peak = 2.898e6 / T; // nm
+    const peakUm = peak / 1000;
+    const inBand = peakUm >= 0.6 && peakUm <= 28;
+    return {
+      title: "Why the telescope must be cold",
+      question: `A warm telescope glows with its own thermal light. By Wien's law, at what wavelength does a telescope at ${T} K peak? JWST's infrared science band runs about 0.6–28 µm.`,
+      steps: [
+        `\\lambda_{\\text{peak}} = \\frac{b}{T} = \\frac{2.898\\times10^{6}\\,\\text{nm·K}}{${T}\\,\\text{K}} = ${Math.round(
+          peak,
+        ).toLocaleString("en-US")}\\,\\text{nm} = ${peakUm.toFixed(1)}\\,\\mu\\text{m}`,
+      ],
+      note: `${peakUm.toFixed(1)} µm — ${
+        inBand
+          ? "squarely inside JWST's science band, so the telescope's own glow would drown the faint infrared it is trying to see"
+          : "outside the science band, cold enough that its self-glow no longer swamps the signal"
+      }. A room-temperature (300 K) telescope peaks at 9.7 µm, right where JWST works, which is why it must be chilled to about 40 K. Infrared forces cold; cold forces the sunshield and L2.`,
+    };
+  },
+
+  "jwst-resolution": (rng) => {
+    const lamUm = sample(rng, [0.7, 2, 4, 10], 1)[0];
+    const lam = lamUm * 1e-6;
+    const D = 6.5;
+    const thetaRad = (1.22 * lam) / D;
+    const thetaAs = thetaRad * 206265;
+    return {
+      title: "JWST's diffraction-limited sharpness",
+      question: `Above the atmosphere a telescope reaches its full diffraction limit, θ = 1.22 λ/D, with no seeing to blur it. What is JWST's resolution (6.5 m mirror) at ${lamUm} µm?`,
+      steps: [
+        `\\theta = \\frac{1.22\\,\\lambda}{D} = \\frac{1.22\\times ${sci(lam, 2)}\\,\\text{m}}{6.5\\,\\text{m}} = ${sci(
+          thetaRad,
+          2,
+        )}\\,\\text{rad}`,
+        `\\theta = ${sci(thetaRad, 2)}\\times 206265 = ${thetaAs.toFixed(3)}\\,\\text{arcsec}`,
+      ],
+      note: `About ${thetaAs.toFixed(
+        2,
+      )} arcsec at ${lamUm} µm — sharpness set purely by the optics, no atmosphere to blur it and no adaptive optics needed. Longer wavelengths give coarser resolution (θ ∝ λ), one price of working in the infrared, which JWST buys back with its large 6.5 m aperture.`,
+    };
+  },
+
+  // ── Hubble & interferometry (hubble-and-interferometry) ──
+  "aberration-tolerance": (rng) => {
+    const lamNm = sample(rng, [500, 550, 633], 1)[0];
+    const errUm = sample(rng, [1.0, 1.5, 2.2, 3.0], 1)[0];
+    const tolNm = lamNm / 20;
+    const errNm = errUm * 1000;
+    const times = errNm / tolNm;
+    return {
+      title: "How badly was the mirror wrong?",
+      question: `A telescope mirror must hold its shape to about λ/20 or the image blurs. At ${lamNm} nm, how large is that tolerance — and how many times over it was Hubble's ${errUm}-µm figuring error?`,
+      steps: [
+        `\\text{tolerance} = \\lambda/20 = ${lamNm}/20 = ${tolNm.toFixed(1)}\\,\\text{nm}`,
+        `\\frac{\\text{error}}{\\text{tolerance}} = \\frac{${errNm.toLocaleString(
+          "en-US",
+        )}\\,\\text{nm}}{${tolNm.toFixed(1)}\\,\\text{nm}} = ${Math.round(times)}\\times`,
+      ],
+      note: `About ${Math.round(
+        times,
+      )} times the allowable error. Notice how tiny the absolute number is — ${errUm} µm is roughly one-fiftieth the width of a human hair — yet where surfaces must be true to a fraction of a wavelength it is a catastrophe. The mirror was ground to that precision to match a measuring instrument that was itself 1.3 mm out of adjustment. The glass was perfect; the organization was not.`,
+    };
+  },
+
+  "interferometry-resolution": (rng) => {
+    const Bkm = sample(rng, [100, 1000, 6000, 12700], 1)[0];
+    const B = Bkm * 1000;
+    const lam = 1.3e-3;
+    const thetaRad = (1.22 * lam) / B;
+    const uas = thetaRad * 206265 * 1e6;
+    return {
+      title: "Resolution from the baseline",
+      question: `An interferometer's resolution is θ ≈ 1.22 λ/B, where B is the separation of the dishes, not the size of any one. Observing at 1.3 mm with a baseline of ${Bkm.toLocaleString(
+        "en-US",
+      )} km, what resolution do you get? (M87*'s shadow is ~42 µas.)`,
+      steps: [
+        `\\theta = \\frac{1.22\\,\\lambda}{B} = \\frac{1.22\\times ${sci(lam, 1)}\\,\\text{m}}{${sci(
+          B,
+          2,
+        )}\\,\\text{m}} = ${sci(thetaRad, 2)}\\,\\text{rad}`,
+        `\\theta = ${sci(thetaRad, 2)}\\times 206265\\times 10^{6} = ${Math.round(uas).toLocaleString(
+          "en-US",
+        )}\\,\\mu\\text{as}`,
+      ],
+      note: `About ${Math.round(uas).toLocaleString("en-US")} µas — ${
+        uas <= 42
+          ? "fine enough to resolve M87*'s 42-µas shadow"
+          : "still coarser than the 42-µas shadow, so you need a longer baseline"
+      }. The sharpness comes from the ${Bkm.toLocaleString(
+        "en-US",
+      )} km separation, not from the size of any dish: spread the telescopes farther apart and the image sharpens, as if you had a mirror as wide as the gap between them.`,
+    };
+  },
+
+  "single-dish-diameter": (rng) => {
+    const uas = sample(rng, [20, 42, 50], 1)[0];
+    const thetaRad = uas / 1e6 / 206265;
+    const lam = 1.3e-3;
+    const D = (1.22 * lam) / thetaRad; // m
+    const Dkm = D / 1000;
+    return {
+      title: "The impossible single dish",
+      question: `To reach a resolution of ${uas} µas at 1.3 mm with one dish, how big must it be? Invert θ = 1.22 λ/D.`,
+      steps: [
+        `\\theta = ${uas}\\,\\mu\\text{as} = \\frac{${uas}}{10^{6}\\times 206265}\\,\\text{rad} = ${sci(
+          thetaRad,
+          2,
+        )}\\,\\text{rad}`,
+        `D = \\frac{1.22\\,\\lambda}{\\theta} = \\frac{1.22\\times ${sci(lam, 1)}}{${sci(
+          thetaRad,
+          2,
+        )}} = ${sci(D, 2)}\\,\\text{m} \\approx ${Math.round(Dkm).toLocaleString("en-US")}\\,\\text{km}`,
+      ],
+      note: `About ${Math.round(Dkm).toLocaleString(
+        "en-US",
+      )} km across — the size of a continent or the whole planet. You cannot build a single mirror that big, which is exactly why interferometry exists: combine widely separated dishes so their baseline plays the role of D, synthesizing the resolution of an aperture no one could ever cast.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
