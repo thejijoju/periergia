@@ -29,6 +29,12 @@ import { ReuseEconomics } from "./ReuseEconomics";
 import { ThermochemCeiling } from "./ThermochemCeiling";
 import { EngineCycles } from "./EngineCycles";
 import { AscentBudget } from "./AscentBudget";
+import { OrbitShape } from "./OrbitShape";
+import { HohmannTransfer } from "./HohmannTransfer";
+import { LagrangePoints } from "./LagrangePoints";
+import { SunSyncOrbit } from "./SunSyncOrbit";
+import { PlanetHohmann } from "./PlanetHohmann";
+import { DebrisLifetime } from "./DebrisLifetime";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -553,6 +559,36 @@ export function Reader({
                   // ascent Δv loss-budget (latitude + thrust-to-weight sliders).
                   if (typeof cls === "string" && /language-ascentbudget\b/.test(cls)) {
                     return <AscentBudget />;
+                  }
+                  // A fenced ```orbitshape block becomes the interactive vis-viva
+                  // conic-section orbit explorer (speed sets the orbit shape).
+                  if (typeof cls === "string" && /language-orbitshape\b/.test(cls)) {
+                    return <OrbitShape />;
+                  }
+                  // A fenced ```hohmann block becomes the interactive
+                  // Hohmann-transfer explorer (transfer ellipse + Δv budget).
+                  if (typeof cls === "string" && /language-hohmann\b/.test(cls)) {
+                    return <HohmannTransfer />;
+                  }
+                  // A fenced ```lagrangemap block becomes the interactive
+                  // five-Lagrange-points map (mass-ratio slider + stability).
+                  if (typeof cls === "string" && /language-lagrangemap\b/.test(cls)) {
+                    return <LagrangePoints />;
+                  }
+                  // A fenced ```sunsync block becomes the interactive
+                  // sun-synchronous orbit designer (J2 nodal precession).
+                  if (typeof cls === "string" && /language-sunsync\b/.test(cls)) {
+                    return <SunSyncOrbit />;
+                  }
+                  // A fenced ```planethohmann block becomes the interactive
+                  // interplanetary Hohmann trip planner (planet → Δv + time).
+                  if (typeof cls === "string" && /language-planethohmann\b/.test(cls)) {
+                    return <PlanetHohmann />;
+                  }
+                  // A fenced ```debrislifetime block becomes the interactive
+                  // orbital-decay-lifetime-vs-altitude explorer.
+                  if (typeof cls === "string" && /language-debrislifetime\b/.test(cls)) {
+                    return <DebrisLifetime />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

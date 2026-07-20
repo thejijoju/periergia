@@ -32,6 +32,8 @@ The two-body problem was pure, exact, closed-form — one of the few things in p
 
 ## The satellite that has taken the same photograph for fifty years
 
+{{image: Landsat 1 | Landsat 1, launched in 1972, began the longest continuous record of Earth's surface in existence — fifty years across nine satellites. It works only because its sun-synchronous orbit freezes the lighting on every pass.}}
+
 On July 23, 1972, a satellite called ERTS-1 — later renamed **Landsat 1** — reached orbit and began photographing the surface of the Earth. It was a modest machine by modern standards, its cameras crude by the measure of the phone in your pocket. But it began something that has never stopped: a continuous, systematic, calibrated photographic record of the entire land surface of the Earth, which has now run for more than **fifty years**, across nine successive Landsat satellites, the longest continuous record of the Earth's surface in existence. Every glacier's retreat, every forest's felling, every city's sprawl, every lake's shrinking — the Aral Sea vanishing, the Amazon thinning, the Greenland ice darkening — is documented in this half-century of imagery, and it is the single most important dataset in the science of how humans are changing the planet.
 
 Here is a question that sounds trivial and is not: **how do you photograph the whole Earth, systematically, in a way that lets you compare an image from 1975 to an image from 2025 and actually see what changed?**
@@ -117,6 +119,11 @@ $$\cos i = \frac{\dot\Omega}{-\frac{3}{2}J_2 \frac{R_\oplus^2}{a^2(1-e^2)^2}n}$$
 
 Plugging in, for a ~700 km circular orbit the required inclination comes out to about **$i \approx 98.2°$** — retrograde by 8.2°, exactly as advertised. Every sun-synchronous orbit lives on a specific curve in the altitude-inclination plane: pick an altitude, and the sun-synchronous inclination is determined (higher orbits need slightly more retrograde inclination to keep the same precession rate as the effect weakens with altitude). The curve runs from about 96.7° at very low altitude to about 99° at the top of the useful range, and every sun-synchronous satellite in history sits on it.
 
+Design one yourself. The plot below is exactly that altitude–inclination curve. Drag the altitude and inclination and watch the node's drift rate: a polar orbit (90°) doesn't precess at all, and only when your dot lands on the purple curve — tilted just past polar — does the drift hit +0.99°/day and the lighting freeze.
+
+```sunsync
+```
+
 ```example
 sun-synchronous
 ```
@@ -131,6 +138,8 @@ The payoff is the frozen lighting, and it enables:
 **Step back and appreciate the structure of what just happened.** The Earth's equatorial bulge — the single largest reason the two-body problem is a lie — produces a torque that precesses orbital planes. Left alone, this precession would *ruin* an imaging mission by sliding its lighting through the year. But by *tuning* the precession — choosing altitude and inclination so the plane precesses at exactly the Sun's apparent rate — the lighting-ruining bug becomes a lighting-*freezing* feature. **The perturbation was not fought, not corrected; it was tuned to a value that solved the problem exactly, and then let run for free, forever, powered by nothing but the Earth's own shape.** No propellant, no maintenance, no active control — the orbit precesses on its own, tracking the Sun, because it was placed on the one curve where the Earth's flaw does precisely the work required. That is the deepest pattern in applied orbital mechanics, and Landsat's irreplaceable half-century record is its monument.
 
 ## The Molniya orbit: a conic section carved by geography
+
+{{image: Molniya orbit | The Molniya orbit: a teardrop-shaped, highly eccentric 12-hour orbit that loiters for ~8 hours over the far north. Flown at the 63.4° critical inclination, where J2's perigee drift vanishes, so the apogee stays frozen over the Arctic — a nation's latitude carved into a conic section.}}
 
 Now the second triumph, and the most striking, because it is a case where a nation's *geography* — its physical location on the globe — reached up and dictated the *shape of an orbit*, and the solution exploits a *different* J2 effect than sun-synchronous orbits do. It is the story of how the Soviet Union, cursed by its latitude, invented an orbit shaped like a teardrop and named it after a lightning bolt.
 
@@ -212,6 +221,8 @@ And here is why it is a *death spiral* rather than a gentle decline: as the sate
 ### The solar-activity wild card
 
 There is a vicious complication that makes drag genuinely hard to predict, and it killed a space station. The density of the upper atmosphere is not constant — it *swells* dramatically when the Sun is active. During periods of high solar activity (solar maximum, or a solar flare), increased extreme-ultraviolet radiation heats and *inflates* the upper atmosphere, so the density at any given altitude can rise by a factor of several, or even ten. A satellite that would decay slowly during solar minimum can suddenly find itself in much thicker air during a solar storm, and its decay dramatically accelerates — unpredictably, because solar activity is hard to forecast.
+
+{{image: Skylab | Skylab, America's first space station, brought down years early when an unexpected solar maximum inflated the upper atmosphere and drag ran ahead of schedule — the perturbation chapter's memento mori: some perturbations you tune into tools, and some you can only race against.}}
 
 **This is exactly what killed Skylab**, America's first space station. Launched in 1973, Skylab was expected to stay in orbit into the 1980s, by which time the Space Shuttle (then in development) would visit and boost it to a higher, safer orbit. But an unexpectedly strong solar maximum in the late 1970s inflated the upper atmosphere, drag on Skylab increased far beyond predictions, and its orbit decayed *years ahead of schedule.* The Shuttle was not ready in time. NASA lost the race, and in July 1979, Skylab reentered the atmosphere uncontrolled, its debris scattering across the Indian Ocean and **Western Australia.** No one was hurt, but chunks of a 77-tonne space station fell on an inhabited continent, and the town of Esperance, Australia, famously issued NASA a \$400 littering fine (unpaid for 30 years, until a radio DJ raised the money). **Skylab died because a perturbation that can be computed but not predicted — drag amplified by unpredictable solar activity — ran faster than the schedule of the vehicle meant to save it.** It is the perturbation chapter's memento mori: some perturbations you tune into tools, and some you can only race against, and sometimes you lose.
 

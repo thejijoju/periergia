@@ -33,6 +33,8 @@ There is a shift in intellectual texture here, and it is real. The rockets unit 
 
 ## The decade in the notebooks
 
+{{image: Johannes Kepler | Johannes Kepler, who spent the better part of a decade wrestling Tycho Brahe's twenty years of Mars data into three empirical laws — and would not let go of an eight-arcminute discrepancy that toppled two thousand years of circular orbits.}}
+
 In 1600, a young German mathematician named Johannes Kepler arrived in Prague to work for Tycho Brahe, the greatest observational astronomer who had ever lived. Tycho was a Danish nobleman with a metal nose — he'd lost the original in a duel over a mathematical dispute; this field has always attracted intense people — and a private observatory funded by the king, and over decades he had accumulated something no one else on Earth possessed: naked-eye positional measurements of the planets accurate to about one arcminute, a thirtieth of the width of the full Moon, night after night, year after year, for twenty years. It was the most precise, most complete dataset in the history of science, and Tycho guarded it like treasure, doling out fragments to Kepler while keeping the whole to himself.
 
 Then, in 1601, Tycho died — suddenly, of a bladder ailment, after a banquet. And Kepler, in a maneuver he later described with disarming honesty as taking advantage of the heirs' inexperience, got hold of the data. All of it. Twenty years of the finest measurements ever made.
@@ -122,6 +124,8 @@ This is the **orbit equation** in polar coordinates, where $r$ is the distance f
 - $e = 1$: **parabola**
 - $e > 1$: **hyperbola**
 
+{{image: Conic section | The conic sections — circle, ellipse, parabola, hyperbola — the curves you get by slicing a cone. The Greeks studied them as pure geometry two millennia before anyone knew they were the shapes every orbit traces.}}
+
 **This is one of the great unifications in physics.** Every possible orbit under an inverse-square force is a **conic section** — the curves you get by slicing a cone with a plane: circle, ellipse, parabola, hyperbola. The ancient Greeks studied conic sections as pure geometry, for their own beauty, with no application in mind, two thousand years before anyone knew they were the shapes of the heavens. And then it turned out that *God, or gravity, draws with conics.* Every planet, every comet, every satellite, every spacecraft, every interstellar interloper traces a conic section, and which one depends on a single number, the eccentricity, which depends on the energy. Kepler's First Law — planets move in ellipses — is now revealed as just the *bound* case ($e < 1$) of a deeper truth: **inverse-square gravity produces conic-section orbits, full stop.** Newton's elevator has carried the argument from a decade of Kepler's anguish to a one-line equation that contains every orbit that can exist.
 
 ## Kepler's Third Law
@@ -186,6 +190,11 @@ Here are the special cases it contains, because they're the whole map:
 
 **Why vis-viva is the workhorse:** almost every practical orbital mechanics problem reduces to "you're here, moving at this speed, and you want to be there — how much do you need to change your speed?" And the answer is always: use vis-viva to find your current speed and your desired speed, and the difference is your Δv (which then costs you propellant, via the rocket equation — this is where geometry and propulsion connect). **Vis-viva is the bridge between geometry (where things are) and propulsion (what it costs to change where things are going).** Learn it cold.
 
+See the whole conic-section family fall out of a single dial. Below, launch horizontally and change only the speed: the orbit is a conic whose eccentricity is exactly $e = |k^2 - 1|$, where $k$ is your speed in units of the local circular speed. Slow, and the launch point becomes apogee and the orbit dips inward; at exactly $\sqrt2$ times circular speed the ellipse tears open into a parabola and you never come back.
+
+```orbitshape
+```
+
 ```example
 vis-viva
 ```
@@ -236,6 +245,8 @@ Now — and this is the whole spirit of the perturbations chapter, previewed —
 ### The deviation that broke physics: Mercury's perihelion
 
 Now the famous one, and it's the perfect ending to a story about a beautiful lie, because it's the moment the lie's tiny residual error toppled two centuries of physics.
+
+{{image: Mercury (planet) | Mercury, whose orbit refused to close: its perihelion advances 43 arcseconds per century more than Newton allows. The tiny residual was not an unseen planet but the first crack in Newtonian gravity — the signature of curved spacetime.}}
 
 Mercury orbits the Sun in an ellipse (Kepler I, two-body). But the ellipse itself slowly *rotates* — the perihelion (closest point to the Sun) advances a little each orbit, so the whole ellipse precesses, tracing a rosette pattern over centuries. Most of this precession is easily explained by the two-body problem's failure of the second assumption: the *other planets* (Venus, Earth, Jupiter) tug on Mercury and make its perihelion advance. Nineteenth-century astronomers, led by Le Verrier (the man who had predicted Neptune's existence from Uranus's orbital deviations — a triumph of Newtonian perturbation theory), computed the expected precession from all the known planets.
 

@@ -37,6 +37,8 @@ The four giant planets — Jupiter, Saturn, Uranus, Neptune — were drifting to
 
 There was a catch that turned a curiosity into a deadline written in the sky: the arrangement recurs only about **once every 176 years**. The geometry had last been available around 1800 — when Neptune had not yet even been discovered — and if humanity missed the window in the late 1970s, it would not return until roughly 2153. A launch in 1977 could do it. A launch in 1990 could not. The universe had opened a door, briefly, and stamped an expiration date on it, and by the standards of a space program barely a decade old the date was *immediately*.
 
+{{image: Voyager 2 | Voyager 2, launched in 1977, rode Gary Flandro's once-in-176-years planetary alignment past all four giant worlds, reaching Neptune in twelve years instead of thirty — and is now in interstellar space, the mission the gravity assist made possible.}}
+
 The discovery became the seed of **Voyager**: two spacecraft, launched in 1977, that rode Flandro's alignment across the solar system, gave humanity its first close look at four giant planets and their dozens of moons, discovered volcanoes on Io and geysers on Triton, and are now both in interstellar space — the most distant human-made objects in existence, still faintly calling home. The whole improbable epic rests on a single piece of orbital mechanics: the gravity assist, the technique by which a spacecraft steals energy from a planet's motion to hurl itself onward. Without it, no rocket buildable in the 1970s could have reached Neptune in a human lifetime; a direct transfer takes thirty years. With it, Voyager 2 arrived in twelve. Flandro saw the door. The rest of this chapter forges the key.
 
 ## The patched conic: one more productive lie
@@ -91,6 +93,11 @@ $$t = \pi\sqrt{a_t^3/\mu_\odot} = 258.9\ \text{days} \approx 8.5\ \text{months}.
 
 Eight and a half months each way, coasting on an ellipse. This one number governs the architecture of Mars exploration: why a crewed mission is a multi-year commitment, why the radiation dose is punishing, why life support must be so robust. The Hohmann transfer is cheap but slow, and much of the future of human spaceflight is the fight to shorten it — a fight, at bottom, against the rocket equation, because going faster than Hohmann costs exponentially more.
 
+Pick a destination below and watch the coast time explode. Mars is 8.5 months; the giants are years; Neptune is decades. The Δv figures barely grow — it is *time*, not fuel, that walls off the outer solar system, which is exactly why the gravity assist (next) mattered so much.
+
+```planethohmann
+```
+
 ```example
 interplanetary-transfer
 ```
@@ -112,6 +119,8 @@ oberth-departure
 ```
 
 ## The gravity assist: stealing energy from a planet
+
+{{image: Gravity assist | The gravity assist: a spacecraft swings past a moving planet and, though its speed relative to the planet is unchanged, steals a slice of the planet's orbital motion to change its speed relative to the Sun — a bicycle bouncing off a truck. It made the outer solar system reachable.}}
 
 Now the crown jewel — the technique that made the outer solar system reachable. The **gravity assist** lets a spacecraft change its speed relative to the Sun, often *gaining* enormous speed, by flying past a planet and taking energy from the planet's orbital motion. It sounds like a free lunch, a violation of energy conservation, and seeing why it is not is the deepest two-frame exercise in the subject.
 
@@ -174,6 +183,8 @@ The total is roughly **4.5–5.7 km/s beyond LEO**, on top of the ~9.4 km/s to r
 Notice what the patched conic delivered: the true four-body problem was never solved. Three separate two-body problems were, stitched at the SOI boundaries by matching velocities across frames. **The patched conic is a lie, and it is accurate enough to land a rover on another planet to within meters** after an eight-month journey of hundreds of millions of kilometers — the highest praise any engineering approximation can receive. Real navigation refines it with numerical integration and mid-course corrections of a few m/s, but the patched conic designs the mission; the corrections merely clean up the lie's residue.
 
 ## The Voyager Grand Tour: the most beautiful trajectory ever flown
+
+{{image: Neptune | Neptune, imaged by Voyager 2 in 1989 — the far end of the Grand Tour, 30 AU out. A direct Hohmann transfer would have taken 30 years; chained gravity assists brought Voyager there in twelve.}}
 
 Return now to Flandro's alignment, armed with everything. Reaching the outer planets is, by direct flight, nearly impossible with 1970s rockets: a Hohmann transfer to Neptune (30.07 AU) takes
 

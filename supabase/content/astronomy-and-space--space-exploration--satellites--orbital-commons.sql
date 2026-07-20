@@ -31,6 +31,8 @@ with master as (
 
 ## The day two satellites hit at eleven kilometers per second
 
+{{image: Space debris | The cloud of tracked objects around Earth — satellites and the debris of collisions past. The 2009 Iridium–Cosmos smash alone added ~2,000 trackable fragments to one of the most useful bands of low orbit, and they are still up there.}}
+
 On February 10, 2009, at 16:56 UTC, 789 kilometers above the Taymyr Peninsula in northern Siberia, two satellites occupied the same point in space at the same instant. One was **Iridium 33**, an active American communications satellite, relaying calls. The other was **Cosmos 2251**, a defunct Russian military satellite, dead since 1995 — a two-thirds-of-a-tonne hunk of tumbling metal that no one was controlling. They were in nearly perpendicular orbits, and they met at a closing speed of about **11.7 km/s** — more than ten times the speed of a rifle bullet.
 
 There was no explosion in the chemical sense; none was needed. At 11.7 km/s the kinetic energy alone is apocalyptic. The two satellites, a combined 1.5 tonnes, carried the energy of a large truck bomb, and when they met they were not dented but *vaporized* — converted in a fraction of a second into an expanding cloud of roughly **2,000 trackable fragments** and hundreds of thousands of smaller pieces, each still lethal. It was the first accidental hypervelocity collision between two intact satellites, and it happened not because anyone was careless in the moment but because two objects were in orbits that happened to intersect, in a sky where no one had the authority or the complete information to prevent it.
@@ -61,6 +63,8 @@ The debris environment, as of the mid-2020s, is roughly **35,000–40,000 object
 
 ## The Kessler syndrome: when collisions become self-sustaining
 
+{{image: Kessler syndrome | The Kessler syndrome: past a critical density, collisions create fragments faster than drag removes them, so the debris population runs away on its own — a chain reaction with no control rods, like an epidemic with R₀ > 1.}}
+
 In 1978, the NASA scientist **Donald Kessler**, with Burton Cour-Palais, published a paper with a quietly terrifying thesis. As the number of objects in low Earth orbit grows, the collision rate grows too — not linearly but roughly with the *square* of the population, because collisions require pairs and the number of pairs among $n$ objects grows as $n^2$. Each collision produces fragments, which add to the population, which increases the collision rate further. Beyond a critical density, the process becomes **self-sustaining**: fragments from collisions cause new collisions faster than atmospheric drag removes debris, and the population grows on its own, without any new launches, in a runaway chain reaction. This is the **Kessler syndrome**.
 
 The cascade logic has the same structure as a nuclear chain reaction or an epidemic. A collision creates a cloud of fragments; each fragment crosses other objects' paths at hypervelocity; some strike other satellites or debris; each strike shatters its target into thousands more fragments; those cause more strikes. The critical quantity is whether, on average, each collision causes *more than one* subsequent collision before its fragments decay — exactly the **basic reproduction number** $R_0$ of an epidemic. If $R_0 < 1$, the process fizzles: debris is created but drag removes it faster than it cascades. If $R_0 > 1$, it runs away — a self-sustaining chain reaction where the population grows exponentially, fed by its own fragments, until the orbit is so full that nothing can survive there.
@@ -74,6 +78,11 @@ And here is the truly frightening part: **once triggered, it cannot be stopped.*
 ### Why altitude is everything
 
 The crucial variable is altitude, which ties the whole thing back to atmospheric drag. At **low** altitudes (below ~600 km) drag is strong enough to deorbit debris within years to a couple of decades, so even when collisions happen the fragments *decay away* before they can cascade, and $R_0$ stays low. The atmosphere is a free, natural debris-removal system down low — which is why the ISS at ~400 km sits in a relatively self-cleaning zone. But at **higher** altitudes (800–1200 km — unfortunately a hugely popular band for sun-synchronous imaging, communications, and now megaconstellations) drag is negligible and debris persists for centuries to millennia. There is no natural cleanup, so this is exactly where the Kessler syndrome is most dangerous — and, cruel irony, exactly where the most valuable satellites live. **The orbits humanity most wants to use are the ones the atmosphere cannot clean.** Drag, a killer in the drag-and-decay chapter (it brought down Skylab), is here a savior — the only janitor the commons has, and it only reaches down low.
+
+See the cruelty for yourself. Slide the altitude below: down at the ISS, drag clears debris in a couple of years; but in the 800–1200 km band — exactly where the imaging, communications, and megaconstellation satellites crowd — the lifetime is centuries to millennia, and there is no janitor.
+
+```debrislifetime
+```
 
 Is the syndrome already under way? The honest answer is that we are at the edge, and parts of it may have already begun. Several studies — including by Kessler himself in later years — concluded that certain bands, particularly around 800–1000 km, may *already* be above the critical density, meaning the cascade is slowly self-sustaining there even now and would continue to grow even if all launches stopped tomorrow. The 2007 ASAT test and the 2009 collision each nudged those bands further. The cascade, if it has begun, is *slow* — it plays out over decades — but slowness is not safety; it is a catastrophe that cannot be seen happening in real time.
 
@@ -106,6 +115,8 @@ In the language of economics, debris is a **negative externality** — a cost an
 ## The law of the sky: a treaty from 1967 and its discontents
 
 What governance does space have? A remarkable, idealistic, and increasingly inadequate body of law written for a world that no longer exists.
+
+{{image: Outer Space Treaty | The Outer Space Treaty of 1967 — visionary for its era, and the root of the tragedy: by declaring space "the province of all mankind" with no national appropriation, it made orbit a thing no one owns, and a thing no one owns is a thing no one protects.}}
 
 The foundational document is the **Outer Space Treaty of 1967**, negotiated at the height of the Cold War when spaceflight belonged to two superpowers. Its core principles are genuinely visionary: space is free for exploration and use by all nations, with **no national appropriation** (no country may claim territory in space — it is "the province of all mankind"); no weapons of mass destruction in orbit; and **states bear responsibility** for their national space activities, including those of their private companies, and are **liable** for damage their space objects cause. That last point, elaborated in the 1972 Liability Convention, means that in principle if one country's satellite hits another's, the first country pays. In practice this has almost never been invoked — proving fault and causation after two satellites vaporize into thousands of fragments is a legal nightmare, and the 2009 collision produced no claim, partly because neither side wanted the precedent.
 
