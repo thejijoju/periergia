@@ -40,6 +40,8 @@ import { InterferometryBaseline } from "./InterferometryBaseline";
 import { ConsumablesMass } from "./ConsumablesMass";
 import { BoneLoss } from "./BoneLoss";
 import { ArtificialGravity } from "./ArtificialGravity";
+import { RadiationDose } from "./RadiationDose";
+import { ShieldingParadox } from "./ShieldingParadox";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -619,6 +621,16 @@ export function Reader({
                   // a = ω²r spin-gravity explorer (radius vs rpm for 1 g).
                   if (typeof cls === "string" && /language-artificialgravity\b/.test(cls)) {
                     return <ArtificialGravity />;
+                  }
+                  // A fenced ```radiationdose block becomes the interactive
+                  // dose-vs-transit-time explorer (radiation as a propulsion problem).
+                  if (typeof cls === "string" && /language-radiationdose\b/.test(cls)) {
+                    return <RadiationDose />;
+                  }
+                  // A fenced ```shieldingparadox block becomes the interactive
+                  // dose-vs-shielding curve (a little shielding is worse than none).
+                  if (typeof cls === "string" && /language-shieldingparadox\b/.test(cls)) {
+                    return <ShieldingParadox />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
