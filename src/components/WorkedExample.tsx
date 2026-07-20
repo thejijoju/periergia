@@ -1819,6 +1819,74 @@ const GENERATORS: Record<string, Generator> = {
       )} L of blood volume it will desperately need later. With no gravity to pump against, the heart also deconditions and rounds — so on return, the reduced volume and a weakened heart together leave the astronaut unable to stand: blood pools in the legs and the brain is starved (orthostatic intolerance). The fluid shift is the hub from which the heart, the balance system, and even the eyeball's shape all go wrong.`,
     };
   },
+  // ── Radiation, and the wall (radiation) ──
+  "radiation-dose": (rng) => {
+    const oneWay = sample(rng, [4, 6, 8], 1)[0];
+    const rate = 1.8; // mSv/day, deep space
+    const surface = 350; // mSv
+    const career = 600; // mSv
+    const transit = 2 * oneWay * 30.44 * rate;
+    const total = transit + surface;
+    const pct = (total / career) * 100;
+    return {
+      title: "A career's dose in one trip",
+      question: `Curiosity's RAD instrument measured ~1.8 mSv/day in deep space. For a Mars mission with a ${oneWay}-month transit each way plus ~350 mSv on the surface, what total dose does a crew accumulate — against a ~600 mSv career limit?`,
+      steps: [
+        `\\text{transit} = 2\\times ${oneWay}\\,\\text{mo}\\times 30.44\\,\\tfrac{\\text{day}}{\\text{mo}}\\times 1.8\\,\\tfrac{\\text{mSv}}{\\text{day}} = ${Math.round(
+          transit,
+        ).toLocaleString("en-US")}\\,\\text{mSv}`,
+        `\\text{total} = ${Math.round(transit).toLocaleString("en-US")} + 350 = ${Math.round(
+          total,
+        ).toLocaleString("en-US")}\\,\\text{mSv} = ${Math.round(pct)}\\%\\text{ of the career limit}`,
+      ],
+      note: `About ${Math.round(total).toLocaleString("en-US")} mSv — ${
+        total > career ? Math.round(pct - 100) + "% OVER a whole career's allowance in a single mission" : "most of a career's allowance in one mission"
+      }. The dose is a rate, so it is set by time exposed: the only countermeasure that scales is to go faster, which hands the radiation problem back to propulsion. A nuclear engine that shortens the trip is, in effect, a medical device.`,
+    };
+  },
+
+  "cancer-risk": (rng) => {
+    const dose = sample(rng, [330, 660, 1000], 1)[0]; // mSv
+    const doseSv = dose / 1000;
+    const perSv = 5; // % excess fatal cancer per sievert
+    const risk = doseSv * perSv;
+    return {
+      title: "Turning dose into risk",
+      question: `A biologically-weighted dose of ${dose} mSv is received on a mission. Using the rough rule of ~5% excess lifetime fatal-cancer risk per sievert, what excess risk does it imply?`,
+      steps: [
+        `${dose}\\,\\text{mSv} = ${doseSv.toFixed(2)}\\,\\text{Sv}`,
+        `\\text{excess risk} = 5\\%\\times ${doseSv.toFixed(2)} = ${risk.toFixed(1)}\\%`,
+      ],
+      note: `About a ${risk.toFixed(
+        1,
+      )}% increase in lifetime fatal-cancer risk — a real, quantifiable price paid by every crew member, on top of the acute danger of any solar storm. And the sievert is already biologically weighted: the heavy galactic-cosmic-ray nuclei are counted up to ~20× as damaging per unit energy as X-rays, which is why a modest energy deposition becomes a career's worth of risk. Radiation cannot be built away, only reduced and then accepted.`,
+    };
+  },
+
+  "faster-safer": (rng) => {
+    const from = sample(rng, [8, 9], 1)[0];
+    const to = sample(rng, [3, 4], 1)[0];
+    const rate = 1.8;
+    const dFrom = from * 30.44 * rate;
+    const dTo = to * 30.44 * rate;
+    const saved = dFrom - dTo;
+    return {
+      title: "Faster travel is safer travel",
+      question: `The galactic-cosmic-ray dose is proportional to time in deep space. If better propulsion cuts a one-way transit from ${from} months to ${to} months (at ~1.8 mSv/day), how much transit dose is saved per leg?`,
+      steps: [
+        `d_{${from}} = ${from}\\times 30.44\\times 1.8 = ${Math.round(dFrom)}\\,\\text{mSv},\\quad d_{${to}} = ${to}\\times 30.44\\times 1.8 = ${Math.round(dTo)}\\,\\text{mSv}`,
+        `\\text{saved per leg} = ${Math.round(dFrom)} - ${Math.round(dTo)} = ${Math.round(saved)}\\,\\text{mSv}`,
+      ],
+      note: `Roughly ${Math.round(
+        saved,
+      )} mSv saved on each leg — because dose scales with time, cutting the transit by ${(
+        (1 - to / from) *
+        100
+      ).toFixed(
+        0,
+      )}% cuts the transit dose by the same fraction. There is no shield that scales against the galactic bombardment, so spending less time out there is the strongest lever we have. That is why radiation is partly a propulsion problem, and why the engine cancelled in 1973 was, in effect, a piece of medical equipment.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
