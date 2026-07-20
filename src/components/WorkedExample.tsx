@@ -2093,6 +2093,52 @@ const GENERATORS: Record<string, Generator> = {
       note: `A mere ${len}-unit chain already has ${sci(seqs, 2)} possible sequences — and real proteins run to hundreds of units, so a single specific one is an almost unimaginably improbable arrangement. Life maintains vast numbers of exactly these improbable, low-entropy structures against the universe's pull toward disorder — which is why the thermodynamic view sees life as an island of order held up by a constant throughput of energy. It also sharpens the N=1 problem: every protein we know is drawn from the same 20-letter alphabet, and with one example we cannot say whether that alphabet is necessary or merely ours.`,
     };
   },
+  // ── The Origin of Life: From Chemistry to Biology (origins) ──
+  "sequence-space": (rng) => {
+    const len = sample(rng, [10, 20, 40], 1)[0];
+    const seqs = Math.pow(4, len);
+    return {
+      title: "Why assembly is a needle in a haystack",
+      question: `RNA is a chain of 4 kinds of nucleotide "letter." Miller-Urey makes the letters easily — but a working self-replicator needs a specific sequence. How many distinct sequences are possible for a chain just ${len} letters long?`,
+      steps: [
+        `\\text{sequences} = 4^{${len}} = ${sci(seqs, 2)}`,
+      ],
+      note: `Even a ${len}-letter RNA has ${sci(seqs, 2)} possible sequences, and only a vanishing fraction fold into anything functional — so finding a self-replicating ribozyme by blind chance is a needle in an astronomically large haystack. This is exactly why making the building blocks (easy, even cosmic) is not making life (hard, unsolved): the bricks come free, but the specific functional arrangement does not. It is the gulf between a bucket of letters and a book that writes itself.`,
+    };
+  },
+
+  "origin-odds": (rng) => {
+    const nHab = sample(rng, [100_000_000, 300_000_000, 1_000_000_000], 1)[0];
+    const exp = sample(rng, [3, 6, 9, 12], 1)[0];
+    const p = Math.pow(10, -exp);
+    const expected = nHab * p;
+    return {
+      title: "Easy or hard: counting living worlds",
+      question: `Suppose the galaxy has about ${sci(nHab, 0)} potentially habitable worlds, and life arises on each with probability 10^-${exp}. How many worlds would have an independent origin of life?`,
+      steps: [
+        `\\text{worlds with life} = ${sci(nHab, 0)}\\times 10^{-${exp}} = ${expected >= 1 ? sci(expected, 1) : expected.toExponential(1)}`,
+      ],
+      note: `${expected >= 2 ? `About ${sci(expected, 1)} living worlds — a galaxy teeming with life` : `Only about ${expected.toFixed(2)} — essentially just Earth, and we may be alone`}. That is the whole drama of the origin: the same habitable worlds give a crowded cosmos or a lonely one depending entirely on this one probability, which swings the answer by orders of magnitude. And with a single known origin (Earth), we cannot measure it — one coin flip landing heads reveals that heads is possible, not how likely. Only a second, independent origin would pin it down.`,
+    };
+  },
+
+  "great-filter": (rng) => {
+    const eOrigin = sample(rng, [0, 1], 1)[0]; // 1 or 0.1
+    const eEuk = sample(rng, [3, 4, 5], 1)[0]; // the hard eukaryotic step
+    const eInt = sample(rng, [1, 2], 1)[0];
+    const pO = Math.pow(10, -eOrigin), pE = Math.pow(10, -eEuk), pI = Math.pow(10, -eInt);
+    const reachEuk = pO * pE;
+    const reachInt = reachEuk * pI;
+    return {
+      title: "The great filter: life common, minds rare",
+      question: `Reaching intelligence takes a series of steps. Say simple life arises on a fraction ${pO} of habitable worlds, the leap to complex (eukaryotic) cells clears on 10^-${eEuk}, and intelligence on 10^-${eInt}. What fraction of worlds reach complex life, and what fraction reach minds?`,
+      steps: [
+        `\\text{complex} = ${pO}\\times 10^{-${eEuk}} = ${reachEuk.toExponential(1)}`,
+        `\\text{intelligent} = ${reachEuk.toExponential(1)}\\times 10^{-${eInt}} = ${reachInt.toExponential(1)}`,
+      ],
+      note: `Simple life on a fraction ${pO} of worlds, but intelligence on only about ${reachInt.toExponential(1)} — because the odds multiply, one fantastically hard step (here the eukaryotic leap at 10^-${eEuk}) can leave a galaxy full of microbial slime and nearly empty of anyone to talk to. Earth's own history hints at exactly this: the origin looked easy, but the jump to complex cells took ~2 billion years and may have been a one-off fluke. "Are we alone?" must be asked at every rung of the ladder, not just the first.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

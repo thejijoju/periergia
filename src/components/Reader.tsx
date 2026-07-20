@@ -50,6 +50,8 @@ import { ShuttleRisk } from "./ShuttleRisk";
 import { NormalizedDeviance } from "./NormalizedDeviance";
 import { LifeChecklist } from "./LifeChecklist";
 import { EntropyExport } from "./EntropyExport";
+import { OriginOdds } from "./OriginOdds";
+import { LifeLadder } from "./LifeLadder";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -682,6 +684,16 @@ export function Reader({
                   // open-system view (order held by exporting entropy).
                   if (typeof cls === "string" && /language-entropyexport\b/.test(cls)) {
                     return <EntropyExport />;
+                  }
+                  // A fenced ```originodds block becomes the interactive
+                  // easy-or-hard explorer (per-world origin odds → living worlds).
+                  if (typeof cls === "string" && /language-originodds\b/.test(cls)) {
+                    return <OriginOdds />;
+                  }
+                  // A fenced ```lifeladder block becomes the interactive
+                  // great-filter ladder (simple life common, minds rare).
+                  if (typeof cls === "string" && /language-lifeladder\b/.test(cls)) {
+                    return <LifeLadder />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
