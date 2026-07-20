@@ -35,6 +35,8 @@ import { LagrangePoints } from "./LagrangePoints";
 import { SunSyncOrbit } from "./SunSyncOrbit";
 import { PlanetHohmann } from "./PlanetHohmann";
 import { DebrisLifetime } from "./DebrisLifetime";
+import { RedshiftBand } from "./RedshiftBand";
+import { InterferometryBaseline } from "./InterferometryBaseline";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -589,6 +591,16 @@ export function Reader({
                   // orbital-decay-lifetime-vs-altitude explorer.
                   if (typeof cls === "string" && /language-debrislifetime\b/.test(cls)) {
                     return <DebrisLifetime />;
+                  }
+                  // A fenced ```redshiftband block becomes the interactive
+                  // redshift-to-band explorer (why the first galaxies force IR).
+                  if (typeof cls === "string" && /language-redshiftband\b/.test(cls)) {
+                    return <RedshiftBand />;
+                  }
+                  // A fenced ```interferometrybaseline block becomes the
+                  // interactive θ = 1.22λ/B baseline-vs-resolution explorer.
+                  if (typeof cls === "string" && /language-interferometrybaseline\b/.test(cls)) {
+                    return <InterferometryBaseline />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
