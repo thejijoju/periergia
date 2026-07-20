@@ -44,6 +44,8 @@ import { RadiationDose } from "./RadiationDose";
 import { ShieldingParadox } from "./ShieldingParadox";
 import { LoopClosureMass } from "./LoopClosureMass";
 import { Biosphere2Oxygen } from "./Biosphere2Oxygen";
+import { ArchitectureMass } from "./ArchitectureMass";
+import { DvBudget } from "./DvBudget";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -644,6 +646,17 @@ export function Reader({
                   // sealed-oxygen-decline explorer (closure is unforgiving).
                   if (typeof cls === "string" && /language-biosphere2oxygen\b/.test(cls)) {
                     return <Biosphere2Oxygen />;
+                  }
+                  // A fenced ```architecturemass block becomes the interactive
+                  // LOR-vs-direct-ascent mass comparison (fits one Saturn V, or
+                  // needs the never-built Nova).
+                  if (typeof cls === "string" && /language-architecturemass\b/.test(cls)) {
+                    return <ArchitectureMass />;
+                  }
+                  // A fenced ```dvbudget block becomes the interactive Δv-budget
+                  // ledger (launch dominates; the atmosphere brakes for free).
+                  if (typeof cls === "string" && /language-dvbudget\b/.test(cls)) {
+                    return <DvBudget />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

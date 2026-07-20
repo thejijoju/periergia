@@ -1942,6 +1942,58 @@ const GENERATORS: Record<string, Generator> = {
       note: `Closing water and oxygen drops resupply from ${open.toFixed(2)} to ${closed.toFixed(2)} kg per person per day — about a ${Math.round(cut)}% cut. Notice what now dominates the remainder: food, at 0.66 kg, is the largest surviving term, because no machine can make it. That is why the food loop — closeable only by bringing living plants aboard — is the next frontier, and why life support is the difference between visiting space and living there.`,
     };
   },
+  // ── Mission Architecture: How You Actually Get There and Back (mission-architecture) ──
+  "mass-ratio": (rng) => {
+    const dv = sample(rng, [1900, 2000, 2400, 3100], 1)[0];
+    const ve = sample(rng, [3000, 3050, 3100], 1)[0];
+    const r = Math.exp(dv / ve);
+    const propFrac = (1 - 1 / r) * 100;
+    return {
+      title: "The rocket equation, one maneuver at a time",
+      question: `A maneuver needs a velocity change of ${dv.toLocaleString("en-US")} m/s, using an engine whose exhaust velocity is ${ve.toLocaleString("en-US")} m/s. What mass ratio does the rocket equation demand — how many kilograms of fuelled vehicle per kilogram left after the burn?`,
+      steps: [
+        `\\frac{m_0}{m_f} = e^{\\Delta v / v_e} = e^{${dv}/${ve}} = e^{${(dv / ve).toFixed(3)}} = ${r.toFixed(2)}`,
+        `\\text{propellant fraction} = 1 - \\tfrac{1}{${r.toFixed(2)}} = ${propFrac.toFixed(0)}\\%`,
+      ],
+      note: `A mass ratio of ${r.toFixed(2)} — every kilogram you want left after the burn needs ${r.toFixed(2)} kg on the pad, so ${propFrac.toFixed(0)}% of the vehicle is just propellant for this one maneuver. This is the multiplier that makes landed-and-returned mass so expensive: a payload that must be both landed and launched back pays this ratio twice over, once for descent and once for ascent.`,
+    };
+  },
+
+  "landed-cascade": (rng) => {
+    const payload = sample(rng, [1, 2, 4], 1)[0]; // t returned from the surface
+    const rAsc = Math.exp(1900 / 3050); // ~1.86
+    const rDesc = Math.exp(2000 / 3050); // ~1.93
+    const rLoi = Math.exp(800 / 3050); // ~1.30
+    const surface = payload * rAsc;
+    const llo = surface * rDesc;
+    const approach = llo * rLoi;
+    return {
+      title: "Why landed-and-returned mass compounds",
+      question: `You want to return ${payload} t from the lunar surface to lunar orbit. With an ascent ratio of 1.86, a descent ratio of 1.93, and a lunar-orbit-insertion ratio of 1.30, how much mass must reach low lunar orbit before descent — and how much must approach the Moon?`,
+      steps: [
+        `\\text{on surface at ascent} = ${payload}\\times 1.86 = ${surface.toFixed(1)}\\,\\text{t}`,
+        `\\text{in lunar orbit before descent} = ${surface.toFixed(1)}\\times 1.93 = ${llo.toFixed(1)}\\,\\text{t}`,
+        `\\text{approaching the Moon} = ${llo.toFixed(1)}\\times 1.30 = ${approach.toFixed(1)}\\,\\text{t}`,
+      ],
+      note: `Returning just ${payload} t from the surface takes ${llo.toFixed(1)} t in lunar orbit and ${approach.toFixed(1)} t approaching the Moon — and each of those still had to be sent from Earth and launched off it, multiplying again. That is the compounding cascade: every kilogram you insist on landing and returning costs several kilograms in lunar orbit and a large multiple more on the pad. Leave the heavy return vehicle in orbit (lunar-orbit rendezvous) and you spare it this entire multiplication.`,
+    };
+  },
+
+  "dv-budget": (rng) => {
+    const launch = sample(rng, [9300, 9400, 9500], 1)[0];
+    const legs = [launch, 3100, 800, 2000, 1900, 1000];
+    const total = legs.reduce((a, b) => a + b, 0);
+    const frac = (launch / total) * 100;
+    return {
+      title: "Reading the Δv ledger",
+      question: `Add up the Apollo Δv budget: launch to low Earth orbit ${launch.toLocaleString("en-US")}, trans-lunar injection 3,100, lunar-orbit insertion 800, descent 2,000, ascent 1,900, and trans-earth injection 1,000 m/s. What is the total, and what share is just getting off the Earth?`,
+      steps: [
+        `\\text{total} = ${launch} + 3100 + 800 + 2000 + 1900 + 1000 = ${total.toLocaleString("en-US")}\\,\\text{m/s}`,
+        `\\text{launch share} = ${launch}/${total.toLocaleString("en-US")} = ${frac.toFixed(0)}\\%`,
+      ],
+      note: `About ${total.toLocaleString("en-US")} m/s in all, of which launch alone is ${frac.toFixed(0)}% — more than the entire round trip to the surface and back combined. That is why "low Earth orbit is halfway to anywhere." And notice the line that isn't there: braking back into Earth's atmosphere at ~11 km/s costs no propellant, because the atmosphere donates that deceleration for free — the same gift that makes aerobraking so valuable at Mars.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
