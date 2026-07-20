@@ -56,6 +56,8 @@ import { HabitableZone } from "./HabitableZone";
 import { DistanceLadder } from "./DistanceLadder";
 import { OceanAccess } from "./OceanAccess";
 import { IngredientsForLife } from "./IngredientsForLife";
+import { Disequilibrium } from "./Disequilibrium";
+import { BiosignatureCase } from "./BiosignatureCase";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -718,6 +720,16 @@ export function Reader({
                   // habitable-vs-inhabited checklist of Cassini's plume finds.
                   if (typeof cls === "string" && /language-ingredientsforlife\b/.test(cls)) {
                     return <IngredientsForLife />;
+                  }
+                  // A fenced ```disequilibrium block becomes the interactive
+                  // methane-decay plot (life holding an atmosphere out of balance).
+                  if (typeof cls === "string" && /language-disequilibrium\b/.test(cls)) {
+                    return <Disequilibrium />;
+                  }
+                  // A fenced ```biosignaturecase block becomes the interactive
+                  // confidence-ladder for building the case that a world is alive.
+                  if (typeof cls === "string" && /language-biosignaturecase\b/.test(cls)) {
+                    return <BiosignatureCase />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
