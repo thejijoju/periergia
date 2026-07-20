@@ -26,6 +26,7 @@ import { RocketEquation } from "./RocketEquation";
 import { StagingSplit } from "./StagingSplit";
 import { PowerThrustTrade } from "./PowerThrustTrade";
 import { ReuseEconomics } from "./ReuseEconomics";
+import { ThermochemCeiling } from "./ThermochemCeiling";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -535,6 +536,11 @@ export function Reader({
                   // amortization explorer ($/kg vs first-stage reuses).
                   if (typeof cls === "string" && /language-reuseeconomics\b/.test(cls)) {
                     return <ReuseEconomics />;
+                  }
+                  // A fenced ```thermochem block becomes the interactive
+                  // exhaust-velocity ceiling explorer (v_e vs T_c and M).
+                  if (typeof cls === "string" && /language-thermochem\b/.test(cls)) {
+                    return <ThermochemCeiling />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

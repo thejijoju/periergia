@@ -29,6 +29,8 @@ with master as (
 
 In the 1950s, at a Navy laboratory in New Jersey, a chemist named **John Drury Clark** spent about a decade trying to find a better rocket propellant.
 
+{{image: John Drury Clark | John Drury Clark, whose memoir *Ignition!* chronicles a decade of chasing hotter, lighter exhaust into ever more murderous chemistry — and finding the wall the periodic table had built all along.}}
+
 He and the small community of people doing this work — perhaps a few dozen souls worldwide — operated on a simple, seductive premise. The previous chapter has just taught it: **$v_e$ is everything.** It sits inside an exponential; a 10% gain in exhaust velocity roughly doubles your payload; the whole game is exhaust velocity. And exhaust velocity, as derived below, goes roughly as $\sqrt{T_c/M}$ — the square root of a hot flame temperature over a light exhaust molecule.
 
 So the assignment writes itself. **Find a propellant combination that burns hotter and produces lighter exhaust than anything known.** There is a Nobel Prize, or at least a promotion, for whoever does it. The periodic table is *right there*. How hard can it be?
@@ -134,6 +136,11 @@ And now the two goals collide, and this collision is the whole tragedy:
 
 Now put numbers on the ceiling.
 
+Before the arithmetic, feel the two levers with your hands. Slide the chamber temperature and the exhaust molecular weight below and watch the exhaust velocity: temperature barely moves it (it's under a square root, and pinned near 3,600 K anyway), while dragging the molecular weight down toward hydrogen sends it climbing — yet even the lightest realistic exhaust only just grazes the ~4.5 km/s wall.
+
+```thermochem
+```
+
 ---
 
 ```example
@@ -143,6 +150,8 @@ rocket-propellant-comparison
 ## Doing the calculation, and hitting the wall
 
 Compute the ideal $v_e$ for the champion, hydrogen/oxygen, and see how close reality gets — and then that **nothing does meaningfully better**.
+
+{{image: RS-25 | The RS-25 (Space Shuttle main engine): the closest chemistry gets to the ceiling. Hydrolox, run fuel-rich for the lightest exhaust, chamber near 3,600 K — an I_sp of ~450 s in vacuum, and essentially nothing does better, because the wall is the periodic table's, not the engineer's.}}
 
 **Hydrogen/oxygen, run fuel-rich** (as all real hydrolox engines are):
 - $T_c \approx 3{,}400$ K (below stoichiometric ~3,600 K because of the excess hydrogen)
@@ -242,6 +251,8 @@ Methane ($M=19$, $I_{sp} \approx 380$) is a compromise nobody would have chosen 
 ---
 
 ## The de Laval nozzle: how you comb the chaos
+
+{{image: De Laval nozzle | The de Laval nozzle: converge to the throat to reach the speed of sound, then *diverge* to go supersonic. The counterintuitive shape — narrow, then flare — is how a rocket combs thermal chaos into a directed hypersonic beam, and it stopped the field cold until 1888.}}
 
 Job one (make hot gas) is done, and its ceiling found. Now job two: the nozzle, which turns thermal chaos into a directed beam. And the nozzle contains the single most counterintuitive fact in all of propulsion, a fact so backwards that it stopped the field cold until 1888.
 
