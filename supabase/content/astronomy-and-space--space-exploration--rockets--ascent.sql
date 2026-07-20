@@ -31,6 +31,8 @@ This is a question most people get wrong, and the wrongness is instructive.
 
 **How fast do you have to go to be in orbit?**
 
+{{image: Gravity turn | A launch vehicle arcing downrange on its ascent. The curved path is the gravity turn — the trajectory that turns the planet's own pull into free steering while climbing out through the atmosphere.}}
+
 The confident answer is "escape velocity, 11.2 km/s." **Wrong** — that's the speed to *leave* Earth entirely, never to return, and orbit is precisely *not* leaving. The next answer is "9.4 km/s, the Δv to LEO." **Also wrong**, and this is the interesting wrong, because 9.4 is the number used through the earlier chapters. The number 9.4 is not a *speed*. Nothing in orbit moves at 9.4 km/s. It is a **budget** — a sum of a real speed plus a pile of losses — and confusing the budget with the speed is the single most common conceptual error in this subject.
 
 The actual orbital speed at the International Space Station's altitude is **7.67 km/s**. That's how fast the ISS is moving right now, over your head, and it's the number that falls out of Newton (derived below). So if orbit costs 7.67 km/s of actual velocity, **why is the required budget 9.4?**
@@ -241,6 +243,8 @@ $$v_{\text{rot}} = \frac{2\pi R_\oplus}{T_{\text{day}}} = \frac{2\pi \times 6{,}
 
 (using the sidereal day, 86,164 s — the true rotation period relative to the stars, which is what matters physically). So **if you launch eastward from the equator, you start with 465 m/s of orbital velocity for free** — you and your rocket are already moving east at 465 m/s before the engines even light, because you're standing on a spinning planet, and orbit is (mostly) an eastward motion. That's 465 m/s you don't have to buy with propellant. In exponential terms (from the rocket equation), shaving 465 m/s off a 9.4 km/s budget is worth a real chunk of payload — a few percent, on every flight, forever.
 
+{{image: Baikonur Cosmodrome | Baikonur, at 46°N: far from the equator, it collects only ~323 m/s of rebate against Kourou's ~409. Geography is destiny in the ascent budget — and the Soviet space programme paid that latitude penalty on every single launch.}}
+
 But the rebate depends on **where** and **which direction** you launch:
 
 **Latitude matters.** The eastward speed of Earth's surface is $465 \cos(\text{latitude})$ — maximum at the equator, zero at the poles (where you're just spinning in place). At Kennedy Space Center (28.5°N): $465 \cos(28.5°) = 409$ m/s. At Baikonur (46°N): $465\cos(46°) = 323$ m/s. At a hypothetical polar launch site: ~0 m/s. **The closer to the equator, the bigger the free rebate.**
@@ -248,6 +252,8 @@ But the rebate depends on **where** and **which direction** you launch:
 **Direction matters even more.** The rebate is only "free" if you launch **eastward**, with Earth's rotation. Launch **westward**, against the rotation, and you must not only forgo the 465 m/s gift but *also cancel out* your existing eastward motion — you pay the rebate *twice*, as a penalty. A westward equatorial launch costs ~930 m/s *more* than an eastward one. And launching due **north or south** (into a polar orbit) gets you *none* of the rebate — you're not using Earth's eastward spin at all.
 
 ### Why almost everything launches east over water
+
+{{image: Guiana Space Centre | The Guiana Space Centre at Kourou, just 5° from the equator on an east-facing Atlantic coast — the geography that collects almost the full 0.47 km/s rotation rebate. The launch map of the world is the rocket equation drawn on coastlines.}}
 
 Put these together and the launch map of the world writes itself:
 
@@ -296,6 +302,11 @@ The exact split varies with vehicle, trajectory, and how you do the bookkeeping 
 - **Drag loss** (~0.15): already small; hard to reduce much without a bigger, sleeker vehicle. Not worth chasing.
 - **Steering loss** (~0.05): already minimized by the gravity-turn technique. Nearly optimal already.
 - **Rotation rebate** (−0.41): maximized by launching east from as close to the equator as your geography and politics allow. Kourou (5°N) beats Canaveral (28.5°N) by ~0.05 km/s of extra rebate — small, but free, and it compounds over a launch program.
+
+Build the budget with your own hands. Slide the launch latitude and the thrust-to-weight below and watch the total the engine must deliver. Notice two things: launching near the equator collects a bigger slice of Earth's free eastward spin, and a punchier climb shaves a little gravity loss — but the total barely moves off ~9.4, because most of the overhead is simply the cost of leaving a rotating planet through its air.
+
+```ascentbudget
+```
 
 **The deep lesson:** the losses are *mostly irreducible*. You can trim gravity loss with brute thrust and collect the full rotation rebate with good site selection, but the fundamental ~1.5 km/s of overhead is baked into the problem of climbing out of a gravity well through an atmosphere from a rotating planet. There is no clever trajectory that eliminates it — it's been optimized to within a few hundred m/s of the theoretical floor for decades. **This is why the 9.4 number has been stable for the entire history of spaceflight: it's not an engineering parameter that improves with technology, it's a property of launching from Earth, and Earth hasn't changed.** The Saturn V paid ~9.4 km/s to LEO in 1967; the Falcon 9 pays ~9.4 km/s to LEO today. Sixty years of progress, and the ascent budget is identical, because the planet is identical. All the progress went into $\varepsilon$, into reusability, into cost — not into the budget, which is fixed by physics that cannot be negotiated.
 

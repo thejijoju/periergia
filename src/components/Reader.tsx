@@ -28,6 +28,7 @@ import { PowerThrustTrade } from "./PowerThrustTrade";
 import { ReuseEconomics } from "./ReuseEconomics";
 import { ThermochemCeiling } from "./ThermochemCeiling";
 import { EngineCycles } from "./EngineCycles";
+import { AscentBudget } from "./AscentBudget";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -547,6 +548,11 @@ export function Reader({
                   // engine-cycle selector (turbine-exhaust fate + gauges).
                   if (typeof cls === "string" && /language-enginecycles\b/.test(cls)) {
                     return <EngineCycles />;
+                  }
+                  // A fenced ```ascentbudget block becomes the interactive
+                  // ascent Δv loss-budget (latitude + thrust-to-weight sliders).
+                  if (typeof cls === "string" && /language-ascentbudget\b/.test(cls)) {
+                    return <AscentBudget />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
