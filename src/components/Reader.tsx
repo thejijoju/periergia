@@ -34,6 +34,7 @@ import { HohmannTransfer } from "./HohmannTransfer";
 import { LagrangePoints } from "./LagrangePoints";
 import { SunSyncOrbit } from "./SunSyncOrbit";
 import { PlanetHohmann } from "./PlanetHohmann";
+import { DebrisLifetime } from "./DebrisLifetime";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -583,6 +584,11 @@ export function Reader({
                   // interplanetary Hohmann trip planner (planet → Δv + time).
                   if (typeof cls === "string" && /language-planethohmann\b/.test(cls)) {
                     return <PlanetHohmann />;
+                  }
+                  // A fenced ```debrislifetime block becomes the interactive
+                  // orbital-decay-lifetime-vs-altitude explorer.
+                  if (typeof cls === "string" && /language-debrislifetime\b/.test(cls)) {
+                    return <DebrisLifetime />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
