@@ -48,6 +48,8 @@ import { ArchitectureMass } from "./ArchitectureMass";
 import { DvBudget } from "./DvBudget";
 import { ShuttleRisk } from "./ShuttleRisk";
 import { NormalizedDeviance } from "./NormalizedDeviance";
+import { LifeChecklist } from "./LifeChecklist";
+import { EntropyExport } from "./EntropyExport";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -670,6 +672,16 @@ export function Reader({
                   // accepted-risk ratchet toward the failure line.
                   if (typeof cls === "string" && /language-normalizeddeviance\b/.test(cls)) {
                     return <NormalizedDeviance />;
+                  }
+                  // A fenced ```lifechecklist block becomes the interactive
+                  // checklist-threshold classifier that never gets every case right.
+                  if (typeof cls === "string" && /language-lifechecklist\b/.test(cls)) {
+                    return <LifeChecklist />;
+                  }
+                  // A fenced ```entropyexport block becomes the interactive
+                  // open-system view (order held by exporting entropy).
+                  if (typeof cls === "string" && /language-entropyexport\b/.test(cls)) {
+                    return <EntropyExport />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
