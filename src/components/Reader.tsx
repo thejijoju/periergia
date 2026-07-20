@@ -33,6 +33,7 @@ import { OrbitShape } from "./OrbitShape";
 import { HohmannTransfer } from "./HohmannTransfer";
 import { LagrangePoints } from "./LagrangePoints";
 import { SunSyncOrbit } from "./SunSyncOrbit";
+import { PlanetHohmann } from "./PlanetHohmann";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -577,6 +578,11 @@ export function Reader({
                   // sun-synchronous orbit designer (J2 nodal precession).
                   if (typeof cls === "string" && /language-sunsync\b/.test(cls)) {
                     return <SunSyncOrbit />;
+                  }
+                  // A fenced ```planethohmann block becomes the interactive
+                  // interplanetary Hohmann trip planner (planet → Δv + time).
+                  if (typeof cls === "string" && /language-planethohmann\b/.test(cls)) {
+                    return <PlanetHohmann />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
