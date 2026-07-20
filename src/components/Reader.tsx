@@ -52,6 +52,8 @@ import { LifeChecklist } from "./LifeChecklist";
 import { EntropyExport } from "./EntropyExport";
 import { OriginOdds } from "./OriginOdds";
 import { LifeLadder } from "./LifeLadder";
+import { HabitableZone } from "./HabitableZone";
+import { DistanceLadder } from "./DistanceLadder";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -694,6 +696,16 @@ export function Reader({
                   // great-filter ladder (simple life common, minds rare).
                   if (typeof cls === "string" && /language-lifeladder\b/.test(cls)) {
                     return <LifeLadder />;
+                  }
+                  // A fenced ```habitablezone block becomes the interactive
+                  // Goldilocks-band explorer (scales with the star; tidal oceans beyond).
+                  if (typeof cls === "string" && /language-habitablezone\b/.test(cls)) {
+                    return <HabitableZone />;
+                  }
+                  // A fenced ```distanceladder block becomes the interactive
+                  // rung-by-rung reach chart (radar → parallax → Cepheids → SNe → redshift).
+                  if (typeof cls === "string" && /language-distanceladder\b/.test(cls)) {
+                    return <DistanceLadder />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
