@@ -22,6 +22,7 @@ import { IncomeGoodChart } from "./IncomeGoodChart";
 import { GiffenChart } from "./GiffenChart";
 import { BlackbodyChart } from "./BlackbodyChart";
 import { SegmentedMirror } from "./SegmentedMirror";
+import { RocketEquation } from "./RocketEquation";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -511,6 +512,11 @@ export function Reader({
                   // 3D hexagonal segmented-mirror model.
                   if (typeof cls === "string" && /language-segmentedmirror\b/.test(cls)) {
                     return <SegmentedMirror />;
+                  }
+                  // A fenced ```rocketequation block becomes the interactive
+                  // Tsiolkovsky Δv-vs-mass-ratio explorer (propellant + slider).
+                  if (typeof cls === "string" && /language-rocketequation\b/.test(cls)) {
+                    return <RocketEquation />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

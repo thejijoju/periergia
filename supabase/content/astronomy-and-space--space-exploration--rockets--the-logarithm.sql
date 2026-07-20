@@ -36,6 +36,8 @@ In it, he did something remarkable and then failed to notice he had done it. App
 
 He was computing artillery tables. Britain had been on the receiving end of Indian war rockets at Seringapatam, had reverse-engineered them into the Congreve rocket, and had recently used them against Fort McHenry — which is why an American lawyer named Francis Scott Key wrote a line about red glare that your countrymen now sing at baseball games. The Board of Ordnance wanted to know how far the things would go. Moore told them. He did the mathematics beautifully and correctly, and the mathematics said: the velocity is proportional to the logarithm of the mass ratio.
 
+{{image: Congreve rocket | The Congreve rocket — the artillery weapon Moore was writing range tables for. He had the rocket equation in his hands and used it to answer "how far will this shell fly?"}}
+
 And then nothing happened. For ninety years.
 
 Not because anyone disproved it. Not because it was hidden — it was *published*. Nothing happened because Moore was answering the question he had been asked, which was **"how far will this artillery rocket fly?"**, and the answer to that question is "about two miles, sir," and everyone went home satisfied.
@@ -72,6 +74,8 @@ This is worth a moment, because convergent discovery is always a signal. When th
 
 Born in Izhevskoye, Ryazan Province. At ten, scarlet fever took most of his hearing. He would later write that the deafness drove him out of society and into books — that it was, in the end, the thing that made him.
 
+{{image: Konstantin Tsiolkovsky | Konstantin Tsiolkovsky (1857–1935): a deaf provincial schoolteacher who derived the rocket equation in a Kaluga notebook in 1897 and, from a desk with no laboratory, wrote down most of the twentieth century.}}
+
 He was effectively expelled from formal schooling — he couldn't hear the teachers. At sixteen his father sent him to Moscow with a small allowance, hoping he'd enroll somewhere. He didn't. He spent three years, 1873 to 1876, in the **Chertkovskaya Library**, teaching himself physics and mathematics from the shelves. He lived on black bread and water and spent the allowance on chemicals and books. He later said the library was his university, which is the kind of thing people say sentimentally and which in his case was a bare description of fact.
 
 The librarian was a man named **Nikolai Fyodorov**, worth describing because he is one of the great strange figures of intellectual history. Fyodorov was a **Cosmist**: he believed, with total sincerity, that humanity's moral duty was to conquer death and **physically resurrect every human being who had ever lived** — all of them, by scientific means, back to the first. And he had noticed a logistical problem with this plan, which is that if you resurrect everyone who ever lived, **they will not fit on the Earth.**
@@ -106,6 +110,8 @@ The line everyone quotes is from a 1911 letter: **the Earth is the cradle of hum
 
 American, Worcester, Massachusetts. Physicist at Clark University. Where Tsiolkovsky was a theorist who never built a rocket, Goddard was an experimentalist who built them constantly and published almost nothing — and the reason for that is one of the sadder stories in this field.
 
+{{image: Robert H. Goddard | Robert Goddard (1882–1945): the experimentalist who launched the first liquid-fuelled rocket from a cabbage patch in 1926, filed 214 patents, and was mocked by the New York Times for physics it took them 49 years to retract.}}
+
 In **1919** the Smithsonian published his monograph *A Method of Reaching Extreme Altitudes*. It is a careful, sober, mathematical document about high-altitude atmospheric research. It contains the rocket equation, independently derived. And in the final section, almost as an afterthought, Goddard noted that the same mathematics permitted a rocket to reach **the Moon** — and suggested that one could confirm arrival by detonating a charge of flash powder on the surface, visible from Earth through a telescope.
 
 The press seized on the flash powder and ignored everything else.
@@ -131,6 +137,8 @@ On 16 March 1926, on his Aunt Effie Ward's farm in Auburn, Massachusetts, Goddar
 ### Hermann Oberth (1894–1989)
 
 Transylvanian Saxon, born in what is now Romania. In **1922** he submitted a doctoral dissertation on rocket-powered spaceflight to the University of Heidelberg.
+
+{{image: Hermann Oberth | Hermann Oberth (1894–1989): his self-published dissertation "landed" where the others' vanished — it founded the German rocket society whose members included an eighteen-year-old Wernher von Braun.}}
 
 **It was rejected as too speculative.**
 
@@ -578,6 +586,11 @@ $$x = \frac{9.4}{3.43} = \mathbf{2.74}$$
 That's the whole problem. That's this entire course. **Two point seven four.**
 
 If $x$ were 1, spaceflight would be an industry like trucking. If $x$ were 0.5 we'd have flying cars and this would be a different subject. **$x$ is 2.74, and there is nothing anybody can do about the numerator (it's Newton's) and nothing anybody has managed to do about the denominator in seventy years (it's the periodic table's).**
+
+Stop reading and *play* with the equation for a minute. Drag the mass ratio; switch the propellant. Watch how much of the vehicle has to be propellant to cross the line to orbit — and watch a solid stage simply never reach it, no matter how much you pile on. That refusal to cross is the whole of Unit I in one picture.
+
+```rocketequation
+```
 
 ### The other direction, which is worse
 
