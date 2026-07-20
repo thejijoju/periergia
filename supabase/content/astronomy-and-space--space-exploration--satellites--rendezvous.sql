@@ -29,6 +29,8 @@ with master as (
 
 ## The target that floated away
 
+{{image: Gemini 4 | Gemini 4, 1965: Jim McDivitt tried to fly up to his spent booster the way you fly one plane toward another — and it floated away. NASA learned, publicly, that nobody yet knew how to fly one spacecraft to another.}}
+
 On June 3, 1965, Gemini 4 was in orbit, and astronaut Jim McDivitt was going to do something no American had done: fly his spacecraft up to another object in orbit and station-keep alongside it. The target was the spent second stage of his own Titan II launch vehicle — the booster that had just put him in orbit, now tumbling nearby, a few hundred meters away, a big obvious cylinder against the black. All he had to do was fly over to it and match its motion. It looked, from the cockpit, exactly like flying an airplane toward another airplane: the target was *right there*, a little ahead and below. You point the nose at it, add thrust, and close the gap. Every instinct McDivitt had — and he was a superb test pilot — told him this was straightforward.
 
 It was not straightforward. It was impossible, in the way he was trying to do it, and the reason is the entire subject of this chapter.
@@ -42,6 +44,8 @@ Here is what was actually happening. Hold the paradox in full before it is resol
 2. The geometry got worse the harder he tried, because every forward thrust climbed him higher and slowed him more, opening the gap he was trying to close.
 
 **The target floated away because McDivitt did the intuitive thing, and the intuitive thing is exactly backward.** To catch the target — which was ahead of him — he needed to *slow down*: thrust *backward*, which would *lower* his orbit, which would *speed him up* (lower is faster), which would let him *catch up* from below, and then, at the right moment, raise back up to the target's altitude. Slow down to speed up. Drop to catch up. Every word of it contradicts the cockpit intuition of a fighter pilot, and every word of it is correct, and the correctness is forced by the same vis-viva equation derived in the two-body chapter.
+
+{{image: Buzz Aldrin | Buzz Aldrin — "Dr. Rendezvous" — whose MIT doctoral thesis worked out orbital rendezvous before anyone had flown one. The counterintuitive maneuver (slow down to catch up) was theory before it was practice.}}
 
 NASA figured this out — it had, in fact, been worked out theoretically by Buzz Aldrin, whose MIT doctoral thesis was on orbital rendezvous (this is the actual reason he was selected as an astronaut, and the actual reason his crewmates called him "Dr. Rendezvous"). Six months after Gemini 4's failure, Gemini 6 and Gemini 7 performed the first true rendezvous in December 1965, flying in formation just a foot apart, because they did the counterintuitive thing correctly. But the lesson stood, and it stands still: **rendezvous is not flying. It is orbital mechanics, and orbital mechanics inverts every instinct you have about chasing and catching.** What follows is the physics that makes the inversion not just true but *obvious* — because by the end of this chapter, "slow down to catch up" should feel not paradoxical but inevitable.
 
@@ -131,6 +135,11 @@ $$\Delta v_2 = v_2 - v_a = 3.075 - 1.618 = \mathbf{1.457\ km/s} \quad\text{(prog
 $$\Delta v_{\text{total}} = \mathbf{3.855\ km/s}$$
 
 **The transfer takes half the period of the transfer ellipse:** $t = \pi\sqrt{a_t^3/\mu} = \pi\sqrt{24{,}471^3/3.986\times10^5} = \mathbf{5.3\ hours}$. So a satellite launched to LEO reaches its geostationary slot about five and a quarter hours later, after two burns totaling 3.855 km/s.
+
+Watch the transfer ellipse stretch as you change the destination. Slide the target radius below — the GEO preset reproduces exactly the numbers just computed — and see how the first burn dominates, how the trip time grows, and how at apogee you arrive crawling and must burn *again* just to stay.
+
+```hohmann
+```
 
 Feel these numbers, because they tell a story. The first burn (2.4 km/s) is the big one — it's down low where you're moving fast, and stretching the orbit all the way out to geostationary takes a hefty shove. The second burn (1.46 km/s) circularizes way up high. And notice the strange middle: at apogee, before the second burn, you're crawling along at **1.618 km/s** — slower than you'll be moving *after* you circularize (3.075 km/s). You climbed 36,000 km and slowed to a crawl, and now you must speed *up* to stay there. That crawling apogee speed is the visceral signature of Kepler's Second Law: you dumped almost all your speed climbing the transfer ellipse, arrived at the top barely moving, and must re-accelerate into the (still slow, but faster-than-your-crawl) geostationary orbit.
 
@@ -230,6 +239,8 @@ The Clohessy–Wiltshire picture is how spacecraft actually do the final approac
 But the deep point — the one to carry out of this chapter and this unit — is this: **the space near an orbiting object has its own physics, and that physics is the inversion, made local and continuous.** Everywhere in orbit, "forward is up is slow is backward" — and when you get close to another spacecraft and watch a released object trace its little returning ellipse, you are *seeing* that inversion with your eyes, in real time, in a wrench floating in the air in front of you. The paradox that defeated McDivitt is not an edge case or a trick; it is the *ordinary, continuous, everywhere-true* character of motion in a gravity well, and the Clohessy–Wiltshire equations are its local dialect. Once you can think in the football, once "push it forward and it loops back" feels natural rather than magical, you have replaced your flat-world intuition with an orbital one — and that replacement is the entire intellectual achievement of the unit.
 
 ## Anatomy of a real docking
+
+{{image: SpaceX Dragon | A SpaceX Dragon approaching the ISS. The final kilometers are flown in the Clohessy–Wiltshire relative frame, on a passively-safe ellipse chosen so that if every thruster failed, the drift would miss the station rather than hit it.}}
 
 Assemble the whole chapter into the actual sequence a crewed vehicle flies to reach the ISS, because seeing the pieces in operational order — launch, phasing, transfer, proximity operations, contact — turns the abstract machinery into something you can picture, and it introduces the safety concepts that govern how you approach a crewed station you must not hit.
 

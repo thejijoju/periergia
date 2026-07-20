@@ -30,6 +30,7 @@ import { ThermochemCeiling } from "./ThermochemCeiling";
 import { EngineCycles } from "./EngineCycles";
 import { AscentBudget } from "./AscentBudget";
 import { OrbitShape } from "./OrbitShape";
+import { HohmannTransfer } from "./HohmannTransfer";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -559,6 +560,11 @@ export function Reader({
                   // conic-section orbit explorer (speed sets the orbit shape).
                   if (typeof cls === "string" && /language-orbitshape\b/.test(cls)) {
                     return <OrbitShape />;
+                  }
+                  // A fenced ```hohmann block becomes the interactive
+                  // Hohmann-transfer explorer (transfer ellipse + Δv budget).
+                  if (typeof cls === "string" && /language-hohmann\b/.test(cls)) {
+                    return <HohmannTransfer />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
