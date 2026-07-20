@@ -54,6 +54,8 @@ import { OriginOdds } from "./OriginOdds";
 import { LifeLadder } from "./LifeLadder";
 import { HabitableZone } from "./HabitableZone";
 import { DistanceLadder } from "./DistanceLadder";
+import { OceanAccess } from "./OceanAccess";
+import { IngredientsForLife } from "./IngredientsForLife";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -706,6 +708,16 @@ export function Reader({
                   // rung-by-rung reach chart (radar → parallax → Cepheids → SNe → redshift).
                   if (typeof cls === "string" && /language-distanceladder\b/.test(cls)) {
                     return <DistanceLadder />;
+                  }
+                  // A fenced ```oceanaccess block becomes the interactive
+                  // ice-shell cross-section (drill vs plume flythrough).
+                  if (typeof cls === "string" && /language-oceanaccess\b/.test(cls)) {
+                    return <OceanAccess />;
+                  }
+                  // A fenced ```ingredientsforlife block becomes the interactive
+                  // habitable-vs-inhabited checklist of Cassini's plume finds.
+                  if (typeof cls === "string" && /language-ingredientsforlife\b/.test(cls)) {
+                    return <IngredientsForLife />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
