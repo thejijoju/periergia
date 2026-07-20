@@ -32,6 +32,7 @@ import { AscentBudget } from "./AscentBudget";
 import { OrbitShape } from "./OrbitShape";
 import { HohmannTransfer } from "./HohmannTransfer";
 import { LagrangePoints } from "./LagrangePoints";
+import { SunSyncOrbit } from "./SunSyncOrbit";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -571,6 +572,11 @@ export function Reader({
                   // five-Lagrange-points map (mass-ratio slider + stability).
                   if (typeof cls === "string" && /language-lagrangemap\b/.test(cls)) {
                     return <LagrangePoints />;
+                  }
+                  // A fenced ```sunsync block becomes the interactive
+                  // sun-synchronous orbit designer (J2 nodal precession).
+                  if (typeof cls === "string" && /language-sunsync\b/.test(cls)) {
+                    return <SunSyncOrbit />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
