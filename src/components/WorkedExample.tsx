@@ -2139,6 +2139,50 @@ const GENERATORS: Record<string, Generator> = {
       note: `Simple life on a fraction ${pO} of worlds, but intelligence on only about ${reachInt.toExponential(1)} — because the odds multiply, one fantastically hard step (here the eukaryotic leap at 10^-${eEuk}) can leave a galaxy full of microbial slime and nearly empty of anyone to talk to. Earth's own history hints at exactly this: the origin looked easy, but the jump to complex cells took ~2 billion years and may have been a one-off fluke. "Are we alone?" must be asked at every rung of the ladder, not just the first.`,
     };
   },
+  // ── Habitability and the Cosmic Distance Ladder (habitability) ──
+  "hz-distance": (rng) => {
+    const L = sample(rng, [0.01, 0.25, 4, 25], 1)[0];
+    const dHz = Math.sqrt(L);
+    return {
+      title: "Where is the habitable zone?",
+      question: `A star's habitable zone sits roughly at d ≈ √(L/L☉) AU, where L is its luminosity. For a star ${L < 1 ? `only ${L}×` : `${L}×`} as luminous as the Sun, about how far out is the habitable zone?`,
+      steps: [
+        `d_{HZ} \\approx \\sqrt{${L}} = ${dHz.toFixed(2)}\\,\\text{AU}`,
+      ],
+      note: `About ${dHz.toFixed(2)} AU — ${L < 1 ? `far closer in than Earth, because a dim star must be hugged tightly for warmth (a red dwarf's zone can sit inside Mercury's orbit, where planets risk tidal locking and flares)` : `farther out than Earth, because a bright star's warmth reaches a comfortable level only at a distance`}. The zone is not a fixed place but a band that slides with the star's brightness as √L — which is why "in the habitable zone" always means in *this* star's zone. And remember its blind spot: tidal heating can keep oceans liquid far beyond any star's zone, with no sunlight at all.`,
+    };
+  },
+
+  "parallax": (rng) => {
+    const p = sample(rng, [0.05, 0.1, 0.2, 0.77], 1)[0]; // arcseconds
+    const dpc = 1 / p;
+    const dly = dpc * 3.26;
+    return {
+      title: "Parallax: distance from a tiny shift",
+      question: `A nearby star shifts by a parallax angle of ${p} arcseconds as Earth moves across its orbit. How far away is it, in parsecs and light-years? (distance in parsecs = 1 ÷ parallax in arcseconds.)`,
+      steps: [
+        `d = \\frac{1}{p} = \\frac{1}{${p}} = ${dpc.toFixed(2)}\\,\\text{pc}`,
+        `d = ${dpc.toFixed(2)}\\times 3.26 = ${dly.toFixed(1)}\\,\\text{light-years}`,
+      ],
+      note: `About ${dpc.toFixed(2)} parsecs (${dly.toFixed(1)} light-years). Parallax is the gold standard for nearby stars because it is pure geometry — the measured angle and the known size of Earth's orbit, no assumptions about the star itself. But the angles are minuscule (even the nearest star shifts by under an arcsecond), so it fades out at galactic scales; beyond it, the ladder must switch to standard candles. This is the rung on which all the higher rungs are ultimately calibrated.`,
+    };
+  },
+
+  "standard-candle": (rng) => {
+    const fainter = sample(rng, [25, 100, 400, 10000], 1)[0];
+    const calib = sample(rng, [10, 100], 1)[0]; // pc
+    const ratio = Math.sqrt(fainter);
+    const dist = ratio * calib;
+    return {
+      title: "Standard candle: brightness gives distance",
+      question: `A standard candle looks ${fainter.toLocaleString("en-US")}× fainter than an identical calibrator star at a known ${calib} pc. Since brightness falls as the inverse square of distance, how far away is it?`,
+      steps: [
+        `\\frac{d}{d_{cal}} = \\sqrt{${fainter.toLocaleString("en-US")}} = ${ratio.toLocaleString("en-US")}`,
+        `d = ${ratio.toLocaleString("en-US")}\\times ${calib} = ${dist.toLocaleString("en-US")}\\,\\text{pc}`,
+      ],
+      note: `About ${dist.toLocaleString("en-US")} parsecs. The whole game of measuring cosmic distances comes down to this: if you know an object's *true* luminosity (a "standard candle") and measure how bright it *looks*, the inverse-square law hands you the distance. A Cepheid reveals its true luminosity through its pulse period (Leavitt's law); a Type Ia supernova through the consistent physics of its explosion. Find one in a distant galaxy, measure its faintness, and you have measured the galaxy — the trick that unlocked the scale of the universe.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
