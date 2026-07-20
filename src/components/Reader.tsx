@@ -38,6 +38,8 @@ import { DebrisLifetime } from "./DebrisLifetime";
 import { RedshiftBand } from "./RedshiftBand";
 import { InterferometryBaseline } from "./InterferometryBaseline";
 import { ConsumablesMass } from "./ConsumablesMass";
+import { BoneLoss } from "./BoneLoss";
+import { ArtificialGravity } from "./ArtificialGravity";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -607,6 +609,16 @@ export function Reader({
                   // consumables-mass explorer (crew x days, recycling closure).
                   if (typeof cls === "string" && /language-consumablesmass\b/.test(cls)) {
                     return <ConsumablesMass />;
+                  }
+                  // A fenced ```boneloss block becomes the interactive
+                  // bone-loss-over-mission explorer (Wolff's law + exercise).
+                  if (typeof cls === "string" && /language-boneloss\b/.test(cls)) {
+                    return <BoneLoss />;
+                  }
+                  // A fenced ```artificialgravity block becomes the interactive
+                  // a = ω²r spin-gravity explorer (radius vs rpm for 1 g).
+                  if (typeof cls === "string" && /language-artificialgravity\b/.test(cls)) {
+                    return <ArtificialGravity />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
