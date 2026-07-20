@@ -31,6 +31,7 @@ import { EngineCycles } from "./EngineCycles";
 import { AscentBudget } from "./AscentBudget";
 import { OrbitShape } from "./OrbitShape";
 import { HohmannTransfer } from "./HohmannTransfer";
+import { LagrangePoints } from "./LagrangePoints";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -565,6 +566,11 @@ export function Reader({
                   // Hohmann-transfer explorer (transfer ellipse + Δv budget).
                   if (typeof cls === "string" && /language-hohmann\b/.test(cls)) {
                     return <HohmannTransfer />;
+                  }
+                  // A fenced ```lagrangemap block becomes the interactive
+                  // five-Lagrange-points map (mass-ratio slider + stability).
+                  if (typeof cls === "string" && /language-lagrangemap\b/.test(cls)) {
+                    return <LagrangePoints />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
