@@ -27,6 +27,7 @@ import { StagingSplit } from "./StagingSplit";
 import { PowerThrustTrade } from "./PowerThrustTrade";
 import { ReuseEconomics } from "./ReuseEconomics";
 import { ThermochemCeiling } from "./ThermochemCeiling";
+import { EngineCycles } from "./EngineCycles";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -541,6 +542,11 @@ export function Reader({
                   // exhaust-velocity ceiling explorer (v_e vs T_c and M).
                   if (typeof cls === "string" && /language-thermochem\b/.test(cls)) {
                     return <ThermochemCeiling />;
+                  }
+                  // A fenced ```enginecycles block becomes the interactive
+                  // engine-cycle selector (turbine-exhaust fate + gauges).
+                  if (typeof cls === "string" && /language-enginecycles\b/.test(cls)) {
+                    return <EngineCycles />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
