@@ -1761,6 +1761,64 @@ const GENERATORS: Record<string, Generator> = {
       )} tonnes. The recycler is a fixed one-time mass while un-recycled consumables grow with duration, so the longer the mission the more decisively recycling wins. Food, though, cannot be recovered — every calorie is launched — so once the water and air loops are closed it comes to dominate what remains.`,
     };
   },
+  // ── The body in space (physiology-load) ──
+  "bone-loss": (rng) => {
+    const months = sample(rng, [6, 12, 30], 1)[0];
+    const rate = 1.5; // %/month, weight-bearing bone
+    const lost = rate * months;
+    const factor = (rate * 12) / 0.75; // vs 0.75%/yr osteoporosis
+    return {
+      title: "The dissolving skeleton",
+      question: `In weightlessness, unloaded weight-bearing bone dissolves at about 1.5% per month (Wolff's law). Uncorrected, how much is lost over a ${months}-month mission, and how does the rate compare with earthly osteoporosis (~0.75% per year)?`,
+      steps: [
+        `\\text{lost} = 1.5\\,\\tfrac{\\%}{\\text{month}}\\times ${months}\\,\\text{months} = ${lost.toFixed(0)}\\%`,
+        `\\frac{1.5\\%/\\text{mo}\\times 12}{0.75\\%/\\text{yr}} = \\frac{18\\%/\\text{yr}}{0.75\\%/\\text{yr}} = ${factor.toFixed(0)}\\times \\text{ faster}`,
+      ],
+      note: `${lost.toFixed(0)}% of the weight-bearing skeleton, at roughly ${factor.toFixed(
+        0,
+      )}× the pace of the worst earthly bone disease — a postmenopausal year compressed into a month. Over a ~30-month Mars trip that reaches ~45% uncorrected (~30% even with daily exercise). The freed calcium risks kidney stones far from any hospital, and much of the loss is permanent: even "recovered" bone comes back with weaker internal architecture.`,
+    };
+  },
+
+  "artificial-gravity": (rng) => {
+    const rpm = sample(rng, [1.5, 2, 3, 4], 1)[0];
+    const g = 9.81;
+    const omega = (rpm * 2 * Math.PI) / 60;
+    const r = g / omega ** 2;
+    return {
+      title: "The centrifuge that cures everything",
+      question: `Artificial gravity from spinning a spacecraft obeys a = ω²r. To produce a full 1 g at ${rpm} rpm, what radius is needed? (The inner ear tolerates only about 2 rpm before Coriolis sickness.)`,
+      steps: [
+        `\\omega = ${rpm}\\,\\text{rpm}\\times\\frac{2\\pi}{60} = ${omega.toFixed(3)}\\,\\text{rad/s}`,
+        `r = \\frac{g}{\\omega^2} = \\frac{9.81}{${omega.toFixed(3)}^2} = ${Math.round(r).toLocaleString(
+          "en-US",
+        )}\\,\\text{m}`,
+      ],
+      note: `About ${Math.round(r).toLocaleString("en-US")} m${
+        rpm <= 2
+          ? " — a rotating structure hundreds of metres across, far beyond anything ever launched"
+          : ", and though that radius is smaller, " + rpm + " rpm is above the ~2 rpm comfort limit, so the crew would be sick from Coriolis forces"
+      }. Artificial gravity is the only countermeasure that would fix bone, muscle, heart, fluid, and eyes at once — yet the trap (comfortable means enormous, compact means sickening) is why no spacecraft has ever flown a centrifuge.`,
+    };
+  },
+
+  "plasma-shift": (rng) => {
+    const base = sample(rng, [4.8, 5.0, 5.2], 1)[0]; // L of blood
+    const drop = sample(rng, [10, 12, 15], 1)[0]; // % lost
+    const lostL = base * (drop / 100);
+    const left = base - lostL;
+    return {
+      title: "The blood the body throws away",
+      question: `In freefall ~2 L of fluid shifts headward; the body's pressure sensors misread this as overload and shed ${drop}% of blood volume. Starting from ${base} L, how much blood volume is lost, and what remains?`,
+      steps: [
+        `\\text{lost} = ${base}\\,\\text{L}\\times ${drop}\\% = ${lostL.toFixed(2)}\\,\\text{L}`,
+        `\\text{remaining} = ${base} - ${lostL.toFixed(2)} = ${left.toFixed(2)}\\,\\text{L}`,
+      ],
+      note: `The body discards about ${lostL.toFixed(
+        2,
+      )} L of blood volume it will desperately need later. With no gravity to pump against, the heart also deconditions and rounds — so on return, the reduced volume and a weakened heart together leave the astronaut unable to stand: blood pools in the legs and the brain is starved (orthostatic intolerance). The fluid shift is the hub from which the heart, the balance system, and even the eyeball's shape all go wrong.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
