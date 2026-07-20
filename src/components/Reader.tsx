@@ -25,6 +25,10 @@ import { SegmentedMirror } from "./SegmentedMirror";
 import { RocketEquation } from "./RocketEquation";
 import { StagingSplit } from "./StagingSplit";
 import { PowerThrustTrade } from "./PowerThrustTrade";
+import { ReuseEconomics } from "./ReuseEconomics";
+import { ThermochemCeiling } from "./ThermochemCeiling";
+import { EngineCycles } from "./EngineCycles";
+import { AscentBudget } from "./AscentBudget";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -529,6 +533,26 @@ export function Reader({
                   // F = 2P/v_e thrust-vs-exhaust-velocity tradeoff (log-log).
                   if (typeof cls === "string" && /language-powerthrust\b/.test(cls)) {
                     return <PowerThrustTrade />;
+                  }
+                  // A fenced ```reuseeconomics block becomes the interactive
+                  // amortization explorer ($/kg vs first-stage reuses).
+                  if (typeof cls === "string" && /language-reuseeconomics\b/.test(cls)) {
+                    return <ReuseEconomics />;
+                  }
+                  // A fenced ```thermochem block becomes the interactive
+                  // exhaust-velocity ceiling explorer (v_e vs T_c and M).
+                  if (typeof cls === "string" && /language-thermochem\b/.test(cls)) {
+                    return <ThermochemCeiling />;
+                  }
+                  // A fenced ```enginecycles block becomes the interactive
+                  // engine-cycle selector (turbine-exhaust fate + gauges).
+                  if (typeof cls === "string" && /language-enginecycles\b/.test(cls)) {
+                    return <EngineCycles />;
+                  }
+                  // A fenced ```ascentbudget block becomes the interactive
+                  // ascent Δv loss-budget (latitude + thrust-to-weight sliders).
+                  if (typeof cls === "string" && /language-ascentbudget\b/.test(cls)) {
+                    return <AscentBudget />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

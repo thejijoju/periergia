@@ -33,6 +33,8 @@ Imagine an airline. Call it Expendable Airways. It operates a single route, Lond
 
 Expendable Airways has one unusual operating procedure. **At the end of every flight, upon landing at JFK, the crew disembarks, the passengers collect their luggage, and then the aircraft is towed to the end of the runway and pushed into the Atlantic Ocean.** A brand-new 747 is delivered for the next day's flight. Every flight, a new aircraft. Every aircraft, one flight, then the sea.
 
+{{image: Boeing 747 | A Boeing 747 — a quarter-billion dollars of aluminium and titanium. No airline scuttles one after a single flight; every rocket for the first fifty years did exactly that.}}
+
 What would a ticket cost?
 
 The 747 costs roughly \$250 million and, in this operating model, carries maybe four hundred passengers exactly once. So the aircraft cost *alone* — before fuel, before crew, before airport fees, before the cost of *building a new plane every single day* — is \$625,000 per passenger. A one-way economy ticket to New York would cost more than a house. The airline would be insane. No such airline exists, has ever existed, or could exist, because the very idea is self-evidently, cartoonishly absurd.
@@ -127,6 +129,11 @@ Only if you fly often enough to reuse the stage many times — and that is the c
 
 Make the \$/kg explicit. Take an expendable flight: ~\$60M total cost (hardware-dominated), 22.8 t payload → **~\$2,600/kg** — already low because this uses SpaceX's cheap *manufacturing* (a separate innovation). Take the *reused* flight: the first stage cost is now ~\$2M amortized instead of ~\$40M, so total cost drops to maybe ~\$28M, payload is ~15 t → **~\$1,900/kg**. Even with a third less payload, the cost per kilogram *dropped*, because the cost dropped faster than the payload did. **That is the trade: lose a third of your payload, save 95% of your first-stage cost, come out well ahead on \$/kg — provided you fly enough to amortize.**
 
+Don't take the break-even on faith — find it. Drag the number of flights below: the reusable curve starts *above* the expendable line (fly once and you lose, having paid the payload tax for nothing) and only crosses under after a few flights, then keeps falling. Watch where "reuse once, like the Shuttle" and "reuse twenty times, like Falcon 9" land.
+
+```reuseeconomics
+```
+
 ```example
 reuse-dollar-per-kg
 ```
@@ -153,6 +160,8 @@ Reuse amortizes the build cost across flights — but only if there *are* many f
 reuse-breakeven
 ```
 
+{{image: Falcon 9 Block 5 | The Falcon 9 Block 5, built to fly and re-fly. Same rocket equation, same exhaust velocity, same 9.4 km/s ascent as everyone else — and a slightly worse payload fraction because of the reusability tax. The price to orbit still fell twentyfold, because the leverage had moved from physics to economics.}}
+
 ### The virtuous cycle SpaceX actually achieved
 
 Put the three together — reusability, cheap manufacturing, high flight rate — and you get the actual revolution: each Falcon 9 first stage flown 20+ times, each new component cheaply made, flying 100+ times per year, each flight cheaper, driving more demand (Starlink, rideshare, commercial), driving more flights, amortizing everything better. **The \$/kg fell by a factor of twenty not because of any single innovation but because three innovations reinforced each other in a virtuous cycle** — and crucially, *none of them was a physics innovation.* The rocket equation is identical. The $v_e$ is identical (kerolox, ~340 s). The ascent budget is identical (9.4 km/s). The payload fraction is, if anything, *worse* than the Saturn V's (because of the reusability tax). **Every number from the first six chapters is unchanged. And the price fell twentyfold.** That is the entire lesson in one sentence: when the physics is locked, the leverage moves to economics, and the economics can move by orders of magnitude while the physics does not move at all.
@@ -162,6 +171,8 @@ Put the three together — reusability, cheap manufacturing, high flight rate �
 Now the centerpiece, and it is worth slowing down, because this is the single most instructive story in the unit, and its lesson is not about physics at all. **The Space Shuttle was a technical marvel and an economic catastrophe, and the catastrophe was engineered — deliberately, traceably — in a series of political and budgetary decisions, not in any wind tunnel or test stand.** Understanding exactly how reveals something that generalizes far beyond spaceflight: how good engineering can be forced to serve a broken design by the constraints of the institution that funds it.
 
 ### What the Shuttle was supposed to be
+
+{{image: Space Shuttle | The Space Shuttle: sold as the vehicle that would make space cheap through reusability, it became the most expensive launch system in history — ~\$54,500/kg, dearer than the expendable Saturn V. "Reusable" was never the answer; flight rate and turnaround were, and it had neither.}}
 
 The Shuttle was sold, in the early 1970s, on a specific and seductive promise: **routine, cheap, aircraft-like access to space.** The pitch was that reusability would make spaceflight ordinary — the Shuttle would fly *weekly*, dozens of times a year, turning around like an airliner, driving the cost to orbit down to perhaps \$100–200 per kilogram (in today's money), making space cheap enough to transform the economy. NASA projected something like **50 flights per year** and costs an order of magnitude below expendable rockets. It was to be the DC-3 of space — the vehicle that made a frontier routine.
 

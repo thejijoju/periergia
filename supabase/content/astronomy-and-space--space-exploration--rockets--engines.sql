@@ -31,6 +31,8 @@ with master as (
 
 In the early 1990s, a group of American rocket engineers traveled to Russia, to a design bureau outside Moscow called Energomash, to look at engines the Cold War had kept hidden. What they found in the storage sheds did not, according to their own understanding of physics, exist.
 
+{{image: NK-33 | The NK-33: oxygen-rich staged combustion, a thrust-to-weight near 137, built for the Soviet Moon rocket and hidden in a shed for twenty years. It ran the cycle American engineers had formally concluded was impossible.}}
+
 The engines were called the **NK-33**, and there were dozens of them — beautifully machined, sealed in nitrogen, sitting in a warehouse near Samara, built in the late 1960s and early 1970s for the Soviet Moon rocket, the N1. The N1 had failed four times and been cancelled and erased from official history so thoroughly that the CIA wasn't sure it had ever existed. The order had come down to destroy the engines. An engineer named Nikolai Kuznetsov, who had designed them, disobeyed. He crated them up and hid them, roughly 150 of them, and kept them for twenty years, because he believed — correctly, as it turned out — that someday someone would understand what they were.
 
 When the Americans finally saw the specifications, they didn't believe them. The NK-33 achieved a chamber pressure and a thrust-to-weight ratio that American engines of the same era came nowhere near — the NK-33's thrust-to-weight was about **137**, versus roughly 70–90 for comparable American engines. And it did this using a cycle the American rocket establishment had studied, in the 1960s, and formally concluded was **impossible.**
@@ -79,6 +81,8 @@ As above: no pump, no turbine, tanks hold the pressure. The "cycle" is trivial �
 
 The simplest pumped cycle. Divert a small fraction (~2–5%) of the propellant into a **gas generator** — a small combustion chamber — burn it, use the hot gas to spin the turbine, and then... **throw the turbine exhaust away.** Dump it overboard, out a separate small nozzle (or down the side of the main nozzle). This is an **open cycle**: the turbine exhaust does not go into the main chamber; it exits the engine having done only the job of spinning the pump.
 
+{{image: Rocketdyne F-1 | The F-1 (Saturn V first stage): the workhorse gas-generator cycle. Watch a Saturn V launch and you can see the dark, sooty gas-generator exhaust trailing beside the clean main plume — a few percent of propellant, burned to spin the pumps and thrown overboard.}}
+
 **You can see this on the hardware.** The F-1 engine (Saturn V) is a gas-generator cycle, and if you watch Saturn V launch footage you can see a **dark, sooty, turbulent exhaust** trailing separately alongside the clean main plume — that's the gas-generator exhaust, deliberately run fuel-rich (to keep the turbine cool enough to survive) and therefore full of unburned soot, dumped overboard.
 
 **The cost:** that 2–5% of propellant burned in the gas generator is spent at *low efficiency* and then thrown away — it never enters the main chamber, never gets expanded through the main nozzle, contributes little thrust. So it's a direct **$I_{sp}$ penalty**: you're wasting a few percent of your propellant to run the pumps. Recall that a few percent of $I_{sp}$ is worth several percent of payload — so this penalty is real money.
@@ -119,6 +123,8 @@ That's **staged combustion.** You burn propellant in a **preburner** (like a gas
 
 ### Cycle 4: Full-flow staged combustion — "two preburners, burn absolutely everything"
 
+{{image: SpaceX Raptor | SpaceX's Raptor: the first full-flow staged-combustion engine to fly. Two preburners, fuel-rich and oxygen-rich methane at ~300 bar, all propellant passing through and into the chamber — the summit of the sixty-year cycle wars.}}
+
 The theoretical summit, and until recently it had *never flown.* In **full-flow staged combustion**, you have **two** preburners: one fuel-rich (driving the fuel turbopump) and one oxygen-rich (driving the oxidizer turbopump). *All* the fuel and *all* the oxidizer pass through a preburner and then into the main chamber — nothing bypasses, nothing is dumped. Both turbines run on the full propellant flow, so they can run cooler (more mass, lower temperature for the same power), which means longer life and higher reliability. And you get the highest possible chamber pressure and $I_{sp}$.
 
 **It requires solving the oxygen-rich problem** (one of the two preburners is oxygen-rich) *plus* the immense complexity of two full-flow preburners and the plumbing to match. For decades it was a paper cycle — everyone knew it was theoretically best, nobody could build it. The Soviets built a test engine (the RD-270) in the 1960s but never flew it. **The first full-flow staged combustion engine to fly is the SpaceX Raptor**, powering Starship — running oxygen-rich and fuel-rich methane preburners at ~300 bar. Methane, recall, doesn't coke like kerosene, so it's more forgiving of the hot preburner conditions, which is one reason Raptor could push full-flow staged combustion to flight where kerosene engines struggled. **Raptor is the current summit of the cycle wars — the most sophisticated production rocket engine ever built — and it's the culmination of the exact ladder just climbed: dump it (gas generator) → heat it (expander) → burn it twice (staged combustion) → burn absolutely all of it, both streams (full-flow).**
@@ -135,6 +141,11 @@ The theoretical summit, and until recently it had *never flown.* In **full-flow 
 | Full-flow staged | **Both streams to chamber** | Highest | Highest | Extreme | Raptor |
 
 **The whole ladder is one question answered progressively better:** *what do you do with the turbine exhaust?* Dump it (waste a little). Recycle the fuel's heat (but you can't scale it). Burn it twice (but the preburner tries to melt or burn your turbine). Burn everything, both streams (but now you need to solve every hard problem at once). **Each rung buys a few percent of $I_{sp}$ or a chunk of chamber pressure — and each of those, through the exponential of the rocket equation, is worth real payload — at the price of a new category of engineering hell.** The cycle wars are the story of engineers deciding how much hell is worth how much payload, and the answer has trended, over sixty years, steadily toward *more hell, more payload*, because the launch market rewards it.
+
+Climb the ladder yourself. Pick each cycle below and watch where the turbine exhaust goes — dumped overboard and wasted, or fed on into the main chamber and burned — and what that buys in performance versus what it costs in complexity.
+
+```enginecycles
+```
 
 ## The turbopump: the most extreme machine on the rocket
 
