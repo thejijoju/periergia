@@ -42,6 +42,8 @@ import { BoneLoss } from "./BoneLoss";
 import { ArtificialGravity } from "./ArtificialGravity";
 import { RadiationDose } from "./RadiationDose";
 import { ShieldingParadox } from "./ShieldingParadox";
+import { LoopClosureMass } from "./LoopClosureMass";
+import { Biosphere2Oxygen } from "./Biosphere2Oxygen";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -631,6 +633,17 @@ export function Reader({
                   // dose-vs-shielding curve (a little shielding is worse than none).
                   if (typeof cls === "string" && /language-shieldingparadox\b/.test(cls)) {
                     return <ShieldingParadox />;
+                  }
+                  // A fenced ```loopclosuremass block becomes the interactive
+                  // carried-mass-vs-duration explorer (closing loops trades a
+                  // growing consumable for a fixed mass of recycling machinery).
+                  if (typeof cls === "string" && /language-loopclosuremass\b/.test(cls)) {
+                    return <LoopClosureMass />;
+                  }
+                  // A fenced ```biosphere2oxygen block becomes the interactive
+                  // sealed-oxygen-decline explorer (closure is unforgiving).
+                  if (typeof cls === "string" && /language-biosphere2oxygen\b/.test(cls)) {
+                    return <Biosphere2Oxygen />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

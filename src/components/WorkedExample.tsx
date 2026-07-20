@@ -1887,6 +1887,61 @@ const GENERATORS: Record<string, Generator> = {
       )}% cuts the transit dose by the same fraction. There is no shield that scales against the galactic bombardment, so spending less time out there is the strongest lever we have. That is why radiation is partly a propulsion problem, and why the engine cancelled in 1973 was, in effect, a piece of medical equipment.`,
     };
   },
+  // ── Life Support: Closing the Loop (life-support) ──
+  "water-recycling": (rng) => {
+    const crew = sample(rng, [3, 4, 6], 1)[0];
+    const days = sample(rng, [500, 780, 1000], 1)[0];
+    const perDay = 3.5; // kg water per person per day
+    const rec = 0.9; // 90% recovery
+    const open = crew * days * perDay;
+    const resupplyDay = crew * perDay * (1 - rec);
+    const resupply = resupplyDay * days;
+    return {
+      title: "Water: the loop that closes tightest",
+      question: `Water is the crew's largest need by mass, ~3.5 kg per person per day. For a crew of ${crew} on a ${days}-day mission, how much water must be carried open-loop — and how much if the recycling system recovers 90%?`,
+      steps: [
+        `\\text{open} = ${crew}\\times ${days}\\times 3.5 = ${Math.round(open).toLocaleString("en-US")}\\,\\text{kg} \\approx ${(open / 1000).toFixed(1)}\\,\\text{t}`,
+        `\\text{resupply} = ${crew}\\times 3.5\\times (1-0.9)\\times ${days} = ${Math.round(resupply).toLocaleString("en-US")}\\,\\text{kg}`,
+      ],
+      note: `Open-loop that is ${(open / 1000).toFixed(1)} tonnes of water — prohibitive to launch. Recycling 90% collapses it to about ${Math.round(resupply).toLocaleString("en-US")} kg, a tenfold cut. Water closes so well because recycling it is purification, not transformation: you only separate the water from its contaminants. That is why "today's coffee is tomorrow's coffee" — exactly what the Earth has always done with every drop, just run in days instead of eons.`,
+    };
+  },
+
+  "oxygen-loop": (rng) => {
+    const crew = sample(rng, [1, 3, 4], 1)[0];
+    const o2 = 0.84; // kg O2 per person per day
+    const perO2Water = 1.12; // kg water electrolyzed per kg O2 (2H2O -> 2H2 + O2, by mass ~1.125)
+    const water = crew * o2 * perO2Water;
+    const sabatier = 0.5; // fraction of O2 recovered by closing the loop
+    return {
+      title: "Turning the oxygen problem into a water problem",
+      question: `Each crew member consumes ~0.84 kg of O₂ a day, made by electrolysing water (2H₂O → 2H₂ + O₂; ~1.12 kg of water per kg of O₂). For a crew of ${crew}, how much water must be split per day — and what does the Sabatier reaction change?`,
+      steps: [
+        `\\text{water/day} = ${crew}\\times 0.84\\times 1.12 = ${water.toFixed(2)}\\,\\text{kg}`,
+        `\\text{CO}_2 + 4\\,\\text{H}_2 \\rightarrow \\text{CH}_4 + 2\\,\\text{H}_2\\text{O}\\ \\Rightarrow\\ \\text{recovers} \\approx ${Math.round(sabatier * 100)}\\%\\text{ of the O}_2`,
+      ],
+      note: `About ${water.toFixed(2)} kg of water electrolysed a day for ${crew === 1 ? "one crew member" : `${crew} crew`}. Electrolysis converts the oxygen problem into a water problem — and water is already recycled at 90%+, so oxygen comes from a resource you regenerate anyway. Sabatier then recombines the exhaled CO₂ with the electrolysis hydrogen to recover water, closing the air loop to ~50%; the rest escapes because the carbon leaves as vented methane, carrying oxygen atoms with it.`,
+    };
+  },
+
+  "loop-closure": (rng) => {
+    const crew = sample(rng, [3, 4, 6], 1)[0];
+    const water = 3.5, oxy = 0.84, food = 0.66; // kg/person/day
+    const open = water + oxy + food; // ~5
+    const closed = water * 0.1 + oxy * 0.5 + food; // 90% water, 50% O2, food open
+    const openCrew = open * crew;
+    const closedCrew = closed * crew;
+    const cut = (1 - closed / open) * 100;
+    return {
+      title: "The payoff: what closing the loops saves",
+      question: `Open-loop life support runs ~5 kg per person per day (3.5 water + 0.84 O₂ + 0.66 food). If water is 90% recycled and oxygen 50% recycled but food stays open, what is the new daily resupply for a crew of ${crew}, and by how much is it cut?`,
+      steps: [
+        `\\text{per person} = 3.5(0.1) + 0.84(0.5) + 0.66 = ${closed.toFixed(2)}\\,\\text{kg/day}`,
+        `\\text{crew of }${crew}:\\ ${crew}\\times ${closed.toFixed(2)} = ${closedCrew.toFixed(1)}\\,\\text{kg/day}\\ \\ (\\text{vs }${openCrew.toFixed(1)}\\text{ open}),\\ \\ -${Math.round(cut)}\\%`,
+      ],
+      note: `Closing water and oxygen drops resupply from ${open.toFixed(2)} to ${closed.toFixed(2)} kg per person per day — about a ${Math.round(cut)}% cut. Notice what now dominates the remainder: food, at 0.66 kg, is the largest surviving term, because no machine can make it. That is why the food loop — closeable only by bringing living plants aboard — is the next frontier, and why life support is the difference between visiting space and living there.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
