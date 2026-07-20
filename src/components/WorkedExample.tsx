@@ -2047,6 +2047,52 @@ const GENERATORS: Record<string, Generator> = {
       note: `About a ${atLeastOne.toFixed(0)}% chance of at least one catastrophe over ${n} flights — even though any single flight looks safe. Rare per-flight risks compound relentlessly across a program, so a culture that treats each successful flight as reassurance is misreading luck as safety. The honest question is never "did this flight survive?" but "what is the real per-flight risk, and how many times are we rolling the dice?"`,
     };
   },
+  // ── What Is Life? The Question at the Threshold (what-is-life) ──
+  "codon-code": (rng) => {
+    const bases = sample(rng, [2, 3, 4, 5], 1)[0];
+    const len = sample(rng, [1, 2, 3], 1)[0];
+    const codons = Math.pow(bases, len);
+    const enough = codons >= 20;
+    return {
+      title: "Why the genetic code uses triplets",
+      question: `Every organism on Earth encodes proteins with the same code: strings of chemical "letters" read in fixed-length words. With ${bases} kinds of letter and words of length ${len}, how many distinct words are possible — and is that enough to specify the 20 amino acids of life?`,
+      steps: [
+        `\\text{words} = ${bases}^{${len}} = ${codons.toLocaleString("en-US")}`,
+        `${codons} ${enough ? "\\geq" : "<"} 20 \\Rightarrow \\text{${enough ? "enough" : "not enough"} to name 20 amino acids}`,
+      ],
+      note: `${bases} letters in words of ${len} give ${codons.toLocaleString("en-US")} combinations${enough ? "" : " — too few"}. Real life uses 4 bases and words of length 3, giving 4³ = 64 codons: two letters (4² = 16) fall short of 20 amino acids, but three suffice with room to spare. That this exact code — the same 64→20 mapping — is shared by every organism from bacteria to whales is the strongest evidence that all Earth life descends from a single common ancestor. Whether the code is a necessity of life or just that ancestor's frozen accident, we cannot tell from one example.`,
+    };
+  },
+
+  "entropy-export": (rng) => {
+    const watts = sample(rng, [80, 100, 120], 1)[0]; // resting metabolic heat, W
+    const hours = sample(rng, [1, 12, 24], 1)[0];
+    const T = 310; // K, body temperature
+    const Q = watts * hours * 3600; // J of heat exported
+    const dS = Q / T; // J/K exported to surroundings
+    return {
+      title: "Life feeds on negative entropy",
+      question: `A resting human radiates about ${watts} W of waste heat at a body temperature of 310 K. Over ${hours} ${hours === 1 ? "hour" : "hours"}, how much entropy does that heat dump into the surroundings? (Entropy exported = heat ÷ temperature.)`,
+      steps: [
+        `Q = ${watts}\\,\\text{W}\\times ${hours}\\,\\text{h}\\times 3600\\,\\tfrac{\\text{s}}{\\text{h}} = ${sci(Q, 2)}\\,\\text{J}`,
+        `\\Delta S = \\frac{Q}{T} = \\frac{${sci(Q, 2)}}{310} = ${sci(dS, 2)}\\,\\text{J/K}`,
+      ],
+      note: `About ${sci(dS, 2)} J/K of entropy exported to the environment in ${hours} ${hours === 1 ? "hour" : "hours"} — far more than the tiny internal disorder the body prevents by staying alive. That is the bargain Schrödinger described: an organism holds its own improbable order only by dumping a greater disorder outward, so the total entropy still rises and the second law is obeyed. Metabolism is the machinery of the trade; stop the heat-producing throughput and the order decays — death is the moment the export stops.`,
+    };
+  },
+
+  "protein-space": (rng) => {
+    const len = sample(rng, [4, 6, 8], 1)[0];
+    const seqs = Math.pow(20, len);
+    return {
+      title: "The improbable order of one protein",
+      question: `Proteins are chains built from 20 kinds of amino acid. How many distinct sequences are possible for a short chain just ${len} amino acids long?`,
+      steps: [
+        `\\text{sequences} = 20^{${len}} = ${sci(seqs, 2)}`,
+      ],
+      note: `A mere ${len}-unit chain already has ${sci(seqs, 2)} possible sequences — and real proteins run to hundreds of units, so a single specific one is an almost unimaginably improbable arrangement. Life maintains vast numbers of exactly these improbable, low-entropy structures against the universe's pull toward disorder — which is why the thermodynamic view sees life as an island of order held up by a constant throughput of energy. It also sharpens the N=1 problem: every protein we know is drawn from the same 20-letter alphabet, and with one example we cannot say whether that alphabet is necessary or merely ours.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
