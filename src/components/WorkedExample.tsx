@@ -1994,6 +1994,59 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${total.toLocaleString("en-US")} m/s in all, of which launch alone is ${frac.toFixed(0)}% — more than the entire round trip to the surface and back combined. That is why "low Earth orbit is halfway to anywhere." And notice the line that isn't there: braking back into Earth's atmosphere at ~11 km/s costs no propellant, because the atmosphere donates that deceleration for free — the same gift that makes aerobraking so valuable at Mars.`,
     };
   },
+  // ── Risk, Failure, and Organizations (risk-and-organizations) ──
+  "risk-gap": (rng) => {
+    const mgmt = 100000; // "1 in mgmt" per flight, management estimate
+    const eng = sample(rng, [100, 200], 1)[0]; // "1 in eng", engineers
+    const losses = 2, flights = 135; // the real Shuttle record
+    const actual = flights / losses; // "1 in actual"
+    const gap = mgmt / eng;
+    const mgmtOff = mgmt / actual;
+    const engOff = actual / eng;
+    return {
+      title: "The gap in the numbers is the gap in the culture",
+      question: `NASA management put the chance of losing a Shuttle at about 1 in ${mgmt.toLocaleString("en-US")} per flight; the engineers put it near 1 in ${eng}. The real record was ${losses} losses in ${flights} flights. How far apart were management and engineers, and which was closer to reality?`,
+      steps: [
+        `\\text{belief gap} = \\frac{1/${eng}}{1/${mgmt.toLocaleString("en-US")}} = ${gap.toLocaleString("en-US")}\\times`,
+        `\\text{reality} = \\frac{${losses}}{${flights}} \\approx \\tfrac{1}{${Math.round(actual)}};\\quad \\text{management off by } {\\sim}${Math.round(mgmtOff).toLocaleString("en-US")}\\times,\\ \\text{engineers off by } {\\sim}${engOff.toFixed(1)}\\times`,
+      ],
+      note: `Management believed the vehicle was about ${gap.toLocaleString("en-US")}× safer than its own engineers did — and reality (~1 in ${Math.round(actual)}) sided with the engineers, who were off by less than a factor of two while management was off by roughly ${Math.round(mgmtOff).toLocaleString("en-US")}×. An organization whose leadership thinks its machine is a thousand times safer than the people who built it will under-weight every warning and be shocked by the disaster the engineers saw coming. Feynman's point: the number gap is the culture gap, made measurable.`,
+    };
+  },
+
+  "program-losses": (rng) => {
+    const flights = sample(rng, [50, 135, 250], 1)[0];
+    const pEng = 1 / 100;
+    const pMgmt = 1 / 100000;
+    const eEng = flights * pEng;
+    const eMgmt = flights * pMgmt;
+    return {
+      title: "Per-flight odds become program losses",
+      question: `A per-flight risk is small, but a program flies many times. Over ${flights} flights, how many catastrophic losses are expected at the engineers' ~1-in-100 estimate versus management's ~1-in-100,000?`,
+      steps: [
+        `\\text{engineers: } ${flights}\\times \\tfrac{1}{100} = ${eEng.toFixed(2)}\\text{ losses}`,
+        `\\text{management: } ${flights}\\times \\tfrac{1}{100000} = ${eMgmt.toFixed(4)}\\text{ losses}`,
+      ],
+      note: `At the engineers' rate you expect about ${eEng.toFixed(1)} losses over ${flights} flights; at management's rate, essentially zero (${eMgmt.toFixed(4)}). The real Shuttle program lost 2 in 135 — squarely in line with the engineers and nowhere near management's near-impossible odds. A small per-flight risk is not a small program risk: fly enough times and the rare catastrophe becomes expected, which is exactly why "we've gotten away with it so far" is no defense.`,
+    };
+  },
+
+  "at-least-one": (rng) => {
+    const n = sample(rng, [25, 50, 135], 1)[0];
+    const oneIn = sample(rng, [100, 200], 1)[0];
+    const p = 1 / oneIn;
+    const none = Math.pow(1 - p, n);
+    const atLeastOne = (1 - none) * 100;
+    return {
+      title: "The odds of at least one disaster",
+      question: `If each flight carries a ${`1-in-${oneIn}`} chance of catastrophic loss, what is the probability of at least one loss over a ${n}-flight program?`,
+      steps: [
+        `P(\\text{none}) = \\left(1 - \\tfrac{1}{${oneIn}}\\right)^{${n}} = ${none.toFixed(3)}`,
+        `P(\\text{at least one}) = 1 - ${none.toFixed(3)} = ${atLeastOne.toFixed(0)}\\%`,
+      ],
+      note: `About a ${atLeastOne.toFixed(0)}% chance of at least one catastrophe over ${n} flights — even though any single flight looks safe. Rare per-flight risks compound relentlessly across a program, so a culture that treats each successful flight as reassurance is misreading luck as safety. The honest question is never "did this flight survive?" but "what is the real per-flight risk, and how many times are we rolling the dice?"`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
