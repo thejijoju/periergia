@@ -32,6 +32,8 @@ with master as (
 
 In September 2007, a spacecraft named Dawn launched from Cape Canaveral on a mission that, by the standards of everything established so far in this unit, should have been flatly impossible.
 
+{{image: Dawn (spacecraft) | Dawn: the spacecraft that orbited two worlds on a wardrobe's worth of xenon. Its ion engines produced ~90 millinewtons — the weight of a couple of coins — and had to fire for more than five cumulative years to bank 11.5 km/s of Δv.}}
+
 Dawn's mission was to orbit **two** different worlds. Not fly past — *orbit*, enter into a stable captured orbit around, study, and then *leave* and travel to a second body and orbit *that* one too. Its targets were the two largest objects in the asteroid belt: Vesta, a 500-km protoplanet, and Ceres, a 950-km dwarf planet with, as it turned out, a subsurface ocean and bright salt deposits. To orbit two separate bodies on one mission, Dawn needed to escape Earth, travel to Vesta, spiral down into orbit around it, study it for fourteen months, then **climb back out of Vesta's gravity well, travel across the asteroid belt to Ceres, and spiral down into orbit around Ceres.**
 
 Consider what that costs in the currency of this unit. The total Δv Dawn accumulated over its mission was about **11.5 kilometers per second** — *more than the Δv required to launch from the surface of the Earth all the way to low Earth orbit.* Dawn performed, in deep space, more velocity change than a rocket launch. And it did this on a propellant load of **425 kilograms of xenon** — a mass you could fit in a large wardrobe, roughly the mass of a grand piano.
@@ -62,6 +64,11 @@ There it is. The master equation of electric propulsion: $F = 2P/v_e$. For a fix
 
 The physics is worth making vivid, because the algebra hides it. Thrust is *momentum* per second ($\dot m v_e$), and power is *energy* per second ($\frac{1}{2}\dot m v_e^2$). Energy scales as velocity *squared*, momentum only linearly. So if you take a fixed budget of energy-per-second and pour it into making the exhaust go *faster* (higher $v_e$), the energy gets used up quadratically fast, and you can only afford to throw a *little* mass — which means little momentum, which means little thrust. Conversely, if you throw the mass *slowly* (low $v_e$), each kilogram costs little energy, so you can throw lots of it, getting high thrust but low $v_e$. **The same watts buy you either a lot of slow mass (high thrust, low $v_e$, the chemical regime) or a little fast mass (low thrust, high $v_e$, the ion regime), and you must choose.**
 
+See the trade for yourself. Slide the exhaust velocity and switch the power source: on log-log axes the master equation is a straight line, and the gap between chemistry's furnace and a solar array's kilowatts is the whole story of why leaving chemistry costs you your thrust.
+
+```powerthrust
+```
+
 ```example
 power-thrust-trade
 ```
@@ -85,6 +92,8 @@ Hold $F = 2P/v_e$ in mind like a talisman for the rest of the chapter. Everythin
 Build the ion drive, because it is the propulsion system that has quietly taken over deep-space exploration and much of the satellite industry, and it is the purest expression of the "high $v_e$, low thrust" choice.
 
 ### How you throw atoms at 30 km/s
+
+{{image: Ion thruster | An electrostatic ion thruster firing on a test stand. Instead of heating gas, it strips electrons off xenon atoms and accelerates the ions with a few kilovolts — so the exhaust velocity is set by voltage, not chemistry, and the 4.5 km/s wall simply doesn't apply.}}
 
 A chemical rocket accelerates its exhaust *thermally* — it heats gas and lets it expand through a nozzle, and the exhaust velocity is limited by how hot you can get the gas and how light the molecules are, which is the chemical wall. An ion engine throws that away entirely. Instead of heating a gas, it **ionizes** atoms (strips an electron off, giving each atom a positive charge) and then **accelerates the charged ions with an electric field.** And here is why that breaks the wall: an electric field can accelerate a charged particle to *any* velocity you like, limited only by the voltage you apply — there is no thermal ceiling, no chemistry, no molecular-weight penalty. Apply a few kilovolts across a gap, and xenon ions come screaming out the back at 30–40 km/s. The exhaust velocity is set by the *voltage*, not by chemistry, and voltage is cheap.
 
@@ -167,6 +176,8 @@ nuclear-ve-lever
 ```
 
 ## NERVA: the engine that worked and was cancelled anyway
+
+{{image: NERVA | A NERVA nuclear thermal rocket engine. Hot hydrogen (the lightest possible exhaust) forced through a fissioning uranium core doubled chemistry's exhaust velocity while keeping real thrust — built, ground-fired for hours in the Nevada desert, and cancelled when the journey it was for was cancelled.}}
 
 Here is the part of the story that ought to be better known, because it is one of the most striking "road not taken" episodes in the history of technology. **Nuclear thermal propulsion is not speculative. It was built. It was tested. It worked. And it was cancelled — not because it failed, but because the journey it was built for was cancelled.**
 
