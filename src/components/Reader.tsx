@@ -37,6 +37,7 @@ import { PlanetHohmann } from "./PlanetHohmann";
 import { DebrisLifetime } from "./DebrisLifetime";
 import { RedshiftBand } from "./RedshiftBand";
 import { InterferometryBaseline } from "./InterferometryBaseline";
+import { ConsumablesMass } from "./ConsumablesMass";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -601,6 +602,11 @@ export function Reader({
                   // interactive θ = 1.22λ/B baseline-vs-resolution explorer.
                   if (typeof cls === "string" && /language-interferometrybaseline\b/.test(cls)) {
                     return <InterferometryBaseline />;
+                  }
+                  // A fenced ```consumablesmass block becomes the interactive
+                  // consumables-mass explorer (crew x days, recycling closure).
+                  if (typeof cls === "string" && /language-consumablesmass\b/.test(cls)) {
+                    return <ConsumablesMass />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

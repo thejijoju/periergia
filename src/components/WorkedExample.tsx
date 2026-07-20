@@ -1690,6 +1690,77 @@ const GENERATORS: Record<string, Generator> = {
       )} km across — the size of a continent or the whole planet. You cannot build a single mirror that big, which is exactly why interferometry exists: combine widely separated dishes so their baseline plays the role of D, synthesizing the resolution of an aperture no one could ever cast.`,
     };
   },
+  // ── The human as payload (human-as-payload) ──
+  "consumables-mass": (rng) => {
+    const crew = sample(rng, [3, 4, 6], 1)[0];
+    const days = sample(rng, [10, 180, 500, 1000], 1)[0];
+    const kg = crew * days * 5;
+    const t = kg / 1000;
+    return {
+      title: "The consumables explosion",
+      question: `A person in space needs about 5 kg of consumables (oxygen, water, food) per day. How much must a crew of ${crew} carry for a ${days}-day mission with no recycling?`,
+      steps: [
+        `M = 5\\,\\tfrac{\\text{kg}}{\\text{person·day}}\\times ${crew}\\,\\text{crew}\\times ${days}\\,\\text{days} = ${kg.toLocaleString(
+          "en-US",
+        )}\\,\\text{kg} = ${t.toLocaleString("en-US", { maximumFractionDigits: 1 })}\\,\\text{tonnes}`,
+      ],
+      note: `${t.toFixed(1)} tonnes${
+        days >= 1000
+          ? " — comparable to the entire dry mass of a substantial spacecraft, burned just to keep the crew breathing, drinking, and eating"
+          : ""
+      }. Because this mass is consumed every day, it grows with crew × days, and duration is the enemy: a Mars-length trip is ~100× the days of an Apollo one. A robot's power is a fixed one-time mass; a human's rations must be supplied continuously — which is why long missions must recycle.`,
+    };
+  },
+
+  "return-stacking": (rng) => {
+    const dv = sample(rng, [3000, 4000, 5000], 1)[0];
+    const ve = 3400;
+    const R = Math.exp(dv / ve);
+    const R2 = R * R;
+    return {
+      title: "The return penalty stacks",
+      question: `The rocket equation gives a mass ratio e^(Δv/v_e), with v_e ≈ 3,400 m/s. A round trip carries the return propellant out with it, so a ${dv.toLocaleString(
+        "en-US",
+      )} m/s leg is effectively paid twice. Find the single-leg ratio and the compounded round-trip ratio.`,
+      steps: [
+        `R = e^{\\Delta v/v_e} = e^{${dv}/3400} = ${R.toFixed(2)}`,
+        `R_{\\text{round}} \\approx R\\times R = ${R.toFixed(2)}^2 = ${R2.toFixed(1)}`,
+      ],
+      note: `One leg needs ${R.toFixed(
+        1,
+      )} kg of stack per kg delivered; carrying the return capability out with you compounds that to about ${R2.toFixed(
+        0,
+      )}× — the return trip is many times harder, not twice, because the rocket equation is exponential and multiplicative. This is why "every kilogram home costs many kilograms out," why Mars (a deeper well) is far worse than the Moon, and why making propellant at the destination (ISRU) is the only way to make crewed return tractable.`,
+    };
+  },
+
+  "recycling-savings": (rng) => {
+    const crew = sample(rng, [3, 4, 6], 1)[0];
+    const days = sample(rng, [180, 500, 1000], 1)[0];
+    const recov = sample(rng, [0.9, 0.93, 0.98], 1)[0];
+    const open = 3.5 * crew * days;
+    const closed = open * (1 - recov);
+    const saved = open - closed;
+    return {
+      title: "What recycling saves",
+      question: `A crew of ${crew} needs 3.5 kg of water per person per day over ${days} days. How much water must be launched with ${Math.round(
+        recov * 100,
+      )}% recovery, versus none — and how much is saved?`,
+      steps: [
+        `\\text{open loop} = 3.5\\times ${crew}\\times ${days} = ${open.toLocaleString("en-US")}\\,\\text{kg}`,
+        `\\text{with recovery} = ${open.toLocaleString("en-US")}\\times(1-${recov}) = ${Math.round(
+          closed,
+        ).toLocaleString("en-US")}\\,\\text{kg},\\quad \\text{saved} = ${Math.round(saved).toLocaleString(
+          "en-US",
+        )}\\,\\text{kg}`,
+      ],
+      note: `Recycling turns ${(open / 1000).toFixed(1)} tonnes of water into ${(closed / 1000).toFixed(
+        2,
+      )} tonnes, saving ${(saved / 1000).toFixed(
+        1,
+      )} tonnes. The recycler is a fixed one-time mass while un-recycled consumables grow with duration, so the longer the mission the more decisively recycling wins. Food, though, cannot be recovered — every calorie is launched — so once the water and air loops are closed it comes to dominate what remains.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
