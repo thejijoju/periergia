@@ -45,6 +45,8 @@ Now consider changing *one thing* — not the engine, not the structural fractio
 
 The one thing is this: **stop carrying the empty tanks.**
 
+{{image: Saturn V | The Saturn V: three stages, each dropped the instant its tanks ran dry. Staging is the one structural idea that turns the rocket equation's "impossible" into "industry standard" — same engines, same materials, same physics.}}
+
 That's it. That's the entire idea. And Tsiolkovsky had it in 1903, before anyone had flown anything at all, sitting in a wooden house in Kaluga, deaf, with a pencil. He called it a "rocket train." We call it staging. It is the single most important structural idea in the history of spaceflight, and it follows — as everything in this field follows — from taking the rocket equation seriously and asking it the right question.
 
 The right question is: *why is the empty tank still here?*
@@ -127,6 +129,11 @@ The napkin model — one engine number, one structural coefficient, an even spli
 The estimate of 3.59% lands **right in the middle of the real vehicles.** The Saturn V beats it because it used hydrogen upper stages (better $v_e$ where it counts — the chapter on the thermochemical ceiling) and had superb structural coefficients from a nation spending 4.4% of its federal budget. The Shuttle *badly* underperforms because it carried a 78-tonne winged orbiter to orbit *as payload it paid for on every flight* (autopsied in the chapter on reusability). But the point stands: **a napkin, one logarithm, and one structural coefficient predicted the payload fraction of the most complex machines ever built, to within a percentage point.**
 
 This is the point made in the overview: *this is what it feels like when you actually understand something.* You are not memorizing that the Saturn V put 140 tonnes in orbit. You are **deriving** it, from momentum conservation and a structural fraction, on the back of an envelope, and getting it right. That's the difference between knowing a fact and owning a field.
+
+We split the budget evenly — 4.7 km/s each — and asserted that was best. Don't take it on faith. Drag the split below and watch the payload fraction for yourself: it peaks at the even division and falls away toward the edges, and if you hand either stage too much of the budget, its payload goes negative and the vehicle stops existing. You are about to *see* the theorem the next section proves.
+
+```stagingsplit
+```
 
 ---
 
@@ -317,6 +324,8 @@ Staging has been proven the loophole that makes orbit possible, and the optimum 
 
 ### X-33 / VentureStar — the ghost from an earlier chapter
 
+{{image: Lockheed Martin X-33 | The X-33 / VentureStar: a single-stage-to-orbit vehicle that refused to stage. Its composite hydrogen tank failed in test, the aluminium replacement pushed the payload negative, and \$1.3 billion died in the gap the impossibility theorem predicted.}}
+
 This was buried in the previous chapters, so briefly: VentureStar was a **single-stage-to-orbit** vehicle. It refused to stage. By the impossibility theorem, that required a structural coefficient (~0.073) that no one has ever achieved for a hydrogen vehicle that must *also* be a reusable spaceplane with wings, landing gear, and thermal protection. The composite hydrogen tank failed in test (November 1999), the aluminum replacement pushed $\varepsilon$ past the point where payload went negative, and the program died in 2001 having spent ~\$1.3 billion. **It died because it tried to skip the one move that makes orbit possible.** SSTO isn't stupid — if you could build a 5%-structure hydrogen stage it would win — it's that it has no margin, and mass growth (which is a law of nature) eats the whole payload. Staging *gives you margin*: a two-stage rocket that comes in heavy loses a little payload and flies; an SSTO that comes in heavy does not exist.
 
 ### Roton — the helicopter that wanted to be a rocket
@@ -326,6 +335,8 @@ In the late 1990s, a company called Rotary Rocket proposed the **Roton**, a sing
 ### DC-X — the honorable exception, and what it actually proved
 
 The **DC-X (Delta Clipper Experimental)**, early 1990s, was a smaller and more honest program. It was a vertical-takeoff, vertical-landing rocket — and crucially, it was a *technology demonstrator for landing and reusability*, **not** a claim to reach orbit. It flew beautifully, demonstrated rocket-powered vertical landing and rapid turnaround (concepts that SpaceX would later make routine), and it did so because it wasn't trying to violate the impossibility theorem — it never claimed it could reach orbit as a single stage carrying payload. It proved that *powered vertical landing works*, which was genuinely valuable and genuinely influential (you can draw a line from DC-X to Falcon 9's returning boosters). **DC-X is the counterexample that proves the rule:** it succeeded precisely *because* it separated the reusability problem (solvable) from the SSTO problem (not solvable with current $\varepsilon$), and only tried to solve the one that was tractable.
+
+{{image: Falcon 9 | Falcon 9 staging in reverse: the first stage separates, then flies itself back to land. You can draw a straight line from DC-X's vertical landings to this — reusability solved as a problem separate from, not instead of, staging.}}
 
 ### Skylon / SABRE — the sophisticated attempt still standing
 
