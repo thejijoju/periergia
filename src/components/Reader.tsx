@@ -46,6 +46,8 @@ import { LoopClosureMass } from "./LoopClosureMass";
 import { Biosphere2Oxygen } from "./Biosphere2Oxygen";
 import { ArchitectureMass } from "./ArchitectureMass";
 import { DvBudget } from "./DvBudget";
+import { ShuttleRisk } from "./ShuttleRisk";
+import { NormalizedDeviance } from "./NormalizedDeviance";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -657,6 +659,17 @@ export function Reader({
                   // ledger (launch dominates; the atmosphere brakes for free).
                   if (typeof cls === "string" && /language-dvbudget\b/.test(cls)) {
                     return <DvBudget />;
+                  }
+                  // A fenced ```shuttlerisk block becomes the interactive
+                  // risk-perception-gap explorer (Feynman: management vs
+                  // engineers vs the real record).
+                  if (typeof cls === "string" && /language-shuttlerisk\b/.test(cls)) {
+                    return <ShuttleRisk />;
+                  }
+                  // A fenced ```normalizeddeviance block becomes the interactive
+                  // accepted-risk ratchet toward the failure line.
+                  if (typeof cls === "string" && /language-normalizeddeviance\b/.test(cls)) {
+                    return <NormalizedDeviance />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
