@@ -2183,6 +2183,53 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${dist.toLocaleString("en-US")} parsecs. The whole game of measuring cosmic distances comes down to this: if you know an object's *true* luminosity (a "standard candle") and measure how bright it *looks*, the inverse-square law hands you the distance. A Cepheid reveals its true luminosity through its pulse period (Leavitt's law); a Type Ia supernova through the consistent physics of its explosion. Find one in a distant galaxy, measure its faintness, and you have measured the galaxy — the trick that unlocked the scale of the universe.`,
     };
   },
+  // ── Ocean Worlds: Europa, Enceladus, and the Seas Beneath the Ice (ocean-worlds) ──
+  "methanogen-balance": (rng) => {
+    const n = sample(rng, [1, 3, 5], 1)[0]; // moles of CH4 to make
+    const h2 = 4 * n, co2 = n, h2o = 2 * n;
+    const massIn = co2 * 44 + h2 * 2, massOut = n * 16 + h2o * 18;
+    return {
+      title: "The fuel in Enceladus's plume",
+      question: `Earth's most ancient life, methanogens, live on the reaction CO₂ + 4H₂ → CH₄ + 2H₂O — and Enceladus's ocean has both CO₂ and H₂. To make ${n} molecule${n > 1 ? "s" : ""} of methane, how much hydrogen and carbon dioxide are consumed, and does mass balance?`,
+      steps: [
+        `${co2}\\,\\text{CO}_2 + ${h2}\\,\\text{H}_2 \\rightarrow ${n}\\,\\text{CH}_4 + ${h2o}\\,\\text{H}_2\\text{O}`,
+        `\\text{mass in} = ${co2}(44) + ${h2}(2) = ${massIn}\\,\\text{u} = ${n}(16) + ${h2o}(18) = ${massOut}\\,\\text{u} \\;\\checkmark`,
+      ],
+      note: `${n} CH₄ needs ${h2} H₂ and ${co2} CO₂, and the ${massIn} atomic mass units in balance the ${massOut} out — nothing is lost, only rearranged, with energy released for the cell to live on. You may recognise the reaction: it is the Sabatier reaction from the life-support chapter, run there by a machine to recover water, and here by living cells as their source of energy. The hydrogen Cassini tasted in the plume is not just a sign of hot water meeting rock — it is *food*, the exact fuel some of Earth's oldest life would eat.`,
+    };
+  },
+
+  "ocean-volume": (rng) => {
+    const R = sample(rng, [1560, 2410, 2630], 1)[0]; // moon radius, km (Europa, Callisto, Ganymede)
+    const depth = sample(rng, [60, 100, 150], 1)[0]; // ocean depth, km
+    const vol = 4 * Math.PI * R * R * depth; // thin-shell volume, km^3
+    const earth = 1.335e9; // km^3, Earth's oceans
+    const ratio = vol / earth;
+    return {
+      title: "How much water is down there?",
+      question: `A subsurface ocean is a thin shell: its volume is about 4πR²×(depth), with R the moon's radius. For a moon of radius ${R.toLocaleString("en-US")} km with an ocean ${depth} km deep, what is the ocean's volume — and how does it compare to Earth's ${earth.toExponential(1)} km³ of ocean?`,
+      steps: [
+        `V \\approx 4\\pi R^2 h = 4\\pi (${R.toLocaleString("en-US")})^2(${depth}) = ${sci(vol, 1)}\\,\\text{km}^3`,
+        `\\frac{V}{V_\\oplus} = \\frac{${sci(vol, 1)}}{${sci(earth, 1)}} = ${ratio.toFixed(1)}\\times`,
+      ],
+      note: `About ${sci(vol, 1)} km³ — roughly ${ratio.toFixed(1)} times all the water in Earth's oceans, in a single hidden sea beneath the ice. This is the quiet shock of the ocean worlds: liquid water, life's one non-negotiable, is not rare in the outer solar system but abundant, tucked in the dark beneath frozen shells. Understanding subsurface oceans jumped the count of potentially habitable places in our own system from essentially one to many — and implies the universe is far wetter than its frozen surfaces suggest.`,
+    };
+  },
+
+  "signal-delay": (rng) => {
+    const targets: [string, number][] = [["Jupiter", 5.2], ["Saturn", 9.6], ["Europa", 5.2]];
+    const [name, au] = targets[sample(rng, [0, 1, 2], 1)[0]];
+    const oneWayMin = (au * 149.6e6) / 299792 / 60; // minutes
+    return {
+      title: "Why probes must think for themselves",
+      question: `A radio command travels at the speed of light. When a spacecraft at ${name} (about ${au} AU from the Sun, roughly the same from Earth) flies through a plume, how long does a one-way signal take — and what does that mean for controlling it live? (1 AU = 1.496×10⁸ km, c = 299,792 km/s.)`,
+      steps: [
+        `t = \\frac{${au}\\times 1.496\\times 10^8\\,\\text{km}}{299{,}792\\,\\text{km/s}} = ${(oneWayMin * 60).toFixed(0)}\\,\\text{s} \\approx ${oneWayMin.toFixed(0)}\\,\\text{min}`,
+        `\\text{round trip} \\approx ${(2 * oneWayMin).toFixed(0)}\\,\\text{min}`,
+      ],
+      note: `About ${oneWayMin.toFixed(0)} minutes each way — ${(2 * oneWayMin).toFixed(0)} minutes for a command and its reply. A plume flythrough is over in seconds, so no one on Earth can steer it in real time; the spacecraft must execute the encounter on its own, decisions baked in years before launch. This is the deep-space reality behind every ocean-world mission: the rocket equation gets the payload there, but light-speed makes it act alone — a robot tasting an alien sea hundreds of millions of kilometres beyond any hope of live control.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
