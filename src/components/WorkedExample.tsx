@@ -2230,6 +2230,60 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${oneWayMin.toFixed(0)} minutes each way — ${(2 * oneWayMin).toFixed(0)} minutes for a command and its reply. A plume flythrough is over in seconds, so no one on Earth can steer it in real time; the spacecraft must execute the encounter on its own, decisions baked in years before launch. This is the deep-space reality behind every ocean-world mission: the rocket equation gets the payload there, but light-speed makes it act alone — a robot tasting an alien sea hundreds of millions of kilometres beyond any hope of live control.`,
     };
   },
+  // ── Biosignatures: How Would We Know? (biosignatures) ──
+  "methane-lifetime": (rng) => {
+    const life = sample(rng, [8, 10, 12], 1)[0]; // methane lifetime, years
+    const ageGyr = sample(rng, [4.5, 3.0, 2.0], 1)[0]; // atmosphere age, billions of years
+    const ageYr = ageGyr * 1e9;
+    const times = ageYr / life;
+    return {
+      title: "Why methane shouldn't be there",
+      question: `In an oxygen-rich atmosphere, methane is destroyed with a lifetime of about ${life} years. If the atmosphere is ${ageGyr} billion years old, how many methane lifetimes have elapsed — and what does that say about any methane still present today?`,
+      steps: [
+        `N = \\frac{\\text{age}}{\\text{lifetime}} = \\frac{${ageGyr}\\times 10^9\\,\\text{yr}}{${life}\\,\\text{yr}} = ${sci(times, 1)}`,
+        `\\text{starting methane surviving} \\sim e^{-N} \\approx 0 \\;\\;(N = ${sci(times, 1)})`,
+      ],
+      note: `About ${sci(times, 1)} lifetimes have passed — so any methane present at the start was wiped out hundreds of millions of times over and should be utterly gone. Yet methane IS still in the air, sitting beside the oxygen that eats it. The only way to keep it there is a source continuously resupplying it as fast as it burns, at a planetary scale. On Earth that source is life. This is the disequilibrium argument: not "we found methane," but "methane cannot persist here unless something keeps making it" — the fire-and-fuel logic that turns a humble gas into a biosignature.`,
+    };
+  },
+
+  "transit-signal": (rng) => {
+    // Atmospheric transmission signal ~ 2 * Rp * H / Rstar^2 (annulus area / stellar disc).
+    const cases: [string, number, number, number][] = [
+      // label, planet radius (km), scale height (km), star radius (km)
+      ["an Earth twin, Sun-like star", 6371, 8, 696000],
+      ["a super-Earth, red-dwarf star", 9500, 12, 150000],
+      ["a warm Neptune, Sun-like star", 24600, 30, 696000],
+    ];
+    const [label, rp, H, rs] = cases[sample(rng, [0, 1, 2], 1)[0]];
+    const signal = (2 * rp * H) / (rs * rs); // fractional depth of the atmospheric annulus
+    const ppm = signal * 1e6;
+    return {
+      title: "Reading an atmosphere across the light-years",
+      question: `During a transit, starlight grazing a planet's atmosphere carries its chemical fingerprint. The signal is roughly the atmospheric annulus over the stellar disc, 2·Rₚ·H / R★². For ${label} — planet radius ${rp.toLocaleString("en-US")} km, atmospheric scale height ${H} km, star radius ${rs.toLocaleString("en-US")} km — how deep is that signal?`,
+      steps: [
+        `\\delta \\approx \\frac{2 R_p H}{R_\\star^2} = \\frac{2(${rp.toLocaleString("en-US")})(${H})}{(${rs.toLocaleString("en-US")})^2} = ${sci(signal, 1)}`,
+        `= ${sci(signal, 1)}\\times 10^6\\,\\text{ppm} = ${ppm.toFixed(ppm < 10 ? 1 : 0)}\\,\\text{ppm of the starlight}`,
+      ],
+      note: `Only about ${ppm.toFixed(ppm < 10 ? 1 : 0)} parts per million — a change of a few thousandths of a percent in the star's brightness, and the biosignature gases hide inside even that sliver. This is why reading the air of a small, temperate world sits at the very edge of what the largest telescopes can do, and why JWST and its successors matter: the fingerprint is real and readable, but faint almost beyond belief. Compare the cases — a big puffy planet around a small star gives a signal tens of times larger, which is exactly why our first atmosphere measurements came from hot Jupiters, not Earth twins.`,
+    };
+  },
+
+  "false-positive-odds": (rng) => {
+    // Independent biosignatures multiply their (abiotic) false-positive probabilities.
+    const p1 = sample(rng, [10, 20, 25], 1)[0]; // % chance oxygen is abiotic here
+    const p2 = sample(rng, [20, 30, 40], 1)[0]; // % chance methane is abiotic here
+    const joint = (p1 / 100) * (p2 / 100) * 100; // % chance BOTH are abiotic coincidence
+    return {
+      title: "Why two signatures beat one",
+      question: `Suppose that, on some world, there is a ${p1}% chance its oxygen is abiotic (photolysis, no life) and, independently, a ${p2}% chance its methane is abiotic (serpentinising rock). If both gases coexist in disequilibrium, what is the rough chance that a lifeless explanation accounts for BOTH at once — and why does that make the pair so much stronger than either gas alone?`,
+      steps: [
+        `P(\\text{both abiotic}) \\approx P_1\\times P_2 = ${(p1 / 100).toFixed(2)}\\times ${(p2 / 100).toFixed(2)} = ${(joint / 100).toFixed(3)}`,
+        `= ${joint.toFixed(1)}\\% \\;\\;\\text{vs. } ${p1}\\% \\text{ or } ${p2}\\% \\text{ for a single gas}`,
+      ],
+      note: `Only about ${joint.toFixed(1)}% — far below the ${p1}% or ${p2}% a single gas leaves on the table. Nature can forge oxygen, and nature can forge methane, but to forge BOTH at once, in the same air, held in mutual chemical conflict, it must run two independent tricks in concert — and independent flukes multiply, so their combined probability collapses. (Treat the two as independent only as a teaching idealisation; real cases share some causes.) This is the whole strategy against false positives: never trust one molecule, hunt for combinations in disequilibrium that a lifeless world would have to fake several times over. It is why the gold standard is not oxygen, and not methane, but oxygen AND methane, together.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
