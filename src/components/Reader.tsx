@@ -23,6 +23,7 @@ import { GiffenChart } from "./GiffenChart";
 import { BlackbodyChart } from "./BlackbodyChart";
 import { SegmentedMirror } from "./SegmentedMirror";
 import { RocketEquation } from "./RocketEquation";
+import { StagingSplit } from "./StagingSplit";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -517,6 +518,11 @@ export function Reader({
                   // Tsiolkovsky Δv-vs-mass-ratio explorer (propellant + slider).
                   if (typeof cls === "string" && /language-rocketequation\b/.test(cls)) {
                     return <RocketEquation />;
+                  }
+                  // A fenced ```stagingsplit block becomes the interactive
+                  // two-stage Δv-split payload explorer.
+                  if (typeof cls === "string" && /language-stagingsplit\b/.test(cls)) {
+                    return <StagingSplit />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
