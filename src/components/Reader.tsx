@@ -25,6 +25,7 @@ import { SegmentedMirror } from "./SegmentedMirror";
 import { RocketEquation } from "./RocketEquation";
 import { StagingSplit } from "./StagingSplit";
 import { PowerThrustTrade } from "./PowerThrustTrade";
+import { ReuseEconomics } from "./ReuseEconomics";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -529,6 +530,11 @@ export function Reader({
                   // F = 2P/v_e thrust-vs-exhaust-velocity tradeoff (log-log).
                   if (typeof cls === "string" && /language-powerthrust\b/.test(cls)) {
                     return <PowerThrustTrade />;
+                  }
+                  // A fenced ```reuseeconomics block becomes the interactive
+                  // amortization explorer ($/kg vs first-stage reuses).
+                  if (typeof cls === "string" && /language-reuseeconomics\b/.test(cls)) {
+                    return <ReuseEconomics />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
