@@ -81,6 +81,8 @@ import { EquantDiagram } from "./EquantDiagram";
 import { ElongationDistance } from "./ElongationDistance";
 import { EllipseOrbit } from "./EllipseOrbit";
 import { EqualAreas } from "./EqualAreas";
+import { VenusPhases } from "./VenusPhases";
+import { JupiterMoons } from "./JupiterMoons";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -871,6 +873,16 @@ export function Reader({
                   // second-law explorer (equal areas in equal times, varying speed).
                   if (typeof cls === "string" && /language-equalareas\b/.test(cls)) {
                     return <EqualAreas />;
+                  }
+                  // A fenced ```venusphases block becomes the interactive phases-of-Venus
+                  // explorer (the decisive test — full cycle + size swing, Sun-orbiting).
+                  if (typeof cls === "string" && /language-venusphases\b/.test(cls)) {
+                    return <VenusPhases />;
+                  }
+                  // A fenced ```jupitermoons block becomes the interactive Galilean-moons
+                  // explorer (a centre of motion that is not the Earth).
+                  if (typeof cls === "string" && /language-jupitermoons\b/.test(cls)) {
+                    return <JupiterMoons />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

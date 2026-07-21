@@ -2785,6 +2785,23 @@ const GENERATORS: Record<string, Generator> = {
       note: `${name} swings from ${f(peri)} AU at perihelion to ${f(apo)} AU at aphelion, moving ${speedRatio > 3 ? `about ${speedRatio.toFixed(0)}× faster` : `${((speedRatio - 1) * 100).toFixed(0)}% faster`} when closest than when farthest. ${e > 0.9 ? "A comet's wildly stretched orbit makes the effect enormous — it whips through perihelion near the Sun and crawls for decades through the frozen aphelion far beyond the planets." : e < 0.05 ? "The orbit is so nearly circular that the swing is tiny — which is exactly why the ellipse stayed hidden for two thousand years." : "The Sun sitting off-centre at one focus is what makes the distance, and so the speed, vary — Kepler's second law in action."} By Kepler's second law the planet sweeps equal areas in equal times, so it must run fastest at perihelion and slowest at aphelion.`,
     };
   },
+
+  "venus-size": (rng) => {
+    // apparent size of Venus (crescent vs full) from its Earth-distance at the two conjunctions
+    const rV = sample(rng, [0.72], 1)[0]; // Venus orbital radius, AU
+    const near = 1 - rV; // inferior conjunction: Venus between Earth and Sun (crescent)
+    const far = 1 + rV; // superior conjunction: Venus across the Sun (full)
+    const ratio = far / near; // apparent-size ratio (angular size ∝ 1/distance)
+    return {
+      title: "Why the crescent Venus looks bigger",
+      question: `Venus orbits the Sun at ${rV} AU. When it passes between the Earth and the Sun (a thin crescent) its distance from us is 1 − ${rV} AU; when it is on the far side of the Sun (full) its distance is 1 + ${rV} AU. Since apparent size is inversely proportional to distance, how many times larger does the crescent Venus appear than the full Venus?`,
+      steps: [
+        `d_{\\text{crescent}} = 1-${rV} = ${f(near)}\\,\\text{AU}, \\quad d_{\\text{full}} = 1+${rV} = ${f(far)}\\,\\text{AU}`,
+        `\\frac{\\text{size}_{\\text{crescent}}}{\\text{size}_{\\text{full}}} = \\frac{d_{\\text{full}}}{d_{\\text{crescent}}} = \\frac{${f(far)}}{${f(near)}} \\approx ${ratio.toFixed(1)}\\times`,
+      ],
+      note: `About ${ratio.toFixed(1)} times larger. This size swing is the clinching detail of Galileo's decisive test. If Venus orbits the Sun, the crescent phase happens when Venus is NEAR us (between Earth and Sun, showing its dark side) and the full phase when it is FAR (across the Sun, showing its lit face) — so the crescent must look big and the full must look small, by exactly this factor. Galileo saw precisely that. The Ptolemaic model, which pins Venus forever between us and the Sun, can only ever show a crescent and cannot produce a full Venus at all — so it was refuted, decisively, by the eye.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
