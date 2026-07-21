@@ -2738,6 +2738,53 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${au.toFixed(2)} AU — ${name === "Venus" ? "so Venus orbits at roughly three-quarters of the Earth's distance" : "so Mercury huddles at about a third of the Earth's distance, deep in the Sun's glare"}. This is Copernicus's most beautiful argument: heliocentrism does not merely fit the sky's angles, it lets you MEASURE the planets' distances and build a true scale model — Mercury 0.39, Venus 0.72, Earth 1.00, Mars 1.52, Jupiter 5.2, Saturn 9.5 AU — read straight off the sky. The geocentric model could fit the same angles but could never tell you how far away the planets were, or even their correct order. Turning the flat sky of appearances into a measured, three-dimensional solar system was powerful evidence that the model captured something real.`,
     };
   },
+
+  "kepler-third": (rng) => {
+    // Kepler's third law, T^2 = a^3 (T in years, a in AU) — solve either direction
+    const forward = sample(rng, [0, 1], 1)[0] === 0;
+    if (forward) {
+      const a = sample(rng, [4, 9, 16, 25], 1)[0]; // AU (perfect cubes-of-roots for clean T)
+      const T = Math.pow(a, 1.5);
+      return {
+        title: "From distance to period",
+        question: `An asteroid orbits the Sun with a semi-major axis of a = ${a} AU. Using Kepler's third law, T² = a³ (with T in years and a in AU), how long is its year?`,
+        steps: [
+          `T^2 = a^3 = ${a}^3 = ${(a * a * a).toLocaleString("en-US")}`,
+          `T = a^{3/2} = ${a}^{1.5} = ${T.toLocaleString("en-US")}\\,\\text{yr}`,
+        ],
+        note: `${T.toLocaleString("en-US")} years. Kepler's third law binds every orbit in the solar system with one exact rule: square the period, cube the distance, and you get the same number. Just timing how long a body takes to circle the Sun tells you how far away it orbits — the whole architecture of the solar system falls out of the periods. And the law reaches far beyond the planets Kepler knew: the moons of Jupiter, comets, the Moon, and every spacecraft we launch all obey it. Newton would later show this 3/2-power law is the exact fingerprint of an inverse-square gravity.`,
+      };
+    }
+    const a = sample(rng, [4, 9, 16, 25], 1)[0];
+    const T = Math.pow(a, 1.5);
+    return {
+      title: "From period to distance",
+      question: `A comet takes T = ${T.toLocaleString("en-US")} years to orbit the Sun. Using Kepler's third law, T² = a³, what is the semi-major axis of its orbit (in AU)?`,
+      steps: [
+        `a^3 = T^2 = ${T.toLocaleString("en-US")}^2 = ${(T * T).toLocaleString("en-US")}`,
+        `a = T^{2/3} = ${T.toLocaleString("en-US")}^{2/3} = ${a}\\,\\text{AU}`,
+      ],
+      note: `${a} AU. The third law works both ways: measure a period and you know the distance; know a distance and you know the period. This is what made heliocentrism's scale model exact and self-consistent — the planets are not independent objects but members of a single system governed by one rule, T² = a³, holding to better than a tenth of a percent across every planet from Mercury to Saturn. The harmony Kepler chased his whole life turned out to be real: not mystical music, but an exact mathematical law — and, unknowingly, a direct clue to gravity.`,
+    };
+  },
+
+  "orbit-eccentricity": (rng) => {
+    // perihelion/aphelion and the speed ratio from a and e
+    const bodies: [string, number, number][] = [["Mars", 1.524, 0.093], ["Mercury", 0.387, 0.206], ["Halley's Comet", 17.8, 0.967], ["Earth", 1.0, 0.017]];
+    const [name, a, e] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const peri = a * (1 - e), apo = a * (1 + e);
+    const speedRatio = (1 + e) / (1 - e);
+    return {
+      title: "Closest, farthest, and fastest",
+      question: `${name} orbits with semi-major axis a = ${a} AU and eccentricity e = ${e}. Find its perihelion distance a(1−e) and aphelion distance a(1+e), and the ratio of its speed at perihelion to its speed at aphelion, (1+e)/(1−e).`,
+      steps: [
+        `\\text{perihelion} = a(1-e) = ${a}(1-${e}) = ${f(peri)}\\,\\text{AU}`,
+        `\\text{aphelion} = a(1+e) = ${a}(1+${e}) = ${f(apo)}\\,\\text{AU}`,
+        `\\frac{v_{\\text{peri}}}{v_{\\text{apo}}} = \\frac{1+e}{1-e} = ${f(speedRatio)}`,
+      ],
+      note: `${name} swings from ${f(peri)} AU at perihelion to ${f(apo)} AU at aphelion, moving ${speedRatio > 3 ? `about ${speedRatio.toFixed(0)}× faster` : `${((speedRatio - 1) * 100).toFixed(0)}% faster`} when closest than when farthest. ${e > 0.9 ? "A comet's wildly stretched orbit makes the effect enormous — it whips through perihelion near the Sun and crawls for decades through the frozen aphelion far beyond the planets." : e < 0.05 ? "The orbit is so nearly circular that the swing is tiny — which is exactly why the ellipse stayed hidden for two thousand years." : "The Sun sitting off-centre at one focus is what makes the distance, and so the speed, vary — Kepler's second law in action."} By Kepler's second law the planet sweeps equal areas in equal times, so it must run fastest at perihelion and slowest at aphelion.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

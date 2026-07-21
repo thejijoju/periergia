@@ -79,6 +79,8 @@ import { EratosthenesShadow } from "./EratosthenesShadow";
 import { EpicycleMachine } from "./EpicycleMachine";
 import { EquantDiagram } from "./EquantDiagram";
 import { ElongationDistance } from "./ElongationDistance";
+import { EllipseOrbit } from "./EllipseOrbit";
+import { EqualAreas } from "./EqualAreas";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -859,6 +861,16 @@ export function Reader({
                   // scale-model explorer (max elongation → inner-planet distance in AU).
                   if (typeof cls === "string" && /language-elongationdistance\b/.test(cls)) {
                     return <ElongationDistance />;
+                  }
+                  // A fenced ```ellipseorbit block becomes the interactive Kepler
+                  // first-law explorer (ellipse, two foci, Sun at one, eccentricity).
+                  if (typeof cls === "string" && /language-ellipseorbit\b/.test(cls)) {
+                    return <EllipseOrbit />;
+                  }
+                  // A fenced ```equalareas block becomes the interactive Kepler
+                  // second-law explorer (equal areas in equal times, varying speed).
+                  if (typeof cls === "string" && /language-equalareas\b/.test(cls)) {
+                    return <EqualAreas />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
