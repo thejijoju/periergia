@@ -70,6 +70,8 @@ import { EclipseNodes } from "./EclipseNodes";
 import { EclipseSizes } from "./EclipseSizes";
 import { CelestialGrid } from "./CelestialGrid";
 import { LongitudeClock } from "./LongitudeClock";
+import { SolarSiderealDay } from "./SolarSiderealDay";
+import { CalendarDrift } from "./CalendarDrift";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -802,6 +804,16 @@ export function Reader({
                   // longitude-by-time (celestial navigation) explorer.
                   if (typeof cls === "string" && /language-longitudeclock\b/.test(cls)) {
                     return <LongitudeClock />;
+                  }
+                  // A fenced ```solarsidereal block becomes the interactive two-days
+                  // explorer (why the solar day is 4 min longer than the sidereal).
+                  if (typeof cls === "string" && /language-solarsidereal\b/.test(cls)) {
+                    return <SolarSiderealDay />;
+                  }
+                  // A fenced ```calendardrift block becomes the interactive
+                  // Julian-vs-Gregorian calendar-drift explorer.
+                  if (typeof cls === "string" && /language-calendardrift\b/.test(cls)) {
+                    return <CalendarDrift />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
