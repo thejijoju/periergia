@@ -2670,6 +2670,58 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${arcminMoved.toFixed(1)} arcminutes over ${yrs} years — ${arcminMoved > 30 ? "roughly the width of the full Moon, or more" : "small, but far larger than the precision of a good telescope"}. Because the whole grid is anchored to the drifting equinox, a star's listed RA and dec are only valid for a stated date, so every catalogue specifies an EPOCH — modern ones use J2000, the coordinates as of the year 2000. The addresses we so carefully assigned are not quite permanent: give a star's coordinates and you must also say WHEN, because the framework itself is in motion. It is the fitting close to the observed sky — even the scaffolding we measure it with slowly moves.`,
     };
   },
+
+  "eratosthenes": (rng) => {
+    // shadow angle between two cities a known meridian distance apart → Earth circumference
+    const theta = sample(rng, [5.0, 7.2, 7.2, 9.0, 10.0, 12.0], 1)[0]; // degrees
+    const dist = sample(rng, [500, 700, 800, 900, 1000], 1)[0]; // km along the meridian
+    const frac = 360 / theta;
+    const circ = dist * frac; // km
+    return {
+      title: "Measuring the Earth with a shadow",
+      question: `At noon on the solstice the Sun is straight overhead at the southern city (a vertical stick casts no shadow), while ${dist} km due north a stick casts a shadow showing the Sun ${theta}° from vertical. The Sun's rays are parallel, so that ${theta}° is the central angle between the cities. What is the Earth's circumference?`,
+      steps: [
+        `\\frac{${theta}°}{360°} = \\frac{${dist}\\,\\text{km}}{C} \\;\\Rightarrow\\; C = ${dist}\\,\\text{km}\\times\\frac{360°}{${theta}°}`,
+        `C = ${dist}\\times ${f(frac)} \\approx ${Math.round(circ).toLocaleString("en-US")}\\,\\text{km}`,
+      ],
+      note: `About ${Math.round(circ / 1000)},000 km — ${Math.abs(circ - 40075) / 40075 < 0.12 ? "within roughly ten percent of the true 40,000 km" : "the right order of magnitude for the true 40,000 km"}. This is Eratosthenes' method (~240 BC): the shadow angle equals the difference in latitude, ${theta}° is ${frac === 50 ? "exactly 1/50" : `1/${f(frac)}`} of a full circle, so the north–south distance is that same fraction of the whole circumference. The entire planet, measured with a stick, a shadow, and geometry — the same gnomon method as the seasons chapter, and a direct rebuke to any notion that the ancients were unsophisticated.`,
+    };
+  },
+
+  "stellar-parallax": (rng) => {
+    // absence of parallax → a lower bound on how far the stars must be
+    const limitArcsec = sample(rng, [60, 120, 180], 1)[0]; // naked-eye resolution limit, arcsec
+    const limitRad = (limitArcsec / 206265); // small-angle: radians
+    // if the star showed no shift bigger than the limit, distance > baseline / angle.
+    // baseline = 1 AU (half-orbit gives ~1 AU of transverse shift for the parallax half-angle)
+    const dMinAU = 1 / limitRad; // AU
+    const dMinLy = dMinAU / 63241; // ly
+    return {
+      title: "Why the Greeks saw no parallax",
+      question: `If the Earth orbits the Sun, a nearby star should shift by a parallax angle over the year. The naked eye cannot resolve anything finer than about ${limitArcsec} arcseconds. Since the Greeks saw NO shift, how far away (in AU) must the stars be for their parallax to hide below that limit? (Use the 1 AU orbital baseline; 206,265 arcsec = 1 radian.)`,
+      steps: [
+        `\\theta < ${limitArcsec}'' = \\frac{${limitArcsec}}{206265}\\,\\text{rad} = ${sci(limitRad, 1)}\\,\\text{rad}`,
+        `d > \\frac{1\\,\\text{AU}}{\\theta} = \\frac{1}{${sci(limitRad, 1)}} \\approx ${Math.round(dMinAU).toLocaleString("en-US")}\\,\\text{AU} \\approx ${dMinLy.toFixed(2)}\\,\\text{ly}`,
+      ],
+      note: `More than ${Math.round(dMinAU).toLocaleString("en-US")} AU — thousands of times beyond Saturn, an almost unimaginable gulf of empty space. The Greeks' parallax reasoning was sound: no visible shift meant EITHER the Earth doesn't move OR the stars are staggeringly far away. Rather than swallow such an enormous, near-empty universe, they reasonably concluded the Earth stands still. They were wrong — the stars really are that remote (the nearest, at ~0.77 arcsec, is ~78× below naked-eye resolution) — but the logic was good; only the instruments were lacking. Stellar parallax was finally measured in 1838, with telescopes, vindicating Aristarchus two thousand years late.`,
+    };
+  },
+
+  "synodic-period": (rng) => {
+    // time between retrogrades (oppositions) of an outer planet from its sidereal period
+    const planets: [string, number][] = [["Mars", 1.881], ["Jupiter", 11.86], ["Saturn", 29.46]];
+    const [name, P] = planets[sample(rng, [0, 1, 2], 1)[0]];
+    const S = 1 / (1 - 1 / P); // synodic period, years (Earth E = 1 yr)
+    return {
+      title: "How often a planet goes retrograde",
+      question: `${name} takes ${P} years to orbit the Sun; Earth takes 1 year. Retrograde (a backward loop) happens once each time the faster Earth laps ${name} — at opposition. Using 1/S = 1/E − 1/P with E = 1 yr, how long between successive retrogrades of ${name}?`,
+      steps: [
+        `\\frac{1}{S} = \\frac{1}{1} - \\frac{1}{${P}} = 1 - ${f(1 / P)} = ${f(1 - 1 / P)}`,
+        `S = \\frac{1}{${f(1 - 1 / P)}} \\approx ${S.toFixed(2)}\\,\\text{yr}`,
+      ],
+      note: `About ${S.toFixed(2)} years between retrogrades. ${P > 20 ? "For the slow outer planets S approaches one year — Earth laps them almost once per orbit, so they go retrograde roughly annually." : name === "Jupiter" ? "Jupiter loops back about every 13 months." : "Mars, only a little slower than Earth, is the hardest to lap — over two years between its dramatic retrograde loops."} In the heliocentric picture this synodic period IS the overtaking rhythm — Earth catching and passing the outer planet. In Ptolemy's geocentric machine the same rhythm had to be built in by hand, by tying each planet's epicycle to the Sun's motion: a coincidence the old system could reproduce but never explain, and a fingerprint of the moving Earth it refused to admit.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
