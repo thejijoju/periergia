@@ -58,6 +58,8 @@ import { OceanAccess } from "./OceanAccess";
 import { IngredientsForLife } from "./IngredientsForLife";
 import { Disequilibrium } from "./Disequilibrium";
 import { BiosignatureCase } from "./BiosignatureCase";
+import { DrakeEquation } from "./DrakeEquation";
+import { GreatFilter } from "./GreatFilter";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -730,6 +732,16 @@ export function Reader({
                   // confidence-ladder for building the case that a world is alive.
                   if (typeof cls === "string" && /language-biosignaturecase\b/.test(cls)) {
                     return <BiosignatureCase />;
+                  }
+                  // A fenced ```drakeequation block becomes the interactive
+                  // seven-factor Drake explorer with a live N meter.
+                  if (typeof cls === "string" && /language-drakeequation\b/.test(cls)) {
+                    return <DrakeEquation />;
+                  }
+                  // A fenced ```greatfilter block becomes the interactive
+                  // road-to-civilisation with a movable filter (behind vs ahead).
+                  if (typeof cls === "string" && /language-greatfilter\b/.test(cls)) {
+                    return <GreatFilter />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

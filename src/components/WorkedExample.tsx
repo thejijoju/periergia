@@ -2284,6 +2284,58 @@ const GENERATORS: Record<string, Generator> = {
       note: `Only about ${joint.toFixed(1)}% — far below the ${p1}% or ${p2}% a single gas leaves on the table. Nature can forge oxygen, and nature can forge methane, but to forge BOTH at once, in the same air, held in mutual chemical conflict, it must run two independent tricks in concert — and independent flukes multiply, so their combined probability collapses. (Treat the two as independent only as a teaching idealisation; real cases share some causes.) This is the whole strategy against false positives: never trust one molecule, hunt for combinations in disequilibrium that a lifeless world would have to fake several times over. It is why the gold standard is not oxygen, and not methane, but oxygen AND methane, together.`,
     };
   },
+  // ── Are We Alone? Drake, Fermi, and the Great Filter (drake-and-fermi) ──
+  "drake-count": (rng) => {
+    // N = R* · fp · ne · fl · fi · fc · L. Left factors are measured; the biology
+    // and the lifetime are guesses spanning many orders of magnitude.
+    const Rstar = 1.5, fp = 1, ne = 0.2, fc = 0.1; // the settled-ish part
+    const fl = sample(rng, [1, 0.01, 1e-6], 1)[0]; // origin of life: easy … hard
+    const fi = sample(rng, [0.1, 0.001], 1)[0]; // intelligence follows … rarely
+    const L = sample(rng, [200, 1e4, 1e6], 1)[0]; // lifetime, years
+    const N = Rstar * fp * ne * fl * fi * fc * L;
+    return {
+      title: "Filling in the Drake equation",
+      question: `Take the measured factors as R∗ = 1.5 stars/yr, fₚ = 1, nₑ = 0.2, f_c = 0.1. Now choose fₗ = ${sci(fl, 0)} (does life arise?), fᵢ = ${sci(fi, 0)} (does intelligence follow?), and a civilisation lifetime L = ${sci(L, 0)} years. How many communicating civilisations N does the galaxy hold right now — and what does the answer feel like?`,
+      steps: [
+        `N = R_\\ast f_p n_e f_l f_i f_c L`,
+        `= (1.5)(1)(0.2)(${sci(fl, 0)})(${sci(fi, 0)})(0.1)(${sci(L, 0)}) = ${sci(N, 1)}`,
+      ],
+      note: `N ≈ ${sci(N, 1)}. Notice how little the measured left-hand factors did and how violently the guesses on the right moved the answer: swapping an easy origin of life for a hard one, or a long-lived civilisation for a short one, slides N across many orders of magnitude — published estimates span about fourteen. The Drake equation never calculated whether we are alone. It organised our ignorance, showing that the whole answer lives in three things we cannot yet measure: whether life begins, whether minds follow, and — above all — how long a civilisation lasts.`,
+    };
+  },
+
+  "galaxy-crossing": (rng) => {
+    const pct = sample(rng, [1, 2, 5], 1)[0]; // percent of light speed
+    const span = 100000; // light-years across the galaxy
+    const cross = span / (pct / 100); // years to cross at that fraction of c
+    const ageGyr = 13; // galaxy age, billions of years
+    const fraction = cross / (ageGyr * 1e9);
+    return {
+      title: "Why the galaxy should already be full",
+      question: `Fermi's argument needs no warp drive. A probe travelling at just ${pct}% of light speed crosses the galaxy's ${span.toLocaleString("en-US")} light-years in how long — and how does that compare to the galaxy's ${ageGyr}-billion-year age? (Ignore stops; they change the number little.)`,
+      steps: [
+        `t = \\frac{${span.toLocaleString("en-US")}\\,\\text{ly}}{${pct/100}\\,c} = ${sci(cross, 1)}\\,\\text{yr}`,
+        `\\frac{t}{\\text{age}} = \\frac{${sci(cross, 1)}}{${sci(ageGyr * 1e9, 0)}} = ${sci(fraction, 1)}`,
+      ],
+      note: `About ${sci(cross, 1)} years to cross — only ${sci(fraction, 1)} of the galaxy's age, well under a thousandth of the time available. That is the heart of the paradox: any civilisation with the will to expand has had, thousands of times over, more than enough time to reach every star system, including ours — so the galaxy should be full of their probes and traces. Yet we see nothing. "Where is everybody?" is not idle wonder; it is a quantitative contradiction between how much time there has been and how empty the sky looks.`,
+    };
+  },
+
+  "contemporaries": (rng) => {
+    const total = sample(rng, [1e6, 1e4, 100], 1)[0]; // civilisations that ever arose
+    const L = sample(rng, [300, 1e4, 1e6], 1)[0]; // years each broadcasts
+    const T = 1e10; // ~10 Gyr window over which they arose
+    const now = total * (L / T); // how many are broadcasting simultaneously
+    return {
+      title: "How the lifetime empties the galaxy",
+      question: `Suppose ${sci(total, 0)} civilisations arose across the galaxy's ~10-billion-year history, spread evenly in time, and each broadcasts for L = ${sci(L, 0)} years. How many are broadcasting at the SAME time as us — and why does this make L the factor that decides everything?`,
+      steps: [
+        `N_\\text{now} = N_\\text{total}\\times\\frac{L}{T} = ${sci(total, 0)}\\times\\frac{${sci(L, 0)}}{10^{10}}`,
+        `= ${sci(now, 1)}\\ \\text{broadcasting right now}`,
+      ],
+      note: `Only about ${sci(now, 1)} contemporaries — even though ${sci(total, 0)} civilisations may have come and gone. This is why the lifetime L dominates the Drake equation: the galaxy holds detectable civilisations at any one moment only in proportion to how long each one lasts, so a short-lived civilisation leaves almost no overlap with anyone else. If technological species reliably destroy themselves within a few centuries, the galaxy can be dotted with the ruins of thousands and still be silent tonight. To guess how long others last, we must guess how long WE will — which is why this factor turns the whole question into a mirror.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
