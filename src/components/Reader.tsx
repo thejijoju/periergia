@@ -78,6 +78,7 @@ import { RetrogradeSky } from "./RetrogradeSky";
 import { EratosthenesShadow } from "./EratosthenesShadow";
 import { EpicycleMachine } from "./EpicycleMachine";
 import { EquantDiagram } from "./EquantDiagram";
+import { ElongationDistance } from "./ElongationDistance";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -853,6 +854,11 @@ export function Reader({
                   // explorer (uniform motion only as seen from the offset equant point).
                   if (typeof cls === "string" && /language-equantdiagram\b/.test(cls)) {
                     return <EquantDiagram />;
+                  }
+                  // A fenced ```elongationdistance block becomes the interactive
+                  // scale-model explorer (max elongation → inner-planet distance in AU).
+                  if (typeof cls === "string" && /language-elongationdistance\b/.test(cls)) {
+                    return <ElongationDistance />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

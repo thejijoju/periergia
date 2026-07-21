@@ -2722,6 +2722,22 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${S.toFixed(2)} years between retrogrades. ${P > 20 ? "For the slow outer planets S approaches one year — Earth laps them almost once per orbit, so they go retrograde roughly annually." : name === "Jupiter" ? "Jupiter loops back about every 13 months." : "Mars, only a little slower than Earth, is the hardest to lap — over two years between its dramatic retrograde loops."} In the heliocentric picture this synodic period IS the overtaking rhythm — Earth catching and passing the outer planet. In Ptolemy's geocentric machine the same rhythm had to be built in by hand, by tying each planet's epicycle to the Sun's motion: a coincidence the old system could reproduce but never explain, and a fingerprint of the moving Earth it refused to admit.`,
     };
   },
+
+  "elongation-distance": (rng) => {
+    // inner-planet distance from the Sun, from its greatest elongation: r = sin(elong) AU
+    const data: [string, number][] = [["Venus", 46], ["Mercury", 23], ["Venus", 47], ["Mercury", 28]];
+    const [name, elong] = data[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const au = Math.sin((elong * Math.PI) / 180);
+    return {
+      title: "Measuring a planet's distance from the Sun",
+      question: `${name} is an inner planet: it never gets more than about ${elong}° from the Sun in our sky (its greatest elongation). At that moment the Earth–${name} sight-line is tangent to ${name}'s orbit, so the Sun–${name}–Earth angle is 90°. With the Earth–Sun distance as 1 AU, what is ${name}'s distance from the Sun?`,
+      steps: [
+        `\\sin(${elong}°) = \\frac{r_{\\text{planet}}}{r_{\\text{Earth}}} = \\frac{r}{1\\,\\text{AU}}`,
+        `r = \\sin(${elong}°) \\approx ${au.toFixed(2)}\\,\\text{AU}`,
+      ],
+      note: `About ${au.toFixed(2)} AU — ${name === "Venus" ? "so Venus orbits at roughly three-quarters of the Earth's distance" : "so Mercury huddles at about a third of the Earth's distance, deep in the Sun's glare"}. This is Copernicus's most beautiful argument: heliocentrism does not merely fit the sky's angles, it lets you MEASURE the planets' distances and build a true scale model — Mercury 0.39, Venus 0.72, Earth 1.00, Mars 1.52, Jupiter 5.2, Saturn 9.5 AU — read straight off the sky. The geocentric model could fit the same angles but could never tell you how far away the planets were, or even their correct order. Turning the flat sky of appearances into a measured, three-dimensional solar system was powerful evidence that the model captured something real.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
