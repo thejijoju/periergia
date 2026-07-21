@@ -64,6 +64,8 @@ import { SkyLatitude } from "./SkyLatitude";
 import { LineOfSight } from "./LineOfSight";
 import { SeasonMaker } from "./SeasonMaker";
 import { Gnomon } from "./Gnomon";
+import { MoonPhase } from "./MoonPhase";
+import { MoonClock } from "./MoonClock";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -766,6 +768,16 @@ export function Reader({
                   // reading the season — and the tilt — from a noon shadow.
                   if (typeof cls === "string" && /language-gnomon\b/.test(cls)) {
                     return <Gnomon />;
+                  }
+                  // A fenced ```moonphase block becomes the interactive phase
+                  // orrery (a half-lit sphere seen from a moving vantage point).
+                  if (typeof cls === "string" && /language-moonphase\b/.test(cls)) {
+                    return <MoonPhase />;
+                  }
+                  // A fenced ```moonclock block becomes the interactive phase-as-
+                  // clock (rise/culminate/set times from the phase).
+                  if (typeof cls === "string" && /language-moonclock\b/.test(cls)) {
+                    return <MoonClock />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
