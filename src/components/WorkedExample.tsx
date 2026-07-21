@@ -2619,6 +2619,57 @@ const GENERATORS: Record<string, Generator> = {
       note: `The ${name} calendar drifts about ${drift.toFixed(1)} days over ${span.toLocaleString("en-US")} years — one full day every ${perDay.toFixed(0)} years. ${cal === 0 ? "That is why the Julian calendar, adopted when the equinox sat near March 21, had slipped some ten days by 1582, dragging the equinox to March 11 and prompting the Gregorian reform." : "That is astonishing accuracy — a single day's error only after more than three millennia — which is why the Gregorian calendar, with its century-year leap rule, is the one the world still runs on."} The calendar is, at bottom, a shadow of Earth's orbital geometry: a workable whole-number calendar forever chasing a year that is 365.2422 days long.`,
     };
   },
+  // ── Precession: the slow sky (precession) ──
+  "precession-rate": (rng) => {
+    const arcsec = sample(rng, [50], 1)[0]; // arcseconds per year
+    const years = sample(rng, [72, 2160, 26000], 1)[0];
+    const moved = (arcsec * years) / 3600; // degrees
+    const full = (360 * 3600) / arcsec; // years for a full circuit
+    return {
+      title: "How fast the equinox slides",
+      question: `Precession slides the vernal equinox westward along the ecliptic at about ${arcsec} arcseconds per year. How far does it move in ${years.toLocaleString("en-US")} years (3600 arcseconds = 1°), and how long is one full 360° circuit?`,
+      steps: [
+        `\\Delta = \\frac{${arcsec}'' \\times ${years}}{3600} = ${moved.toFixed(moved < 10 ? 1 : 0)}°`,
+        `\\text{full circuit} = \\frac{360°\\times 3600}{${arcsec}''} = ${Math.round(full).toLocaleString("en-US")}\\,\\text{yr}`,
+      ],
+      note: `About ${moved.toFixed(moved < 10 ? 1 : 0)}° in ${years.toLocaleString("en-US")} years, and a full circle in roughly ${Math.round(full / 1000)},000 years — the ~26,000-year precession cycle. ${years === 2160 ? "That ~30° in ~2,160 years is one whole zodiac sign — which is why the astrological signs have slipped nearly a full sign out of step with the constellations since antiquity." : years === 72 ? "So the equinox moves a full degree — twice the Moon's width — in a human lifetime, slow but quite measurable." : "One lap of the wobble carries the pole star, the equinox, and every star's coordinates all the way around."} The motion is glacial, but over the long baseline of recorded history it is unmistakable — which is exactly how Hipparchus caught it.`,
+    };
+  },
+
+  "pole-star": (rng) => {
+    const target = sample(rng, [0, 1, 2], 1)[0];
+    const data: [string, number, string][] = [
+      ["Thuban", -2800, "when the Egyptians raised the pyramids"],
+      ["Polaris", 2000, "our own era"],
+      ["Vega", 13700, "far in the future"],
+    ];
+    const [star, year, era] = data[target];
+    const fromNow = year - 2000;
+    return {
+      title: "Which star marks the pole?",
+      question: `The celestial pole circles among the stars once every ~26,000 years, so the "North Star" keeps changing. Around ${era}, roughly ${Math.abs(fromNow) < 200 ? "today" : (Math.abs(fromNow).toLocaleString("en-US") + (fromNow < 0 ? " years ago" : " years from now"))}, which bright star sits nearest the pole?`,
+      steps: [
+        `\\text{pole moves } 360° \\text{ in } {\\sim}26{,}000\\,\\text{yr} \\;\\Rightarrow\\; {\\sim}1° \\text{ per } 72\\,\\text{yr}`,
+        `\\text{era} \\approx ${year < 0 ? Math.abs(year) + "\\,\\text{BC}" : year + "\\,\\text{AD}"} \\;\\Rightarrow\\; \\text{pole star} = \\text{${star}}`,
+      ],
+      note: `${star}. The pole star is not a fixed fixture of the sky but a passing alignment: Thuban in Draco marked it ~5,000 years ago, Polaris marks it now, and in about 12,000 years the brilliant Vega will — far brighter than our modest Polaris. Between such alignments there is sometimes no bright star near the pole at all. The still point around which the whole night wheels is itself slowly circling, once every 26,000 years, as Earth's axis wobbles like a spinning top.`,
+    };
+  },
+
+  "coord-epoch": (rng) => {
+    const yrs = sample(rng, [50, 100, 500], 1)[0];
+    const arcsecMoved = 50 * yrs; // total precession in arcsec
+    const arcminMoved = arcsecMoved / 60;
+    return {
+      title: "Why catalogues need a date",
+      question: `Because the equinox — the zero point of the coordinate grid — drifts at ~50 arcseconds per year, the right ascension and declination of every star slowly change too. Over ${yrs} years, roughly how far does the grid shift (in arcminutes), and what does that force star catalogues to specify?`,
+      steps: [
+        `50''/\\text{yr}\\times ${yrs}\\,\\text{yr} = ${arcsecMoved.toLocaleString("en-US")}'' = ${arcminMoved.toFixed(1)}'`,
+        `\\Rightarrow\\; \\text{coordinates must be tagged with an EPOCH (e.g. J2000)}`,
+      ],
+      note: `About ${arcminMoved.toFixed(1)} arcminutes over ${yrs} years — ${arcminMoved > 30 ? "roughly the width of the full Moon, or more" : "small, but far larger than the precision of a good telescope"}. Because the whole grid is anchored to the drifting equinox, a star's listed RA and dec are only valid for a stated date, so every catalogue specifies an EPOCH — modern ones use J2000, the coordinates as of the year 2000. The addresses we so carefully assigned are not quite permanent: give a star's coordinates and you must also say WHEN, because the framework itself is in motion. It is the fitting close to the observed sky — even the scaffolding we measure it with slowly moves.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

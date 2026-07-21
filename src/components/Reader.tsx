@@ -72,6 +72,8 @@ import { CelestialGrid } from "./CelestialGrid";
 import { LongitudeClock } from "./LongitudeClock";
 import { SolarSiderealDay } from "./SolarSiderealDay";
 import { CalendarDrift } from "./CalendarDrift";
+import { PrecessionCone } from "./PrecessionCone";
+import { EquinoxDrift } from "./EquinoxDrift";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -814,6 +816,16 @@ export function Reader({
                   // Julian-vs-Gregorian calendar-drift explorer.
                   if (typeof cls === "string" && /language-calendardrift\b/.test(cls)) {
                     return <CalendarDrift />;
+                  }
+                  // A fenced ```precessioncone block becomes the interactive
+                  // wandering-pole explorer (the pole star changes over millennia).
+                  if (typeof cls === "string" && /language-precessioncone\b/.test(cls)) {
+                    return <PrecessionCone />;
+                  }
+                  // A fenced ```equinoxdrift block becomes the interactive
+                  // equinox-precession / astrology-drift explorer.
+                  if (typeof cls === "string" && /language-equinoxdrift\b/.test(cls)) {
+                    return <EquinoxDrift />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
