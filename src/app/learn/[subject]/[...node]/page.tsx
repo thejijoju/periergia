@@ -238,7 +238,7 @@ export default async function ReaderPage({
             activeId={node.id}
           />
           <div className="shrink-0">
-            <Wordmark size="sm" />
+            <Wordmark size="sm" underline={false} />
           </div>
           <div className="ml-auto flex items-center gap-1 justify-end min-w-0">
             <HeaderSearch searchIndex={searchIndex} lang={lang} />

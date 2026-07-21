@@ -360,9 +360,12 @@ export function Reader({
 
   return (
     <article className="max-w-[720px] mx-auto px-1">
-      {/* Breadcrumb — house + arrows + linked ancestors */}
-      <nav className="flex items-center flex-wrap gap-x-1.5 gap-y-1 text-[12.5px] text-muted">
-        <Link href="/" aria-label="Home" className="text-faint hover:text-purple transition-colors">
+      {/* Breadcrumb — house + arrows + linked ancestors. On mobile the text runs a
+          touch larger and every link carries a taller tap area (py-1.5 -my-1.5), so
+          the ancestor crumbs are comfortably tappable on a phone rather than a
+          pixel-thin target that fingers miss. Desktop reverts to the compact size. */}
+      <nav className="flex items-center flex-wrap gap-x-1.5 gap-y-0.5 text-[14px] sm:text-[12.5px] text-muted">
+        <Link href="/" aria-label="Home" className="text-faint hover:text-purple transition-colors py-1.5 -my-1.5">
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round">
             <path d="M2.5 7 8 2.5 13.5 7" strokeLinecap="round" />
             <path d="M4 6.5v6.5h8V6.5" />
@@ -377,8 +380,8 @@ export function Reader({
                 aria-current={c.current ? "page" : undefined}
                 className={
                   c.current
-                    ? "text-ink font-medium hover:text-purple transition-colors"
-                    : "hover:text-purple transition-colors"
+                    ? "text-ink font-medium hover:text-purple transition-colors py-1.5 -my-1.5"
+                    : "hover:text-purple transition-colors py-1.5 -my-1.5"
                 }
               >
                 {c.label}
