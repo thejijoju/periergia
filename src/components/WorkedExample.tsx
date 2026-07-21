@@ -2521,6 +2521,51 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${dtHr.toFixed(1)} hours — some ${deg.toFixed(0)}° of longitude. If the Earth had never slowed, an eclipse from ${yearsAgo.toLocaleString("en-US")} years ago would have been seen from a place ${deg.toFixed(0)}° away. So the gap between where an ancient scribe says a total eclipse went dark and where steady-spin physics puts it is exactly the accumulated slowing of the Earth — and it lets us measure how fast the planet was turning millennia ago. A Babylonian pressing a stylus into clay was unknowingly sending a precise geophysical measurement across the ages, readable only because a total eclipse falls on so narrow a path that where it was seen pins the Earth's spin to within minutes.`,
     };
   },
+  // ── Coordinates: the addresses of the sky (coordinates) ──
+  "ra-conversion": (rng) => {
+    const h = sample(rng, [2, 5, 13, 18, 21], 1)[0];
+    const m = sample(rng, [0, 15, 30, 45], 1)[0];
+    const deg = h * 15 + m * 0.25;
+    return {
+      title: "Right ascension is hours — and time",
+      question: `A star has right ascension ${h}h ${m.toString().padStart(2, "0")}m. What is that in degrees around the celestial equator (24h = 360°, so 1h = 15°) — and what does the same number tell you about when the star is highest in the sky?`,
+      steps: [
+        `\\text{RA} = ${h}\\times 15° + ${m}\\times 0.25° = ${deg.toFixed(2)}°`,
+        `\\text{it crosses the meridian when local sidereal time} = ${h}\\text{h }${m.toString().padStart(2, "0")}\\text{m}`,
+      ],
+      note: `${h}h ${m.toString().padStart(2, "0")}m works out to ${deg.toFixed(1)}° eastward from the vernal equinox. But the beauty is the double meaning: because the sky turns exactly one hour of right ascension per hour of time, that same "${h}h ${m.toString().padStart(2, "0")}m" is also a clock reading — the star rides highest, due south, when your local sidereal clock shows ${h}h ${m.toString().padStart(2, "0")}m. Right ascension is measured in hours precisely because a star's celestial longitude and the time it transits are the same number. Position and time are one system.`,
+    };
+  },
+
+  "longitude-fix": (rng) => {
+    const lonDeg = sample(rng, [30, 45, 75, 120], 1)[0];
+    const west = sample(rng, [0, 1], 1)[0] === 1;
+    const gTime = west ? 12 + lonDeg / 15 : 12 - lonDeg / 15;
+    const gh = Math.floor(gTime), gm = Math.round((gTime - gh) * 60);
+    return {
+      title: "Finding your longitude at sea",
+      question: `It is local noon — the Sun is at its highest, so your own clock reads 12:00. At that instant your chronometer, still keeping Greenwich time, reads ${gh}:${gm.toString().padStart(2, "0")}. What is your longitude? (Earth turns 15° per hour.)`,
+      steps: [
+        `\\Delta t = |12{:}00 - ${gh}{:}${gm.toString().padStart(2, "0")}| = ${(lonDeg / 15).toFixed(1)}\\,\\text{hr}`,
+        `\\text{longitude} = ${(lonDeg / 15).toFixed(1)}\\,\\text{hr}\\times 15°/\\text{hr} = ${lonDeg}°\\ ${west ? "W" : "E"}`,
+      ],
+      note: `You are at ${lonDeg}° ${west ? "west" : "east"}. Your local noon happens ${(lonDeg / 15).toFixed(1)} hours ${west ? "after" : "before"} Greenwich noon, and every hour of that difference is 15° of longitude — so the clock difference, times fifteen, is your position east or west. This is the whole secret of celestial navigation, and its hard part: local time is free from the Sun, but you must also know Greenwich time out on the open sea, which is why John Harrison's chronometer — Greenwich time carried in a box — was one of the most valuable inventions in history. Latitude comes from an angle; longitude comes from a clock.`,
+    };
+  },
+
+  "lunar-clock": (rng) => {
+    const gap = sample(rng, [3, 5, 8], 1)[0]; // degrees the Moon has moved from a star
+    const hours = gap / 0.5; // Moon moves ~0.5°/hr against the stars
+    return {
+      title: "The Moon as a clock in the sky",
+      question: `Before reliable sea-clocks, navigators read Greenwich time from the Moon, which drifts eastward against the background stars at about 0.5° per hour. If tables say the Moon should sit right beside a certain star at Greenwich noon, and you measure it ${gap}° past that star, how many hours of Greenwich time have elapsed since noon?`,
+      steps: [
+        `t = \\frac{${gap}°}{0.5°/\\text{hr}} = ${hours.toFixed(0)}\\,\\text{hr}`,
+        `\\text{Greenwich time} \\approx 12{:}00 + ${hours.toFixed(0)}\\text{h} = ${(12 + hours) % 24}{:}00`,
+      ],
+      note: `About ${hours.toFixed(0)} hours — so it is roughly ${(12 + hours) % 24}:00 at Greenwich, read from nothing but the Moon's position. This was the "lunar distance" method: the Moon's steady creep among the stars turns the whole sky into a clock face, and with precise pre-computed tables a navigator could read Greenwich time without any mechanical timepiece at all. It leaned entirely on the coordinate grid and exact tables of celestial motion — the sky itself pressed into service as the reference clock that longitude demands. The Moon, humanity's oldest calendar, became for a while its clock at sea.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

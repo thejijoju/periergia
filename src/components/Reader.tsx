@@ -68,6 +68,8 @@ import { MoonPhase } from "./MoonPhase";
 import { MoonClock } from "./MoonClock";
 import { EclipseNodes } from "./EclipseNodes";
 import { EclipseSizes } from "./EclipseSizes";
+import { CelestialGrid } from "./CelestialGrid";
+import { LongitudeClock } from "./LongitudeClock";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -790,6 +792,16 @@ export function Reader({
                   // size-match (total vs annular, the corona).
                   if (typeof cls === "string" && /language-eclipsesizes\b/.test(cls)) {
                     return <EclipseSizes />;
+                  }
+                  // A fenced ```celestialgrid block becomes the interactive RA/dec
+                  // address explorer.
+                  if (typeof cls === "string" && /language-celestialgrid\b/.test(cls)) {
+                    return <CelestialGrid />;
+                  }
+                  // A fenced ```longitudeclock block becomes the interactive
+                  // longitude-by-time (celestial navigation) explorer.
+                  if (typeof cls === "string" && /language-longitudeclock\b/.test(cls)) {
+                    return <LongitudeClock />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
