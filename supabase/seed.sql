@@ -1412,8 +1412,7 @@ insert into nodes (id, subject_id, parent_id, title, slug, summary, position, de
   ('astronomy-and-space/extragalactic', 'astronomy-and-space', null, 'The Extragalactic Universe', 'extragalactic', '', 5, 0),
   ('astronomy-and-space/expanding-universe', 'astronomy-and-space', null, 'The Expanding Universe', 'expanding-universe', '', 6, 0),
   ('astronomy-and-space/dark-universe', 'astronomy-and-space', null, 'The Dark Universe', 'dark-universe', '', 7, 0),
-  ('astronomy-and-space/exoplanets', 'astronomy-and-space', null, 'Exoplanets', 'exoplanets', '', 8, 0),
-  ('astronomy-and-space/astrobiology', 'astronomy-and-space', null, 'Astrobiology', 'astrobiology', '', 10, 0)
+  ('astronomy-and-space/exoplanets', 'astronomy-and-space', null, 'Exoplanets', 'exoplanets', '', 8, 0)
 on conflict (id) do update set
   subject_id = excluded.subject_id, parent_id = excluded.parent_id,
   title = excluded.title, slug = excluded.slug, summary = excluded.summary,
@@ -1447,10 +1446,7 @@ insert into nodes (id, subject_id, parent_id, title, slug, summary, position, de
   ('astronomy-and-space/exoplanets/finding-worlds', 'astronomy-and-space', 'astronomy-and-space/exoplanets', 'Finding Worlds', 'finding-worlds', '', 0, 1),
   ('astronomy-and-space/exoplanets/system-diversity', 'astronomy-and-space', 'astronomy-and-space/exoplanets', 'System Diversity', 'system-diversity', '', 1, 1),
   ('astronomy-and-space/exoplanets/characterizing-worlds', 'astronomy-and-space', 'astronomy-and-space/exoplanets', 'Characterizing Worlds', 'characterizing-worlds', '', 2, 1),
-  ('astronomy-and-space/exoplanets/how-common', 'astronomy-and-space', 'astronomy-and-space/exoplanets', 'How Common?', 'how-common', '', 3, 1),
-  ('astronomy-and-space/astrobiology/what-is-life', 'astronomy-and-space', 'astronomy-and-space/astrobiology', 'What Is Life?', 'what-is-life', '', 0, 1),
-  ('astronomy-and-space/astrobiology/habitability', 'astronomy-and-space', 'astronomy-and-space/astrobiology', 'Habitability', 'habitability', '', 1, 1),
-  ('astronomy-and-space/astrobiology/biosignatures', 'astronomy-and-space', 'astronomy-and-space/astrobiology', 'Biosignatures', 'biosignatures', '', 2, 1)
+  ('astronomy-and-space/exoplanets/how-common', 'astronomy-and-space', 'astronomy-and-space/exoplanets', 'How Common?', 'how-common', '', 3, 1)
 on conflict (id) do update set
   subject_id = excluded.subject_id, parent_id = excluded.parent_id,
   title = excluded.title, slug = excluded.slug, summary = excluded.summary,
@@ -1566,18 +1562,7 @@ insert into nodes (id, subject_id, parent_id, title, slug, summary, position, de
   ('astronomy-and-space/exoplanets/characterizing-worlds/atmospheres', 'astronomy-and-space', 'astronomy-and-space/exoplanets/characterizing-worlds', 'Atmospheres', 'atmospheres', '', 1, 2),
   ('astronomy-and-space/exoplanets/characterizing-worlds/spectroscopy', 'astronomy-and-space', 'astronomy-and-space/exoplanets/characterizing-worlds', 'Spectroscopy', 'spectroscopy', '', 2, 2),
   ('astronomy-and-space/exoplanets/how-common/occurrence-statistics', 'astronomy-and-space', 'astronomy-and-space/exoplanets/how-common', 'Occurrence Statistics', 'occurrence-statistics', '', 0, 2),
-  ('astronomy-and-space/exoplanets/how-common/earth-analogs', 'astronomy-and-space', 'astronomy-and-space/exoplanets/how-common', 'Earth Analogs', 'earth-analogs', '', 1, 2),
-  ('astronomy-and-space/astrobiology/what-is-life/defining-life', 'astronomy-and-space', 'astronomy-and-space/astrobiology/what-is-life', 'Defining Life', 'defining-life', '', 0, 2),
-  ('astronomy-and-space/astrobiology/what-is-life/origins', 'astronomy-and-space', 'astronomy-and-space/astrobiology/what-is-life', 'Origins', 'origins', '', 1, 2),
-  ('astronomy-and-space/astrobiology/what-is-life/early-earth', 'astronomy-and-space', 'astronomy-and-space/astrobiology/what-is-life', 'Early Earth', 'early-earth', '', 2, 2),
-  ('astronomy-and-space/astrobiology/habitability/habitable-zones', 'astronomy-and-space', 'astronomy-and-space/astrobiology/habitability', 'Habitable Zones', 'habitable-zones', '', 0, 2),
-  ('astronomy-and-space/astrobiology/habitability/ocean-worlds', 'astronomy-and-space', 'astronomy-and-space/astrobiology/habitability', 'Ocean Worlds', 'ocean-worlds', '', 1, 2),
-  ('astronomy-and-space/astrobiology/habitability/mars', 'astronomy-and-space', 'astronomy-and-space/astrobiology/habitability', 'Mars', 'mars', '', 2, 2),
-  ('astronomy-and-space/astrobiology/habitability/icy-moons', 'astronomy-and-space', 'astronomy-and-space/astrobiology/habitability', 'Icy Moons', 'icy-moons', '', 3, 2),
-  ('astronomy-and-space/astrobiology/biosignatures/detecting-life', 'astronomy-and-space', 'astronomy-and-space/astrobiology/biosignatures', 'Detecting Life', 'detecting-life', '', 0, 2),
-  ('astronomy-and-space/astrobiology/biosignatures/technosignatures', 'astronomy-and-space', 'astronomy-and-space/astrobiology/biosignatures', 'Technosignatures', 'technosignatures', '', 1, 2),
-  ('astronomy-and-space/astrobiology/biosignatures/drake-equation', 'astronomy-and-space', 'astronomy-and-space/astrobiology/biosignatures', 'The Drake Equation', 'drake-equation', '', 2, 2),
-  ('astronomy-and-space/astrobiology/biosignatures/fermi-paradox', 'astronomy-and-space', 'astronomy-and-space/astrobiology/biosignatures', 'The Fermi Paradox', 'fermi-paradox', '', 3, 2)
+  ('astronomy-and-space/exoplanets/how-common/earth-analogs', 'astronomy-and-space', 'astronomy-and-space/exoplanets/how-common', 'Earth Analogs', 'earth-analogs', '', 1, 2)
 on conflict (id) do update set
   subject_id = excluded.subject_id, parent_id = excluded.parent_id,
   title = excluded.title, slug = excluded.slug, summary = excluded.summary,
@@ -1922,21 +1907,6 @@ delete from nodes where not (id = any (array[
   'astronomy-and-space/exoplanets/how-common',
   'astronomy-and-space/exoplanets/how-common/occurrence-statistics',
   'astronomy-and-space/exoplanets/how-common/earth-analogs',
-  'astronomy-and-space/astrobiology',
-  'astronomy-and-space/astrobiology/what-is-life',
-  'astronomy-and-space/astrobiology/what-is-life/defining-life',
-  'astronomy-and-space/astrobiology/what-is-life/origins',
-  'astronomy-and-space/astrobiology/what-is-life/early-earth',
-  'astronomy-and-space/astrobiology/habitability',
-  'astronomy-and-space/astrobiology/habitability/habitable-zones',
-  'astronomy-and-space/astrobiology/habitability/ocean-worlds',
-  'astronomy-and-space/astrobiology/habitability/mars',
-  'astronomy-and-space/astrobiology/habitability/icy-moons',
-  'astronomy-and-space/astrobiology/biosignatures',
-  'astronomy-and-space/astrobiology/biosignatures/detecting-life',
-  'astronomy-and-space/astrobiology/biosignatures/technosignatures',
-  'astronomy-and-space/astrobiology/biosignatures/drake-equation',
-  'astronomy-and-space/astrobiology/biosignatures/fermi-paradox',
   'astronomy-and-space/space-exploration/rockets',
   'astronomy-and-space/space-exploration/satellites',
   'astronomy-and-space/space-exploration/telescopes',
