@@ -74,6 +74,10 @@ import { SolarSiderealDay } from "./SolarSiderealDay";
 import { CalendarDrift } from "./CalendarDrift";
 import { PrecessionCone } from "./PrecessionCone";
 import { EquinoxDrift } from "./EquinoxDrift";
+import { RetrogradeSky } from "./RetrogradeSky";
+import { EratosthenesShadow } from "./EratosthenesShadow";
+import { EpicycleMachine } from "./EpicycleMachine";
+import { EquantDiagram } from "./EquantDiagram";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -829,6 +833,26 @@ export function Reader({
                   // equinox-precession / astrology-drift explorer.
                   if (typeof cls === "string" && /language-equinoxdrift\b/.test(cls)) {
                     return <EquinoxDrift />;
+                  }
+                  // A fenced ```retrogradesky block becomes the interactive
+                  // retrograde-motion explorer (Earth overtaking Mars → backward loop).
+                  if (typeof cls === "string" && /language-retrogradesky\b/.test(cls)) {
+                    return <RetrogradeSky />;
+                  }
+                  // A fenced ```eratosthenesshadow block becomes the interactive
+                  // shadow-angle → Earth-circumference measurement.
+                  if (typeof cls === "string" && /language-eratosthenesshadow\b/.test(cls)) {
+                    return <EratosthenesShadow />;
+                  }
+                  // A fenced ```epicyclemachine block becomes the interactive
+                  // deferent-and-epicycle retrograde machine (geocentric).
+                  if (typeof cls === "string" && /language-epicyclemachine\b/.test(cls)) {
+                    return <EpicycleMachine />;
+                  }
+                  // A fenced ```equantdiagram block becomes the interactive equant
+                  // explorer (uniform motion only as seen from the offset equant point).
+                  if (typeof cls === "string" && /language-equantdiagram\b/.test(cls)) {
+                    return <EquantDiagram />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
