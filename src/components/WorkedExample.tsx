@@ -2380,6 +2380,54 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${f(minutes)} minutes. ${span === 0.5 ? "The Sun and Moon are each roughly 0.5° wide, so the Sun takes about two minutes to sink its own diameter below the horizon — which is why sunset is not instant but a slow slide." : `A telescope left fixed lets its target drift ${span}° in just ${f(minutes)} minutes, so any telescope must turn steadily westward at 15° per hour to hold a star still in its field — the sky is always sliding.`} Behind the number is the through-line of the whole course: this 15°-per-hour march is not the sky moving at all, but the shadow of the Earth turning beneath it, one rotation a day.`,
     };
   },
+  // ── The Sun's Path and the Seasons (seasons) ──
+  "noon-sun": (rng) => {
+    const lat = sample(rng, [30, 40, 45, 52], 1)[0];
+    const station = sample(rng, [0, 1, 2], 1)[0]; // 0 summer, 1 equinox, 2 winter
+    const dec = station === 0 ? 23.4 : station === 2 ? -23.4 : 0;
+    const name = station === 0 ? "June solstice" : station === 2 ? "December solstice" : "an equinox";
+    const alt = 90 - Math.abs(lat - dec);
+    const altS = 90 - Math.abs(lat - 23.4), altW = 90 - Math.abs(lat + 23.4);
+    return {
+      title: "How high is the noon Sun?",
+      question: `At latitude ${lat}° N, how high does the Sun climb at noon on ${name}? (Use noon altitude = 90° − |latitude − declination|, with the Sun's declination +23.4° at the June solstice, 0° at an equinox, −23.4° at the December solstice.)`,
+      steps: [
+        `a = 90° - |{\\,}${lat}° - (${dec >= 0 ? "+" : ""}${dec}°){\\,}| = 90° - ${Math.abs(lat - dec).toFixed(1)}° = ${alt.toFixed(1)}°`,
+        `\\text{summer } ${altS.toFixed(1)}° \\;\\text{vs winter } ${altW.toFixed(1)}° \\;\\Rightarrow\\; \\text{a } ${(altS - altW).toFixed(1)}° \\text{ swing}`,
+      ],
+      note: `The noon Sun stands ${alt.toFixed(1)}° high on ${name}. Across the year at ${lat}° N it swings a full ${(altS - altW).toFixed(1)}° — from ${altS.toFixed(1)}° in June to ${altW.toFixed(1)}° in December — and that swing, driven entirely by the 23.4° tilt, is half the story of the seasons (the other half is the changing length of the day). A high Sun near overhead pours concentrated light onto the ground; a low Sun smears the same beam thin. No change in the Earth's distance from the Sun appears anywhere in the reasoning.`,
+    };
+  },
+
+  "season-intensity": (rng) => {
+    const lat = sample(rng, [35, 40, 45, 50], 1)[0];
+    const altS = 90 - Math.abs(lat - 23.4), altW = 90 - Math.abs(lat + 23.4);
+    const ratio = Math.sin(altS * Math.PI / 180) / Math.sin(altW * Math.PI / 180);
+    return {
+      title: "Why the summer Sun bakes",
+      question: `The intensity of sunlight on the ground scales as the sine of the Sun's altitude. At latitude ${lat}° N the noon Sun reaches ${altS.toFixed(1)}° at the June solstice and ${altW.toFixed(1)}° at the December solstice. How many times more intense is the noon sunlight in summer than in winter — from directness alone?`,
+      steps: [
+        `\\frac{I_\\text{summer}}{I_\\text{winter}} = \\frac{\\sin ${altS.toFixed(1)}°}{\\sin ${altW.toFixed(1)}°} = \\frac{${Math.sin(altS*Math.PI/180).toFixed(3)}}{${Math.sin(altW*Math.PI/180).toFixed(3)}}`,
+        `\\approx ${ratio.toFixed(2)}\\times`,
+      ],
+      note: `About ${ratio.toFixed(2)} times more intense at noon in summer — and that is before counting the longer summer day, which piles on more hours of heating still. The two mechanisms, directness and duration, both spring from the same tilt and multiply together. Compare this with the distance effect: the Earth's distance to the Sun varies only ~3% over the year, a mere ~7% change in received sunlight — and, damningly, the Earth is actually closest in January, the depth of northern winter. The tilt beats distance by a mile, and points the opposite way.`,
+    };
+  },
+
+  "tilt-geography": (rng) => {
+    const obl = sample(rng, [23.4, 10, 40, 90], 1)[0];
+    const polar = 90 - obl;
+    const real = obl === 23.4;
+    return {
+      title: "The tilt carves the globe",
+      question: `A planet's axial tilt draws four special latitudes: the tropics (where the Sun can stand overhead) at ±tilt, and the polar circles (the edge of the midnight Sun and polar night) at ±(90° − tilt). For an axial tilt of ${obl}°${real ? " (Earth's)" : ""}, where do these lines fall — and what would that world's seasons be like?`,
+      steps: [
+        `\\text{tropics} = \\pm${obl}°\\ \\text{latitude}`,
+        `\\text{polar circles} = \\pm(90° - ${obl}°) = \\pm${polar}°`,
+      ],
+      note: `${real ? "For Earth's 23.4° tilt, the tropics sit at ±23.4° and the polar circles at ±66.6° — exactly the lines printed on every globe, each one nothing but the obliquity written onto the planet." : `A ${obl}° tilt would put the tropics at ±${obl}° and the polar circles at ±${polar}°.`} ${obl <= 10 ? "So small a tilt gives a narrow tropical band, polar circles crowded near the poles, and barely any seasons at all (like Jupiter's 3°)." : obl >= 40 ? "So large a tilt gives sprawling tropics and polar circles that reach far toward the equator, with violent seasons — at 90° the planet essentially rolls around the Sun, like Uranus." : "Change the tilt and you redraw the map: the whole geography of climate is a shadow of this one angle."} It is a striking measure of how much of a world's character rides on a single number set, for Earth, by an ancient collision.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
