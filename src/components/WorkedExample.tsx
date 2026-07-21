@@ -2566,6 +2566,59 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${hours.toFixed(0)} hours — so it is roughly ${(12 + hours) % 24}:00 at Greenwich, read from nothing but the Moon's position. This was the "lunar distance" method: the Moon's steady creep among the stars turns the whole sky into a clock face, and with precise pre-computed tables a navigator could read Greenwich time without any mechanical timepiece at all. It leaned entirely on the coordinate grid and exact tables of celestial motion — the sky itself pressed into service as the reference clock that longitude demands. The Moon, humanity's oldest calendar, became for a while its clock at sea.`,
     };
   },
+  // ── Timekeeping: the two days, and the calendar (timekeeping) ──
+  "sidereal-day": (rng) => {
+    const degPerDay = sample(rng, [59, 60, 61], 1)[0] / 60; // ~1°/day (varies slightly)
+    const minutes = degPerDay * 4; // 1° of rotation = 4 minutes (15°/hr)
+    const cumDays = sample(rng, [7, 30, 182], 1)[0];
+    const cumMin = cumDays * minutes;
+    return {
+      title: "Why the solar day is longer",
+      question: `Each day the Earth moves about ${degPerDay.toFixed(2)}° around its orbit, so after one true (sidereal) spin it must turn that much EXTRA to bring the Sun back to noon. At 15° per hour, how many minutes does that add — and after ${cumDays} days, how much earlier does a given star rise?`,
+      steps: [
+        `\\Delta t = \\frac{${degPerDay.toFixed(2)}°}{15°/\\text{hr}} = ${minutes.toFixed(1)}\\,\\text{min per day}`,
+        `${cumDays}\\,\\text{days}\\times ${minutes.toFixed(1)}\\,\\text{min} = ${cumMin.toFixed(0)}\\,\\text{min} \\approx ${(cumMin / 60).toFixed(1)}\\,\\text{hr}`,
+      ],
+      note: `About ${minutes.toFixed(1)} minutes a day — the gap between the solar day (24h, noon to noon) and the sidereal day (23h 56m, star to star). It is the same "chasing the moving Sun" accounting as the phase-month: rotation measured against a moving reference adds a catch-up each cycle. And its visible signature is the seasonal sky: a given star rises ~4 minutes earlier every night, so after ${cumDays} days it is up ${(cumMin / 60).toFixed(1)} hours earlier — and over a full year the 4-minutes-a-day accumulates to 24 hours, one complete turn, cycling the whole zodiac through the evening across the seasons.`,
+    };
+  },
+
+  "leap-year": (rng) => {
+    const year = sample(rng, [1700, 1900, 2000, 2100, 2024, 2400], 1)[0];
+    const by4 = year % 4 === 0;
+    const century = year % 100 === 0;
+    const by400 = year % 400 === 0;
+    const leap = century ? by400 : by4;
+    const why = !by4 ? "not divisible by 4" : century && !by400 ? "a century year not divisible by 400 — skipped" : century && by400 ? "a century year divisible by 400 — kept" : "divisible by 4, not a century year";
+    return {
+      title: "Is it a leap year?",
+      question: `The Gregorian rule: a leap year is divisible by 4, EXCEPT century years, which are leap only if divisible by 400. Is ${year} a leap year?`,
+      steps: [
+        `${year} \\div 4 = ${by4 ? "\\text{whole}" : "\\text{not whole}"}${century ? `;\\;\\; ${year} \\div 400 = ${by400 ? "\\text{whole}" : "\\text{not whole}"}` : ""}`,
+        `\\Rightarrow\\; ${leap ? "\\text{LEAP year (366 days)}" : "\\text{common year (365 days)}"}`,
+      ],
+      note: `${year} is ${leap ? "a leap year" : "NOT a leap year"} — ${why}. This is the Gregorian refinement at work: because 365.25 (a leap day every 4 years) is slightly too long, the rule REMOVES three leap-days every 400 years by skipping the century years not divisible by 400 — which is exactly why 1900 was a common year but 2000 was a leap year. Those 97 leap-days per 400 years give an average year of 365 + 97/400 = 365.2425 days, within half a minute of the true 365.2422 — the whole odd rule is a finely tuned patch on the fact that the year is not a whole number of days.`,
+    };
+  },
+
+  "calendar-drift": (rng) => {
+    const cal = sample(rng, [0, 1], 1)[0]; // 0 Julian, 1 Gregorian
+    const yearLen = cal === 0 ? 365.25 : 365.2425;
+    const name = cal === 0 ? "Julian" : "Gregorian";
+    const err = yearLen - 365.2422; // days per year
+    const span = sample(rng, [400, 1000, 1257], 1)[0];
+    const drift = err * span;
+    const perDay = 1 / err; // years to drift one day
+    return {
+      title: "How fast does a calendar wander?",
+      question: `The ${name} calendar year is ${yearLen} days, while the true tropical year is 365.2422 days. By how much does it drift from the seasons over ${span.toLocaleString("en-US")} years, and how many years does it take to slip a full day?`,
+      steps: [
+        `\\text{error} = ${yearLen} - 365.2422 = ${err.toFixed(4)}\\,\\text{day/yr}`,
+        `\\text{drift} = ${err.toFixed(4)}\\times ${span} = ${drift.toFixed(1)}\\,\\text{days};\\quad \\text{1 day in } ${perDay.toFixed(0)}\\,\\text{yr}`,
+      ],
+      note: `The ${name} calendar drifts about ${drift.toFixed(1)} days over ${span.toLocaleString("en-US")} years — one full day every ${perDay.toFixed(0)} years. ${cal === 0 ? "That is why the Julian calendar, adopted when the equinox sat near March 21, had slipped some ten days by 1582, dragging the equinox to March 11 and prompting the Gregorian reform." : "That is astonishing accuracy — a single day's error only after more than three millennia — which is why the Gregorian calendar, with its century-year leap rule, is the one the world still runs on."} The calendar is, at bottom, a shadow of Earth's orbital geometry: a workable whole-number calendar forever chasing a year that is 365.2422 days long.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
