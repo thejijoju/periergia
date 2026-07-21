@@ -2428,6 +2428,48 @@ const GENERATORS: Record<string, Generator> = {
       note: `${real ? "For Earth's 23.4° tilt, the tropics sit at ±23.4° and the polar circles at ±66.6° — exactly the lines printed on every globe, each one nothing but the obliquity written onto the planet." : `A ${obl}° tilt would put the tropics at ±${obl}° and the polar circles at ±${polar}°.`} ${obl <= 10 ? "So small a tilt gives a narrow tropical band, polar circles crowded near the poles, and barely any seasons at all (like Jupiter's 3°)." : obl >= 40 ? "So large a tilt gives sprawling tropics and polar circles that reach far toward the equator, with violent seasons — at 90° the planet essentially rolls around the Sun, like Uranus." : "Change the tilt and you redraw the map: the whole geography of climate is a shadow of this one angle."} It is a striking measure of how much of a world's character rides on a single number set, for Earth, by an ancient collision.`,
     };
   },
+  // ── The Moon: Phases and the Monthly Cycle (phases) ──
+  "synodic-month": (rng) => {
+    const sid = 27.32; // sidereal month, days
+    const year = sample(rng, [365.25, 687, 4333], 1)[0]; // Earth, Mars, Jupiter year
+    const world = year === 687 ? "Mars" : year === 4333 ? "Jupiter" : "Earth";
+    const syn = 1 / (1 / sid - 1 / year);
+    return {
+      title: "Why the phase cycle beats the orbit",
+      question: `The Moon orbits in a sidereal month of ${sid} days (relative to the stars), yet the phase cycle — new Moon to new Moon — is longer, because the phase depends on the angle to the moving Sun. If a moon like ours orbited ${world} (year ${year} days) in ${sid} days, how long would its phase cycle (synodic month) be? Use 1/T_syn = 1/T_sid − 1/T_year.`,
+      steps: [
+        `\\frac{1}{T_\\text{syn}} = \\frac{1}{${sid}} - \\frac{1}{${year}} = ${(1/sid - 1/year).toFixed(5)}\\,\\text{/day}`,
+        `T_\\text{syn} = ${syn.toFixed(2)}\\,\\text{days}`,
+      ],
+      note: `${syn.toFixed(2)} days — ${(syn - sid).toFixed(2)} days longer than the orbit itself. During one orbit the planet carries the moon part-way around the Sun, so the Sun's direction shifts and the moon must travel a little further to catch up and return to the same phase. ${world === "Earth" ? "For our Moon this gives the familiar 29.5-day synodic month — the one lunar calendars actually count, which is why lunar months run 29–30 days and drift against the solar year." : `Because ${world}'s year is so long, the Sun barely drifts, so the phase cycle sits only a little above the ${sid}-day orbit — the slower the planet's own orbit, the closer synodic and sidereal months become.`} The phase you watch carries the fingerprint of the planet's year.`,
+    };
+  },
+
+  "moonrise-delay": (rng) => {
+    const rate = sample(rng, [12, 13, 14], 1)[0]; // moon's daily eastward motion, deg/day
+    const delayMin = (rate / 15) * 60; // Earth rotates 15°/hr
+    return {
+      title: "Why moonrise slips later each day",
+      question: `The Moon orbits eastward against the stars by about ${rate}° per day. The Earth rotates 15° per hour. By roughly how much later does the Moon rise each day — and what does that delay reveal?`,
+      steps: [
+        `\\Delta t = \\frac{${rate}°}{15°/\\text{hr}} = ${(rate/15).toFixed(2)}\\,\\text{hr} = ${delayMin.toFixed(0)}\\,\\text{min}`,
+      ],
+      note: `About ${delayMin.toFixed(0)} minutes later each day. Having drifted ${rate}° eastward overnight, the Moon needs the Earth to turn an extra ${rate}° to lift it back to the horizon, and at 15° per hour that extra turn takes ${delayMin.toFixed(0)} minutes. So the steadily slipping time of moonrise is nothing but the Moon's own orbital motion — the very motion that drives the phases — showing up on the clock. Watch moonrise march later night after night and you are literally watching the Moon travel around its orbit, one ${rate}° step per day.`,
+    };
+  },
+
+  "sun-distance": (rng) => {
+    const angle = sample(rng, [87, 89, 89.85], 1)[0]; // Sun–Moon elongation at half moon
+    const ratio = 1 / Math.cos((angle * Math.PI) / 180);
+    return {
+      title: "Aristarchus reaches for the Sun",
+      question: `At a half (quarter) Moon, the Sun–Moon–Earth angle at the Moon is exactly 90°, so Earth, Moon, and Sun form a right triangle. If the Moon and Sun are measured to be ${angle}° apart in the sky at that instant, how many times farther is the Sun than the Moon? (Sun distance ÷ Moon distance = 1 ÷ cos of that angle.)`,
+      steps: [
+        `\\frac{d_\\text{Sun}}{d_\\text{Moon}} = \\frac{1}{\\cos ${angle}°} = \\frac{1}{${Math.cos((angle * Math.PI) / 180).toFixed(5)}} \\approx ${ratio.toFixed(0)}\\times`,
+      ],
+      note: `The Sun comes out about ${ratio.toFixed(0)} times farther than the Moon. This is Aristarchus's method, around 270 BC — flawless geometry, but agonisingly sensitive: he measured 87° and got ~19×, while the true angle is 89.85° (fantastically close to 90°) giving ~390×. His number was far too small, yet the conclusion still held and still stunned: the Sun is vastly farther, and therefore vastly larger, than the Moon — indeed far bigger than the Earth. That single deduction planted the heliocentric seed eighteen centuries before Copernicus, and it began, like the whole cosmic distance ladder, with someone reasoning carefully from the geometry of the Moon.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
