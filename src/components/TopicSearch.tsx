@@ -31,17 +31,24 @@ export function TopicSearch({
 
   const results = useMemo(() => {
     if (!q) return [] as SearchItem[];
+    const subj: SearchItem[] = []; // matching main subjects — always first
     const starts: SearchItem[] = [];
     const includes: SearchItem[] = [];
     const ctxOnly: SearchItem[] = [];
     for (const it of searchIndex) {
       const t = it.title.toLowerCase();
+      if (it.subject) {
+        if (t.startsWith(q) || t.includes(q)) subj.push(it);
+        continue; // subjects match on their own name only, never as node results
+      }
       if (t.startsWith(q)) starts.push(it);
       else if (t.includes(q)) includes.push(it);
       else if (it.ctx.toLowerCase().includes(q)) ctxOnly.push(it);
     }
+    const startsFirst = (a: SearchItem, b: SearchItem) =>
+      Number(b.title.toLowerCase().startsWith(q)) - Number(a.title.toLowerCase().startsWith(q));
     const leafFirst = (a: SearchItem, b: SearchItem) => Number(b.leaf) - Number(a.leaf);
-    return [...starts.sort(leafFirst), ...includes.sort(leafFirst), ...ctxOnly].slice(0, 8);
+    return [...subj.sort(startsFirst), ...starts.sort(leafFirst), ...includes.sort(leafFirst), ...ctxOnly].slice(0, 8);
   }, [q, searchIndex]);
 
   const go = (href: string) => {
@@ -86,7 +93,10 @@ export function TopicSearch({
                 onClick={() => go(it.href)}
                 className="block w-full text-left px-4 py-2.5 border-t border-line first:border-t-0 hover:bg-[rgba(0,0,0,0.03)] transition-colors"
               >
-                <span className="font-sans text-[14px] text-ink">{it.title}</span>
+                <span className={`font-sans text-[14px] ${it.subject ? "text-maroon font-semibold" : "text-ink"}`}>
+                  {it.subject && <span className="mr-1.5">◆</span>}
+                  {it.title}
+                </span>
                 <span className="ml-2 font-sans text-[11px] text-whisper">{it.ctx}</span>
               </button>
             ))

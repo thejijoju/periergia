@@ -85,10 +85,11 @@ export interface GradeResult {
   feedback: string;
 }
 
-/** A searchable entry (sub-subject or topic) for the client-side topic search. */
+/** A searchable entry (subject, sub-subject, or topic) for the client-side topic search. */
 export interface SearchItem {
   title: string;
   ctx: string; // "Subject › Sub-subject"
   href: string;
   leaf: boolean; // true for a topic, false for a sub-subject
+  subject?: boolean; // true for a top-level subject (a main field) — ranked first, styled distinctly
 }

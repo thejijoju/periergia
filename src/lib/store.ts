@@ -183,12 +183,31 @@ export async function getFirstLeaf(subjectId: string): Promise<Node | undefined>
   return nodes.find((n) => childless(n.id)) ?? nodes[0];
 }
 
-/** Flat client-side search index over every sub-subject + topic. */
+/** Flat client-side search index over every subject + sub-subject + topic. */
 export async function getSearchIndex(): Promise<SearchItem[]> {
   const { subjects, nodes } = await loadTree();
   const subjById = new Map(subjects.map((s) => [s.id, s]));
   const titleById = new Map(nodes.map((n) => [n.id, n.title]));
   const out: SearchItem[] = [];
+
+  // Subjects (the main fields — Mathematics, History, Astronomy, …) come first,
+  // so searching a field name surfaces the field itself as its own result.
+  const parentIds = new Set(nodes.map((n) => n.parentId).filter(Boolean));
+  const topicCount = new Map<string, number>();
+  for (const n of nodes) {
+    if (!parentIds.has(n.id)) topicCount.set(n.subjectId, (topicCount.get(n.subjectId) ?? 0) + 1);
+  }
+  for (const s of [...subjects].sort((a, b) => a.position - b.position)) {
+    const c = topicCount.get(s.id) ?? 0;
+    out.push({
+      title: s.name,
+      ctx: `${c} ${c === 1 ? "topic" : "topics"}`,
+      href: `/learn/${s.slug}`,
+      leaf: false,
+      subject: true,
+    });
+  }
+
   for (const n of nodes) {
     const subj = subjById.get(n.subjectId);
     if (!subj) continue;
