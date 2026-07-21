@@ -62,6 +62,8 @@ import { DrakeEquation } from "./DrakeEquation";
 import { GreatFilter } from "./GreatFilter";
 import { SkyLatitude } from "./SkyLatitude";
 import { LineOfSight } from "./LineOfSight";
+import { SeasonMaker } from "./SeasonMaker";
+import { Gnomon } from "./Gnomon";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -754,6 +756,16 @@ export function Reader({
                   // directions-but-not-distances (line-of-sight) demonstration.
                   if (typeof cls === "string" && /language-lineofsight\b/.test(cls)) {
                     return <LineOfSight />;
+                  }
+                  // A fenced ```seasonmaker block becomes the interactive Sun's
+                  // daily-altitude curve (directness + duration from the tilt).
+                  if (typeof cls === "string" && /language-seasonmaker\b/.test(cls)) {
+                    return <SeasonMaker />;
+                  }
+                  // A fenced ```gnomon block becomes the interactive shadow-stick
+                  // reading the season — and the tilt — from a noon shadow.
+                  if (typeof cls === "string" && /language-gnomon\b/.test(cls)) {
+                    return <Gnomon />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
