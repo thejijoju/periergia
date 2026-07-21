@@ -21,7 +21,7 @@
   --c-pill: #262029;
   --c-line: rgba(231, 226, 217, 0.13);
 
-  --prose-text: #d7d0c4;
+  --prose-text: #e6e0d4;
   --prose-heading: #f0ebe1;
   --prose-link: #b9a3f8;
   --prose-link-hover: #cdbcfb;
@@ -103,6 +103,12 @@ body {
   color: var(--prose-text);
   font-size: 16.5px;
   line-height: 1.85;
+  /* Cap the reading measure at a comfortable ~66 characters. Long lines make the
+     eye lose its place on the return sweep; this is the single biggest readability
+     win, and it matters most for older readers and low-quality screens. The column
+     may sit in a wider frame — we just centre the narrower text within it. */
+  max-width: 58ch;
+  margin-inline: auto;
 }
 .prose-reading :where(p) {
   margin: 0 0 1.25em;

@@ -484,7 +484,7 @@ export function Reader({
           )}
           <div
             id="reader-content"
-            className="prose-reading max-w-none"
+            className="prose-reading"
             dir={isRtl(lang) ? "rtl" : "ltr"}
           >
             <ReactMarkdown
