@@ -60,6 +60,8 @@ import { Disequilibrium } from "./Disequilibrium";
 import { BiosignatureCase } from "./BiosignatureCase";
 import { DrakeEquation } from "./DrakeEquation";
 import { GreatFilter } from "./GreatFilter";
+import { SkyLatitude } from "./SkyLatitude";
+import { LineOfSight } from "./LineOfSight";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -742,6 +744,16 @@ export function Reader({
                   // road-to-civilisation with a movable filter (behind vs ahead).
                   if (typeof cls === "string" && /language-greatfilter\b/.test(cls)) {
                     return <GreatFilter />;
+                  }
+                  // A fenced ```skylatitude block becomes the interactive
+                  // Earth-geometry proof that the pole's altitude equals latitude.
+                  if (typeof cls === "string" && /language-skylatitude\b/.test(cls)) {
+                    return <SkyLatitude />;
+                  }
+                  // A fenced ```lineofsight block becomes the interactive
+                  // directions-but-not-distances (line-of-sight) demonstration.
+                  if (typeof cls === "string" && /language-lineofsight\b/.test(cls)) {
+                    return <LineOfSight />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
