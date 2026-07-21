@@ -66,6 +66,8 @@ import { SeasonMaker } from "./SeasonMaker";
 import { Gnomon } from "./Gnomon";
 import { MoonPhase } from "./MoonPhase";
 import { MoonClock } from "./MoonClock";
+import { EclipseNodes } from "./EclipseNodes";
+import { EclipseSizes } from "./EclipseSizes";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -778,6 +780,16 @@ export function Reader({
                   // clock (rise/culminate/set times from the phase).
                   if (typeof cls === "string" && /language-moonclock\b/.test(cls)) {
                     return <MoonClock />;
+                  }
+                  // A fenced ```eclipsenodes block becomes the interactive tilt-and-
+                  // nodes explainer (why eclipses aren't monthly).
+                  if (typeof cls === "string" && /language-eclipsenodes\b/.test(cls)) {
+                    return <EclipseNodes />;
+                  }
+                  // A fenced ```eclipsesizes block becomes the interactive Sun/Moon
+                  // size-match (total vs annular, the corona).
+                  if (typeof cls === "string" && /language-eclipsesizes\b/.test(cls)) {
+                    return <EclipseSizes />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

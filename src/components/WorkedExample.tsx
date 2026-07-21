@@ -2470,6 +2470,57 @@ const GENERATORS: Record<string, Generator> = {
       note: `The Sun comes out about ${ratio.toFixed(0)} times farther than the Moon. This is Aristarchus's method, around 270 BC — flawless geometry, but agonisingly sensitive: he measured 87° and got ~19×, while the true angle is 89.85° (fantastically close to 90°) giving ~390×. His number was far too small, yet the conclusion still held and still stunned: the Sun is vastly farther, and therefore vastly larger, than the Moon — indeed far bigger than the Earth. That single deduction planted the heliocentric seed eighteen centuries before Copernicus, and it began, like the whole cosmic distance ladder, with someone reasoning carefully from the geometry of the Moon.`,
     };
   },
+  // ── Eclipses: When the Shadows Align (eclipses) ──
+  "angular-size": (rng) => {
+    const dist = sample(rng, [356500, 384400, 406700], 1)[0]; // perigee / mean / apogee, km
+    const label = dist === 356500 ? "at perigee (closest)" : dist === 406700 ? "at apogee (farthest)" : "at its mean distance";
+    const moonArcmin = (3474 / dist) * (180 / Math.PI) * 60; // angular diameter, arcmin
+    const sun = 32.0;
+    const kind = moonArcmin >= sun ? "TOTAL — the Moon fully covers the Sun, baring the corona" : "ANNULAR — the Moon falls short, leaving a ring of Sun";
+    return {
+      title: "Does the Moon cover the Sun?",
+      question: `The Moon is 3,474 km across. ${label.charAt(0).toUpperCase() + label.slice(1)}, ${dist.toLocaleString("en-US")} km away, how big does it look (angular diameter = size ÷ distance, in arcminutes) — and, against the Sun's ${sun}′, is the eclipse total or annular?`,
+      steps: [
+        `\\theta = \\frac{3474}{${dist.toLocaleString("en-US")}}\\times\\frac{180}{\\pi}\\times 60 = ${moonArcmin.toFixed(1)}'`,
+        `${moonArcmin.toFixed(1)}' ${moonArcmin >= sun ? "\\ge" : "<"} ${sun}' \\;\\Rightarrow\\; ${moonArcmin >= sun ? "\\text{total}" : "\\text{annular}"}`,
+      ],
+      note: `The Moon spans ${moonArcmin.toFixed(1)}′ ${label}, versus the Sun's ${sun}′ — so this eclipse is ${kind}. This is the great coincidence in numbers: the two are so nearly matched (~0.5° each) that the Moon's slight change of distance, over its elliptical orbit, tips the result from total to annular and back. The Sun is ~400× larger than the Moon but ~400× farther, and those factors cancel to leave a small Moon that just barely fits a vast Sun — the reason a total eclipse can hide the disk yet reveal the corona.`,
+    };
+  },
+
+  "saros": (rng) => {
+    const n = sample(rng, [1, 2, 3], 1)[0]; // number of saros cycles
+    const days = 6585.32 * n;
+    const years = Math.floor(days / 365.25);
+    const rem = Math.round(days - years * 365.25);
+    const westShift = (n * 120) % 360; // ~1/3 day → ~120° west per saros
+    return {
+      title: "Predicting an eclipse with the saros",
+      question: `The saros cycle is 6,585.32 days — after it, the Sun–Earth–Moon geometry nearly repeats and a very similar eclipse recurs. After ${n} saros cycle${n > 1 ? "s" : ""}, how long has passed (in years and days), and how far west has the eclipse path shifted (the leftover ⅓-day rotates the Earth ~120° west each cycle)?`,
+      steps: [
+        `t = ${n}\\times 6585.32 = ${days.toFixed(0)}\\,\\text{days} = ${years}\\,\\text{yr} \\; ${rem}\\,\\text{d}`,
+        `\\text{path shift} = ${n}\\times 120° = ${westShift === 0 ? "360° \\;(\\text{back near the start})" : westShift + "°\\ \\text{west}"}`,
+      ],
+      note: `${n} saros = ${years} years and ${rem} days${n === 1 ? " — the classic 18 years, 11⅓ days" : ""}. Because the extra third of a day spins the Earth about 120° westward, the twin eclipse falls a third of the way around the world each cycle, and it takes ${n === 3 ? "exactly these three saroses (~54 years)" : "three saroses (~54 years)"} to bring a similar eclipse back to roughly the same place. This is how the Babylonians did the seemingly magical: keep centuries of records, spot the 18-year rhythm, and foretell the darkening of the Sun years ahead — an early, stunning proof that the heavens run on knowable law, not divine whim.`,
+    };
+  },
+
+  "earth-slowing": (rng) => {
+    const yearsAgo = sample(rng, [1000, 2000, 2700], 1)[0];
+    const c = yearsAgo / 100; // centuries
+    const dtSec = 31 * c * c; // accumulated clock offset, seconds (ΔT ≈ 31 s × centuries²)
+    const dtHr = dtSec / 3600;
+    const deg = dtHr * 15; // Earth turns 15°/hr
+    return {
+      title: "An eclipse as a message across time",
+      question: `Tidal friction slowly lengthens the day, and the clock error accumulates as roughly ΔT ≈ 31 seconds × (centuries)². For an eclipse recorded ${yearsAgo.toLocaleString("en-US")} years ago, how large is that accumulated offset — and how far around the Earth (in longitude, at 15° per hour) does it move where the eclipse was seen?`,
+      steps: [
+        `\\Delta T \\approx 31\\times(${c})^2 = ${dtSec.toFixed(0)}\\,\\text{s} \\approx ${dtHr.toFixed(1)}\\,\\text{hr}`,
+        `\\text{longitude} = ${dtHr.toFixed(1)}\\,\\text{hr}\\times 15°/\\text{hr} = ${deg.toFixed(0)}°`,
+      ],
+      note: `About ${dtHr.toFixed(1)} hours — some ${deg.toFixed(0)}° of longitude. If the Earth had never slowed, an eclipse from ${yearsAgo.toLocaleString("en-US")} years ago would have been seen from a place ${deg.toFixed(0)}° away. So the gap between where an ancient scribe says a total eclipse went dark and where steady-spin physics puts it is exactly the accumulated slowing of the Earth — and it lets us measure how fast the planet was turning millennia ago. A Babylonian pressing a stylus into clay was unknowingly sending a precise geophysical measurement across the ages, readable only because a total eclipse falls on so narrow a path that where it was seen pins the Earth's spin to within minutes.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
