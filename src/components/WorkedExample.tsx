@@ -2336,6 +2336,50 @@ const GENERATORS: Record<string, Generator> = {
       note: `Only about ${sci(now, 1)} contemporaries — even though ${sci(total, 0)} civilisations may have come and gone. This is why the lifetime L dominates the Drake equation: the galaxy holds detectable civilisations at any one moment only in proportion to how long each one lasts, so a short-lived civilisation leaves almost no overlap with anyone else. If technological species reliably destroy themselves within a few centuries, the galaxy can be dotted with the ruins of thousands and still be silent tonight. To guess how long others last, we must guess how long WE will — which is why this factor turns the whole question into a mirror.`,
     };
   },
+  // ── The Celestial Sphere and the Daily Sky (celestial-sphere) ──
+  "pole-latitude": (rng) => {
+    const alt = sample(rng, [23, 35, 40, 52, 60], 1)[0]; // measured Polaris altitude
+    const circ = 90 - alt;
+    return {
+      title: "Reading your latitude off the sky",
+      question: `A navigator, alone on the open ocean, measures Polaris standing ${alt}° above the northern horizon. What is their latitude — and, from there, which stars never set (are circumpolar) and which never rise?`,
+      steps: [
+        `\\text{latitude} = \\text{altitude of the pole} = ${alt}°\\ \\text{N}`,
+        `\\text{circumpolar if } \\delta > 90° - ${alt}° = ${circ}°;\\quad \\text{never rises if } \\delta < -${circ}°`,
+      ],
+      note: `Their latitude is ${alt}° N — the pole star's height above the horizon simply is your latitude, no instruments beyond a way to measure the angle. From there the rest of the sky follows: any star closer to the pole than the pole is to the horizon never sets, so stars with declination above ${circ}° are circumpolar, wheeling around Polaris all night; stars with declination below −${circ}° never clear the horizon at all. One measured angle fixes both where you stand and the whole shape of your sky. This is the fact that let sailors cross oceans and gave the Greeks a proof that the Earth is round.`,
+    };
+  },
+
+  "circumpolar": (rng) => {
+    const lat = sample(rng, [30, 40, 52, 64], 1)[0];
+    const dec = sample(rng, [72, 55, 20, -20, -55, -72], 1)[0];
+    const limit = 90 - lat;
+    const verdict = dec > limit ? "circumpolar — it never sets" : dec < -limit ? "never rises — it is always below the horizon" : "rises and sets each day";
+    return {
+      title: "Circumpolar, or forever hidden?",
+      question: `From latitude ${lat}° N, consider a star of declination ${dec >= 0 ? "+" : ""}${dec}°. Does it never set, never rise, or rise and set? (Circumpolar if declination exceeds 90° − latitude; never rises if it is below −(90° − latitude).)`,
+      steps: [
+        `90° - L = 90° - ${lat}° = ${limit}°`,
+        `\\delta = ${dec >= 0 ? "+" : ""}${dec}° \\;\\Rightarrow\\; ${dec > limit ? `${dec}° > ${limit}°` : dec < -limit ? `${dec}° < -${limit}°` : `-${limit}° \\le ${dec}° \\le ${limit}°`}`,
+      ],
+      note: `From ${lat}° N the circumpolar threshold is 90° − ${lat}° = ${limit}°, so this star ${verdict}. The whole three-way sorting of the sky — always up, sometimes up, never up — is set by that one number, your latitude. Raise your latitude and the pole climbs, the never-setting cap grows, and more of the sky is locked permanently above the horizon; at the North Pole the entire visible sky is circumpolar and nothing rises or sets at all. It is exactly why the Southern Cross is invisible from most of the north: it sits too far south of the celestial equator ever to clear the horizon.`,
+    };
+  },
+
+  "sky-rate": (rng) => {
+    const span = sample(rng, [0.5, 5, 15, 30], 1)[0]; // an angle to traverse, degrees
+    const minutes = (span / 15) * 60; // at 15°/hour
+    return {
+      title: "The steady turning of the sky",
+      question: `The whole sky wheels westward at 15° per hour (a full 360° turn in about 24 hours). How long does it take a point on the sky to move ${span}° — and what does that tell you about ${span === 0.5 ? "how long sunset lasts" : "tracking the sky with a telescope"}?`,
+      steps: [
+        `\\text{rate} = \\frac{360°}{24\\,\\text{h}} = 15°/\\text{h} = 0.25°/\\text{min}`,
+        `t = \\frac{${span}°}{0.25°/\\text{min}} = ${f(minutes)}\\,\\text{min}`,
+      ],
+      note: `About ${f(minutes)} minutes. ${span === 0.5 ? "The Sun and Moon are each roughly 0.5° wide, so the Sun takes about two minutes to sink its own diameter below the horizon — which is why sunset is not instant but a slow slide." : `A telescope left fixed lets its target drift ${span}° in just ${f(minutes)} minutes, so any telescope must turn steadily westward at 15° per hour to hold a star still in its field — the sky is always sliding.`} Behind the number is the through-line of the whole course: this 15°-per-hour march is not the sky moving at all, but the shadow of the Earth turning beneath it, one rotation a day.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

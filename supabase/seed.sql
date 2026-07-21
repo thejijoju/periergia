@@ -1457,7 +1457,7 @@ on conflict (id) do update set
   position = excluded.position, depth = excluded.depth;
 
 insert into nodes (id, subject_id, parent_id, title, slug, summary, position, depth) values
-  ('astronomy-and-space/foundations/observed-sky/celestial-sphere', 'astronomy-and-space', 'astronomy-and-space/foundations/observed-sky', 'Celestial Sphere', 'celestial-sphere', '', 0, 2),
+  ('astronomy-and-space/foundations/observed-sky/celestial-sphere', 'astronomy-and-space', 'astronomy-and-space/foundations/observed-sky', 'Celestial Sphere', 'celestial-sphere', 'Astronomy begins with looking up. The celestial sphere — the sky as a dome of directions — is literally false yet the right tool for recording where things appear, and its nightly turning is the shadow of the Earth''s own spin. The single most useful fact in positional astronomy: the altitude of the pole star equals your latitude, so the sky is a map of where you stand. Covers diurnal motion, circumpolar stars, constellations as line-of-sight illusions, and the deep limitation that the sphere gives directions but not distances — the asymmetry that shaped three thousand years of astronomy.', 0, 2),
   ('astronomy-and-space/foundations/observed-sky/seasons', 'astronomy-and-space', 'astronomy-and-space/foundations/observed-sky', 'Seasons', 'seasons', '', 1, 2),
   ('astronomy-and-space/foundations/observed-sky/phases', 'astronomy-and-space', 'astronomy-and-space/foundations/observed-sky', 'Phases', 'phases', '', 2, 2),
   ('astronomy-and-space/foundations/observed-sky/eclipses', 'astronomy-and-space', 'astronomy-and-space/foundations/observed-sky', 'Eclipses', 'eclipses', '', 3, 2),
