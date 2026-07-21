@@ -60,10 +60,10 @@ export function MobileNav({
         onClick={() => setOpen(true)}
         aria-label={t(lang, "openNav")}
         aria-expanded={open}
-        className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-lg text-ink hover:bg-pill transition-colors"
+        className="flex items-center justify-center w-11 h-11 -ml-2 rounded-lg text-ink hover:bg-pill transition-colors"
       >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
-          <path d="M3 6h14M3 10h14M3 14h14" />
+        <svg width="26" height="26" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+          <path d="M3 6h14M3 10h14M3 14h8" />
         </svg>
       </button>
 
