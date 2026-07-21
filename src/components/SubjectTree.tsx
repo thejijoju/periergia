@@ -42,7 +42,7 @@ export function SubjectTree({
   activeId: string;
 }) {
   return (
-    <nav className="text-[14px]">
+    <nav className="text-[16px] lg:text-[14px]">
       <SubjectSwitcher
         currentName={subjectName}
         currentSlug={subjectSlug}
@@ -93,7 +93,7 @@ function SubjectSwitcher({
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="group flex w-full items-center gap-1.5 text-left font-sans font-bold text-[16px] tracking-[-0.01em] text-ink hover:text-purple transition-colors"
+        className="group flex w-full items-center gap-1.5 text-left font-sans font-bold text-[18px] lg:text-[16px] tracking-[-0.01em] text-ink hover:text-purple transition-colors"
       >
         <span className="min-w-0 truncate">{currentName}</span>
         <svg
@@ -123,7 +123,7 @@ function SubjectSwitcher({
                 onClick={() => setOpen(false)}
                 role="option"
                 aria-selected={active}
-                className={`block px-3.5 py-1.5 font-sans text-[13.5px] transition-colors ${
+                className={`block px-3.5 py-1.5 font-sans text-[15.5px] lg:text-[13.5px] transition-colors ${
                   active
                     ? "text-purple font-semibold bg-purple-soft/50"
                     : "text-ink hover:bg-pill"
@@ -154,7 +154,15 @@ function TreeRow({
   const [open, setOpen] = useState(onPath);
   const active = item.id === activeId;
 
-  const size = depth === 0 ? "text-[14px] font-semibold" : depth === 1 ? "text-[13.5px]" : "text-[13px]";
+  // Mobile drawer runs 2px larger for legibility; the desktop rail (lg+) keeps
+  // the compact sizes. The two trees never render at the same breakpoint, so a
+  // single responsive class covers both.
+  const size =
+    depth === 0
+      ? "text-[16px] lg:text-[14px] font-semibold"
+      : depth === 1
+      ? "text-[15.5px] lg:text-[13.5px]"
+      : "text-[15px] lg:text-[13px]";
   const rest =
     depth === 0 ? "text-ink hover:text-purple" : "text-muted hover:text-ink";
 
