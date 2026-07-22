@@ -2802,6 +2802,43 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${ratio.toFixed(1)} times larger. This size swing is the clinching detail of Galileo's decisive test. If Venus orbits the Sun, the crescent phase happens when Venus is NEAR us (between Earth and Sun, showing its dark side) and the full phase when it is FAR (across the Sun, showing its lit face) — so the crescent must look big and the full must look small, by exactly this factor. Galileo saw precisely that. The Ptolemaic model, which pins Venus forever between us and the Sun, can only ever show a crescent and cannot produce a full Venus at all — so it was refuted, decisively, by the eye.`,
     };
   },
+
+  "apple-moon": (rng) => {
+    // inverse-square dilution of surface gravity out to a given distance in Earth radii
+    const d = sample(rng, [10, 20, 30, 60], 1)[0];
+    const a = 9.8 / (d * d);
+    const atMoon = d === 60;
+    return {
+      title: "How far does the apple's gravity reach?",
+      question: `Gravity at the Earth's surface (1 Earth radius from the centre) accelerates a falling apple at 9.8 m/s². If gravity weakens as the inverse square of distance, what acceleration does it produce at ${d} Earth radii from the centre${atMoon ? " — the distance of the Moon" : ""}?`,
+      steps: [
+        `a = \\frac{9.8}{${d}^2} = \\frac{9.8}{${(d * d).toLocaleString("en-US")}}`,
+        `a \\approx ${sci(a, 1)}\\,\\text{m/s}^2`,
+      ],
+      note: `About ${a >= 0.01 ? a.toFixed(3) : (a * 1000).toFixed(1) + " thousandths of a"} m/s² — gravity diluted ${(d * d).toLocaleString("en-US")}-fold. ${atMoon ? "And here is the moment the heavens and the Earth become one: the Moon's ACTUAL orbital acceleration, computed independently from its orbital size and 27.3-day period (a = 4π²r/T²), is also about 2.7 thousandths of a m/s². The two numbers — apple gravity diluted by the inverse square, and the Moon's real acceleration from pure geometry — agree to one percent. The force pulling the apple down IS the force holding the Moon in orbit: the Moon is falling, just moving sideways fast enough to keep missing the Earth." : "Newton's question was whether this same diluted pull, carried all the way out to 60 Earth radii, could account for the Moon's orbit — and when he did that calculation, the numbers matched. Try the 60-Earth-radii case to see the unification land."}`,
+    };
+  },
+
+  "weigh-the-sun": (rng) => {
+    // Newton's form of Kepler III: M = 4π² a³ / (G T²) — weigh the central body from an orbit
+    const G = 6.674e-11;
+    const systems: [string, string, number, string, number, string, string][] = [
+      ["the Sun", "Earth's orbit", 1.496e11, "1.50 × 10¹¹", 3.156e7, "3.16 × 10⁷", "1.99 × 10³⁰ kg — the Sun, weighed from the Earth's yearly orbit"],
+      ["Jupiter", "its moon Io", 4.217e8, "4.22 × 10⁸", 1.528e5, "1.53 × 10⁵", "1.9 × 10²⁷ kg — Jupiter, weighed from Io's 1.8-day orbit"],
+      ["the Earth", "the Moon's orbit", 3.844e8, "3.84 × 10⁸", 2.36e6, "2.36 × 10⁶", "6.0 × 10²⁴ kg — the Earth, weighed from the Moon's monthly orbit"],
+    ];
+    const [body, orbiter, aM, aStr, T, tStr, answer] = systems[sample(rng, [0, 1, 2], 1)[0]];
+    const M = (4 * Math.PI * Math.PI * Math.pow(aM, 3)) / (G * T * T);
+    return {
+      title: "Weighing the heavens",
+      question: `Newton's form of Kepler's third law is T² = 4π²a³/(GM), where M is the mass of the central body. Using ${orbiter} — orbital radius a = ${aStr} m, period T = ${tStr} s — and G = 6.67 × 10⁻¹¹, weigh ${body}.`,
+      steps: [
+        `M = \\frac{4\\pi^2 a^3}{G\\,T^2} = \\frac{4\\pi^2 (${sci(aM, 2)})^3}{(6.67\\times 10^{-11})(${sci(T, 2)})^2}`,
+        `M \\approx ${sci(M, 2)}\\,\\text{kg}`,
+      ],
+      note: `About ${answer}. This is the spectacular bonus Newton's derivation added to Kepler's harmonic law: because the central mass M appears explicitly, any orbit becomes a scale. Measure how far and how fast something orbits, and you can weigh whatever it circles — no touching required. Moons weigh planets; planets weigh the Sun; and centuries later, stars orbiting the galactic centre would weigh the galaxy itself (and reveal, shockingly, that most of its mass is invisible — dark matter). Kepler's version, in years and AU, gave only relative distances; Newton's version weighs worlds.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

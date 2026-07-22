@@ -83,6 +83,8 @@ import { EllipseOrbit } from "./EllipseOrbit";
 import { EqualAreas } from "./EqualAreas";
 import { VenusPhases } from "./VenusPhases";
 import { JupiterMoons } from "./JupiterMoons";
+import { NewtonCannon } from "./NewtonCannon";
+import { AppleMoon } from "./AppleMoon";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -883,6 +885,16 @@ export function Reader({
                   // explorer (a centre of motion that is not the Earth).
                   if (typeof cls === "string" && /language-jupitermoons\b/.test(cls)) {
                     return <JupiterMoons />;
+                  }
+                  // A fenced ```newtoncannon block becomes the interactive Newton's-
+                  // cannonball explorer (orbit as perpetual falling; real integrated paths).
+                  if (typeof cls === "string" && /language-newtoncannon\b/.test(cls)) {
+                    return <NewtonCannon />;
+                  }
+                  // A fenced ```applemoon block becomes the interactive apple-and-Moon
+                  // inverse-square unification (surface gravity diluted to the Moon's orbit).
+                  if (typeof cls === "string" && /language-applemoon\b/.test(cls)) {
+                    return <AppleMoon />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
