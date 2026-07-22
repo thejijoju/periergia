@@ -2839,6 +2839,41 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${answer}. This is the spectacular bonus Newton's derivation added to Kepler's harmonic law: because the central mass M appears explicitly, any orbit becomes a scale. Measure how far and how fast something orbits, and you can weigh whatever it circles — no touching required. Moons weigh planets; planets weigh the Sun; and centuries later, stars orbiting the galactic centre would weigh the galaxy itself (and reveal, shockingly, that most of its mass is invisible — dark matter). Kepler's version, in years and AU, gave only relative distances; Newton's version weighs worlds.`,
     };
   },
+
+  "doppler-shift": (rng) => {
+    // clock a source's velocity from the shift of a known line: v = c·Δλ/λ
+    const c = 299792; // km/s
+    const dirRecede = sample(rng, [0, 1], 1)[0] === 1;
+    const vTrue = sample(rng, [600, 1500, 3000, 15000], 1)[0] * (dirRecede ? 1 : -1);
+    const rest = 656.3; // hydrogen's Hα line, nm
+    const obs = rest * (1 + vTrue / c);
+    const dl = obs - rest;
+    return {
+      title: "Clocking a star with a barcode",
+      question: `Hydrogen's Hα line sits at exactly 656.3 nm in the laboratory. In the spectrum of a distant source you measure it at ${obs.toFixed(1)} nm. Using Δλ/λ = v/c (with c = 300,000 km/s), how fast is the source moving, and toward or away from us?`,
+      steps: [
+        `\\Delta\\lambda = ${obs.toFixed(1)} - 656.3 = ${dl >= 0 ? "+" : ""}${dl.toFixed(1)}\\,\\text{nm}`,
+        `v = c\\,\\frac{\\Delta\\lambda}{\\lambda} = 300{,}000 \\times \\frac{${dl >= 0 ? "" : "-"}${Math.abs(dl).toFixed(1)}}{656.3} \\approx ${vTrue >= 0 ? "+" : "-"}${Math.abs(vTrue).toLocaleString("en-US")}\\,\\text{km/s}`,
+      ],
+      note: `About ${Math.abs(vTrue).toLocaleString("en-US")} km/s ${dirRecede ? "AWAY from us — the line is shifted redward (longer wavelength), a REDSHIFT" : "TOWARD us — the line is shifted blueward (shorter wavelength), a BLUESHIFT"}. Because the rest wavelengths of the elements are known precisely from the laboratory, any measured shift converts directly into a velocity — a speedometer for objects we can never visit. ${Math.abs(vTrue) >= 10000 ? "Speeds this large are the realm of the galaxies — and the discovery that nearly all galaxies are redshifted, receding faster the farther they are, revealed the expanding universe and founded modern cosmology." : "Applied to stars, this technique detects binary companions and even exoplanets, from the tiny rhythmic wobble their gravity induces in their sun."} All of it read from the position of a dark line in a rainbow.`,
+    };
+  },
+
+  "photon-energy": (rng) => {
+    // the energy of the atomic jump behind a spectral line: E(eV) ≈ 1240/λ(nm)
+    const lines: [string, number][] = [["hydrogen's red Hα line", 656.3], ["sodium's yellow D line", 589.0], ["helium's yellow line — the one that betrayed a new element in the Sun", 587.6], ["calcium's violet K line", 393.4]];
+    const [name, lam] = lines[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const E = 1240 / lam;
+    return {
+      title: "The energy behind a spectral line",
+      question: `Every spectral line marks an electron jumping between two energy levels, absorbing or emitting a photon of exactly the gap's energy. A photon's energy in electron-volts is E ≈ 1240/λ, with λ in nanometres. What jump energy lies behind ${name}, at ${lam} nm?`,
+      steps: [
+        `E = \\frac{1240}{\\lambda} = \\frac{1240}{${lam}}`,
+        `E \\approx ${E.toFixed(2)}\\,\\text{eV}`,
+      ],
+      note: `About ${E.toFixed(2)} electron-volts — the exact spacing between two rungs on the energy ladder inside the atom. This is WHY the fingerprints exist: each element's atoms have their own unique set of energy levels, so their own unique set of possible jumps, so their own unique set of line wavelengths — the same everywhere in the universe, because atoms are built the same everywhere. Kirchhoff and Bunsen used the fingerprints for half a century before quantum theory explained them — one more case of the pattern that runs through this whole story: the exact empirical law first (Kepler, Newton, Kirchhoff), the deep cause later.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
