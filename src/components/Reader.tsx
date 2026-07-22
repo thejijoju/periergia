@@ -85,6 +85,8 @@ import { VenusPhases } from "./VenusPhases";
 import { JupiterMoons } from "./JupiterMoons";
 import { NewtonCannon } from "./NewtonCannon";
 import { AppleMoon } from "./AppleMoon";
+import { SpectrumLab } from "./SpectrumLab";
+import { DopplerShift } from "./DopplerShift";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -895,6 +897,16 @@ export function Reader({
                   // inverse-square unification (surface gravity diluted to the Moon's orbit).
                   if (typeof cls === "string" && /language-applemoon\b/.test(cls)) {
                     return <AppleMoon />;
+                  }
+                  // A fenced ```spectrumlab block becomes the interactive Kirchhoff's-laws
+                  // spectrum laboratory (continuous / emission / absorption, per element).
+                  if (typeof cls === "string" && /language-spectrumlab\b/.test(cls)) {
+                    return <SpectrumLab />;
+                  }
+                  // A fenced ```dopplershift block becomes the interactive Doppler
+                  // explorer (spectral lines shifting with line-of-sight velocity).
+                  if (typeof cls === "string" && /language-dopplershift\b/.test(cls)) {
+                    return <DopplerShift />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
