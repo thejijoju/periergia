@@ -87,6 +87,8 @@ import { NewtonCannon } from "./NewtonCannon";
 import { AppleMoon } from "./AppleMoon";
 import { SpectrumLab } from "./SpectrumLab";
 import { DopplerShift } from "./DopplerShift";
+import { LightTime } from "./LightTime";
+import { SnowLine } from "./SnowLine";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -907,6 +909,16 @@ export function Reader({
                   // explorer (spectral lines shifting with line-of-sight velocity).
                   if (typeof cls === "string" && /language-dopplershift\b/.test(cls)) {
                     return <DopplerShift />;
+                  }
+                  // A fenced ```lighttime block becomes the light-travel-time explorer
+                  // (an expanding wavefront sweeping past the planets from the Sun).
+                  if (typeof cls === "string" && /language-lighttime\b/.test(cls)) {
+                    return <LightTime />;
+                  }
+                  // A fenced ```snowline block becomes the snow-line explorer
+                  // (disk temperature vs distance, with the 2.7 AU condensation boundary).
+                  if (typeof cls === "string" && /language-snowline\b/.test(cls)) {
+                    return <SnowLine />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

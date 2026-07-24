@@ -2874,6 +2874,66 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${E.toFixed(2)} electron-volts — the exact spacing between two rungs on the energy ladder inside the atom. This is WHY the fingerprints exist: each element's atoms have their own unique set of energy levels, so their own unique set of possible jumps, so their own unique set of line wavelengths — the same everywhere in the universe, because atoms are built the same everywhere. Kirchhoff and Bunsen used the fingerprints for half a century before quantum theory explained them — one more case of the pattern that runs through this whole story: the exact empirical law first (Kepler, Newton, Kirchhoff), the deep cause later.`,
     };
   },
+
+  "radar-au": (rng) => {
+    // bounce radar off a planet at closest approach: d = ct/2, then divide by the
+    // Kepler gap (in AU) to pin the astronomical unit in kilometres
+    const bodies: [string, number][] = [["Venus", 0.277], ["Mars", 0.524]]; // name, Earth-body gap at closest approach (AU)
+    const [name, gap] = bodies[sample(rng, [0, 1], 1)[0]];
+    const c = 299792; // km/s
+    const AU = 149.6e6; // km (the answer we're recovering)
+    const oneWay = gap * AU; // km
+    const t = (2 * oneWay) / c; // round-trip time, s
+    const dMeasured = (c * t) / 2; // km — reconstructs oneWay
+    const auKm = dMeasured / gap; // km per AU
+    return {
+      title: "Weighing the yardstick with a radar echo",
+      question: `A radar pulse is bounced off ${name} at its closest approach and the echo returns after ${t.toFixed(1)} seconds. Radio travels at the speed of light, c = 299,792 km/s. (a) Find the Earth–${name} distance from d = ct/2. (b) ${name} sits ${gap} AU from Earth at that moment, so divide to get the length of one astronomical unit in kilometres.`,
+      steps: [
+        `d = \\frac{c\\,t}{2} = \\frac{299{,}792 \\times ${t.toFixed(1)}}{2} \\approx ${sci(dMeasured, 2)}\\,\\text{km}`,
+        `1\\,\\text{AU} = \\frac{d}{${gap}} = \\frac{${sci(dMeasured, 2)}}{${gap}} \\approx ${sci(auKm, 2)}\\,\\text{km}`,
+      ],
+      note: `About ${(auKm / 1e6).toFixed(0)} million km per AU — the accepted value is 149.6 million km. This is how the astronomical unit was finally nailed: in 1961 radar echoes off Venus pinned it to one part in a million, in an afternoon, from a single location. No parallax, no angles, no black-drop effect, no expeditions to Tahiti — just a clock and the exactly-known speed of light. It settled in one measurement what the eighteenth-century transit-of-Venus campaigns had chased across the globe for a century and got only to within two percent. In 2012 the union simply defined the AU as exactly 149,597,870,700 metres: the hard-won became a fixed constant.`,
+    };
+  },
+
+  "light-time": (rng) => {
+    // distance as time: one-way Sun->planet light time, and the round-trip signal
+    // delay to a spacecraft there at opposition
+    const bodies: [string, number][] = [["Mars", 1.524], ["Jupiter", 5.204], ["Saturn", 9.583], ["Neptune", 30.07]];
+    const [name, a] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const SEC_PER_AU = 499.0; // light crosses 1 AU in 499 s
+    const oneWay = a * SEC_PER_AU; // s, Sun -> planet
+    const roundTrip = 2 * (a - 1) * SEC_PER_AU; // s, Earth <-> spacecraft at opposition
+    const owMin = oneWay / 60, rtMin = roundTrip / 60;
+    const fmt = (m: number) => (m < 60 ? `${m.toFixed(1)} minutes` : `${(m / 60).toFixed(1)} hours`);
+    return {
+      title: "Distance measured in patience",
+      question: `Light crosses one AU in 499 seconds. ${name} orbits at ${a} AU. (a) How long does sunlight take to reach ${name}? (b) When ${name} is at opposition (Earth between it and the Sun, a gap of ${(a - 1).toFixed(3)} AU), what is the round-trip radio delay to a spacecraft there?`,
+      steps: [
+        `t_{\\text{Sun}\\to\\text{planet}} = ${a}\\times 499\\,\\text{s} = ${oneWay.toFixed(0)}\\,\\text{s} \\approx ${fmt(owMin)}`,
+        `t_{\\text{round trip}} = 2\\times(${a}-1)\\times 499\\,\\text{s} = ${roundTrip.toFixed(0)}\\,\\text{s} \\approx ${fmt(rtMin)}`,
+      ],
+      note: `Sunlight reaches ${name} in about ${fmt(owMin)}, and a command to a spacecraft there and back takes about ${fmt(rtMin)}. This is why light-time is the honest unit of the solar system: it is not decorative, it is the literal delay in every signal we exchange with every probe. You cannot drive a rover you can only reach by letter — by the time its picture of a hazard arrives, it has been sitting there for many minutes, and your "stop" takes just as long to get back. The fastest thing in the universe still turns the solar system into a place governed by patience, autonomy, and pre-planning.`,
+    };
+  },
+
+  "snow-line-temp": (rng) => {
+    // equilibrium temperature T = 278/sqrt(d) and which side of the snow line it lands
+    const bodies: [string, number][] = [["Mercury", 0.39], ["Earth", 1.0], ["the asteroid belt", 2.7], ["Jupiter", 5.2], ["Neptune", 30.07]];
+    const [name, d] = bodies[sample(rng, [0, 1, 2, 3, 4], 1)[0]];
+    const T = 278 / Math.sqrt(d);
+    const ice = T <= 170;
+    return {
+      title: "Which side of the snow line?",
+      question: `In the young solar disk a body's temperature followed T = 278/√d (T in kelvin, d in AU). Compute the temperature at ${name} (${d} AU), and decide whether water could condense into ice there — the threshold is about 170 K.`,
+      steps: [
+        `T = \\frac{278}{\\sqrt{d}} = \\frac{278}{\\sqrt{${d}}}`,
+        `T \\approx ${T.toFixed(0)}\\,\\text{K}\\;(${(T - 273).toFixed(0)}\\,^\\circ\\text{C})`,
+      ],
+      note: `About ${T.toFixed(0)} K — ${ice ? "below" : "above"} the ~170 K threshold, so water ${ice ? "COULD freeze into solid ice grains here. Beyond the snow line (~2.7 AU), ice joins rock and metal in the building inventory, and because water is one of the most abundant compounds in the universe, that multiplied the available solid material several-fold — enough to grow massive cores fast, and capture giant gas envelopes before the disk dispersed. This is giant-planet country." : "could NOT freeze — it stayed vapour, too diffuse to build with. Only rock and metal condensed here, so bodies had far less to grow from and stayed small: the rocky terrestrial worlds. The clock (a few million years of disk gas) ran out before any of them could become a giant."} One temperature boundary, set by one distance, split the solar system into its two families. Distance is destiny.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
