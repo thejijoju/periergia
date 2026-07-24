@@ -93,6 +93,8 @@ import { FluxGradient } from "./FluxGradient";
 import { SolarBoundaries } from "./SolarBoundaries";
 import { DiskCollapse } from "./DiskCollapse";
 import { AngularBudget } from "./AngularBudget";
+import { CondensationLadder } from "./CondensationLadder";
+import { DensityDivide } from "./DensityDivide";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -943,6 +945,16 @@ export function Reader({
                   // inversion explorer (the Sun's 99.87% mass but 0.61% angular momentum).
                   if (typeof cls === "string" && /language-angularbudget\b/.test(cls)) {
                     return <AngularBudget />;
+                  }
+                  // A fenced ```condensation block becomes the condensation-sequence
+                  // explorer (which materials are solid vs vapour at each disk distance).
+                  if (typeof cls === "string" && /language-condensation\b/.test(cls)) {
+                    return <CondensationLadder />;
+                  }
+                  // A fenced ```densitydivide block becomes the density-fossil explorer
+                  // (planet/moon density vs distance, the snow line's clean division).
+                  if (typeof cls === "string" && /language-densitydivide\b/.test(cls)) {
+                    return <DensityDivide />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
