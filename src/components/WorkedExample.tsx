@@ -3436,6 +3436,60 @@ const GENERATORS: Record<string, Generator> = {
       note: `At ${f(ratio)}× Earth's value, ${name.split(" (")[0]} is ${verdict}. Because water that forms in colder places locks in more deuterium, the D/H ratio is a fingerprint of where a reservoir formed — the same tool that convicted Venus of losing an ocean (L9). Matched against Earth's oceans, carbonaceous chondrites (asteroid water, ~0.9×) fit closely, while most comets run two to three times too high — Rosetta's 2014 measurement of comet 67P at ~3.4× was a real blow to the idea that comets brought our water. The consensus now favours water-bearing asteroids, though comet Hartley 2 did match and few objects have been measured. Whatever the carrier, it had to be moved inward from beyond the snow line — which is exactly what the giant-planet migration of L6 accomplishes. The lecture on Jupiter's wanderings was partly a lecture about the water in your glass.`,
     };
   },
+
+  "moon-mass-ratio": (rng) => {
+    // how anomalously large the Moon is, relative to its planet, versus other systems
+    const others: [string, string, number][] = [
+      ["Saturn", "Titan", 2.37e-4], ["Jupiter", "Ganymede", 7.81e-5], ["Neptune", "Triton", 2.09e-4],
+    ];
+    const [planet, moon, other] = others[sample(rng, [0, 1, 2], 1)[0]];
+    const em = 0.0123; // Earth/Moon mass ratio
+    const factor = em / other;
+    return {
+      title: "A companion, not a moon",
+      question: `Earth's Moon is 1/81 of Earth's mass — a mass ratio of 0.0123. ${planet}'s largest moon ${moon} has a moon-to-planet mass ratio of ${sci(other, 2)}. By what factor is Earth's Moon larger, relative to its planet, than ${moon} is to ${planet}?`,
+      steps: [
+        `\\frac{0.0123}{${sci(other, 2)}} \\approx ${Math.round(factor)}\\times`,
+      ],
+      note: `Earth's Moon is about ${Math.round(factor)} times larger relative to its planet than ${moon} is to ${planet} — and ${moon} is the runner-up (Ganymede is physically the biggest moon in the solar system, larger than Mercury, yet only ~1/12,000 of Jupiter's mass). Earth's satellite is roughly FIFTY times more massive, relative to its planet, than the next-best case. That is the anomaly the whole chapter must explain, and it rules out the ordinary routes: circumplanetary disks (which built the giants' regular moons) make only tiny satellites, and capture makes distant, inclined, often retrograde ones — not a large body in a close, regular, prograde orbit. Earth does not have a moon in the usual sense; it has a companion, and it took a planetary collision to make one.`,
+    };
+  },
+
+  "tidal-day-length": (rng) => {
+    // day-lengthening from tidal braking, checked against the Devonian corals
+    const myr = sample(rng, [200, 300, 400, 500], 1)[0];
+    const dShortS = 1.8e-3 * (myr * 1e4); // 1.8 ms/century × centuries
+    const dShortH = dShortS / 3600;
+    const dayH = 24 - dShortH;
+    const dpy = (365.25 * 24) / dayH;
+    return {
+      title: "The shrinking day",
+      question: `Tidal friction lengthens Earth's day by about 1.8 ms per century as the Moon recedes. To first order, how long was the day ${myr} million years ago, and how many days did the year contain then?`,
+      steps: [
+        `\\Delta t = 1.8\\,\\text{ms/century} \\times \\frac{${sci(myr * 1e6, 1)}\\,\\text{yr}}{100} \\approx ${f(dShortH)}\\,\\text{h shorter}`,
+        `\\text{day} \\approx 24 - ${f(dShortH)} = ${f(dayH)}\\,\\text{h}`,
+        `\\frac{365.25\\times24}{${f(dayH)}} \\approx ${Math.round(dpy)}\\,\\text{days/year}`,
+      ],
+      note: `About ${f(dayH)} hours, giving roughly ${Math.round(dpy)} days in the year. ${myr === 400 ? "This is the classic check: 400-million-year-old Devonian corals, whose daily growth bands are grouped into annual cycles, record close to 400 days per year — matching this calculation almost exactly. A laser bounced off the Apollo retroreflectors and a fossil coral, two utterly different methods, converge on the same conclusion." : "The same reasoning at 400 Myr predicts ~400 days per year, which is exactly what Devonian fossil corals record in their daily growth bands — an independent confirmation from a completely different kind of evidence."} One caution: this first-order estimate must NOT be run billions of years back, because tidal drag depends on ocean-basin geometry that plate tectonics keeps rearranging, so the present rate is unusually high. Naively extrapolated it would put the Moon at Earth's surface only 1.5 Gyr ago — plainly wrong, since the Moon is 4.5 Gyr old.`,
+    };
+  },
+
+  "lunar-core-fraction": (rng) => {
+    // the Moon is made of mantle: a tiny iron core, unlike a whole planet
+    const rc = sample(rng, [330, 350, 380], 1)[0]; // core radius estimate, km
+    const R = 1737; // lunar radius, km
+    const rfrac = rc / R;
+    const vfrac = rfrac ** 3;
+    return {
+      title: "A moon made of mantle",
+      question: `The Moon's radius is ${R.toLocaleString("en-US")} km and its iron core has a radius of only about ${rc} km. What fraction of the Moon's radius and volume is the core? (Earth's core is 55% of its radius and 16% of its volume.)`,
+      steps: [
+        `\\frac{r_{\\text{core}}}{R} = \\frac{${rc}}{${R}} \\approx ${f(rfrac * 100)}\\%`,
+        `\\frac{V_{\\text{core}}}{V} = \\left(\\frac{${rc}}{${R}}\\right)^3 \\approx ${f(vfrac * 100)}\\%`,
+      ],
+      note: `The Moon's core is only about ${Math.round(rfrac * 100)}% of its radius and under 1% of its volume — against Earth's 55% and 16%. Combined with its low mean density (3,342 kg/m³, and barely compressed, so that IS its composition), this shows the Moon is drastically depleted in iron: its bulk resembles a planetary MANTLE, not a whole planet. That is the decisive clue behind the giant impact — a Mars-sized body struck the proto-Earth, its iron core sank and merged with Earth's, and the Moon condensed from the silicate mantle debris left in orbit. The same event neatly explains the system's excess angular momentum, the Moon's depleted volatiles, and its anorthosite highlands (a floated crust from a global magma ocean). Five clues, one collision — even though the isotopes then refuse to cooperate.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
