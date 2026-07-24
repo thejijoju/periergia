@@ -107,6 +107,8 @@ import { EnergyBudget } from "./EnergyBudget";
 import { Runaway } from "./Runaway";
 import { FaintYoungSun } from "./FaintYoungSun";
 import { Thermostat } from "./Thermostat";
+import { IsotopeCrisis } from "./IsotopeCrisis";
+import { TidalRecession } from "./TidalRecession";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -1027,6 +1029,16 @@ export function Reader({
                   // (nudge Earth off 288 K and weathering restores it; Venus runs away).
                   if (typeof cls === "string" && /language-thermostat\b/.test(cls)) {
                     return <Thermostat />;
+                  }
+                  // A fenced ```isotopecrisis block becomes the lunar isotope-fingerprint
+                  // explorer (the Moon predicted off Earth like Mars, but measured on Earth).
+                  if (typeof cls === "string" && /language-isotopecrisis\b/.test(cls)) {
+                    return <IsotopeCrisis />;
+                  }
+                  // A fenced ```tidalrecession block becomes the Earth-Moon tidal-evolution
+                  // explorer (the bulge dragged ahead; the Moon recedes; the Devonian day).
+                  if (typeof cls === "string" && /language-tidalrecession\b/.test(cls)) {
+                    return <TidalRecession />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
