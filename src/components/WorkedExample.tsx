@@ -2991,6 +2991,60 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${Math.round(ratio)}× farther — the gravitational edge lies roughly ${f(ly)} light-years out, a substantial fraction of the way to the nearest star. This is why "where does the solar system end?" has two honest answers: the heliopause is a pressure balance between two thin plasmas and fails where the wind has spread thin, while the Oort Cloud's edge is gravitational competition with the galaxy — and gravity, falling only as 1/r² and never shielded, reaches vastly farther. Voyager 1 crossed the heliopause in 2012, so it has "left the solar system" — yet it is still ${Math.round(ratio)} times too close in to escape the Sun's gravity, and will spend tens of thousands of years crossing the Oort Cloud. The Sun's influence takes several forms, with very different ranges.`,
     };
   },
+
+  "spin-up": (rng) => {
+    // conservation of angular momentum during collapse: P ∝ r^2 (since ω ∝ 1/r^2)
+    const r0 = 63240; // AU, 1 light-year — the starting cloud radius
+    const P0 = 1e6; // yr, one turn per million years
+    const rFinal = sample(rng, [10000, 1000, 100], 1)[0]; // AU
+    const P = P0 * (rFinal / r0) ** 2; // yr
+    const pretty = P >= 1 ? `${Math.round(P).toLocaleString("en-US")} years` : `${Math.round(P * 8766)} hours`;
+    return {
+      title: "The cloud spins up as it shrinks",
+      question: `A pre-solar cloud one light-year in radius (63,240 AU) turns once every million years. Angular momentum is conserved, so its rotation rate rises as 1/r² and its period falls as r². What is its rotation period once it has collapsed to ${rFinal.toLocaleString("en-US")} AU?`,
+      steps: [
+        `P = P_0\\left(\\frac{r}{r_0}\\right)^2 = 10^6\\left(\\frac{${rFinal.toLocaleString("en-US")}}{63{,}240}\\right)^2\\,\\text{yr}`,
+        `P \\approx ${P >= 1 ? Math.round(P).toLocaleString("en-US") + "\\,\\text{years}" : Math.round(P * 8766) + "\\,\\text{hours}"}`,
+      ],
+      note: `About ${pretty}. An imperceptible turn — once per million years — becomes a furious spin as the cloud contracts, because conservation of angular momentum forces the rotation rate up as the inverse square of the radius (the figure-skater pulling in her arms, the very law behind Kepler's equal areas). This is exactly why collapse cannot simply proceed to a point: long before that, rotation in the equatorial plane grows strong enough to halt the inward fall, and the material settles into a spinning disk instead. The spin-up is the reason the solar system is flat.`,
+    };
+  },
+
+  "jeans-collapse": (rng) => {
+    // the Jeans mass scaling M_J ∝ T^{3/2} / ρ^{1/2}: does a change make collapse easier?
+    const tFactor = sample(rng, [2, 4], 1)[0]; // temperature multiplied by this
+    const rhoFactor = sample(rng, [4, 9, 100], 1)[0]; // density multiplied by this
+    const factor = Math.pow(tFactor, 1.5) / Math.pow(rhoFactor, 0.5);
+    const easier = factor < 1;
+    return {
+      title: "Cold and dense collapses easiest",
+      question: `The Jeans mass — the smallest mass that will collapse — scales as M_J ∝ T^{3/2}/ρ^{1/2}. A patch of cloud is compressed so its temperature rises ${tFactor}× while its density rises ${rhoFactor}×. By what factor does the Jeans mass change, and does collapse become easier or harder?`,
+      steps: [
+        `\\frac{M_J'}{M_J} = \\frac{(${tFactor}T)^{3/2}}{(${rhoFactor}\\rho)^{1/2}} \\Big/ \\frac{T^{3/2}}{\\rho^{1/2}} = \\frac{${tFactor}^{3/2}}{${rhoFactor}^{1/2}}`,
+        `= \\frac{${f(Math.pow(tFactor, 1.5))}}{${f(Math.pow(rhoFactor, 0.5))}} \\approx ${f(factor)}`,
+      ],
+      note: `The Jeans mass changes by a factor of about ${f(factor)}, so collapse becomes ${easier ? "EASIER — the critical mass drops, so a smaller clump can now collapse" : "HARDER — the critical mass rises, so it now takes a larger clump to collapse"}. This is the whole logic of where stars are born: the Jeans mass rises with temperature (hot gas has more pressure to resist gravity) and falls with density (dense gas has stronger self-gravity), so collapse is easiest in gas that is COLD and DENSE — which is exactly what a giant molecular cloud is, at 10–20 K. The warm, diffuse interstellar medium simply cannot collapse; the cold clouds are where star formation happens, and essentially nowhere else.`,
+    };
+  },
+
+  "halflife-decay": (rng) => {
+    // radioactive dating logic: Al-26 (half-life 717 kyr) as evidence of a nearby supernova
+    const isotopes: [string, number][] = [["aluminium-26", 0.717], ["iron-60", 2.6]]; // half-life in Myr
+    const [name, hl] = isotopes[sample(rng, [0, 1], 1)[0]];
+    const t = sample(rng, [3, 5, 10], 1)[0]; // Myr elapsed
+    const nHalf = t / hl;
+    const frac = Math.pow(0.5, nHalf);
+    const pct = frac * 100;
+    return {
+      title: "A radioactive clock from a dying star",
+      question: `${name.charAt(0).toUpperCase() + name.slice(1)} has a half-life of ${hl} million years. If a sample formed with a certain amount of it, what fraction remains after ${t} million years?`,
+      steps: [
+        `n = \\frac{t}{t_{1/2}} = \\frac{${t}}{${hl}} = ${f(nHalf)}\\text{ half-lives}`,
+        `\\text{fraction} = \\left(\\tfrac{1}{2}\\right)^{${f(nHalf)}} \\approx ${pct >= 1 ? f(pct) + "\\%" : sci(frac, 1)}`,
+      ],
+      note: `About ${pct >= 1 ? f(pct) + "%" : (frac).toExponential(1)} remains — ${pct < 5 ? "essentially none" : "only a small fraction"}. This short life is exactly what makes ${name} such powerful forensic evidence. Its decay products are found in meteorites, so it WAS present when the solar system formed — but with a half-life this short, it cannot have lingered from some ancient event; it must have been forged almost immediately before our formation, in a massive star that died nearby and seeded our collapsing cloud (perhaps with the very shockwave that triggered the collapse). We carry the chemical fingerprint of that dying star in rocks that fall from the sky — and its radioactive heat later melted the first planetesimals, driving them to form cores and mantles.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
