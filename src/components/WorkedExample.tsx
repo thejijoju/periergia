@@ -3215,6 +3215,65 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${Math.round(ratio).toLocaleString("en-US")} times over. That is the problem with Type I migration: taken at face value it is fast enough to sweep growing planetary embryos into the star many times before the disk disperses — predicting that inner planetary systems should be swept clean and terrestrial planets should not survive. Yet here we are. Proposed rescues include "planet traps" at pressure bumps where the torque reverses and migration stalls (note the link to the dust traps that also help past the metre-size barrier), thermal torques from the planet's own accretion heat, and the idea that embryos assemble mostly after the gas is gone. Like the metre-size barrier, it is a place where the standard picture, taken literally, destroys the very planets it is meant to build — another live problem in the field.`,
     };
   },
+
+  "surface-volume": (rng) => {
+    // A/V = 3/R: small worlds cool fast. Compare a small body's cooling rate to Earth's.
+    const bodies: [string, number][] = [["the Moon", 1737], ["Mercury", 2440], ["Mars", 3390], ["Ceres", 470]];
+    const [name, R] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const RE = 6371;
+    const ratio = RE / R; // cooling rate relative to Earth (∝ A/V ∝ 1/R)
+    return {
+      title: "Why small worlds die young",
+      question: `A planet generates heat throughout its volume (∝ R³) but loses it through its surface (∝ R²), so its cooling rate scales as the surface-to-volume ratio, A/V = 3/R. ${name.charAt(0).toUpperCase() + name.slice(1)} has a radius of ${R.toLocaleString("en-US")} km; Earth's is 6,371 km. How much faster does ${name} lose heat per unit volume than Earth?`,
+      steps: [
+        `\\frac{(A/V)_{\\text{${name.replace("the ", "")}}}}{(A/V)_\\oplus} = \\frac{3/${R}}{3/6371} = \\frac{6371}{${R}}`,
+        `\\approx ${f(ratio)}\\times`,
+      ],
+      note: `About ${f(ratio)}× faster. ${R <= 500 ? "By this measure Ceres should be thoroughly frozen and dead — that it may hold a briny subsurface ocean points to extra heat sources (early aluminium-26 decay, and salts and ammonia that keep water liquid far below 0 °C)." : `This is exactly why ${name} is ${R < 4000 ? "geologically dead or nearly so" : "less active than Earth"}: it shed its birth heat quickly, its interior cooled, and its geological engine wound down.`} Order the terrestrial worlds by size and you order them by geological life — the Moon and Mercury (smallest) are dead, Mars mostly dead, Venus and Earth (largest) still active. Size sets cooling rate; cooling rate sets how long a world stays alive; and geological life governs volcanism, atmospheres, magnetic fields, and ultimately habitability. Distance was the master variable of the origin story; size is the master variable of the terrestrial worlds.`,
+    };
+  },
+
+  "greenhouse-temp": (rng) => {
+    // equilibrium temperature from flux + albedo, and the greenhouse = actual - T_eq
+    const bodies: [string, number, number, number][] = [
+      ["Venus", 2604, 0.77, 737], ["Earth", 1361, 0.306, 288], ["Mars", 586, 0.25, 210], ["Mercury", 9088, 0.088, 440],
+    ];
+    const [name, F, A, actual] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const sigma = 5.67e-8;
+    const teq = (F * (1 - A) / (4 * sigma)) ** 0.25;
+    const gh = actual - teq;
+    return {
+      title: "How much warming the air adds",
+      question: `${name} receives a solar flux of ${F.toLocaleString("en-US")} W/m² and reflects ${Math.round(A * 100)}% of it (albedo ${A}). Its equilibrium temperature — what its surface would be with no atmosphere — is T_eq = [F(1−A)/4σ]^(1/4), with σ = 5.67×10⁻⁸. Compute T_eq, and given the actual surface temperature is ${actual} K, find the greenhouse contribution.`,
+      steps: [
+        `T_{\\text{eq}} = \\left[\\frac{${F}(1-${A})}{4(5.67\\times10^{-8})}\\right]^{1/4} \\approx ${Math.round(teq)}\\,\\text{K}`,
+        `\\text{greenhouse} = ${actual} - ${Math.round(teq)} \\approx ${Math.round(gh)}\\,\\text{K}`,
+      ],
+      note: `Equilibrium ${Math.round(teq)} K, greenhouse boost about ${Math.round(gh)} K. ${name === "Venus" ? "Here is the shock: Venus's equilibrium temperature, 227 K, is actually LOWER than Earth's 254 K — because its brilliant clouds reflect 77% of the sunlight reaching it. On absorbed energy alone Venus should be the cooler planet. Its 737 K surface is produced almost entirely by a 510-kelvin greenhouse effect. Venus is not hot because it is close to the Sun; it is hot because of its atmosphere." : name === "Earth" ? "Earth's modest +34 K is exactly what lifts our mean surface temperature from a frozen 254 K to a habitable 288 K — the greenhouse effect is a prerequisite for life, not a pathology. What went catastrophically wrong on Venus was only its magnitude." : name === "Mars" ? "Mars gets essentially nothing from its greenhouse: a CO₂ atmosphere less than a hundredth of Earth's pressure is still a thin atmosphere. A greenhouse gas can only warm a world if there is enough of it." : "Airless Mercury has essentially no greenhouse effect at all — its equilibrium and actual temperatures are nearly identical, as they must be for a body with no atmosphere to trap infrared."}`,
+    };
+  },
+
+  "atmospheric-retention": (rng) => {
+    // v_th = sqrt(3kT/m) vs v_esc; the criterion v_esc >~ 6 v_th (Titan the surprise)
+    const bodies: [string, number, number][] = [["Titan", 2.64, 94], ["Mars", 5.03, 210], ["the Moon", 2.38, 270], ["Mercury", 4.25, 440]];
+    const [name, vescKm, T] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const gas: [string, number] = sample(rng, [0, 1], 1)[0] === 0 ? ["nitrogen (N\u2082)", 28] : ["carbon dioxide (CO\u2082)", 44];
+    const [gname, mu] = gas;
+    const k = 1.381e-23, u = 1.6605e-27;
+    const vth = Math.sqrt(3 * k * T / (mu * u)); // m/s
+    const vescMs = vescKm * 1000;
+    const ratio = vescMs / vth;
+    const keeps = ratio >= 6;
+    return {
+      title: "Can a world hold onto its air?",
+      question: `${name.charAt(0).toUpperCase() + name.slice(1)} has an escape velocity of ${vescKm} km/s and a surface temperature of ${T} K. Using the thermal speed v_th = √(3kT/m) and the retention rule v_esc ≳ 6 v_th, will it keep ${gname} (molecular mass ${mu} u)? (k = 1.38×10⁻²³.)`,
+      steps: [
+        `v_{\\text{th}} = \\sqrt{\\frac{3(1.38\\times10^{-23})(${T})}{${mu}\\times1.66\\times10^{-27}}} \\approx ${Math.round(vth)}\\,\\text{m/s}`,
+        `\\frac{v_{\\text{esc}}}{v_{\\text{th}}} = \\frac{${vescMs.toLocaleString("en-US")}}{${Math.round(vth)}} \\approx ${f(ratio)}\\;${keeps ? "\\geq 6" : "< 6"}`,
+      ],
+      note: `The ratio is about ${f(ratio)}, so ${name} ${keeps ? "COMFORTABLY retains" : "cannot securely hold"} ${gname}. ${name === "Titan" ? "This is the beautiful case: Titan is SMALLER than Mercury, with a feebler escape velocity — yet it keeps a nitrogen atmosphere thicker than Earth's, while Mercury holds nothing. The reason is temperature. At 94 K, nitrogen molecules crawl so slowly that even Titan's weak gravity suffices. Temperature matters as much as gravity." : name === "Mars" ? "So thermal (Jeans) escape alone cannot explain why Mars's atmosphere is so thin — it should have kept CO₂ and N₂ comfortably. Something else removed it: the solar wind stripping an unshielded upper atmosphere after Mars lost its magnetic field." : "Small and warm is the worst combination for holding an atmosphere: weak gravity and fast-moving molecules together let the gas leak away over the age of the solar system."} A molecule need not average escape speed to be lost — the high-speed tail of the distribution is continually drained, which is why the safety margin of 6× is needed.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

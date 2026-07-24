@@ -99,6 +99,8 @@ import { DriftBarrier } from "./DriftBarrier";
 import { GravFocus } from "./GravFocus";
 import { Resonance } from "./Resonance";
 import { NiceModel } from "./NiceModel";
+import { CoolingSize } from "./CoolingSize";
+import { GreenhouseBars } from "./GreenhouseBars";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -979,6 +981,16 @@ export function Reader({
                   // giants' orbits evolving through the 2:1 instability to today).
                   if (typeof cls === "string" && /language-nicemodel\b/.test(cls)) {
                     return <NiceModel />;
+                  }
+                  // A fenced ```coolingsize block becomes the size-cooling-activity
+                  // explorer (A/V = 3/R: small worlds cool fast and die geologically).
+                  if (typeof cls === "string" && /language-coolingsize\b/.test(cls)) {
+                    return <CoolingSize />;
+                  }
+                  // A fenced ```greenhouse block becomes the greenhouse-effect explorer
+                  // (equilibrium vs actual temperature; the Venus paradox).
+                  if (typeof cls === "string" && /language-greenhouse\b/.test(cls)) {
+                    return <GreenhouseBars />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
