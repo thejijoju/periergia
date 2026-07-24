@@ -3045,6 +3045,56 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${pct >= 1 ? f(pct) + "%" : (frac).toExponential(1)} remains — ${pct < 5 ? "essentially none" : "only a small fraction"}. This short life is exactly what makes ${name} such powerful forensic evidence. Its decay products are found in meteorites, so it WAS present when the solar system formed — but with a half-life this short, it cannot have lingered from some ancient event; it must have been forged almost immediately before our formation, in a massive star that died nearby and seeded our collapsing cloud (perhaps with the very shockwave that triggered the collapse). We carry the chemical fingerprint of that dying star in rocks that fall from the sky — and its radioactive heat later melted the first planetesimals, driving them to form cores and mantles.`,
     };
   },
+
+  "condensation-line": (rng) => {
+    // each material's condensation temperature marks a distance: r = (280/T)^2 AU
+    const species: [string, number][] = [["water ice", 170], ["ammonia ice", 100], ["methane ice", 40], ["troilite (FeS)", 700]];
+    const [name, Tc] = species[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const r = (280 / Tc) ** 2;
+    return {
+      title: "Turning a freezing point into a distance",
+      question: `The disk's temperature falls with distance as T(r) ≈ 280 K × r^(−1/2), with r in AU. ${name.charAt(0).toUpperCase() + name.slice(1)} condenses into solid grains below about ${Tc} K. Beyond what distance from the Sun could it exist as a solid?`,
+      steps: [
+        `${Tc} = 280\\,r^{-1/2} \\;\\Rightarrow\\; r^{1/2} = \\frac{280}{${Tc}} = ${f(280 / Tc)}`,
+        `r = \\left(\\frac{280}{${Tc}}\\right)^2 \\approx ${f(r)}\\,\\text{AU}`,
+      ],
+      note: `Beyond about ${f(r)} AU. ${Tc === 170 ? "This is the snow line — squarely in the asteroid belt (2.1–3.3 AU), and essentially exactly where the observed transition from dry S-type to wet C-type asteroids sits. A two-line calculation, using nothing but the inverse-square law and the freezing point of water, predicts the most consequential boundary in the solar system — and objects still sitting there confirm it." : `This is why ${name.includes("ammonia") ? "Saturn and beyond could gather ammonia ices" : name.includes("methane") ? "only the most distant bodies — Kuiper Belt objects and comets — are rich in methane ice, and why Uranus and Neptune are 'ice giants'" : "sulphur compounds appear in meteorites from the inner disk"}.`} Because the disk's temperature fell with distance, every condensation temperature became a line in space: inside it the material is vapour, outside it is a solid grain. The condensation sequence in temperature became a sequence in place — and each planet inherited the composition of its zone.`,
+    };
+  },
+
+  "solid-jump": (rng) => {
+    // the solid density jump across the snow line, and why abundance is what makes it matter
+    const rock = sample(rng, [0.4], 1)[0]; // % of nebular mass in rock + metal
+    const water = sample(rng, [0.6], 1)[0]; // % in water
+    const factor = (rock + water) / rock;
+    return {
+      title: "The jump that built the giants",
+      question: `In the solar nebula, rock and metal made up about ${rock}% of the mass, and water about ${water}%. Inside the snow line only rock and metal could condense; outside, water ice condensed too. By what factor did the available SOLID material jump across the snow line?`,
+      steps: [
+        `\\text{inside} = ${rock}\\%, \\quad \\text{outside} = ${rock}\\% + ${water}\\% = ${f(rock + water)}\\%`,
+        `\\text{jump} = \\frac{${f(rock + water)}}{${rock}} \\approx ${f(factor)}\\times`,
+      ],
+      note: `A jump of about ${f(factor)}× (the literature quotes 2–4× for different assumed abundances). Crossing one line more than doubled the solid material available to build planets — and it matters ENTIRELY because of what water is. Hydrogen is the most abundant element in the universe and oxygen the third, so water is one of the most abundant compounds there is, outweighing all rock and metal combined. Had the substance freezing at 170 K been rare, crossing its line would have changed nothing. With two to three times more solids, outer cores could reach the critical ~10 Earth masses before the disk's gas dispersed, seize hydrogen envelopes, and become giants; inner bodies could not. Four rocky worlds inside, four giants outside — because water is abundant and freezes at 170 K.`,
+    };
+  },
+
+  "surface-density": (rng) => {
+    // the disk's surface density falls as r^-3/2: less material per unit area farther out
+    const sigma0 = 1700; // g/cm^2 at 1 AU
+    const bodies: [string, number][] = [["Jupiter", 5.204], ["Saturn", 9.583], ["Neptune", 30.07]];
+    const [name, a] = bodies[sample(rng, [0, 1, 2], 1)[0]];
+    const sigma = sigma0 * a ** -1.5;
+    const ratio = a ** 1.5;
+    return {
+      title: "Why the outer disk built slower",
+      question: `The disk's surface density (mass per unit area) fell with distance as Σ(r) = 1,700 g/cm² × r^(−3/2), with r in AU. What was the surface density at ${name}'s orbit (${a} AU), and how many times less is that than at Earth's orbit?`,
+      steps: [
+        `\\Sigma = 1700 \\times ${a}^{-3/2} = \\frac{1700}{${a}^{3/2}} \\approx ${f(sigma)}\\,\\text{g/cm}^2`,
+        `\\frac{\\Sigma_\\oplus}{\\Sigma_{\\text{${name}}}} = ${a}^{3/2} \\approx ${f(ratio)}\\times`,
+      ],
+      note: `About ${f(sigma)} g/cm² — roughly ${Math.round(ratio)}× less material per unit area than at Earth. The disk was strongly concentrated toward the centre, thinning steeply outward, and combined with the long orbital periods far from the Sun (Kepler's third law), that meant growth in the outer disk was slow. This is a big part of why Uranus and Neptune ended up far smaller than Jupiter and Saturn even though all four formed outside the snow line: less stuff to sweep up, and fewer orbits in which to sweep it, so they never quite won the race to runaway gas accretion before the disk dispersed.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
