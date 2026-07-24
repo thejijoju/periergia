@@ -3158,6 +3158,63 @@ const GENERATORS: Record<string, Generator> = {
       note: `About 40 orders of magnitude in mass — the span accretion must cross, within a few million years, before the disk's gas is gone. And the dominant physics changes completely along the way: at the smallest sizes gravity is utterly negligible and growth is pure contact stickiness (van der Waals forces); at the largest, gravity rules absolutely. Control must pass from one regime to the other, and it is in that handover — around one metre, too big for stickiness and too small for gravity — that the theory strains. The framework is confident at the beginning and the end and genuinely unsure about the step in the middle.`,
     };
   },
+
+  "resonance-orbit": (rng) => {
+    // Kepler + resonance: where must the outer planet orbit for a p:q period ratio?
+    const inner: [string, number][] = [["Jupiter", 11.86], ["Neptune", 164.8]];
+    const [name, Pin] = inner[sample(rng, [0, 1], 1)[0]];
+    const res: [string, number][] = [["2:1", 2], ["3:2", 1.5], ["5:2", 2.5]];
+    const [label, ratio] = res[sample(rng, [0, 1, 2], 1)[0]];
+    const Pout = Pin * ratio;
+    const aOut = Pout ** (2 / 3); // AU, from a in AU when P in years... but Neptune's P is in years too
+    return {
+      title: "Where a resonance sits",
+      question: `${name} has an orbital period of ${Pin} years. For another body to be in a ${label} mean-motion resonance with it (orbiting once for every ${label.split(":")[0]} of its ${label.split(":")[1]}... i.e. period ratio ${ratio}), what must that body's period and semi-major axis be? Use Kepler's third law, a = T^(2/3) (T in years, a in AU).`,
+      steps: [
+        `T = ${ratio}\\times ${Pin} = ${f(Pout)}\\,\\text{years}`,
+        `a = T^{2/3} = ${f(Pout)}^{2/3} \\approx ${f(aOut)}\\,\\text{AU}`,
+      ],
+      note: `The resonant body orbits at about ${f(aOut)} AU. Resonances sit at specific period ratios, and by Kepler's third law each ratio corresponds to a specific distance — so as a planet migrates and its period changes, it inevitably sweeps its resonance locations across whatever lies nearby. This is exactly the Nice model's trigger: Jupiter and Saturn drifted until their period ratio reached 2:1 (which would put Saturn near 8.3 AU, inside its present 9.58 AU), and there their tugs began to accumulate, pumping eccentricities and destabilizing the outer system. Migration guarantees resonance crossings, and resonance crossings can wreck a planetary system.`,
+    };
+  },
+
+  "period-ratio": (rng) => {
+    // identify how close a pair of planets is to a low-order resonance
+    const pairs: [string, string, number, number][] = [
+      ["Jupiter", "Saturn", 11.86, 29.46],
+      ["Neptune", "Pluto", 164.8, 247.9],
+      ["Io", "Europa", 1.769, 3.551],
+    ];
+    const [inner, outer, Pin, Pout] = pairs[sample(rng, [0, 1, 2], 1)[0]];
+    const ratio = Pout / Pin;
+    const nearest = inner === "Neptune" ? "3:2" : inner === "Io" ? "2:1" : "5:2";
+    return {
+      title: "Are these two in resonance?",
+      question: `${inner} orbits in ${Pin} years and ${outer} in ${Pout} years. Compute the ratio of their orbital periods and say which simple resonance it lies near.`,
+      steps: [
+        `\\frac{T_{\\text{${outer}}}}{T_{\\text{${inner}}}} = \\frac{${Pout}}{${Pin}} \\approx ${f(ratio)}`,
+        `\\approx ${nearest}\\;(${nearest === "3:2" ? "1.5" : nearest === "2:1" ? "2.0" : "2.5"})`,
+      ],
+      note: `The ratio is about ${f(ratio)}, close to ${nearest}. ${inner === "Neptune" ? "Pluto is locked in an exact 3:2 resonance with Neptune — completing two orbits for Neptune's three — which is precisely what keeps it safe: the resonance guarantees that whenever Pluto is near Neptune's distance, Neptune is far away on the other side. Pluto and the other 'plutinos' were captured into this resonance as Neptune migrated outward, a direct fingerprint of the Nice model." : inner === "Io" ? "Io, Europa, and Ganymede are locked in a 4:2:1 chain, which keeps their orbits slightly eccentric and so drives the tidal heating that powers Io's volcanoes and Europa's hidden ocean." : "Jupiter and Saturn sit just outside the 5:2 'great inequality' today — but the Nice model has them crossing the 2:1 resonance earlier, on their way out, which triggered the instability that rearranged the outer solar system."} Resonances are where weak gravitational tugs, repeated in phase, become structurally decisive.`,
+    };
+  },
+
+  "migration-speed": (rng) => {
+    // Type I migration is far faster than the disk lifetime — a genuine problem
+    const tau = sample(rng, [1e4, 5e4, 1e5], 1)[0]; // yr, Type I timescale
+    const diskMyr = sample(rng, [3, 5, 10], 1)[0];
+    const diskYr = diskMyr * 1e6;
+    const ratio = diskYr / tau;
+    return {
+      title: "Fast enough to lose the planet",
+      question: `An Earth-mass planet undergoing Type I migration spirals inward on a timescale of about ${tau.toLocaleString("en-US")} years. The gas disk survives about ${diskMyr} million years. How many times could the planet migrate inward within the disk's lifetime?`,
+      steps: [
+        `\\frac{t_{\\text{disk}}}{t_{\\text{migrate}}} = \\frac{${diskYr.toLocaleString("en-US")}}{${tau.toLocaleString("en-US")}}`,
+        `\\approx ${Math.round(ratio).toLocaleString("en-US")}\\times`,
+      ],
+      note: `About ${Math.round(ratio).toLocaleString("en-US")} times over. That is the problem with Type I migration: taken at face value it is fast enough to sweep growing planetary embryos into the star many times before the disk disperses — predicting that inner planetary systems should be swept clean and terrestrial planets should not survive. Yet here we are. Proposed rescues include "planet traps" at pressure bumps where the torque reverses and migration stalls (note the link to the dust traps that also help past the metre-size barrier), thermal torques from the planet's own accretion heat, and the idea that embryos assemble mostly after the gas is gone. Like the metre-size barrier, it is a place where the standard picture, taken literally, destroys the very planets it is meant to build — another live problem in the field.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
