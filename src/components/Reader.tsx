@@ -103,6 +103,8 @@ import { CoolingSize } from "./CoolingSize";
 import { GreenhouseBars } from "./GreenhouseBars";
 import { PlanetCores } from "./PlanetCores";
 import { SpinOrbit } from "./SpinOrbit";
+import { EnergyBudget } from "./EnergyBudget";
+import { Runaway } from "./Runaway";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -1003,6 +1005,16 @@ export function Reader({
                   // (Mercury's 176-day solar day and the retrograde Sun near perihelion).
                   if (typeof cls === "string" && /language-spinorbit\b/.test(cls)) {
                     return <SpinOrbit />;
+                  }
+                  // A fenced ```energybudget block becomes the sunlight-budget explorer
+                  // (Venus reflects 77%, so it absorbs less than Earth and is colder without air).
+                  if (typeof cls === "string" && /language-energybudget\b/.test(cls)) {
+                    return <EnergyBudget />;
+                  }
+                  // A fenced ```runaway block becomes the runaway-greenhouse step-through
+                  // (ocean → steam feedback → UV destruction of water → CO₂ to 92 bar).
+                  if (typeof cls === "string" && /language-runaway\b/.test(cls)) {
+                    return <Runaway />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {

@@ -3323,6 +3323,60 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${Math.round(residual)} arcseconds per century — tiny (a hundredth of a degree per century), but far too large to be error. Le Verrier, who had triumphantly predicted Neptune from Uranus's deviations, reasoned the same way here and proposed an unseen planet, Vulcan, inside Mercury's orbit. Vulcan does not exist. The residual was resolved only in 1915, by Einstein's General Relativity: spacetime curvature near the Sun adds exactly ${Math.round(residual)} arcseconds per century, with no free parameters — the first confirmation of the theory (Einstein said it gave him heart palpitations). The lesson is one of the deepest in science: the SAME kind of anomaly meant missing MATTER for Uranus (a hidden planet) but missing PHYSICS for Mercury (an incomplete theory) — and nothing in the anomaly itself tells you which. That very ambiguity is alive today in the dark-matter debate.`,
     };
   },
+
+  "energy-budget": (rng) => {
+    // absorbed flux and equilibrium temperature — the calculation that overturns Venus
+    const bodies: [string, number, number][] = [
+      ["Venus", 2604, 0.77], ["Earth", 1361, 0.306], ["Mars", 586, 0.25],
+    ];
+    const [name, F, A] = bodies[sample(rng, [0, 1, 2], 1)[0]];
+    const absorbed = F * (1 - A);
+    const Teq = Math.pow(absorbed / (4 * 5.67e-8), 0.25);
+    return {
+      title: "How much sunlight a planet keeps",
+      question: `${name} receives ${F.toLocaleString("en-US")} W/m² of incident sunlight and reflects a fraction A = ${A} of it (its albedo). How much does it ABSORB per square metre, and — with no atmosphere — what would its equilibrium temperature be? Use T_eq = [F(1−A) / (4σ)]^(1/4) with σ = 5.67×10⁻⁸.`,
+      steps: [
+        `F(1-A) = ${F}\\times(1-${A}) \\approx ${Math.round(absorbed)}\\,\\text{W/m}^2`,
+        `T_{\\text{eq}} = \\left[\\frac{${Math.round(absorbed)}}{4\\,(5.67\\times10^{-8})}\\right]^{1/4} \\approx ${Math.round(Teq)}\\,\\text{K}`,
+      ],
+      note: `${name} absorbs about ${Math.round(absorbed)} W/m², giving an equilibrium temperature near ${Math.round(Teq)} K. ${name === "Venus" ? "This is the result that overturns the intuitive picture: despite receiving 1.91× Earth's incident flux, Venus's brilliant sulphuric-acid cloud reflects 77% of it, so it absorbs only 599 W/m² against Earth's 945 — LESS than Earth — and its equilibrium temperature (227 K) is 27 K COLDER than Earth's 254 K. Yet its surface is 737 K. Every one of those +510 K comes from the atmosphere, not from proximity to the Sun." : name === "Earth" ? "Earth absorbs more than Venus does (945 vs 599 W/m²) because its albedo is far lower (0.31 vs Venus's 0.77). Its 254 K equilibrium value is below the freezing point of water everywhere — the +34 K greenhouse effect is exactly what lifts us to a habitable 288 K. The greenhouse effect is a prerequisite for life; what ruined Venus was its magnitude." : "Equilibrium temperature is what the surface would be with NO atmosphere — set by absorbed sunlight alone. Any gap between it and the true surface temperature is the greenhouse effect. Note how absorbed flux, not incident flux, is what matters: a bright, reflective world keeps little of the light that reaches it."}`,
+    };
+  },
+
+  "atmospheric-column": (rng) => {
+    // mass of atmosphere over each square metre: column mass = P/g
+    const bodies: [string, number, number][] = [
+      ["Venus", 92, 8.87], ["Earth", 1.013, 9.81], ["Mars", 0.006, 3.71],
+    ];
+    const [name, Pbar, g] = bodies[sample(rng, [0, 1, 2], 1)[0]];
+    const P = Pbar * 1e5; // Pa
+    const col = P / g;
+    return {
+      title: "The weight of the sky",
+      question: `On ${name}, surface pressure is ${Pbar} bar and surface gravity is ${g} m/s². Pressure is just the weight of the gas overhead, so the mass of atmosphere above each square metre is column = P/g. Compute it.`,
+      steps: [
+        `P = ${Pbar}\\,\\text{bar} = ${sci(P, 2)}\\,\\text{Pa}`,
+        `\\frac{P}{g} = \\frac{${sci(P, 2)}}{${g}} \\approx ${sci(col, 2)}\\,\\text{kg/m}^2`,
+      ],
+      note: `About ${sci(col, 2)} kg over every square metre. ${name === "Venus" ? "That is roughly 100 times Earth's column of ~1.0×10⁴ kg/m² — Venus's atmosphere is about ninety times more massive than Earth's in total. At 92 bar, standing on the surface is mechanically like being 900 m deep in Earth's ocean, which is why the Venera landers were built like submersibles. And nearly all of it is CO₂ that a lost carbon–silicate cycle could never bury." : name === "Earth" ? "This is the column the whole of Earth's weather lives in. Venus carries about 100 times as much over each square metre, and Mars only a few hundredths — the same P/g arithmetic spans a factor of ten thousand across the terrestrial planets, and that single number governs whether a surface has weather, liquids, or a temperature that swings 600 K between day and night." : "Mars's air is so thin — a few hundredths of Earth's column — that liquid water boils away and heat escapes almost freely, giving large day–night swings. The same formula on Venus returns a value ten thousand times larger. Column mass, set by P/g, is the master number behind a planet's thermal and chemical life."}`,
+    };
+  },
+
+  "venus-solar-day": (rng) => {
+    // retrograde beat frequency: because spin is backwards, the periods ADD
+    const Prot = sample(rng, [243.02, 240, 250, 236], 1)[0];
+    const Porb = 224.70; // days
+    const Psolar = 1 / (1 / Prot + 1 / Porb);
+    return {
+      title: "A day longer than a year",
+      question: `Venus rotates RETROGRADE (backwards) with a period of ${Prot} days and orbits the Sun every ${Porb} days. Because the spin runs opposite to the orbit, the solar day — sunrise to sunrise — comes from the SUM of the rates: 1/P_solar = 1/P_rot + 1/P_orb. How long is a solar day on Venus?`,
+      steps: [
+        `\\frac{1}{P_{\\text{solar}}} = \\frac{1}{${Prot}} + \\frac{1}{${Porb}} \\approx ${sci(1 / Prot + 1 / Porb, 3)}`,
+        `P_{\\text{solar}} \\approx ${f(Psolar)}\\,\\text{days}`,
+      ],
+      note: `About ${Math.round(Psolar)} Earth-days from one sunrise to the next. Two oddities collide here. First, the periods ADD rather than subtract (as they would for normal prograde spin) precisely because Venus turns backwards — spin and orbit reinforce each other in bringing the Sun back, so the solar day is far SHORTER than the ${Prot}-day rotation. Second, that rotation period is itself longer than the ${Porb}-day year: on Venus the day is longer than the year, and the Sun rises in the west. Stranger still, while the solid planet takes ${Prot} days to turn, the cloud-tops circle the planet in about four days — a super-rotation sixty times faster than the ground, still not fully explained.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
