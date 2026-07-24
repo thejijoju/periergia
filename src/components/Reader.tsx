@@ -91,6 +91,8 @@ import { LightTime } from "./LightTime";
 import { SnowLine } from "./SnowLine";
 import { FluxGradient } from "./FluxGradient";
 import { SolarBoundaries } from "./SolarBoundaries";
+import { DiskCollapse } from "./DiskCollapse";
+import { AngularBudget } from "./AngularBudget";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -931,6 +933,16 @@ export function Reader({
                   // system end?" explorer (heliopause vs the Oort Cloud, the 833x gap).
                   if (typeof cls === "string" && /language-solarboundaries\b/.test(cls)) {
                     return <SolarBoundaries />;
+                  }
+                  // A fenced ```diskcollapse block becomes the collapse-to-disk explorer
+                  // (a rotating cloud flattening into a disk, with the spin-up readout).
+                  if (typeof cls === "string" && /language-diskcollapse\b/.test(cls)) {
+                    return <DiskCollapse />;
+                  }
+                  // A fenced ```angularbudget block becomes the mass-vs-angular-momentum
+                  // inversion explorer (the Sun's 99.87% mass but 0.61% angular momentum).
+                  if (typeof cls === "string" && /language-angularbudget\b/.test(cls)) {
+                    return <AngularBudget />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
