@@ -95,6 +95,8 @@ import { DiskCollapse } from "./DiskCollapse";
 import { AngularBudget } from "./AngularBudget";
 import { CondensationLadder } from "./CondensationLadder";
 import { DensityDivide } from "./DensityDivide";
+import { DriftBarrier } from "./DriftBarrier";
+import { GravFocus } from "./GravFocus";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -955,6 +957,16 @@ export function Reader({
                   // (planet/moon density vs distance, the snow line's clean division).
                   if (typeof cls === "string" && /language-densitydivide\b/.test(cls)) {
                     return <DensityDivide />;
+                  }
+                  // A fenced ```driftbarrier block becomes the metre-size-barrier explorer
+                  // (radial-drift infall time vs body size, with its catastrophic minimum).
+                  if (typeof cls === "string" && /language-driftbarrier\b/.test(cls)) {
+                    return <DriftBarrier />;
+                  }
+                  // A fenced ```gravfocus block becomes the gravitational-focusing explorer
+                  // (effective capture reach vs body size, and runaway growth).
+                  if (typeof cls === "string" && /language-gravfocus\b/.test(cls)) {
+                    return <GravFocus />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
