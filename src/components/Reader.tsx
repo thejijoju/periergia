@@ -109,6 +109,8 @@ import { FaintYoungSun } from "./FaintYoungSun";
 import { Thermostat } from "./Thermostat";
 import { IsotopeCrisis } from "./IsotopeCrisis";
 import { TidalRecession } from "./TidalRecession";
+import { CausalChain } from "./CausalChain";
+import { TriplePoint } from "./TriplePoint";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -1039,6 +1041,16 @@ export function Reader({
                   // explorer (the bulge dragged ahead; the Moon recedes; the Devonian day).
                   if (typeof cls === "string" && /language-tidalrecession\b/.test(cls)) {
                     return <TidalRecession />;
+                  }
+                  // A fenced ```causalchain block becomes the size-to-death chain explorer
+                  // (Mars's eight links from small radius to frozen desert, evidence at each).
+                  if (typeof cls === "string" && /language-causalchain\b/.test(cls)) {
+                    return <CausalChain />;
+                  }
+                  // A fenced ```triplepoint block becomes the water phase-diagram explorer
+                  // (below 6.11 mbar liquid water is impossible; Mars sits at the threshold).
+                  if (typeof cls === "string" && /language-triplepoint\b/.test(cls)) {
+                    return <TriplePoint />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
