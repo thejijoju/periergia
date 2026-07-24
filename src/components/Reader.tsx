@@ -97,6 +97,8 @@ import { CondensationLadder } from "./CondensationLadder";
 import { DensityDivide } from "./DensityDivide";
 import { DriftBarrier } from "./DriftBarrier";
 import { GravFocus } from "./GravFocus";
+import { Resonance } from "./Resonance";
+import { NiceModel } from "./NiceModel";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -967,6 +969,16 @@ export function Reader({
                   // (effective capture reach vs body size, and runaway growth).
                   if (typeof cls === "string" && /language-gravfocus\b/.test(cls)) {
                     return <GravFocus />;
+                  }
+                  // A fenced ```resonance block becomes the mean-motion-resonance explorer
+                  // (why conjunctions at a simple period ratio make tugs accumulate).
+                  if (typeof cls === "string" && /language-resonance\b/.test(cls)) {
+                    return <Resonance />;
+                  }
+                  // A fenced ```nicemodel block becomes the Nice-model explorer (the
+                  // giants' orbits evolving through the 2:1 instability to today).
+                  if (typeof cls === "string" && /language-nicemodel\b/.test(cls)) {
+                    return <NiceModel />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
