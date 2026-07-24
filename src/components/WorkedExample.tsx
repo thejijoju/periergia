@@ -3377,6 +3377,65 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${Math.round(Psolar)} Earth-days from one sunrise to the next. Two oddities collide here. First, the periods ADD rather than subtract (as they would for normal prograde spin) precisely because Venus turns backwards — spin and orbit reinforce each other in bringing the Sun back, so the solar day is far SHORTER than the ${Prot}-day rotation. Second, that rotation period is itself longer than the ${Porb}-day year: on Venus the day is longer than the year, and the Sun rises in the west. Stranger still, while the solid planet takes ${Prot} days to turn, the cloud-tops circle the planet in about four days — a super-rotation sixty times faster than the ground, still not fully explained.`,
     };
   },
+
+  "faint-young-sun": (rng) => {
+    // equilibrium temperature under a fainter early Sun — the paradox and the thermostat
+    const epochs: [string, number][] = [
+      ["4.5 billion years ago", 0.70], ["4.0 billion years ago", 0.75], ["2.0 billion years ago", 0.85],
+    ];
+    const [when, frac] = epochs[sample(rng, [0, 1, 2], 1)[0]];
+    const F = frac * 1361;
+    const Teq = Math.pow(F * (1 - 0.306) / (4 * 5.67e-8), 0.25);
+    const naive = Teq + 34; // surface if the greenhouse stayed at today's +34 K
+    return {
+      title: "The Sun that was too faint",
+      question: `${when.charAt(0).toUpperCase() + when.slice(1)}, the Sun shone at only ${Math.round(frac * 100)}% of its present luminosity, so the flux at Earth was ${Math.round(F)} W/m². Compute Earth's equilibrium temperature (A = 0.306), then add today's +34 K greenhouse. Would the surface be above or below freezing (273 K)?`,
+      steps: [
+        `F = ${frac}\\times1361 \\approx ${Math.round(F)}\\,\\text{W/m}^2`,
+        `T_{\\text{eq}} = \\left[\\frac{${Math.round(F)}\\,(1-0.306)}{4\\,(5.67\\times10^{-8})}\\right]^{1/4} \\approx ${Math.round(Teq)}\\,\\text{K}`,
+        `T_{\\text{surface}} \\approx ${Math.round(Teq)} + 34 = ${Math.round(naive)}\\,\\text{K}`,
+      ],
+      note: `With today's greenhouse the surface comes out at ${Math.round(naive)} K — ${naive < 273 ? "BELOW freezing, so Earth should have been an iceball" : "just around freezing"}. Yet zircons show liquid water 4.4 billion years ago. That is the faint young Sun paradox, and the resolution is the carbon–silicate THERMOSTAT: a fainter Sun means a cooler planet means slower rock weathering means volcanic CO₂ builds up — so the early greenhouse was automatically far stronger than +34 K (closer to +56 K), and it has faded to today's value exactly as the Sun brightened. The strong early greenhouse is not a lucky coincidence but the output of a negative feedback, and it is the mirror image of the runaway that destroyed Venus.`,
+    };
+  },
+
+  "plate-recycling": (rng) => {
+    // how far a plate travels, and how young the ocean floor is compared with the planet
+    const rate = sample(rng, [2, 4, 5, 8, 10], 1)[0]; // cm/yr
+    const myr = sample(rng, [50, 100, 150, 200], 1)[0]; // Myr
+    const km = rate * 10 * myr; // cm/yr over Myr → km
+    const floorAge = 200, earthAge = 4540;
+    const pct = (floorAge / earthAge) * 100;
+    return {
+      title: "A conveyor belt of rock",
+      question: `Earth's plates creep at a few centimetres a year — about the rate fingernails grow. At ${rate} cm/yr, how far does a plate travel in ${myr.toLocaleString("en-US")} million years? And given that the oldest ocean floor is only ~200 Myr old while Earth is 4,540 Myr old, what fraction of Earth's age is that?`,
+      steps: [
+        `d = ${rate}\\,\\tfrac{\\text{cm}}{\\text{yr}} \\times ${sci(myr * 1e6, 1)}\\,\\text{yr} = ${sci(km * 1e3, 2)}\\,\\text{m} \\approx ${km.toLocaleString("en-US")}\\,\\text{km}`,
+        `\\frac{200}{4540} \\approx ${f(pct)}\\%`,
+      ],
+      note: `A plate moving at ${rate} cm/yr covers about ${km.toLocaleString("en-US")} km in ${myr} Myr — glacial by the clock, but continents cross oceans on geological time. The second number is the striking one: the entire ocean floor, 71% of Earth's surface, is created at mid-ocean ridges and destroyed at subduction zones so quickly that none of it survives beyond ~200 Myr — only about ${Math.round(pct)}% of the planet's age. Continents endure for billions of years only because continental crust (granitic, ~2,700 kg/m³) is too buoyant to subduct, while denser oceanic basalt (~3,000 kg/m³) sinks readily. Plate tectonics, which Earth alone possesses, is the engine behind both the carbon thermostat and the recycling of the crust — and the leading reason Earth has it and Venus does not is liquid water, which weakens silicate rock enough to let the lid break.`,
+    };
+  },
+
+  "water-dh": (rng) => {
+    // D/H fingerprinting of Earth's water source: asteroids match, comets run high
+    const sources: [string, number][] = [
+      ["carbonaceous chondrites (asteroid water)", 1.4], ["comet 103P/Hartley 2", 1.6],
+      ["comet Halley", 3.2], ["comet 67P (measured by Rosetta)", 5.3], ["raw solar-nebula gas", 0.21],
+    ];
+    const [name, dh] = sources[sample(rng, [0, 1, 2, 3, 4], 1)[0]];
+    const earth = 1.56; // ×10^-4
+    const ratio = dh / earth;
+    const verdict = ratio > 1.5 ? "far too deuterium-rich to be the main source" : ratio < 0.5 ? "far too deuterium-poor to be the source" : "a close match to Earth's water";
+    return {
+      title: "Fingerprinting the oceans",
+      question: `Earth's ocean water has a deuterium-to-hydrogen ratio of 1.56×10⁻⁴. ${name.charAt(0).toUpperCase() + name.slice(1)} has D/H ≈ ${dh}×10⁻⁴. Compute the ratio to Earth's value — is this a plausible source of Earth's water?`,
+      steps: [
+        `\\frac{${dh}\\times10^{-4}}{1.56\\times10^{-4}} = \\frac{${dh}}{1.56} \\approx ${f(ratio)}`,
+      ],
+      note: `At ${f(ratio)}× Earth's value, ${name.split(" (")[0]} is ${verdict}. Because water that forms in colder places locks in more deuterium, the D/H ratio is a fingerprint of where a reservoir formed — the same tool that convicted Venus of losing an ocean (L9). Matched against Earth's oceans, carbonaceous chondrites (asteroid water, ~0.9×) fit closely, while most comets run two to three times too high — Rosetta's 2014 measurement of comet 67P at ~3.4× was a real blow to the idea that comets brought our water. The consensus now favours water-bearing asteroids, though comet Hartley 2 did match and few objects have been measured. Whatever the carrier, it had to be moved inward from beyond the snow line — which is exactly what the giant-planet migration of L6 accomplishes. The lecture on Jupiter's wanderings was partly a lecture about the water in your glass.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
