@@ -105,6 +105,8 @@ import { PlanetCores } from "./PlanetCores";
 import { SpinOrbit } from "./SpinOrbit";
 import { EnergyBudget } from "./EnergyBudget";
 import { Runaway } from "./Runaway";
+import { FaintYoungSun } from "./FaintYoungSun";
+import { Thermostat } from "./Thermostat";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -1015,6 +1017,16 @@ export function Reader({
                   // (ocean → steam feedback → UV destruction of water → CO₂ to 92 bar).
                   if (typeof cls === "string" && /language-runaway\b/.test(cls)) {
                     return <Runaway />;
+                  }
+                  // A fenced ```faintyoungsun block becomes the faint-young-Sun paradox
+                  // explorer (T_eq rises as the Sun brightens; the thermostat holds ~288 K).
+                  if (typeof cls === "string" && /language-faintyoungsun\b/.test(cls)) {
+                    return <FaintYoungSun />;
+                  }
+                  // A fenced ```thermostat block becomes the carbon-silicate feedback explorer
+                  // (nudge Earth off 288 K and weathering restores it; Venus runs away).
+                  if (typeof cls === "string" && /language-thermostat\b/.test(cls)) {
+                    return <Thermostat />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
