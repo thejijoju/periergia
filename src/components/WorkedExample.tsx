@@ -3095,6 +3095,69 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${f(sigma)} g/cm² — roughly ${Math.round(ratio)}× less material per unit area than at Earth. The disk was strongly concentrated toward the centre, thinning steeply outward, and combined with the long orbital periods far from the Sun (Kepler's third law), that meant growth in the outer disk was slow. This is a big part of why Uranus and Neptune ended up far smaller than Jupiter and Saturn even though all four formed outside the snow line: less stuff to sweep up, and fewer orbits in which to sweep it, so they never quite won the race to runaway gas accretion before the disk dispersed.`,
     };
   },
+
+  "radial-drift": (rng) => {
+    // the metre-size barrier: infall time vs the disk lifetime
+    const drift = sample(rng, [200, 500, 1000], 1)[0]; // yr, a metre boulder's infall time
+    const diskMyr = sample(rng, [3, 5, 10], 1)[0]; // Myr
+    const diskYr = diskMyr * 1e6;
+    const ratio = diskYr / drift;
+    return {
+      title: "Lost to the Sun before it can grow",
+      question: `Because the disk's gas orbits slightly slower than a solid body, a metre-sized boulder feels a constant headwind and spirals into the Sun in about ${drift} years. The disk itself survives about ${diskMyr} million years. How many times faster is the boulder lost than the disk lasts?`,
+      steps: [
+        `\\text{ratio} = \\frac{t_{\\text{disk}}}{t_{\\text{drift}}} = \\frac{${diskYr.toLocaleString("en-US")}}{${drift}}`,
+        `\\approx ${Math.round(ratio).toLocaleString("en-US")}\\times`,
+      ],
+      note: `About ${Math.round(ratio).toLocaleString("en-US")}× faster. This is the metre-size barrier, and it is severe precisely because it strikes at the worst possible size: grains smaller than this ride along with the gas and feel little wind, while bodies much larger have too much inertia for drag to matter — but a metre-sized boulder is large enough to feel the full headwind and small enough for drag to rule its motion. It is swept into the Sun thousands of times faster than it could ever grow through the size range, and at the same time it collides too fast to stick. Taken at face value the physics says planetesimals cannot form. The leading escape is the streaming instability, which lets drifting pebbles pile up and collapse straight into 100-km bodies, never passing through the deadly metre scale at all.`,
+    };
+  },
+
+  "grav-focus": (rng) => {
+    // gravitational focusing factor F = 1 + (v_esc/v_rel)^2 — the engine of runaway growth
+    const rKm = sample(rng, [100, 500, 1000], 1)[0];
+    const vrel = sample(rng, [10, 50, 100], 1)[0];
+    const vesc = 1.2953e-3 * rKm * 1000; // m/s, density 3000
+    const F = 1 + (vesc / vrel) ** 2;
+    return {
+      title: "How gravity lets a body reach beyond itself",
+      question: `A rocky body of radius ${rKm} km (density 3,000 kg/m³) has an escape velocity of about ${Math.round(vesc)} m/s. In a swarm whose members move at v = ${vrel} m/s relative to it, the gravitational focusing factor is F = 1 + (v_esc/v)². By what factor does its gravity enlarge its effective collision cross-section?`,
+      steps: [
+        `F = 1 + \\left(\\frac{v_{\\text{esc}}}{v}\\right)^2 = 1 + \\left(\\frac{${Math.round(vesc)}}{${vrel}}\\right)^2`,
+        `F \\approx ${F >= 100 ? Math.round(F).toLocaleString("en-US") : f(F)}\\times`,
+      ],
+      note: `About ${F >= 100 ? Math.round(F).toLocaleString("en-US") : f(F)}×. A body with real gravity does not merely hit what it runs into — it bends the paths of objects passing nearby and pulls in ones that would have missed, so its effective capture area is F times its geometric one. ${F >= 50 ? "Reaching out to dozens or thousands of times its own cross-section, such a body gathers material voraciously." : "At small size or in a fast-moving swarm the effect is modest."} The decisive point is that F grows with mass, so the biggest body in a region accretes fastest and pulls further ahead — a positive feedback called runaway growth that builds Moon-to-Mars-sized embryos in as little as ten to a hundred thousand years. It is also why a dynamically COLD swarm (small v) matters: lower relative speeds mean far stronger focusing.`,
+    };
+  },
+
+  "accretion-scale": (rng) => {
+    // the sheer span accretion must cross, in orders of magnitude
+    const which = sample(rng, [0, 1], 1)[0];
+    if (which === 0) {
+      const grain = 1e-6, earthR = 6.371e6; // m
+      const ratio = earthR / grain;
+      return {
+        title: "From a dust grain to a planet, in size",
+        question: `A dust grain in the disk is about 1 micron (10⁻⁶ m) across; the Earth's radius is 6.371 × 10⁶ m. By how many orders of magnitude in size must accretion carry material to build a planet from a grain?`,
+        steps: [
+          `\\frac{R_\\oplus}{R_{\\text{grain}}} = \\frac{6.371\\times10^{6}}{10^{-6}} \\approx ${sci(ratio, 1)}`,
+          `\\log_{10} \\approx ${f(Math.log10(ratio))}\\text{ orders of magnitude}`,
+        ],
+        note: `Almost 13 orders of magnitude in size — and about 40 in mass, since mass grows as the cube of size. Accretion must carry material across that entire span, and do it before the disk's gas disperses in a few million years. The story is secure at both ends and unresolved in the middle: micron grains stick readily by contact forces, and kilometre-plus bodies grow securely by gravity — but between the pebble and the kilometre lies the metre-size barrier, where bodies bounce apart and drift into the Sun. That a single mechanism must span forty orders of magnitude in mass is what makes planet formation such a demanding problem.`,
+      };
+    }
+    const grainM = 1.6e-15, earthM = 5.97e24; // kg
+    const ratio = earthM / grainM;
+    return {
+      title: "From a dust grain to a planet, in mass",
+      question: `A one-micron silicate grain has a mass of about 1.6 × 10⁻¹⁵ kg; the Earth is 5.97 × 10²⁴ kg. By how many orders of magnitude in mass must accretion grow a grain to build the Earth?`,
+      steps: [
+        `\\frac{M_\\oplus}{M_{\\text{grain}}} = \\frac{5.97\\times10^{24}}{1.6\\times10^{-15}} \\approx ${sci(ratio, 1)}`,
+        `\\log_{10} \\approx ${f(Math.log10(ratio))}\\text{ orders of magnitude}`,
+      ],
+      note: `About 40 orders of magnitude in mass — the span accretion must cross, within a few million years, before the disk's gas is gone. And the dominant physics changes completely along the way: at the smallest sizes gravity is utterly negligible and growth is pure contact stickiness (van der Waals forces); at the largest, gravity rules absolutely. Control must pass from one regime to the other, and it is in that handover — around one metre, too big for stickiness and too small for gravity — that the theory strains. The framework is confident at the beginning and the end and genuinely unsure about the step in the middle.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
