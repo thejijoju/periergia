@@ -1421,7 +1421,7 @@ on conflict (id) do update set
 insert into nodes (id, subject_id, parent_id, title, slug, summary, position, depth) values
   ('astronomy-and-space/foundations/observed-sky', 'astronomy-and-space', 'astronomy-and-space/foundations', 'The Observed Sky', 'observed-sky', '', 0, 1),
   ('astronomy-and-space/foundations/great-revolution', 'astronomy-and-space', 'astronomy-and-space/foundations', 'The Great Revolution', 'great-revolution', '', 1, 1),
-  ('astronomy-and-space/solar-system/the-scale-of-the-solar-system', 'astronomy-and-space', 'astronomy-and-space/solar-system', 'The Scale of the Solar System', 'the-scale-of-the-solar-system', '', 0, 1),
+  ('astronomy-and-space/solar-system/the-scale-of-the-solar-system', 'astronomy-and-space', 'astronomy-and-space/solar-system', 'The Scale of the Solar System', 'the-scale-of-the-solar-system', 'Distance is destiny. How humanity finally measured the astronomical unit — from Le Gentil''s ruined decade chasing the transit of Venus to a radar echo in 1961 — the intuitions of light-travel time and an almost-empty solar system, and the snow line at 2.7 AU that split it into rocky worlds and giants.', 0, 1),
   ('astronomy-and-space/solar-system/origins', 'astronomy-and-space', 'astronomy-and-space/solar-system', 'Origins', 'origins', '', 1, 1),
   ('astronomy-and-space/solar-system/terrestrial-worlds', 'astronomy-and-space', 'astronomy-and-space/solar-system', 'Terrestrial Worlds', 'terrestrial-worlds', '', 2, 1),
   ('astronomy-and-space/solar-system/giant-planets', 'astronomy-and-space', 'astronomy-and-space/solar-system', 'Giant Planets', 'giant-planets', '', 3, 1),
