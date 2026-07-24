@@ -3274,6 +3274,55 @@ const GENERATORS: Record<string, Generator> = {
       note: `The ratio is about ${f(ratio)}, so ${name} ${keeps ? "COMFORTABLY retains" : "cannot securely hold"} ${gname}. ${name === "Titan" ? "This is the beautiful case: Titan is SMALLER than Mercury, with a feebler escape velocity — yet it keeps a nitrogen atmosphere thicker than Earth's, while Mercury holds nothing. The reason is temperature. At 94 K, nitrogen molecules crawl so slowly that even Titan's weak gravity suffices. Temperature matters as much as gravity." : name === "Mars" ? "So thermal (Jeans) escape alone cannot explain why Mars's atmosphere is so thin — it should have kept CO₂ and N₂ comfortably. Something else removed it: the solar wind stripping an unshielded upper atmosphere after Mars lost its magnetic field." : "Small and warm is the worst combination for holding an atmosphere: weak gravity and fast-moving molecules together let the gas leak away over the age of the solar system."} A molecule need not average escape speed to be lost — the high-speed tail of the distribution is continually drained, which is why the safety margin of 6× is needed.`,
     };
   },
+
+  "mean-density": (rng) => {
+    // mean density from mass and radius, and why Mercury's near-Earth value is deceptive
+    const bodies: [string, number, number, number][] = [
+      ["Mercury", 3.301e23, 2440e3, 5427], ["the Moon", 7.342e22, 1737e3, 3344], ["Mars", 6.417e23, 3390e3, 3934],
+    ];
+    const [name, M, R, known] = bodies[sample(rng, [0, 1, 2], 1)[0]];
+    const V = (4 / 3) * Math.PI * R ** 3;
+    const rho = M / V;
+    return {
+      title: "Weighing a planet's ingredients",
+      question: `${name.charAt(0).toUpperCase() + name.slice(1)} has a mass of ${sci(M, 3)} kg and a radius of ${(R / 1000).toLocaleString("en-US")} km. Compute its mean density (mass ÷ volume, with V = 4/3 πR³).`,
+      steps: [
+        `V = \\tfrac{4}{3}\\pi R^3 = \\tfrac{4}{3}\\pi(${sci(R, 2)})^3 = ${sci(V, 2)}\\,\\text{m}^3`,
+        `\\rho = \\frac{M}{V} = \\frac{${sci(M, 3)}}{${sci(V, 2)}} \\approx ${Math.round(rho).toLocaleString("en-US")}\\,\\text{kg/m}^3`,
+      ],
+      note: `About ${Math.round(rho).toLocaleString("en-US")} kg/m³. ${name === "Mercury" ? "This is nearly identical to Earth's 5,514 kg/m³ — which looks unremarkable but is astonishing, because of SELF-COMPRESSION. Earth is 18 times more massive, so its interior is squeezed to a far higher density than its material would have at rest; Mercury, being small, is barely compressed. Correct both for compression and Mercury's UNCOMPRESSED density (~5,300) towers ~30% above Earth's (~4,050) — the highest in the solar system. Mercury is an iron ball with a thin rocky shell: its core fills 83% of its radius." : "Mean density is the first window into a world's interior — a body far denser than surface rock must hide a dense metal core, while a low density betrays ice or rock with little metal. But for a fair comparison of COMPOSITION you must correct for self-compression, which inflates the density of massive planets like Earth far more than small bodies like this one."}`,
+    };
+  },
+
+  "spin-orbit-day": (rng) => {
+    // Mercury's solar day from the spin-orbit beat: 1/P_solar = 1/P_rot - 1/P_orb
+    const Prot = 58.65, Porb = 87.97; // days
+    const Psolar = 1 / (1 / Prot - 1 / Porb);
+    const inYears = Psolar / Porb;
+    return {
+      title: "The day that lasts two years",
+      question: `Mercury rotates once every ${Prot} days and orbits the Sun every ${Porb} days (a 3:2 resonance). Its SOLAR day — noon to noon — comes from the beat between the two: 1/P_solar = 1/P_rot − 1/P_orb. How long is a solar day on Mercury, and how many Mercury years is that?`,
+      steps: [
+        `\\frac{1}{P_{\\text{solar}}} = \\frac{1}{${Prot}} - \\frac{1}{${Porb}}`,
+        `P_{\\text{solar}} \\approx ${f(Psolar)}\\,\\text{days} = \\frac{${f(Psolar)}}{${Porb}} \\approx ${f(inYears)}\\text{ Mercury years}`,
+      ],
+      note: `About ${Math.round(Psolar)} Earth-days — exactly TWO Mercury years. Because Mercury both spins and orbits, the Sun's return to the same point in the sky takes far longer than one rotation: the planet must complete two full orbits for one day–night cycle. The Sun takes 88 days to cross the sky and 88 more below the horizon, so each point on the surface bakes at 700 K for three Earth-months, then freezes at 100 K for three more — the largest temperature swing of any planet. This is the same sidereal-versus-solar beat-frequency logic behind the difference between a sidereal and a solar day on Earth, just made spectacular by the 3:2 resonance. And near perihelion, where Kepler's second law makes Mercury race, its orbital motion briefly outruns its spin and the Sun reverses course in the sky.`,
+    };
+  },
+
+  "perihelion-anomaly": (rng) => {
+    // the 43"/century residual: observed minus Newtonian, resolved by General Relativity
+    const observed = 574.1, newtonian = 531.6; // arcsec/century (illustrative)
+    const residual = observed - newtonian;
+    return {
+      title: "The anomaly that broke Newton",
+      question: `Mercury's perihelion is observed to precess at about ${observed} arcseconds per century. Careful Newtonian calculation of the tugs from all the other planets accounts for about ${newtonian}. What residual is left unexplained — the quantity Le Verrier attributed to the planet "Vulcan"?`,
+      steps: [
+        `\\text{residual} = ${observed} - ${newtonian} = ${f(residual)}\\,\\text{arcsec/century}`,
+      ],
+      note: `About ${Math.round(residual)} arcseconds per century — tiny (a hundredth of a degree per century), but far too large to be error. Le Verrier, who had triumphantly predicted Neptune from Uranus's deviations, reasoned the same way here and proposed an unseen planet, Vulcan, inside Mercury's orbit. Vulcan does not exist. The residual was resolved only in 1915, by Einstein's General Relativity: spacetime curvature near the Sun adds exactly ${Math.round(residual)} arcseconds per century, with no free parameters — the first confirmation of the theory (Einstein said it gave him heart palpitations). The lesson is one of the deepest in science: the SAME kind of anomaly meant missing MATTER for Uranus (a hidden planet) but missing PHYSICS for Mercury (an incomplete theory) — and nothing in the anomaly itself tells you which. That very ambiguity is alive today in the dark-matter debate.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

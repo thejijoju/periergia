@@ -101,6 +101,8 @@ import { Resonance } from "./Resonance";
 import { NiceModel } from "./NiceModel";
 import { CoolingSize } from "./CoolingSize";
 import { GreenhouseBars } from "./GreenhouseBars";
+import { PlanetCores } from "./PlanetCores";
+import { SpinOrbit } from "./SpinOrbit";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -991,6 +993,16 @@ export function Reader({
                   // (equilibrium vs actual temperature; the Venus paradox).
                   if (typeof cls === "string" && /language-greenhouse\b/.test(cls)) {
                     return <GreenhouseBars />;
+                  }
+                  // A fenced ```planetcores block becomes the interior-structure explorer
+                  // (core-fraction cross-sections; Mercury's outsized iron core).
+                  if (typeof cls === "string" && /language-planetcores\b/.test(cls)) {
+                    return <PlanetCores />;
+                  }
+                  // A fenced ```spinorbit block becomes the 3:2 spin-orbit explorer
+                  // (Mercury's 176-day solar day and the retrograde Sun near perihelion).
+                  if (typeof cls === "string" && /language-spinorbit\b/.test(cls)) {
+                    return <SpinOrbit />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
