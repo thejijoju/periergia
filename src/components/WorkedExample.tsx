@@ -2934,6 +2934,63 @@ const GENERATORS: Record<string, Generator> = {
       note: `About ${T.toFixed(0)} K — ${ice ? "below" : "above"} the ~170 K threshold, so water ${ice ? "COULD freeze into solid ice grains here. Beyond the snow line (~2.7 AU), ice joins rock and metal in the building inventory, and because water is one of the most abundant compounds in the universe, that multiplied the available solid material several-fold — enough to grow massive cores fast, and capture giant gas envelopes before the disk dispersed. This is giant-planet country." : "could NOT freeze — it stayed vapour, too diffuse to build with. Only rock and metal condensed here, so bodies had far less to grow from and stayed small: the rocky terrestrial worlds. The clock (a few million years of disk gas) ran out before any of them could become a giant."} One temperature boundary, set by one distance, split the solar system into its two families. Distance is destiny.`,
     };
   },
+
+  "solar-flux": (rng) => {
+    // the inverse-square flux gradient: F = L/(4 pi r^2), and the shortcut that the
+    // Earth/planet flux ratio is just the square of the distance ratio
+    const bodies: [string, number][] = [["Mars", 1.524], ["Jupiter", 5.204], ["Saturn", 9.583], ["Neptune", 30.07]];
+    const [name, a] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const F = 1361 / (a * a); // W/m^2
+    const ratio = a * a; // Earth flux / planet flux
+    const panel = F * 0.25; // W from a 1 m^2, 25%-efficient panel
+    return {
+      title: "How much sunlight reaches a world",
+      question: `Sunlight obeys the inverse-square law, F = L/(4πr²). At Earth the flux is the solar constant, 1,361 W/m². Using the shortcut that a planet's flux is 1,361 divided by its distance in AU squared, find the solar flux at ${name} (${a} AU). Then find the ratio of Earth's flux to ${name}'s, and the power a 1 m², 25%-efficient solar panel would generate there.`,
+      steps: [
+        `F = \\frac{1361}{a^2} = \\frac{1361}{${a}^2} = \\frac{1361}{${f(ratio)}} \\approx ${f(F)}\\,\\text{W/m}^2`,
+        `\\frac{F_\\oplus}{F_{\\text{${name}}}} = a^2 = ${f(ratio)}`,
+        `P_{\\text{panel}} = ${f(F)}\\times 0.25 \\approx ${f(panel)}\\,\\text{W}`,
+      ],
+      note: `About ${f(F)} W/m² — some ${ratio >= 10 ? Math.round(ratio) : ratio.toFixed(1)}× less than Earth receives, because flux falls as the square of distance. That same 1 m² panel that yields 340 W at Earth manages only about ${f(panel)} W at ${name}. This is why spacecraft to Jupiter and beyond have historically carried radioisotope generators rather than solar panels — an engineering consequence of a pure geometry gradient. And it is the very gradient that, in the young disk, set the temperature at every distance and placed the snow line at 2.7 AU: distance sets flux, flux sets temperature, temperature sets what a world can be.`,
+    };
+  },
+
+  "solar-wind-travel": (rng) => {
+    // the solar wind is a flow, not a beam: at ~400 km/s it takes days, not minutes
+    const bodies: [string, number][] = [["Earth", 1.0], ["Mars", 1.524], ["Jupiter", 5.204], ["Neptune", 30.07]];
+    const [name, a] = bodies[sample(rng, [0, 1, 2, 3], 1)[0]];
+    const v = 400; // km/s, slow solar wind
+    const dKm = a * 1.496e8; // km
+    const tSec = dKm / v;
+    const tDays = tSec / 86400;
+    const lightMin = a * 8.317; // for contrast
+    return {
+      title: "How long the Sun's wind takes to arrive",
+      question: `The slow solar wind blows outward at about 400 km/s. ${name} orbits at ${a} AU (${sci(dKm, 2)} km from the Sun). How long does the wind take to reach ${name}? Compare that with the ${f(lightMin)}-minute light-travel time to the same distance.`,
+      steps: [
+        `t = \\frac{d}{v} = \\frac{${sci(dKm, 2)}\\,\\text{km}}{400\\,\\text{km/s}} \\approx ${sci(tSec, 1)}\\,\\text{s}`,
+        `t \\approx ${f(tDays)}\\,\\text{days}`,
+      ],
+      note: `About ${f(tDays)} days — versus only ${f(lightMin)} minutes for light to cross the same gap. The solar wind is matter, not radiation: it crawls, in these terms, taking ${a >= 20 ? "months" : "days"} to arrive rather than minutes. That is why a solar flare's radiation reaches Earth in 8 minutes with no warning, while the coronal mass ejection that follows takes one to three days — the gap that makes space-weather forecasting possible at all. And though the wind is astonishingly thin (about 5 particles per cubic centimetre, a better vacuum than any laboratory), it never stops: over 4.6 billion years its patient erosion has stripped the atmosphere from unprotected worlds like Mars.`,
+    };
+  },
+
+  "escape-boundaries": (rng) => {
+    // the two edges of the solar system: heliopause (wind) vs Oort Cloud (gravity)
+    const helio = sample(rng, [120], 1)[0]; // AU
+    const oort = 100000; // AU
+    const ratio = oort / helio;
+    const ly = oort / 63241; // AU per light-year
+    return {
+      title: "The two edges of the solar system",
+      question: `The heliopause — where the solar wind stops — lies at about ${helio} AU. The outer Oort Cloud — where the Sun's gravity finally loses its grip — lies at about 100,000 AU. How many times farther out is the gravitational boundary than the wind boundary, and how far is the Oort edge in light-years (1 ly = 63,241 AU)?`,
+      steps: [
+        `\\frac{r_{\\text{Oort}}}{r_{\\text{helio}}} = \\frac{100{,}000}{${helio}} \\approx ${Math.round(ratio)}\\times`,
+        `r_{\\text{Oort}} = \\frac{100{,}000}{63{,}241} \\approx ${f(ly)}\\,\\text{light-years}`,
+      ],
+      note: `About ${Math.round(ratio)}× farther — the gravitational edge lies roughly ${f(ly)} light-years out, a substantial fraction of the way to the nearest star. This is why "where does the solar system end?" has two honest answers: the heliopause is a pressure balance between two thin plasmas and fails where the wind has spread thin, while the Oort Cloud's edge is gravitational competition with the galaxy — and gravity, falling only as 1/r² and never shielded, reaches vastly farther. Voyager 1 crossed the heliopause in 2012, so it has "left the solar system" — yet it is still ${Math.round(ratio)} times too close in to escape the Sun's gravity, and will spend tens of thousands of years crossing the Oort Cloud. The Sun's influence takes several forms, with very different ranges.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {

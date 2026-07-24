@@ -89,6 +89,8 @@ import { SpectrumLab } from "./SpectrumLab";
 import { DopplerShift } from "./DopplerShift";
 import { LightTime } from "./LightTime";
 import { SnowLine } from "./SnowLine";
+import { FluxGradient } from "./FluxGradient";
+import { SolarBoundaries } from "./SolarBoundaries";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 
@@ -919,6 +921,16 @@ export function Reader({
                   // (disk temperature vs distance, with the 2.7 AU condensation boundary).
                   if (typeof cls === "string" && /language-snowline\b/.test(cls)) {
                     return <SnowLine />;
+                  }
+                  // A fenced ```fluxgradient block becomes the inverse-square solar-flux
+                  // explorer (flux vs distance, the master variable of the block).
+                  if (typeof cls === "string" && /language-fluxgradient\b/.test(cls)) {
+                    return <FluxGradient />;
+                  }
+                  // A fenced ```solarboundaries block becomes the "where does the solar
+                  // system end?" explorer (heliopause vs the Oort Cloud, the 833x gap).
+                  if (typeof cls === "string" && /language-solarboundaries\b/.test(cls)) {
+                    return <SolarBoundaries />;
                   }
                   // A fenced ```quote block becomes a portrait + historical quote.
                   if (typeof cls === "string" && /language-quote\b/.test(cls)) {
