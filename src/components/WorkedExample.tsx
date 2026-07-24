@@ -3490,6 +3490,56 @@ const GENERATORS: Record<string, Generator> = {
       note: `The Moon's core is only about ${Math.round(rfrac * 100)}% of its radius and under 1% of its volume — against Earth's 55% and 16%. Combined with its low mean density (3,342 kg/m³, and barely compressed, so that IS its composition), this shows the Moon is drastically depleted in iron: its bulk resembles a planetary MANTLE, not a whole planet. That is the decisive clue behind the giant impact — a Mars-sized body struck the proto-Earth, its iron core sank and merged with Earth's, and the Moon condensed from the silicate mantle debris left in orbit. The same event neatly explains the system's excess angular momentum, the Moon's depleted volatiles, and its anorthosite highlands (a floated crust from a global magma ocean). Five clues, one collision — even though the isotopes then refuse to cooperate.`,
     };
   },
+
+  "av-cooling": (rng) => {
+    // surface-to-volume ratio as the master variable: small worlds cool fast and die
+    const bodies: [string, number][] = [
+      ["Mars", 3390], ["Mercury", 2440], ["the Moon", 1737],
+    ];
+    const [name, R] = bodies[sample(rng, [0, 1, 2], 1)[0]];
+    const Re = 6371;
+    const ratio = Re / R;
+    return {
+      title: "Why small worlds die young",
+      question: `A planet generates heat throughout its volume but loses it only through its surface, so its cooling rate scales with the surface-to-volume ratio A/V = 3/R. ${name.charAt(0).toUpperCase() + name.slice(1)} has a radius of ${R.toLocaleString("en-US")} km; Earth's is ${Re.toLocaleString("en-US")} km. How does ${name}'s A/V compare with Earth's?`,
+      steps: [
+        `\\frac{(A/V)_{\\text{body}}}{(A/V)_\\oplus} = \\frac{3/R}{3/R_\\oplus} = \\frac{R_\\oplus}{R} = \\frac{${Re}}{${R}} \\approx ${f(ratio)}`,
+      ],
+      note: `${name.charAt(0).toUpperCase() + name.slice(1)} has about ${f(ratio)} times Earth's surface area per unit volume, so it sheds its internal heat that much faster and cooled correspondingly sooner. This is the master variable of Unit II: a smaller world runs down faster, its core stops convecting earlier, its dynamo dies, and — with the magnetic shield gone and gravity weak — it loses its atmosphere. ${name === "Mars" ? "For Mars (1.88×) this chain runs to completion: dynamo dead before 4.1 Gyr, atmosphere stripped, pressure below the triple point, a frozen desert." : name === "Mercury" ? "For Mercury (2.6×) it produced a dead, cratered, contracted surface with kilometre-high scarps." : "For the Moon (3.67×) volcanism ended ~1 Gyr ago and its dynamo shut off between 4.2 and 3.5 Gyr."} Size does not determine everything, but it determines how long a world stays geologically alive — and therefore whether it can stay habitable.`,
+    };
+  },
+
+  "mars-triple-point": (rng) => {
+    // Mars sits essentially at the triple point, below which liquid water is impossible
+    const P = sample(rng, [6.36, 6.0, 7.0, 8.0], 1)[0]; // a candidate surface pressure, mbar
+    const TP = 6.11, Pearth = 1013;
+    const ratioTP = P / TP;
+    const fracEarth = P / Pearth;
+    return {
+      title: "At the edge of possibility",
+      question: `Water's triple point is at ${TP} mbar — below this pressure liquid water cannot exist at any temperature. A spot on Mars has a surface pressure of ${P} mbar. Is liquid water permitted by pressure there, and how does ${P} mbar compare with Earth's 1,013 mbar?`,
+      steps: [
+        `\\frac{${P}}{${TP}} \\approx ${f(ratioTP)} \\;(${ratioTP >= 1 ? "\\geq 1,\\text{ just above the limit}" : "< 1,\\text{ below the limit}"})`,
+        `\\frac{${P}}{${Pearth}} \\approx ${sci(fracEarth, 1)} \\approx \\tfrac{1}{${Math.round(1 / fracEarth)}}\\text{ of Earth}`,
+      ],
+      note: `At ${P} mbar, liquid water is ${ratioTP >= 1 ? `just barely PERMITTED by pressure (${f(ratioTP)}× the triple point) — but only in a sliver near 0 °C, and Mars is almost never that warm where the pressure is that high` : "FORBIDDEN at any temperature, since it is below the 6.11 mbar triple point"}. Either way the point stands: Mars's mean pressure (6.36 mbar) sits within 4% of the threshold below which rivers are thermodynamically impossible — about 1/159 of Earth's. That single number explains the entire modern surface: a frozen desert with polar caps and buried ice but no flowing water, despite unmistakable dried riverbeds. The water is still there; the atmosphere is not — and because liquid water is impossible now, those valley networks prove the ancient air was far THICKER, which is what the whole size-to-death chain exists to explain.`,
+    };
+  },
+
+  "dynamo-shutdown": (rng) => {
+    // dating the death of Mars's magnetic field from the demagnetized impact basins
+    const basin = sample(rng, [4.1, 4.0, 4.2], 1)[0]; // impact-basin age, Gyr
+    const age = 4.568; // solar system age, Gyr
+    const after = age - basin;
+    return {
+      title: "Dating the death of a planet",
+      question: `Mars Global Surveyor found magnetized ancient crust — but NOT around the Hellas and Argyre basins, which formed ${basin} Gyr ago, demagnetized the rock, and never re-magnetized. So the dynamo was already dead by ${basin} Gyr. Given a solar-system age of ${age} Gyr, how long after Mars formed did its magnetic field die?`,
+      steps: [
+        `t = ${age} - ${basin} = ${f(after)}\\,\\text{Gyr} \\approx ${Math.round(after * 1000)}\\,\\text{Myr}`,
+      ],
+      note: `The Martian dynamo shut down within about ${Math.round(after * 1000)} million years of formation — roughly the first 10% of the planet's history. The logic is elegant: a large impact heats rock past its Curie point and erases its magnetism, so an UNmagnetized basin means the field was already gone when the rock cooled (a live field would have re-magnetized it). Pairing that with the crater-dated basin age gives the shutdown time. A magnetometer and a crater count, combined, date the death of a planet's magnetic field. And InSight later showed the core is still LIQUID — so it did not freeze; it stopped convecting vigorously enough to run a dynamo. Once the shield was gone, the solar wind began stripping the air, and Mars's fate was sealed: exactly the size-driven chain L7 promised, with a date attached to its critical step.`,
+    };
+  },
 };
 
 function Tex({ tex }: { tex: string }) {
