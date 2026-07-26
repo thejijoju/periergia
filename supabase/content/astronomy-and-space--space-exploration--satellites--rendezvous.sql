@@ -25,7 +25,9 @@ with master as (
     'research',
     'advanced',
     'read',
-    $l10_master$> In orbit, to catch something ahead of you, you slow down. The intuition built on highways and playgrounds — speed up to catch up, point at the thing you want to reach — is not merely useless here; it is exactly inverted, and acting on it makes your target float away. This chapter makes the inversion rigorous through the Hohmann transfer, the phasing problem, and the Clohessy–Wiltshire equations. The whole thing flows from one fact: higher is slower.
+    $l10_master$> In orbit, to catch something ahead of you, you slow down. That sentence sounds insane, and this chapter makes it rigorous — and makes you believe it — because it is not a curiosity: it is the daily reality of every docking at the International Space Station, every satellite servicing mission, every crewed flight that has ever met another spacecraft. The intuition built on highways and playgrounds — *speed up to catch up, point at the thing you want to reach* — is not merely useless in orbit. It is **exactly inverted**, and acting on it makes your target float away. What follows is the machinery that replaces that intuition: the Hohmann transfer (the cheapest way between two orbits, derived from vis-viva), the phasing problem (how you time an arrival), and the Clohessy–Wiltshire equations (the strange local physics of the space near another spacecraft, where free particles trace ellipses in the air in front of you). By the end you will understand why the Gemini astronauts, doing the obvious thing, watched their target recede — and why the fix was to do the opposite of every instinct they had.
+
+A word on what this chapter asks of you. Most of this subject asks you to *learn* something — a derivation, a constraint, a technique. This chapter asks you to *unlearn* something, which is harder. You have spent your whole life moving through a world where Newton's laws are true but gravity is a constant downward tug and the interesting forces are friction and thrust. In that world, to catch a bus you run faster. Orbit is also governed by Newton's laws — the *same* laws — but there the dominant force is central gravity, and central gravity does something to motion that flat-world intuition never prepared you for: it couples your speed to your altitude to your period in a way that makes "faster" and "ahead" point in opposite directions. The physics is not new. The *regime* is new, and your intuition was trained in the wrong regime. So this chapter is an exercise in intuition replacement, and the only way through it is to trust the equations over your gut until, gradually, a new gut grows. Begin where the confusion is sharpest.
 
 ## The target that floated away
 
@@ -97,7 +99,7 @@ Two prograde burns, both speeding up, to go *higher*. That part matches intuitio
 
 ### The computation
 
-Every Hohmann Δv calculation is the same three-step ritual, and once it is internalized you can compute any transfer in the solar system:
+Every Hohmann Δv calculation is the same three-step ritual — the one drilled into generations of Air Force cadets by {{book: Roger R. Bate, Donald D. Mueller & Jerry E. White | Fundamentals of Astrodynamics | 1971}} — and once it is internalized you can compute any transfer in the solar system:
 
 **Step 1 — speeds on the circular orbits.** Use $v_{circ} = \sqrt{\mu/r}$ for the starting and ending circular orbits:
 $$v_1 = \sqrt{\mu/r_1}, \qquad v_2 = \sqrt{\mu/r_2}$$
@@ -112,7 +114,7 @@ That's it. Two applications of vis-viva, three subtractions. Every orbit-raising
 
 ### Why it is the minimum-energy transfer
 
-The Hohmann transfer is provably the cheapest two-burn transfer between two circular coplanar orbits (for ratios of $r_2/r_1$ below about 11.94; above that, a weirder three-burn "bi-elliptic" transfer can beat it). The intuition for its optimality: it's tangent to both orbits, so both burns are purely *along* the direction of motion — every bit of Δv goes into changing speed, none is wasted turning the velocity vector sideways. Any non-tangential transfer "wastes" some Δv cranking the direction around rather than purely changing energy. The Hohmann transfer is the geodesic of orbit-raising: the straightest, cheapest path, spending every drop of Δv on the one thing that matters. It is slow (you coast half an orbit, which for an Earth-to-Mars transfer is many months), but it is cheap, and in the tyranny of the rocket equation, cheap usually wins. When you want *fast* instead of cheap, you pay for it, exponentially — a trade that returns in full when trajectories leave Earth orbit for other planets.
+The Hohmann transfer is provably the cheapest two-burn transfer between two circular coplanar orbits (for ratios of $r_2/r_1$ below about 11.94; above that, a weirder three-burn "bi-elliptic" transfer can beat it — a lovely exercise in the problem set below). The intuition for its optimality: it's tangent to both orbits, so both burns are purely *along* the direction of motion — every bit of Δv goes into changing speed, none is wasted turning the velocity vector sideways. Any non-tangential transfer "wastes" some Δv cranking the direction around rather than purely changing energy. The Hohmann transfer is the geodesic of orbit-raising: the straightest, cheapest path, spending every drop of Δv on the one thing that matters. It is slow (you coast half an orbit, which for an Earth-to-Mars transfer is many months), but it is cheap, and in the tyranny of the rocket equation, cheap usually wins. When you want *fast* instead of cheap, you pay for it, exponentially — a trade that returns in full when trajectories leave Earth orbit for other planets.
 
 ## LEO to GEO: a worked transfer
 
@@ -220,7 +222,7 @@ There's a final piece, and it's the most conceptually beautiful thing here: what
 
 Imagine you're an astronaut on the ISS, and a free-floating object — a dropped tool, an approaching capsule — is nearby. You want to describe its motion *relative to the station*, in a little coordinate frame centered on the station: $x$ pointing forward (along the velocity, "downtrack"), $z$ pointing up (away from Earth, "radial"), $y$ out of plane. This frame is not inertial — it's rotating with the station as it orbits — so the relative motion in it obeys modified equations that include the orbital rotation. When you linearize the two-body problem for small separations from a circular orbit, you get the **Clohessy–Wiltshire equations** (also called the Hill equations), and their solutions describe how nearby free objects drift relative to you.
 
-Skip the full derivation, but keep the equations and, more importantly, the *astonishing physical picture* they produce:
+The full derivation is ground through slowly and beautifully in {{book: Howard D. Curtis | Orbital Mechanics for Engineering Students}}; here, keep the equations and, more importantly, the *astonishing physical picture* they produce:
 
 $$\ddot{x} = 2n\dot{z}, \qquad \ddot{z} = -2n\dot{x} + 3n^2 z, \qquad \ddot{y} = -n^2 y$$
 
@@ -280,13 +282,141 @@ The through-line, one final time. *Never carry anything through a Δv it does no
 
 And from here, the trajectories leave Earth entirely. The same vis-viva and the same Hohmann logic, extended across the gulf between worlds, produce the porkchop plots that constrain every interplanetary launch, the gravity assists that let a spacecraft steal energy from a planet's orbital motion, and the Voyager Grand Tour — the most beautiful trajectory ever flown. The rocket equation and vis-viva are about to reach across the solar system.
 
-
 ## Further reading
 
 - **Howard D. Curtis, *Orbital Mechanics for Engineering Students*.** The clearest worked treatment of the Hohmann transfer and the Clohessy–Wiltshire relative-motion equations.
 - **Wigbert Fehse, *Automated Rendezvous and Docking of Spacecraft*.** The definitive engineering reference — approach corridors, the safety ellipse, and passively-safe trajectories, in full.
 - **Roger R. Bate, Donald D. Mueller & Jerry E. White, *Fundamentals of Astrodynamics*.** The classic derivation of transfers and the vis-viva ritual, written for Air Force cadets.
-$l10_master$,
+
+## Problem set
+
+*The rendezvous set. Problems 1–2 drill the inversion; 3 is the full Hohmann transfer; 4 the plane-change penalty; 5 the phasing maneuver; 6 the bi-elliptic comparison; 7–9 synthesize. Problems 3 (a full Hohmann transfer with both burns) and 5 (the phasing maneuver) are the two that appear, in some disguise, on every orbital-mechanics exam and every spacecraft-operations interview — do them until the inversion feels natural rather than paradoxical. Full worked answers follow.*
+
+**1 — The inversion, in words.** A chaser spacecraft is in the same circular orbit as a target, trailing 5° behind it. An astronaut, reasoning from flying experience, thrusts prograde (forward) to catch up.
+**(a)** Trace the chain of consequences (energy, altitude, speed, relative position) and explain why the chaser falls *further* behind.
+**(b)** State the correct maneuver and trace *its* chain of consequences.
+**(c)** In one sentence, state the single fact from which the whole inversion follows.
+
+**2 — Higher is slower, quantified.** Two satellites are in circular orbits: A at 400 km altitude, B at 420 km altitude ($R_\oplus = 6{,}378$ km, $\mu = 3.986\times10^5$).
+**(a)** Compute both orbital speeds and both periods.
+**(b)** Which is faster in speed? Which has the shorter period? Confirm "higher is slower" both ways.
+**(c)** If they start at the same angular position, how many degrees does the lower one gain on the higher one per orbit? After how many orbits does it lap it by a full 360°?
+
+**3 — A full Hohmann transfer. (The core computation.)** Transfer from a 300 km circular LEO to a 20,200 km altitude circular orbit (the GPS altitude). $R_\oplus = 6{,}378$ km, $\mu = 3.986\times10^5$.
+**(a)** Compute $r_1$, $r_2$, and the circular speeds $v_1$, $v_2$.
+**(b)** Compute the transfer-ellipse semi-major axis and the speeds $v_p$, $v_a$ at its ends.
+**(c)** Compute both burns $\Delta v_1$, $\Delta v_2$ and the total.
+**(d)** Compute the transfer time.
+**(e)** Using $v_e = 4{,}400$ m/s, what mass ratio does this transfer require? What fraction of the vehicle is propellant just for this transfer?
+
+**4 — The plane-change penalty.** A satellite in a 400 km circular orbit ($v = 7.67$ km/s) needs a 28.5° inclination change (Florida latitude to equatorial).
+**(a)** Compute the plane-change Δv at this low altitude.
+**(b)** Now suppose the plane change is done instead at the apogee of a transfer ellipse where the speed is 1.6 km/s. Compute the plane-change Δv there.
+**(c)** Explain the factor of ~5 difference, and state the general rule for where to do plane changes.
+**(d)** Connect this to why equatorial launch sites (Kourou) are prized for geostationary missions.
+
+**5 — The phasing maneuver.** You are in the ISS's orbit (radius 6,771 km, period 92.4 min), trailing the target by 12°. You will drop to a lower phasing orbit to catch up.
+**(a)** You drop to a phasing orbit 30 km lower. Compute its period and the angle you gain per orbit.
+**(b)** How many orbits to close the 12° gap? How many hours?
+**(c)** Explain physically why dropping *lower* lets you catch a target that is *ahead*.
+**(d)** Qualitatively: if you instead needed to catch a target *behind* you, what would you do, and why?
+
+**6 — Bi-elliptic transfer (the exotic case).** For very large orbit ratios, a three-burn bi-elliptic transfer (out past the target to a huge apogee, then back down) can beat the Hohmann transfer.
+**(a)** Explain qualitatively why going *past* your target and coming back can cost *less* than going straight there. (Hint: plane changes and circularization burns are cheaper where you're slow.)
+**(b)** The Hohmann transfer is optimal for $r_2/r_1 < 11.94$. For a transfer from LEO to a very high orbit with $r_2/r_1 = 15$, which method wins? Why is this a beautiful illustration of "do expensive maneuvers where you're slow"?
+
+**7 — Vis-viva as the exchange rate.** Explain, in a paragraph, how vis-viva connects the rocket-equation side of spaceflight to the orbital-mechanics side. Use the LEO-to-GEO transfer: show how a geometric fact (the two orbits' radii) becomes a Δv (via vis-viva) becomes a propellant mass (via the rocket equation) becomes a payload cost. Why is vis-viva the "exchange rate" between where things go and what it costs?
+
+**8 — Clohessy–Wiltshire intuition.** Without equations, explain the three "hallucinations" of close-proximity relative motion:
+**(a)** Why does pushing a free object *forward* make it loop back around behind you rather than drift away?
+**(b)** Why do you approach a target *ahead* of you by aiming *below* it?
+**(c)** What is the "football" (2:1 ellipse), and why does a released object return to near its starting point each orbit? For each, connect back to "higher is slower."
+
+**9 — The rendezvous capstone.** In three or four paragraphs, explain how rendezvous completes the orbital-mechanics arc. Cover: how the two-body foundation and the perturbations that follow it set up rendezvous; why "higher is slower" generates the entire inversion; how the Hohmann transfer, plane-change penalty, phasing, and Clohessy–Wiltshire are all consequences of it; why this material is fundamentally about *unlearning* and *intuition replacement*; and how the through-line ("never spend Δv on what doesn't need it") appears in the Hohmann transfer's optimality. This is the rendezvous capstone essay.
+
+## Worked answers
+
+### 1 — The inversion, in words
+
+**(a)** Thrusting prograde (forward) **adds energy** to the orbit → the semi-major axis **increases** → the chaser **rises** to a higher orbit → a higher orbit is **slower** (in both speed and period) → the chaser now moves slower than the target → **it falls further behind.** The astronaut sped up and, as a direct consequence, lost ground — the target pulls ahead because the chaser climbed into a slower orbit.
+
+**(b)** Correct maneuver: **thrust retrograde (slow down).** Chain: retrograde burn **removes energy** → semi-major axis **decreases** → chaser **drops** to a lower orbit → lower orbit is **faster** (shorter period) → chaser gains angle on the target, catching up from below → once caught up, thrust prograde to **rise back** to the target's orbit and match velocity. **Slow down → drop → catch up → rise back.**
+
+**(c)** The single fact: **in orbit, a higher orbit is a slower orbit** (from $v = \sqrt{\mu/r}$ and $T \propto a^{3/2}$). Everything about the inversion follows from this.
+
+### 2 — Higher is slower, quantified
+
+**(a)** $r_A = 6{,}778$ km, $r_B = 6{,}798$ km.
+- A (400 km): $v_A = \sqrt{\mu/r_A} = \mathbf{7.6686\ km/s}$, $T_A = 2\pi\sqrt{r_A^3/\mu} = \mathbf{92.558\ min}$.
+- B (420 km): $v_B = \mathbf{7.6573\ km/s}$, $T_B = \mathbf{92.968\ min}$.
+
+**(b)** **A (lower) is faster in speed** (7.6686 > 7.6573) and has the **shorter period** (92.558 < 92.968 min). Both confirm "higher is slower": B, only 20 km higher, moves slower *and* takes longer per lap.
+
+**(c)** Per orbit, A gains $360° \times (T_B - T_A)/T_A = 360 \times (0.410/92.558) = \mathbf{1.59°}$ on B (using A's period as the reference for "per A's orbit"). To lap B by a full 360°: $360/1.59 = \mathbf{226\ orbits}$ (about 14.5 days). **A 20-km altitude difference makes the lower satellite lap the higher one every ~226 orbits** — a slow but relentless consequence of the period difference, and exactly the mechanism of the phasing maneuver (problem 5).
+
+### 3 — A full Hohmann transfer
+
+**(a)** $r_1 = 6{,}378 + 300 = 6{,}678$ km; $r_2 = 6{,}378 + 20{,}200 = 26{,}578$ km.
+$$v_1 = \sqrt{\mu/r_1} = \sqrt{3.986\times10^5/6{,}678} = \mathbf{7.726\ km/s}$$
+$$v_2 = \sqrt{\mu/r_2} = \sqrt{3.986\times10^5/26{,}578} = \mathbf{3.873\ km/s}$$
+
+**(b)** $a_t = (6{,}678 + 26{,}578)/2 = 16{,}628$ km.
+$$v_p = \sqrt{\mu(2/r_1 - 1/a_t)} = \sqrt{3.986\times10^5(2/6{,}678 - 1/16{,}628)} = \mathbf{9.768\ km/s}$$
+$$v_a = \sqrt{\mu(2/r_2 - 1/a_t)} = \sqrt{3.986\times10^5(2/26{,}578 - 1/16{,}628)} = \mathbf{2.454\ km/s}$$
+
+**(c)** $\Delta v_1 = v_p - v_1 = 9.768 - 7.726 = \mathbf{2.042\ km/s}$; $\Delta v_2 = v_2 - v_a = 3.873 - 2.454 = \mathbf{1.418\ km/s}$; **total $= 3.460$ km/s.**
+
+**(d)** Transfer time $= \pi\sqrt{a_t^3/\mu} = \pi\sqrt{16{,}628^3/3.986\times10^5} = \mathbf{2.96\ hours}$.
+
+**(e)** Mass ratio $R = e^{\Delta v/v_e} = e^{3460/4400} = e^{0.786} = \mathbf{2.195}$. Propellant fraction $= 1 - 1/R = \mathbf{54.5\%}$. **The vehicle must be over half propellant just to perform this LEO-to-GPS transfer** — a vivid reminder, via the rocket equation, that even "just moving between orbits" is exponentially expensive, and why upper stages are so large relative to their payloads.
+
+### 4 — The plane-change penalty
+
+**(a)** $\Delta v = 2v\sin(\theta/2) = 2(7.67)\sin(14.25°) = 2(7.67)(0.2462) = \mathbf{3.776\ km/s}$ at low altitude.
+
+**(b)** At apogee where $v = 1.6$ km/s: $\Delta v = 2(1.6)\sin(14.25°) = \mathbf{0.788\ km/s}$.
+
+**(c)** The factor of ~4.8 difference arises because the plane-change cost is **directly proportional to your speed** $v$ (the formula is $2v\sin(\theta/2)$) — you're rotating your velocity *vector*, and rotating a longer vector by the same angle takes proportionally more Δv. At LEO you're screaming along at 7.67 km/s (long vector, expensive to turn); at apogee you're crawling at 1.6 km/s (short vector, cheap to turn). **General rule: do plane changes where you are slowest — which, since higher is slower, means as high as possible.** This is why GEO insertions do their plane change at the far apogee (42,164 km), not down at LEO, often combining it with the circularization burn into a single vector maneuver.
+
+**(d)** Equatorial launch sites (Kourou, 5°N) are prized for geostationary missions because **your launch latitude sets your initial orbital plane**, and reaching equatorial GEO from a high-latitude launch requires an expensive plane change (28.5° from Florida costs ~3.8 km/s at LEO, or ~0.8 even done cleverly at apogee — never free). Launch from near the equator and your starting plane is already nearly equatorial, so the plane change is small or zero, saving that Δv — which, through the rocket equation, is real payload. **Geography reaches all the way up to geostationary orbit and taxes you there**, and equatorial launch sites avoid the tax.
+
+### 5 — The phasing maneuver
+
+**(a)** Drop 30 km: phasing orbit radius $6{,}741$ km. Period $T_{ph} = 2\pi\sqrt{6{,}741^3/\mu} = \mathbf{91.80\ min}$ (vs ISS 92.41 min). Angle gained per orbit $= 360° \times (T_{ISS} - T_{ph})/T_{ISS} = 360 \times (0.614/92.41) = \mathbf{2.39°\ per\ orbit}$.
+
+**(b)** Orbits to close 12°: $12/2.39 = \mathbf{5.0\ orbits}$. Time: $5.0 \times 91.8\ \text{min} = 459\ \text{min} = \mathbf{7.7\ hours}$.
+
+**(c)** Dropping lower lets you catch a target ahead because **a lower orbit is a faster orbit** (shorter period): by dropping 30 km, your period shortens by 0.6 min, so you complete each lap slightly sooner than the target and gain 2.39° on it every orbit, closing the gap from below. You're the runner who moved to the inside (shorter, faster) lane and is now lapping the outer runner. Then you rise back to the target's orbit to match it. **You catch the thing ahead of you by going lower and faster underneath it.**
+
+**(d)** To catch a target *behind* you, you do the **opposite: rise to a higher, slower orbit.** A higher orbit has a longer period, so you fall back in angle — you let the target behind you catch up to you (equivalently, you drift backward relative to it) until it's alongside, then drop back down to match. **Higher/slower to move backward relative to a co-orbiting object; lower/faster to move forward. Altitude is the throttle for relative angular position.**
+
+### 6 — Bi-elliptic transfer
+
+**(a)** Going *past* your target to a very high apogee and coming back can cost less because **the expensive parts of an orbit change — the plane change and the circularization/direction adjustments — are cheapest where you're slowest, and a huge apogee is where you're slowest of all.** In a bi-elliptic transfer, you first burn to a very high apogee (far beyond the target), coast out to that slow, distant apogee, do a small burn there to raise perigee to the target radius (cheap, because you're barely moving), then coast back down and circularize at the target. For large orbit ratios, the savings from doing the middle maneuver way out where you're crawling can *exceed* the extra cost of flinging yourself out past the target and back. It's "do expensive maneuvers where you're slow" taken to its logical extreme.
+
+**(b)** For $r_2/r_1 = 15 > 11.94$, the **bi-elliptic transfer wins** (uses less total Δv than Hohmann), though it takes far longer. It's a beautiful illustration of "do expensive maneuvers where you're slow" because the whole reason bi-elliptic can beat the seemingly-optimal Hohmann is that it relocates the costly velocity-magnitude changes out to an enormous, ultra-slow apogee where changing your velocity is cheapest — trading a great deal of *time* (the long coast out and back) for a little *Δv*. It's the through-line (spend Δv only where it counts) exploited so aggressively that going the "wrong way" first becomes cheaper than going straight there. (Whether it's worth it depends on whether you value propellant or time — the eternal orbital-mechanics trade.)
+
+### 7 — Vis-viva as the exchange rate
+
+Vis-viva connects the rocket-equation side of spaceflight to the orbital-mechanics side by converting *geometry* into *cost*. Take the LEO-to-GEO transfer. It begins as a purely **geometric** fact: two circular orbits, at radii $r_1 = 6{,}778$ km and $r_2 = 42{,}164$ km — just distances, no dynamics. Vis-viva ($v^2 = \mu(2/r - 1/a)$) turns those radii into **speeds**: the circular speeds at each orbit and the transfer-ellipse speeds at its ends. The *differences* between those speeds are the two burns, which sum to a **Δv** of 3.855 km/s — a velocity change, the currency of maneuvering. Then the rocket equation ($\Delta v = v_e\ln(m_0/m_f)$) turns that Δv into a **propellant mass**: at $v_e = 4.4$ km/s, a mass ratio of 2.40, meaning over half the vehicle must be propellant just for this transfer. And that propellant mass, occupying the vehicle, is **payload not carried** — a cost in dollars and capability. So the chain runs: *radii (geometry) → speeds (vis-viva) → Δv (differences) → propellant (rocket equation) → payload cost (economics).* **Vis-viva is the exchange rate because it sits at the hinge:** it is the one equation that converts "where things are" (the geometry that orbital mechanics studies) into "how fast you must go" (the speeds), from which the rocket equation extracts the price. Without vis-viva, the beautiful geometry of orbits and the brutal exponential of the rocket equation would be two separate subjects; with it, every orbital destination has a computable Δv, and therefore a computable propellant cost, and therefore a place in the single economy of spaceflight. Geometry becomes money, and vis-viva is the teller.
+
+### 8 — Clohessy–Wiltshire intuition
+
+**(a) Push forward → loops back.** When you push a free object *forward* (prograde), you add energy to its orbit, raising it to a slightly *higher* orbit. But a higher orbit is *slower* (higher is slower), so the object — now on a higher, slower orbit — begins to *fall behind* even as it rises. It drifts up and back, curving, and because the relative motion is a closed ellipse in the rotating frame, it eventually loops back around toward you rather than escaping in a straight line. **"Forward" became "higher" became "slower" became "backward"** — the object you shoved ahead boomerangs back behind and below, tracing an ellipse, because in orbit a forward push is ultimately a backward drift. It's the McDivitt paradox in miniature.
+
+**(b) Approach ahead by aiming below.** To close a gap to a target *ahead* of you, you don't thrust toward it (forward) — that would raise you, slow you, and drop you behind (see a). Instead you drop *radially inward* (aim below), which lowers your orbit, speeds you up (lower is faster), and carries you *forward* relative to the target. So you reach a thing in front of you by moving *down*: the orbital mechanics converts your downward move into forward progress. **"Below" became "faster" became "forward"** — exactly the phasing maneuver, seen in the local relative frame.
+
+**(c) The football (2:1 ellipse).** A free object released near a spacecraft with small relative velocity traces a closed ellipse relative to the craft, twice as long in the downtrack direction as in the radial — a stretched oval, the "football." It returns to near its starting point after each orbit because the relative motion is *periodic* (both objects have nearly the same orbital period, so their relative configuration repeats each lap). This is "higher is slower" made local: any small radial displacement changes the object's period slightly, coupling into downtrack drift, and the coupling closes the motion into a returning loop rather than an escape. **Released objects come back** — a hazard (debris returns) and a tool (you can predict exactly where a released or approaching object will drift), and the signature shape of the space near any orbiting body.
+
+### 9 — The rendezvous capstone
+
+**Rendezvous completes the orbital-mechanics arc by taking the abstract geometry of the two-body problem and the tuned perturbations of real orbits and turning them into the hardest and most consequential skill in the field: making one spacecraft meet another — which requires not new physics but the total replacement of a wrongly-trained intuition.** The two-body foundation gave the exact machinery — conic-section orbits, vis-viva, Kepler's laws, and the crucial fact that higher orbits are slower. The perturbations chapter showed how real orbits drift and how to exploit the drift. Rendezvous asks the question those chapters were built toward: given all this, how do you fly to a specific object at a specific place and time? And the answer overturns every instinct a pilot or driver brings to "chasing."
+
+**The entire inversion flows from one fact — higher is slower — and this chapter is the rigorous unfolding of its consequences.** From $v = \sqrt{\mu/r}$ and $T \propto a^{3/2}$, a higher orbit is slower in speed and period. Therefore thrusting forward to catch up *raises* you, *slows* you, and drops you *behind* — the McDivitt paradox, which defeated a superb pilot on Gemini 4 because he flew the target like an airplane and watched it float away. And therefore the correct maneuver to catch a target ahead is to *slow down*, dropping to a lower, faster orbit, catching up from below, then rising to meet it. This single fact, followed rigorously through chains of "therefore"s, generates *everything*: the Hohmann transfer (the minimum-energy road between orbits, two prograde burns joined by a coasting half-ellipse, computed by the vis-viva ritual), the brutal plane-change penalty ($2v\sin(\theta/2)$, so expensive that you must do plane changes where you're slow — high up), the phasing maneuver (altitude as the throttle for relative angular position — lower to move forward, higher to move backward), and the Clohessy–Wiltshire relative motion (where the inversion becomes local and visible: push a free object forward and it loops back, approach a target ahead by aiming below, watch every released object trace its returning football ellipse).
+
+**And the chapter's deepest character is that it is about *unlearning* — intuition replacement, which is harder than learning.** The flat-world gut (speed up to catch up, point at your target) is not wrong about physics — Newton's laws are identical in orbit — but wrong about *regime*: it was trained where gravity is a constant downward tug and never learned what central gravity does, coupling speed to altitude to period so that "faster" and "ahead" oppose each other. The achievement of the orbital-mechanics arc is growing a *new* gut, an orbital one, in which "slow down to catch up" feels inevitable and the returning football ellipse feels ordinary. This can only be grown by trusting the equations over instinct, again and again, until the instinct itself is rebuilt — the difference between someone who has *studied* orbital mechanics and someone who can *do* it. McDivitt trusted the old gut and lost his target; Aldrin (whose rendezvous thesis made him "Dr. Rendezvous") trusted the equations and caught his.
+
+**The through-line threads through it exactly as through the rocket-equation chapters: *never spend Δv on what doesn't need it.*** The Hohmann transfer is optimal precisely because it is tangent to both orbits, so every drop of Δv goes into changing *energy* and none is wasted turning the velocity vector — and the plane-change penalty proves why that matters, since turning (changing direction) is the expensive thing. The cheapest path between two orbits is the one that spends Δv only on what strictly needs it, and the bi-elliptic transfer pushes this so far that going the "wrong way" first becomes cheaper. Vis-viva ties it all together: it is the exchange rate that converts geometry (where things go) into Δv (via the differences of orbital speeds) into propellant (via the rocket equation) into payload cost — the teller at which the beautiful geometry of orbits is exchanged for the rocket equation's exponential price. **Orbital mechanics tells you where things go; the rocket equation tells you what it costs; vis-viva is the hinge between them; and rendezvous is where the hinge turns, converting the abstract geometry of orbits into the lived, counterintuitive, gut-rebuilding reality of flying one spacecraft to another.**$l10_master$,
     true,
     true
   )
