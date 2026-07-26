@@ -91,7 +91,28 @@ Every piece of it is astronomy in disguise: the four-minute drift of the stars, 
 
 ## Further reading
 
-Any introductory astronomy text covers the solar and sidereal day, the equation of time, and the Gregorian calendar reform. And for a taste of how deep the calendar problem runs — and how much careful measurement of the year it took to solve — the history of the Julian-to-Gregorian transition, and the ten days that vanished in October 1582, is a small marvel worth reading in full.$astroT_master$,
+Any introductory astronomy text covers the solar and sidereal day, the equation of time, and the Gregorian calendar reform. And for a taste of how deep the calendar problem runs — and how much careful measurement of the year it took to solve — the history of the Julian-to-Gregorian transition, and the ten days that vanished in October 1582, is a small marvel worth reading in full.
+
+## Problems
+
+**1 — Solar vs. sidereal day.** **(a)** Define the solar day and the sidereal day, and give their lengths. **(b)** Explain why the sidereal day is ~4 minutes shorter than the solar day (use the Earth's orbital motion, and connect to the two months of the lunar chapter). **(c)** Show that the extra ~1° of rotation the Earth must make each day corresponds to ~4 minutes.
+
+**2 — The changing seasonal sky.** **(a)** Explain why a given star rises about 4 minutes earlier each night. **(b)** Show that this adds up to a full cycle over one year. **(c)** Explain how this accounts for different constellations being visible in different seasons.
+
+**3 — The calendar problem.** **(a)** State the length of the tropical year and explain why it creates a problem for calendars. **(b)** Describe the Julian calendar's solution and its flaw. Roughly how far had it drifted by 1582? **(c)** Describe the Gregorian reform: both what it did to fix the accumulated error and how it changed the leap-year rule.
+
+**4 — Leap years.** **(a)** State the Gregorian leap-year rule precisely. **(b)** Which of these were leap years: 1700, 1900, 2000, 2024? Explain each. **(c)** Show that the Gregorian rule gives an average year of 365.2425 days, and compare to the true tropical year. How long until it drifts by one day?
+
+## Worked answers
+
+**1 — Solar vs. sidereal day.** **(a)** The **solar day** is noon to noon (Sun due south to due south again), measured relative to the *Sun* — 24 hours. The **sidereal day** is measured relative to the *stars* (a star returning to the same position) — about 23h 56m 4s. **(b)** The sidereal day (Earth's true rotation relative to the stars) is ~4 min shorter because, while the Earth rotates once, it *also* moves ~1° along its orbit around the Sun (360° in ~365 days). So after one full rotation relative to the stars, the Sun is *not* yet back to noon — the Earth has shifted ~1° in the Sun's direction — and must rotate an extra ~1° to bring the Sun back to noon, adding ~4 min. It is the same logic as the synodic vs. sidereal month: measuring rotation against a *moving* reference (the Sun) versus a fixed one (the stars). **(c)** Earth rotates 360° in 24 h = 15° per hour, so 1° of rotation takes 1/15 hour = 4 minutes. Since the Earth must rotate ~1° extra each day to catch the moving Sun, the solar day is ~4 minutes longer than the sidereal day.
+
+**2 — The changing seasonal sky.** **(a)** A given star rises ~4 minutes earlier each night because the *sidereal* day (which governs when a star returns to a given position) is ~4 min shorter than the *solar* day (which governs our clocks). So by clock time, the star's rising creeps ~4 min earlier each night. **(b)** 4 minutes/day × 365 days ≈ 1,460 minutes ≈ 24.3 hours ≈ one full day — so over a year the shift accumulates to a complete 24-hour cycle, returning the star to the same clock-time. **(c)** Because the stars shift ~4 min earlier each night (~2 hours per month), different constellations occupy the evening sky at different times of year — so we see Orion on winter evenings and Scorpius on summer evenings. The underlying cause is Earth's orbit around the Sun, of which the solar-sidereal gap is the daily accounting.
+
+**3 — The calendar problem.** **(a)** The tropical year (equinox to equinox, governing the seasons) is ~365.2422 days — *not* a whole number. A workable calendar needs whole-number years, but the extra ~0.2422 day per year accumulates; if ignored, the calendar drifts against the seasons until the dates no longer match the seasons. **(b)** The **Julian** calendar approximated the year as 365.25 days by adding a leap day every 4 years. Flaw: 365.25 is too *long* by 0.0078 day/year (~11 min), accumulating to ~3 extra days per 400 years. By 1582 it had drifted about **10 days** (the equinox had slipped from ~March 21 to ~March 11). **(c)** The **Gregorian** reform (1582): (1) *corrected the accumulated error* by deleting 10 days (October 4 was followed by October 15), snapping the equinox back to ~March 21; (2) *refined the leap-year rule* to remove 3 leap days per 400 years — leap year every 4 years, *except* century years, which are leap only if divisible by 400 — bringing the average year to 365.2425 days.
+
+**4 — Leap years.** **(a)** Gregorian rule: a year is a leap year if divisible by 4, **except** century years (divisible by 100), which are leap years only if also divisible by 400. **(b)** **1700:** century year, not divisible by 400 → *not* leap. **1900:** century year, not divisible by 400 → *not* leap. **2000:** century year, divisible by 400 → *leap.* **2024:** divisible by 4, not a century year → *leap.* **(c)** The rule gives 97 leap days per 400 years (100 divisible-by-4 years, minus 3 skipped centuries), so the average year = 365 + 97/400 = **365.2425 days.** Compared to the true tropical year (365.2422), the error is only 0.0003 day/year (~26 seconds), so it drifts 1 day in ≈ **3,300 years.**
+$astroT_master$,
     true,
     true
   )
