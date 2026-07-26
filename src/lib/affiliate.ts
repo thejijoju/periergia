@@ -101,20 +101,30 @@ const HEADING = /^##\s+Further\s+(?:Reading|Exploration)\b/i;
 const ANY_HEADING = /^#{1,6}\s+/;
 const BULLET = /^\s*[-*]\s+/;
 
+// Inline book citation marker: {{book: Author | Title}} or
+// {{book: Author | Title | year}}. Lets a chapter recommend a purchasable
+// book WHERE the text discusses it (not only in Further Reading). Rendered at
+// read time into the same house citation style the Further Reading engine
+// uses — `**Author, *Title* (year)**` — with the title affiliate-linked when a
+// store is configured, or plain text otherwise, so the raw marker never
+// reaches the reader.
+const BOOK_MARKER = /\{\{\s*book:\s*([^|{}\n]+?)\s*\|\s*([^|{}\n]+?)\s*(?:\|\s*([^{}\n]+?)\s*)?\}\}/g;
+
 // The disclosure required under the heading (FTC + Amazon Associates Operating
 // Agreement), phrased for the stores this particular reader actually sees
 // (Bookshop is only shown where it can ship, so a non-US reader may get Amazon
 // alone even when a Bookshop id is configured).
-function disclosure(country?: string): string {
+function disclosure(country?: string, where: "below" | "page" = "below"): string {
   const a = !!amazonMarket(country).tag;
   const b = !!bookshopMarket(country);
+  const scope = where === "page" ? "Some book titles on this page" : "Some titles below";
   if (a && b) {
-    return "_Some titles below are affiliate links to Amazon and Bookshop.org (which supports independent bookstores). As an Amazon Associate, periergia earns from qualifying purchases, and we earn a commission from Bookshop.org — at no extra cost to you._";
+    return `_${scope} are affiliate links to Amazon and Bookshop.org (which supports independent bookstores). As an Amazon Associate, periergia earns from qualifying purchases, and we earn a commission from Bookshop.org — at no extra cost to you._`;
   }
   if (b) {
-    return "_Some titles below are affiliate links to Bookshop.org, which supports independent bookstores. periergia earns a commission from qualifying purchases — at no extra cost to you._";
+    return `_${scope} are affiliate links to Bookshop.org, which supports independent bookstores. periergia earns a commission from qualifying purchases — at no extra cost to you._`;
   }
-  return "_Some titles below are affiliate links. As an Amazon Associate, periergia earns from qualifying purchases — at no extra cost to you._";
+  return `_${scope} are affiliate links. As an Amazon Associate, periergia earns from qualifying purchases — at no extra cost to you._`;
 }
 
 function enc(query: string): string {
@@ -210,22 +220,54 @@ function affiliateBullet(line: string, country?: string): string | null {
   return `${lead}${linkedCitation}${closeBold}${rest.replace(/\s+$/, "")}${trailer}`;
 }
 
-// Rewrite a full markdown body: within each Further Reading/Exploration
-// section, affiliate the book bullets and drop the disclosure under the
-// heading. No-op when no store is configured or the body has no such section.
-export function injectAffiliateLinks(md: string, country?: string): string {
-  if ((!AMAZON_ENABLED && !BOOKSHOP_ENABLED) || !md) return md;
+// Replace every inline {{book: Author | Title [| year]}} marker with a house
+// citation, affiliate-linking the title when a store can serve this reader.
+// Runs even with no store configured (plain citation) so the marker never
+// leaks. Returns the rewritten text and how many affiliate links were added.
+function replaceBookMarkers(md: string, country?: string): { text: string; linked: number } {
+  let linked = 0;
+  const text = md.replace(BOOK_MARKER, (_m, rawAuthor: string, rawTitle: string, rawYear?: string) => {
+    const author = rawAuthor.trim();
+    const title = rawTitle.trim();
+    const year = rawYear?.trim();
+    const suffix = year ? ` (${year})` : "";
+    const stores = storesFor(`${title} ${author}`, country);
+    if (stores.length === 0) return `**${author}, *${title}*${suffix}**`;
+    linked++;
+    const [primary, ...secondary] = stores;
+    const trailer = secondary.length
+      ? " · " + secondary.map((s) => `[${s.name} ↗](${s.url})`).join(" · ")
+      : "";
+    return `**${author}, [*${title}*](${primary.url})${suffix}**${trailer}`;
+  });
+  return { text, linked };
+}
 
-  const lines = md.split("\n");
+// Rewrite a full markdown body: replace inline {{book: ...}} markers wherever
+// they appear, affiliate the book bullets within each Further Reading/
+// Exploration section, and add one disclosure for whatever got linked (under
+// the Further Reading heading when there is one, else at the end). With no
+// store configured, markers still render as plain citations and nothing else
+// changes.
+export function injectAffiliateLinks(md: string, country?: string): string {
+  if (!md) return md;
+  const { text, linked: inlineLinked } = replaceBookMarkers(md, country);
+  if (!AMAZON_ENABLED && !BOOKSHOP_ENABLED) return text;
+
+  const lines = text.split("\n");
   const out: string[] = [];
-  const note = disclosure(country);
+  // With inline links the note may cover links above it too, so use the
+  // page-scoped wording; pure Further-Reading pages keep the classic one.
+  const note = disclosure(country, inlineLinked > 0 ? "page" : "below");
   let inSection = false;
   let sectionHeadingAt = -1;
   let linkedInSection = 0;
+  let notePlaced = false;
 
   const flushDisclosure = () => {
-    if (linkedInSection > 0 && sectionHeadingAt >= 0) {
+    if ((linkedInSection > 0 || (inlineLinked > 0 && !notePlaced)) && sectionHeadingAt >= 0) {
       out.splice(sectionHeadingAt + 1, 0, "", note);
+      notePlaced = true;
     }
     sectionHeadingAt = -1;
     linkedInSection = 0;
@@ -256,6 +298,12 @@ export function injectAffiliateLinks(md: string, country?: string): string {
     out.push(line);
   }
   flushDisclosure(); // section ran to end of document
+
+  // Inline links on a page with no Further Reading section still need the
+  // FTC/Associates disclosure — append it at the end.
+  if (inlineLinked > 0 && !notePlaced) {
+    out.push("", note);
+  }
 
   return out.join("\n");
 }
