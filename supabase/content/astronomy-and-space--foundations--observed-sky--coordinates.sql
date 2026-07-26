@@ -96,7 +96,16 @@ The through-line runs through all of it: position and time in the sky are one in
 
 ## Further reading
 
-Any introductory astronomy text's chapter on the equatorial coordinate system — right ascension and declination — lays out the grid clearly. And for the human drama of the coordinate–time equivalence, the story of the Longitude Prize and John Harrison's chronometers is one of the great tales of science and engineering, and repays every page.$astroC_master$,
+Any introductory astronomy text's chapter on the equatorial coordinate system — right ascension and declination — lays out the grid clearly. And for the human drama of the coordinate–time equivalence, the story of the Longitude Prize and John Harrison's chronometers is one of the great tales of science and engineering, and repays every page.
+
+## Problems
+
+**1 — The coordinate system.** **(a)** Name the two celestial coordinates and state which Earth coordinate each mimics. **(b)** Define declination: what is its reference circle, its range, and where do the poles and equator fall? **(c)** Define right ascension: what is its reference point (zero), which direction is it measured, and — crucially — what *units* is it measured in, and *why*?
+
+## Worked answers
+
+**1 — The coordinate system.** **(a)** The two celestial coordinates are **declination** (mimics Earth's *latitude*) and **right ascension** (mimics Earth's *longitude*). **(b)** **Declination** is measured from the *celestial equator* (its reference circle). Range: −90° (south celestial pole) to +90° (north celestial pole), with 0° on the celestial equator (Polaris ≈ +89°). It is fixed to the stars — a star's declination doesn't change as the sky turns. **(c)** **Right ascension** is measured eastward from the *vernal equinox* (the zero-point — where the Sun crosses the celestial equator going north, the "First Point of Aries"), along the celestial equator. It is measured in **hours** (0–24h, where 24h = 360°, so 1h = 15°). *Why hours:* because the sky turns 15° per hour, so RA sweeps past at exactly one hour of RA per hour of time — RA maps directly onto time, making the sky a clock.
+$astroC_master$,
     true,
     true
   )
