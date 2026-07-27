@@ -114,7 +114,7 @@ The *sign* of this energy tells you the entire character of the orbit, and it's 
 
 ### The orbit itself: conic sections
 
-The full derivation of the orbit equation need not be ground through here (Bate, Mueller & White do it beautifully via the eccentricity vector, also called the Laplace–Runge–Lenz vector, which is a *third* conserved quantity unique to the inverse-square force — it points toward perigee and its magnitude is the eccentricity). The result is what gets used:
+The full derivation of the orbit equation need not be ground through here — Bate, Mueller and White derive it beautifully in {{book: Roger R. Bate, Donald D. Mueller & Jerry E. White | Fundamentals of Astrodynamics | 1971}} via the eccentricity vector, also called the Laplace–Runge–Lenz vector, which is a *third* conserved quantity unique to the inverse-square force — it points toward perigee and its magnitude is the eccentricity. The result is what gets used:
 
 $$\boxed{\;r = \frac{p}{1 + e\cos\theta}\;}$$
 
@@ -188,7 +188,7 @@ Here are the special cases it contains, because they're the whole map:
 
 **Elliptical orbit, at perigee and apogee:** This is where vis-viva earns its keep, and it's the foundation of the Hohmann transfer. At perigee (closest, $r = r_p$) the body is moving fastest; at apogee (farthest, $r = r_a$) it's moving slowest (Kepler's Second Law). Vis-viva gives you both speeds directly, once you know $a = (r_p + r_a)/2$. The rendezvous chapter uses this relentlessly to compute transfer orbits.
 
-**Why vis-viva is the workhorse:** almost every practical orbital mechanics problem reduces to "you're here, moving at this speed, and you want to be there — how much do you need to change your speed?" And the answer is always: use vis-viva to find your current speed and your desired speed, and the difference is your Δv (which then costs you propellant, via the rocket equation — this is where geometry and propulsion connect). **Vis-viva is the bridge between geometry (where things are) and propulsion (what it costs to change where things are going).** Learn it cold.
+**Why vis-viva is the workhorse:** almost every practical orbital mechanics problem reduces to "you're here, moving at this speed, and you want to be there — how much do you need to change your speed?" And the answer is always: use vis-viva to find your current speed and your desired speed, and the difference is your Δv (which then costs you propellant, via the rocket equation — this is where geometry and propulsion connect). **Vis-viva is the bridge between geometry (where things are) and propulsion (what it costs to change where things are going).** Learn it cold. For chapter after chapter of worked examples putting vis-viva through its paces, {{book: Howard D. Curtis | Orbital Mechanics for Engineering Students}} is the modern standard.
 
 See the whole conic-section family fall out of a single dial. Below, launch horizontally and change only the speed: the orbit is a conic whose eccentricity is exactly $e = |k^2 - 1|$, where $k$ is your speed in units of the local circular speed. Slow, and the launch point becomes apogee and the orbit dips inward; at exactly $\sqrt2$ times circular speed the ellipse tears open into a parabola and you never come back.
 
@@ -307,7 +307,7 @@ Collect the argument, because the two-body problem is the foundation stone of or
 
 Here is the meta-lesson to carry forward. The two-body problem is a lie, and you should trust it anyway — trust it the way an engineer trusts a model: completely, right up to the boundary of its validity, and never one step past. It will carry you astonishingly far. Voyager 2 was navigated to Neptune — a twelve-year, four-planet, billions-of-kilometers journey — essentially by *patching together two-body solutions*, treating the spacecraft as orbiting the Sun, then Jupiter, then Saturn, then Uranus, then Neptune, one two-body problem at a time, stitched at the boundaries. The lie flew a spacecraft to the edge of the solar system with kilometer precision. **That is what a good lie is worth: it's not the truth, but it's a truth-shaped tool that fits your hand and does the job, as long as you never forget it's a tool.** The mark of mastery in this field — in any field — is knowing your model's domain of validity as precisely as you know the model itself: riding it to Neptune, and knowing to get off before Mercury's perihelion throws you.
 
-The next chapter breaks the lie on purpose. It adds the real Earth — the bulge, the drag, the Sun and Moon — and watches the five "constant" elements begin to drift. And it discovers that the drift is not a corruption to be lamented but a resource to be exploited: the sun-synchronous orbit that images the Earth in identical light for fifty years, the Molniya orbit that a nation's geography carved into a conic section, the frozen orbits and repeat ground tracks — all of them built from the very perturbations that break this chapter's beautiful lie. The two-body problem gave the language. Its failure gives the engineering.
+The next chapter breaks the lie on purpose. It adds the real Earth — the bulge, the drag, the Sun and Moon — and watches the five "constant" elements begin to drift. And it discovers that the drift is not a corruption to be lamented but a resource to be exploited: the sun-synchronous orbit that images the Earth in identical light for fifty years, the Molniya orbit that a nation's geography carved into a conic section, the frozen orbits and repeat ground tracks — all of them built from the very perturbations that break this chapter's beautiful lie. The two-body problem gave the language. Its failure gives the engineering. The exhaustive professional treatment of that engineering is {{book: David A. Vallado | Fundamentals of Astrodynamics and Applications}}, the reference where the beautiful lie meets the machinery that patches it.
 
 
 ## Further reading
@@ -315,7 +315,153 @@ The next chapter breaks the lie on purpose. It adds the real Earth — the bulge
 - **Roger R. Bate, Donald D. Mueller & Jerry E. White, *Fundamentals of Astrodynamics*.** The classic, written for Air Force cadets; it derives the two-body results through the eccentricity vector with unmatched clarity.
 - **Howard D. Curtis, *Orbital Mechanics for Engineering Students*.** The modern worked-example treatment, heavy on vis-viva, the orbital elements, and Kepler's equation.
 - **David A. Vallado, *Fundamentals of Astrodynamics and Applications*.** The exhaustive professional reference, where the beautiful lie meets the perturbations that break it.
-$l8_master$,
+
+## Problem set
+
+*The two-body toolkit. Problems 1–3 exercise Kepler and the orbit equation; 4 derives vis-viva (do it without notes); 5–6 apply it; 7 is Kepler's equation; 8–9 synthesize. Problems 4 (vis-viva from energy) and 7 (Kepler's equation) are the two to be able to do in your sleep. Full worked answers follow.*
+
+**1 — Kepler's Third Law as the cosmic scale.**
+**(a)** Compute the orbital period of a satellite at geostationary radius, $r = 42{,}164$ km. Confirm it equals one sidereal day (86,164 s).
+**(b)** The Moon orbits Earth at a semi-major axis of 384,400 km. Compute its period. Compare to the observed 27.3 days.
+**(c)** Jupiter's moon Io orbits at $a = 421{,}700$ km with a period of 1.769 days. Use this to compute the mass of Jupiter. (This is how we weigh planets.)
+
+**2 — Conic sections and energy.** For each specific orbital energy, state the orbit type and describe the motion:
+**(a)** $\varepsilon = -5\times10^7$ J/kg **(b)** $\varepsilon = 0$ **(c)** $\varepsilon = +2\times10^7$ J/kg.
+**(d)** A spacecraft at $r = 7{,}000$ km has speed 9.0 km/s. Compute its specific energy and classify its orbit. Is it bound? Will it come back?
+
+**3 — The orbit equation.** A satellite has semi-latus rectum $p = 8{,}000$ km and eccentricity $e = 0.2$.
+**(a)** Find the perigee radius ($\theta = 0$) and apogee radius ($\theta = 180°$).
+**(b)** Find the semi-major axis $a$ and confirm $r_p + r_a = 2a$.
+**(c)** What is the altitude at perigee (subtract Earth's radius)? Is this a safe orbit?
+
+**4 — Derive vis-viva. (No notes.)** Starting from conservation of specific energy $\varepsilon = \frac{v^2}{2} - \frac{\mu}{r}$ and the fact that for an ellipse $\varepsilon = -\frac{\mu}{2a}$, derive the vis-viva equation. Then derive, as special cases: (a) circular velocity, (b) escape velocity, and (c) show escape velocity is always $\sqrt{2}$ times circular velocity at the same radius.
+
+**5 — Vis-viva at work.** A satellite is in an elliptical orbit with perigee altitude 300 km and apogee altitude 3,000 km.
+**(a)** Find $r_p$, $r_a$, and $a$.
+**(b)** Use vis-viva to find the speed at perigee and at apogee.
+**(c)** Confirm that $v_p r_p = v_a r_a$ (conservation of angular momentum — the speeds and radii are inversely related at the apsides).
+**(d)** At which point is the satellite moving faster, and by how much? Explain physically using Kepler's Second Law.
+
+**6 — Escape and hyperbolic excess.** A probe is at Earth's surface ($r = 6{,}371$ km).
+**(a)** Compute the escape velocity.
+**(b)** The probe is launched at 12.0 km/s. Compute its specific energy and confirm it's on a hyperbolic (escape) trajectory.
+**(c)** The "hyperbolic excess velocity" $v_\infty$ is the speed remaining at infinity, given by $v_\infty^2 = v^2 - v_{esc}^2$. Compute it. What does it physically represent, and why does it matter for interplanetary missions?
+
+**7 — Kepler's equation.** A satellite has an orbital period of 100 minutes and eccentricity $e = 0.3$. At $t = 20$ minutes after perigee passage:
+**(a)** Compute the mean anomaly $M$ (in radians).
+**(b)** Solve Kepler's equation $M = E - e\sin E$ for the eccentric anomaly $E$ using Newton's method. Show at least three iterations starting from $E_0 = M$.
+**(c)** Explain why you had to iterate — why couldn't you just solve for $E$ directly?
+**(d)** What does this equation's unsolvability teach about the difference between "exactly solvable" and "has a closed-form formula"?
+
+**8 — The productive lie.** The two-body problem is exact but not true.
+**(a)** List the three assumptions it makes that are false in reality.
+**(b)** For each, give one real, measurable consequence of the assumption's failure.
+**(c)** Explain how one such "failure" (Earth's oblateness) becomes an engineering *tool*, and how another (Mercury's perihelion) became a *scientific revolution*. What general lesson do these two examples share about the value of small discrepancies?
+
+**9 — Foundation synthesis.** In three or four paragraphs, explain the role of the two-body problem as the foundation of orbital mechanics. Cover: why it matters that it's *exactly solvable* (rare in physics); what "Newton's elevator" means (empirical law vs. derived theory); why vis-viva and the orbital elements are the practical workhorses; why the problem is nonetheless a "lie"; and how to hold the correct epistemic stance toward a model that is exact, wrong, and indispensable all at once. Reference how the lie carried Voyager to Neptune. This is the foundation essay for everything that follows.
+
+## Worked answers
+
+### 1 — Kepler's Third Law as the cosmic scale
+
+**(a)** $T = 2\pi\sqrt{r^3/\mu} = 2\pi\sqrt{(4.2164\times10^7)^3/3.986\times10^{14}}$. Numerator: $(4.2164\times10^7)^3 = 7.496\times10^{22}$; divide by $\mu$: $1.881\times10^8$; square root: $1.371\times10^4$; times $2\pi$: **86,164 s.** That is *exactly* one sidereal day (86,164 s), to the second. **This is not a coincidence — it's the *definition* of geostationary:** the radius 42,164 km is chosen precisely so the period equals Earth's rotation, which is why the satellite hangs motionless in the sky. Kepler's Third Law, solved backwards for the radius that gives a one-day period, *locates* the geostationary ring.
+
+**(b)** $T = 2\pi\sqrt{(3.844\times10^8)^3/3.986\times10^{14}}$. Working it through: $(3.844\times10^8)^3 = 5.681\times10^{25}$; divide by $\mu$: $1.425\times10^{11}$; square root: $3.775\times10^5$; times $2\pi$: $2.372\times10^6$ s = **27.45 days.** Observed: 27.3 days (sidereal). **Match to within 0.5%** — the small discrepancy is because the Moon is massive enough that the two-body $M \gg m$ approximation is slightly imperfect (the Earth–Moon barycenter is ~4,700 km from Earth's center, not *at* the center), one of the rare cases where the idealization visibly strains. Even so, the elevator gets you to 0.5%.
+
+**(c)** Kepler III solved for the central mass: $\mu_J = \frac{4\pi^2 a^3}{T^2}$. With $a = 4.217\times10^8$ m, $T = 1.769 \times 86{,}400 = 1.528\times10^5$ s:
+$$\mu_J = \frac{4\pi^2 (4.217\times10^8)^3}{(1.528\times10^5)^2} = \frac{4\pi^2 \times 7.50\times10^{25}}{2.335\times10^{10}} = 1.267\times10^{17}\ \mathrm{m^3/s^2}$$
+Mass: $M_J = \mu_J/G = 1.267\times10^{17}/6.674\times10^{-11} = \mathbf{1.899\times10^{27}\ kg}$. **The actual mass of Jupiter is $1.898\times10^{27}$ kg** — nailed to four significant figures, from nothing but the orbit of one of its moons. **This is how every mass in the universe is weighed: watch something orbit, apply Kepler III, read off the central mass.** The Sun, Jupiter, the Milky Way's central black hole (4 million solar masses, from the orbits of stars whipping around Sagittarius A*) — all weighed this way. Kepler found a pattern in the planets; Newton turned it into a scale for the cosmos.
+
+### 2 — Conic sections and energy
+
+**(a)** $\varepsilon = -5\times10^7 < 0$: **bound orbit — an ellipse (or circle).** The body is gravitationally trapped and returns periodically. A satellite or planet.
+
+**(b)** $\varepsilon = 0$: **parabola** — the exact escape boundary. The body just barely escapes, reaching infinity with exactly zero residual speed. Precisely escape velocity.
+
+**(c)** $\varepsilon = +2\times10^7 > 0$: **hyperbola — unbound.** The body escapes with energy to spare, arriving at infinity still moving. An interplanetary flyby trajectory or an interstellar interloper like ʻOumuamua.
+
+**(d)** $\varepsilon = v^2/2 - \mu/r = (9000)^2/2 - 3.986\times10^{14}/7\times10^6 = 4.05\times10^7 - 5.69\times10^7 = \mathbf{-1.64\times10^7\ J/kg}$. **Negative → bound → ellipse.** Yes, it's bound; it will come back. (Check: escape velocity at 7,000 km is $\sqrt{2\mu/r} = 10{,}672$ m/s, and 9,000 < 10,672, so the body lacks escape energy — consistent. It's on an ellipse, currently at 7,000 km moving at 9 km/s, and it will loop back around.)
+
+### 3 — The orbit equation
+
+**(a)** $r = p/(1 + e\cos\theta)$. Perigee ($\theta = 0$, $\cos = 1$): $r_p = 8000/(1.2) = \mathbf{6{,}667\ km}$. Apogee ($\theta = 180°$, $\cos = -1$): $r_a = 8000/(0.8) = \mathbf{10{,}000\ km}$.
+
+**(b)** $a = (r_p + r_a)/2 = (6667 + 10000)/2 = \mathbf{8{,}333\ km}$. Check: $r_p + r_a = 16{,}667 = 2a$. ✓ (The perigee and apogee radii average to the semi-major axis — the defining property of the ellipse's geometry.)
+
+**(c)** Perigee altitude $= r_p - R_\oplus = 6{,}667 - 6{,}371 = \mathbf{296\ km}$. **This is a safe orbit** — 296 km is a typical low-Earth-orbit altitude (comparable to the ISS's 400 km), above the dense atmosphere where drag would quickly deorbit it. It would experience slow decay from residual drag but is perfectly viable for years. (If the perigee altitude had come out negative or below ~150 km, the "orbit" would intersect the atmosphere or the ground — a suborbital trajectory or an impact, not an orbit at all. Always check perigee altitude.)
+
+### 4 — Derive vis-viva
+
+Start with the two facts. Conservation of specific energy: $\varepsilon = \dfrac{v^2}{2} - \dfrac{\mu}{r}$, constant everywhere on the orbit. And for an ellipse, the energy depends only on the semi-major axis: $\varepsilon = -\dfrac{\mu}{2a}$. Since $\varepsilon$ is the *same* quantity in both, set them equal:
+$$\frac{v^2}{2} - \frac{\mu}{r} = -\frac{\mu}{2a}$$
+Solve for $v^2$: add $\mu/r$ to both sides, multiply by 2:
+$$v^2 = 2\left(\frac{\mu}{r} - \frac{\mu}{2a}\right) = \frac{2\mu}{r} - \frac{\mu}{a} = \boxed{\mu\left(\frac{2}{r} - \frac{1}{a}\right)}$$
+
+**(a) Circular velocity:** for a circle, $r = a$ everywhere, so $v^2 = \mu(2/r - 1/r) = \mu/r$, giving $v_{circ} = \sqrt{\mu/r}$. ✓
+
+**(b) Escape velocity:** escape means the orbit is unbound — a parabola with $a \to \infty$, so $1/a \to 0$: $v^2 = \mu(2/r - 0) = 2\mu/r$, giving $v_{esc} = \sqrt{2\mu/r}$.
+
+**(c)** $\dfrac{v_{esc}}{v_{circ}} = \dfrac{\sqrt{2\mu/r}}{\sqrt{\mu/r}} = \sqrt{2}$. **Escape velocity is always exactly $\sqrt{2} \approx 1.414$ times the circular velocity at the same radius**, at any radius, around any body — a universal ratio that falls out of vis-viva in one line. (Physically: to escape, you need twice the *energy* of a circular orbit — kinetic energy scales as $v^2$, so twice the energy is $\sqrt{2}$ times the speed. Beautiful.)
+
+### 5 — Vis-viva at work
+
+**(a)** $r_p = 6{,}371 + 300 = 6{,}671$ km; $r_a = 6{,}371 + 3{,}000 = 9{,}371$ km; $a = (6{,}671 + 9{,}371)/2 = 8{,}021$ km.
+
+**(b)** Vis-viva, $v = \sqrt{\mu(2/r - 1/a)}$, with all $r$ in meters:
+- Perigee: $v_p = \sqrt{3.986\times10^{14}(2/6.671\times10^6 - 1/8.021\times10^6)} = \sqrt{3.986\times10^{14} \times 1.751\times10^{-7}} = \sqrt{6.98\times10^7} = \mathbf{8{,}355\ m/s}$
+- Apogee: $v_a = \sqrt{3.986\times10^{14}(2/9.371\times10^6 - 1/8.021\times10^6)} = \sqrt{3.986\times10^{14} \times 8.87\times10^{-8}} = \sqrt{3.54\times10^7} = \mathbf{5{,}948\ m/s}$
+
+**(c)** $v_p r_p = 8{,}355 \times 6.671\times10^6 = 5.574\times10^{10}$; $v_a r_a = 5{,}948 \times 9.371\times10^6 = 5.574\times10^{10}$. **Equal** ✓ — this is conservation of angular momentum ($h = rv$ at the apsides, where velocity is perpendicular to the radius). At perigee and apogee, speed and radius are inversely proportional.
+
+**(d)** The satellite moves **faster at perigee** (8,355 vs 5,948 m/s), by a factor of $v_p/v_a = 1.405$. **Physically, this is Kepler's Second Law:** the satellite sweeps equal areas in equal times, so when it's close to Earth (small radius at perigee) it must move fast to sweep the same area that it sweeps slowly when far away (large radius at apogee). Speed and distance-from-focus are inversely linked — the body races through the close point and crawls through the far point. (This is exactly the mechanism the Molniya orbit exploits: put apogee over Russia and the satellite loiters there for hours.)
+
+### 6 — Escape and hyperbolic excess
+
+**(a)** $v_{esc} = \sqrt{2\mu/r} = \sqrt{2 \times 3.986\times10^{14}/6.371\times10^6} = \sqrt{1.251\times10^8} = \mathbf{11{,}186\ m/s} = 11.19$ km/s. (The famous Earth escape velocity.)
+
+**(b)** $\varepsilon = v^2/2 - \mu/r = (12{,}000)^2/2 - 3.986\times10^{14}/6.371\times10^6 = 7.20\times10^7 - 6.256\times10^7 = \mathbf{+9.44\times10^6\ J/kg}$. **Positive → hyperbolic → escape trajectory.** ✓ (Consistent: 12 km/s > 11.19 km/s escape velocity, so it escapes.)
+
+**(c)** $v_\infty = \sqrt{v^2 - v_{esc}^2} = \sqrt{12{,}000^2 - 11{,}186^2} = \sqrt{1.44\times10^8 - 1.251\times10^8} = \sqrt{1.89\times10^7} = \mathbf{4{,}344\ m/s} = 4.34$ km/s.
+
+**Physical meaning:** $v_\infty$ is the speed the probe *retains at infinity* — after climbing all the way out of Earth's gravity well, having spent energy fighting gravity the whole way, it arrives at "infinity" (far from Earth) still moving at 4.34 km/s. Escape velocity gets you to infinity with *zero* speed; any excess above escape velocity leaves you with residual speed at infinity, and that residual is $v_\infty$.
+
+**Why it matters for interplanetary missions:** to go to another planet, you don't just need to escape Earth — you need to escape Earth *and* have the right velocity relative to the Sun to reach your destination's orbit. That heliocentric velocity requirement translates into a specific $v_\infty$ you must have when leaving Earth. So interplanetary mission design is fundamentally about achieving the right $v_\infty$ (the right leftover speed after escaping Earth), and the energy parameter $C_3 = v_\infty^2$ is *the* currency of interplanetary trajectory design — the "porkchop plots" of mission planning are contour maps of required $C_3$ versus launch date. $v_\infty$ is the bridge from "escaping Earth" to "arriving somewhere else."
+
+### 7 — Kepler's equation
+
+**(a)** Mean anomaly $M = \frac{2\pi}{T}(t - t_0) = \frac{2\pi}{100}(20) = \frac{2\pi \times 20}{100} = 0.4\pi = \mathbf{1.2566\ rad}$ (= 72.0°). (The mean anomaly is just the fraction of the period elapsed, times $2\pi$ — a pure clock, trivial to compute.)
+
+**(b)** Solve $M = E - e\sin E$, i.e. find the root of $f(E) = E - 0.3\sin E - 1.2566$. Newton's method: $E_{n+1} = E_n - \frac{f(E_n)}{f'(E_n)}$, where $f'(E) = 1 - 0.3\cos E$. Start $E_0 = M = 1.2566$:
+
+- **Iteration 1:** $f(1.2566) = 1.2566 - 0.3\sin(1.2566) - 1.2566 = -0.3 \times 0.9511 = -0.2853$. $f'(1.2566) = 1 - 0.3\cos(1.2566) = 1 - 0.3(0.3090) = 0.9073$. $E_1 = 1.2566 - (-0.2853)/0.9073 = 1.2566 + 0.3145 = \mathbf{1.5711}$.
+- **Iteration 2:** $f(1.5711) = 1.5711 - 0.3\sin(1.5711) - 1.2566 = 1.5711 - 0.3(1.0000) - 1.2566 = 0.01449$. $f'(1.5711) = 1 - 0.3\cos(1.5711) = 1 - 0.3(-0.00004) = 1.0000$. $E_2 = 1.5711 - 0.01449/1.0000 = \mathbf{1.5566}$.
+- **Iteration 3:** $f(1.5566) = 1.5566 - 0.3\sin(1.5566) - 1.2566 = 1.5566 - 0.3(0.99989) - 1.2566 = 0.00003$. $E_3 = 1.5566 - 0.00003/1.0 = \mathbf{1.55661}$.
+
+**Converged to $E = 1.55661$ rad in three iterations** (the fourth iteration doesn't change it to five decimals). From this, the true anomaly works out to $\nu \approx 106.7°$ — the satellite is 106.7° past perigee, notably *ahead* of where the mean anomaly (72°) would naively suggest, because near perigee the satellite moves *fast* (Kepler's Second Law), so it covers more true angle than the uniform mean anomaly indicates.
+
+**(c)** You had to iterate because **Kepler's equation is transcendental** — it mixes $E$ (algebraic) with $\sin E$ (transcendental), and there is *no way to algebraically isolate $E$.* You cannot write "$E = $ [formula in $M$ and $e$]" because no such closed-form formula exists (and this has been proven). So you're forced to solve it numerically — guess, check the error, correct, repeat — which is exactly what Newton's method does, converging geometrically fast (the error roughly squares each iteration, which is why three iterations gave five-decimal accuracy).
+
+**(d)** This teaches that **"exactly solvable" and "has a closed-form formula" are *not* the same thing.** The two-body problem is exactly solvable in the sense that its solution is completely determined and computable to any precision — but the final step, converting time to position, requires solving an equation that provably has no formula. "Solvable" means "the answer exists and can be computed"; "closed-form" means "the answer can be written as a finite expression in standard functions." Kepler's equation has the first property and lacks the second. **Most of physics, in fact, lives in this gap** — very few real problems have closed-form solutions, but enormously many are "solvable" in the sense of being computable numerically. Recognizing that the gap exists — that you can have a complete, exact, computable theory whose answers still can't be written as formulas — is a genuine conceptual step, and Kepler's equation is where physics first took it, in 1621.
+
+### 8 — The productive lie
+
+**(a) Three false assumptions:** (1) **point masses** — real bodies have finite size, shape, and non-uniform density; (2) **only two bodies** — the real solar system has the Sun, planets, moons, and asteroids all gravitating simultaneously; (3) **purely Newtonian gravity** — real gravity is general-relativistic, and real orbits also feel non-gravitational forces (atmospheric drag, radiation pressure).
+
+**(b) One measurable consequence of each:** (1) *Point-mass failure* → Earth's equatorial bulge (it's an oblate spheroid, not a point) makes satellite orbital planes precess by up to several degrees per day (the J2 effect). (2) *Two-body failure* → the other planets' gravity makes Mercury's perihelion advance, and makes every planetary orbit deviate from a fixed ellipse (this is how Neptune was discovered — from Uranus's deviations). (3) *Newtonian-gravity failure* → the relativistic correction adds 43 arcseconds/century to Mercury's perihelion precession beyond what all the planets account for; and drag decays low satellite orbits, shortening $a$ over time.
+
+**(c) Failure-as-tool:** Earth's oblateness (a point-mass failure) makes orbital planes precess — normally a nuisance, but if you tune altitude and inclination so the precession rate exactly matches Earth's orbital motion around the Sun (one revolution per year), the orbital plane stays fixed relative to the Sun, giving a **sun-synchronous orbit** with identical lighting on every pass — the foundation of Earth-observation satellites and the fifty-year Landsat climate record. **Failure-as-revolution:** Mercury's anomalous 43 arcseconds/century of perihelion precession (a Newtonian-gravity failure) couldn't be explained by any planet, and when Einstein computed it from general relativity in 1915 and got exactly 43, it became the first confirmation of a theory that replaced Newton's entire conception of gravity as the geometry of spacetime.
+
+**General lesson:** **small discrepancies from a nearly-true model are the most valuable observations in science, because a model that is *almost* right turns its own tiny residual errors into sensitive detectors of the deeper reality beneath it.** If the two-body problem were wildly wrong, its errors would tell you nothing (you'd just discard it). Because it is *almost exactly* right, its handful of tiny, precise failures point directly at what it's missing — Earth's shape, the other planets, spacetime itself. Kepler trusted eight arcminutes of Mars error and got the ellipse; astronomers trusted 43 arcseconds of Mercury error and got relativity. **The residual is where the discovery lives.** A good model's greatest gift is not its successes but the exact shape of its failures.
+
+### 9 — Foundation synthesis
+
+**The two-body problem is the foundation of orbital mechanics because it is one of the vanishingly few problems in all of physics that can be solved *exactly*, in closed form, and that exactness makes it the bedrock on which every practical technique is built.** Most of physics is intractable — the three-body problem has no general closed-form solution, turbulence is unsolved, the quantum many-body problem is a wall. But two point masses under mutual gravity yield completely: the orbit is a conic section, the motion obeys Kepler's three laws, the speed at any point is given by vis-viva, and every quantity of interest can be computed. This rare exactness is why the two-body problem is where orbital mechanics *starts* and, in a patched-together form, where most of it *stays* — because an exact solution you can compute by hand is worth more than an intractable exact reality you can't.
+
+**"Newton's elevator" names the difference between an empirical law and a derived theory.** Kepler *discovered* his three laws by brute-force pattern-matching against twenty years of Tycho's data, over a decade of anguish, with no idea *why* they held — he climbed the mountain on his hands and knees. Newton *derived* all three from the inverse-square law in a few lines: Kepler's Second Law is conservation of angular momentum, his First Law is the bound case of conic-section orbits, his Third Law is a one-line consequence that additionally reveals the constant of proportionality to be the central mass — turning Kepler's pattern into a cosmic scale for weighing the Sun, Jupiter, and galactic black holes. The elevator doesn't just reproduce the empirical laws; it explains them, unifies them, and extends them, which is what a theory does that a pattern cannot.
+
+**Vis-viva and the orbital elements are the practical workhorses because they package the exact solution into forms an engineer can use.** Vis-viva, $v^2 = \mu(2/r - 1/a)$, gives the speed at any point in any orbit from just two numbers, and it's the bridge between geometry (where things are) and propulsion (what changing their motion costs, via the rocket equation) — every transfer, rendezvous, and interplanetary trajectory is built on it. The orbital elements exploit the deepest feature of the two-body solution: that the orbit is a *fixed* ellipse at a *fixed* orientation, so five numbers are constant and only one (the position along the orbit) changes with time. This is why every object in space is catalogued by its elements — you publish five constants and a clock, and anyone can find the object at any moment.
+
+**And yet the problem is a lie — exact but not true — because its assumptions (point masses, two bodies, Newtonian gravity) are all false, and the correct stance toward it is the engineer's stance toward any model: trust it completely, right up to the boundary of its validity, and never one step past.** Its failures are tiny and precise, and each is a door: Earth's oblateness becomes the sun-synchronous orbit, Mercury's 43 arcseconds became general relativity. The mark of mastery is knowing the model's domain of validity as precisely as the model itself. The two-body problem, patched together at the boundaries of each planet's gravitational sphere, navigated Voyager 2 across twelve years and four planets to Neptune with kilometer precision — a spacecraft flown to the edge of the solar system by a lie, because the lie is a truth-shaped tool that fits the hand and does the job. **That is the whole epistemic lesson of the foundation: a model can be exact, wrong, and indispensable all at once, and wisdom is riding it to Neptune while knowing exactly where it would throw you.**$l8_master$,
     true,
     true
   )
