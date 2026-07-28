@@ -157,14 +157,23 @@ function TreeRow({
   // Mobile drawer runs 2px larger for legibility; the desktop rail (lg+) keeps
   // the compact sizes. The two trees never render at the same breakpoint, so a
   // single responsive class covers both.
+  // Three visual tiers, so the levels are distinguishable at a glance:
+  // level 1 (depth 0) is the darkest and heaviest (ink + semibold); level 2
+  // (depth 1) sits in between — a medium weight and ink at 70% so it reads
+  // darker than the leaves but lighter than the top level; level 3+ (leaves)
+  // are the lightest (muted, normal weight).
   const size =
     depth === 0
       ? "text-[16px] lg:text-[14px] font-semibold"
       : depth === 1
-      ? "text-[15.5px] lg:text-[13.5px]"
+      ? "text-[15.5px] lg:text-[13.5px] font-medium"
       : "text-[15px] lg:text-[13px]";
   const rest =
-    depth === 0 ? "text-ink hover:text-purple" : "text-muted hover:text-ink";
+    depth === 0
+      ? "text-ink hover:text-purple"
+      : depth === 1
+      ? "text-ink/70 hover:text-ink"
+      : "text-muted hover:text-ink";
 
   return (
     <div>
