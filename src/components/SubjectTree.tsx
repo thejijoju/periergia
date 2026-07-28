@@ -159,8 +159,9 @@ function TreeRow({
   // single responsive class covers both.
   // Three visual tiers, so the levels are distinguishable at a glance:
   // level 1 (depth 0) is the darkest and heaviest (ink + semibold); level 2
-  // (depth 1) sits in between — a medium weight and ink at 70% so it reads
-  // darker than the leaves but lighter than the top level; level 3+ (leaves)
+  // (depth 1) sits in between — a medium weight and ink at 45% so it reads
+  // clearly lighter than the top level (which otherwise looked identical) while
+  // still sitting above the leaves in the warm-grey ramp; level 3+ (leaves)
   // are the lightest (muted, normal weight).
   const size =
     depth === 0
@@ -172,7 +173,7 @@ function TreeRow({
     depth === 0
       ? "text-ink hover:text-purple"
       : depth === 1
-      ? "text-ink/70 hover:text-ink"
+      ? "text-ink/45 hover:text-ink"
       : "text-muted hover:text-ink";
 
   return (
