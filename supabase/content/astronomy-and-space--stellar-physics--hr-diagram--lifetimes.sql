@@ -62,7 +62,7 @@ About 780 times Kelvin's reservoir, and comfortably consistent with the meteorit
 
 Three points follow, and the third is the one worth carrying forward.
 
-The order-of-magnitude estimate is the whole method: everything that follows is a variant of dividing the fuel by the burn rate, and the calculation above is the template.
+The order-of-magnitude estimate is the whole method: everything that follows is a variant of dividing the fuel by the burn rate, and the calculation above is the template. It is worth noting how little machinery that template requires — a reservoir of energy and a rate at which it is spent are the only two ingredients, and the entire structure of stellar lifetimes, from the shortest-lived supergiant to the longest-lived red dwarf, is built from nothing more than successively better versions of that same division.
 
 A mismatch between two well-founded estimates is a discovery waiting to happen. The factor-of-a-hundred discrepancy between Kelvin and the geologists was not a failure of either — it was a signpost pointing at missing physics. It is worth noting that the field that turned out to be right was the one with the worse theoretical footing and the better empirical constraint.
 
@@ -128,9 +128,9 @@ A factor of 250 in mass produces a factor of five million billion in lifetime �
 
 No star below about 0.88 M☉ has ever died. Their lifetimes exceed the age of the universe, so the entire population ever formed is still on the main sequence — and since M dwarfs make up 76% of all stars, three quarters of every star ever born is still burning hydrogen.
 
-A 0.1 M☉ star will burn for roughly 32 trillion years, some 2,300 times the current age of the universe. The universe is, from the point of view of red dwarfs, extremely young.
+A 0.1 M☉ star will burn for roughly 32 trillion years, some 2,300 times the current age of the universe. The universe is, from the point of view of red dwarfs, extremely young — every such star that has ever formed is still shining on the main sequence today, and every one that ever will form will still be shining long after every trace of the present cosmic era has receded into the past.
 
-And a 25 M☉ star lives 6 million years — less than the time since the Miocene, and comparable to the lifetime of a molecular cloud.
+And a 25 M☉ star lives 6 million years — less than the time since the Miocene, and comparable to the lifetime of a molecular cloud. The two figures sit at opposite ends of a single physical relationship, and the contrast is worth holding in mind together: a difference in mass of a little over two orders of magnitude produces a difference in lifetime of nearly sixteen, so that the least massive and most massive stars ever formed are, in the strict sense of how long they persist, barely recognizable as instances of the same phenomenon.
 
 ## The main-sequence turnoff as a clock
 
@@ -160,7 +160,7 @@ The method has been applied across the full range of star-forming environments t
 
 ### Why the clock runs poorly at old ages
 
-$M_{\text{turnoff}} \propto t^{-0.4}$, so the turnoff mass changes rapidly when the cluster is young and very slowly when it is old:
+Inverting $t \propto M^{-2.5}$ for mass gives $M \propto t^{-1/2.5} = t^{-0.4}$, so $M_{\text{turnoff}} \propto t^{-0.4}$ — the turnoff mass changes rapidly when the cluster is young and very slowly when it is old:
 
 | Age interval | Turnoff moves |
 |---|---|
@@ -206,7 +206,7 @@ For roughly a decade, a stellar-physics measurement was evidence against the pre
 
 That is worth stating plainly, because the usual assumption is that cosmology sets the framework and stellar astrophysics fills it in. Here the causation ran the other way: main-sequence turnoffs provided a hard lower bound on the age of the universe that was independent of any cosmological assumption, and that bound was one of several pressures that made an accelerating universe thinkable.
 
-A measurement that constrains something far outside its own field is doing more work than a measurement that merely confirms one. Globular cluster ages remain the only age determination for the universe that involves no cosmology whatsoever.
+A measurement that constrains something far outside its own field is doing more work than a measurement that merely confirms one. Globular cluster ages remain the only age determination for the universe that involves no cosmology whatsoever — no Hubble constant, no assumption about the universe's matter or energy content, nothing beyond nuclear reaction rates, stellar structure, and a geometric distance. That independence is precisely what gave the discrepancy its force in the first place: had the stellar age depended on the same cosmological inputs as the expansion age, the two measurements could never have come into conflict, because any error shared between them would have canceled rather than compounded. It was the fact that the two clocks ran on entirely separate physics that made their disagreement, and later their resolution, meaningful.
 
 {{image: Age of the universe | The expansion history of the universe: an accelerating expansion, discovered in 1998, means the universe was expanding more slowly in the past than a purely decelerating model would predict, which raises the cosmological age at fixed present-day Hubble constant to about 13.8 billion years.}}
 
@@ -239,7 +239,7 @@ And it explains the self-terminating character of star formation: massive stars 
 
 ### The bottom is set by something else entirely
 
-At the other end, the main sequence stops at 0.08 M☉ — the hydrogen-burning limit. Below it, electron degeneracy halts contraction before the core reaches ignition temperature, and the object cools forever as a brown dwarf.
+At the other end, the main sequence stops at 0.08 M☉ — the hydrogen-burning limit. Below it, electron degeneracy halts contraction before the core reaches ignition temperature, and the object cools forever as a brown dwarf. Electron degeneracy pressure arises from the Pauli exclusion principle, which forbids two electrons from occupying the same quantum state: compress a gas of electrons enough and, regardless of temperature, they are forced into ever higher momentum states simply because the lower ones are already full, generating a pressure that has nothing to do with heat. In an object below the hydrogen-burning limit, this pressure halts further gravitational compression before the core has been squeezed hot enough — above roughly ten million kelvin — to sustain proton–proton fusion, so the object never ignites as a star at all. It radiates away the heat left over from its formation, cooling and dimming for the rest of its existence, detectable only while that residual heat lasts.
 
 The two ends of the main sequence are set by completely different physics. The top is a competition between radiation pressure and gravity, and between lifetime and observability. The bottom is a single quantum-mechanical threshold. Neither end is set by anything about fusion rates or fuel supply. The line has the length it does because of gravity at one end and quantum mechanics at the other.
 
@@ -261,7 +261,7 @@ Stars do not fill the luminosity–temperature plane; they lie on a line, and ni
 
 The line exists because stellar structure is fixed by one parameter — mass — so a one-parameter family of stars traces a curve. Position along it is mass. The line has an end at the bottom, at 0.08 M☉, where hydrogen cannot ignite, and an end at the top, at roughly 150 M☉, where radiation pressure wins. Nine tenths of stars are on it because that is the fraction of a stellar lifetime spent there. And the top of the occupied portion moves down as a population ages, at a rate that gives the population's age.
 
-The diagram is a census, a mass sequence, and a clock, simultaneously — and its axes were plotted in 1911 by people who knew none of this.
+The diagram is a census, a mass sequence, and a clock, simultaneously — and its axes were plotted in 1911 by people who knew none of this. Ejnar Hertzsprung first laid out the relationship between stellar luminosity and spectral type around 1911, and Henry Norris Russell independently arrived at the same diagram and presented it in 1913, decades before nuclear fusion was understood, before convection zones were mapped, and before a main-sequence lifetime could be calculated at all. The diagram they produced from nothing more than measured brightnesses and spectra turned out, once the underlying physics was finally worked out across the twentieth century, to already contain a mass sequence and a clock folded invisibly into its two axes.
 
 {{image: Hertzsprung–Russell diagram | The Hertzsprung–Russell diagram, plotted in 1911 with no knowledge of nuclear fusion, convective mixing, or stellar lifetimes — a census of luminosity against temperature that later turned out to encode mass along its main sequence and age at its turnoff.}}
 
