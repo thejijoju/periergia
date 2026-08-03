@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 // An interactive Polaris-altitude globe, embedded in an article via a fenced
 // ```polarisaltitude block (see Reader's `pre` override). The master relation
@@ -33,9 +33,10 @@ function rotX(v: V3, a: number): V3 {
 }
 
 const R = 96; // globe radius, svg units
-const RAY_LEN = R * 2.1; // how far the "to Polaris" rays are drawn
-const DIST = 300, FOCAL = 360; // camera distance / focal length
-const CX = 150, CY = 154; // viewBox centre (300x290 viewBox)
+const RAY_LEN = R * 1.55; // how far the "to Polaris" rays are drawn
+const DIST = 300, FOCAL = 360; // camera distance / nominal focal length (see fitFocal)
+const VIEW_W = 300, VIEW_H = 290;
+const CX = VIEW_W / 2, CY = 154; // viewBox centre
 
 function observerPos(latDeg: number): V3 {
   const phi = latDeg * deg;
@@ -52,12 +53,37 @@ function tangentBasis(latDeg: number) {
 function toCam(p: V3, yaw: number, pitch: number): V3 {
   return rotX(rotY(p, yaw), pitch);
 }
-function project(p: V3, yaw: number, pitch: number): { x: number; y: number } | null {
+function project(p: V3, yaw: number, pitch: number, focal: number): { x: number; y: number } | null {
   const v = toCam(p, yaw, pitch);
   const z = v.z + DIST;
   if (z <= 1) return null;
-  const s = FOCAL / z;
+  const s = focal / z;
   return { x: CX + v.x * s, y: CY - v.y * s };
+}
+
+// The ray to Polaris travels far enough from the globe's centre that, once
+// the reader drags to an unlucky angle (or at low latitude, where the
+// observer sits at the sphere's edge), its endpoint and label can land
+// outside the viewBox and simply vanish — a real bug, not a tuning nit. Fix
+// it the general way: measure where the two farthest points (the Polaris
+// marker and the ray's far end) would land at the nominal focal length, and
+// shrink the focal length just enough that both stay inside a safety margin
+// — the same "zoom to fit" a photo viewer does, so the whole scene stays
+// legible at any orbit angle instead of only the ones tested by hand.
+function fitFocal(farPoints: V3[], yaw: number, pitch: number): number {
+  const marginX = 55; // leaves room for the "Polaris" label, drawn to the right of its point
+  const marginTop = 22;
+  const availW = Math.min(CX, VIEW_W - CX) - marginX;
+  const availH = Math.min(CY, VIEW_H - CY) - marginTop;
+  let focal = FOCAL;
+  for (const p of farPoints) {
+    const v = toCam(p, yaw, pitch);
+    const z = v.z + DIST;
+    if (z <= 1) continue;
+    if (Math.abs(v.x) > 1e-6) focal = Math.min(focal, (availW * z) / Math.abs(v.x));
+    if (Math.abs(v.y) > 1e-6) focal = Math.min(focal, (availH * z) / Math.abs(v.y));
+  }
+  return Math.max(120, focal); // never shrink the globe past legibility
 }
 
 // Arc from `from` to `to` (both unit vectors, coplanar with the world x=0
@@ -113,14 +139,14 @@ function avgCamZ(pts: V3[], yaw: number, pitch: number) {
 // Build one <path> per near/far segment run so backface dimming (the far
 // hemisphere of the wireframe reads fainter) survives as a single stroke
 // rather than one element per segment.
-function globeLinePaths(line: Line, yaw: number, pitch: number) {
+function globeLinePaths(line: Line, yaw: number, pitch: number, focal: number) {
   const segs: { d: string; near: boolean }[] = [];
   let cur = "";
   let curNear: boolean | null = null;
   for (let i = 0; i < line.pts.length; i++) {
     const p = line.pts[i];
     const near = toCam(p, yaw, pitch).z < 0;
-    const s = project(p, yaw, pitch);
+    const s = project(p, yaw, pitch, focal);
     if (!s) { if (cur) segs.push({ d: cur, near: !!curNear }); cur = ""; curNear = null; continue; }
     if (curNear !== null && curNear !== near) { segs.push({ d: cur, near: curNear }); cur = ""; }
     cur += cur ? ` L ${s.x.toFixed(2)} ${s.y.toFixed(2)}` : `M ${s.x.toFixed(2)} ${s.y.toFixed(2)}`;
@@ -130,10 +156,10 @@ function globeLinePaths(line: Line, yaw: number, pitch: number) {
   return segs;
 }
 
-function pathFrom(pts: V3[], yaw: number, pitch: number): string {
+function pathFrom(pts: V3[], yaw: number, pitch: number, focal: number): string {
   let d = "";
   for (const p of pts) {
-    const s = project(p, yaw, pitch);
+    const s = project(p, yaw, pitch, focal);
     if (!s) continue;
     d += d ? ` L ${s.x.toFixed(2)} ${s.y.toFixed(2)}` : `M ${s.x.toFixed(2)} ${s.y.toFixed(2)}`;
   }
@@ -143,21 +169,109 @@ function pathFrom(pts: V3[], yaw: number, pitch: number): string {
 const PRESETS: [string, number][] = [["Equator", 0], ["New York", 40], ["London", 51.5], ["North Pole", 90]];
 const SANS = "ui-sans-serif, system-ui, sans-serif";
 
+// A deterministic scatter (not Math.random(), so server and client render
+// identically) standing in for background stars in the sky view.
+const SKY_STARS = Array.from({ length: 36 }, (_, i) => {
+  const x = (i * 53 + 11) % 300;
+  const y = (i * 37 + 5) % 205;
+  const r = 0.5 + ((i * 7) % 5) / 5;
+  const o = 0.25 + ((i * 13) % 10) / 20;
+  return { x, y, r, o };
+});
+
+const SKY_HORIZON_Y = 210;
+const SKY_TOP_MARGIN = 26;
+function skyAltToY(alt: number) {
+  return SKY_HORIZON_Y - (SKY_HORIZON_Y - SKY_TOP_MARGIN) * Math.sin(alt * deg);
+}
+
+// The companion "what you'd actually see" view: a fixed, always-in-frame
+// sky, looking north, with Polaris at a height that reads directly off a
+// vertical scale — no orbiting required. Same latitude state as the globe,
+// so switching modes never loses the reader's place.
+function SkyView({ lat }: { lat: number }) {
+  const gradId = useId();
+  const polarisY = skyAltToY(lat);
+
+  return (
+    <svg
+      viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+      className="mx-auto block h-auto w-full max-w-[320px]"
+      role="img"
+      aria-label={`Looking north: Polaris sits ${lat.toFixed(1)} degrees above the horizon, which is also the observer's latitude.`}
+    >
+      <defs>
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#0c0e24" />
+          <stop offset="45%" stopColor="#1c2454" />
+          <stop offset="75%" stopColor="#4a4d7a" />
+          <stop offset="100%" stopColor="#8a7360" />
+        </linearGradient>
+      </defs>
+
+      <rect x={0} y={0} width={VIEW_W} height={SKY_HORIZON_Y} fill={`url(#${gradId})`} />
+      {SKY_STARS.map((s, i) => (
+        <circle key={i} cx={s.x} cy={s.y} r={s.r} fill="#fdf6e6" opacity={s.o} />
+      ))}
+
+      {/* circumpolar trails: everything else in the sky circles this one point */}
+      {[14, 26, 38].map((rr) => (
+        <path
+          key={rr}
+          d={`M ${CX + rr} ${polarisY} A ${rr} ${rr} 0 1 0 ${CX - rr} ${polarisY}`}
+          fill="none" stroke="#fdf6e6" strokeWidth={0.8} opacity={0.14}
+        />
+      ))}
+
+      <rect x={0} y={SKY_HORIZON_Y} width={VIEW_W} height={VIEW_H - SKY_HORIZON_Y} fill="#0a0906" />
+      <line x1={0} y1={SKY_HORIZON_Y} x2={VIEW_W} y2={SKY_HORIZON_Y} stroke="#f3ead9" strokeOpacity={0.35} strokeWidth={1.4} />
+      <text x={CX} y={SKY_HORIZON_Y + 17} textAnchor="middle" fill="#ffd76a" fontSize={12} fontWeight={700} fontFamily={SANS}>N</text>
+
+      {/* altitude scale */}
+      {[0, 30, 60, 90].map((a) => {
+        const y = skyAltToY(a);
+        return (
+          <g key={a}>
+            <line x1={CX - 6} y1={y} x2={CX + 6} y2={y} stroke="#f3ead9" strokeOpacity={0.3} strokeWidth={1} />
+            <text x={CX + 12} y={y + 3.5} fill="#f3ead9" fillOpacity={0.55} fontSize={9.5} fontFamily={SANS}>{a}&deg;</text>
+          </g>
+        );
+      })}
+
+      {/* the highlighted altitude sweep, horizon to Polaris */}
+      <line x1={CX} y1={SKY_HORIZON_Y} x2={CX} y2={polarisY} stroke="#ffd76a" strokeWidth={2} strokeDasharray="1 4.5" strokeLinecap="round" opacity={0.85} />
+      <path
+        d={`M ${CX + 18} ${SKY_HORIZON_Y} A 18 18 0 0 1 ${CX} ${SKY_HORIZON_Y - 18}`}
+        fill="none" stroke="#ffd76a" strokeWidth={1.4} opacity={0.55}
+      />
+
+      {/* Polaris */}
+      <circle cx={CX} cy={polarisY} r={13} fill="#fff5d2" opacity={0.18} />
+      <circle cx={CX} cy={polarisY} r={3.4} fill="#fffdf5" />
+      <text x={CX + 12} y={polarisY + 4} fill="#fff8ec" fontSize={11} fontStyle="italic" fontFamily="Georgia, serif">Polaris</text>
+    </svg>
+  );
+}
+
 export function PolarisAltitude() {
   const [lat, setLat] = useState(40);
   const [yaw, setYaw] = useState(0.55);
   const [pitch, setPitch] = useState(0.28);
   const [dragging, setDragging] = useState(false);
+  const [mode, setMode] = useState<"globe" | "sky">("globe");
 
   const obs = observerPos(lat);
   const { horizonDir } = tangentBasis(lat);
   const polarisDir: V3 = { x: 0, y: 1, z: 0 };
+  const polarisPoint: V3 = { x: 0, y: RAY_LEN, z: 0 };
+  const rayFar: V3 = { x: obs.x, y: obs.y + RAY_LEN * 0.7, z: obs.z };
+  const focal = fitFocal([polarisPoint, rayFar], yaw, pitch);
 
   type Item = { z: number; el: React.ReactNode };
   const items: Item[] = [];
 
   for (const line of GLOBE_LINES) {
-    const segs = globeLinePaths(line, yaw, pitch);
+    const segs = globeLinePaths(line, yaw, pitch, focal);
     items.push({
       z: avgCamZ(line.pts, yaw, pitch),
       el: (
@@ -180,19 +294,18 @@ export function PolarisAltitude() {
 
   // axis, extended to Polaris
   {
-    const pts: V3[] = [{ x: 0, y: -RAY_LEN * 0.5, z: 0 }, { x: 0, y: RAY_LEN, z: 0 }];
+    const pts: V3[] = [{ x: 0, y: -RAY_LEN * 0.5, z: 0 }, polarisPoint];
     items.push({
       z: avgCamZ(pts, yaw, pitch),
       el: (
-        <path key="axis" d={pathFrom(pts, yaw, pitch)} className="text-faint" stroke="currentColor"
+        <path key="axis" d={pathFrom(pts, yaw, pitch, focal)} className="text-faint" stroke="currentColor"
           strokeWidth={1} strokeDasharray="3 3" opacity={0.6} fill="none" />
       ),
     });
-    const p = { x: 0, y: RAY_LEN, z: 0 };
-    const s = project(p, yaw, pitch);
+    const s = project(polarisPoint, yaw, pitch, focal);
     if (s) {
       items.push({
-        z: toCam(p, yaw, pitch).z,
+        z: toCam(polarisPoint, yaw, pitch).z,
         el: (
           <g key="polaris">
             <circle cx={s.x} cy={s.y} r={2.6} className="text-ink" fill="currentColor" />
@@ -207,12 +320,11 @@ export function PolarisAltitude() {
 
   // ray from observer to Polaris (maroon, dashed)
   {
-    const far = { x: obs.x, y: obs.y + RAY_LEN * 0.7, z: obs.z };
-    const pts = [obs, far];
+    const pts = [obs, rayFar];
     items.push({
       z: avgCamZ(pts, yaw, pitch) - 4,
       el: (
-        <path key="ray" d={pathFrom(pts, yaw, pitch)} className="text-maroon" stroke="currentColor"
+        <path key="ray" d={pathFrom(pts, yaw, pitch, focal)} className="text-maroon" stroke="currentColor"
           strokeWidth={1.6} strokeDasharray="3 3" opacity={0.85} fill="none" />
       ),
     });
@@ -224,7 +336,7 @@ export function PolarisAltitude() {
     const pts = arcPoints(obs, horizonDir, polarisDir, arcR, 20);
     items.push({
       z: avgCamZ(pts, yaw, pitch) - 6,
-      el: <path key="alt-arc" d={pathFrom(pts, yaw, pitch)} className="text-maroon" stroke="currentColor" strokeWidth={2} fill="none" />,
+      el: <path key="alt-arc" d={pathFrom(pts, yaw, pitch, focal)} className="text-maroon" stroke="currentColor" strokeWidth={2} fill="none" />,
     });
   }
 
@@ -237,13 +349,13 @@ export function PolarisAltitude() {
     const pts = arcPoints(center, from, to, arcR, 20);
     items.push({
       z: avgCamZ(pts, yaw, pitch) - 5,
-      el: <path key="lat-arc" d={pathFrom(pts, yaw, pitch)} className="text-purple" stroke="currentColor" strokeWidth={2} fill="none" />,
+      el: <path key="lat-arc" d={pathFrom(pts, yaw, pitch, focal)} className="text-purple" stroke="currentColor" strokeWidth={2} fill="none" />,
     });
   }
 
   // observer marker
   {
-    const s = project(obs, yaw, pitch);
+    const s = project(obs, yaw, pitch, focal);
     if (s) {
       items.push({
         z: toCam(obs, yaw, pitch).z - 8,
@@ -262,18 +374,35 @@ export function PolarisAltitude() {
 
   return (
     <figure className="my-7 rounded-xl border border-line bg-card p-4 sm:p-5">
+      <div className="mb-3 flex justify-center gap-1.5">
+        {(["globe", "sky"] as const).map((m) => (
+          <button
+            key={m} type="button" onClick={() => setMode(m)}
+            className={`font-sans text-[11.5px] rounded-full px-3 py-1 transition-colors ${
+              mode === m ? "bg-purple text-page font-semibold" : "border border-line text-muted hover:text-ink hover:border-ink"
+            }`}
+          >
+            {m === "globe" ? "The proof" : "The sky"}
+          </button>
+        ))}
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
-        <svg
-          viewBox="0 0 300 290"
-          className="mx-auto block h-auto w-full max-w-[320px] cursor-grab touch-none active:cursor-grabbing"
-          role="img"
-          aria-label={`A 3D globe showing that at latitude ${lat.toFixed(1)} degrees, Polaris's altitude above the horizon is also ${lat.toFixed(1)} degrees. Drag to orbit.`}
-          onPointerDown={(e) => { setDragging(true); e.currentTarget.setPointerCapture(e.pointerId); }}
-          onPointerMove={handlePointerMove}
-          onPointerUp={() => setDragging(false)}
-        >
-          {items.map((it) => it.el)}
-        </svg>
+        {mode === "globe" ? (
+          <svg
+            viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+            className="mx-auto block h-auto w-full max-w-[320px] cursor-grab touch-none active:cursor-grabbing"
+            role="img"
+            aria-label={`A 3D globe showing that at latitude ${lat.toFixed(1)} degrees, Polaris's altitude above the horizon is also ${lat.toFixed(1)} degrees. Drag to orbit.`}
+            onPointerDown={(e) => { setDragging(true); e.currentTarget.setPointerCapture(e.pointerId); }}
+            onPointerMove={handlePointerMove}
+            onPointerUp={() => setDragging(false)}
+          >
+            {items.map((it) => it.el)}
+          </svg>
+        ) : (
+          <SkyView lat={lat} />
+        )}
 
         <div className="flex flex-row justify-center gap-6 sm:flex-col sm:gap-2 sm:text-right">
           <div>
@@ -287,7 +416,9 @@ export function PolarisAltitude() {
         </div>
       </div>
 
-      <p className="mt-1 text-center font-sans text-[11.5px] text-faint">drag the globe to orbit</p>
+      <p className="mt-1 text-center font-sans text-[11.5px] text-faint">
+        {mode === "globe" ? "drag the globe to orbit" : "facing north"}
+      </p>
 
       <div className="mt-4 space-y-3">
         <label className="block">
@@ -314,7 +445,15 @@ export function PolarisAltitude() {
       </div>
 
       <figcaption className="mt-4 font-sans text-[12px] text-faint leading-snug">
-        The <span className="text-purple">purple arc</span> is latitude, swept at Earth&rsquo;s centre between the equatorial plane and the line to the observer. The <span className="text-maroon">maroon arc</span> is Polaris&rsquo;s altitude, swept at the observer between the local horizon and the line of sight to Polaris &mdash; which, at 433 light-years away, points in effectively the same direction from anywhere on Earth. The two angles are drawn from a single piece of geometry, not merely correlated: rotate the globe from any side and they stay locked together.
+        {mode === "globe" ? (
+          <>
+            The <span className="text-purple">purple arc</span> is latitude, swept at Earth&rsquo;s centre between the equatorial plane and the line to the observer. The <span className="text-maroon">maroon arc</span> is Polaris&rsquo;s altitude, swept at the observer between the local horizon and the line of sight to Polaris &mdash; which, at 433 light-years away, points in effectively the same direction from anywhere on Earth. The two angles are drawn from a single piece of geometry, not merely correlated: rotate the globe from any side and they stay locked together.
+          </>
+        ) : (
+          <>
+            Face north and Polaris sits at a fixed height in the sky &mdash; read straight off the scale beside it, from 0&deg; at the horizon to 90&deg; at the zenith. Every other star wheels around that one fixed point through the night, which is why it is called the pole star. That height is your latitude, exactly.
+          </>
+        )}
       </figcaption>
     </figure>
   );
