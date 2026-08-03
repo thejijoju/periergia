@@ -21,6 +21,7 @@ const config: Config = {
         maroon: "var(--c-maroon)",
         purple: "var(--c-purple)",
         "purple-soft": "var(--c-purple-soft)",
+        "purple-visited": "var(--c-purple-visited)",
         muted: "var(--c-muted)",
         faint: "var(--c-faint)",
         whisper: "var(--c-whisper)",

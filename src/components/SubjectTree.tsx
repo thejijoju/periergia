@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useProgress } from "@/lib/progress";
 
 // A node in the left-rail syllabus tree. Recursive, so it supports any depth
 // (Subject → sub-subject → topic → sub-topic → …).
@@ -41,6 +42,11 @@ export function SubjectTree({
   items: TreeItem[];
   activeId: string;
 }) {
+  const { state, hydrated } = useProgress();
+  // Only trust "visited" once localStorage has hydrated, so the server-rendered
+  // markup (nothing visited yet) never flashes into a different client render.
+  const visited = hydrated ? new Set(state.visited) : null;
+
   return (
     <nav className="text-[16px] lg:text-[14px]">
       <SubjectSwitcher
@@ -51,7 +57,7 @@ export function SubjectTree({
       />
       <div className="mt-4 space-y-0.5">
         {items.map((it) => (
-          <TreeRow key={it.id} item={it} activeId={activeId} depth={0} />
+          <TreeRow key={it.id} item={it} activeId={activeId} depth={0} visited={visited} />
         ))}
       </div>
     </nav>
@@ -143,16 +149,19 @@ function TreeRow({
   item,
   activeId,
   depth,
+  visited,
 }: {
   item: TreeItem;
   activeId: string;
   depth: number;
+  visited: Set<string> | null;
 }) {
   const hasChildren = item.children.length > 0;
   // open if this branch leads to the active node
   const onPath = hasChildren && item.children.some((c) => contains(c, activeId));
   const [open, setOpen] = useState(onPath);
   const active = item.id === activeId;
+  const wasVisited = !active && !!visited?.has(item.id);
 
   // Mobile drawer runs 2px larger for legibility; the desktop rail (lg+) keeps
   // the compact sizes. The two trees never render at the same breakpoint, so a
@@ -175,6 +184,13 @@ function TreeRow({
       : depth === 1
       ? "text-ink/45 hover:text-ink"
       : "text-muted hover:text-ink";
+  // Read nodes get a fixed duskier-purple tint independent of depth, so
+  // "already read" reads as a consistent signal the way visited-link colour
+  // does — distinct from the unread tiers above and one step short of the
+  // full-purple active state. (--c-purple-visited, not a /opacity modifier on
+  // --c-purple: that var isn't in the R-G-B-triplet form Tailwind needs to
+  // apply an alpha modifier, so `text-purple/NN` silently generates no rule.)
+  const visitedStyle = "text-purple-visited hover:text-purple";
 
   return (
     <div>
@@ -182,7 +198,7 @@ function TreeRow({
         <Link
           href={item.href}
           className={`flex-1 py-1.5 font-sans ${size} transition-colors ${
-            active ? "text-purple font-medium" : rest
+            active ? "text-purple font-medium" : wasVisited ? visitedStyle : rest
           }`}
         >
           {item.title}
@@ -211,7 +227,7 @@ function TreeRow({
       {hasChildren && open && (
         <div className="ml-1 border-l border-line pl-2 space-y-0.5">
           {item.children.map((c) => (
-            <TreeRow key={c.id} item={c} activeId={activeId} depth={depth + 1} />
+            <TreeRow key={c.id} item={c} activeId={activeId} depth={depth + 1} visited={visited} />
           ))}
         </div>
       )}

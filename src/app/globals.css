@@ -14,6 +14,10 @@
   --c-maroon: #e0a3a3;
   --c-purple: #b9a3f8;
   --c-purple-soft: #241f33;
+  /* Read/visited links — a duskier purple, between --c-muted grey (unread) and
+     the vivid --c-purple (active), so "already read" reads as its own signal
+     rather than a faded version of either. */
+  --c-purple-visited: #8f7fc0;
   --c-muted: #a89f92;
   --c-faint: #8a8175;
   --c-whisper: #726858;
@@ -48,6 +52,7 @@
   --c-maroon: #7c2d2d;
   --c-purple: #6d28d9;
   --c-purple-soft: #f3effb;
+  --c-purple-visited: #9673c4;
   --c-muted: #6b6258;
   --c-faint: #8a8076;
   --c-whisper: #a59a8a;
