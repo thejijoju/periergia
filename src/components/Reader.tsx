@@ -113,6 +113,7 @@ import { CausalChain } from "./CausalChain";
 import { TriplePoint } from "./TriplePoint";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
+import { PolarisAltitude } from "./PolarisAltitude";
 
 export interface Crumb {
   label: string;
@@ -816,6 +817,12 @@ export function Reader({
                   // reading the season — and the tilt — from a noon shadow.
                   if (typeof cls === "string" && /language-gnomon\b/.test(cls)) {
                     return <Gnomon />;
+                  }
+                  // A fenced ```polarisaltitude block becomes the interactive
+                  // 3D globe showing Polaris's altitude equals the observer's
+                  // latitude.
+                  if (typeof cls === "string" && /language-polarisaltitude\b/.test(cls)) {
+                    return <PolarisAltitude />;
                   }
                   // A fenced ```moonphase block becomes the interactive phase
                   // orrery (a half-lit sphere seen from a moving vantage point).
