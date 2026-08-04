@@ -7,6 +7,11 @@ import type { Subject, Node } from "./types";
 
 interface NodeSpec {
   title: string;
+  // Override for the auto-derived slugify(title) — needed where a node's
+  // live slug (baked into its id, and therefore into every cached content/
+  // quiz row keyed off that id) is shorter or otherwise diverges from what
+  // slugify(title) would produce today.
+  slug?: string;
   summary?: string;
   children?: NodeSpec[];
 }
@@ -685,56 +690,669 @@ export const SUBJECTS: SubjectSpec[] = [
     "description": "",
     "tree": [
       {
+        "title": "Foundations",
+        "children": [
+          {
+            "title": "The Observed Sky",
+            "slug": "observed-sky",
+            "children": [
+              {
+                "title": "Celestial Sphere",
+                "summary": "Astronomy begins with looking up. The celestial sphere — the sky as a dome of directions — is literally false yet the right tool for recording where things appear, and its nightly turning is the shadow of the Earth's own spin. The single most useful fact in positional astronomy: the altitude of the pole star equals your latitude, so the sky is a map of where you stand. Covers diurnal motion, circumpolar stars, constellations as line-of-sight illusions, and the deep limitation that the sphere gives directions but not distances — the asymmetry that shaped three thousand years of astronomy."
+              },
+              {
+                "title": "Seasons",
+                "summary": "The Sun drifts a degree a day through the stars along the ecliptic — the shadow of Earth's orbit — on a path tilted 23.4° to the celestial equator. That single tilt, the obliquity, is the cause of the seasons, and this chapter dismantles the near-universal misconception that distance is (Earth is closest to the Sun in January) before building the real cause: as a fixed axial tilt is carried around the orbit, each hemisphere leans sunward then away, changing both how directly sunlight strikes and how long the day lasts. Covers solstices and equinoxes, the two mechanisms, the gnomon that measured the tilt from a shadow, the tropics and polar circles the tilt carves, thermal lag, and the analemma."
+              },
+              {
+                "title": "Phases",
+                "summary": "The Moon's phases are not the Earth's shadow — you can see the Sun and a crescent Moon in the sky at once, which no shadow would allow. They are the changing view of a sphere the Sun always half-lights: as the Moon orbits, we see a changing fraction of its permanently lit half, from none (new) through edge-on (quarter) to all (full). Builds that geometry, dismantles the shadow misconception, and covers the sidereal-vs-synodic month, why the phase is a clock for the Moon's rise and set, tidal locking (the Moon rotates once per orbit — the far side is not the dark side), and Aristarchus using this geometry as the first rung of the cosmic distance ladder."
+              },
+              {
+                "title": "Eclipses",
+                "summary": "We get a new Moon and a full Moon every month, so why is there not a solar and a lunar eclipse every month? Because the Moon's orbit is tilted about 5° to the ecliptic, so the alignment usually misses — passing above or below — and eclipses come only when a new or full Moon lands near a node, which is exactly why the Sun's path is named the ecliptic. Covers the two eclipses and shadow geometry (umbra, penumbra, the narrow path of totality), eclipse seasons and the saros cycle that let the Babylonians predict eclipses and proved the sky is lawful, and the great coincidence — the Sun 400× larger and 400× farther, so it and the Moon appear the same size, which bares the corona and gives us total versus annular eclipses."
+              },
+              {
+                "title": "Coordinates",
+                "summary": "To tell an astronomer anywhere exactly where a star is, the sky needs addresses — so we lay Earth's own latitude and longitude onto the heavens as declination and right ascension, with one beautiful twist: celestial longitude is measured in hours, not degrees, because the sky turns one hour of right ascension per hour of time, making position and time one system. Builds the equatorial coordinate grid and the vernal-equinox zero point, then turns it around: the sky, and its clock, tell you where YOU are — latitude for the price of one angle, and longitude as a problem of time (15° per hour) that cost countless ships until Harrison's marine chronometer let a navigator carry Greenwich time in a box."
+              },
+              {
+                "title": "Timekeeping",
+                "summary": "What, exactly, is a day? There are two: the solar day (noon to noon, 24 hours) and the sidereal day (star to star, 23h 56m), differing by four minutes because the orbiting Earth must turn an extra degree each day to face the Sun again — the same chasing-the-Sun logic as the phase month, and the reason the constellations cycle through the seasons. Covers the taming of the uneven real Sun into the uniform mean time we live by (the equation of time and time zones), and the surprisingly deep calendar problem: the tropical year is 365.2422 days, not a whole number, so the Julian calendar drifted ten days by 1582 and the Gregorian reform fixed it with its odd century-year leap rule."
+              },
+              {
+                "title": "Precession",
+                "summary": "The twist that closes the observed sky: even the framework is in motion. Everything in positional astronomy leans on fixed anchors — the pole, the celestial equator, the vernal equinox — but Earth's axis slowly wobbles like a spinning top, tracing a great circle in the sky over about 26,000 years, the gyroscopic response of the bulging, spinning Earth to the gravity of the Sun and Moon. So the pole star itself changes (Thuban for the pyramid-builders, Polaris now, Vega in 14,000 AD), the vernal equinox slides westward, and the whole coordinate grid drifts against the stars — which is why catalogues specify an epoch and why the astrological signs no longer match the constellations. Hipparchus caught it around 130 BC by comparing measurements across centuries, and it teaches the unit's final lesson: there are no truly fixed points in the sky."
+              }
+            ]
+          },
+          {
+            "title": "The Great Revolution",
+            "slug": "great-revolution",
+            "children": [
+              {
+                "title": "Babylon & Greece",
+                "summary": "Unit B opens by taking the ancient astronomers seriously. The wandering planets and their baffling backward loops — retrograde motion — were the central puzzle any cosmos had to explain, and the ancients had powerful, evidence-based reasons to explain it with the Earth at rest: they felt no motion, saw things fall straight down, detected no stellar parallax, and watched the sky wheel around them. Geocentrism was not dogma but the better-supported theory given the evidence. Meet the Greek achievement of explaining the sky with geometry (Babylonian data, the circle dogma), Eratosthenes measuring the whole Earth from a shadow, and Aristarchus's heliocentric road-not-taken — reasonably rejected because its predicted parallax was too small to see."
+              },
+              {
+                "title": "Ptolemy",
+                "summary": "The technical heart of the ancient cosmos and perhaps the longest-lived scientific theory ever devised. How do you reproduce the planets' backward retrograde loops using only perfect circles, with the Earth at rest? Ptolemy's Almagest answered with a geometric machine: deferents carrying epicycles, refined by the eccentric and the brilliant, controversial equant. It worked — predicting the sky for fourteen centuries and meshing with Aristotelian physics into one coherent worldview. Follow the thousand-year bridge through the Islamic Golden Age that carried and corrected it to Copernicus, and the subtle strains — above all the unexplained coincidences tying every planet to the Sun — that were secretly fingerprints of the heliocentric system to come."
+              },
+              {
+                "title": "Copernicus",
+                "summary": "The bold, brilliant, incomplete first step of the revolution. In 1543 Copernicus did the thing all the evidence seemed to forbid — he moved the Earth, setting it spinning and orbiting the Sun. The payoff was profound: heliocentrism explains for free what the old model imposed by hand — retrograde motion as the Earth overtaking the outer planets, Mercury and Venus tied to the Sun, and, most beautifully, a true scale model of the solar system with the planets' distances measured straight off the sky. Yet it was deeply incomplete: he clung to the circle dogma, still needed epicycles, and offered no physics and no proof. Meet the Copernican Principle, the cracking-open of the closed cosmos, and why the revolution took a century and a half — Tycho's data, Kepler, Galileo, Newton, and parallax at last in 1838."
+              },
+              {
+                "title": "Kepler",
+                "summary": "The pivot of the whole revolution, where the two-thousand-year tyranny of the circle finally breaks. Johannes Kepler inherited Tycho Brahe's superb data and, refusing to explain away a discrepancy of just eight arcminutes in the orbit of Mars, did what no astronomer in two millennia had dared — he abandoned the perfect circle. The reward was three exact laws: the planets move in ellipses with the Sun at one focus; they sweep equal areas in equal times, racing at perihelion and crawling at aphelion; and their periods and distances obey the harmonic law, the square of the period equal to the cube of the distance. The laws threw out the epicycles for good, turned astronomy into a science of exact mathematical law, and — found without their cause — posed the precise question that Newton's gravity would answer. Meet, too, Kepler the whole person: the mystic of the Platonic solids who nonetheless let the data have the final word."
+              },
+              {
+                "title": "Galileo",
+                "summary": "The moment the revolution became something you could see. In the winter of 1609, Galileo pointed the new telescope at the sky and saw what no human ever had: mountains on the Moon, four moons circling Jupiter, spots on the Sun, the Milky Way dissolved into countless stars — and, the decisive test, the full cycle of the phases of Venus, impossible unless Venus orbits the Sun. Not arguments but evidence, and the ancient cosmos could not survive it. Alongside the discoveries he began the new physics of inertia — the ship sailing smoothly, where nothing inside betrays the motion — that finally answered the old objection that we would surely feel a moving Earth. And his trial, told honestly, was less science-versus-superstition than a collision between two ways of knowing: authority and tradition against the evidence of the observing eye. That evidence must decide is his deepest legacy."
+              },
+              {
+                "title": "Newton",
+                "summary": "The climax of the revolution: the cause at last. Kepler found that the planets obey his laws but never why; Newton answered with a single breathtaking idea — universal gravitation, every mass attracting every other, weakening as the inverse square of distance. From one law he derived all three of Kepler's laws, showed that the force dropping an apple is exactly the force holding the Moon in orbit (a calculation that agrees to one percent), revealed an orbit to be nothing but perpetual falling, and turned Kepler's harmonic law into a scale for weighing the Sun itself. The theory explained the tides, the precession of the equinoxes, and comets — and predicted an entire new planet, Neptune, before any eye had seen it. With Newton, heaven and Earth become one physics, and the universe stands revealed as a single lawful system, comprehensible to the human mind."
+              },
+              {
+                "title": "Spectroscopy",
+                "summary": "The finale: the birth of astrophysics. In 1835 the philosopher Auguste Comte declared the chemical composition of the stars permanently unknowable — we can never sample a star. Within decades he was spectacularly wrong: starlight itself carries the composition, encoded in spectral lines. Fraunhofer mapped the dark lines in the Sun's spectrum; Kirchhoff and Bunsen decoded them — each element has a unique spectral fingerprint, the same everywhere in the universe — and helium was discovered in the Sun twenty-seven years before it was found on Earth. Kirchhoff's three laws became the grammar of starlight, the Doppler shift turned spectra into speedometers (and would reveal the expanding universe), and astronomy became astrophysics: reading not just where the heavens are and how they move, but what they are. The unification completes — same laws, same matter, heaven and Earth — and the sky that once gave only directions now gives worlds."
+              }
+            ]
+          }
+        ]
+      },
+      {
         "title": "Solar System",
         "children": [
           {
-            "title": "planets"
+            "title": "The Scale of the Solar System",
+            "summary": "Distance is destiny. How humanity finally measured the astronomical unit — from Le Gentil's ruined decade chasing the transit of Venus to a radar echo in 1961 — the intuitions of light-travel time and an almost-empty solar system, and the snow line at 2.7 AU that split it into rocky worlds and giants."
           },
           {
-            "title": "moons"
+            "title": "Origins",
+            "children": [
+              {
+                "title": "The Sun and Its System",
+                "summary": "The body that rules everything. The Sun holds 99.87% of the system's mass and organizes its orbits; its light falls as the inverse square of distance — the master gradient that set the snow line; its million-degree corona escapes as a wind that strips unshielded atmospheres; and its domain has two edges, the heliopause and the Oort Cloud, 833 times apart. From the Carrington Event to the Voyagers."
+              },
+              {
+                "title": "Nebular Collapse",
+                "summary": "The cloud that became a system. Kant deduced a rotating, flattening cloud in 1755 from the shape of the solar system; ALMA photographed one in 2014. Why conservation of angular momentum forces a collapsing cloud into a flat disk — the reason the solar system is flat — plus the honest angular-momentum problem: the Sun holds 99.87% of the mass but only 0.61% of the spin."
+              },
+              {
+                "title": "The Disk and the Snow Line",
+                "summary": "The causal heart of the block. One temperature boundary in the disk — the snow line at ~2.7 AU, where water froze — more than doubled the solid material and split the solar system into four rocky worlds and four giants. Derived from the flux gradient, confirmed by three fossils still visible today: the planets' densities, the asteroid belt, and Jupiter's moons."
+              },
+              {
+                "title": "Accretion and the Building of Worlds",
+                "summary": "From dust grains to planets — forty orders of magnitude in mass, secure at both ends and unsolved in the middle. Chondrules in hand, the metre-size barrier where boulders bounce and spiral into the Sun, the streaming instability that skips it, runaway growth once gravity takes over, and the race the giants won. How a living science holds confidence and open questions at once."
+              },
+              {
+                "title": "Migration and the Nice Model",
+                "summary": "The planets moved. A planet in a gas disk exchanges angular momentum and migrates; a migrating pair sweeps through resonances, where tugs accumulate. The Nice model: Jupiter and Saturn crossing the 2:1 resonance flung Uranus and Neptune outward and scattered the debris into the Kuiper Belt — one event, six explanations. Closes Unit I with necessity versus contingency."
+              }
+            ]
           },
           {
-            "title": "asteroids"
+            "title": "Terrestrial Worlds",
+            "children": [
+              {
+                "title": "Comparative Planetology",
+                "summary": "Five worlds, one set of rules. The framework that turns Mercury, Venus, Earth, the Moon, and Mars into a controlled experiment — interiors, the size-cooling law (A/V = 3/R, so small worlds die young), surfaces and the crater clock, atmospheres and the greenhouse (Venus is hot because of its air, not the Sun), and magnetic dynamos. Learn it, and the worlds explain themselves."
+              },
+              {
+                "title": "Mercury",
+                "summary": "The stripped world — an iron ball in a thin rocky shell, whose core fills 83% of its radius. From the phantom planet Vulcan and Einstein's 43 arcseconds to a 600-degree temperature swing, a shrinking planet wrinkled by kilometre-high scarps, a 176-day solar day, ice on the planet nearest the Sun, and the open question of why it is made of iron."
+              },
+              {
+                "title": "Venus",
+                "summary": "The planet that should have been Earth — a twin in size, mass and density that became an oven at 737 K under 92 bars of CO₂. Why it is hot because of its air, not the Sun (it absorbs less sunlight than Earth); the three-stage runaway greenhouse that destroyed its oceans; the D/H fingerprint of that lost water; and the decisive fact that Earth holds as much carbon dioxide, only locked in rock."
+              },
+              {
+                "title": "Earth",
+                "summary": "Our planet seen as a planet — not habitable by luck but kept habitable by machinery. A magnetic shield powered by the core freezing solid; plate tectonics, unique in the solar system, recycling crust and carbon; the carbon–silicate thermostat that answers the faint young Sun paradox where Venus ran away; the open question of where the oceans came from; and the day life rewrote the air."
+              },
+              {
+                "title": "The Moon",
+                "summary": "Not a moon but a companion — fifty times too large for its planet, and made of Earth's own mantle. The giant impact that forged it from a collision, the isotopic crisis that says it is somehow made of Earth, the returned rocks that calibrate every date in the solar system, and the slow tidal retreat that is lengthening our day and may be steadying our tilt."
+              },
+              {
+                "title": "Mars",
+                "summary": "The world that had rivers and lost them — and where Unit II's chain from a planet's size to its habitability runs to completion. Small, so it cooled fast, its dynamo dying before 4.1 Gyr; the solar wind then stripped its air until pressure fell below water's triple point and rivers became impossible. The overwhelming evidence for an ancient billion years of water, the largest volcano in the solar system built by the absence of tectonics, and the question that drives every mission: did anything live?"
+              }
+            ]
           },
           {
-            "title": "comets"
+            "title": "Giant Planets",
+            "summary": "Two balls of hydrogen and two of ice hold 92.5% of the solar system's planetary mass and 99% of its moons — and having a giant reshaped everything else. Why the snow line makes giants at all; why they split into two classes from two positions in the disk; how a giant sculpts asteroid gaps, delivers comets, and — read honestly — is as much a hazard as a shield; and why the outer system, not the inner, is where liquid water is common. The unit runs from the planets themselves through the energy source that has nothing to do with the Sun, to the ocean worlds it keeps warm.",
+            "children": [
+              {
+                "title": "Gas Giants",
+                "summary": "Jupiter and Saturn — worlds with no surface, where almost every strange fact follows from being made of hydrogen in quantities large enough that it stops behaving like itself. The payoff of the snow line and why Jupiter is a successful planet rather than a failed star; self-compression and the degeneracy turnover that makes adding mass shrink a planet; molecular giving way to metallic hydrogen; reading a dilute core from a spacecraft's Doppler shift; the largest structure in the solar system, inflated from within by a moon's volcanoes; storms with no land to die on; and two planets still warm from contraction, one of them raining helium."
+              },
+              {
+                "title": "Ice Giants",
+                "summary": "Uranus and Neptune are a separate class, not small gas giants — mantles of water, ammonia and methane ices over rock, with hydrogen only a thin outer skin, because they formed where the disk was thinner and colder and never reached runaway gas capture. A planet knocked on its side to a 98-degree tilt; a world with no internal heat sitting beside one whose winds top 2,000 km/h; tilted, offset, multipolar fields that break the tidy dynamo picture; oceans of superionic water. Everything we know comes from one flyby each, in 1986 and 1989 — the case for going back."
+              },
+              {
+                "title": "Tidal Heating and Orbital Resonance",
+                "slug": "tidal-heating",
+                "summary": "The single most important idea in the outer solar system: an energy source that has nothing to do with sunlight. Flexing a moon on an eccentric orbit heats it from within — but a lone moon would circularise and go cold, so it takes a resonance to keep the eccentricity alive. The Laplace resonance locks Io, Europa and Ganymede at 4:2:1 and sets a heating gradient from Io's global volcanism to Ganymede's calm; the Enceladus–Mimas paradox shows the smaller, closer moon is the warm one. Tides run the clock on habitability in a place the Sun barely reaches."
+              },
+              {
+                "title": "Magnetospheres and Radiation",
+                "slug": "magnetospheres",
+                "summary": "The giants carry the strongest magnetic fields and the largest structures in the solar system — Jupiter's magnetosphere would span two and a half full Moons in our sky if it glowed. Io's tonne-per-second of plasma inflates it from within; the trapped radiation is lethal in hours and dictates spacecraft design, from Juno's titanium vault to Europa Clipper flying past rather than orbiting. Saturn's impossibly axisymmetric field, the tilted offset fields of the ice giants — and the payoff: a magnetometer is how you detect an ocean you cannot see."
+              },
+              {
+                "title": "Major Moons",
+                "summary": "The giant-planet satellite systems are miniature solar systems, and the Galilean moons are the controlled experiment: four bodies at one planet, their densities falling 4.0 to 1.8 g/cm3 outward, rock giving way to ice exactly as a warm proto-Jupiter's own snow line predicts. Io, Europa, Ganymede and Callisto span volcanic hell to dead ice; Ganymede is bigger than Mercury and makes its own magnetic field; Saturn's mid-sized icy moons round out the sequence. Composition set by where you formed, activity set by tides."
+              },
+              {
+                "title": "Titan",
+                "summary": "The only moon with a thick atmosphere — nitrogen, denser at the surface than Earth's — and the only other world with standing liquid on its surface, though the rivers and seas are methane and ethane at 94 K. A full hydrological cycle in the wrong fluid; a methane supply that should have been destroyed long ago, so something replenishes it; organic haze raining down as tholins; and a water ocean under the ice. Cassini's Huygens probe landed in 2005; Dragonfly, a nuclear quadcopter, flies there in the 2030s."
+              },
+              {
+                "title": "Captured Worlds: Triton and Irregular Moons",
+                "slug": "captured-moons",
+                "summary": "Not every moon formed with its planet. Regular satellites orbit prograde in the equatorial plane because they grew in the planet's own disk; irregular moons — distant, inclined, often retrograde — were caught later. Triton is the proof: Neptune's giant moon orbits backwards, so it cannot have formed there. It is a captured Kuiper Belt object, geologically active with nitrogen geysers, and it is our bridge to the third zone of the solar system — the belt of ice worlds beyond Neptune."
+              },
+              {
+                "title": "Ring Systems",
+                "summary": "Rings are not solid and not permanent — they are countless icy particles, each on its own orbit, held as a sheet inside the Roche limit where tides forbid them to gather into a moon. Resonances and shepherd moons carve the structure: the Cassini Division is a gap swept clean by a 2:1 resonance with Mimas. And the Grand Finale measured the mass — about 0.4 times Mimas — which is far too little to be primordial. Saturn's rings are young, perhaps 10 to 100 million years old, and we are watching them rain away."
+              },
+              {
+                "title": "Ocean Worlds",
+                "summary": "The synthesis of the unit: liquid water is not rare in the outer solar system, it is common — under the ice of Europa, Ganymede, Callisto, Enceladus, Titan, and probably Triton and Pluto. Tidal heating keeps them warm; an induced magnetic field betrays the salt water; and at Enceladus a spacecraft flew straight through a plume and tasted the ocean. Every ingredient for life has been found in that spray, and none of it depends on the Sun. The closing argument: the habitable zone is not where the water is."
+              }
+            ]
           },
           {
-            "title": "the Sun"
+            "title": "Small Bodies",
+            "summary": "The planets destroyed their own evidence; small bodies kept two fossils at once — their original chemistry, because they never melted, and their orbital history, because they never cleared their neighbourhoods. Below roughly 500 km a body cannot melt, differentiate, hold air, or resurface, so its interior chemistry is 4.5 billion years old and unmodified, which no planetary surface anywhere is. By mass they are a rounding error — the whole asteroid belt is about 4% of the Moon — and they carry most of the information. And asteroid, comet and dwarf planet are not natural kinds: the boundaries are drawn on activity and dynamics, not composition.",
+            "children": [
+              {
+                "title": "Asteroids",
+                "summary": "The belt that never became a planet — Ceres found on New Year's night 1801 and recovered because Gauss invented least-squares to chase it. The whole belt masses about 4% of the Moon, less than a thousandth of what formation models say belonged there, and where the rest went is a question about migration. The S-to-C taxonomic gradient and its unexplained mixing; Vesta, a surviving differentiated protoplanet with its own meteorite family; rubble piles at 40-50% porosity; and the tiny Yarkovsky and YORP forces that quietly govern a small body's whole life cycle. Closes with the Hirayama collisional families, read straight off the orbits."
+              },
+              {
+                "title": "Near-Earth Objects and Planetary Defence",
+                "slug": "near-earth-objects",
+                "summary": "The one part of astronomy with a civilisational stake — and now a flown experiment. Chicxulub and the iridium anomaly; Tunguska's crater-less airburst; Chelyabinsk, a 20-metre rock that injured 1,500 people and was completely undetected because it came from the Sun's direction. The size-frequency hazard and survey incompleteness at the 140-metre scale that matters; Apophis skimming inside geosynchronous orbit in 2029; and DART, which moved Dimorphos about 32 minutes — far more than its own momentum, because the ejecta did the work. The only natural catastrophe we could prevent, limited not by technology but by survey completeness."
+              },
+              {
+                "title": "Dynamical Architecture: Reading the Fossil Record",
+                "slug": "dynamical-architecture",
+                "summary": "The lens that makes the whole block legible: reading solar-system history off orbits. Resonance applied with the Sun as primary and Jupiter as perturber; the Kirkwood gaps as the asteroid belt's own Cassini Division; and the delivery pipeline that walks an asteroid from a micronewton thermal recoil, through a resonance, into a near-Earth orbit, to the rock in a museum case. Jupiter's Trojans wearing Kuiper-Belt colours (captured during migration); the Centaurs in transit; what planetary migration explains all at once; and the cold classical belt — the one population that never moved, the control group any model must leave alone."
+              },
+              {
+                "title": "The Kuiper Belt",
+                "slug": "kuiper-belt",
+                "summary": "Kuiper's and Edgeworth's prediction, then 1992 QB1 after five years of staring at empty sky. The classical belt's hot and cold components, the resonant plutinos and twotinos, the scattered disc, and the detached objects like Sedna. Built around Arrokoth — two lobes joined at low speed, undeformed, with no impact heating: the strongest direct evidence anywhere that planetesimals form by the gentle collapse of a pebble cloud rather than by violent accretion. Closes with the perihelion-clustering argument for a distant perturber and an honest account of where Planet Nine actually stands."
+              },
+              {
+                "title": "Dwarf Planets",
+                "summary": "The definition and the 2006 fight — \"clearing the neighbourhood\" as a criterion, and the honest observation that the vote was partly about cultural weight rather than physics. Pluto and New Horizons: Sputnik Planitia's convecting nitrogen glacier, Charon's tholin-painted pole, a probable ocean, and the open puzzle of geological activity at 40 AU with no tidal heating. Charon massive enough to make a binary; Ceres as an ocean-world candidate in the asteroid belt, its Occator bright spots precipitated from subsurface brine; and Eris, Haumea, Makemake, Gonggong and Quaoar, whose ring sits outside its Roche limit and should not exist."
+              },
+              {
+                "title": "The Oort Cloud",
+                "slug": "oort-cloud",
+                "summary": "A chapter about believing in something nobody has ever seen. Oort's 1950 argument: long-period comet orbits spike near 1/a ≈ 0, implying a reservoir at tens of thousands of AU, and their inclinations are isotropic, implying a spherical shell rather than a disc — that is the entire observational basis, and it is enough. The inner Hills cloud and the outer cloud, some 10^12 objects of order-of-magnitude-known mass; the crucial point that it did not form there, its planetesimals scattered out and their perihelia lifted by galactic tides and passing stars; the injection that sends comets back (Scholz's star, 70,000 years ago); and the scale — the largest structure bound to the Sun, entirely inferred."
+              },
+              {
+                "title": "Comets",
+                "summary": "Placed after both reservoirs, so the two families can be explained rather than asserted — Jupiter-family comets from the scattered disc, long-period and Halley-type from the Oort cloud. Anatomy: nucleus, coma, and two distinct tails driven by two different forces, an ion tail along the solar wind and a curved dust tail under radiation pressure. Rosetta at 67P carries it — a bilobed nucleus about 75% empty space, molecular oxygen nobody predicted, glycine and phosphorus, Philae's bouncing landing. And the D/H ratio three times terrestrial that makes comets the wrong source for Earth's water and hands the argument to the chondrites. Ends by breaking the taxonomy on purpose: active asteroids and dormant comets."
+              },
+              {
+                "title": "Interstellar Objects",
+                "summary": "A category that did not exist before 2017. 1I/ʻOumuamua's extreme lightcurve and its non-gravitational acceleration with no detectable outgassing — the block's case study in handling an anomaly with base-rate discipline, alien-technology claim and all. 2I/Borisov, unambiguously an ordinary comet, which is itself a result; and 3I/ATLAS, eccentricity 6.14, CO2-driven at large distance, kinematically from the galactic thick disk and possibly older than the Sun. They are direct samples of other systems' planetesimals and measure how efficiently planetary systems eject material; Rubin is about to transform the discovery rate, and Comet Interceptor waits in orbit for a target that does not yet exist."
+              },
+              {
+                "title": "Meteorites and Sample Return",
+                "slug": "meteorites",
+                "summary": "The synthesis — the chapter about what we can actually hold, paired with sample return because the pairing is the point. Chondrites, achondrites, irons and stony-irons, and what melted-or-not says about parent bodies. Three results found in no other chapter: the CAIs dated to 4.567 Gyr that set the zero of the solar system's calendar; chondrules, whose repeated flash-heating nobody can explain; and presolar grains, older than the Sun. A meteorite is a sample with no address, arriving shock-heated and contaminated — which is why Stardust, Hayabusa, Hayabusa2 and OSIRIS-REx matter: Ryugu and Bennu returned amino acids, nucleobases and ancient brine salts a meteorite fall would destroy. Ends by handing organics to astrobiology."
+              }
+            ]
+          },
+          {
+            "title": "The Solar System as One Object"
           }
         ]
       },
       {
-        "title": "Stars & Galaxies",
+        "title": "Stellar Physics",
         "children": [
           {
-            "title": "stellar life cycles"
+            "title": "The H–R Diagram",
+            "slug": "hr-diagram",
+            "children": [
+              {
+                "title": "Spectral Types"
+              },
+              {
+                "title": "Luminosity and Distance"
+              },
+              {
+                "title": "Binary Stars and Stellar Masses",
+                "slug": "binary-stars"
+              },
+              {
+                "title": "Mass–Luminosity"
+              },
+              {
+                "title": "Lifetimes"
+              }
+            ]
           },
           {
-            "title": "nebulae"
+            "title": "Star Birth",
+            "children": [
+              {
+                "title": "Molecular Clouds"
+              },
+              {
+                "title": "Collapse"
+              },
+              {
+                "title": "Protostars"
+              },
+              {
+                "title": "Disks and Outflows"
+              },
+              {
+                "title": "Young Stars"
+              },
+              {
+                "title": "The Initial Mass Function",
+                "slug": "initial-mass-function"
+              }
+            ]
           },
           {
-            "title": "galaxy types"
+            "title": "The Working Star",
+            "slug": "working-star",
+            "children": [
+              {
+                "title": "Hydrostatic Equilibrium"
+              },
+              {
+                "title": "Nuclear Furnaces"
+              },
+              {
+                "title": "Energy Transport"
+              },
+              {
+                "title": "Seeing Inside a Star"
+              },
+              {
+                "title": "Mass Loss, Winds and Rotation"
+              }
+            ]
           },
           {
-            "title": "the Milky Way"
+            "title": "Star Clusters: The Controlled Experiment",
+            "slug": "star-clusters"
           }
         ]
       },
       {
-        "title": "Cosmology",
+        "title": "Stellar Death",
         "children": [
           {
-            "title": "origins of the universe"
+            "title": "Red Giants",
+            "children": [
+              {
+                "title": "The Red-Giant Branch"
+              },
+              {
+                "title": "Helium Burning"
+              },
+              {
+                "title": "Shell Burning"
+              },
+              {
+                "title": "Pulsation"
+              }
+            ]
           },
           {
-            "title": "expansion"
+            "title": "Low-Mass Endings",
+            "children": [
+              {
+                "title": "Planetary Nebulae"
+              },
+              {
+                "title": "White Dwarfs"
+              },
+              {
+                "title": "Novae"
+              }
+            ]
           },
           {
-            "title": "dark matter"
+            "title": "Supernovae",
+            "children": [
+              {
+                "title": "Type Ia Supernovae",
+                "slug": "type-ia"
+              },
+              {
+                "title": "Core-Collapse Supernovae",
+                "slug": "core-collapse"
+              }
+            ]
           },
           {
-            "title": "multiverse theories"
+            "title": "Extreme Remnants",
+            "children": [
+              {
+                "title": "Neutron Stars"
+              },
+              {
+                "title": "Pulsars"
+              },
+              {
+                "title": "Black Holes"
+              },
+              {
+                "title": "Nucleosynthesis"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Milky Way",
+        "slug": "milky-way",
+        "children": [
+          {
+            "title": "Galactic Anatomy",
+            "children": [
+              {
+                "title": "The Disk"
+              },
+              {
+                "title": "The Bulge"
+              },
+              {
+                "title": "The Halo"
+              },
+              {
+                "title": "Spiral Structure"
+              },
+              {
+                "title": "Stellar Populations"
+              }
+            ]
+          },
+          {
+            "title": "Interstellar Medium",
+            "children": [
+              {
+                "title": "Gas Phases"
+              },
+              {
+                "title": "Dust"
+              },
+              {
+                "title": "Star-Formation Cycle"
+              },
+              {
+                "title": "Chemical Enrichment"
+              }
+            ]
+          },
+          {
+            "title": "Galactic Dynamics",
+            "children": [
+              {
+                "title": "Rotation Curves"
+              },
+              {
+                "title": "The Missing Mass",
+                "slug": "missing-mass"
+              },
+              {
+                "title": "The Galactic Center",
+                "slug": "galactic-center"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Extragalactic Universe",
+        "slug": "extragalactic",
+        "children": [
+          {
+            "title": "The Galaxy Zoo",
+            "slug": "galaxy-zoo",
+            "children": [
+              {
+                "title": "Galaxy Types"
+              },
+              {
+                "title": "The Hubble Sequence",
+                "slug": "hubble-sequence"
+              },
+              {
+                "title": "Formation & Evolution"
+              },
+              {
+                "title": "Mergers"
+              }
+            ]
+          },
+          {
+            "title": "Active Galaxies",
+            "children": [
+              {
+                "title": "AGN"
+              },
+              {
+                "title": "Quasars"
+              },
+              {
+                "title": "Supermassive Black Holes"
+              },
+              {
+                "title": "Jets"
+              }
+            ]
+          },
+          {
+            "title": "The Cosmic Web",
+            "slug": "cosmic-web",
+            "children": [
+              {
+                "title": "Groups & Clusters"
+              },
+              {
+                "title": "Superclusters"
+              },
+              {
+                "title": "Large-Scale Structure"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Expanding Universe",
+        "slug": "expanding-universe",
+        "children": [
+          {
+            "title": "Expansion",
+            "children": [
+              {
+                "title": "Hubble's Law",
+                "slug": "hubbles-law"
+              },
+              {
+                "title": "Redshift"
+              },
+              {
+                "title": "The Distance Ladder",
+                "slug": "distance-ladder"
+              },
+              {
+                "title": "Cosmic Scale"
+              }
+            ]
+          },
+          {
+            "title": "The Big Bang",
+            "slug": "big-bang",
+            "children": [
+              {
+                "title": "The Early Universe",
+                "slug": "early-universe"
+              },
+              {
+                "title": "Big Bang Nucleosynthesis",
+                "slug": "nucleosynthesis"
+              },
+              {
+                "title": "The Timeline",
+                "slug": "timeline"
+              }
+            ]
+          },
+          {
+            "title": "The CMB",
+            "slug": "cmb",
+            "children": [
+              {
+                "title": "Recombination"
+              },
+              {
+                "title": "The Relic Radiation",
+                "slug": "relic-radiation"
+              },
+              {
+                "title": "The CMB Map",
+                "slug": "cmb-map"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Dark Universe",
+        "slug": "dark-universe",
+        "children": [
+          {
+            "title": "Dark Matter & Energy",
+            "children": [
+              {
+                "title": "The Evidence"
+              },
+              {
+                "title": "The Energy Budget",
+                "slug": "energy-budget"
+              },
+              {
+                "title": "Accelerating Expansion"
+              }
+            ]
+          },
+          {
+            "title": "Inflation",
+            "children": [
+              {
+                "title": "Cosmic Inflation"
+              },
+              {
+                "title": "Seeds of Structure"
+              },
+              {
+                "title": "Growth of Structure"
+              }
+            ]
+          },
+          {
+            "title": "Cosmic Frontiers",
+            "children": [
+              {
+                "title": "The Far Future",
+                "slug": "far-future"
+              },
+              {
+                "title": "Open Questions"
+              },
+              {
+                "title": "The Multiverse",
+                "slug": "multiverse"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Exoplanets",
+        "children": [
+          {
+            "title": "Finding Worlds",
+            "children": [
+              {
+                "title": "Transits"
+              },
+              {
+                "title": "Radial Velocity"
+              },
+              {
+                "title": "Direct Imaging"
+              },
+              {
+                "title": "Microlensing"
+              },
+              {
+                "title": "Astrometry"
+              }
+            ]
+          },
+          {
+            "title": "System Diversity",
+            "children": [
+              {
+                "title": "Hot Jupiters"
+              },
+              {
+                "title": "Super-Earths"
+              },
+              {
+                "title": "System Architectures"
+              },
+              {
+                "title": "Formation & Migration"
+              }
+            ]
+          },
+          {
+            "title": "Characterizing Worlds",
+            "children": [
+              {
+                "title": "Masses & Radii"
+              },
+              {
+                "title": "Atmospheres"
+              },
+              {
+                "title": "Spectroscopy"
+              }
+            ]
+          },
+          {
+            "title": "How Common?",
+            "children": [
+              {
+                "title": "Occurrence Statistics"
+              },
+              {
+                "title": "Earth Analogs"
+              }
+            ]
           }
         ]
       },
@@ -742,19 +1360,188 @@ export const SUBJECTS: SubjectSpec[] = [
         "title": "Space Exploration",
         "children": [
           {
-            "title": "rockets"
+            "title": "rockets",
+            "summary": "Why leaving Earth is so expensive, and what has been done about it. This unit derives the Tsiolkovsky rocket equation from momentum alone and then follows every scheme built to evade the exponential it imposes: specific impulse and the chemical ceiling, staging, the calculus of ascent, engine cycles, electric and nuclear propulsion, and the reusability revolution that changed the economics without touching the physics.",
+            "children": [
+              {
+                "title": "Momentum, Exhaust, and the Logarithm",
+                "slug": "the-logarithm",
+                "summary": "The rocket equation is not a design but a prohibition, derived in four lines from conservation of momentum with no chemistry and no assumptions about the future. A rocket moves by throwing part of itself backwards forever; momentum conservation gives m dv = -v_e dm, which integrates to Delta-v = v_e ln(m0/mf) = Isp g0 ln(m0/mf). Invert it and the operative object is the exponential, m0/mf = e^(Delta-v/v_e): mass ratio grows exponentially with the mission, which is why space is hard — not the vacuum, the logarithm. Cover why specific impulse is measured in seconds, the payload-fraction sensitivity to Isp that explains why engine teams fight two-year wars over three seconds, and one line on the relativistic rocket equation to show the news only gets worse. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "The Ceiling: Thermochemistry and the Nozzle",
+                "slug": "the-ceiling",
+                "summary": "Exhaust velocity is capped near 4.5 km/s not by engineering but by the periodic table, and understanding why is the difference between hoping for a breakthrough and knowing there is not one. v_e scales as the square root of chamber temperature over exhaust molecular weight, so a hot flame and a light exhaust molecule are both wanted and they fight; hydrogen wins on molecular weight yet is a nightmare to store at 20 K. Derive the de Laval nozzle — subsonic convergent, sonic throat, supersonic divergent — and why a diverging duct accelerates supersonic flow; cover expansion ratio and the sea-level versus vacuum trade, and the propellant families (hydrolox, kerolox and coking, methalox and why it won, hypergolics, solids). Include the chlorine trifluoride story from Clark's Ignition as the proof that chemists looked and there is no secret fuel. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Staging as Constrained Optimization",
+                "slug": "staging",
+                "summary": "Staging is not a trick; it is the unique solution to an optimization problem, and it converts an impossible vehicle into an industry. With Isp 350 and a structural coefficient of 0.08, single-stage-to-orbit at 9.4 km/s yields a payload of about -1.7 percent: negative, not expensive but nonexistent, forbidden by algebra. Two stages split evenly give roughly 3.6 percent, which checks against Saturn V at 4.7 and Falcon 9 at 4.2. Derive the optimal-staging result by Lagrange multipliers — with identical stages split evenly, otherwise give more Delta-v to the better stage — explain why real vehicles violate the even split, why returns die after two or three stages, and use X-33/VentureStar as the graveyard where a composite tank failure added mass that ate the payload that was the mission. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Ascent: Getting Off the Ground",
+                "slug": "ascent",
+                "summary": "The 9.4 km/s to orbit hides about 1.7 km/s of pure waste, and the shape of every launch is the visible trace of an optimization that minimizes it. Decompose the budget: 7.67 km/s of orbital speed plus gravity losses of 1.2 to 1.5, drag of 0.1 to 0.3, steering and pressure losses, minus up to 0.46 of Earth-rotation rebate. Treat gravity loss as the integral of g sin(gamma) dt, why an impulsive burn pays none of it and why one is impossible, the gravity turn, optimal thrust-to-weight, and max-Q and the throttle bucket. Cover launch-site geography priced in Delta-v — Kourou at 5 degrees north beating Baikonur, and Israel launching west over the Mediterranean and paying about 0.9 km/s to avoid overflying neighbours. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Engines as Machines: The Cycle Wars",
+                "slug": "engines",
+                "summary": "The rocket equation says what to build; it says nothing about how, and how is where the engineers bleed. Every engine cycle is a different answer to one circular problem: propellant must be injected at hundreds of bar, something must pump it, that pump needs power, and the power must come from the propellant. Contrast pressure-fed, gas-generator, staged combustion (and why the Soviets solved oxygen-rich staged combustion the West thought impossible), full-flow staged combustion, and expander cycles; cover turbopumps, regenerative cooling, the F-1 combustion-instability crisis solved by detonating bombs inside running engines across two thousand tests, and pogo, which nearly destroyed Apollo 13's Saturn V. The lesson: this is what engineering means when the physics is intractable. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Escaping Chemistry",
+                "summary": "There are exactly two ways past the chemical ceiling, and both hand a different bill. The fundamental electric trade: with power P fixed, thrust F equals 2P over v_e, so high specific impulse necessarily means low thrust — which is why every high-thrust high-Isp concept ends up nuclear. Cover ion and Hall thrusters and Dawn, which logged over 11 km/s of Delta-v on 425 kg of xenon and 5.9 years of thrust at 90 millinewtons, the weight of a couple of coins; power sources (solar falling as one over r squared, and plutonium-238 whose world supply is measured in kilograms); nuclear thermal, where hydrogen gives Isp near 900 s and NERVA actually ran at 4,000 megawatts before Nixon cancelled Mars; and the honest verdict on solar sails, fusion, antimatter, and Project Orion. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Reusability: How Economics Ate the Physics",
+                "slug": "reusability",
+                "summary": "Reusability does not beat the rocket equation; it pays the equation in full and then defeats it somewhere the equation cannot follow. Recovery costs real payload — a Falcon 9 surrenders 30 to 40 percent of its payload to bring the first stage home — but the stage is about 70 percent of vehicle cost and boosters have flown more than twenty times, so trading 40 percent of payload for twentyfold reuse is not close. The numbers: Shuttle at roughly 54,500 dollars per kilogram to orbit, Falcon 9 at roughly 2,700, a factor of twenty in one generation. Explain why the Shuttle failed at the thing it was designed for — a committee-meeting compromise, not a wind-tunnel one — using Feynman's Appendix F on an organization lying to itself about numbers. The lesson: when the physics is immovable, the leverage moves to economics. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              }
+            ]
           },
           {
-            "title": "satellites"
+            "title": "satellites",
+            "summary": "Where things go in orbit, why there, and who owns it. The geometry of falling: Kepler and vis-viva, the perturbations that turn Earth's flaws into design tools, rendezvous and the maneuver that makes you slow down to catch up, interplanetary transfers and gravity assists, the three-body problem and its Lagrange points, and the tragedy of the orbital commons — debris, law, and irreversibility.",
+            "children": [
+              {
+                "title": "The Two-Body Problem: A Lie That Works",
+                "slug": "two-body-problem",
+                "summary": "The two-body problem is one of the few exactly solvable problems in physics, everything in orbital mechanics is built on it, and it is not true — the field's story is how far a beautiful falsehood carries before it bites. Newton to Kepler in one line: setting gravity equal to centripetal acceleration gives v = sqrt(mu/r) and T = 2 pi sqrt(r cubed over mu). Derive vis-viva, v squared = mu (2/r minus 1/a), from energy; introduce the six orbital elements and why five are constants; cover Kepler's equation and the fact that it has no closed-form solution. End on the lie: point masses, no third body, no drag, no relativity — and Mercury's 43-arcsecond-per-century perihelion anomaly, the rounding error that killed classical mechanics. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Perturbations: Earth's Flaws as Tools",
+                "slug": "perturbations",
+                "summary": "Everything interesting in Earth orbit happens because the two-body problem is false; the perturbations are not noise but the design space. J2, the 21-km equatorial bulge, dominates. Derive nodal regression and then use it: set the node's drift to 0.9856 degrees per day for a sun-synchronous orbit, which requires a retrograde inclination near 98 degrees and crosses the equator at the same local solar time forever — Landsat since 1972, Earth's biggest imperfection turned into the mechanism. Derive apsidal precession, set it to zero to get the 63.4-degree magic inclination, and hence Molniya, a 12-hour eccentric orbit that loiters over the far north — a nation's geography converted into a conic section. Cover atmospheric drag and the counterintuitive result that drag makes you go faster. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Maneuvers and Rendezvous: Slow Down to Catch Up",
+                "slug": "rendezvous",
+                "summary": "Orbital motion is the only domain in human experience where you cannot drive toward a thing you can see. Derive the Hohmann transfer with vis-viva — LEO to GEO as a 2.40 and 1.46 km/s pair, total 3.86 — then the bi-elliptic surprise that beyond a radius ratio of 11.94 the long way around is cheaper. Cover plane changes, Delta-v = 2 v sin(half the inclination change), so a 60-degree plane change costs an entire orbital velocity, and why you launch into the plane you want. Then the counterintuition: thrust prograde toward a target ahead of you and you rise, slow, and fall behind, so to catch it you thrust retrograde and drop lower — with Gemini 4 in 1965 as the expensive proof that rendezvous had to be invented. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Interplanetary Trajectories: Patched Conics and Theft",
+                "slug": "interplanetary",
+                "summary": "Interplanetary navigation is done by pretending the solar system is a series of two-body problems taped together — a fiction so useful it flew Voyager past four planets. Cover the sphere of influence and the patched-conic method, C3 and reading a porkchop plot to pick a launch window, and Lambert's problem. Do the gravity assist in two frames: in the planet's frame elastic and speed-unchanged, in the Sun's frame a gain of up to twice the planet's orbital velocity, about 26 km/s from Jupiter, paid for by slowing Jupiter by roughly ten to the minus twenty-five metres per second. Quantify the Oberth effect — a 1 km/s burn at 10 km/s buys seven times the energy of the same burn at 1 km/s — and cover the Grand Tour that aligned once in 176 years and the Parker Solar Probe at 192 km/s. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Three Bodies, Five Points, and the Superhighway",
+                "slug": "three-bodies",
+                "summary": "Add one body and the problem becomes unsolvable, and out of the unsolvability falls the most useful real estate in the solar system. Cover the circular restricted three-body problem, which has no closed-form solution and led Poincare to invent chaos theory; the Jacobi constant and zero-velocity curves; and the five Lagrange points, with L1, L2, L3 collinear and unstable and L4, L5 triangular and stable — which is why Jupiter's L4 and L5 hold over a million Trojan asteroids. Explain halo orbits and why a spacecraft rides the ridge around L2 rather than sitting at it, burning every few weeks, so that JWST's lifetime is a fuel-tank size set years before launch. End with weak-stability-boundary transfers and Belbruno rescuing the stranded Hiten probe — the rocket equation's most elegant evasion, found by someone shown the door. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "The Orbital Commons: Debris, Law, and the Externality",
+                "slug": "orbital-commons",
+                "summary": "Orbit is a commons with no owner, no police, and a physics of irreversibility, and it is worse than a fishery because the resource cannot regenerate. A 1 kg object at 10 km/s carries 50 megajoules, the energy of 12 kg of TNT; a 1-gram fragment at 14 km/s carries 98 kilojoules. Cover Whipple shields that defeat a fragment by vaporizing it, and the Kessler cascade that becomes self-sustaining above a critical density: the 2007 Fengyun-1C test at 865 km that made over 3,000 lasting fragments, the 2009 Iridium-Cosmos collision, and the 2021 Russian test that sent the ISS crew to their capsules. Altitude is destiny — below 600 km drag cleans up in years, above 800 km it takes centuries. Cover the externality structure, the Outer Space Treaty, and the one geostationary ring rented like beachfront by the ITU. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              }
+            ]
           },
           {
-            "title": "telescopes"
+            "title": "telescopes",
+            "summary": "What can only be seen from above the atmosphere, and what it costs. A telescope buys photons and time buys the rest: the atmosphere as a filter with a few slits cut in it, the diffraction and signal-to-noise scalings that govern every instrument, X-ray optics that shouldn't work, the forced design of JWST, and Hubble as a lesson in institutional failure.",
+            "children": [
+              {
+                "title": "The Atmosphere as Adversary",
+                "slug": "the-atmosphere",
+                "summary": "The air is not a window but a filter with a few narrow slits cut in it, and entire branches of physics were invisible to the species until it could get above it. Cover the transmission spectrum — visible and radio pass, gamma, X-ray, most ultraviolet and infrared are stopped — and what that cost: the million-degree universe was inaccessible until Giacconi flew a rocket for 350 seconds in 1962 and found Sco X-1 by accident. Cover seeing and the Fried parameter, why a 10-cm and a 10-m telescope resolve the same from the ground, and adaptive optics as the honest counter-argument that defeats seeing but cannot create photons the atmosphere ate. Close on the 1995 Hubble Deep Field: ten days on a deliberately empty patch of sky returning three thousand galaxies, proving emptiness is a failure of exposure time. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Photons, Optics, and the Economics of Integration",
+                "slug": "photons-and-time",
+                "summary": "Every argument in observational astronomy reduces to two cruel scalings: resolution theta = 1.22 lambda over D, and signal-to-noise proportional to the square root of integration time. Cover diffraction and the Airy pattern — Hubble at 0.05 arcseconds, twenty times better than the best ground site — and collecting area proportional to D squared, so JWST gathers 5.6 times Hubble's light. Then the trap: JWST at 2 microns is actually less sharp than Hubble, because its wavelength rose more than its diameter; it is not a sharper telescope but a deeper one, and the right question is never how sharp but at what wavelength and how many photons. Drive home the economics — going from signal-to-noise 5 to 50 costs a hundredfold in time — so aperture is a quadratic luxury and time on the sky is the scarcest resource in astronomy. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "The High-Energy Universe: Optics That Shouldn't Work",
+                "slug": "high-energy",
+                "summary": "X-rays do not reflect, so building an X-ray telescope needs a trick so strange it took forty years to fly. At X-ray energies the refractive index is less than one and a photon hitting a mirror face-on goes through it; below a grazing critical angle near one degree you get total external reflection, so the mirrors are nested barrels struck at a glancing angle — Wolter Type I optics, paraboloid then hyperboloid. Chandra's mirrors are among the smoothest objects ever made. Cover coded-aperture masks for gamma rays, and what grazing incidence bought: the hot intergalactic medium where most of the universe's baryons were hiding, and the Bullet Cluster as the most direct evidence for dark matter, because the X-ray gas and the lensing mass are in different places. Note that Chandra's half-arcsecond resolution, achieved in 1999, will not be matched for decades. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "The Great Collectors: Building the Light Buckets",
+                "slug": "great-collectors",
+                "summary": "Aperture is king: collecting area grows as the square of the diameter, so a bigger mirror sees fainter and, with adaptive optics, sharper — and the four-century quest for it slammed into the sag wall. A mirror droops under its own weight, the sag growing as the fourth power of the diameter while a stiffening thickness drives mass up as the cube, so a rigid disk becomes an uncastable, unsupportable monster past about eight metres, and by the 1970s five metres seemed the ceiling. Cover why refractors died at Yerkes's one metre (a lens can only be held at its rim, and sags), why reflectors won (support from behind, no chromatic aberration, only the surface matters), and the two revolutions that broke the wall by abandoning rigidity: the thin actively-controlled meniscus (the 8-metre VLT class, a mirror thinner than a credit card held in shape by 150 computer-driven actuators) and the segmented mirror (Keck's 36 hexagons, the ELT's 798, aligned to nanometres), which decouple the telescope's size from any single piece of glass. Distinguish active optics (large and slow, the shape of the mirror against gravity) from adaptive optics (small and fast, the shape of the wavefront against the atmosphere), and carry the story to the 39-metre ELT and thirty million times the light of the eye. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Building JWST: A Forced Design",
+                "slug": "building-jwst",
+                "summary": "Not one feature of the James Webb Space Telescope was a preference; every one is the terminal node of a physics chain that begins with the word redshift. Follow the chain: seeing the first galaxies forces infrared, because at redshift 10 Lyman-alpha at 121.6 nm arrives at 1,338 nm past Hubble's cutoff; infrared forces cold, because Wien puts a 300 K telescope's own glow at 9.7 microns inside its science band, so it must reach 40 K; cold forces L2, where Sun, Earth and Moon crowd into one small cone a single shield can block; that forces the tennis-court sunshield dropping 350 degrees across five films; that forces folding into the fairing with 178 release mechanisms and 344 single-point failures; and that forces unrepairability, because L2 is 1.5 million km away and nobody is coming. End on beryllium and gold, the segments polished to the wrong shape warm to deform right when cold, and galaxies found brighter and more mature than the models allowed. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Hubble as Institutional Failure, and Interferometry",
+                "slug": "hubble-and-interferometry",
+                "summary": "The Hubble mirror was ground to extraordinary precision, to the wrong shape, and the mirror was not the failure — the organization was. A null corrector assembled with a lens 1.3 mm out of position certified a mirror flattened at the edge by 2.2 microns; two independent tests said it was aberrated and both were dismissed because the fancy instrument outranked them. The redemption was COSTAR, mirrors ground to precisely the inverse error, installed over five spacewalks — and it was only fixable because Hubble was in low orbit, which should be held against the JWST chapter. Then interferometry: resolution is 1.22 lambda over D, so imaging M87's 20-microarcsecond shadow needs a dish 12,000 km across, so the Event Horizon Telescope made the Earth itself the aperture and in 2019 photographed a shadow that matched Einstein's 1915 equations exactly. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              }
+            ]
           },
           {
-            "title": "crewed missions"
+            "title": "crewed missions",
+            "summary": "What breaks in a human body sent to space, and whether it can be fixed. The human is the worst payload ever devised — a payload with a hundredfold payload of its own. Life support, bone and fluid and eyesight, the radiation wall, mission architecture, and the organizational failures behind every fatal accident.",
+            "children": [
+              {
+                "title": "The Human as Payload",
+                "slug": "human-as-payload",
+                "summary": "A robot is a payload; a human is a payload with a payload, and the ratio is roughly a hundred to one. Read the human specification as an engineer would receive it: an operating temperature range about 15 K wide and lethal outside it, one atmosphere maintained continuously in vacuum, consumables of 0.84 kg oxygen and 3.5 kg water and 1.8 kg food per person per day forever, poor radiation tolerance, failure modes that include appendicitis and depression, an 80-kg mass and 10,000-plus kg of machine to keep it alive — and it cannot be turned off. Contrast Curiosity, nearly all instrument, and Opportunity, designed for 90 days and working 5,111, needing no return. Cover the EVA suit as a spacecraft, why a pressurized bag fights every finger movement, and the prebreathe protocol against the bends. The theme: a human is a mission you have to undo. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Physiology: When the Load Goes Away",
+                "slug": "physiology-load",
+                "summary": "The body is not adapted to Earth; it continuously computes an adaptation to Earth, and removing the load makes it compute something else — quickly, correctly, and dangerously. Bone is a market where load is the price signal: remove it and trabecular bone falls 1 to 1.5 percent per month, a postmenopausal year compressed into thirty days, with dissolved calcium risking kidney stones and no ambulance. The countermeasure is two hours of resistance exercise a day, a hostage negotiation rather than a solution. Cover the headward fluid shift and the discarded 10 to 15 percent of plasma volume that leaves returning crews unable to stand, muscle loss, and SANS — spaceflight-associated neuro-ocular syndrome, which flattens the back of the eyeball, sometimes permanently, with no known mechanism and no countermeasure, and is a top-ranked Mars risk. End on why a large centrifuge, the one countermeasure that would fix everything at once, has never been flown. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Radiation, and the Wall",
+                "slug": "radiation",
+                "summary": "This is the wall — not the rocket, not the landing — and there is currently no engineering solution on the table, only a propulsion system cancelled in 1973. Distinguish the two threats: solar particle events, MeV protons that are acute, sporadic, and shieldable behind a few centimetres of polyethylene or the food; and galactic cosmic rays, GeV iron nuclei from every direction that are unshieldable in practice, because a thin shield shatters one nucleus into a spallation shower and makes the dose worse. Hydrogen is the best shield, for the most electrons per mass and because equal-mass collisions transfer energy cleanly. Give the measured RAD numbers: 1.8 mSv per day in cruise for 648 over the transit, 0.35 Sv on the surface, roughly 1 Sv total against a 600-mSv career limit — 67 percent over a lifetime allowance in one trip. The only countermeasure that scales is to go faster, which hands the problem back to propulsion: the nuclear engine is a medical device. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Life Support: The Hardest Unsolved Problem",
+                "slug": "life-support",
+                "summary": "The air loop can be closed and the water loop can be closed, but the carbon loop cannot, and until it can, every Mars mission is a picnic with a very long drive. Cover the ECLSS stack — oxygen by electrolysis, carbon-dioxide removal, the Sabatier reaction turning exhaled CO2 and waste hydrogen back into water while the carbon leaves as vented methane — and the ISS record: water 93 to 98 percent closed, oxygen largely closed, food zero percent closed, every calorie launched. Do the arithmetic: four crew over 900 days at 5 kg a day is 18 tonnes open-loop, cut to about 3.2 with 95 percent air-and-water closure, after which food is 75 percent of what remains. Use Biosphere 2, where oxygen fell to 14.5 percent because curing concrete absorbed carbon dioxide, and MOXIE and in-situ propellant as the real answer — the rockets lesson applied to the trip home. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Mission Architecture: The Decision That Makes It Exist",
+                "slug": "mission-architecture",
+                "summary": "Architecture is not a detail chosen after the rocket; it is what determines whether the rocket needs to exist. Teach the Apollo mode decision as the central case: Direct Ascent needed the never-built Nova; Earth-orbit rendezvous needed many launches; Lunar Orbit Rendezvous refused to land the heavy thing, and run the cascade — lifting the 4.7-tonne ascent stage instead of 15 tonnes saves 8.7 t at the surface, which need not be landed, inserted, injected, or lifted from Earth, so it propagates to over 200 t on the pad; the mission did not get 8 tonnes easier, it got a rocket easier. Cover John Houbolt going around his entire chain of command and being right. Then Mars architectures, conjunction versus opposition, and the 780-day synodic period as fate: miss the window and launch 26 months late, and there is no abort. End on the ISS as architecture-of-diplomacy, physically inseparable by design. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Risk, Organizations, and Death",
+                "slug": "risk-and-organizations",
+                "summary": "Every fatal accident in spaceflight was predicted, in writing, by someone who was overruled: the failure mode of this field is not physics but hierarchy. Cover Apollo 1 — pure oxygen, an inward hatch, three dead in seventeen seconds in a test nobody classified as hazardous because there was no fuel in the rocket; Challenger — Boisjoly's memo six months early, and Vaughan's normalization of deviance, where catastrophic risk was accepted forty times incrementally, each time reasonably; Feynman's Appendix F, where engineers said 1 in 100 and managers said 1 in 100,000, and the real rate was 2 in 135; and Columbia, whose organizational causes the review board found identical to Challenger's. Set against them the counter-example: Apollo 11's 1202 alarm and Margaret Hamilton's priority-scheduled software, which shed low-priority work and kept the landing running — the first Moon landing succeeded because someone insisted on handling an error that could never occur. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              }
+            ]
           },
           {
-            "title": "astrobiology"
+            "title": "astrobiology",
+            "summary": "Is anyone else out there, and how would we ever know. The science that gets hard because the scientists want it to be true: what life is and why we cannot say, the one origin we have to reason from, why the habitable zone is the wrong idea, the ocean worlds we have already sampled by accident, biosignatures as epistemology, and Drake, Fermi, and the Great Filter.",
+            "children": [
+              {
+                "title": "What Is Life, and Why We Can't Say",
+                "slug": "what-is-life",
+                "summary": "Astrobiology is the study of a phenomenon of which there is exactly one example, and its error bars are unknown. Every organism ever examined shares an ancestor, a chirality, four bases, one genetic code, and ATP, so what is necessary about life cannot be separated from what merely happened here. Interrogate NASA's working definition — a self-sustaining chemical system capable of Darwinian evolution — and its failures, and Cleland's argument that the field is trying to define life before it has the equivalent of atomic theory. State the minimal requirements: a solvent (water's wide liquid range, and the underrated fact that ice floats so a freezing ocean insulates itself), complex chemistry (carbon over silicon), and an energy gradient — with the hinge of the whole unit, that life is not powered by energy but by disequilibrium, and any disequilibrium will do. Write as a rigorous, self-contained chapter that argues a thesis and uses history as evidence, not decoration; where the received account is wrong or unresolved, say so plainly. Close with a short self-test. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Origins: The Only Data Point",
+                "slug": "origins",
+                "summary": "Life appeared on Earth almost immediately and then took two billion years to become complicated, and those two facts point in opposite directions on which the Fermi paradox turns. Cover Miller-Urey and why amino acids are not life, the gap from monomer to self-replicator being where the problem lives; the RNA world and its fragile ribose; and metabolism-first with alkaline hydrothermal vents as the best origin story — natural proton gradients across thin mineral membranes, a chemiosmotic engine predating cells, given that all life today runs on chemiosmosis, with serpentinization as rock that breathes out food. Weigh the two timing arguments: oceans by 4.4 billion years and likely life by 3.8 to 4.0 suggests abiogenesis is easy, while prokaryotes taking two billion years to become eukaryotes, apparently exactly once via a single endosymbiosis, suggests a bottleneck or a fluke. Write as a rigorous, self-contained chapter that argues a thesis and uses history as evidence, not decoration; where the received account is wrong or unresolved, say so plainly. Close with a short self-test. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Habitability, Properly",
+                "slug": "habitability",
+                "summary": "The habitable zone is a teachable, elegant, and badly misleading idea that has distorted the field's priorities for thirty years. State the classic zone and then falsify it plainly: the two most promising places for life in the solar system are both far outside it, Europa at 5.2 AU and Enceladus at 9.5, receiving about one percent of Earth's sunlight. Derive tidal heating — orbital eccentricity forced by mean-motion resonance means the tidal bulge moves through each orbit and internal friction dissipates it as heat, with a fierce dependence on radius and mean motion — so the habitable zone assumed the star was the only furnace when gravity is also a furnace. Cover radiogenic heat and Earth's own deep biosphere, and the empirical limits of life to 122 degrees Celsius and 5,000 grays, before defending the zone only as a first-cut filter for targets seen from a hundred light-years away. Write as a rigorous, self-contained chapter: derive each result from first principles, carry real numbers all the way through, and use the history as evidence rather than decoration; where the received account is wrong, say so plainly, and do the arithmetic on the page. Close with a short self-test and a Practice section of randomized-style drills the reader can rework with fresh numbers. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "The Ocean Worlds",
+                "slug": "ocean-worlds",
+                "summary": "An alien ocean has already been sampled, by accident, with a spacecraft built for something else, and it could not tell whether anything was living in it. Cover Europa, whose induced magnetic field betrays a salt-water ocean under 15 to 25 km of ice holding roughly twice Earth's liquid water, and Europa Clipper flying past 49 times rather than orbiting because the surface receives about 5.4 Sv a day inside Jupiter's magnetosphere — the only architecture the physics permits. Then Enceladus, 500 km across, spraying its ocean into space through the tiger stripes, which Cassini flew straight through: salt water, silica implying vents above 90 degrees, molecular hydrogen and carbon dioxide that is exactly what methanogens eat, complex organics, and phosphates — every box ticked, and yet no life found, only a place where on Earth life would be. Cover Titan's methane cycle and Dragonfly, and Mars as a fossil problem. Write as a rigorous, self-contained chapter that argues a thesis and uses history as evidence, not decoration; where the received account is wrong or unresolved, say so plainly. Close with a short self-test. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Biosignatures: A Seminar in Epistemology",
+                "slug": "biosignatures",
+                "summary": "The real content of astrobiology is not chemistry but epistemology under an overwhelming desire to believe, and the field has been burned four times and learned. Start with Lovelock's 1965 inversion — how would an alien detect life on Earth — and the answer, atmospheric disequilibrium: oxygen and methane cannot coexist, so their persistence means both are being replenished against thermodynamics, a gradient someone is defending. Cover transit spectroscopy and the rule that every biosignature has an abiotic mimic, so the evidence is never a molecule but a story only life can tell. Then the four case studies taught as one: Viking's positive result and the perchlorate twist, ALH84001 and the White House lawn, phosphine on Venus collapsing under reanalysis, and K2-18b's DMS not surviving contact with other people's software. End on the Sagan standard and the biosignature confidence scale — announce level 3 of 7, not life. Write as a rigorous, self-contained chapter that argues a thesis and uses history as evidence, not decoration; where the received account is wrong or unresolved, say so plainly. Close with a short self-test. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              },
+              {
+                "title": "Drake, Fermi, and the Great Filter",
+                "slug": "drake-and-fermi",
+                "summary": "After sixty years of astronomical progress the Drake equation has resolved into a mirror. It was an agenda for a three-day meeting, never a calculation, and published estimates of N span fourteen orders of magnitude. But the first three terms have been conquered: the star-formation rate is measured, the fraction of stars with planets is essentially one, and roughly a fifth of Sun-like stars have an Earth-sized planet in the zone, the nearest perhaps four light-years away — so N is now dominated entirely by the unknown biological and sociological terms, above all the lifetime L. Cover Fermi's question and why the galaxy should be full and loud yet is empty and silent, the Great Filter and its sting that every discovery of independent life is bad news, and the strongest objections — that going quiet is not the same as going extinct, that anthropic selection wrecks the inference, and that the silence may be a fact about our instruments. Close on planetary protection and the honest reckoning about what Apollo was for. Write as a rigorous, self-contained chapter that argues a thesis and uses history as evidence, not decoration; where the received account is wrong or unresolved, say so plainly. Close with a short self-test. Third-person throughout: no first-person lecturer voice, no section numbering, no emoji."
+              }
+            ]
           }
         ]
       }
@@ -4955,7 +5742,7 @@ SUBJECTS.forEach((subj, si) => {
     depth: number,
   ) => {
     specs.forEach((spec, i) => {
-      const slug = slugify(spec.title);
+      const slug = spec.slug ?? slugify(spec.title);
       const path = [...parentPath, slug];
       const id = `${subjectId}/${path.join("/")}`;
       nodes.push({
