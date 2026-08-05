@@ -114,6 +114,7 @@ import { TriplePoint } from "./TriplePoint";
 import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 import { PolarisAltitude } from "./PolarisAltitude";
+import { BlackHoleLensing } from "./BlackHoleLensing";
 
 export interface Crumb {
   label: string;
@@ -823,6 +824,12 @@ export function Reader({
                   // latitude.
                   if (typeof cls === "string" && /language-polarisaltitude\b/.test(cls)) {
                     return <PolarisAltitude />;
+                  }
+                  // A fenced ```blackholelensing block becomes the ray-traced
+                  // gravitational-lensing renderer (Schwarzschild geodesics,
+                  // GR vs Newtonian toggle).
+                  if (typeof cls === "string" && /language-blackholelensing\b/.test(cls)) {
+                    return <BlackHoleLensing />;
                   }
                   // A fenced ```moonphase block becomes the interactive phase
                   // orrery (a half-lit sphere seen from a moving vantage point).
