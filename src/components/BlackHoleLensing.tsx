@@ -51,9 +51,9 @@ uniform float u_yaw;   // manual + drift orbit angle
 uniform float u_bend;  // 1 = GR, 0 = Newtonian straight lines
 
 const float R_ISCO = 3.0;
-const float R_OUT  = 14.0;
-const float CAM_R  = 27.0;
-const int   STEPS  = 220;
+const float R_OUT  = 20.0;
+const float CAM_R  = 34.0;
+const int   STEPS  = 240;
 
 // -- tiny hash / value noise / fbm --------------------------------------
 float hash12(vec2 p) {
@@ -98,39 +98,52 @@ vec3 stars(vec3 d) {
 }
 
 // -- accretion disk shading ---------------------------------------------
-// hit: point in disk plane (y ~ 0); photonDir: direction the traced ray was
-// travelling at the hit (i.e. away from camera — the physical photon moves
+// The disk is a translucent particle cloud, not an opaque surface: this
+// returns premultiplied emission in .rgb and opacity in .a, and the ray
+// march accumulates several plane crossings through it — which is what
+// gives the render its layered, cloudy depth, with the lensed far-side
+// image showing through the near material.
+// hit: point in disk plane (y ~ 0); photonDir: direction the traced ray
+// was travelling at the hit (away from camera — the physical photon moves
 // opposite to it, toward the observer).
-vec3 shadeDisk(vec3 hit, vec3 photonDir) {
+vec4 shadeDisk(vec3 hit, vec3 photonDir) {
   float r = length(hit.xz);
   float t = clamp((r - R_ISCO) / (R_OUT - R_ISCO), 0.0, 1.0);
 
-  // Keplerian differential rotation: inner material laps outer, shearing
-  // the noise field into trailing streaks.
-  float omega = 0.45 * pow(r / R_ISCO, -1.5);
-  float ang = u_time * omega;
-  float c = cos(ang), s = sin(ang);
-  vec2 q = mat2(c, -s, s, c) * hit.xz;
-  float streak = fbm(vec2(r * 2.1, atan(q.y, q.x) * 3.0 + r * 1.4));
-  streak = 0.55 + 0.9 * streak;
+  // Keplerian shear frame: rotate the sampling coordinates by the local
+  // orbital angle so inner material visibly laps outer material.
+  float omega = 0.5 * pow(r / R_ISCO, -1.5);
+  float ca = cos(u_time * omega), sa = sin(u_time * omega);
+  vec2 q = mat2(ca, -sa, sa, ca) * hit.xz;
 
-  // temperature: hot pale gold at the ISCO cooling quickly to deep ember red
-  vec3 hot  = vec3(1.00, 0.96, 0.84);
-  vec3 cool = vec3(0.90, 0.26, 0.05);
-  vec3 base = mix(hot, cool, pow(t, 0.45));
+  // two broad trailing spiral arms, perturbed so they read as wisps
+  float arm = 0.55 + 0.45 * sin(2.0 * atan(q.y, q.x) + 3.5 * log(r) + 2.2 * fbm(q * 0.35));
 
-  // radial emissivity falloff — steep enough that the outer disk fades to
-  // dim embers while the ISCO burns white
-  float emis = pow(R_ISCO / r, 3.0) * 3.0 + 0.008;
+  // granular "particle" texture: sharpened noise specks at two scales,
+  // the finer layer twinkling cell-by-cell
+  float grain = pow(vnoise(q * 3.0), 3.0) * 2.0;
+  float tw = 0.7 + 0.3 * sin(u_time * 2.4 + hash12(floor(q * 6.5)) * 6.283);
+  grain += pow(vnoise(q * 6.5 + 31.7), 4.0) * 2.8 * tw;
+
+  // density: sharp inner cutoff at the ISCO, ragged wispy outer fade
+  float rag = fbm(q * 0.5 + 7.3);
+  float outer = smoothstep(1.05, 0.40, (r / R_OUT) * (0.80 + 0.55 * rag));
+  float inner = smoothstep(R_ISCO - 0.1, R_ISCO + 1.2, r);
+  float dens = inner * outer * arm * (0.22 + grain);
+
+  // monochrome silver: warm-white core cooling to faint blue-grey wisps
+  vec3 base = mix(vec3(1.00, 0.99, 0.96), vec3(0.52, 0.58, 0.72), pow(t, 0.5));
+  float emis = pow(R_ISCO / r, 1.9) * 2.6 + 0.04;
 
   // approximate relativistic beaming: circular-orbit speed in r_s units is
   // 1/sqrt(2(r-1)); brighten where the flow moves toward the observer.
   float beta = clamp(1.0 / sqrt(2.0 * max(r - 1.0, 0.6)), 0.0, 0.62) * u_bend;
   vec3 flow = normalize(vec3(-hit.z, 0.0, hit.x));
   float cosA = dot(flow, -photonDir);
-  float dopp = pow(1.0 / max(1.0 - beta * cosA, 0.35), 3.0);
+  float dopp = pow(1.0 / max(1.0 - beta * cosA, 0.4), 2.5);
 
-  return base * emis * streak * dopp;
+  float alpha = clamp(dens * 0.8, 0.0, 0.92);
+  return vec4(base * emis * dopp * dens * 1.6, alpha);
 }
 
 void main() {
@@ -151,20 +164,17 @@ void main() {
   float h2 = dot(h3, h3);
 
   vec3 col = vec3(0.0);
+  float T = 1.0;   // transmittance: how much of what lies further along the ray still shows
   float minR = 1e4;
-  bool done = false;
   bool captured = false;
+  bool escaped = false;
 
   for (int i = 0; i < STEPS; i++) {
     float r = length(p);
     minR = min(minR, r);
 
-    if (r < 1.0) { done = true; captured = true; break; } // through the horizon: black
-    if (r > 44.0 && dot(p, v) > 0.0) {   // escaped: starfield
-      col = stars(normalize(v));
-      done = true;
-      break;
-    }
+    if (r < 1.0) { captured = true; break; } // through the horizon
+    if (r > 62.0 && dot(p, v) > 0.0) { escaped = true; break; }
 
     float dt = clamp(r * 0.10, 0.045, 0.9);
     // leapfrog on d²x/dλ² = -1.5 h² x / r⁵ (exact Schwarzschild null form)
@@ -172,29 +182,33 @@ void main() {
     v += a * dt;
     vec3 pn = p + v * dt;
 
-    // disk-plane crossing?
+    // disk-plane crossing? The disk is translucent, so accumulate emission
+    // and keep marching — later crossings (the lensed far side wrapping
+    // behind the hole) blend through the nearer material.
     if (p.y * pn.y < 0.0) {
       float f = p.y / (p.y - pn.y);
       vec3 hit = mix(p, pn, f);
       float rh = length(hit.xz);
       if (rh > R_ISCO && rh < R_OUT) {
-        col = shadeDisk(hit, normalize(v));
-        done = true;
-        break;
+        vec4 d = shadeDisk(hit, normalize(v));
+        col += T * d.rgb;
+        T *= 1.0 - d.a;
+        if (T < 0.04) break; // effectively opaque from here back
       }
-      // crossed in the gap or beyond the rim: keep going — this is what
-      // wraps rays around to the disk's far side.
     }
     p = pn;
   }
 
-  if (!done) { col = vec3(0.0); captured = true; } // exhausted steps in a photon orbit
+  if (escaped) col += T * stars(normalize(v));
+  // captured or step-exhausted rays contribute nothing further: whatever
+  // disk light was accumulated in front of the shadow stays, and the
+  // remainder is black.
 
-  // warm photon-ring glow, only for rays that actually made it back out —
-  // captured rays stay black, keeping the shadow's interior truly dark
+  // warm photon-ring glow for rays that grazed the photon sphere and made
+  // it back out; captured rays keep the shadow's interior dark
   if (!captured) {
     float graze = abs(minR - 1.5);
-    col += vec3(1.0, 0.82, 0.55) * u_bend * 0.045 / (0.06 + graze * graze * 14.0);
+    col += vec3(1.0, 0.92, 0.78) * u_bend * 0.045 / (0.06 + graze * graze * 14.0);
   }
 
   // filmic-ish tone map + gamma
