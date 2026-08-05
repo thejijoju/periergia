@@ -190,6 +190,11 @@ Point a telescope at the solar photosphere and you see it covered in granules �
 
 Bright centres are rising hot gas; dark lanes are cooler gas sinking. The lifetime is the turnover time of a cell, and the size is comparable to the local pressure scale height — which is exactly what mixing-length theory would predict. Granulation is the most direct confirmation of convection in a star, and it is visible in a good amateur telescope under steady seeing. A second scale, supergranulation, spans roughly 30,000 km with a lifetime of about a day, and its origin remains debated.
 
+Both halves of this chapter's story are rendered live below. The surface view is the granulation just described — bright rising cells and darker sinking lanes, churning in real time, dimming and reddening toward the limb because an oblique line of sight escapes from a shallower, cooler depth. The cutaway opens the sphere to the structure underneath: the fusing core, the smooth and motionless radiative zone that photons take tens of thousands of years to cross, and the convective envelope that takes over at 0.713 $R_\odot$ — the boundary the next section measures.
+
+```suninterior
+```
+
 ### Helioseismology
 
 The other observation is more precise by a wide margin.

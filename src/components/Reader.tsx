@@ -115,6 +115,7 @@ import { Quotation } from "./Quotation";
 import { ResearchGate } from "./ResearchGate";
 import { PolarisAltitude } from "./PolarisAltitude";
 import { BlackHoleLensing } from "./BlackHoleLensing";
+import { SunInterior } from "./SunInterior";
 
 export interface Crumb {
   label: string;
@@ -830,6 +831,11 @@ export function Reader({
                   // GR vs Newtonian toggle).
                   if (typeof cls === "string" && /language-blackholelensing\b/.test(cls)) {
                     return <BlackHoleLensing />;
+                  }
+                  // A fenced ```suninterior block becomes the live procedural
+                  // Sun (granulation surface / three-zone cutaway toggle).
+                  if (typeof cls === "string" && /language-suninterior\b/.test(cls)) {
+                    return <SunInterior />;
                   }
                   // A fenced ```moonphase block becomes the interactive phase
                   // orrery (a half-lit sphere seen from a moving vantage point).
