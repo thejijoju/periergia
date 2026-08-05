@@ -2,217 +2,299 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// An interactive gravitational-lensing renderer, embedded in an article via a
+// A real-time gravitational-lensing renderer, embedded in an article via a
 // fenced ```blackholelensing block (see Reader's `pre` override). This is a
-// real backward ray tracer for null geodesics in the Schwarzschild metric —
-// not a stylised graphic — computed on a <canvas> rather than as an SVG
-// vector diagram (the site's usual pattern) because a lensed accretion-disk
-// image is fundamentally a raster problem, the same reason every real
-// black-hole render, from the Event Horizon Telescope's to Interstellar's
-// "Gargantua", is a renderer rather than a hand-drawn figure.
+// genuine backward ray tracer for null geodesics in the Schwarzschild
+// metric, run per-pixel per-frame in a WebGL2 fragment shader — the same
+// architecture as every serious real-time black-hole render — rather than
+// the site's usual SVG diagram pattern, because a lensed accretion-disk
+// image is fundamentally a raster problem and an animated one at that.
 //
-// Units: the Schwarzschild radius r_s = 1. Photon sphere at 1.5, ISCO (inner
-// disk edge) at 3, outer disk edge at 14. For each pixel, its position in the
-// observer's image plane is an impact-parameter vector (bx, by); since a
-// Schwarzschild spacetime is spherically symmetric, every individual photon's
-// path is planar (the plane containing the observer and its initial
-// direction), so the problem reduces to integrating one 2nd-order radial
-// ODE per ray:
+// Units: Schwarzschild radius r_s = 1. Photon sphere at 1.5, disk annulus
+// [3, 14] (ISCO to outer edge). Each fragment integrates the compact
+// Cartesian form of the Schwarzschild null geodesic equation,
 //
-//   d^2r/dλ^2 = b^2/r^3 - bend * 1.5 * b^2/r^4      (bend = 1 for GR, 0 for
-//   dφ/dλ = b/r^2                                    "Newtonian" / no lensing)
+//   d²x/dλ² = -(3/2) h² x / r⁵ ,   h = |x × v| (conserved)
 //
-// starting from flat-space initial conditions at a large radius (curvature
-// there is negligible regardless of impact parameter, since it's set by
-// r_s/r at that radius, not by how deep the ray eventually plunges) and
-// integrated inward via RK4 with an adaptive step. The ray's 3D position is
-// reconstructed at every step and checked for a crossing of the disk plane
-// (world z = 0); the first crossing inside [R_ISCO, R_OUTER] is the visible
-// surface. Rays that cross the plane first in the empty gap between the
-// horizon and the ISCO are NOT stopped there — they keep integrating, which
-// is what lets a ray wrap behind the hole and cross the disk plane a second
-// time within the valid annulus, reproducing the famous effect of seeing the
-// far side of the disk lensed into view above and below the silhouette,
-// with no special-casing required: it falls out of the physics.
+// via leapfrog steps from the camera outward, checking each step for a
+// crossing of the disk plane. Rays that cross the plane in the empty gap
+// inside the ISCO keep integrating — which is what lets them wrap behind
+// the hole and strike the disk's far side, producing the lensed arcs above
+// and below the shadow with no special-casing. The "Newtonian" toggle
+// multiplies the bending term by zero: straight rays, no wraparound, a
+// plain foreshortened ellipse — the visual difference between Newton and
+// Einstein in one click.
 //
-// Rendered in a fixed dark cosmic palette regardless of site theme (the same
-// choice PolarisAltitude's "sky" view makes) since a black-hole image reads
-// as astronomical imagery, not a themed UI element. Computed in row batches
-// via requestAnimationFrame rather than in one blocking pass, so the image
-// visibly resolves rather than freezing the page — apt, given the subject.
+// The disk is textured with value-noise streaks advected by differential
+// (Keplerian) rotation and brightened on the approaching side by an
+// approximate relativistic beaming factor; the shadow's rim carries a warm
+// glow from rays that graze the photon sphere. Rendered continuously while
+// on screen (IntersectionObserver pauses it when scrolled away), with a
+// slow orbital drift; drag to orbit by hand, slider for inclination.
+// Fixed dark cosmic palette regardless of site theme, as astronomical
+// imagery rather than themed UI.
 
-const R_S = 1; // Schwarzschild radius, our unit
-const R_ISCO = 3; // inner edge of the accretion disk
-const R_OUTER = 14; // outer edge of the accretion disk
-const R_START = 60; // radius at which integration begins (flat-space init)
-const B_MAX = R_OUTER * 1.75; // half-width of the traced impact-parameter window
-const ESCAPE_R = R_START * 3;
-const MAX_STEPS = 900;
-const RES = 220; // backing canvas resolution (square)
+const VERT = `#version 300 es
+precision highp float;
+const vec2 pos[3] = vec2[3](vec2(-1.,-1.), vec2(3.,-1.), vec2(-1.,3.));
+void main() { gl_Position = vec4(pos[gl_VertexID], 0., 1.); }
+`;
 
-type Vec3 = [number, number, number];
-const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const FRAG = `#version 300 es
+precision highp float;
+out vec4 outColor;
 
-// Orthonormal camera basis for inclination `inc` (radians from the spin
-// axis: 0 = face-on/pole-on, PI/2 = edge-on). n = direction from the black
-// hole to the observer; right/up span the image plane.
-function basis(inc: number): { n: Vec3; right: Vec3; up: Vec3 } {
-  const s = Math.sin(inc), c = Math.cos(inc);
-  const n: Vec3 = [s, 0, c];
-  const right: Vec3 = [0, -1, 0];
-  const up: Vec3 = [-c, 0, s];
-  return { n, right, up };
+uniform vec2 u_res;
+uniform float u_time;
+uniform float u_inc;   // inclination, radians from face-on
+uniform float u_yaw;   // manual + drift orbit angle
+uniform float u_bend;  // 1 = GR, 0 = Newtonian straight lines
+
+const float R_ISCO = 3.0;
+const float R_OUT  = 14.0;
+const float CAM_R  = 27.0;
+const int   STEPS  = 220;
+
+// -- tiny hash / value noise / fbm --------------------------------------
+float hash12(vec2 p) {
+  vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+  p3 += dot(p3, p3.yzx + 33.33);
+  return fract((p3.x + p3.y) * p3.z);
+}
+float vnoise(vec2 p) {
+  vec2 i = floor(p), f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hash12(i), hash12(i + vec2(1, 0)), u.x),
+             mix(hash12(i + vec2(0, 1)), hash12(i + vec2(1, 1)), u.x), u.y);
+}
+float fbm(vec2 p) {
+  float a = 0.5, s = 0.0;
+  for (int i = 0; i < 4; i++) { s += a * vnoise(p); p *= 2.13; a *= 0.5; }
+  return s;
 }
 
-type Hit = { r: number; x: number; y: number } | null;
-
-// Trace one ray of impact parameter (bx, by). Returns the disk-plane
-// crossing point if the ray strikes the visible disk, else null (horizon
-// capture or escape to background).
-function traceRay(bx: number, by: number, inc: number, bend: number): Hit {
-  const b = Math.hypot(bx, by);
-  if (b < 1e-4) return null; // ~radial infall — captured, negligible fraction of pixels
-
-  const { n, right, up } = basis(inc);
-  const ex = bx / b, ey = by / b;
-  const e: Vec3 = [
-    right[0] * ex + up[0] * ey,
-    right[1] * ex + up[1] * ey,
-    right[2] * ex + up[2] * ey,
-  ];
-
-  let r = Math.sqrt(R_START * R_START + b * b);
-  let phi = Math.atan2(b, R_START);
-  let rdot = -R_START / r;
-
-  let prevX = r * (Math.cos(phi) * n[0] + Math.sin(phi) * e[0]);
-  let prevY = r * (Math.cos(phi) * n[1] + Math.sin(phi) * e[1]);
-  let prevZ = r * (Math.cos(phi) * n[2] + Math.sin(phi) * e[2]);
-
-  const bb = b * b;
-  const acc = (rr: number) => bb / (rr * rr * rr) - bend * 1.5 * bb / (rr * rr * rr * rr);
-  const dphi = (rr: number) => b / (rr * rr);
-
-  for (let step = 0; step < MAX_STEPS; step++) {
-    if (r <= R_S) return null; // swallowed
-    if (r > ESCAPE_R && rdot > 0) return null; // escaped to background
-
-    const h = clamp(r * 0.045, 0.02, 1.6);
-
-    // RK4 on the coupled system dr/dλ=rdot, drdot/dλ=acc(r), dφ/dλ=dphi(r)
-    const k1r = rdot, k1v = acc(r), k1p = dphi(r);
-    const r2 = r + (h / 2) * k1r, rdot2 = rdot + (h / 2) * k1v;
-    const k2r = rdot2, k2v = acc(r2), k2p = dphi(r2);
-    const r3 = r + (h / 2) * k2r, rdot3 = rdot + (h / 2) * k2v;
-    const k3r = rdot3, k3v = acc(r3), k3p = dphi(r3);
-    const r4 = r + h * k3r, rdot4 = rdot + h * k3v;
-    const k4r = rdot4, k4v = acc(r4), k4p = dphi(r4);
-
-    r = r + (h / 6) * (k1r + 2 * k2r + 2 * k3r + k4r);
-    rdot = rdot + (h / 6) * (k1v + 2 * k2v + 2 * k3v + k4v);
-    phi = phi + (h / 6) * (k1p + 2 * k2p + 2 * k3p + k4p);
-
-    const x = r * (Math.cos(phi) * n[0] + Math.sin(phi) * e[0]);
-    const y = r * (Math.cos(phi) * n[1] + Math.sin(phi) * e[1]);
-    const z = r * (Math.cos(phi) * n[2] + Math.sin(phi) * e[2]);
-
-    if ((prevZ < 0) !== (z < 0)) {
-      const frac = prevZ / (prevZ - z || 1e-9);
-      const xc = prevX + frac * (x - prevX);
-      const yc = prevY + frac * (y - prevY);
-      const rc = Math.hypot(xc, yc);
-      if (rc >= R_ISCO && rc <= R_OUTER) return { r: rc, x: xc, y: yc };
-      // crossing outside the disk annulus: keep integrating — this is what
-      // lets a ray wrap around and find the disk's far side.
+// -- background starfield ------------------------------------------------
+float hash13(vec3 p3) {
+  p3 = fract(p3 * 0.1031);
+  p3 += dot(p3, p3.zyx + 31.32);
+  return fract((p3.x + p3.y) * p3.z);
+}
+vec3 stars(vec3 d) {
+  vec3 col = vec3(0.0008, 0.0008, 0.002);
+  // whisper of cool nebulosity — kept far below the gamma lift
+  col += vec3(0.003, 0.0025, 0.006) * fbm(d.xy * 2.5 + d.z * 1.7);
+  // point stars from 3D direction cells (2D cells streak near the poles)
+  for (int s = 0; s < 2; s++) {
+    float scale = s == 0 ? 34.0 : 70.0;
+    vec3 cell = floor(d * scale);
+    float h = hash13(cell);
+    if (h > 0.982) {
+      vec3 f = fract(d * scale) - 0.5;
+      float sparkle = smoothstep(0.30, 0.0, length(f)) * (h - 0.982) / 0.018;
+      col += vec3(0.85, 0.85, 1.0) * sparkle * (s == 0 ? 0.5 : 0.3);
     }
-    prevX = x; prevY = y; prevZ = z;
   }
-  return null;
+  return col;
 }
 
-// Disk surface color: hot pale gold near the inner edge cooling to deep
-// orange-red at the outer edge, modulated by a simplified (not fully
-// relativistic) Doppler brightness asymmetry from the disk's rotation —
-// the approaching side brighter, the receding side dimmer, as in real
-// accretion-disk images.
-function diskColor(r: number, x: number, y: number, n: Vec3): [number, number, number, number] {
-  const t = clamp((r - R_ISCO) / (R_OUTER - R_ISCO), 0, 1);
-  const R = lerp(255, 230, t), G = lerp(238, 90, t), B = lerp(200, 35, t);
-  const vx = -y / r, vy = x / r; // prograde tangential unit vector
-  const approach = clamp(vx * n[0] + vy * n[1], -1, 1);
-  const brightness = clamp(0.55 + 0.55 * (1 - t), 0.25, 1.3) * clamp(1 + 0.7 * approach, 0.3, 1.9);
-  const a = clamp(brightness, 0, 1.6);
-  return [clamp(R * Math.min(1, brightness), 0, 255), clamp(G * Math.min(1, brightness), 0, 255), clamp(B * Math.min(1, brightness), 0, 255), Math.min(1, a) * 255];
+// -- accretion disk shading ---------------------------------------------
+// hit: point in disk plane (y ~ 0); photonDir: direction the traced ray was
+// travelling at the hit (i.e. away from camera — the physical photon moves
+// opposite to it, toward the observer).
+vec3 shadeDisk(vec3 hit, vec3 photonDir) {
+  float r = length(hit.xz);
+  float t = clamp((r - R_ISCO) / (R_OUT - R_ISCO), 0.0, 1.0);
+
+  // Keplerian differential rotation: inner material laps outer, shearing
+  // the noise field into trailing streaks.
+  float omega = 0.45 * pow(r / R_ISCO, -1.5);
+  float ang = u_time * omega;
+  float c = cos(ang), s = sin(ang);
+  vec2 q = mat2(c, -s, s, c) * hit.xz;
+  float streak = fbm(vec2(r * 2.1, atan(q.y, q.x) * 3.0 + r * 1.4));
+  streak = 0.55 + 0.9 * streak;
+
+  // temperature: hot pale gold at the ISCO cooling quickly to deep ember red
+  vec3 hot  = vec3(1.00, 0.96, 0.84);
+  vec3 cool = vec3(0.90, 0.26, 0.05);
+  vec3 base = mix(hot, cool, pow(t, 0.45));
+
+  // radial emissivity falloff — steep enough that the outer disk fades to
+  // dim embers while the ISCO burns white
+  float emis = pow(R_ISCO / r, 3.0) * 3.0 + 0.008;
+
+  // approximate relativistic beaming: circular-orbit speed in r_s units is
+  // 1/sqrt(2(r-1)); brighten where the flow moves toward the observer.
+  float beta = clamp(1.0 / sqrt(2.0 * max(r - 1.0, 0.6)), 0.0, 0.62) * u_bend;
+  vec3 flow = normalize(vec3(-hit.z, 0.0, hit.x));
+  float cosA = dot(flow, -photonDir);
+  float dopp = pow(1.0 / max(1.0 - beta * cosA, 0.35), 3.0);
+
+  return base * emis * streak * dopp;
 }
 
-const STARS = Array.from({ length: 90 }, (_, i) => {
-  const x = (i * 63 + 17) % RES;
-  const y = (i * 41 + 9) % RES;
-  const o = 0.15 + ((i * 11) % 10) / 18;
-  return { x, y, o };
-});
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+
+  // camera: orbit of radius CAM_R at inclination u_inc, yaw u_yaw
+  float ci = cos(u_inc), si = sin(u_inc);
+  float cy = cos(u_yaw), sy = sin(u_yaw);
+  vec3 camPos = CAM_R * vec3(si * cy, ci, si * sy);
+  vec3 fwd = normalize(-camPos);
+  vec3 right = normalize(cross(fwd, vec3(0.0, 1.0, 0.0)));
+  vec3 up = cross(right, fwd);
+  vec3 dir = normalize(fwd * 1.55 + uv.x * right + uv.y * up);
+
+  vec3 p = camPos;
+  vec3 v = dir;
+  vec3 h3 = cross(p, v);
+  float h2 = dot(h3, h3);
+
+  vec3 col = vec3(0.0);
+  float minR = 1e4;
+  bool done = false;
+  bool captured = false;
+
+  for (int i = 0; i < STEPS; i++) {
+    float r = length(p);
+    minR = min(minR, r);
+
+    if (r < 1.0) { done = true; captured = true; break; } // through the horizon: black
+    if (r > 44.0 && dot(p, v) > 0.0) {   // escaped: starfield
+      col = stars(normalize(v));
+      done = true;
+      break;
+    }
+
+    float dt = clamp(r * 0.10, 0.045, 0.9);
+    // leapfrog on d²x/dλ² = -1.5 h² x / r⁵ (exact Schwarzschild null form)
+    vec3 a = -1.5 * h2 * p / pow(r, 5.0) * u_bend;
+    v += a * dt;
+    vec3 pn = p + v * dt;
+
+    // disk-plane crossing?
+    if (p.y * pn.y < 0.0) {
+      float f = p.y / (p.y - pn.y);
+      vec3 hit = mix(p, pn, f);
+      float rh = length(hit.xz);
+      if (rh > R_ISCO && rh < R_OUT) {
+        col = shadeDisk(hit, normalize(v));
+        done = true;
+        break;
+      }
+      // crossed in the gap or beyond the rim: keep going — this is what
+      // wraps rays around to the disk's far side.
+    }
+    p = pn;
+  }
+
+  if (!done) { col = vec3(0.0); captured = true; } // exhausted steps in a photon orbit
+
+  // warm photon-ring glow, only for rays that actually made it back out —
+  // captured rays stay black, keeping the shadow's interior truly dark
+  if (!captured) {
+    float graze = abs(minR - 1.5);
+    col += vec3(1.0, 0.82, 0.55) * u_bend * 0.045 / (0.06 + graze * graze * 14.0);
+  }
+
+  // filmic-ish tone map + gamma
+  col = 1.0 - exp(-col * 1.15);
+  col = pow(col, vec3(0.4545));
+  outColor = vec4(col, 1.0);
+}
+`;
 
 export function BlackHoleLensing() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [incDeg, setIncDeg] = useState(78);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [incDeg, setIncDeg] = useState(80);
   const [gr, setGr] = useState(true);
-  const [rendering, setRendering] = useState(true);
-  const jobRef = useRef(0);
+  const [failed, setFailed] = useState(false);
+  const stateRef = useRef({ inc: 80, bend: 1, yawOffset: 0, dragging: false, lastX: 0, visible: true });
+
+  stateRef.current.inc = incDeg;
+  stateRef.current.bend = gr ? 1 : 0;
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx2d = canvas.getContext("2d");
-    if (!ctx2d) return;
-    const ctx: CanvasRenderingContext2D = ctx2d;
+    const wrap = wrapRef.current;
+    if (!canvas || !wrap) return;
 
-    const myJob = ++jobRef.current;
-    setRendering(true);
-    const inc = (incDeg * Math.PI) / 180;
-    const bend = gr ? 1 : 0;
+    const gl = canvas.getContext("webgl2", { antialias: false, alpha: false });
+    if (!gl) { setFailed(true); return; }
 
-    const img = ctx.createImageData(RES, RES);
-    // background: near-black with a faint scatter of deterministic stars
-    for (let p = 0; p < RES * RES; p++) {
-      img.data[p * 4] = 8; img.data[p * 4 + 1] = 7; img.data[p * 4 + 2] = 12; img.data[p * 4 + 3] = 255;
-    }
-    for (const s of STARS) {
-      const idx = (s.y * RES + s.x) * 4;
-      const v = Math.round(230 * s.o);
-      img.data[idx] = v; img.data[idx + 1] = v; img.data[idx + 2] = Math.min(255, v + 15); img.data[idx + 3] = 255;
-    }
-
-    let row = 0;
-    const { n } = basis(inc);
-    const rowsPerFrame = 3;
-
-    function renderRows() {
-      if (jobRef.current !== myJob) return; // superseded by a newer render
-      const endRow = Math.min(RES, row + rowsPerFrame);
-      for (; row < endRow; row++) {
-        const by = -(((row + 0.5) / RES - 0.5) * 2 * B_MAX);
-        for (let px = 0; px < RES; px++) {
-          const bx = ((px + 0.5) / RES - 0.5) * 2 * B_MAX;
-          const hit = traceRay(bx, by, inc, bend);
-          if (hit) {
-            const [R, G, B] = diskColor(hit.r, hit.x, hit.y, n);
-            const idx = (row * RES + px) * 4;
-            img.data[idx] = R; img.data[idx + 1] = G; img.data[idx + 2] = B; img.data[idx + 3] = 255;
-          }
-        }
+    const compile = (type: number, src: string) => {
+      const sh = gl.createShader(type)!;
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(sh));
+        return null;
       }
-      ctx.putImageData(img, 0, 0);
-      if (row < RES) {
-        requestAnimationFrame(renderRows);
-      } else {
-        setRendering(false);
-      }
-    }
-    requestAnimationFrame(renderRows);
+      return sh;
+    };
+    const vs = compile(gl.VERTEX_SHADER, VERT);
+    const fs = compile(gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) { setFailed(true); return; }
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { setFailed(true); return; }
+    gl.useProgram(prog);
 
-    return () => { jobRef.current++; };
-  }, [incDeg, gr]);
+    const uRes = gl.getUniformLocation(prog, "u_res");
+    const uTime = gl.getUniformLocation(prog, "u_time");
+    const uInc = gl.getUniformLocation(prog, "u_inc");
+    const uYaw = gl.getUniformLocation(prog, "u_yaw");
+    const uBend = gl.getUniformLocation(prog, "u_bend");
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const resize = () => {
+      const w = Math.min(wrap.clientWidth, 560);
+      const bw = Math.min(Math.round(w * dpr), 900);
+      const bh = Math.round(bw * 0.72);
+      if (canvas.width !== bw || canvas.height !== bh) {
+        canvas.width = bw;
+        canvas.height = bh;
+        gl.viewport(0, 0, bw, bh);
+      }
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(wrap);
+
+    const io = new IntersectionObserver(
+      (entries) => { stateRef.current.visible = entries[0]?.isIntersecting ?? true; },
+      { rootMargin: "100px" },
+    );
+    io.observe(canvas);
+
+    let raf = 0;
+    const t0 = performance.now();
+    const draw = (now: number) => {
+      raf = requestAnimationFrame(draw);
+      if (!stateRef.current.visible) return;
+      const t = (now - t0) / 1000;
+      const st = stateRef.current;
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform1f(uTime, t);
+      gl.uniform1f(uInc, (st.inc * Math.PI) / 180);
+      gl.uniform1f(uYaw, st.yawOffset + t * 0.05);
+      gl.uniform1f(uBend, st.bend);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+    raf = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      io.disconnect();
+      gl.deleteProgram(prog);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+    };
+  }, []);
 
   return (
     <figure className="my-7 rounded-xl border border-line bg-card p-4 sm:p-5">
@@ -231,24 +313,36 @@ export function BlackHoleLensing() {
         ))}
       </div>
 
-      <div className="relative mx-auto w-full max-w-[360px]" style={{ background: "#08070c", borderRadius: "0.75rem" }}>
-        <canvas
-          ref={canvasRef}
-          width={RES}
-          height={RES}
-          className="block h-auto w-full rounded-xl"
-          style={{ imageRendering: "auto" }}
-          role="img"
-          aria-label={`A ray-traced image of a Schwarzschild black hole and its accretion disk, viewed at ${incDeg} degrees from face-on, ${gr ? "with" : "without"} gravitational light bending.`}
-        />
-        {rendering && (
-          <div className="pointer-events-none absolute bottom-2 right-2 font-sans text-[10px] tracking-wide text-white/40">
-            rendering…
+      <div ref={wrapRef} className="mx-auto w-full max-w-[560px]">
+        {failed ? (
+          <div className="rounded-xl border border-line p-6 text-center font-sans text-[12.5px] text-muted">
+            This visualization requires WebGL2, which your browser has disabled or does not support.
           </div>
+        ) : (
+          <canvas
+            ref={canvasRef}
+            className="block h-auto w-full cursor-grab touch-none rounded-xl active:cursor-grabbing"
+            style={{ background: "#08070c" }}
+            role="img"
+            aria-label={`A live ray-traced rendering of a Schwarzschild black hole and its accretion disk, viewed at ${incDeg} degrees from face-on, ${gr ? "with" : "without"} gravitational light bending. Drag to orbit.`}
+            onPointerDown={(e) => {
+              stateRef.current.dragging = true;
+              stateRef.current.lastX = e.clientX;
+              e.currentTarget.setPointerCapture(e.pointerId);
+            }}
+            onPointerMove={(e) => {
+              if (!stateRef.current.dragging) return;
+              stateRef.current.yawOffset += (e.clientX - stateRef.current.lastX) * 0.006;
+              stateRef.current.lastX = e.clientX;
+            }}
+            onPointerUp={() => { stateRef.current.dragging = false; }}
+          />
         )}
       </div>
 
-      <div className="mt-4 space-y-3">
+      <p className="mt-1 text-center font-sans text-[11.5px] text-faint">drag to orbit</p>
+
+      <div className="mt-3 space-y-3">
         <label className="block">
           <span className="flex justify-between font-sans text-[12px] text-muted">
             <span>Inclination (from face-on)</span>
@@ -263,7 +357,7 @@ export function BlackHoleLensing() {
       </div>
 
       <figcaption className="mt-4 font-sans text-[12px] text-faint leading-snug">
-        A real backward ray trace of null geodesics around a Schwarzschild black hole, not a stylised drawing: for every pixel, a light ray is integrated inward from the observer and checked for where it strikes the flat accretion disk. In <span className="text-ink">general relativity</span>, light bends around the hole strongly enough that the far side of the disk is lensed into view above and below the silhouette &mdash; the same effect that gives real black-hole images their ring shape. Toggle to <span className="text-ink">Newtonian</span> and the bending term is switched off: rays travel in straight lines, so the disk is simply foreshortened and the far side stays hidden, exactly as ordinary optics would predict. The brighter arc is the side of the disk rotating toward the observer.
+        A live backward ray trace of null geodesics around a Schwarzschild black hole, computed per pixel, per frame, on your GPU &mdash; not a video and not a stylised drawing. In <span className="text-ink">general relativity</span>, light from the disk&rsquo;s far side is bent up and over the horizon and delivered as the arcs above and below the shadow, and material orbiting toward you is brightened by relativistic beaming &mdash; the same physics that shapes real black-hole images. Toggle to <span className="text-ink">Newtonian</span> and the bending term is set to zero: rays run straight, the wraparound vanishes, and the disk becomes an ordinary foreshortened ellipse. The swirling texture is the disk&rsquo;s differential rotation &mdash; inner material laps outer material, shearing the flow into trailing streaks.
       </figcaption>
     </figure>
   );
