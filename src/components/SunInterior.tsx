@@ -65,7 +65,7 @@ float vnoise3(vec3 p) {
 }
 float fbm3(vec3 p) {
   float a = 0.5, s = 0.0;
-  for (int i = 0; i < 4; i++) { s += a * vnoise3(p); p *= 2.17; a *= 0.5; }
+  for (int i = 0; i < 5; i++) { s += a * vnoise3(p); p *= 2.17; a *= 0.5; }
   return s;
 }
 
@@ -260,10 +260,10 @@ export function SunInterior() {
     const uYaw = gl.getUniformLocation(prog, "u_yaw");
     const uCut = gl.getUniformLocation(prog, "u_cut");
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
     const resize = () => {
       const w = Math.min(wrap.clientWidth, 560);
-      const bw = Math.min(Math.round(w * dpr), 900);
+      const bw = Math.min(Math.round(w * dpr), 1600);
       const bh = Math.round(bw * 0.78);
       if (canvas.width !== bw || canvas.height !== bh) {
         canvas.width = bw;
