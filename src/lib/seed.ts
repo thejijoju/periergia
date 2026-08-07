@@ -1006,6 +1006,9 @@ export const SUBJECTS: SubjectSpec[] = [
                 "title": "The Red-Giant Branch"
               },
               {
+                "title": "The Helium Flash"
+              },
+              {
                 "title": "Helium Burning"
               },
               {
