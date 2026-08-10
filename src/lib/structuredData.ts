@@ -27,6 +27,8 @@ export interface SdChild {
   title: string;
   url: string;
   description?: string;
+  /** Reading minutes for this child's article, when one is cached. */
+  minutes?: number;
 }
 
 export interface StructuredDataInput {
@@ -232,7 +234,10 @@ export function buildStructuredData(input: StructuredDataInput): object[] {
 
   if (isSection) {
     // A node with children is a course: a named, ordered group of lessons.
-    const totalMinutes = minutes; // an overview article, when the section has one
+    // Workload is the sum of its chapters' reading times, plus its own overview
+    // article if it has one — a real figure rather than an estimate.
+    const totalMinutes =
+      minutes + children.reduce((sum, c) => sum + (c.minutes ?? 0), 0);
     graph.push({
       "@context": "https://schema.org",
       "@type": "Course",
@@ -250,16 +255,21 @@ export function buildStructuredData(input: StructuredDataInput): object[] {
         courseMode: "online",
         ...(isoDuration(totalMinutes) ? { courseWorkload: isoDuration(totalMinutes) } : {}),
       },
-      hasPart: children.map((c, i) => ({
-        "@type": "LearningResource",
-        position: i + 1,
+      // Google expects the parts of a Course to be Courses. LearningResource is
+      // schema.org-legal here (it is a CreativeWork) but trips the validator's
+      // stricter shape, so each chapter is declared as a Course in its own
+      // right — which it is: a self-contained unit with checkpoints and a test.
+      hasPart: children.map((c) => ({
+        "@type": "Course",
         name: c.title,
         url: c.url,
         description:
           c.description && plain(c.description).length >= 20
             ? clip(plain(c.description))
             : `${c.title} — a lesson in ${title}.`,
+        provider,
         isAccessibleForFree: true,
+        ...(c.minutes ? { timeRequired: isoDuration(c.minutes) } : {}),
       })),
     });
     return graph;

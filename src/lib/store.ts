@@ -273,6 +273,41 @@ export async function getCachedContent(k: ContentKey): Promise<Content | null> {
   return memContent.get(contentKey(k)) ?? null;
 }
 
+/**
+ * Bodies for several nodes at once, in a single query. Used by section pages to
+ * total their chapters' reading times for `courseWorkload` — doing that with
+ * getCachedContent would fire one round trip per child, which is why this
+ * exists. Missing entries are simply absent from the map.
+ */
+export async function getCachedBodies(
+  nodeIds: string[],
+  k: Omit<ContentKey, "nodeId">,
+): Promise<Map<string, string>> {
+  const out = new Map<string, string>();
+  if (!nodeIds.length) return out;
+
+  const supabase = getSupabase();
+  if (supabase) {
+    const { data } = await supabase
+      .from("content")
+      .select("node_id, body")
+      .in("node_id", nodeIds)
+      .eq("depth", k.depth)
+      .eq("level", k.level)
+      .eq("format", langFormat(k.format, k.lang));
+    for (const row of data ?? []) {
+      if (row?.node_id && typeof row.body === "string") out.set(row.node_id, row.body);
+    }
+    return out;
+  }
+
+  for (const nodeId of nodeIds) {
+    const hit = memContent.get(contentKey({ ...k, nodeId }));
+    if (hit) out.set(nodeId, hit.body);
+  }
+  return out;
+}
+
 export async function putCachedContent(c: Content): Promise<void> {
   const supabase = getSupabase();
   if (supabase) {
