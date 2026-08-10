@@ -1106,6 +1106,10 @@ export const SUBJECTS: SubjectSpec[] = [
                 "title": "Dust"
               },
               {
+                "title": "Cosmic Rays and Magnetic Fields",
+                "slug": "cosmic-rays-and-magnetic-fields"
+              },
+              {
                 "title": "Star-Formation Cycle"
               },
               {

@@ -148,18 +148,29 @@ const DEFINITION_CALLOUT_RULE =
 const CHECKPOINT_RULE =
   "INTERLEAVED SELF-TESTING — this is a core pedagogical requirement, not decoration: after " +
   "EVERY major section (roughly every 300–500 words of substance), insert a checkpoint — a " +
-  "single retrieval question on the idea the reader just learned — as a fenced code block " +
-  "with the language tag `checkpoint`, in exactly this line format:\n" +
+  "SET of 2–4 retrieval questions on the idea the reader just learned — as a fenced code " +
+  "block with the language tag `checkpoint`, in exactly this line format:\n" +
   "```checkpoint\n" +
   "q: The question, testing the section's central idea (understanding, not trivia)\n" +
   "a: A plausible wrong option\n" +
-  "a*: The correct option (the * marks it; vary its position between checkpoints)\n" +
+  "x: Why THIS option is wrong — name the specific confusion it represents and correct it\n" +
+  "a*: The correct option (the * marks it; vary its position between questions)\n" +
   "a: A plausible wrong option built from a common misconception\n" +
+  "x: Why THIS option is wrong\n" +
   "a: A plausible wrong option\n" +
+  "x: Why THIS option is wrong\n" +
   "hint: A nudge that points at the reasoning without giving the answer\n" +
   "why: One or two sentences on why the correct answer is right, reinforcing the idea\n" +
+  "---\n" +
+  "q: A SECOND question attacking the same concept from a different angle\n" +
+  "a*: ...\n" +
   "```\n" +
-  "Rules: 4 options; wrong options must be genuinely tempting (near-misses and real " +
+  "Rules: separate questions within one checkpoint by a line of three dashes; 2–4 questions " +
+  "per checkpoint, each approaching the same concept differently (state it, apply it, " +
+  "predict from it, or spot where it fails) rather than restating one question four ways; " +
+  "4 options each; EVERY wrong option must carry its own `x:` line saying why it is wrong — " +
+  "a reader who picks it is holding a specific misconception and needs that one addressed, " +
+  "not a generic correction; wrong options must be genuinely tempting (near-misses and real " +
   "misconceptions, never jokes or throwaways); the question must be answerable from the " +
   "section just read alone; keep all values plain prose (no LaTeX — use Unicode like 10⁸ " +
   "or ¹²C if needed); do not number checkpoints or refer to them in the prose.\n\n";
@@ -284,7 +295,7 @@ async function translateBody(
     `idiomatically — not word for word — preserving meaning, tone, and structure.\n\n` +
     `Output ONLY the translated Markdown, with no preamble or notes. Obey these rules exactly:\n` +
     `- Keep ALL Markdown syntax intact: heading levels (##), lists, tables, blockquotes, bold/italic markers, and links.\n` +
-    `- Do NOT alter anything inside a fenced code block (\`\`\` … \`\`\`). In particular, leave a \`\`\`example block and the identifier on the line inside it (e.g. factor-of-safety) EXACTLY as written — it is a program key, not prose. EXCEPTION: inside a \`\`\`checkpoint block, translate the prose after each "q:", "a:", "a*:", "hint:", and "why:" key (the keys themselves and the block's line structure stay exactly as written — an a* stays an a*).\n` +
+    `- Do NOT alter anything inside a fenced code block (\`\`\` … \`\`\`). In particular, leave a \`\`\`example block and the identifier on the line inside it (e.g. factor-of-safety) EXACTLY as written — it is a program key, not prose. EXCEPTION: inside a \`\`\`checkpoint block, translate the prose after each "q:", "a:", "a*:", "x:", "hint:", and "why:" key (the keys themselves, the "---" question separators, and the block's line structure stay exactly as written — an a* stays an a*).\n` +
     `- Do NOT translate mathematics: leave every $…$ and $$…$$ LaTeX expression byte-for-byte unchanged.\n` +
     `- Leave URLs and image links unchanged. For an {{image: Title | caption}} marker, keep the Title unchanged and translate only the caption after the "|".\n` +
     `- Keep people's names and the ORIGINAL titles of books and works as they are (you may append a translation of a title in parentheses); never translate them away, so reference lists still name the real works.`;
