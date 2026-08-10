@@ -88,6 +88,81 @@ export function teachesFromBody(body: string | undefined, limit = 12): string[] 
   return out;
 }
 
+/** Strip inline markdown so a description reads as plain prose. */
+function plain(s: string): string {
+  return s
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/(^|\W)\*([^*]+)\*/g, "$1$2")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\$\$?/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Trim to a whole sentence or word under `max`, so a description never ends mid-word. */
+function clip(s: string, max = 300): string {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const sentence = cut.lastIndexOf(". ");
+  if (sentence > max * 0.5) return cut.slice(0, sentence + 1);
+  return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+}
+
+/**
+ * Every curated master opens with a `>` blockquote lede — a one-paragraph
+ * statement of what the chapter argues, written by hand. That is a far better
+ * description than any template, so prefer it when the node's own summary is
+ * absent (which it is for most of the tree).
+ */
+function ledeFromBody(body: string | undefined): string | null {
+  if (!body) return null;
+  const out: string[] = [];
+  for (const line of body.split("\n")) {
+    if (/^>\s?/.test(line)) out.push(line.replace(/^>\s?/, "").trim());
+    else if (out.length) break;
+    else if (line.trim()) break; // content began without a lede
+  }
+  const text = plain(out.join(" "));
+  return text.length >= 40 ? clip(text) : null;
+}
+
+/**
+ * Resolve a non-empty description. `description` is a REQUIRED field for
+ * Google's Course rich result, and omitting it fails validation — so this must
+ * never return empty. Order of preference: the node's own summary, the
+ * article's hand-written lede, a list of what a section contains, and only then
+ * a generic line.
+ */
+function resolveDescription(
+  supplied: string | undefined,
+  title: string,
+  subjectName: string,
+  children: SdChild[],
+  body: string | undefined,
+): string {
+  const own = supplied && plain(supplied);
+  if (own && own.length >= 20) return clip(own);
+
+  const lede = ledeFromBody(body);
+  if (lede) return lede;
+
+  if (children.length) {
+    const names = children.map((c) => c.title);
+    const list =
+      names.length > 1
+        ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`
+        : names[0];
+    return clip(
+      `${title} — a ${names.length}-part course in ${subjectName}, covering ${list}. Free to read, with inline checkpoints and an end-of-chapter test.`,
+    );
+  }
+
+  return clip(
+    `${title} — a lesson in ${subjectName}. Read it at the depth and level you choose, listen to it, and test yourself. Free on Periergia.`,
+  );
+}
+
 /** Map the reader's level onto a human-readable educationalLevel. */
 function educationalLevel(level?: string): string {
   switch (level) {
@@ -140,6 +215,16 @@ export function buildStructuredData(input: StructuredDataInput): object[] {
   const duration = isoDuration(minutes);
   const teaches = teachesFromBody(body);
 
+  // Required by Google's Course rich result, and absent from ~78% of nodes in
+  // the seed, so it must be resolved rather than passed through.
+  const resolvedDescription = resolveDescription(
+    description,
+    title,
+    subjectName,
+    children,
+    body,
+  );
+
   const graph: object[] = [breadcrumbList(crumbs, pageUrl, siteUrl)];
 
   // The parent Course a leaf belongs to — the section directly above it.
@@ -152,7 +237,7 @@ export function buildStructuredData(input: StructuredDataInput): object[] {
       "@context": "https://schema.org",
       "@type": "Course",
       name: title,
-      description,
+      description: resolvedDescription,
       url: pageUrl,
       provider,
       inLanguage,
@@ -170,7 +255,10 @@ export function buildStructuredData(input: StructuredDataInput): object[] {
         position: i + 1,
         name: c.title,
         url: c.url,
-        ...(c.description ? { description: c.description } : {}),
+        description:
+          c.description && plain(c.description).length >= 20
+            ? clip(plain(c.description))
+            : `${c.title} — a lesson in ${title}.`,
         isAccessibleForFree: true,
       })),
     });
@@ -183,7 +271,7 @@ export function buildStructuredData(input: StructuredDataInput): object[] {
     "@type": ["LearningResource", "Article"],
     name: title,
     headline: title,
-    description,
+    description: resolvedDescription,
     url: pageUrl,
     mainEntityOfPage: pageUrl,
     inLanguage,
