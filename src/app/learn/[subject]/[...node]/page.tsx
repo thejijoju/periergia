@@ -24,6 +24,7 @@ import {
   getCachedContent,
 } from "@/lib/store";
 import { SITE_URL } from "@/lib/site";
+import { buildStructuredData, serializeJsonLd } from "@/lib/structuredData";
 
 // Summaries double as generation specs — they can carry {{image}} markers and
 // ALL-CAPS instruction sentinels. Strip that machinery so a clean human
@@ -208,22 +209,38 @@ export default async function ReaderPage({
   }
 
   const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: node.title,
-    description: node.summary || undefined,
-    author: { "@type": "Organization", name: "Periergia" },
-    publisher: { "@type": "Organization", name: "Periergia", url: SITE_URL },
-    mainEntityOfPage: pageUrl,
-    isAccessibleForFree: true,
-  };
+  // Structured data describing the tree as what it is: sections are Courses
+  // with their topics as parts, leaf topics are LearningResources, and every
+  // page carries a BreadcrumbList. Reading time and the `teaches` list come
+  // from the served article, so the markup describes the actual page.
+  const jsonLd = buildStructuredData({
+    title: node.title.replace(/\s*\*+$/, ""),
+    description: cleanNodeSummary(node.summary) || undefined,
+    pageUrl,
+    siteUrl: SITE_URL,
+    subjectName: subjName,
+    crumbs: crumbs.map((c) => ({
+      label: c.label,
+      url: c.href ? `${SITE_URL}${c.href}` : undefined,
+    })),
+    children: isSection
+      ? sectionChildren.map((c) => ({
+          title: c.title.replace(/\s*\*+$/, ""),
+          url: `${SITE_URL}/learn/${subj.slug}/${c.path.join("/")}`,
+          description: cleanNodeSummary(c.summary) || undefined,
+        }))
+      : [],
+    body: initialBody,
+    level: initialLevel,
+    reviewed: initialReviewed,
+    inLanguage: lang,
+  });
 
   return (
     <div className="min-h-screen bg-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       {/* Sticky header — mobile menu (phones) + wordmark + search + theme */}
       <header className="sticky top-0 z-20 bg-page backdrop-blur border-b border-line">
