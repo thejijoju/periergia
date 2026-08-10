@@ -1121,6 +1121,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Galactic Dynamics",
             "children": [
               {
+                "title": "Orbits and Gravitational Potentials",
+                "slug": "orbits-and-potentials"
+              },
+              {
                 "title": "Rotation Curves"
               },
               {
