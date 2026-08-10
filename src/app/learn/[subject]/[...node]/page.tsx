@@ -22,9 +22,11 @@ import {
   getFirstLeaf,
   getSearchIndex,
   getCachedContent,
+  getCachedBodies,
 } from "@/lib/store";
 import { SITE_URL } from "@/lib/site";
 import { buildStructuredData, serializeJsonLd } from "@/lib/structuredData";
+import { readingMinutes } from "@/lib/readingTime";
 
 // Summaries double as generation specs — they can carry {{image}} markers and
 // ALL-CAPS instruction sentinels. Strip that machinery so a clean human
@@ -208,6 +210,19 @@ export default async function ReaderPage({
     );
   }
 
+  // Chapter reading times for a section's `courseWorkload`. One batched query
+  // for all children rather than one per child, and only for section pages.
+  let childMinutes = new Map<string, number>();
+  if (isSection && sectionChildren.length) {
+    const bodies = await getCachedBodies(
+      sectionChildren.map((c) => c.id),
+      { depth: "research", level: "advanced", format: "read", lang },
+    );
+    childMinutes = new Map(
+      [...bodies].map(([id, body]) => [id, readingMinutes(body)]),
+    );
+  }
+
   const pageUrl = `${SITE_URL}/learn/${subj.slug}/${node.path.join("/")}`;
   // Structured data describing the tree as what it is: sections are Courses
   // with their topics as parts, leaf topics are LearningResources, and every
@@ -228,6 +243,7 @@ export default async function ReaderPage({
           title: c.title.replace(/\s*\*+$/, ""),
           url: `${SITE_URL}/learn/${subj.slug}/${c.path.join("/")}`,
           description: cleanNodeSummary(c.summary) || undefined,
+          minutes: childMinutes.get(c.id),
         }))
       : [],
     body: initialBody,
