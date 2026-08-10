@@ -1076,6 +1076,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "title": "Galactic Anatomy",
             "children": [
               {
+                "title": "Mapping the Galaxy",
+                "slug": "mapping-the-galaxy"
+              },
+              {
                 "title": "The Disk"
               },
               {
