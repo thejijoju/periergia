@@ -1155,6 +1155,10 @@ export const SUBJECTS: SubjectSpec[] = [
                 "slug": "hubble-sequence"
               },
               {
+                "title": "Dwarfs and the Local Group",
+                "slug": "dwarfs-and-the-local-group"
+              },
+              {
                 "title": "Formation & Evolution"
               },
               {
@@ -1185,6 +1189,10 @@ export const SUBJECTS: SubjectSpec[] = [
             "children": [
               {
                 "title": "Groups & Clusters"
+              },
+              {
+                "title": "The Intergalactic Medium",
+                "slug": "intergalactic-medium"
               },
               {
                 "title": "Superclusters"
