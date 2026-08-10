@@ -112,6 +112,7 @@ import { TidalRecession } from "./TidalRecession";
 import { CausalChain } from "./CausalChain";
 import { TriplePoint } from "./TriplePoint";
 import { Quotation } from "./Quotation";
+import { CheckpointQuiz } from "./CheckpointQuiz";
 import { ResearchGate } from "./ResearchGate";
 import { PolarisAltitude } from "./PolarisAltitude";
 import { BlackHoleLensing } from "./BlackHoleLensing";
@@ -581,6 +582,14 @@ export function Reader({
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const spec = extractText((child as any).props?.children).trim();
                     return <WorkedExample spec={spec} lang={lang} />;
+                  }
+                  // A fenced ```checkpoint block becomes an inline one-question
+                  // self-test rendered in the flow of the article, so readers
+                  // check each idea where they just learned it.
+                  if (typeof cls === "string" && /language-checkpoint\b/.test(cls)) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const spec = extractText((child as any).props?.children).trim();
+                    return <CheckpointQuiz spec={spec} />;
                   }
                   // A fenced ```supplydemand block becomes an interactive
                   // supply-and-demand diagram with shift sliders.

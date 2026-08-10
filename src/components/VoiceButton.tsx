@@ -7,6 +7,9 @@ import { t } from "@/lib/i18n";
 // Strips markdown to plain prose before speaking.
 function toPlain(md: string): string {
   return md
+    // Drop fenced code blocks entirely — they hold widget specs (checkpoints,
+    // interactive diagrams), not prose, and would be read as gibberish.
+    .replace(/```[\s\S]*?```/g, "")
     .replace(/[#>*_`~]/g, "")
     .replace(/\[(.*?)\]\(.*?\)/g, "$1")
     .replace(/\n{2,}/g, ". ")

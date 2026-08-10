@@ -184,13 +184,11 @@ function TreeRow({
       : depth === 1
       ? "text-ink/45 hover:text-ink"
       : "text-muted hover:text-ink";
-  // Read nodes get a fixed duskier-purple tint independent of depth, so
+  // Read nodes get a fixed light-blue tint independent of depth, so
   // "already read" reads as a consistent signal the way visited-link colour
-  // does — distinct from the unread tiers above and one step short of the
-  // full-purple active state. (--c-purple-visited, not a /opacity modifier on
-  // --c-purple: that var isn't in the R-G-B-triplet form Tailwind needs to
-  // apply an alpha modifier, so `text-purple/NN` silently generates no rule.)
-  const visitedStyle = "text-purple-visited hover:text-purple";
+  // does — clearly apart from the warm-grey unread tiers and from the
+  // purple active state, guiding the reader to what's left.
+  const visitedStyle = "text-blue-visited hover:text-purple";
 
   return (
     <div>

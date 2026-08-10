@@ -142,6 +142,28 @@ const DEFINITION_CALLOUT_RULE =
   "requested content. (For song lyrics, still open with this one-line definition blockquote " +
   "before the lyrics.)\n\n";
 
+// Readers retain what they retrieve, not what they reread — so articles embed
+// a one-question self-test after each major section (rendered by the Reader as
+// an interactive card). The rule travels in every content-generating prompt.
+const CHECKPOINT_RULE =
+  "INTERLEAVED SELF-TESTING — this is a core pedagogical requirement, not decoration: after " +
+  "EVERY major section (roughly every 300–500 words of substance), insert a checkpoint — a " +
+  "single retrieval question on the idea the reader just learned — as a fenced code block " +
+  "with the language tag `checkpoint`, in exactly this line format:\n" +
+  "```checkpoint\n" +
+  "q: The question, testing the section's central idea (understanding, not trivia)\n" +
+  "a: A plausible wrong option\n" +
+  "a*: The correct option (the * marks it; vary its position between checkpoints)\n" +
+  "a: A plausible wrong option built from a common misconception\n" +
+  "a: A plausible wrong option\n" +
+  "hint: A nudge that points at the reasoning without giving the answer\n" +
+  "why: One or two sentences on why the correct answer is right, reinforcing the idea\n" +
+  "```\n" +
+  "Rules: 4 options; wrong options must be genuinely tempting (near-misses and real " +
+  "misconceptions, never jokes or throwaways); the question must be answerable from the " +
+  "section just read alone; keep all values plain prose (no LaTeX — use Unicode like 10⁸ " +
+  "or ¹²C if needed); do not number checkpoints or refer to them in the prose.\n\n";
+
 // Image density is subject-aware. Most subjects illustrate a narrative with
 // 2–4 images; content-dense subjects (economics) are carried by the ideas, not
 // a visual storyline, so they cap at 2.
@@ -262,7 +284,7 @@ async function translateBody(
     `idiomatically — not word for word — preserving meaning, tone, and structure.\n\n` +
     `Output ONLY the translated Markdown, with no preamble or notes. Obey these rules exactly:\n` +
     `- Keep ALL Markdown syntax intact: heading levels (##), lists, tables, blockquotes, bold/italic markers, and links.\n` +
-    `- Do NOT alter anything inside a fenced code block (\`\`\` … \`\`\`). In particular, leave a \`\`\`example block and the identifier on the line inside it (e.g. factor-of-safety) EXACTLY as written — it is a program key, not prose.\n` +
+    `- Do NOT alter anything inside a fenced code block (\`\`\` … \`\`\`). In particular, leave a \`\`\`example block and the identifier on the line inside it (e.g. factor-of-safety) EXACTLY as written — it is a program key, not prose. EXCEPTION: inside a \`\`\`checkpoint block, translate the prose after each "q:", "a:", "a*:", "hint:", and "why:" key (the keys themselves and the block's line structure stay exactly as written — an a* stays an a*).\n` +
     `- Do NOT translate mathematics: leave every $…$ and $$…$$ LaTeX expression byte-for-byte unchanged.\n` +
     `- Leave URLs and image links unchanged. For an {{image: Title | caption}} marker, keep the Title unchanged and translate only the caption after the "|".\n` +
     `- Keep people's names and the ORIGINAL titles of books and works as they are (you may append a translation of a title in parentheses); never translate them away, so reference lists still name the real works.`;
@@ -293,6 +315,7 @@ async function createMasterContent(
     "Markdown only. No preamble, no meta-commentary, no closing summary.\n\n" +
     mathRule(node) +
     DEFINITION_CALLOUT_RULE +
+    CHECKPOINT_RULE +
     "NEVER present a topic as dry, abstract theory. Ground it in the real world: weave in " +
     "concrete examples and the relevant historical, political, economic, or cultural events " +
     "that shaped or illustrate it — with real names, places, and dates. Give context for why " +
@@ -414,6 +437,13 @@ async function distillContent(
     mathRule(node) +
     DEFINITION_CALLOUT_RULE +
     (wantsImages ? imageRule(node) : "Do NOT include any images or image markers in this short entry.\n\n") +
+    (brief
+      ? "Drop the canonical article's ```checkpoint blocks entirely — a skim/definition is too short to test.\n\n"
+      : "The canonical article contains fenced ```checkpoint blocks (inline self-test questions). " +
+        "Keep one after each major section of your adaptation, reusing the canonical checkpoints — " +
+        "you may reword their prose to match the requested level and drop those whose section you " +
+        "condensed away, but never invent new facts for them and never change the line format " +
+        "(q: / a: / a*: / hint: / why:).\n\n") +
     briefRule;
 
   const shorter = DEPTH_ORDER[key.depth] < DEPTH_ORDER[MASTER_DEPTH];
