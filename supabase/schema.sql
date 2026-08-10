@@ -97,6 +97,33 @@ create table if not exists research_signups (
 );
 create index if not exists research_signups_ts_idx on research_signups (ts desc);
 
+-- Reader-reported errors and suggested edits, written server-side by
+-- /api/feedback. One row per submission (no upsert — two reports about the same
+-- article are two facts, not a duplicate). `status` tracks triage so the queue
+-- can be worked through: new → accepted/rejected/fixed. May contain an email
+-- address (optional, only when the reader wants a reply), so this is PII and
+-- stays server-only like events and research_signups.
+create table if not exists content_feedback (
+  id       bigserial primary key,
+  ts       timestamptz not null default now(),
+  node_id  text not null,
+  title    text,
+  kind     text not null default 'error',   -- error | suggestion | unclear
+  message  text not null,
+  quote    text,                            -- the passage the reader had selected
+  email    text,
+  depth    text,
+  level    text,
+  path     text,
+  country  text,
+  referrer text,
+  ua       text,
+  status   text not null default 'new'
+);
+create index if not exists content_feedback_ts_idx     on content_feedback (ts desc);
+create index if not exists content_feedback_node_idx   on content_feedback (node_id);
+create index if not exists content_feedback_status_idx on content_feedback (status);
+
 -- ── Row-level security ────────────────────────────────────────────────────
 -- Public app: everyone may READ. WRITES happen server-side with the service
 -- role, which bypasses RLS — so no write policies are defined (writes via the
@@ -112,6 +139,9 @@ alter table events   enable row level security;
 -- research_signups holds email addresses (PII): RLS on, NO policy, so only the
 -- server's service-role client can read or write it. Never exposed to anon.
 alter table research_signups enable row level security;
+-- content_feedback may hold an email address and free text: RLS on, NO policy,
+-- so only the server's service-role client can touch it.
+alter table content_feedback enable row level security;
 
 do $$
 begin

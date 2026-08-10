@@ -395,3 +395,100 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar) transparent;
 }
+
+/* ── Print / "Save as PDF" ─────────────────────────────────────────────────
+   The reader's PDF export is the browser's own print dialogue, so the printed
+   page has to be the document rather than a screenshot of an app: rails,
+   header, controls and the export/feedback panels come off, the three-column
+   grid collapses, and the type prints as ink on white at a size that survives
+   a laser printer. Interactive controls are kept but flattened — a checkpoint's
+   options are worth having on paper; its hover states are not. */
+@media print {
+  @page {
+    margin: 18mm 16mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* App chrome: header, both rails, the breadcrumb, and anything explicitly
+     marked print:hidden (the export panel, the feedback form, the mobile nav). */
+  header,
+  aside,
+  article > nav {
+    display: none !important;
+  }
+
+  /* Collapse the reader shell to a single full-width column. */
+  .lg\:grid {
+    display: block !important;
+  }
+  article {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .prose-reading {
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  /* Ink on paper: drop the app's tinted panels, keep structural rules. */
+  .prose-reading *,
+  h1,
+  h2,
+  h3 {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .prose-reading blockquote {
+    border-left: 2pt solid #999 !important;
+  }
+  .prose-reading table,
+  .prose-reading th,
+  .prose-reading td {
+    border-color: #999 !important;
+  }
+
+  /* Flatten interactive controls so options and toggles still read as text. */
+  button {
+    border: 0.5pt solid #999 !important;
+    background: transparent !important;
+    color: #000 !important;
+  }
+  input[type="range"] {
+    display: none !important;
+  }
+
+  /* Don't strand headings, split figures, or break a checkpoint across pages. */
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+  figure,
+  img,
+  table,
+  blockquote,
+  .prose-reading pre {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Links print as plain text — a dense article footnoted with every href is
+     unreadable; the provenance line at the top carries the source URL. */
+  a {
+    text-decoration: none !important;
+    color: #000 !important;
+  }
+}

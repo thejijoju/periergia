@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -12,6 +12,7 @@ import { getMode, type Mode } from "@/lib/modes";
 import { injectAffiliateLinks } from "@/lib/affiliate";
 import { isRtl, t } from "@/lib/i18n";
 import { isExcludedVisitor } from "@/lib/analyticsOptOut";
+import { readingLabel } from "@/lib/readingTime";
 import { useProgress } from "@/lib/progress";
 import { LearningModeRail } from "./LearningModeRail";
 import { VoiceButton } from "./VoiceButton";
@@ -114,6 +115,8 @@ import { TriplePoint } from "./TriplePoint";
 import { Quotation } from "./Quotation";
 import { CheckpointQuiz } from "./CheckpointQuiz";
 import { ResearchGate } from "./ResearchGate";
+import { StudyExports } from "./StudyExports";
+import { ReportIssue } from "./ReportIssue";
 import { PolarisAltitude } from "./PolarisAltitude";
 import { BlackHoleLensing } from "./BlackHoleLensing";
 import { SunInterior } from "./SunInterior";
@@ -399,6 +402,13 @@ export function Reader({
   const isAudio = spec.kind === "audio";
   const isVisual = spec.kind === "visual";
 
+  // "40 min read". Suppressed while loading or streaming — a count that climbs
+  // as tokens arrive is noise, and the final value lands a moment later anyway.
+  const readTime = useMemo(
+    () => (loading || streaming || gate ? "" : readingLabel(body)),
+    [body, loading, streaming, gate],
+  );
+
   return (
     <article className="max-w-[720px] mx-auto px-1">
       {/* Breadcrumb — house + arrows + linked ancestors. On mobile the text runs a
@@ -456,6 +466,14 @@ export function Reader({
           <LearningModeRail active={mode} onSelect={(id: Mode) => setPrefs({ mode: id })} />
         </div>
       </div>
+
+      {/* Reading duration — measured from the body actually on screen, so it
+          tracks the chosen depth/level (a Skim and a Detailed master differ by
+          an order of magnitude). Held back while the article is still arriving,
+          since a figure that climbs as text streams in is worse than none. */}
+      {readTime && (
+        <p className="mt-1.5 font-sans text-[12.5px] text-faint">{readTime}</p>
+      )}
 
       {/* Depth + Level controls. The reviewed master is the free "Detailed"
           tier (default); "Research" is a separate, gated frontier tier that
@@ -1132,6 +1150,27 @@ export function Reader({
             />
           )}
         </div>
+      )}
+
+      {/* Take-it-with-you downloads, then the feedback loop. Both held until the
+          article has finished arriving: the exports are generated from the body,
+          and asking for a correction to half a paragraph is not useful. */}
+      {!loading && !streaming && body && (
+        <>
+          <StudyExports
+            body={body}
+            nodeId={node.id}
+            title={node.title.replace(/\s*\*+$/, "")}
+            depth={shownDepth}
+            level={shownLevel}
+          />
+          <ReportIssue
+            nodeId={node.id}
+            title={node.title.replace(/\s*\*+$/, "")}
+            depth={shownDepth}
+            level={shownLevel}
+          />
+        </>
       )}
         </>
       )}
