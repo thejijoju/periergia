@@ -29,170 +29,551 @@ export const SUBJECTS: SubjectSpec[] = [
     "slug": "mathematics",
     "description": "",
     "tree": [
-      {
-        "title": "Arithmetic & Number",
-        "children": [
-          {
-            "title": "place value"
-          },
-          {
-            "title": "fractions"
-          },
-          {
-            "title": "decimals"
-          },
-          {
-            "title": "ratios"
-          },
-          {
-            "title": "percentages"
-          },
-          {
-            "title": "integers"
-          },
-          {
-            "title": "number theory basics"
-          },
-          {
-            "title": "primes"
-          }
-        ]
-      },
-      {
-        "title": "Algebra",
-        "children": [
-          {
-            "title": "expressions"
-          },
-          {
-            "title": "equations"
-          },
-          {
-            "title": "inequalities"
-          },
-          {
-            "title": "functions"
-          },
-          {
-            "title": "polynomials"
-          },
-          {
-            "title": "quadratics"
-          },
-          {
-            "title": "sequences & series"
-          },
-          {
-            "title": "matrices"
-          }
-        ]
-      },
-      {
-        "title": "Geometry",
-        "children": [
-          {
-            "title": "shapes"
-          },
-          {
-            "title": "angles"
-          },
-          {
-            "title": "area & volume"
-          },
-          {
-            "title": "coordinate geometry"
-          },
-          {
-            "title": "transformations"
-          },
-          {
-            "title": "vectors"
-          },
-          {
-            "title": "trigonometry"
-          }
-        ]
-      },
-      {
-        "title": "Calculus",
-        "children": [
-          {
-            "title": "limits"
-          },
-          {
-            "title": "derivatives"
-          },
-          {
-            "title": "integrals"
-          },
-          {
-            "title": "differential equations"
-          },
-          {
-            "title": "multivariable calculus"
-          },
-          {
-            "title": "series"
-          }
-        ]
-      },
-      {
-        "title": "Probability & Statistics",
-        "children": [
-          {
-            "title": "descriptive stats"
-          },
-          {
-            "title": "distributions"
-          },
-          {
-            "title": "hypothesis testing"
-          },
-          {
-            "title": "regression"
-          },
-          {
-            "title": "Bayesian methods"
-          }
-        ]
-      },
-      {
-        "title": "Discrete Mathematics",
-        "children": [
-          {
-            "title": "logic"
-          },
-          {
-            "title": "set theory"
-          },
-          {
-            "title": "combinatorics"
-          },
-          {
-            "title": "graph theory"
-          },
-          {
-            "title": "proof techniques"
-          }
-        ]
-      },
-      {
-        "title": "Applied Mathematics",
-        "children": [
-          {
-            "title": "linear algebra"
-          },
-          {
-            "title": "numerical methods"
-          },
-          {
-            "title": "optimization"
-          },
-          {
-            "title": "mathematical modeling"
-          }
-        ]
-      }
+
+        {
+          "title": "Lower-Division Undergraduate",
+          "slug": "lower-division-undergraduate",
+          "summary": "The foundations and calculus sequence: single- and multivariable calculus, introductory linear algebra, elementary differential equations, and the first encounter with proof and discrete structures.",
+          "children": [
+            {
+              "title": "Calculus Sequence",
+              "slug": "calculus-sequence",
+              "children": [
+                {
+                  "title": "Single-Variable Calculus",
+                  "slug": "single-variable-calculus",
+                  "summary": "Limits, derivatives, integrals, and the Fundamental Theorem of Calculus."
+                },
+                {
+                  "title": "Sequences & Infinite Series",
+                  "slug": "sequences-and-infinite-series",
+                  "summary": "Convergence tests, power series, and Taylor series."
+                },
+                {
+                  "title": "Multivariable Calculus",
+                  "slug": "multivariable-calculus",
+                  "summary": "Partial derivatives, gradients, and multiple integrals."
+                }
+              ]
+            },
+            {
+              "title": "Introductory Linear Algebra",
+              "slug": "introductory-linear-algebra",
+              "children": [
+                {
+                  "title": "Systems of Linear Equations",
+                  "slug": "systems-of-linear-equations",
+                  "summary": "Gaussian elimination and the structure of solution sets."
+                },
+                {
+                  "title": "Vector Spaces",
+                  "slug": "vector-spaces",
+                  "summary": "Subspaces, span, and linear independence."
+                },
+                {
+                  "title": "Matrices, Determinants & Eigenvalues",
+                  "slug": "matrices-determinants-and-eigenvalues",
+                  "summary": "Determinants, eigenvalues, and eigenvectors."
+                }
+              ]
+            },
+            {
+              "title": "Elementary Differential Equations",
+              "slug": "elementary-differential-equations",
+              "children": [
+                {
+                  "title": "First & Second-Order ODEs",
+                  "slug": "first-and-second-order-odes",
+                  "summary": "Separation of variables and the standard solution methods."
+                },
+                {
+                  "title": "Linear Systems & Phase Portraits",
+                  "slug": "linear-systems-and-phase-portraits",
+                  "summary": "Qualitative behaviour of linear systems in the plane."
+                },
+                {
+                  "title": "Laplace Transforms",
+                  "slug": "laplace-transforms",
+                  "summary": "Transform methods for initial value problems."
+                }
+              ]
+            },
+            {
+              "title": "Proofs & Discrete Foundations",
+              "slug": "proofs-and-discrete-foundations",
+              "children": [
+                {
+                  "title": "Propositional & Predicate Logic",
+                  "slug": "propositional-and-predicate-logic",
+                  "summary": "Connectives, quantifiers, and formal logical structure."
+                },
+                {
+                  "title": "Proof Techniques",
+                  "slug": "proof-techniques",
+                  "summary": "Direct proof, proof by contradiction, and induction."
+                },
+                {
+                  "title": "Naive Set Theory",
+                  "slug": "naive-set-theory",
+                  "summary": "Relations, equivalence classes, and functions."
+                }
+              ]
+            },
+            {
+              "title": "Probability & Discrete Structures",
+              "slug": "probability-and-discrete-structures",
+              "children": [
+                {
+                  "title": "Combinatorics",
+                  "slug": "combinatorics",
+                  "summary": "Permutations, combinations, and generating functions."
+                },
+                {
+                  "title": "Introductory Graph Theory",
+                  "slug": "introductory-graph-theory",
+                  "summary": "Trees, and Eulerian and Hamiltonian paths."
+                },
+                {
+                  "title": "Elementary Probability",
+                  "slug": "elementary-probability",
+                  "summary": "Bayes' theorem, and discrete and continuous random variables."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Upper-Division Undergraduate",
+          "slug": "upper-division-undergraduate",
+          "summary": "Where abstraction and rigour begin: real and complex analysis, abstract algebra, topology and geometry, the advanced applied core, and the bridges into graduate study.",
+          "children": [
+            {
+              "title": "Analysis",
+              "slug": "analysis",
+              "children": [
+                {
+                  "title": "Real Analysis",
+                  "slug": "real-analysis",
+                  "summary": "Topology of R^n, limits, uniform continuity, Riemann integration, and metric spaces."
+                },
+                {
+                  "title": "Complex Analysis",
+                  "slug": "complex-analysis",
+                  "summary": "Holomorphic functions, the Cauchy-Riemann equations, the residue theorem, and conformal maps."
+                }
+              ]
+            },
+            {
+              "title": "Abstract Algebra",
+              "slug": "abstract-algebra",
+              "children": [
+                {
+                  "title": "Group Theory",
+                  "slug": "group-theory",
+                  "summary": "Subgroups, cyclic groups, cosets, Lagrange's theorem, and the Sylow theorems."
+                },
+                {
+                  "title": "Ring Theory",
+                  "slug": "ring-theory",
+                  "summary": "Ideals, quotient rings, principal ideal domains, unique factorisation domains, and polynomial rings."
+                },
+                {
+                  "title": "Field & Galois Theory",
+                  "slug": "field-and-galois-theory",
+                  "summary": "Field extensions, splitting fields, and Galois groups."
+                }
+              ]
+            },
+            {
+              "title": "Topology & Geometry",
+              "slug": "topology-and-geometry",
+              "children": [
+                {
+                  "title": "Point-Set Topology",
+                  "slug": "point-set-topology",
+                  "summary": "Topological spaces, bases, compactness, connectedness, and Hausdorff spaces."
+                },
+                {
+                  "title": "Differential Geometry & Vector Calculus",
+                  "slug": "differential-geometry-and-vector-calculus",
+                  "summary": "Curves and surfaces in R^3, curvature, line and surface integrals, and the Stokes and divergence theorems."
+                }
+              ]
+            },
+            {
+              "title": "Advanced Applied & Computational",
+              "slug": "advanced-applied-and-computational",
+              "children": [
+                {
+                  "title": "Advanced Linear Algebra",
+                  "slug": "advanced-linear-algebra",
+                  "summary": "Jordan canonical form, inner product spaces, and the spectral theorem."
+                },
+                {
+                  "title": "Partial Differential Equations",
+                  "slug": "partial-differential-equations",
+                  "summary": "The heat, wave, and Laplace equations, Fourier series, and separation of variables."
+                },
+                {
+                  "title": "Numerical Analysis",
+                  "slug": "numerical-analysis",
+                  "summary": "Root-finding, interpolation, quadrature, and LU and QR decompositions."
+                },
+                {
+                  "title": "Applied Electives",
+                  "slug": "applied-electives",
+                  "summary": "Cryptography, operations research, optimization, and mathematical statistics."
+                }
+              ]
+            },
+            {
+              "title": "Bridges to Graduate Study",
+              "slug": "bridges-to-graduate-study",
+              "children": [
+                {
+                  "title": "Calculus of Variations & Control Theory",
+                  "slug": "calculus-of-variations-and-control-theory",
+                  "summary": "Optimizing functionals, and Pontryagin's maximum principle."
+                },
+                {
+                  "title": "Mathematical Logic & Computability",
+                  "slug": "mathematical-logic-and-computability",
+                  "summary": "Model theory, computability, and the incompleteness theorems."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Core Graduate",
+          "slug": "core-graduate",
+          "summary": "The qualifying-examination core: measure theory, functional analysis, graduate algebra, algebraic and differential topology, smooth manifolds, advanced complex analysis, measure-theoretic probability, and harmonic and operator analysis.",
+          "children": [
+            {
+              "title": "Real Analysis & Measure Theory",
+              "slug": "real-analysis-and-measure-theory",
+              "children": [
+                {
+                  "title": "Measure & Lebesgue Integration",
+                  "slug": "measure-and-lebesgue-integration",
+                  "summary": "Sigma-algebras, Lebesgue measure, and the Lebesgue integral."
+                },
+                {
+                  "title": "Convergence Theorems",
+                  "slug": "convergence-theorems",
+                  "summary": "Monotone convergence, dominated convergence, and Fatou's lemma."
+                },
+                {
+                  "title": "Lp Spaces & Decomposition Theorems",
+                  "slug": "lp-spaces-and-decomposition",
+                  "summary": "Lp spaces, the Radon-Nikodym theorem, and the Fubini-Tonelli theorems."
+                }
+              ]
+            },
+            {
+              "title": "Functional Analysis",
+              "slug": "functional-analysis",
+              "children": [
+                {
+                  "title": "Banach & Hilbert Spaces",
+                  "slug": "banach-and-hilbert-spaces",
+                  "summary": "Complete normed spaces and bounded operators."
+                },
+                {
+                  "title": "The Fundamental Theorems",
+                  "slug": "the-fundamental-theorems",
+                  "summary": "Hahn-Banach, open mapping, closed graph, and uniform boundedness."
+                },
+                {
+                  "title": "Duality & Spectral Theory",
+                  "slug": "duality-and-spectral-theory",
+                  "summary": "Dual spaces, weak topologies, and the spectral theorem for bounded operators."
+                }
+              ]
+            },
+            {
+              "title": "Graduate Abstract Algebra",
+              "slug": "graduate-abstract-algebra",
+              "children": [
+                {
+                  "title": "Module Theory",
+                  "slug": "module-theory",
+                  "summary": "The structure theorem for finitely generated modules over a principal ideal domain."
+                },
+                {
+                  "title": "Chain Conditions",
+                  "slug": "chain-conditions",
+                  "summary": "Noetherian and Artinian rings and modules."
+                },
+                {
+                  "title": "Tensor & Homological Algebra",
+                  "slug": "tensor-and-homological-algebra",
+                  "summary": "Tensor algebras, multilinear algebra, and an introduction to homological algebra."
+                }
+              ]
+            },
+            {
+              "title": "Algebraic & Differential Topology",
+              "slug": "algebraic-and-differential-topology",
+              "children": [
+                {
+                  "title": "Fundamental Group & Covering Spaces",
+                  "slug": "fundamental-group-and-covering-spaces",
+                  "summary": "The fundamental group, covering spaces, and the van Kampen theorem."
+                },
+                {
+                  "title": "Homology & Cohomology",
+                  "slug": "homology-and-cohomology",
+                  "summary": "Simplicial and singular homology, cohomology groups, and Poincare duality."
+                }
+              ]
+            },
+            {
+              "title": "Smooth Manifolds",
+              "slug": "smooth-manifolds",
+              "children": [
+                {
+                  "title": "Manifolds & Vector Fields",
+                  "slug": "manifolds-and-vector-fields",
+                  "summary": "Smooth manifolds, tangent and cotangent bundles, and vector fields."
+                },
+                {
+                  "title": "Differential Forms",
+                  "slug": "differential-forms",
+                  "summary": "Exterior calculus, the Frobenius theorem, and de Rham cohomology."
+                }
+              ]
+            },
+            {
+              "title": "Advanced Complex Analysis",
+              "slug": "advanced-complex-analysis",
+              "children": [
+                {
+                  "title": "Harmonic Functions & the Riemann Mapping Theorem",
+                  "slug": "harmonic-functions-and-riemann-mapping",
+                  "summary": "Harmonic functions and conformal equivalence."
+                },
+                {
+                  "title": "Riemann Surfaces",
+                  "slug": "riemann-surfaces",
+                  "summary": "Analytic continuation, and the Weierstrass and Hadamard product formulas."
+                }
+              ]
+            },
+            {
+              "title": "Measure-Theoretic Probability",
+              "slug": "measure-theoretic-probability",
+              "children": [
+                {
+                  "title": "Probability Spaces & Filtrations",
+                  "slug": "probability-spaces-and-filtrations",
+                  "summary": "Probability spaces, random variables, and filtrations."
+                },
+                {
+                  "title": "Martingale Theory",
+                  "slug": "martingale-theory",
+                  "summary": "Martingales and stopping times."
+                },
+                {
+                  "title": "Weak Convergence & Brownian Motion",
+                  "slug": "weak-convergence-and-brownian-motion",
+                  "summary": "Weak convergence, proofs of the central limit theorem, and Brownian motion."
+                }
+              ]
+            },
+            {
+              "title": "Harmonic & Operator Analysis",
+              "slug": "harmonic-and-operator-analysis",
+              "children": [
+                {
+                  "title": "Harmonic Analysis & Potential Theory",
+                  "slug": "harmonic-analysis-and-potential-theory",
+                  "summary": "Fourier analysis on groups, and Hardy spaces."
+                },
+                {
+                  "title": "Operator Theory & Operator Algebras",
+                  "slug": "operator-theory-and-operator-algebras",
+                  "summary": "C*-algebras and von Neumann algebras."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Specialized Graduate Research",
+          "slug": "specialized-graduate-research",
+          "summary": "Doctoral research tracks: algebraic geometry, number theory, Riemannian geometry, advanced partial differential equations, stochastic analysis, dynamical systems, category theory, and the applied and interdisciplinary frontier.",
+          "children": [
+            {
+              "title": "Algebraic Geometry & Commutative Algebra",
+              "slug": "algebraic-geometry-and-commutative-algebra",
+              "children": [
+                {
+                  "title": "Commutative Rings",
+                  "slug": "commutative-rings",
+                  "summary": "Localizations and primary decomposition."
+                },
+                {
+                  "title": "Schemes & Sheaves",
+                  "slug": "schemes-and-sheaves",
+                  "summary": "Schemes, sheaves, and sheaf cohomology."
+                },
+                {
+                  "title": "Curves, Surfaces & Intersection Theory",
+                  "slug": "curves-surfaces-and-intersection-theory",
+                  "summary": "Algebraic curves and surfaces, and intersection theory."
+                }
+              ]
+            },
+            {
+              "title": "Number Theory",
+              "slug": "number-theory",
+              "children": [
+                {
+                  "title": "Analytic Number Theory",
+                  "slug": "analytic-number-theory",
+                  "summary": "The zeta function, L-functions, and the prime number theorem."
+                },
+                {
+                  "title": "Algebraic Number Theory",
+                  "slug": "algebraic-number-theory",
+                  "summary": "Dedekind domains, class groups, p-adic fields, and class field theory."
+                }
+              ]
+            },
+            {
+              "title": "Riemannian Geometry & Geometric Analysis",
+              "slug": "riemannian-geometry",
+              "children": [
+                {
+                  "title": "Metrics, Connections & Geodesics",
+                  "slug": "metrics-connections-and-geodesics",
+                  "summary": "Riemannian metrics, the Levi-Civita connection, and geodesics."
+                },
+                {
+                  "title": "Curvature & Comparison Theorems",
+                  "slug": "curvature-and-comparison",
+                  "summary": "Riemann, Ricci, and scalar curvature, and the comparison theorems."
+                },
+                {
+                  "title": "Lie Groups & Symmetric Spaces",
+                  "slug": "lie-groups-and-symmetric-spaces",
+                  "summary": "Lie groups, Lie algebras, and symmetric spaces."
+                }
+              ]
+            },
+            {
+              "title": "Advanced Partial Differential Equations",
+              "slug": "advanced-pdes",
+              "children": [
+                {
+                  "title": "Sobolev Spaces & Weak Solutions",
+                  "slug": "sobolev-spaces-and-weak-solutions",
+                  "summary": "Sobolev spaces, weak solutions, and variational formulations."
+                },
+                {
+                  "title": "Elliptic Regularity",
+                  "slug": "elliptic-regularity",
+                  "summary": "Elliptic regularity theory and maximum principles."
+                },
+                {
+                  "title": "Nonlinear PDEs",
+                  "slug": "nonlinear-pdes",
+                  "summary": "Hyperbolic conservation laws and nonlinear wave equations."
+                }
+              ]
+            },
+            {
+              "title": "Stochastic Analysis & Financial Mathematics",
+              "slug": "stochastic-analysis",
+              "children": [
+                {
+                  "title": "Ito Calculus",
+                  "slug": "ito-calculus",
+                  "summary": "Stochastic integrals and Ito's lemma."
+                },
+                {
+                  "title": "Stochastic Differential Equations",
+                  "slug": "stochastic-differential-equations",
+                  "summary": "SDEs and the Fokker-Planck equation."
+                },
+                {
+                  "title": "Martingale Representation & Finance",
+                  "slug": "martingale-representation-and-finance",
+                  "summary": "The martingale representation theorem and mathematical finance."
+                }
+              ]
+            },
+            {
+              "title": "Dynamical Systems & Ergodic Theory",
+              "slug": "dynamical-systems-and-ergodic-theory",
+              "children": [
+                {
+                  "title": "Ergodic Theorems",
+                  "slug": "ergodic-theorems",
+                  "summary": "Measure-preserving transformations and the ergodic theorems."
+                },
+                {
+                  "title": "Chaos & Bifurcation",
+                  "slug": "chaos-and-bifurcation",
+                  "summary": "Topological dynamics, chaos, and bifurcation theory."
+                },
+                {
+                  "title": "Hyperbolic Systems & Attractors",
+                  "slug": "hyperbolic-systems-and-attractors",
+                  "summary": "Hyperbolic systems and strange attractors."
+                }
+              ]
+            },
+            {
+              "title": "Category Theory & Higher Algebra",
+              "slug": "category-theory-and-higher-algebra",
+              "children": [
+                {
+                  "title": "Categories & Functors",
+                  "slug": "categories-and-functors",
+                  "summary": "Categories, functors, natural transformations, and adjunctions."
+                },
+                {
+                  "title": "Derived Functors",
+                  "slug": "derived-functors",
+                  "summary": "Ext, Tor, and spectral sequences."
+                },
+                {
+                  "title": "Higher Categories & Homotopy Theory",
+                  "slug": "higher-categories-and-homotopy-theory",
+                  "summary": "Higher category theory and homotopy theory."
+                }
+              ]
+            },
+            {
+              "title": "Applied & Interdisciplinary Research",
+              "slug": "applied-and-interdisciplinary-research",
+              "children": [
+                {
+                  "title": "Mathematical Physics",
+                  "slug": "mathematical-physics",
+                  "summary": "Symplectic geometry, Hamiltonian mechanics, and rigorous quantum field theory."
+                },
+                {
+                  "title": "Continuum Mechanics",
+                  "slug": "continuum-mechanics",
+                  "summary": "Navier-Stokes dynamics, elasticity, and wave motion."
+                },
+                {
+                  "title": "Game Theory & Mathematical Economics",
+                  "slug": "game-theory-and-mathematical-economics",
+                  "summary": "Mechanism design and utility systems."
+                },
+                {
+                  "title": "Information Theory & Topological Data Analysis",
+                  "slug": "information-theory-and-tda",
+                  "summary": "Persistent homology, signal processing, and entropy."
+                }
+              ]
+            }
+          ]
+        }
     ]
   },
   {
