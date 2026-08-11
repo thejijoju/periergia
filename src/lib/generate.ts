@@ -37,6 +37,38 @@ const DEPTH_GUIDE: Record<Depth, string> = {
     "an Ivy-League-lecture-grade chapter of ~4,000 words and up — running to 6,000+ whenever the topic genuinely warrants it — the length of a full lecture, not an article: the complete narrative or theory in depth, the historiography and scholarly debates, key thinkers and landmark works, primary-source quotation, competing interpretations, and the open questions at the research frontier — organized with clear section headings. Be genuinely exhaustive; if the required coverage below is richer than the target can hold, run longer rather than cut any of it",
 };
 
+// The research brief above is written for the humanities, and asking for
+// "historiography, key thinkers, landmark works and primary-source quotation"
+// on a technical topic produces a history lesson: a calculus chapter that opens
+// on Archimedes, spends its length on the Newton–Leibniz priority dispute and
+// quotes Berkeley, while the derivations it exists to teach get a paragraph.
+// Technical subjects need the same depth pointed at the content instead.
+const RESEARCH_TECHNICAL =
+  "a full university lecture of ~4,000 words and up — running to 6,000+ whenever the topic " +
+  "warrants it — teaching the actual technical content so that a reader finishes able to DO the " +
+  "material, not to describe it. Structure it the way a rigorous textbook section is structured: " +
+  "precise definitions, the statement of each central result, a derivation or proof of every " +
+  "result you state (a proof sketch only where a full proof would run to pages), fully worked " +
+  "examples with every line of algebra shown, the hypotheses each theorem needs and concrete " +
+  "counterexamples when they are dropped, the standard mistakes and exactly why they are wrong, " +
+  "and the computational techniques a practitioner actually uses.\n\n" +
+  "HARD CONSTRAINTS for this subject:\n" +
+  "- NO historical narrative. Do not open with the origins of the field, do not recount who " +
+  "discovered what or when, do not cover priority disputes, biography, or etymology.\n" +
+  "- NO quotations from historical figures, and no block quotes at all.\n" +
+  "- Named results keep their names (Cauchy–Schwarz, the Sylow theorems) because that is what " +
+  "they are called — but do not digress into who those people were.\n" +
+  "- Every section must advance the mathematics. If a paragraph could be deleted without the " +
+  "reader losing any technical capability, delete it.\n\n" +
+  "Be exhaustive on the substance; if the required coverage below is richer than the target can " +
+  "hold, run longer rather than cut any of it";
+
+/** Research depth points at derivations for technical subjects, historiography elsewhere. */
+function depthGuide(node: Node, depth: Depth): string {
+  if (depth === "research" && QUANTITATIVE_SUBJECTS.has(node.subjectSlug)) return RESEARCH_TECHNICAL;
+  return DEPTH_GUIDE[depth];
+}
+
 const LEVEL_GUIDE: Record<Level, string> = {
   easy: "Explain for a bright beginner. Plain language, vivid analogies, no jargon without defining it.",
   advanced: "Explain for an advanced student. Assume fundamentals; use correct terminology.",
@@ -194,10 +226,20 @@ function imageRule(node: Node): string {
       "Friedman, Irving Fisher), a central bank or stock exchange, a banknote or bond certificate, " +
       "a famous episode (a bank run, the 1929 crash, Weimar hyperinflation) — never an abstract " +
       "diagram of the concept itself. "
-    : "Abstract or quantitative subjects (finance, mathematics, law, philosophy) are NOT an " +
-      "exception — every article still needs its 2–4 images. Reach for the concrete people, places, " +
-      "institutions, artifacts, and events behind the idea: portraits of key thinkers, the " +
-      "institutions and places, physical artifacts, and the real episodes the concept explains. ";
+    : QUANTITATIVE_SUBJECTS.has(node.subjectSlug)
+      ? // Portraits are the wrong reflex here. A calculus chapter illustrated with
+        // Newton and Leibniz teaches nothing about calculus; a plot of secants
+        // converging on a tangent teaches the whole idea. Prefer the figure that
+        // carries the argument, and allow apparatus and objects over faces.
+        "Quantitative subjects still need their 2–4 images, but reach FIRST for pictures that do " +
+        "explanatory work: the canonical figure or plot for this result, the apparatus or " +
+        "instrument that measures it, the physical object or phenomenon it describes, a diagram " +
+        "that is itself the argument. Portraits of famous practitioners are a last resort, not a " +
+        "default — include one only where the person is genuinely the subject of a passage. "
+      : "Abstract subjects (law, philosophy) are NOT an exception — every article still needs its " +
+        "2–4 images. Reach for the concrete people, places, institutions, artifacts, and events " +
+        "behind the idea: portraits of key thinkers, the institutions and places, physical " +
+        "artifacts, and the real episodes the concept explains. ";
   return (
     "Illustrate the article with real images: " +
     density +
@@ -351,6 +393,20 @@ async function createMasterContent(
     "problems, each immediately followed by its complete worked solution. Use a Markdown table " +
     "whenever a set of figures, cases, or comparisons reads more clearly tabulated. Every formula " +
     "must be correct and every worked number must actually check out.\n\n" +
+    // Without this, checkpoints on a maths chapter come back asking who invented
+    // the calculus — testing recall of the prose rather than the skill the
+    // chapter exists to build.
+    (QUANTITATIVE_SUBJECTS.has(node.subjectSlug)
+      ? "This is a quantitative subject, so every checkpoint question and every Practice problem " +
+        "must test the MATHEMATICS, never the prose around it. Ask the reader to compute a value, " +
+        "carry out a derivation, apply a definition to a specific case, decide whether a " +
+        "hypothesis holds, spot the error in a wrong line of working, or pick the counterexample. " +
+        "Do NOT ask who discovered a result, when it was published, what a term is derived from, " +
+        "or which mathematician is associated with it — a reader who has learned nothing but the " +
+        "history must be unable to score. Make the '## Practice' section substantial here: at " +
+        "least 4–6 problems of graded difficulty, each with a complete worked solution showing " +
+        "every step, not a final answer.\n\n"
+      : "") +
     imageRule(node);
 
   const coverageRule = node.summary
@@ -378,7 +434,7 @@ async function createMasterContent(
   const prompt =
     `Present **${node.title}** (in the path ${trail}) as a **${spec.label}**.\n\n` +
     `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
-    `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
+    `Depth: ${key.depth} — ${depthGuide(node, key.depth)}.\n` +
     `Level: ${key.level}. ${LEVEL_GUIDE[key.level]} ${LEVEL_LENGTH_GUARD}\n\n` +
     coverageRule +
     groundingRule +
@@ -470,7 +526,7 @@ async function distillContent(
     `"""\n${masterBody}\n"""\n\n` +
     `Adapt it into a **${spec.label}**.\n` +
     `Mode: ${spec.label} — ${MODE_GUIDE[mode]}\n` +
-    `Depth: ${key.depth} — ${DEPTH_GUIDE[key.depth]}.\n` +
+    `Depth: ${key.depth} — ${depthGuide(node, key.depth)}.\n` +
     `Level: ${key.level}. ${LEVEL_GUIDE[key.level]} ${LEVEL_LENGTH_GUARD}\n\n` +
     coverageRule +
     `Create it now.`;
