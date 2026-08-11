@@ -152,14 +152,19 @@ export const SUBJECTS: SubjectSpec[] = [
               "slug": "analysis",
               "children": [
                 {
-                  "title": "Real Analysis",
-                  "slug": "real-analysis",
-                  "summary": "Topology of R^n, limits, uniform continuity, Riemann integration, and metric spaces."
+                  "title": "Real Analysis I",
+                  "slug": "real-analysis-i",
+                  "summary": "The real line and metric spaces: completeness, sequences and series, limits, continuity and uniform continuity, compactness and connectedness."
+                },
+                {
+                  "title": "Real Analysis II",
+                  "slug": "real-analysis-ii",
+                  "summary": "Differentiation, Riemann integration, sequences and series of functions, uniform convergence, and the topology of R^n."
                 },
                 {
                   "title": "Complex Analysis",
                   "slug": "complex-analysis",
-                  "summary": "Holomorphic functions, the Cauchy-Riemann equations, the residue theorem, and conformal maps."
+                  "summary": "Holomorphic functions, the Cauchy-Riemann equations, Cauchy's theorem and integral formula, the residue theorem, and conformal maps."
                 }
               ]
             },
@@ -220,9 +225,40 @@ export const SUBJECTS: SubjectSpec[] = [
                   "summary": "Root-finding, interpolation, quadrature, and LU and QR decompositions."
                 },
                 {
-                  "title": "Applied Electives",
-                  "slug": "applied-electives",
-                  "summary": "Cryptography, operations research, optimization, and mathematical statistics."
+                  "title": "Optimization",
+                  "slug": "optimization",
+                  "summary": "Convexity, Lagrange multipliers and KKT conditions, duality, and the standard descent and interior-point methods."
+                },
+                {
+                  "title": "Cryptography",
+                  "slug": "cryptography",
+                  "summary": "Modular arithmetic and finite fields, RSA and discrete-log systems, elliptic curves, and the hardness assumptions each rests on."
+                },
+                {
+                  "title": "Operations Research",
+                  "slug": "operations-research",
+                  "summary": "Linear and integer programming, the simplex method, network flows, and queueing and inventory models."
+                }
+              ]
+            },
+            {
+              "title": "Probability & Mathematical Statistics",
+              "slug": "probability-and-mathematical-statistics",
+              "children": [
+                {
+                  "title": "Probability Theory",
+                  "slug": "probability-theory",
+                  "summary": "Random variables, joint and conditional distributions, expectation and moments, generating functions, and the classical limit theorems without measure theory."
+                },
+                {
+                  "title": "Mathematical Statistics",
+                  "slug": "mathematical-statistics",
+                  "summary": "Estimators and their properties, maximum likelihood, sufficiency, confidence intervals, and hypothesis testing including Neyman-Pearson."
+                },
+                {
+                  "title": "Stochastic Processes",
+                  "slug": "stochastic-processes",
+                  "summary": "Markov chains, Poisson processes, random walks, and an introduction to renewal theory."
                 }
               ]
             },
