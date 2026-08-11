@@ -278,6 +278,30 @@ hint: Ask whether the observations in question were available before or after th
 why: The Grand Tack and Nice models each reproduce a cluster of Solar System facts — Mars's low mass, the asteroid belt's depletion and compositional mixing, the giants' present orbits, the structure of the Kuiper belt — using a small number of tuned parameters. Accounting for many independent facts with few free parameters is a genuine achievement and not to be dismissed. But **the facts were known when the models were built**, so the agreement is accommodation, and accommodation is weaker evidence than prediction because the model's flexibility was exercised against exactly those data. What raises the standing is a consequence the model implies but that played no part in its construction, checked afterwards: for these models, detailed predictions about small-body population structure and isotopic mixing, and independent evidence from exoplanet architectures that migration and instability are common — which the near-resonant period ratios and the broad giant eccentricity distribution supply. **The distinction between accommodation and prediction should be stated rather than blurred**, since both are routinely described as "the model explains", and the word conceals a large difference in evidential weight.
 ```
 
+```checkpoint
+q: Circumbinary planets have inner edges near two to four times the binary separation. What does this pile-up indicate?
+a: That planets cannot form closer than this, so the boundary is a formation limit
+x: Formation almost certainly occurred further out still; the boundary marks where inward motion stopped, not where formation could occur.
+a*: That planets formed further out and migrated inward until the binary's perturbations halted them — a population accumulating against a dynamical boundary
+a: That the binary's tidal field circularises planetary orbits at this distance
+x: Tidal circularisation acts on eccentricity rather than setting a semi-major axis boundary.
+a: That observational sensitivity falls off inside this radius
+x: Closer circumbinary planets would transit more often and be easier to detect, so a sensitivity explanation runs the wrong way.
+hint: Ask what happens to a planet that migrates inward toward a binary, and where it stops.
+why: A binary clears a region around itself in which orbits are dynamically unstable, extending to roughly two to four times the binary separation depending on mass ratio and eccentricity. Observed circumbinary planets sit **just outside** that limit rather than distributed at random, which is the signature of inward migration halted at the boundary: planets formed further out in the circumbinary disc, drifted inward through the gas, and stopped where the perturbations became too strong to permit stable orbits. The pattern is structurally identical to the spacing distribution of compact multiples, which clusters just above the mutual Hill stability threshold, and to stellar binaries piling up near contact separations. In each case **the observed edge of the distribution coincides with a physical limit**, and the correct model is a filter or a barrier applied to a broader underlying population rather than a mechanism that aims at the edge. The diagnostic question is always whether a distribution's boundary matches a stability or survival limit — if it does, the edge is explaining the distribution rather than the distribution revealing a preference.
+---
+q: Which architectural observation most directly constrains how violent the typical planetary system's history has been?
+a: The eccentricity distribution of giant planets
+x: It shows that scattering among giants is common, but giants occur in a minority of systems, so it does not characterise typical histories.
+a*: The multiplicity distribution — specifically whether the excess of single-transiting systems reflects mutual inclinations or genuine single-planet systems left by instabilities
+a: The fraction of systems containing resonant chains
+x: Informative about how often systems remain undisturbed, but chains are rare and their absence has several explanations.
+a: The spacing distribution in mutual Hill radii
+x: It shows systems are dynamically full, but by itself does not distinguish a mild filter from a violent one.
+hint: Ask which observable bears on what happened to the majority of systems rather than to a special subset.
+why: Compact multiples of small planets are the commonest architecture, so any statement about *typical* histories has to be a statement about them. The multiplicity distribution is where that information sits. If the excess of single-transiting systems arises because systems have a spread of mutual inclinations of a few degrees, then most systems retain several planets on flat orbits and typical histories were quiet. If instead a substantial population genuinely contains one planet because an instability removed the others, then typical histories included a phase of violent rearrangement. **These are opposite conclusions about planetary systems in general, and they rest on the same counts.** The giant eccentricity distribution, by contrast, characterises a minority population; the resonant chain fraction bounds how often systems stay undisturbed but is based on rare objects; and the spacing distribution establishes that a filter operated without indicating its severity. Separating the multiplicity readings requires transit durations, radial velocity follow-up and timing variations — which is why that unglamorous measurement programme carries more weight than its profile suggests.
+```
+
 ## 9. Pulling the thread
 
 - **Architecture is where formation theory is tested**, because producing the right planet is not the same as producing the right arrangement — and transits deliver whole systems, since an aligned coplanar system transits in full.

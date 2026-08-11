@@ -260,6 +260,30 @@ hint: The degeneracy comes from having fewer observables than unknowns. Ask what
 why: The composition problem is underdetermined for a single planet: mass and radius are two numbers, and iron, rock and volatiles are at least three unknowns, with the volatile component itself ambiguous between water and hydrogen–helium. A shared formation history adds a **prior linking the planets** — if they formed from the same disc material at similar times, their iron-to-rock ratios and volatile inventories should lie on a related track rather than varying independently. Fitting several planets simultaneously under that assumption reduces the number of free parameters relative to the number of observables, which is exactly what an underdetermined problem needs. The empirical support is the observed intra-system uniformity in size and spacing, the "peas in a pod" pattern, which extends tentatively to density. There is a practical bonus: in compact multiples the planets perturb one another, so transit timing variations give masses photometrically without spectroscopy, which for faint hosts is the only route to a mass at all. **Adding a constraint that links measurements can be worth more than adding measurements**, which is why a single well-studied system often outperforms many isolated ones.
 ```
 
+```checkpoint
+q: Why does the exponent in the rocky mass–radius relation $R \propto M^{0.27}$ fall below $1/3$?
+a: Because more massive planets lose mass to atmospheric escape, reducing their radii
+x: The relation describes bare rock and iron with no atmosphere, so escape plays no part in it.
+a*: Because a more massive planet's own gravity compresses its interior, so volume grows more slowly than mass
+a: Because more massive planets are hotter and therefore denser
+x: Thermal expansion would make a hotter planet larger, not denser, and rocky planets' radii are nearly temperature-independent.
+a: Because the relation is empirical and the exponent has no physical meaning
+x: It follows from structure models using laboratory equations of state, and the departure from $1/3$ is the physically informative part.
+hint: A body of constant density would give $R\propto M^{1/3}$. Ask what changes when the material is compressible.
+why: For a body of fixed density, volume is proportional to mass and $R\propto M^{1/3}$ exactly. Real rock and iron are compressible, so adding mass increases the internal pressure and squeezes the material already present — the planet grows, but less than proportionally, giving an exponent below $1/3$. The measured $0.27$ encodes the equation of state of silicates and iron at pressures of megabars, calibrated in the laboratory. **This departure is what makes composition inference possible.** Along each composition track, mean density rises with mass — from $5.51$ g cm$^{-3}$ at $1\,M_\oplus$ to $8.54$ at $10\,M_\oplus$ for Earth composition — so a planet's position relative to the tracks is informative. If density were independent of mass, every composition would produce a single flat line and no bulk measurement could distinguish them. The same reasoning explains why the tracks converge at low mass, where compression is weak, and why compositional discrimination from density is therefore hardest for the smallest planets.
+---
+q: What would most improve the reliability of composition estimates for small planets?
+a: More precise transit photometry, reducing the uncertainty on radius
+x: Radii are already measured to a few per cent for good targets, and the limitation is structural rather than statistical.
+a*: Better stellar characterisation, since the planet's radius and mass are both inherited from the star's — and, separately, a third observable such as an atmospheric measurement
+a: Larger samples, so that population statistics constrain individual planets
+x: Population statistics constrain distributions rather than individual objects, and the degeneracy applies to each planet separately.
+a: More precise mass measurements from longer radial velocity campaigns
+x: Helpful, but two observables cannot resolve three unknowns however precisely each is measured.
+hint: Ask which quantities in a density estimate come from somewhere other than the planet measurements themselves.
+why: A planet's density is $M_p/R_p^3$, and neither quantity is measured directly. The radius is $R_\star$ times a measured ratio; the mass is derived from a radial velocity amplitude that depends on $M_\star^{2/3}$, or from timing variations that depend on the stellar mass too. **A systematic error in stellar characterisation therefore propagates into both**, and it does so in a correlated way that does not average out over a sample — which is why Gaia's improvement to stellar radii moved the entire known planet population and revealed the radius valley. That is the first improvement. The second is categorically different: even with perfect masses and radii, two observables cannot determine three compositional components, so the remaining gain must come from an observable sensitive to something else — most usefully transmission or emission spectroscopy, which responds to mean molecular weight through the scale height and can separate a hydrogen envelope from a steam atmosphere by a factor of twenty in signal amplitude where density separates them not at all.
+```
+
 ## 8. Pulling the thread
 
 - **The commonest planet class has no Solar System representative**, and our own empty inner region is the unusual case rather than the template.
