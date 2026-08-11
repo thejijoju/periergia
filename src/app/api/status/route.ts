@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAnthropic, MODEL } from "@/lib/anthropic";
 import { generateContent } from "@/lib/generate";
-import { getNodeById } from "@/lib/store";
+import { getNodeById, getNodes, treeSource } from "@/lib/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic"; // always read live env, never cache
@@ -41,6 +41,21 @@ export async function GET(req: Request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     ),
     vercelEnv: process.env.VERCEL_ENV ?? "unknown",
+    // Which taxonomy the running instance is actually serving. Env booleans say
+    // whether Supabase *could* be reached; this says whether it was — and a
+    // reseeded tree that never appears on the site is almost always this
+    // reporting "seed", or reporting "supabase" with a stale node count from
+    // before the migration. Mathematics is the canary: 72 leaves on the current
+    // tree, 43 on the one it replaced.
+    tree: await (async () => {
+      try {
+        const [src, maths] = await Promise.all([treeSource(), getNodes("mathematics")]);
+        const leaves = maths.filter((n) => !maths.some((c) => c.parentId === n.id));
+        return { source: src, mathematicsNodes: maths.length, mathematicsLeaves: leaves.length };
+      } catch (e) {
+        return { error: String((e as Error)?.message ?? e).slice(0, 200) };
+      }
+    })(),
   };
 
   const params = new URL(req.url).searchParams;
