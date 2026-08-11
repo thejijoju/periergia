@@ -25,6 +25,17 @@ interface Tree {
 }
 
 let treePromise: Promise<Tree> | null = null;
+let treeLoadedAt = 0;
+
+// The taxonomy only changes when db-migrate reseeds, so memoizing it per
+// instance is right — but memoizing it *forever* was not. A serverless instance
+// outlives a reseed by hours, so a retaxonomised subject kept serving the tree
+// that instance happened to load at cold start, and only a redeploy fixed it.
+// Worse, db-migrate and the deploy both fire on a push to main with nothing
+// ordering them, so a build can read the pre-migration tree and then hold it.
+// Bounding the memo in time costs one extra round-trip per instance per window
+// and lets a reseed appear on its own.
+const TREE_TTL_MS = 5 * 60_000;
 
 // Some seed titles were authored lowercase ("elasticity", "consumer choice").
 // Present every title in Title Case for a consistent tree/breadcrumb/heading —
@@ -78,7 +89,8 @@ function rowToNode(r: {
 }
 
 async function loadTree(): Promise<Tree> {
-  if (treePromise) return treePromise;
+  if (treePromise && Date.now() - treeLoadedAt < TREE_TTL_MS) return treePromise;
+  treeLoadedAt = Date.now();
   treePromise = (async () => {
     const supabase = getSupabase();
     if (supabase) {
@@ -110,13 +122,21 @@ async function loadTree(): Promise<Tree> {
       // still works. Run `npm run seed` to populate Postgres.
     }
     return { subjects: SEED_SUBJECTS, nodes: SEED_NODES, source: "seed" as const };
-  })();
+  })().catch(() => {
+    // A rejected promise would otherwise stay memoized for the whole window and
+    // fail every render in it. Drop the memo so the next request retries, and
+    // serve the bundled tree meanwhile rather than erroring the page.
+    treePromise = null;
+    treeLoadedAt = 0;
+    return { subjects: SEED_SUBJECTS, nodes: SEED_NODES, source: "seed" as const };
+  });
   return treePromise;
 }
 
 /** Test/ops hook: drop the memoized tree so the next read reloads from source. */
 export function invalidateTree(): void {
   treePromise = null;
+  treeLoadedAt = 0;
 }
 
 export async function treeSource(): Promise<Tree["source"]> {
