@@ -1568,7 +1568,7 @@ insert into nodes (id, subject_id, parent_id, title, slug, summary, position, de
   ('mathematics/core-graduate/smooth-manifolds/manifolds-and-vector-fields', 'mathematics', 'mathematics/core-graduate/smooth-manifolds', 'Manifolds & Vector Fields', 'manifolds-and-vector-fields', 'Smooth manifolds, tangent and cotangent bundles, and vector fields.', 0, 2),
   ('mathematics/lower-division-undergraduate/calculus-sequence/multivariable-calculus', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence', 'Multivariable Calculus', 'multivariable-calculus', 'Partial derivatives, gradients, and multiple integrals.', 2, 2),
   ('mathematics/lower-division-undergraduate/calculus-sequence/sequences-and-infinite-series', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence', 'Sequences & Infinite Series', 'sequences-and-infinite-series', 'Convergence tests, power series, and Taylor series.', 1, 2),
-  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence', 'Single-Variable Calculus', 'single-variable-calculus', 'Limits, derivatives, integrals, and the Fundamental Theorem of Calculus.', 0, 2),
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence', 'Single-Variable Calculus', 'single-variable-calculus', 'The first calculus course, split into six lectures: limits and continuity, the derivative, its applications, the definite integral, the Fundamental Theorem, and techniques of integration.', 0, 2),
   ('mathematics/lower-division-undergraduate/elementary-differential-equations/first-and-second-order-odes', 'mathematics', 'mathematics/lower-division-undergraduate/elementary-differential-equations', 'First & Second-Order ODEs', 'first-and-second-order-odes', 'Separation of variables and the standard solution methods.', 0, 2),
   ('mathematics/lower-division-undergraduate/elementary-differential-equations/laplace-transforms', 'mathematics', 'mathematics/lower-division-undergraduate/elementary-differential-equations', 'Laplace Transforms', 'laplace-transforms', 'Transform methods for initial value problems.', 2, 2),
   ('mathematics/lower-division-undergraduate/elementary-differential-equations/linear-systems-and-phase-portraits', 'mathematics', 'mathematics/lower-division-undergraduate/elementary-differential-equations', 'Linear Systems & Phase Portraits', 'linear-systems-and-phase-portraits', 'Qualitative behaviour of linear systems in the plane.', 1, 2),
@@ -1653,6 +1653,19 @@ on conflict (id) do update set
   title = excluded.title, slug = excluded.slug, summary = excluded.summary,
   position = excluded.position, depth = excluded.depth;
 
+-- depth 3
+insert into nodes (id, subject_id, parent_id, title, slug, summary, position, depth) values
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/applications-of-the-derivative', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'Applications of the Derivative', 'applications-of-the-derivative', 'The Mean Value Theorem, monotonicity and concavity, optimisation on a closed interval, related rates, and l''Hopital''s rule.', 2, 3),
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/limits-and-continuity', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'Limits & Continuity', 'limits-and-continuity', 'The tangent and velocity problems, limits numerically and graphically, the limit laws and the squeeze theorem, and the epsilon-delta definition once the intuition is in place.', 0, 3),
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/techniques-of-integration', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'Techniques of Integration', 'techniques-of-integration', 'Substitution as the chain rule reversed, integration by parts as the product rule reversed, partial fractions, and improper integrals.', 5, 3),
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/the-definite-integral', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'The Definite Integral', 'the-definite-integral', 'Area as a limit, Riemann sums and the upper and lower sum construction, integrability, and the properties of the integral.', 3, 3),
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/the-derivative', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'The Derivative', 'the-derivative', 'The difference quotient, differentiability against continuity, the product, quotient and chain rules, and the derivatives of the elementary functions.', 1, 3),
+  ('mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/the-fundamental-theorem', 'mathematics', 'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus', 'The Fundamental Theorem', 'the-fundamental-theorem', 'Both parts proved: differentiating an accumulation function, and evaluating a definite integral from any antiderivative.', 4, 3)
+on conflict (id) do update set
+  subject_id = excluded.subject_id, parent_id = excluded.parent_id,
+  title = excluded.title, slug = excluded.slug, summary = excluded.summary,
+  position = excluded.position, depth = excluded.depth;
+
 -- Prune rows that are no longer in the seed (cascades their cached content).
 delete from nodes where not (id = any (array[
   'mathematics/pre-calculus-foundations',
@@ -1690,6 +1703,12 @@ delete from nodes where not (id = any (array[
   'mathematics/lower-division-undergraduate',
   'mathematics/lower-division-undergraduate/calculus-sequence',
   'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus',
+  'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/limits-and-continuity',
+  'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/the-derivative',
+  'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/applications-of-the-derivative',
+  'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/the-definite-integral',
+  'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/the-fundamental-theorem',
+  'mathematics/lower-division-undergraduate/calculus-sequence/single-variable-calculus/techniques-of-integration',
   'mathematics/lower-division-undergraduate/calculus-sequence/sequences-and-infinite-series',
   'mathematics/lower-division-undergraduate/calculus-sequence/multivariable-calculus',
   'mathematics/lower-division-undergraduate/introductory-linear-algebra',

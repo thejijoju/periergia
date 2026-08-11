@@ -211,7 +211,39 @@ export const SUBJECTS: SubjectSpec[] = [
                 {
                   "title": "Single-Variable Calculus",
                   "slug": "single-variable-calculus",
-                  "summary": "Limits, derivatives, integrals, and the Fundamental Theorem of Calculus."
+                  "summary": "The first calculus course, split into six lectures: limits and continuity, the derivative, its applications, the definite integral, the Fundamental Theorem, and techniques of integration.",
+                  "children": [
+                    {
+                      "title": "Limits & Continuity",
+                      "slug": "limits-and-continuity",
+                      "summary": "The tangent and velocity problems, limits numerically and graphically, the limit laws and the squeeze theorem, and the epsilon-delta definition once the intuition is in place."
+                    },
+                    {
+                      "title": "The Derivative",
+                      "slug": "the-derivative",
+                      "summary": "The difference quotient, differentiability against continuity, the product, quotient and chain rules, and the derivatives of the elementary functions."
+                    },
+                    {
+                      "title": "Applications of the Derivative",
+                      "slug": "applications-of-the-derivative",
+                      "summary": "The Mean Value Theorem, monotonicity and concavity, optimisation on a closed interval, related rates, and l'Hopital's rule."
+                    },
+                    {
+                      "title": "The Definite Integral",
+                      "slug": "the-definite-integral",
+                      "summary": "Area as a limit, Riemann sums and the upper and lower sum construction, integrability, and the properties of the integral."
+                    },
+                    {
+                      "title": "The Fundamental Theorem",
+                      "slug": "the-fundamental-theorem",
+                      "summary": "Both parts proved: differentiating an accumulation function, and evaluating a definite integral from any antiderivative."
+                    },
+                    {
+                      "title": "Techniques of Integration",
+                      "slug": "techniques-of-integration",
+                      "summary": "Substitution as the chain rule reversed, integration by parts as the product rule reversed, partial fractions, and improper integrals."
+                    }
+                  ]
                 },
                 {
                   "title": "Sequences & Infinite Series",
