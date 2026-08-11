@@ -31,6 +31,175 @@ export const SUBJECTS: SubjectSpec[] = [
     "tree": [
 
         {
+          "title": "Pre-Calculus Foundations",
+          "slug": "pre-calculus-foundations",
+          "summary": "Everything assumed before the calculus sequence begins: number systems and exponent rules, algebraic manipulation and equation solving, coordinate geometry, the function concept and its transformations, exponentials and logarithms, trigonometry, and the bridge topics that lead directly into limits.",
+          "children": [
+            {
+              "title": "Arithmetic & Foundations",
+              "slug": "arithmetic-and-foundations",
+              "children": [
+                {
+                  "title": "Number Systems",
+                  "slug": "number-systems",
+                  "summary": "Integers, rationals, reals and irrationals, and what each is closed under."
+                },
+                {
+                  "title": "Operations & Order",
+                  "slug": "operations-and-order",
+                  "summary": "Order of operations, signed numbers, fractions, decimals and percentages."
+                },
+                {
+                  "title": "Exponents & Radicals",
+                  "slug": "exponents-and-radicals",
+                  "summary": "Exponent rules, negative and fractional exponents, simplifying radicals and rationalising denominators."
+                }
+              ]
+            },
+            {
+              "title": "Elementary & Intermediate Algebra",
+              "slug": "elementary-and-intermediate-algebra",
+              "children": [
+                {
+                  "title": "Algebraic Expressions",
+                  "slug": "algebraic-expressions",
+                  "summary": "Polynomial addition, multiplication and expansion."
+                },
+                {
+                  "title": "Factoring Techniques",
+                  "slug": "factoring-techniques",
+                  "summary": "Greatest common factor, difference of squares, quadratic factoring and completing the square."
+                },
+                {
+                  "title": "Equations & Inequalities",
+                  "slug": "equations-and-inequalities",
+                  "summary": "Linear equations, systems, absolute value, and the quadratic formula."
+                },
+                {
+                  "title": "Rational & Radical Expressions",
+                  "slug": "rational-and-radical-expressions",
+                  "summary": "Complex fractions, common denominators, and radical equations."
+                }
+              ]
+            },
+            {
+              "title": "Coordinate Geometry",
+              "slug": "coordinate-geometry",
+              "children": [
+                {
+                  "title": "The Cartesian Plane",
+                  "slug": "the-cartesian-plane",
+                  "summary": "Points, quadrants, and the distance and midpoint formulas."
+                },
+                {
+                  "title": "Lines & Linear Functions",
+                  "slug": "lines-and-linear-functions",
+                  "summary": "Slope, the three line forms, and parallel and perpendicular conditions."
+                },
+                {
+                  "title": "Conic Sections",
+                  "slug": "conic-sections",
+                  "summary": "Circles, parabolas, ellipses and hyperbolas from their equations."
+                }
+              ]
+            },
+            {
+              "title": "Functions & Graphical Analysis",
+              "slug": "functions-and-graphical-analysis",
+              "children": [
+                {
+                  "title": "Function Fundamentals",
+                  "slug": "function-fundamentals",
+                  "summary": "Definition, the vertical line test, domain and range, and evaluating f(x+h)."
+                },
+                {
+                  "title": "Operations & Composition",
+                  "slug": "operations-and-composition",
+                  "summary": "Combining functions, composition, inverses and the horizontal line test."
+                },
+                {
+                  "title": "Transformations",
+                  "slug": "transformations",
+                  "summary": "Shifts, reflections, stretches and compressions, and how they act on a graph."
+                },
+                {
+                  "title": "Polynomial & Rational Functions",
+                  "slug": "polynomial-and-rational-functions",
+                  "summary": "End behaviour, roots and multiplicity, and vertical, horizontal and slant asymptotes."
+                }
+              ]
+            },
+            {
+              "title": "Exponentials & Logarithms",
+              "slug": "exponentials-and-logarithms",
+              "children": [
+                {
+                  "title": "Exponential Functions",
+                  "slug": "exponential-functions",
+                  "summary": "Growth and decay, and the natural base e."
+                },
+                {
+                  "title": "Logarithmic Functions",
+                  "slug": "logarithmic-functions",
+                  "summary": "The definition as an inverse, the natural logarithm, the log laws, and solving exponential equations."
+                }
+              ]
+            },
+            {
+              "title": "Trigonometry",
+              "slug": "trigonometry",
+              "children": [
+                {
+                  "title": "Right Triangle Trigonometry",
+                  "slug": "right-triangle-trigonometry",
+                  "summary": "The three ratios, their reciprocals, and solving triangles."
+                },
+                {
+                  "title": "The Unit Circle & Radians",
+                  "slug": "the-unit-circle-and-radians",
+                  "summary": "Radian measure and exact values at the standard angles."
+                },
+                {
+                  "title": "Trigonometric Graphs",
+                  "slug": "trigonometric-graphs",
+                  "summary": "Sine, cosine and tangent curves, with amplitude, period, phase and vertical shift."
+                },
+                {
+                  "title": "Identities & Equations",
+                  "slug": "identities-and-equations",
+                  "summary": "Pythagorean identities, double- and half-angle formulas, and solving trigonometric equations exactly."
+                }
+              ]
+            },
+            {
+              "title": "The Bridge to Calculus",
+              "slug": "the-bridge-to-calculus",
+              "children": [
+                {
+                  "title": "Sequences & Series",
+                  "slug": "sequences-and-series",
+                  "summary": "Arithmetic and geometric sequences, and sigma notation."
+                },
+                {
+                  "title": "The Binomial Theorem",
+                  "slug": "the-binomial-theorem",
+                  "summary": "Expanding powers of a binomial via Pascal's triangle and combinations."
+                },
+                {
+                  "title": "Parametric & Polar",
+                  "slug": "parametric-and-polar",
+                  "summary": "Curves defined by a parameter, and conversion between polar and Cartesian coordinates."
+                },
+                {
+                  "title": "Rates of Change",
+                  "slug": "rates-of-change",
+                  "summary": "Average rate of change over an interval, and why the limit of that quotient is the next question."
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Lower-Division Undergraduate",
           "slug": "lower-division-undergraduate",
           "summary": "The foundations and calculus sequence: single- and multivariable calculus, introductory linear algebra, elementary differential equations, and the first encounter with proof and discrete structures.",
