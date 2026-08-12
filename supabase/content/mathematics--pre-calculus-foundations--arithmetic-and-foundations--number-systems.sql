@@ -22,7 +22,28 @@
 --
 -- Ends on interval and absolute-value notation, since |x - a| < d as a
 -- statement about distance is the notation every later lecture uses.
--- ~10,000 words, 10 checkpoint questions, 9 worked problems, 2 figures.
+--
+-- Rebuilt after review. Three additions:
+--   (1) a ```numbersets diagram at the top - the nested rings N in Z in Q
+--       in R in C with real numbers sitting in the ring they belong to,
+--       tappable, so "which circle is this number in" is answered by a
+--       picture before it is answered by prose;
+--   (2) eight ```drill blocks, one after each learning point, each an
+--       endlessly-regenerating graded self-test rather than a fixed
+--       question - closure, divisor counting, the Euclidean algorithm,
+--       terminate-or-repeat, repeating-decimal-to-fraction, full number
+--       classification, smallest-system-that-solves-this-equation, and
+--       absolute value as an interval. The reader keeps answering fresh
+--       instances until the idea is automatic;
+--   (3) section 1 rewritten to be genuinely self-contained: closure
+--       stated with the universal quantifier and its two consequences,
+--       the structural laws each with a worked numeric example, identity
+--       elements including the observation that N has no additive
+--       identity under the convention used here, and the failure of
+--       a + x = b stated exactly (solvable iff a < b) rather than
+--       gestured at.
+-- ~11,100 words, 10 checkpoint questions, 8 infinite drills,
+-- 9 worked problems, 2 figures, 1 interactive diagram.
 --
 -- Numbers verified before drafting (python3, exact where integral):
 --   360 = 2^3 x 3^2 x 5, with 4 x 3 x 2 = 24 divisors;
@@ -49,7 +70,13 @@
 --     lcm(504,360) = 2520, product 181440 both ways (practice problem 2);
 --   1071/462 = 51/22 in lowest terms (practice problem 3);
 --   2.4444... = 22/9 (practice problem 5c);
---   1/(3+2i) = 3/13 - (2/13)i = 0.230769 - 0.153846 i.
+--   1/(3+2i) = 3/13 - (2/13)i = 0.230769 - 0.153846 i;
+--   added examples: 12 = 2^2 x 3 with 6 divisors (1,2,3,4,6,12) and
+--     64 = 2^6 with 7; gcd(84,30) = 6 by Euclid (84 = 2(30)+24,
+--     30 = 1(24)+6, 24 = 4(6)+0), with 84 = 6x14 and 30 = 6x5;
+--     1/40 = 0.025 terminating (40 = 2^3 x 5) against 1/12 = 0.08333...
+--     repeating (12 = 2^2 x 3); 6(10+3) = 78 = 60 + 18;
+--     (9-4)-2 = 3 while 9-(4-2) = 7.
 
 with master as (
   insert into content (node_id, depth, level, format, body, generated, reviewed)
@@ -62,6 +89,13 @@ This is the first lecture in the mathematics sequence, and it has one organising
 
 Nothing is assumed beyond arithmetic. Every proof given is complete; the four results too hard to prove at this level are stated as such and flagged.
 
+Before any of it, a map. The five systems are nested, each containing the one before it, and the single most useful thing to have in your head is which numbers sit in which ring. Tap a number to see where it lands.
+
+```numbersets
+```
+
+Come back to this diagram whenever a number's classification is in doubt. Most mistakes in this lecture are not mistakes about number systems at all — they are failures to simplify before classifying, and the diagram is where that shows up.
+
 ## 1. Counting, and the first system
 
 ### 1.1 The natural numbers
@@ -70,33 +104,92 @@ The **natural numbers** are what counting produces:
 
 $$\mathbb{N} = \{1, 2, 3, 4, 5, \ldots\}.$$
 
-(Some authors include $0$. Nothing here depends on the choice; where it matters we will say so.) They are the oldest mathematical objects, and they support two operations without difficulty. Add two natural numbers and the answer is a natural number. Multiply two and the answer is a natural number. There is no exception, no special case, no pair for which the operation fails.
+*(Some conventions include $0$. Unless we say otherwise, this lecture begins at $1$ — and section 1.4 shows that the choice is not cosmetic.)*
 
-### 1.2 Closure — the question that drives everything
+They are the oldest mathematical objects, and they support two operations without difficulty:
 
-That property has a name.
+$$7 + 5 = 12 \in \mathbb{N}, \qquad 7 \cdot 5 = 35 \in \mathbb{N}, \qquad 1 + 1 = 2 \in \mathbb{N}, \qquad 999 \cdot 1000 = 999000 \in \mathbb{N}.$$
 
-> **Definition.** A set $S$ is **closed** under an operation if performing that operation on any members of $S$ produces a result that is again in $S$.
+Pick any two counting numbers you like and add them: the answer is a counting number. Multiply them: the answer is a counting number. There is no exception, no special case, no awkward pair for which the operation fails.
 
-So $\mathbb{N}$ is closed under addition and closed under multiplication. Closure is not a technicality to be memorised. It is the exact statement of "this operation is always safe here", and the whole architecture of number systems is the record of which operations were not safe and what was built to make them so.
+### 1.2 Closure, stated precisely
 
-Three further properties of addition and multiplication on $\mathbb{N}$ are worth naming, because they will be assumed silently forever afterwards. For all $a, b, c$:
+That property is the organising idea of the entire lecture, so it gets a name and a symbol.
 
-- **commutativity:** $a + b = b + a$ and $ab = ba$;
-- **associativity:** $(a+b)+c = a+(b+c)$ and $(ab)c = a(bc)$;
-- **distributivity:** $a(b+c) = ab + ac$.
+> **Definition (closure).** A set $S$ is **closed** under an operation $\ast$ if applying $\ast$ to any two members of $S$ produces a result that is again a member of $S$.
 
-Distributivity is the one that does real work later — it is the rule behind expanding brackets, factoring, and the whole of elementary algebra.
+For $\mathbb{N}$ under addition and multiplication that reads
 
-### 1.3 Subtraction breaks it
+$$\forall\, a, b \in \mathbb{N}: \quad (a + b) \in \mathbb{N} \quad\text{and}\quad (a \cdot b) \in \mathbb{N}.$$
 
-Now ask about subtraction. $5 - 3 = 2$, a natural number. But $3 - 5$ is not a natural number at all. Within $\mathbb{N}$, the equation
+The symbol $\forall$ means "for all", and it is the load-bearing part. Closure is a claim about *every* pair, which has two consequences that decide most of what follows:
 
-$$x + 5 = 3$$
+- **To establish closure you need a reason covering all pairs.** For addition on $\mathbb{N}$ the reason is that counting on from a counting number by a counting number of steps lands on a counting number.
+- **To refute closure you need exactly one escaping pair.** One counterexample is a complete disproof. This asymmetry is why the next three sections can each be settled by a single line of arithmetic.
 
-has no solution. Nor does $x + 1 = 1$, if $0$ is excluded.
+Closure is not a technicality to be memorised. It is the exact statement of "this operation is always safe here", and the architecture of the number systems is simply the record of which operations were not safe and what was built to make them so.
 
-There are two possible responses. One is to declare such equations meaningless — which is broadly what mathematics did for centuries, and negative answers were dismissed as absurd well into the seventeenth century. The other is to enlarge the system so that the equations acquire solutions. The second response is the productive one, and it is the move that gets repeated at every stage below.
+### 1.3 The structural laws that do hold
+
+Three laws govern how addition and multiplication interact in $\mathbb{N}$. They are assumed silently for the rest of mathematics, so they are worth stating once with examples. For all $a, b, c \in \mathbb{N}$:
+
+**Commutativity** — order does not matter:
+
+$$a + b = b + a, \qquad ab = ba. \qquad\text{Example: } 3 + 8 = 8 + 3 = 11, \quad 3 \cdot 8 = 8 \cdot 3 = 24.$$
+
+**Associativity** — grouping does not matter:
+
+$$(a+b)+c = a+(b+c), \qquad (ab)c = a(bc).$$
+
+$$\text{Example: } (2+3)+4 = 5+4 = 9 = 2+7 = 2+(3+4), \quad (2\cdot3)\cdot4 = 24 = 2\cdot(3\cdot4).$$
+
+**Distributivity** — multiplication spreads across a sum:
+
+$$a(b+c) = ab + ac. \qquad\text{Example: } 6(10+3) = 6\cdot13 = 78 = 60 + 18 = 6\cdot10 + 6\cdot3.$$
+
+Distributivity is the one that does real work later. It is the rule behind expanding brackets, behind factoring, behind the entire manipulation of algebraic expressions — and it is worth noticing that it is also how everyone was taught to multiply by hand: $6 \times 13$ computed as $6\times10$ plus $6\times3$ *is* the distributive law.
+
+Note also what these laws do **not** say. Subtraction is neither commutative nor associative — $5 - 3 \ne 3 - 5$ and $(9-4)-2 = 3$ while $9-(4-2) = 7$ — which is one reason it is better treated as addition of an inverse than as an operation in its own right.
+
+### 1.4 Identity elements
+
+An **identity element** for an operation is a member of the system that leaves everything unchanged.
+
+For multiplication, $\mathbb{N}$ has one:
+
+$$1 \in \mathbb{N}, \qquad a \cdot 1 = 1 \cdot a = a \quad \text{for every } a \in \mathbb{N}. \qquad \text{Example: } 17 \cdot 1 = 17.$$
+
+For addition, $\mathbb{N}$ has none. The number that would do the job is $0$, since $a + 0 = a$, and under the convention that $\mathbb{N} = \{1,2,3,\ldots\}$ the number $0$ is not available. So the very first system already lacks a piece of structure that everything after it will have. (If you adopt the other convention and start $\mathbb{N}$ at $0$, this particular defect disappears — but the one in the next section does not, which is why the choice is a matter of taste and the next section is not.)
+
+A related notion will matter even more. An **inverse** for $a$ is an element that combines with $a$ to give the identity. For addition that means a number $-a$ with $a + (-a) = 0$. $\mathbb{N}$ has no additive inverses at all, having no $0$ for them to produce and no negative numbers to serve as them.
+
+### 1.5 The first boundary: where subtraction fails
+
+Now the failure, stated exactly rather than gestured at. Consider the equation
+
+$$a + x = b, \qquad a, b \in \mathbb{N},$$
+
+and ask when it has a solution $x \in \mathbb{N}$. Three cases, all decidable by inspection:
+
+| equation | solution | in $\mathbb{N}$? |
+|---|---|---|
+| $5 + x = 9$ | $x = 4$ | yes — this is the case $a < b$ |
+| $5 + x = 5$ | $x = 0$ | no — $\mathbb{N}$ has no additive identity |
+| $5 + x = 2$ | $x = -3$ | no — $\mathbb{N}$ has no additive inverses |
+
+So $a + x = b$ is solvable in $\mathbb{N}$ **exactly when $a < b$**, and fails whenever $a \ge b$. Equivalently: **subtraction is not closed in $\mathbb{N}$**, and one counterexample settles it —
+
+$$3 - 5 = -2 \notin \mathbb{N}.$$
+
+This is not a shortage of cleverness. It is a shortage of *numbers*: the system contains no object that could be the answer. There are two possible responses. One is to declare such equations meaningless — broadly what mathematics did for centuries, with negative answers dismissed as absurd well into the seventeenth century. The other is to enlarge the system until the equations acquire solutions.
+
+The second response is the productive one, and it is the move that gets repeated at every stage below. Each time, the recipe is identical: find the operation that escapes, add exactly the objects needed to catch it, and check that the old system still sits inside the new one unchanged.
+
+Before going on, make the closure question automatic. The drill below poses it over and over, for every system in this lecture and every operation, and it will keep posing it as long as you keep answering.
+
+```drill
+closure-check
+```
 
 ## 2. The integers
 
@@ -139,6 +232,13 @@ Prime factorisation answers questions that look unrelated. The number of positiv
 $$4\times3\times2 = 24$$
 
 divisors, and they can be listed without hunting: $1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120, 180, 360$ — twenty-four of them, as promised.
+
+The counting rule generalises: if $n = p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$ then $n$ has exactly $(e_1+1)(e_2+1)\cdots(e_k+1)$ positive divisors. Two more examples: $12 = 2^2\cdot3$ has $3\times2 = 6$ divisors ($1,2,3,4,6,12$), and $64 = 2^6$ has $7$ ($1,2,4,8,16,32,64$). Drill it until the arithmetic is reflexive:
+
+```drill
+divisor-count
+```
+
 
 Factorisation also gives the **greatest common divisor** and **least common multiple**: take each prime to the smaller exponent for the gcd, the larger for the lcm. With $12 = 2^2\cdot3$ and $18 = 2\cdot3^2$,
 
@@ -187,6 +287,13 @@ $$147 = 7\cdot21 + 0$$
 The last non-zero remainder is $21$, and $\gcd(1071,462) = 21$. Check it: $1071 = 21\cdot51$ and $462 = 21\cdot22$, and $\gcd(51,22)=1$.
 
 Why it works: any common divisor of $a$ and $b$ also divides $a - qb$, and any common divisor of $b$ and $a - qb$ also divides $a$. So each line preserves the set of common divisors exactly, while the numbers strictly shrink. Since a strictly decreasing sequence of non-negative integers must terminate, the process ends, and it ends at the gcd. The algorithm is over two thousand years old and is still the one used in practice.
+
+A second run, to fix the pattern. For $\gcd(84, 30)$: $84 = 2\cdot30 + 24$; $30 = 1\cdot24 + 6$; $24 = 4\cdot6 + 0$. The last non-zero remainder is $6$, and indeed $84 = 6\cdot14$, $30 = 6\cdot5$, with $14$ and $5$ sharing nothing. Now run it yourself, as many times as it takes for the procedure to need no thought:
+
+```drill
+gcd-euclid
+```
+
 
 This is also the tool for reducing fractions to lowest terms, which is section 3's business.
 
@@ -293,6 +400,13 @@ This is a **pigeonhole** argument — more objects than boxes forces a repeat �
 
 Which case occurs is decided by the prime factorisation of the denominator in lowest terms. The expansion terminates exactly when that denominator has no prime factors other than $2$ and $5$ — the primes dividing our base $10$. Otherwise it repeats. $1/8 = 1/2^3$ terminates; $1/6 = 1/(2\cdot3)$ has the factor $3$, so it repeats, but the factor $2$ delays the onset by one digit.
 
+Two more to fix the rule: $1/40 = 1/(2^3\cdot5)$ terminates, at $0.025$; $1/12 = 1/(2^2\cdot3)$ repeats, as $0.08\overline{3}$, the factor $3$ forcing the cycle and the $2^2$ delaying it by two digits. The test is entirely mechanical — factor the denominator, look for a prime other than $2$ or $5$ — so it should become instant:
+
+```drill
+decimal-type
+```
+
+
 ### 3.4 Turning a repeating decimal back into a fraction
 
 The converse holds too — any terminating or eventually repeating decimal is rational — and the proof is a method.
@@ -314,6 +428,13 @@ after dividing top and bottom by $\gcd(124,990) = 2$. Check: $62/495 = 0.1252525
 Combining this with section 3.3 gives a clean characterisation, worth memorising:
 
 > A real number is rational **if and only if** its decimal expansion terminates or is eventually periodic.
+
+The conversion is the half of that statement you will actually use. Practise it until the multiply-and-subtract step needs no thought:
+
+```drill
+repeating-fraction
+```
+
 
 ### 3.5 Density
 
@@ -509,6 +630,13 @@ which is checked by substitution and holds exactly. Anything you can write with 
 
 Both proofs are hard and far outside this course. The consequences are not. The transcendence of $\pi$ settles, negatively and permanently, the ancient problem of squaring the circle: a straightedge-and-compass construction can only produce certain algebraic numbers, so no such construction can produce $\sqrt\pi$, and no square can be constructed with the area of a given circle. A problem open for two thousand years was closed by a theorem about what kind of number $\pi$ is.
 
+Every label in this lecture is now defined, and the central skill of the lecture is to apply them all at once to a number handed to you cold. It is harder than it looks, because most of the difficulty is not in the classification but in the *simplification* that has to precede it: $\sqrt9$ is a natural number, $0.\overline9$ is the natural number $1$, $22/7$ is a plain fraction and not $\pi$, and $\sqrt2\cdot\sqrt2$ is $2$. Work the drill below until every one of those is automatic — it will keep generating numbers for as long as you keep answering, and the nested diagram at the top of the lecture is the picture to hold in mind while you do.
+
+```drill
+number-classify
+```
+
+
 ### 6.3 Counting the two kinds
 
 Here is the surprise. The algebraic numbers — including every rational, every square root, every cube root, every root of every polynomial with integer coefficients — form only a *vanishingly small* part of $\mathbb{R}$.
@@ -627,6 +755,13 @@ The whole lecture compresses into one table. Each row is a system; each entry sa
 
 Read down any column and you can see which failure forced which enlargement. Read across the bottom row and you see why the chain stops: $\mathbb{C}$ is closed under everything algebra can ask.
 
+The same content, asked from the other direction: given an equation, which system is the smallest that can solve it? That is the question the whole lecture has been answering, and it is the one worth being able to answer instantly.
+
+```drill
+smallest-system
+```
+
+
 Two things the table does not show, and which matter more than it does. First, $\mathbb{R}$'s decisive advantage over $\mathbb{Q}$ is *completeness*, not the availability of square roots — the roots are a symptom. Second, $\mathbb{C}$'s advantage over $\mathbb{R}$ costs the order relation, which is why the calculus stays real.
 
 ## 9. Notation for everything that follows
@@ -669,6 +804,13 @@ One inequality is needed more than any other, and it too is a statement about di
 $$|a + b| \le |a| + |b| \qquad \text{(the triangle inequality)}.$$
 
 Equality holds when $a$ and $b$ have the same sign; otherwise cancellation makes the left side strictly smaller. For example $|3 + (-5)| = 2 < 8 = |3| + |-5|$. Nearly every estimate in analysis passes through it.
+
+Translating between an absolute-value inequality and an interval is the single most-used piece of notation in the calculus sequence, so it is the last thing to make automatic here:
+
+```drill
+abs-interval
+```
+
 
 ### 9.3 Manipulating inequalities
 
