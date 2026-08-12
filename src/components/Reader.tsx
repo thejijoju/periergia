@@ -114,6 +114,8 @@ import { CausalChain } from "./CausalChain";
 import { TriplePoint } from "./TriplePoint";
 import { Quotation } from "./Quotation";
 import { CheckpointQuiz } from "./CheckpointQuiz";
+import { Drill } from "./Drill";
+import { NumberSets } from "./NumberSets";
 import { ResearchGate } from "./ResearchGate";
 import { StudyExports } from "./StudyExports";
 import { ReportIssue } from "./ReportIssue";
@@ -608,6 +610,19 @@ export function Reader({
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const spec = extractText((child as any).props?.children).trim();
                     return <CheckpointQuiz spec={spec} />;
+                  }
+                  // A fenced ```drill block becomes an endlessly-regenerating
+                  // graded self-test on one core idea — the reader keeps
+                  // answering fresh instances until it is automatic.
+                  if (typeof cls === "string" && /language-drill\b/.test(cls)) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const spec = extractText((child as any).props?.children).trim();
+                    return <Drill spec={spec} />;
+                  }
+                  // A fenced ```numbersets block becomes the tappable nested
+                  // diagram of N in Z in Q in R in C.
+                  if (typeof cls === "string" && /language-numbersets\b/.test(cls)) {
+                    return <NumberSets />;
                   }
                   // A fenced ```supplydemand block becomes an interactive
                   // supply-and-demand diagram with shift sliders.

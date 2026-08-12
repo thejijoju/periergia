@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Rich } from "./RichText";
 
 // ── Inline checkpoint quiz ────────────────────────────────────────────────
 // A fenced ```checkpoint block in article markdown becomes a short set of
@@ -206,7 +207,9 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
         )}
       </div>
       <div className="px-4 sm:px-5 pb-4">
-        <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">{current.question}</p>
+        <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">
+          <Rich text={current.question} />
+        </p>
         <div className="space-y-2">
           {current.options.map((opt, i) => {
             const isCorrect = i === current.answerIndex;
@@ -234,14 +237,16 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
                   <span className="font-mono text-[11px] text-numeral shrink-0">
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="flex-1">{opt}</span>
+                  <span className="flex-1">
+                    <Rich text={opt} />
+                  </span>
                   {badge && <span className="shrink-0 font-sans text-[13px]">{badge}</span>}
                 </button>
                 {/* Why this particular wrong answer is wrong — shown the moment
                     it is picked, which is when the reader is asking. */}
                 {wasTried && current.wrongWhy[i] && (
                   <p className="mt-1.5 mb-1 pl-4 pr-2 font-sans text-[13px] leading-relaxed text-muted border-l-2 border-[var(--bad-border)]">
-                    {current.wrongWhy[i]}
+                    <Rich text={current.wrongWhy[i]!} />
                   </p>
                 )}
               </div>
@@ -256,7 +261,9 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
         )}
 
         {solved && current.why && (
-          <p className="mt-2.5 font-sans text-[13px] leading-relaxed text-muted">{current.why}</p>
+          <p className="mt-2.5 font-sans text-[13px] leading-relaxed text-muted">
+            <Rich text={current.why} />
+          </p>
         )}
 
         {solved && (
@@ -272,7 +279,7 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
           <div className="mt-2.5">
             {showHint ? (
               <p className="font-sans text-[13px] leading-relaxed text-muted">
-                <span className="font-semibold">Hint:</span> {current.hint}
+                <span className="font-semibold">Hint:</span> <Rich text={current.hint} />
               </p>
             ) : (
               <button
