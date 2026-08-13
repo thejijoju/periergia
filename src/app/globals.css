@@ -111,11 +111,16 @@ body {
      resolution and higher glare, so the extra point reads easier there. */
   font-size: 17.5px;
   line-height: 1.85;
-  /* Cap the reading measure at a comfortable ~66 characters. Long lines make the
-     eye lose its place on the return sweep; this is the single biggest readability
-     win, and it matters most for older readers and low-quality screens. The column
-     may sit in a wider frame — we just centre the narrower text within it. */
-  max-width: 58ch;
+  /* Cap the reading measure at 14cm — the width of a printed book's text block,
+     and about 53 characters at the desktop body size. Long lines make the eye
+     lose its place on the return sweep; this is the single biggest readability
+     win, and it matters most for older readers and low-quality screens. The
+     column may sit in a wider frame — we just centre the narrower text within it.
+     Stated in cm rather than ch so the measure is a fixed physical width that
+     does not drift when the font size or typeface changes; CSS maps 1cm to
+     96/2.54 px, so this is 529px. Being a max-width it is inert on phones,
+     where the viewport is narrower and the text stays fluid. */
+  max-width: 14cm;
   margin-inline: auto;
 }
 @media (min-width: 640px) {
