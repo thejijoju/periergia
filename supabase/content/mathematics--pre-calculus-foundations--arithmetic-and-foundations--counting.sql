@@ -161,6 +161,15 @@ Every row is $0$–$9$ again with a new digit in front. Switch the highlighting 
 
 That $+10$ is *straight down* is the whole of section 8 in one picture.
 
+**These are all whole numbers.** $47$ is one number, not a $4$ next to a $7$ — every cell in the grid is a single whole number, exactly as much a number as $7$ is. Two digits does not mean two numbers.
+
+| name | what it holds |
+|---|---|
+| counting numbers | $1, 2, 3, 4, \ldots$ |
+| whole numbers | $0, 1, 2, 3, 4, \ldots$ — the counting numbers with $0$ |
+
+The only difference is the $0$. Everything in this lesson works the same for both.
+
 ```drill
 count-on
 ```
