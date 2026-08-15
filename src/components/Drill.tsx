@@ -41,7 +41,8 @@ type DrillItem = {
   why: string;
 };
 
-type Generator = (rng: () => number) => DrillItem;
+type Level = 1 | 2 | 3;
+type Generator = (rng: () => number, lvl: Level) => DrillItem;
 
 // Same seeded PRNG as WorkedExample: identical seed, identical question.
 function mulberry32(a: number): () => number {
@@ -102,37 +103,38 @@ type Spec = {
   integer: boolean;
   rational: boolean;
   algebraic: boolean;
+  d: 1 | 2 | 3; // how much simplification it takes before it can be classified
   note: string;
 };
 
 const NUMBERS: Spec[] = [
-  { tex: "7", value: "7", natural: true, integer: true, rational: true, algebraic: true, note: "A counting number, so it lies in every system from $\\mathbb{N}$ outward. It is algebraic as a root of $x - 7$." },
-  { tex: "-4", value: "-4", natural: false, integer: true, rational: true, algebraic: true, note: "Negative, so not a counting number, but an integer and hence rational ($-4/1$) and algebraic (a root of $x + 4$)." },
-  { tex: "0", value: "0", natural: false, integer: true, rational: true, algebraic: true, note: "Zero is an integer. Whether it counts as a natural number is a convention; this lecture starts $\\mathbb{N}$ at $1$, so here it does not." },
-  { tex: "\\tfrac{3}{4}", value: "0.75", natural: false, integer: false, rational: true, algebraic: true, note: "A ratio of integers, so rational; algebraic as a root of $4x - 3$. Its decimal terminates because the denominator is a power of $2$." },
-  { tex: "-\\tfrac{7}{5}", value: "-1.4", natural: false, integer: false, rational: true, algebraic: true, note: "Rational and algebraic (a root of $5x + 7$), but not an integer." },
-  { tex: "0.125", value: "1/8", natural: false, integer: false, rational: true, algebraic: true, note: "A terminating decimal is always rational: $0.125 = 125/1000 = 1/8$." },
-  { tex: "0.\\overline{3}", value: "1/3", natural: false, integer: false, rational: true, algebraic: true, note: "A repeating decimal is rational. $x = 0.\\overline3$ gives $10x - x = 3$, so $x = 1/3$. Infinitely many digits does not mean irrational." },
-  { tex: "0.\\overline{9}", value: "1", natural: true, integer: true, rational: true, algebraic: true, note: "The trap. $0.\\overline9$ is not close to $1$, it *is* $1$: $10x - x = 9$ gives $x = 1$. So it is a natural number." },
-  { tex: "\\sqrt{2}", value: "1.41421...", natural: false, integer: false, rational: false, algebraic: true, note: "Irrational — proved by the parity argument — but algebraic, being a root of $x^2 - 2$." },
-  { tex: "\\sqrt{5}", value: "2.23606...", natural: false, integer: false, rational: false, algebraic: true, note: "$5$ is not a perfect square, so $\\sqrt5$ is irrational; it is algebraic as a root of $x^2 - 5$." },
-  { tex: "\\sqrt{9}", value: "3", natural: true, integer: true, rational: true, algebraic: true, note: "Simplify first: $\\sqrt9 = 3$. A square root is only irrational when the number under it is not a perfect square." },
-  { tex: "\\sqrt{16}", value: "4", natural: true, integer: true, rational: true, algebraic: true, note: "$\\sqrt{16} = 4$, a natural number. The radical sign is not by itself a mark of irrationality." },
-  { tex: "\\sqrt[3]{8}", value: "2", natural: true, integer: true, rational: true, algebraic: true, note: "$\\sqrt[3]{8} = 2$. Cube roots of perfect cubes are integers." },
-  { tex: "\\sqrt{2}\\cdot\\sqrt{2}", value: "2", natural: true, integer: true, rational: true, algebraic: true, note: "Two irrationals whose product is rational — which is exactly why the irrationals are closed under nothing. $\\sqrt2\\cdot\\sqrt2 = 2$." },
-  { tex: "\\sqrt{2} + (3 - \\sqrt{2})", value: "3", natural: true, integer: true, rational: true, algebraic: true, note: "Both terms are irrational and the $\\sqrt2$s cancel, leaving $3$. A sum of irrationals may be rational." },
-  { tex: "3 + \\sqrt{2}", value: "4.41421...", natural: false, integer: false, rational: false, algebraic: true, note: "Rational plus irrational is always irrational: if $3+\\sqrt2$ were rational, subtracting $3$ would make $\\sqrt2$ rational. It is algebraic, a root of $x^2 - 6x + 7$." },
-  { tex: "\\tfrac{\\sqrt{2}}{2}", value: "0.70710...", natural: false, integer: false, rational: false, algebraic: true, note: "A non-zero rational times an irrational is irrational. Algebraic, as a root of $2x^2 - 1$." },
-  { tex: "\\varphi = \\tfrac{1+\\sqrt{5}}{2}", value: "1.61803...", natural: false, integer: false, rational: false, algebraic: true, note: "The golden ratio is irrational but algebraic: it satisfies $x^2 - x - 1 = 0$ exactly." },
-  { tex: "\\pi", value: "3.14159...", natural: false, integer: false, rational: false, algebraic: false, note: "Irrational, and transcendental by Lindemann's theorem — it is a root of no polynomial with integer coefficients, which is why the circle cannot be squared." },
-  { tex: "e", value: "2.71828...", natural: false, integer: false, rational: false, algebraic: false, note: "Irrational and transcendental, proved by Hermite in 1873." },
-  { tex: "\\tfrac{\\pi}{2}", value: "1.57079...", natural: false, integer: false, rational: false, algebraic: false, note: "A non-zero rational multiple of a transcendental number is again transcendental, since scaling by a rational cannot produce a polynomial root." },
-  { tex: "2\\pi", value: "6.28318...", natural: false, integer: false, rational: false, algebraic: false, note: "Transcendental, for the same reason as $\\pi/2$: multiplying by a non-zero rational preserves both irrationality and transcendence." },
-  { tex: "\\tfrac{22}{7}", value: "3.142857...", natural: false, integer: false, rational: false, algebraic: true, note: "The trap. $22/7$ is a rational approximation to $\\pi$, not $\\pi$ — it is a ratio of integers, so it is rational and algebraic. Its decimal repeats with period $6$." },
-  { tex: "\\log_2 3", value: "1.58496...", natural: false, integer: false, rational: false, algebraic: false, note: "Irrational: $\\log_2 3 = p/q$ would give $2^p = 3^q$, even equal to odd. It is transcendental as well, by the Gelfond–Schneider theorem." },
-  { tex: "\\log_2 8", value: "3", natural: true, integer: true, rational: true, algebraic: true, note: "Simplify first: $2^3 = 8$, so $\\log_2 8 = 3$. Logarithms are only irrational when the base is not a whole power away." },
-  { tex: "-\\sqrt{4}", value: "-2", natural: false, integer: true, rational: true, algebraic: true, note: "$\\sqrt4 = 2$, so this is $-2$: an integer, not a natural number under the convention that $\\mathbb{N}$ starts at $1$." },
-  { tex: "\\sqrt{\\tfrac{1}{4}}", value: "1/2", natural: false, integer: false, rational: true, algebraic: true, note: "$\\sqrt{1/4} = 1/2$, a perfectly ordinary rational. The root of a perfect square stays rational even when it is fractional." },
+  { tex: "7", value: "7", natural: true, integer: true, rational: true, algebraic: true, d: 1, note: "A counting number, so it lies in every system from $\\mathbb{N}$ outward. It is algebraic as a root of $x - 7$." },
+  { tex: "-4", value: "-4", natural: false, integer: true, rational: true, algebraic: true, d: 1, note: "Negative, so not a counting number, but an integer and hence rational ($-4/1$) and algebraic (a root of $x + 4$)." },
+  { tex: "0", value: "0", natural: false, integer: true, rational: true, algebraic: true, d: 1, note: "Zero is an integer. Whether it counts as a natural number is a convention; this lecture starts $\\mathbb{N}$ at $1$, so here it does not." },
+  { tex: "\\tfrac{3}{4}", value: "0.75", natural: false, integer: false, rational: true, algebraic: true, d: 1, note: "A ratio of integers, so rational; algebraic as a root of $4x - 3$. Its decimal terminates because the denominator is a power of $2$." },
+  { tex: "-\\tfrac{7}{5}", value: "-1.4", natural: false, integer: false, rational: true, algebraic: true, d: 1, note: "Rational and algebraic (a root of $5x + 7$), but not an integer." },
+  { tex: "0.125", value: "1/8", natural: false, integer: false, rational: true, algebraic: true, d: 1, note: "A terminating decimal is always rational: $0.125 = 125/1000 = 1/8$." },
+  { tex: "0.\\overline{3}", value: "1/3", natural: false, integer: false, rational: true, algebraic: true, d: 2, note: "A repeating decimal is rational. $x = 0.\\overline3$ gives $10x - x = 3$, so $x = 1/3$. Infinitely many digits does not mean irrational." },
+  { tex: "0.\\overline{9}", value: "1", natural: true, integer: true, rational: true, algebraic: true, d: 3, note: "The trap. $0.\\overline9$ is not close to $1$, it *is* $1$: $10x - x = 9$ gives $x = 1$. So it is a natural number." },
+  { tex: "\\sqrt{2}", value: "1.41421...", natural: false, integer: false, rational: false, algebraic: true, d: 1, note: "Irrational — proved by the parity argument — but algebraic, being a root of $x^2 - 2$." },
+  { tex: "\\sqrt{5}", value: "2.23606...", natural: false, integer: false, rational: false, algebraic: true, d: 2, note: "$5$ is not a perfect square, so $\\sqrt5$ is irrational; it is algebraic as a root of $x^2 - 5$." },
+  { tex: "\\sqrt{9}", value: "3", natural: true, integer: true, rational: true, algebraic: true, d: 2, note: "Simplify first: $\\sqrt9 = 3$. A square root is only irrational when the number under it is not a perfect square." },
+  { tex: "\\sqrt{16}", value: "4", natural: true, integer: true, rational: true, algebraic: true, d: 2, note: "$\\sqrt{16} = 4$, a natural number. The radical sign is not by itself a mark of irrationality." },
+  { tex: "\\sqrt[3]{8}", value: "2", natural: true, integer: true, rational: true, algebraic: true, d: 2, note: "$\\sqrt[3]{8} = 2$. Cube roots of perfect cubes are integers." },
+  { tex: "\\sqrt{2}\\cdot\\sqrt{2}", value: "2", natural: true, integer: true, rational: true, algebraic: true, d: 3, note: "Two irrationals whose product is rational — which is exactly why the irrationals are closed under nothing. $\\sqrt2\\cdot\\sqrt2 = 2$." },
+  { tex: "\\sqrt{2} + (3 - \\sqrt{2})", value: "3", natural: true, integer: true, rational: true, algebraic: true, d: 3, note: "Both terms are irrational and the $\\sqrt2$s cancel, leaving $3$. A sum of irrationals may be rational." },
+  { tex: "3 + \\sqrt{2}", value: "4.41421...", natural: false, integer: false, rational: false, algebraic: true, d: 3, note: "Rational plus irrational is always irrational: if $3+\\sqrt2$ were rational, subtracting $3$ would make $\\sqrt2$ rational. It is algebraic, a root of $x^2 - 6x + 7$." },
+  { tex: "\\tfrac{\\sqrt{2}}{2}", value: "0.70710...", natural: false, integer: false, rational: false, algebraic: true, d: 3, note: "A non-zero rational times an irrational is irrational. Algebraic, as a root of $2x^2 - 1$." },
+  { tex: "\\varphi = \\tfrac{1+\\sqrt{5}}{2}", value: "1.61803...", natural: false, integer: false, rational: false, algebraic: true, d: 2, note: "The golden ratio is irrational but algebraic: it satisfies $x^2 - x - 1 = 0$ exactly." },
+  { tex: "\\pi", value: "3.14159...", natural: false, integer: false, rational: false, algebraic: false, d: 1, note: "Irrational, and transcendental by Lindemann's theorem — it is a root of no polynomial with integer coefficients, which is why the circle cannot be squared." },
+  { tex: "e", value: "2.71828...", natural: false, integer: false, rational: false, algebraic: false, d: 1, note: "Irrational and transcendental, proved by Hermite in 1873." },
+  { tex: "\\tfrac{\\pi}{2}", value: "1.57079...", natural: false, integer: false, rational: false, algebraic: false, d: 2, note: "A non-zero rational multiple of a transcendental number is again transcendental, since scaling by a rational cannot produce a polynomial root." },
+  { tex: "2\\pi", value: "6.28318...", natural: false, integer: false, rational: false, algebraic: false, d: 2, note: "Transcendental, for the same reason as $\\pi/2$: multiplying by a non-zero rational preserves both irrationality and transcendence." },
+  { tex: "\\tfrac{22}{7}", value: "3.142857...", natural: false, integer: false, rational: false, algebraic: true, d: 3, note: "The trap. $22/7$ is a rational approximation to $\\pi$, not $\\pi$ — it is a ratio of integers, so it is rational and algebraic. Its decimal repeats with period $6$." },
+  { tex: "\\log_2 3", value: "1.58496...", natural: false, integer: false, rational: false, algebraic: false, d: 3, note: "Irrational: $\\log_2 3 = p/q$ would give $2^p = 3^q$, even equal to odd. It is transcendental as well, by the Gelfond–Schneider theorem." },
+  { tex: "\\log_2 8", value: "3", natural: true, integer: true, rational: true, algebraic: true, d: 2, note: "Simplify first: $2^3 = 8$, so $\\log_2 8 = 3$. Logarithms are only irrational when the base is not a whole power away." },
+  { tex: "-\\sqrt{4}", value: "-2", natural: false, integer: true, rational: true, algebraic: true, d: 2, note: "$\\sqrt4 = 2$, so this is $-2$: an integer, not a natural number under the convention that $\\mathbb{N}$ starts at $1$." },
+  { tex: "\\sqrt{\\tfrac{1}{4}}", value: "1/2", natural: false, integer: false, rational: true, algebraic: true, d: 2, note: "$\\sqrt{1/4} = 1/2$, a perfectly ordinary rational. The root of a perfect square stays rational even when it is fractional." },
 ];
 
 // ── Closure facts ─────────────────────────────────────────────────────────
@@ -190,20 +192,20 @@ const CLOSURE: Record<string, Record<string, [boolean, string]>> = {
 
 // ── Which system first solves this equation ───────────────────────────────
 
-type EqSpec = { eq: string; sys: string; note: string };
+type EqSpec = { eq: string; sys: string; d: 1 | 2 | 3; note: string };
 const EQUATIONS: EqSpec[] = [
-  { eq: "x + 2 = 9", sys: "N", note: "$x = 7$, a counting number, so no enlargement is needed at all." },
-  { eq: "x + 6 = 4", sys: "Z", note: "$x = -2$. The equation $a + x = b$ has no natural solution when $a \\ge b$; repairing that is exactly what $\\mathbb{Z}$ is for." },
-  { eq: "x + 5 = 5", sys: "Z", note: "$x = 0$. Under the convention that $\\mathbb{N}$ starts at $1$, the natural numbers have no additive identity, so even this needs $\\mathbb{Z}$." },
-  { eq: "3x = 12", sys: "N", note: "$x = 4$, already a counting number — the division happens to come out whole." },
-  { eq: "6x = 3", sys: "Q", note: "$x = 1/2$. Integers have no multiplicative inverses, so a division that does not come out whole needs $\\mathbb{Q}$." },
-  { eq: "5x = -2", sys: "Q", note: "$x = -2/5$: negative, so beyond $\\mathbb{N}$, and fractional, so beyond $\\mathbb{Z}$." },
-  { eq: "x^2 = 4", sys: "N", note: "$x = 2$ is a solution and is a counting number. (The equation also has the solution $-2$, but the question asks where a solution first exists.)" },
-  { eq: "x^2 = 2", sys: "R", note: "No rational squares to $2$ — that is the parity proof — so this equation is what forces the reals." },
-  { eq: "x^2 = 3", sys: "R", note: "$3$ is not a perfect square, so $\\sqrt3$ is irrational and only $\\mathbb{R}$ contains a solution." },
-  { eq: "x^2 = -1", sys: "C", note: "No real squares to a negative number, so this is the equation that forces $\\mathbb{C}$." },
-  { eq: "x^2 + 4 = 0", sys: "C", note: "$x^2 = -4$ has no real solution; in $\\mathbb{C}$ the solutions are $\\pm 2i$." },
-  { eq: "2x = 7", sys: "Q", note: "$x = 7/2$, fractional but perfectly rational." },
+  { eq: "x + 2 = 9", sys: "N", d: 1, note: "$x = 7$, a counting number, so no enlargement is needed at all." },
+  { eq: "x + 6 = 4", sys: "Z", d: 1, note: "$x = -2$. The equation $a + x = b$ has no natural solution when $a \\ge b$; repairing that is exactly what $\\mathbb{Z}$ is for." },
+  { eq: "x + 5 = 5", sys: "Z", d: 3, note: "$x = 0$. Under the convention that $\\mathbb{N}$ starts at $1$, the natural numbers have no additive identity, so even this needs $\\mathbb{Z}$." },
+  { eq: "3x = 12", sys: "N", d: 1, note: "$x = 4$, already a counting number — the division happens to come out whole." },
+  { eq: "6x = 3", sys: "Q", d: 1, note: "$x = 1/2$. Integers have no multiplicative inverses, so a division that does not come out whole needs $\\mathbb{Q}$." },
+  { eq: "5x = -2", sys: "Q", d: 2, note: "$x = -2/5$: negative, so beyond $\\mathbb{N}$, and fractional, so beyond $\\mathbb{Z}$." },
+  { eq: "x^2 = 4", sys: "N", d: 3, note: "$x = 2$ is a solution and is a counting number. (The equation also has the solution $-2$, but the question asks where a solution first exists.)" },
+  { eq: "x^2 = 2", sys: "R", d: 2, note: "No rational squares to $2$ — that is the parity proof — so this equation is what forces the reals." },
+  { eq: "x^2 = 3", sys: "R", d: 2, note: "$3$ is not a perfect square, so $\\sqrt3$ is irrational and only $\\mathbb{R}$ contains a solution." },
+  { eq: "x^2 = -1", sys: "C", d: 2, note: "No real squares to a negative number, so this is the equation that forces $\\mathbb{C}$." },
+  { eq: "x^2 + 4 = 0", sys: "C", d: 3, note: "$x^2 = -4$ has no real solution; in $\\mathbb{C}$ the solutions are $\\pm 2i$." },
+  { eq: "2x = 7", sys: "Q", d: 2, note: "$x = 7/2$, fractional but perfectly rational." },
 ];
 
 const SYS_LABEL: Record<string, string> = {
@@ -217,10 +219,278 @@ const SYS_ORDER = ["N", "Z", "Q", "R", "C"];
 
 // ── Generators ────────────────────────────────────────────────────────────
 
+// ── Counting ──────────────────────────────────────────────────────────────
+// The very first lesson's drills. Deliberately concrete: a row of marks to
+// count, a next-number, a single-digit sum. They exist so that a reader who is
+// genuinely starting at the beginning has something to practise, and so does a
+// reader who simply wants the small facts to become instant.
+
+const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+const TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+// English name of a whole number below 1000.
+function words(n: number): string {
+  if (n < 10) return ONES[n];
+  if (n < 20) return TEENS[n - 10];
+  if (n < 100) {
+    const t = Math.floor(n / 10);
+    const r = n % 10;
+    return r === 0 ? TENS[t] : `${TENS[t]}-${ONES[r]}`;
+  }
+  const h = Math.floor(n / 100);
+  const r = n % 100;
+  return r === 0 ? `${ONES[h]} hundred` : `${ONES[h]} hundred and ${words(r)}`;
+}
+
+const PLACE_NAMES = ["ones", "tens", "hundreds", "thousands"];
+
 const GENERATORS: Record<string, Generator> = {
-  // Which sets does this number belong to? The central drill of the lecture.
-  "number-classify": (rng) => {
-    const s = pick(rng, NUMBERS);
+  // ── Counting ────────────────────────────────────────────────────────────
+
+  // Count a row of marks. The answer is a number; the lesson is that the
+  // answer does not depend on the order you count them in.
+  "count-objects": (rng, lvl) => {
+    const [lo, hi] = lvl === 1 ? [4, 10] : lvl === 2 ? [9, 20] : [18, 40];
+    const n = Math.floor(rng() * (hi - lo + 1)) + lo;
+    const glyph = pick(rng, ["●", "▲", "★", "◆", "■"]);
+    const row = Array.from({ length: n }, () => glyph).join(" ");
+    const fives = Math.floor(n / 5);
+    const rest = n % 5;
+    return {
+      title: "How many?",
+      prompt: `Count them. How many marks are there?\n\n${row}`,
+      mode: "text",
+      accept: [String(n), words(n)],
+      answerLabel: String(n),
+      placeholder: "a number",
+      hint: "Touch each mark once and say the next counting word. Or group them in fives and count the groups.",
+      why: `There are $${n}$ — that is ${words(n)}. Counting in fives is quicker and far less error-prone: ${
+        fives > 0
+          ? `${fives} group${fives === 1 ? "" : "s"} of five is $${fives * 5}$${rest ? `, and $${rest}$ more makes $${n}$` : ""}`
+          : "here there is not even one full group of five, so count them singly"
+      }. However you group them, and in whatever order you count them, the answer is the same — which is the first real theorem about counting.`,
+    };
+  },
+
+  // The successor and predecessor: every number has a next one.
+  "count-on": (rng, lvl) => {
+    const pool =
+      lvl === 1
+        ? [3, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 19, 20]
+        : lvl === 2
+          ? [9, 19, 20, 29, 30, 39, 49, 50, 59, 69, 70, 79, 89, 90, 99, 100, 24, 36, 48, 55, 62, 74, 81, 96]
+          : [99, 100, 109, 110, 199, 200, 299, 300, 399, 400, 500, 599, 700, 799, 800, 899, 900, 999, 1000, 1099, 1200, 1999, 2000];
+    const n = pick(rng, pool);
+    const after = rng() < 0.5;
+    const ans = after ? n + 1 : n - 1;
+    const roll = (after && n % 10 === 9) || (!after && n % 10 === 0);
+    return {
+      title: after ? "What comes next?" : "What came before?",
+      prompt: after
+        ? `Counting upward, what number comes immediately after $${n}$?`
+        : `Counting downward, what number comes immediately before $${n}$?`,
+      mode: "text",
+      accept: [String(ans), words(ans)],
+      answerLabel: String(ans),
+      placeholder: "a number",
+      hint: after
+        ? "Add one. Watch what happens when the last digit is a 9 — it rolls over to 0 and the digit to its left goes up by one."
+        : "Take one away. Watch what happens when the last digit is a 0 — you must borrow from the digit to its left.",
+      why: `$${n} ${after ? "+" : "-"} 1 = ${ans}$${
+        roll
+          ? after
+            ? " — a rollover: the ones digit was already at its largest, so it returns to $0$ and the digit to its left climbs by one"
+            : " — a rollover: the ones digit had nothing left to give, so it drops to $9$ and the digit to its left falls by one"
+          : ""
+      }. Every counting number has exactly one number immediately after it, which is why counting never stops: there is no largest number.`,
+    };
+  },
+
+  // Single-digit addition, framed as counting on. Includes 1 + 1.
+  "add-count-on": (rng, lvl) => {
+    let a: number, b: number;
+    if (lvl === 1) {
+      // sums that stay within ten — the facts to know first
+      a = Math.floor(rng() * 8) + 1;
+      b = Math.floor(rng() * (10 - a)) + 1;
+    } else if (lvl === 2) {
+      a = Math.floor(rng() * 9) + 1;
+      b = Math.floor(rng() * 9) + 1;
+    } else {
+      a = Math.floor(rng() * 80) + 11;
+      b = Math.floor(rng() * 9) + 1;
+    }
+    const s = a + b;
+    const chain = Array.from({ length: Math.min(b, 9) }, (_, i) => a + i + 1).join(", ");
+    return {
+      title: "Counting on",
+      prompt: `What is $${a} + ${b}$?`,
+      mode: "text",
+      accept: [String(s), words(s)],
+      answerLabel: String(s),
+      placeholder: "a number",
+      hint: `Start at $${a}$ and count on $${b}$ more, one at a time. If the ones cross a ten, split the second number to land on the ten first.`,
+      why: `Start at $${a}$ and count on $${b}$: ${chain}. So $${a} + ${b} = ${s}$.${
+        a !== b
+          ? ` And because addition does not care about order, $${b} + ${a} = ${s}$ as well — which nearly halves the number of facts there are to learn.`
+          : ` This one is a double: $${a} + ${a} = ${s}$.`
+      }${s === 10 ? " It is also one of the pairs that make ten, the facts worth knowing best of all." : ""}${
+        Math.floor(a / 10) !== Math.floor(s / 10) && a > 10
+          ? ` Crossing the ten is easier in two steps: $${a} + ${10 - (a % 10)} = ${a + 10 - (a % 10)}$, then $+ ${b - (10 - (a % 10))}$ makes $${s}$.`
+          : ""
+      }`,
+    };
+  },
+
+  // Subtraction as counting back.
+  "sub-count-back": (rng, lvl) => {
+    let a: number, b: number;
+    if (lvl === 1) {
+      a = Math.floor(rng() * 9) + 2; // 2..10
+      b = Math.floor(rng() * a) + 1;
+    } else if (lvl === 2) {
+      b = Math.floor(rng() * 9) + 1;
+      a = b + Math.floor(rng() * 10); // difference 0..9, minuend up to 18
+    } else {
+      b = Math.floor(rng() * 9) + 1;
+      a = Math.floor(rng() * 60) + 21;
+    }
+    const d = a - b;
+    const chain = Array.from({ length: Math.min(b, 9) }, (_, i) => a - i - 1).join(", ");
+    return {
+      title: "Counting back",
+      prompt: `What is $${a} - ${b}$?`,
+      mode: "text",
+      accept: [String(d), words(d)],
+      answerLabel: String(d),
+      placeholder: "a number",
+      hint: `Start at $${a}$ and count back $${b}$ steps. Or ask instead: what must be added to $${b}$ to reach $${a}$?`,
+      why: `Start at $${a}$ and count back $${b}$: ${chain}. So $${a} - ${b} = ${d}$. Check it forwards — $${d} + ${b} = ${a}$ — which is exactly what subtraction means: the number you must add to $${b}$ to reach $${a}$.`,
+    };
+  },
+
+  // Which is bigger? Order comes from counting: whichever you reach later is larger.
+  "compare-numbers": (rng, lvl) => {
+    const digits = lvl === 1 ? 2 : lvl === 2 ? 3 : 4;
+    const lo = Math.pow(10, digits - 1);
+    const hi = Math.pow(10, digits) - 1;
+    const a = Math.floor(rng() * (hi - lo + 1)) + lo;
+    // Harder levels are weighted towards near-ties, where the difference sits
+    // in a low place and the eye is tempted to compare from the wrong end.
+    const near = rng() < (lvl === 1 ? 0.3 : lvl === 2 ? 0.55 : 0.8);
+    const b = near
+      ? Math.max(lo, Math.min(hi, a + (Math.floor(rng() * 19) - 9)))
+      : Math.floor(rng() * (hi - lo + 1)) + lo;
+    const rel = a > b ? ">" : a < b ? "<" : "=";
+    const sa = String(a);
+    const sb = String(b);
+    let firstDiff = -1;
+    for (let i = 0; i < sa.length; i++)
+      if (sa[i] !== sb[i]) {
+        firstDiff = i;
+        break;
+      }
+    return {
+      title: "Which is larger?",
+      prompt: `Fill in the symbol: $${a} \\;\\square\\; ${b}$`,
+      mode: "choice",
+      options: [
+        { label: "$<$  (less than)", correct: rel === "<", why: rel === "<" ? "" : `$${a}$ is not less than $${b}$.` },
+        { label: "$=$  (equal to)", correct: rel === "=", why: rel === "=" ? "" : "The two numbers are different." },
+        { label: "$>$  (greater than)", correct: rel === ">", why: rel === ">" ? "" : `$${a}$ is not greater than $${b}$.` },
+      ],
+      hint: "Both numbers have the same number of digits, so compare them place by place from the left. The first place where they differ decides it.",
+      why:
+        rel === "="
+          ? `They are the same number, so $${a} = ${b}$.`
+          : `$${a} ${rel} ${b}$. Compare from the left: the digits agree until the ${PLACE_NAMES[sa.length - 1 - firstDiff]} place, where $${sa[firstDiff]}$ meets $${sb[firstDiff]}$ — and that settles it, because a difference in a higher place outweighs everything below it put together. Underneath, the meaning is about counting: the larger number is the one you reach later when counting upward.`,
+    };
+  },
+
+  // Skip counting — the bridge from counting to multiplication.
+  "skip-count": (rng, lvl) => {
+    const step = lvl === 1 ? pick(rng, [2, 5, 10]) : lvl === 2 ? pick(rng, [3, 4, 6]) : pick(rng, [7, 8, 9, 11, 12, 25]);
+    const k = Math.floor(rng() * 4) + 1;
+    const start = step * k;
+    const shown = [start, start + step, start + 2 * step, start + 3 * step];
+    const ans = start + 4 * step;
+    return {
+      title: "Skip counting",
+      prompt: `Continue the pattern. What comes next? $${shown.join(",\\ ")},\\ \\ldots$`,
+      mode: "text",
+      accept: [String(ans), words(ans)],
+      answerLabel: String(ans),
+      placeholder: "a number",
+      hint: "Work out the gap between one number and the next, then add that gap once more.",
+      why: `The numbers go up by $${step}$ each time, so the next is $${shown[3]} + ${step} = ${ans}$. Counting in ${step}s is the same as multiplying by $${step}$: this list is $${step}\\times${k}$, $${step}\\times${k + 1}$, $${step}\\times${k + 2}$, $${step}\\times${k + 3}$, and the answer is $${step}\\times${k + 4} = ${ans}$. Multiplication is repeated counting, which is precisely why it is quicker than counting.`,
+    };
+  },
+
+  // Place value: what a digit is worth depends on where it stands.
+  "place-value": (rng, lvl) => {
+    const digits = lvl === 1 ? 3 : lvl === 2 ? 4 : 5;
+    const lo = Math.pow(10, digits - 1);
+    const n = Math.floor(rng() * (Math.pow(10, digits) - lo)) + lo;
+    const s = String(n);
+    const idx = Math.floor(rng() * digits);
+    const placeFromRight = digits - 1 - idx;
+    const digit = Number(s[idx]);
+    const worth = digit * Math.pow(10, placeFromRight);
+    const askWorth = rng() < 0.5;
+    const place = PLACE_NAMES[placeFromRight];
+    return {
+      title: "Place value",
+      prompt: askWorth
+        ? `In the number $${n}$, what is the digit in the ${place} place actually worth?`
+        : `In the number $${n}$, which digit stands in the ${place} place?`,
+      mode: "text",
+      accept: askWorth ? [String(worth), words(worth)] : [String(digit), words(digit)],
+      answerLabel: String(askWorth ? worth : digit),
+      placeholder: "a number",
+      hint: "Read the places from the right: ones, tens, hundreds, thousands, ten-thousands. A digit is worth itself times the value of its place.",
+      why: `$${n}$ breaks up as ${s
+        .split("")
+        .map((d, i) => `$${d} \\times ${Math.pow(10, digits - 1 - i)}$`)
+        .join(" + ")} $= ${n}$. The digit in the ${place} place is $${digit}$, and it is worth $${digit} \\times ${Math.pow(10, placeFromRight)} = ${worth}$. That is what place value means, and it is why our numerals beat tally marks and Roman numerals: ten symbols say everything, and where a symbol stands tells you its size.`,
+    };
+  },
+
+  // Numerals and number words, in both directions.
+  "number-word": (rng, lvl) => {
+    const pool =
+      lvl === 1
+        ? [7, 12, 15, 19, 20, 30, 40, 42, 55, 60, 68, 70, 90, 99]
+        : lvl === 2
+          ? [100, 101, 110, 115, 200, 250, 304, 342, 400, 415, 500, 560, 607, 700, 713, 800, 890, 900, 999]
+          : [305, 406, 507, 608, 709, 801, 902, 1000, 1006, 1040, 1305, 2018, 4090, 7003, 9909];
+    const n = pick(rng, pool);
+    const toWords = rng() < 0.5;
+    const w = words(n);
+    return {
+      title: "Numerals and names",
+      prompt: toWords ? `Write $${n}$ in words.` : `Write "${w}" as a numeral.`,
+      mode: "text",
+      accept: toWords ? [w, w.replace(/ and /g, " "), w.replace(/-/g, " "), w.replace(/-/g, " ").replace(/ and /g, " ")] : [String(n)],
+      answerLabel: toWords ? w : String(n),
+      placeholder: toWords ? "in words" : "a number",
+      hint: toWords
+        ? "Say the thousands, then the hundreds, then the tens, then the ones."
+        : "Thousands first, then hundreds, then tens, then ones — and remember that a part you never say aloud still needs a zero holding its place.",
+      why: `$${n}$ is "${w}". ${
+        String(n).includes("0")
+          ? `Note the zero${(String(n).match(/0/g) || []).length > 1 ? "s" : ""}: nothing is said aloud for ${(String(n).match(/0/g) || []).length > 1 ? "them" : "it"}, but the numeral must still show ${(String(n).match(/0/g) || []).length > 1 ? "them" : "a $0$"}, because the zero is what holds the other digits in their places.`
+          : "The words follow the places exactly — thousands, hundreds, tens, ones — which is the whole design of the system."
+      }`,
+    };
+  },
+
+  // ── Number systems ──────────────────────────────────────────────────────
+
+  // Which sets does this number belong to? The core drill of lecture two.
+  "number-classify": (rng, lvl) => {
+    const pool = NUMBERS.filter((x) => (lvl === 1 ? x.d === 1 : lvl === 2 ? x.d <= 2 : true));
+    const s = pick(rng, pool);
     const opts: Option[] = [
       {
         label: "A natural number ($\\mathbb{N}$)",
@@ -237,9 +507,7 @@ const GENERATORS: Record<string, Generator> = {
       {
         label: "A rational number ($\\mathbb{Q}$)",
         correct: s.rational,
-        why: s.rational
-          ? "It can be written as a ratio of integers."
-          : "No ratio of integers equals it.",
+        why: s.rational ? "It can be written as a ratio of integers." : "No ratio of integers equals it.",
       },
       {
         label: "Irrational",
@@ -270,8 +538,9 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // Is this system closed under this operation?
-  "closure-check": (rng) => {
-    const sys = pick(rng, SYSTEMS);
+  "closure-check": (rng, lvl) => {
+    const keys = lvl === 1 ? ["N", "Z"] : lvl === 2 ? ["N", "Z", "Q", "R"] : ["N", "Z", "Q", "R", "I"];
+    const sys = SYSTEMS.find((s) => s.key === pick(rng, keys))!;
     const op = pick(rng, OPS);
     const [closed, note] = CLOSURE[sys.key][op.key];
     return {
@@ -296,8 +565,9 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // The smallest system in which an equation becomes solvable.
-  "smallest-system": (rng) => {
-    const e = pick(rng, EQUATIONS);
+  "smallest-system": (rng, lvl) => {
+    const pool = EQUATIONS.filter((e) => (lvl === 1 ? e.d === 1 : lvl === 2 ? e.d <= 2 : true));
+    const e = pick(rng, pool);
     const opts: Option[] = SYS_ORDER.map((k) => ({
       label: SYS_LABEL[k],
       correct: k === e.sys,
@@ -317,17 +587,19 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // Greatest common divisor by the Euclidean algorithm.
-  "gcd-euclid": (rng) => {
-    const g = pick(rng, [3, 6, 7, 9, 11, 12, 13, 14, 15, 17, 21]);
-    let m = Math.floor(rng() * 40) + 11;
-    let n = Math.floor(rng() * 40) + 11;
-    while (gcd(m, n) !== 1) {
-      m = Math.floor(rng() * 40) + 11;
-      n = Math.floor(rng() * 40) + 11;
+  "gcd-euclid": (rng, lvl) => {
+    const g = lvl === 1 ? pick(rng, [2, 3, 4, 5, 6]) : lvl === 2 ? pick(rng, [6, 7, 9, 11, 12, 13, 14, 15]) : pick(rng, [17, 19, 21, 23, 26, 33, 35]);
+    const span = lvl === 1 ? 8 : lvl === 2 ? 30 : 90;
+    const base = lvl === 1 ? 2 : 11;
+    let m = Math.floor(rng() * span) + base;
+    let n = Math.floor(rng() * span) + base;
+    let guard = 0;
+    while ((gcd(m, n) !== 1 || m === n) && guard++ < 200) {
+      m = Math.floor(rng() * span) + base;
+      n = Math.floor(rng() * span) + base;
     }
     const a = g * m;
     const b = g * n;
-    // Record the algorithm's actual lines so the explanation is the real run.
     const lines: string[] = [];
     let x = Math.max(a, b);
     let y = Math.min(a, b);
@@ -350,19 +622,46 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // Count the divisors from the prime factorisation.
-  "divisor-count": (rng) => {
-    const base = pick(rng, [
-      [2, 3, 3, 2],
-      [2, 4, 3, 1],
-      [2, 2, 5, 2],
-      [3, 2, 5, 1],
-      [2, 3, 7, 1],
-      [2, 2, 3, 3],
-      [3, 3, 2, 2],
-      [5, 2, 2, 3],
-      [2, 5, 3, 2],
-      [7, 2, 2, 2],
-    ]);
+  "divisor-count": (rng, lvl) => {
+    if (lvl === 3) {
+      const [p, e1, q, e2, r, e3] = pick(rng, [
+        [2, 2, 3, 1, 5, 1],
+        [2, 3, 3, 2, 5, 1],
+        [2, 1, 3, 1, 7, 2],
+        [2, 2, 5, 1, 7, 1],
+        [3, 2, 5, 2, 2, 1],
+      ]);
+      const n = Math.pow(p, e1) * Math.pow(q, e2) * Math.pow(r, e3);
+      const count = (e1 + 1) * (e2 + 1) * (e3 + 1);
+      return {
+        title: "How many divisors?",
+        prompt: `The number $${n}$ factors as $${p}^{${e1}} \\cdot ${q}^{${e2}} \\cdot ${r}^{${e3}}$. How many positive divisors does it have?`,
+        mode: "text",
+        accept: [String(count)],
+        answerLabel: String(count),
+        placeholder: "a whole number",
+        hint: "One independent choice of exponent per prime. Multiply the numbers of choices.",
+        why: `The exponents may be chosen independently: $${e1 + 1}$ ways for $${p}$, $${e2 + 1}$ for $${q}$, $${e3 + 1}$ for $${r}$. So the count is $${e1 + 1} \\times ${e2 + 1} \\times ${e3 + 1} = ${count}$. Unique factorisation is what makes this a multiplication rather than a search.`,
+      };
+    }
+    const base =
+      lvl === 1
+        ? pick(rng, [
+            [2, 2, 3, 1],
+            [2, 1, 3, 1],
+            [2, 3, 3, 1],
+            [3, 1, 5, 1],
+            [2, 2, 5, 1],
+          ])
+        : pick(rng, [
+            [2, 3, 3, 2],
+            [2, 4, 3, 1],
+            [2, 2, 5, 2],
+            [3, 2, 5, 1],
+            [2, 3, 7, 1],
+            [2, 5, 3, 2],
+            [7, 2, 2, 2],
+          ]);
     const [p, e1, q, e2] = base;
     const n = Math.pow(p, e1) * Math.pow(q, e2);
     const count = (e1 + 1) * (e2 + 1);
@@ -379,8 +678,14 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // Does 1/n terminate or repeat, and why?
-  "decimal-type": (rng) => {
-    const n = pick(rng, [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 20, 22, 25, 32, 40, 50, 64]);
+  "decimal-type": (rng, lvl) => {
+    const pool =
+      lvl === 1
+        ? [2, 3, 4, 5, 6, 8, 9, 10, 20, 25]
+        : lvl === 2
+          ? [7, 11, 12, 13, 15, 16, 22, 32, 40, 50, 64]
+          : [14, 17, 24, 28, 35, 36, 44, 48, 55, 80, 96, 125, 128, 160, 200, 250];
+    const n = pick(rng, pool);
     const f = factorise(n);
     const only25 = f.every(([p]) => p === 2 || p === 5);
     return {
@@ -391,7 +696,9 @@ const GENERATORS: Record<string, Generator> = {
         {
           label: "It terminates.",
           correct: only25,
-          why: only25 ? "" : "It cannot: the denominator has a prime factor other than $2$ and $5$, and long division by such a denominator never reaches a remainder of zero.",
+          why: only25
+            ? ""
+            : "It cannot: the denominator has a prime factor other than $2$ and $5$, and long division by such a denominator never reaches a remainder of zero.",
         },
         {
           label: "It repeats forever.",
@@ -409,14 +716,14 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // Turn a repeating decimal back into a fraction.
-  "repeating-fraction": (rng) => {
-    const preLen = Math.floor(rng() * 2); // 0 or 1 non-repeating digits
+  "repeating-fraction": (rng, lvl) => {
+    const preLen = lvl === 1 ? 0 : lvl === 2 ? Math.floor(rng() * 2) : 1;
+    const blockLen = lvl === 1 ? 1 : lvl === 2 ? Math.floor(rng() * 2) + 1 : 2;
     const pre = preLen ? String(Math.floor(rng() * 9) + 1) : "";
-    const blockLen = Math.floor(rng() * 2) + 1; // 1 or 2 repeating digits
     let block = "";
     for (let i = 0; i < blockLen; i++) block += String(Math.floor(rng() * 9) + 1);
-    const shifted = Number(pre + block); // 10^(pre+block) * x, integer part
-    const kept = preLen ? Number(pre) : 0; // 10^pre * x, integer part
+    const shifted = Number(pre + block);
+    const kept = preLen ? Number(pre) : 0;
     const denom = (Math.pow(10, blockLen) - 1) * Math.pow(10, preLen);
     const numer = shifted - kept;
     const g = gcd(numer, denom);
@@ -434,10 +741,10 @@ const GENERATORS: Record<string, Generator> = {
   },
 
   // |x - a| < d, read as a distance, is an interval.
-  "abs-interval": (rng) => {
-    const a = Math.floor(rng() * 15) - 5;
-    const d = Math.floor(rng() * 5) + 1;
-    const strict = rng() < 0.5;
+  "abs-interval": (rng, lvl) => {
+    const a = lvl === 1 ? Math.floor(rng() * 9) + 1 : lvl === 2 ? Math.floor(rng() * 15) - 4 : Math.floor(rng() * 21) - 10;
+    const d = lvl === 3 ? Math.floor(rng() * 8) + 1 : Math.floor(rng() * 5) + 1;
+    const strict = lvl === 1 ? true : rng() < 0.5;
     const lo = a - d;
     const hi = a + d;
     const inner = strict ? "<" : "\\le";
@@ -453,15 +760,30 @@ const GENERATORS: Record<string, Generator> = {
       mode: "choice",
       options: shuffle(rng, [
         { label: right, correct: true },
-        { label: wrongA, correct: false, why: strict ? "The inequality is strict, so the endpoints themselves are excluded — that calls for round brackets." : "The inequality allows equality, so the endpoints are included — that calls for square brackets." },
-        { label: wrongB, correct: false, why: `This treats $${a}$ as the left end rather than the centre. $|x ${sign}|$ is the distance from $x$ to $${a}$, so $${a}$ sits in the middle.` },
-        { label: wrongC, correct: false, why: `The radius is $${d}$, not $${2 * d}$: the interval runs from $${a} - ${d}$ to $${a} + ${d}$, a total width of $${2 * d}$.` },
+        {
+          label: wrongA,
+          correct: false,
+          why: strict
+            ? "The inequality is strict, so the endpoints themselves are excluded — that calls for round brackets."
+            : "The inequality allows equality, so the endpoints are included — that calls for square brackets.",
+        },
+        {
+          label: wrongB,
+          correct: false,
+          why: `This treats $${a}$ as the left end rather than the centre. $|x ${sign}|$ is the distance from $x$ to $${a}$, so $${a}$ sits in the middle.`,
+        },
+        {
+          label: wrongC,
+          correct: false,
+          why: `The radius is $${d}$, not $${2 * d}$: the interval runs from $${a} - ${d}$ to $${a} + ${d}$, a total width of $${2 * d}$.`,
+        },
       ]),
       hint: `Read $|x ${sign}|$ as "the distance from $x$ to $${a}$". Which points are within $${d}$ of $${a}$?`,
       why: `$|x ${sign}| ${inner} ${d}$ says $x$ is ${strict ? "strictly within" : "within"} $${d}$ of $${a}$, which is $${lo} ${inner} x ${inner} ${hi}$ — the interval $${open[0]}${lo}, ${hi}${open[1]}$, centred on $${a}$ with radius $${d}$. Reading absolute value as distance rather than as a case split is what makes the $\\varepsilon$–$\\delta$ definition of a limit readable later.`,
     };
   },
 };
+
 
 // ── Component ─────────────────────────────────────────────────────────────
 
@@ -472,6 +794,10 @@ export function Drill({ spec }: { spec: string }) {
   const gen = GENERATORS[kind];
 
   const [seed, setSeed] = useState(0);
+  // Difficulty is the reader's to set. Every generator takes it and varies the
+  // numbers, the pool it samples from, or both — a level is a different band of
+  // question, not the same question with a harder skin.
+  const [lvl, setLvl] = useState<Level>(1);
   const [chosen, setChosen] = useState<Set<number>>(new Set());
   const [typed, setTyped] = useState("");
   const [graded, setGraded] = useState(false);
@@ -480,7 +806,7 @@ export function Drill({ spec }: { spec: string }) {
   const [streak, setStreak] = useState(0);
   const [best, setBest] = useState(0);
 
-  const item = useMemo(() => (gen ? gen(mulberry32(seed + 1)) : null), [gen, seed]);
+  const item = useMemo(() => (gen ? gen(mulberry32(seed + 1), lvl) : null), [gen, seed, lvl]);
   if (!item) return null;
 
   const options = item.options ?? [];
@@ -515,6 +841,17 @@ export function Drill({ spec }: { spec: string }) {
     } else {
       setStreak(0);
     }
+  };
+
+  const setLevel = (l: Level) => {
+    if (l === lvl) return;
+    setLvl(l);
+    setSeed((s) => s + 1);
+    setChosen(new Set());
+    setTyped("");
+    setGraded(false);
+    setShowHint(false);
+    setStreak(0);
   };
 
   const next = () => {
@@ -555,6 +892,25 @@ export function Drill({ spec }: { spec: string }) {
             {best > 0 && ` · best ${best}`}
           </span>
         )}
+      </div>
+      <div className="px-4 sm:px-5 pb-2.5 flex items-center gap-1.5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper mr-0.5">
+          level
+        </span>
+        {([1, 2, 3] as Level[]).map((l) => (
+          <button
+            key={l}
+            onClick={() => setLevel(l)}
+            aria-pressed={l === lvl}
+            className={`font-sans text-[12px] px-2.5 py-1 rounded-lg border transition-colors ${
+              l === lvl
+                ? "border-maroon text-maroon font-medium"
+                : "border-line text-muted hover:border-ink hover:text-ink"
+            }`}
+          >
+            {l === 1 ? "gentle" : l === 2 ? "standard" : "hard"}
+          </button>
+        ))}
       </div>
       <div className="px-4 sm:px-5 pb-4">
         <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">
@@ -680,6 +1036,18 @@ export function Drill({ spec }: { spec: string }) {
               </button>
             )}
           </div>
+        )}
+
+        {graded && isRight && streak >= 5 && lvl < 3 && (
+          <p className="mt-2 font-sans text-[13px] leading-relaxed text-muted">
+            {streak} in a row at this level — that one is in place.{" "}
+            <button
+              onClick={() => setLevel((lvl + 1) as Level)}
+              className="font-medium text-maroon hover:underline underline-offset-2"
+            >
+              Step up to {lvl === 1 ? "standard" : "hard"} →
+            </button>
+          </p>
         )}
 
         <div className="mt-3 flex flex-wrap items-center gap-3">

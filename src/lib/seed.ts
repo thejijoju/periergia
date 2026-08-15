@@ -40,6 +40,11 @@ export const SUBJECTS: SubjectSpec[] = [
               "slug": "arithmetic-and-foundations",
               "children": [
                 {
+                  "title": "Counting",
+                  "slug": "counting",
+                  "summary": "The very first lesson: what a number is, counting a collection, the successor, place value in base ten, and addition and subtraction as counting on and counting back."
+                },
+                {
                   "title": "Number Systems",
                   "slug": "number-systems",
                   "summary": "Integers, rationals, reals and irrationals, and what each is closed under."
