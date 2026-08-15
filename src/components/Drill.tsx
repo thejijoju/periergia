@@ -485,6 +485,63 @@ const GENERATORS: Record<string, Generator> = {
     };
   },
 
+  // Pairs that make ten (or a hundred, or a thousand) — the facts every later
+  // mental method leans on.
+  "make-ten": (rng, lvl) => {
+    const target = lvl === 1 ? 10 : lvl === 2 ? 100 : 1000;
+    const a =
+      lvl === 1
+        ? Math.floor(rng() * 9) + 1
+        : lvl === 2
+          ? (Math.floor(rng() * 9) + 1) * (rng() < 0.5 ? 10 : 1) + (rng() < 0.5 ? Math.floor(rng() * 9) + 1 : 0)
+          : Math.floor(rng() * 989) + 11;
+    const b = target - a;
+    return {
+      title: `Pairs that make ${target}`,
+      prompt: `What must be added to $${a}$ to make $${target}$?`,
+      mode: "text",
+      accept: [String(b), words(b < 1000 ? b : 0)].filter((s) => s !== "zero" || b === 0),
+      answerLabel: String(b),
+      placeholder: "a number",
+      hint: `Count on from $${a}$ to $${target}$ — or go up to the next round number first, then the rest of the way.`,
+      why: `$${a} + ${b} = ${target}$, so the missing number is $${b}$. These are the facts every mental method leans on: crossing a ten, crossing a hundred, and every subtraction done by counting up rather than back.`,
+    };
+  },
+
+  // A mixed capstone: one of the three operations, chosen at random.
+  "mixed-arithmetic": (rng, lvl) => {
+    const op = pick(rng, ["+", "-", "\\times"]);
+    let a: number, b: number, ans: number, method: string;
+    if (op === "+") {
+      a = lvl === 1 ? Math.floor(rng() * 8) + 1 : lvl === 2 ? Math.floor(rng() * 18) + 2 : Math.floor(rng() * 80) + 11;
+      b = lvl === 1 ? Math.floor(rng() * (9 - a)) + 1 : Math.floor(rng() * 9) + 1;
+      ans = a + b;
+      method = `count on $${b}$ from $${a}$`;
+    } else if (op === "-") {
+      b = Math.floor(rng() * 9) + 1;
+      a = lvl === 1 ? b + Math.floor(rng() * 9) : lvl === 2 ? b + Math.floor(rng() * 12) : Math.floor(rng() * 60) + 21;
+      ans = a - b;
+      method = `count back $${b}$ from $${a}$, or ask what must be added to $${b}$ to reach $${a}$`;
+    } else {
+      a = lvl === 1 ? pick(rng, [2, 5, 10]) : lvl === 2 ? pick(rng, [3, 4, 6]) : pick(rng, [7, 8, 9, 12]);
+      b = Math.floor(rng() * 9) + 2;
+      ans = a * b;
+      method = `$${b}$ groups of $${a}$, which is $${a}$ added $${b}$ times`;
+    }
+    return {
+      title: "Mixed practice",
+      prompt: `What is $${a} ${op} ${b}$?`,
+      mode: "text",
+      accept: [String(ans), words(ans < 1000 ? ans : 0)].filter((s) => s !== "zero" || ans === 0),
+      answerLabel: String(ans),
+      placeholder: "a number",
+      hint: "Decide first which of the three walks this is: forward, backward, or forward in equal steps.",
+      why: `$${a} ${op} ${b} = ${ans}$ — ${method}.${
+        op === "-" ? ` Check it forwards: $${ans} + ${b} = ${a}$.` : op === "\\times" ? ` And $${b} \\times ${a}$ is the same $${ans}$, since turning the rectangle changes nothing.` : ` And $${b} + ${a}$ is the same $${ans}$.`
+      }`,
+    };
+  },
+
   // ── Number systems ──────────────────────────────────────────────────────
 
   // Which sets does this number belong to? The core drill of lecture two.
