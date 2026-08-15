@@ -380,6 +380,54 @@ const GENERATORS: Record<string, Generator> = {
     };
   },
 
+  // Column addition: any size, place by place, with the carries narrated.
+  "column-add": (rng, lvl) => {
+    let a: number, b: number;
+    if (lvl === 1) {
+      // two-digit plus two-digit, NO carrying: 32 + 21
+      const a1 = Math.floor(rng() * 6) + 1, a0 = Math.floor(rng() * 5);
+      const b1 = Math.floor(rng() * (8 - a1)) + 1, b0 = Math.floor(rng() * (9 - a0));
+      a = a1 * 10 + a0;
+      b = b1 * 10 + b0;
+    } else if (lvl === 2) {
+      // two- and three-digit with carrying
+      a = Math.floor(rng() * 850) + 45;
+      b = Math.floor(rng() * 850) + 45;
+    } else {
+      // big: four or five digits
+      a = Math.floor(rng() * 90000) + 1000;
+      b = Math.floor(rng() * 90000) + 1000;
+    }
+    const s = a + b;
+    // Narrate the column-by-column addition, carries included.
+    const da = String(a).split("").reverse().map(Number);
+    const db = String(b).split("").reverse().map(Number);
+    const places = ["ones", "tens", "hundreds", "thousands", "ten-thousands", "hundred-thousands"];
+    const steps: string[] = [];
+    let carry = 0;
+    for (let i = 0; i < Math.max(da.length, db.length); i++) {
+      const x = da[i] ?? 0, y = db[i] ?? 0;
+      const tot = x + y + carry;
+      const digit = tot % 10;
+      const newCarry = Math.floor(tot / 10);
+      steps.push(
+        `${places[i]}: $${x} + ${y}${carry ? ` + ${carry}` : ""} = ${tot}$${newCarry ? ` — write $${digit}$, carry $1$` : ` — write $${digit}$`}`,
+      );
+      carry = newCarry;
+    }
+    if (carry) steps.push(`the carry becomes a new leading $1$`);
+    return {
+      title: "Adding, column by column",
+      prompt: `What is $${a} + ${b}$?`,
+      mode: "text",
+      accept: [String(s)],
+      answerLabel: String(s),
+      placeholder: "a number",
+      hint: "Add the ones to the ones, the tens to the tens, and so on from the right. When a column reaches ten, write the ones digit and carry the one into the next column.",
+      why: `Work from the right, one place at a time — ${steps.join("; ")}. So $${a} + ${b} = ${s}$. A carry is just the $9\\to10$ flip from counting: ten in one column becomes one in the next.`,
+    };
+  },
+
   // Subtraction as counting back.
   "sub-count-back": (rng, lvl) => {
     let a: number, b: number;

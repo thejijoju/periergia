@@ -233,7 +233,23 @@ Remember the grid: adding $10$ is one step straight down. The ones digit doesn't
 add-tens
 ```
 
-## 9. Subtracting
+## 9. Adding big numbers
+
+Put the last two sections together and you can add **anything**: add the ones to the ones, the tens to the tens, the hundreds to the hundreds — always starting from the right.
+
+**Example.** $32 + 21$: ones are $2+1=3$, tens are $3+2=5$. So $53$. No column reached ten, so nothing to carry.
+
+**Example.** $47 + 38$: ones are $7+8=15$ — that's ten-and-five, so write the $5$ and **carry** the ten into the tens column. Tens: $4+3$, plus the carried $1$, is $8$. So $85$. A carry is just the $9{\to}10$ flip again: ten in one column becomes one in the next.
+
+**Example.** $2343 + 3937$: ones $3+7=10$, write $0$ carry $1$; tens $4+3+1=8$; hundreds $3+9=12$, write $2$ carry $1$; thousands $2+3+1=6$. Answer: $6280$. The method never changes, however long the numbers get.
+
+**Your turn.** Level one has no carries; level three has numbers in the ten-thousands.
+
+```drill
+column-add
+```
+
+## 10. Subtracting
 
 Subtracting is counting **back**.
 
@@ -253,7 +269,7 @@ One warning: in addition, order didn't matter. Here it does. $9 - 4 = 5$, but $4
 sub-count-back
 ```
 
-## 10. Multiplying
+## 11. Multiplying
 
 Multiplying is counting in equal jumps.
 
@@ -269,7 +285,7 @@ Two easy special cases: $7 \times 1 = 7$ (one jump of seven), and $7 \times 0 = 
 skip-count
 ```
 
-## 11. All three together
+## 12. All three together
 
 Everything in this lesson is counting, walked three different ways:
 
@@ -387,15 +403,17 @@ Do these on paper, then check against the answers below.
 
 **10.** Add tens: $10+20$, $30+40$, $50+50$, $45+30$, $62+20$, $70+60$.
 
-**11.** Subtract, and say for each whether counting back or counting up is quicker: $9-4$, $10-6$, $15-7$, $52-48$, $100-97$.
+**11.** Column addition: $32+21$, $47+38$, $286+457$, $2343+3937$.
 
-**12.** Multiply: $5\times3$, $3\times5$, $7\times1$, $7\times0$, $6\times4$, $9\times8$.
+**12.** Subtract, and say for each whether counting back or counting up is quicker: $9-4$, $10-6$, $15-7$, $52-48$, $100-97$.
 
-**13.** Continue each pattern three more steps: **(a)** $4, 8, 12, \ldots$ **(b)** $7, 14, 21, \ldots$ **(c)** $25, 50, 75, \ldots$
+**13.** Multiply: $5\times3$, $3\times5$, $7\times1$, $7\times0$, $6\times4$, $9\times8$.
 
-**14.** Mixed: $12+9$, $20-8$, $8\times7$, $63-9$, $6\times9$, $45+7$.
+**14.** Continue each pattern three more steps: **(a)** $4, 8, 12, \ldots$ **(b)** $7, 14, 21, \ldots$ **(c)** $25, 50, 75, \ldots$
 
-**15.** In one sentence: why does $4-9$ have no answer in this lesson?
+**15.** Mixed: $12+9$, $20-8$, $8\times7$, $63-9$, $6\times9$, $45+7$.
+
+**16.** In one sentence: why does $4-9$ have no answer in this lesson?
 
 ### Answers
 
@@ -409,11 +427,12 @@ Do these on paper, then check against the answers below.
 **8.** $2,\ 9,\ 13,\ 7,\ 16,\ 35,\ 55,\ 75$.
 **9.** $7,\ 3,\ 9$; then $60,\ 35,\ 8$.
 **10.** $30,\ 70,\ 100,\ 75,\ 82,\ 130$.
-**11.** $5,\ 4,\ 8,\ 4,\ 3$ — counting up is quicker for $52-48$ and $100-97$, counting back for the rest.
-**12.** $15,\ 15,\ 7,\ 0,\ 24,\ 72$.
-**13.** (a) $16, 20, 24$ (b) $28, 35, 42$ (c) $100, 125, 150$.
-**14.** $21,\ 12,\ 56,\ 54,\ 54,\ 52$.
-**15.** Counting back nine from four runs out of numbers after four steps — no counting number is the answer. (The next lesson fixes this.)
+**11.** $53,\ 85,\ 743,\ 6280$.
+**12.** $5,\ 4,\ 8,\ 4,\ 3$ — counting up is quicker for $52-48$ and $100-97$, counting back for the rest.
+**13.** $15,\ 15,\ 7,\ 0,\ 24,\ 72$.
+**14.** (a) $16, 20, 24$ (b) $28, 35, 42$ (c) $100, 125, 150$.
+**15.** $21,\ 12,\ 56,\ 54,\ 54,\ 52$.
+**16.** Counting back nine from four runs out of numbers after four steps — no counting number is the answer. (The next lesson fixes this.)
 
 ## Further reading
 
