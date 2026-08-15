@@ -430,7 +430,7 @@ const GENERATORS: Record<string, Generator> = {
       }
     return {
       title: "Which is larger?",
-      prompt: `Fill in the symbol: $${a} \\;\\square\\; ${b}$`,
+      prompt: `Which sign belongs between these two numbers? $${a} \\;\\square\\; ${b}$`,
       mode: "choice",
       options: [
         { label: "$<$  (less than)", correct: rel === "<", why: rel === "<" ? "" : `$${a}$ is not less than $${b}$.` },
@@ -895,6 +895,8 @@ export function Drill({ spec }: { spec: string }) {
   // before it is a new problem to solve.
   const [phase, setPhase] = useState<"example" | "practice">("example");
   const [exSeed, setExSeed] = useState(0);
+  // The solution stays hidden until asked for — try it in your head first.
+  const [revealed, setRevealed] = useState(false);
   const [seed, setSeed] = useState(0);
   // Difficulty is the reader's to set. Every generator takes it and varies the
   // numbers, the pool it samples from, or both — a level is a different band of
@@ -955,6 +957,7 @@ export function Drill({ spec }: { spec: string }) {
     if (l === lvl) return;
     setLvl(l);
     setPhase("example");
+    setRevealed(false);
     setExSeed((s) => s + 1);
     setSeed((s) => s + 1);
     setChosen(new Set());
@@ -1007,60 +1010,76 @@ export function Drill({ spec }: { spec: string }) {
         </div>
         <div className="px-4 sm:px-5 pb-4">
           <p className="font-sans text-[13px] leading-relaxed text-muted mb-2">
-            This is how it is done. Read it, then do the same kind of problem yourself.
+            {revealed
+              ? "Here is the whole solution. When it makes sense, try one yourself."
+              : "First, one example. Try it in your head, then reveal the solution."}
           </p>
           <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">
             <Rich text={example.prompt} />
           </p>
 
-          {example.mode === "text" ? (
-            <p className="font-sans text-[14px] text-ink">
-              <span className="text-whisper">Answer: </span>
-              <span className="font-mono font-medium text-[var(--ok-text)]">
-                {example.answerLabel}
-              </span>
-            </p>
+          {!revealed ? (
+            <button
+              onClick={() => setRevealed(true)}
+              className="font-sans text-[13px] font-medium px-3.5 py-2 rounded-xl border border-line text-ink hover:border-ink transition-colors"
+            >
+              Reveal the solution
+            </button>
           ) : (
-            <div className="space-y-2">
-              {exOptions.map((opt, i) => (
-                <div
-                  key={i}
-                  className={`flex w-full items-center gap-3 text-left font-sans text-[14px] px-4 py-2 rounded-xl border ${
-                    opt.correct
-                      ? "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-text)] font-medium"
-                      : "border-line text-faint"
-                  }`}
-                >
-                  <span className="font-mono text-[11px] text-numeral shrink-0">
-                    {String.fromCharCode(65 + i)}
+            <>
+              {example.mode === "text" ? (
+                <p className="font-sans text-[14px] text-ink">
+                  <span className="text-whisper">Answer: </span>
+                  <span className="font-mono font-medium text-[var(--ok-text)]">
+                    {example.answerLabel}
                   </span>
-                  <span className="flex-1">
-                    <Rich text={opt.label} />
-                  </span>
-                  {opt.correct && <span className="shrink-0 font-sans text-[13px]">✓</span>}
+                </p>
+              ) : (
+                <div className="space-y-2">
+                  {exOptions.map((opt, i) => (
+                    <div
+                      key={i}
+                      className={`flex w-full items-center gap-3 text-left font-sans text-[14px] px-4 py-2 rounded-xl border ${
+                        opt.correct
+                          ? "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-text)] font-medium"
+                          : "border-line text-faint"
+                      }`}
+                    >
+                      <span className="font-mono text-[11px] text-numeral shrink-0">
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                      <span className="flex-1">
+                        <Rich text={opt.label} />
+                      </span>
+                      {opt.correct && <span className="shrink-0 font-sans text-[13px]">✓</span>}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              )}
+
+              <p className="mt-2.5 font-sans text-[13px] leading-relaxed text-muted">
+                <Rich text={example.why} />
+              </p>
+
+              <div className="mt-3.5 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => setPhase("practice")}
+                  className="font-sans text-[13px] font-medium px-3.5 py-2 rounded-xl border border-maroon text-maroon hover:bg-purple-soft/40 transition-colors"
+                >
+                  Your turn →
+                </button>
+                <button
+                  onClick={() => {
+                    setExSeed((s) => s + 1);
+                    setRevealed(false);
+                  }}
+                  className="font-sans text-[13px] text-whisper hover:text-maroon underline underline-offset-2"
+                >
+                  Show me another one
+                </button>
+              </div>
+            </>
           )}
-
-          <p className="mt-2.5 font-sans text-[13px] leading-relaxed text-muted">
-            <Rich text={example.why} />
-          </p>
-
-          <div className="mt-3.5 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => setPhase("practice")}
-              className="font-sans text-[13px] font-medium px-3.5 py-2 rounded-xl border border-maroon text-maroon hover:bg-purple-soft/40 transition-colors"
-            >
-              Your turn →
-            </button>
-            <button
-              onClick={() => setExSeed((s) => s + 1)}
-              className="font-sans text-[13px] text-whisper hover:text-maroon underline underline-offset-2"
-            >
-              Show another worked example
-            </button>
-          </div>
         </div>
       </div>
     );
@@ -1102,8 +1121,15 @@ export function Drill({ spec }: { spec: string }) {
         ))}
       </div>
       <div className="px-4 sm:px-5 pb-4">
-        <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">
+        <p className="font-sans text-[15px] leading-relaxed text-ink mb-1.5">
           <Rich text={item.prompt} />
+        </p>
+        <p className="font-sans text-[12.5px] text-whisper mb-3">
+          {item.mode === "text"
+            ? "Type your answer, then press Check."
+            : item.mode === "multi"
+              ? "Tick every answer that is true, then press Check."
+              : "Pick one answer."}
         </p>
 
         {item.mode === "text" ? (
@@ -1249,6 +1275,7 @@ export function Drill({ spec }: { spec: string }) {
           <button
             onClick={() => {
               setPhase("example");
+              setRevealed(false);
               setExSeed((s) => s + 1);
             }}
             className="font-sans text-[13px] text-whisper hover:text-maroon underline underline-offset-2"
