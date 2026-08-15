@@ -315,11 +315,14 @@ const GENERATORS: Record<string, Generator> = {
       a = Math.floor(rng() * 8) + 1;
       b = Math.floor(rng() * (10 - a)) + 1;
     } else if (lvl === 2) {
-      a = Math.floor(rng() * 9) + 1;
-      b = Math.floor(rng() * 9) + 1;
+      // a bigger number plus a small one, with the ones NOT crossing a ten:
+      // 22 + 5 rather than 28 + 7, so only the ones digit moves.
+      a = Math.floor(rng() * 8) * 10 + Math.floor(rng() * 8) + 11;
+      b = Math.floor(rng() * (9 - (a % 10))) + 1;
     } else {
-      a = Math.floor(rng() * 80) + 11;
-      b = Math.floor(rng() * 9) + 1;
+      // crossing a ten, which is where the ones roll over and carry
+      a = Math.floor(rng() * 8) * 10 + Math.floor(rng() * 4) + 16;
+      b = 10 - (a % 10) + Math.floor(rng() * 5);
     }
     const s = a + b;
     const chain = Array.from({ length: Math.min(b, 9) }, (_, i) => a + i + 1).join(", ");
@@ -340,6 +343,40 @@ const GENERATORS: Record<string, Generator> = {
           ? ` Crossing the ten is easier in two steps: $${a} + ${10 - (a % 10)} = ${a + 10 - (a % 10)}$, then $+ ${b - (10 - (a % 10))}$ makes $${s}$.`
           : ""
       }`,
+    };
+  },
+
+  // Adding whole tens: the same counting-on, one place to the left.
+  "add-tens": (rng, lvl) => {
+    let a: number, b: number, note: string;
+    if (lvl === 1) {
+      // both are whole tens, sum stays under a hundred: 10 + 20
+      const ta = Math.floor(rng() * 7) + 1;
+      const tb = Math.floor(rng() * (9 - ta)) + 1;
+      a = ta * 10;
+      b = tb * 10;
+      note = `Count in tens: $${ta}$ tens plus $${tb}$ tens is $${ta + tb}$ tens, which is $${a + b}$. It is the single-digit fact $${ta} + ${tb} = ${ta + tb}$ with every number one place to the left.`;
+    } else if (lvl === 2) {
+      // a whole ten added to an ordinary two-digit number: only the tens move
+      a = Math.floor(rng() * 8) * 10 + Math.floor(rng() * 9) + 11;
+      b = (Math.floor(rng() * 6) + 1) * 10;
+      note = `Only the tens digit moves: $${Math.floor(a / 10)}$ tens plus $${b / 10}$ tens is $${Math.floor(a / 10) + b / 10}$ tens, and the $${a % 10}$ ones are untouched. So $${a} + ${b} = ${a + b}$.`;
+    } else {
+      // crossing a hundred, or three-digit tens
+      a = (Math.floor(rng() * 5) + 4) * 10 + Math.floor(rng() * 10);
+      b = (Math.floor(rng() * 5) + 5) * 10;
+      note = `The tens cross a hundred: $${Math.floor(a / 10)} + ${b / 10} = ${Math.floor(a / 10) + b / 10}$ tens, which is $${(Math.floor(a / 10) + b / 10) * 10}$, plus the $${a % 10}$ ones — $${a + b}$. Ten tens make a hundred, exactly as ten ones make a ten.`;
+    }
+    const s = a + b;
+    return {
+      title: "Adding tens",
+      prompt: `What is $${a} + ${b}$?`,
+      mode: "text",
+      accept: [String(s), words(s < 1000 ? s : 0)].filter((x) => x !== "zero" || s === 0),
+      answerLabel: String(s),
+      placeholder: "a number",
+      hint: "Count in tens rather than in ones. How many tens does each number have?",
+      why: note,
     };
   },
 
@@ -850,6 +887,14 @@ export function Drill({ spec }: { spec: string }) {
   const kind = spec.trim().split("\n")[0].trim();
   const gen = GENERATORS[kind];
 
+  // Every drill opens on a solved instance — "this is how it's done" — and
+  // only then hands the reader the same kind of problem. Example and practice
+  // come from the same generator, so the pattern demonstrated is exactly the
+  // pattern to be applied. Stepping the difficulty up returns to a worked
+  // example at the new level, because a harder band is a new pattern to see
+  // before it is a new problem to solve.
+  const [phase, setPhase] = useState<"example" | "practice">("example");
+  const [exSeed, setExSeed] = useState(0);
   const [seed, setSeed] = useState(0);
   // Difficulty is the reader's to set. Every generator takes it and varies the
   // numbers, the pool it samples from, or both — a level is a different band of
@@ -864,7 +909,13 @@ export function Drill({ spec }: { spec: string }) {
   const [best, setBest] = useState(0);
 
   const item = useMemo(() => (gen ? gen(mulberry32(seed + 1), lvl) : null), [gen, seed, lvl]);
-  if (!item) return null;
+  // Offset the example's seed well clear of the practice seeds so the reader
+  // does not immediately meet the very question they were just shown solved.
+  const example = useMemo(
+    () => (gen ? gen(mulberry32(exSeed * 7 + 9973), lvl) : null),
+    [gen, exSeed, lvl],
+  );
+  if (!item || !example) return null;
 
   const options = item.options ?? [];
   const correctSet = new Set(options.map((o, i) => (o.correct ? i : -1)).filter((i) => i >= 0));
@@ -903,6 +954,8 @@ export function Drill({ spec }: { spec: string }) {
   const setLevel = (l: Level) => {
     if (l === lvl) return;
     setLvl(l);
+    setPhase("example");
+    setExSeed((s) => s + 1);
     setSeed((s) => s + 1);
     setChosen(new Set());
     setTyped("");
@@ -933,6 +986,85 @@ export function Drill({ spec }: { spec: string }) {
       return s;
     });
   };
+
+  // ── Worked example ──────────────────────────────────────────────────────
+  // The same generator, fully solved: prompt, answer, and the explanation the
+  // practice phase would have given. Nothing to do but read it.
+  if (phase === "example") {
+    const exOptions = example.options ?? [];
+    return (
+      <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+        <div className="px-4 sm:px-5 pt-3.5 pb-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
+            ◆ Worked example
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper">
+            · {example.title}
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper ml-auto">
+            {lvl === 1 ? "gentle" : lvl === 2 ? "standard" : "hard"}
+          </span>
+        </div>
+        <div className="px-4 sm:px-5 pb-4">
+          <p className="font-sans text-[13px] leading-relaxed text-muted mb-2">
+            This is how it is done. Read it, then do the same kind of problem yourself.
+          </p>
+          <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">
+            <Rich text={example.prompt} />
+          </p>
+
+          {example.mode === "text" ? (
+            <p className="font-sans text-[14px] text-ink">
+              <span className="text-whisper">Answer: </span>
+              <span className="font-mono font-medium text-[var(--ok-text)]">
+                {example.answerLabel}
+              </span>
+            </p>
+          ) : (
+            <div className="space-y-2">
+              {exOptions.map((opt, i) => (
+                <div
+                  key={i}
+                  className={`flex w-full items-center gap-3 text-left font-sans text-[14px] px-4 py-2 rounded-xl border ${
+                    opt.correct
+                      ? "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-text)] font-medium"
+                      : "border-line text-faint"
+                  }`}
+                >
+                  <span className="font-mono text-[11px] text-numeral shrink-0">
+                    {String.fromCharCode(65 + i)}
+                  </span>
+                  <span className="flex-1">
+                    <Rich text={opt.label} />
+                  </span>
+                  {opt.correct && <span className="shrink-0 font-sans text-[13px]">✓</span>}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="mt-2.5 font-sans text-[13px] leading-relaxed text-muted">
+            <Rich text={example.why} />
+          </p>
+
+          <div className="mt-3.5 flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => setPhase("practice")}
+              className="font-sans text-[13px] font-medium px-3.5 py-2 rounded-xl border border-maroon text-maroon hover:bg-purple-soft/40 transition-colors"
+            >
+              Your turn →
+            </button>
+            <button
+              onClick={() => setExSeed((s) => s + 1)}
+              className="font-sans text-[13px] text-whisper hover:text-maroon underline underline-offset-2"
+            >
+              Show another worked example
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
@@ -1113,6 +1245,15 @@ export function Drill({ spec }: { spec: string }) {
             className="font-sans text-[13px] font-medium text-maroon hover:underline underline-offset-2"
           >
             {graded ? "Another one →" : "Skip this one →"}
+          </button>
+          <button
+            onClick={() => {
+              setPhase("example");
+              setExSeed((s) => s + 1);
+            }}
+            className="font-sans text-[13px] text-whisper hover:text-maroon underline underline-offset-2"
+          >
+            Show me one solved
           </button>
           {asked > 0 && (
             <span className="font-sans text-[12px] text-whisper">

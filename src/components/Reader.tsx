@@ -116,6 +116,7 @@ import { Quotation } from "./Quotation";
 import { CheckpointQuiz } from "./CheckpointQuiz";
 import { Drill } from "./Drill";
 import { NumberSets } from "./NumberSets";
+import { HundredChart } from "./HundredChart";
 import { ResearchGate } from "./ResearchGate";
 import { StudyExports } from "./StudyExports";
 import { ReportIssue } from "./ReportIssue";
@@ -624,6 +625,11 @@ export function Reader({
                   // diagram of N in Z in Q in R in C.
                   if (typeof cls === "string" && /language-numbersets\b/.test(cls)) {
                     return <NumberSets />;
+                  }
+                  // A fenced ```hundredchart block becomes the 0-99 grid, ten
+                  // to a row, with the ones and tens patterns highlightable.
+                  if (typeof cls === "string" && /language-hundredchart\b/.test(cls)) {
+                    return <HundredChart />;
                   }
                   // A fenced ```supplydemand block becomes an interactive
                   // supply-and-demand diagram with shift sliders.
