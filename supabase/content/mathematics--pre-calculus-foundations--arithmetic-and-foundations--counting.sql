@@ -54,11 +54,13 @@ with master as (
   values (
     'mathematics/pre-calculus-foundations/arithmetic-and-foundations/counting',
     'research','advanced','read',
-    $preCount_master$> Mathematics is done, not read. Each section gives the rule in a line, works examples, then hands you a drill that never runs out. Spend your time in the drills — three levels, a fresh question every time you answer. Stay on one until the answers come without thinking.
+    $preCount_master$> Rule. Worked example. Your turn — as long as you like, at rising difficulty. Then the next thing.
+
+Spend your time in the drills.
 
 ## 1. Counting a collection
 
-**Rule.** Point at each object exactly once, saying the counting words in order. The last word is the answer.
+**Rule.** Point at each object once, saying the counting words in order. The last word is the answer.
 
 **The one fact.** The answer does not depend on the order. So you may group.
 
@@ -100,7 +102,7 @@ count-on
 
 ## 3. Place value
 
-**Rule.** Reading from the right, the places are ones, tens, hundreds, thousands — each ten times the last. A digit is worth itself times its place.
+**Rule.** From the right: ones, tens, hundreds, thousands — each ten times the last. A digit is worth itself times its place.
 
 $$n = (\text{digit}\times 1000) + (\text{digit}\times 100) + (\text{digit}\times 10) + (\text{digit}\times 1)$$
 
@@ -110,7 +112,7 @@ $$3888 = 3\times1000 + 8\times100 + 8\times10 + 8\times1$$
 $$5073 = 5\times1000 + 0\times100 + 7\times10 + 3\times1$$
 $$4207 = 4\times1000 + 2\times100 + 0\times10 + 7\times1$$
 
-So in $4207$ the $2$ is worth $200$; in $3888$ the three $8$s are worth $800$, $80$ and $8$.
+In $4207$ the $2$ is worth $200$. In $3888$ the three $8$s are worth $800$, $80$, $8$.
 
 **Zero holds a place.** $5073 \to 573$ if dropped. Compare $37$, $307$, $3007$.
 
@@ -122,9 +124,9 @@ So in $4207$ the $2$ is worth $200$; in $3888$ the three $8$s are worth $800$, $
 | Roman | $\mathrm{MMMDCCCLXXXVIII}$ | $15$ |
 | place value | $3888$ | $4$ |
 
-{{image: Tally marks | One stroke per object, closed in fives. Exact, unlimited, and impractical: the effort of writing a number grows in step with the number itself.}}
+{{image: Tally marks | One stroke per object, closed in fives. Exact, but writing a number costs as much as the number itself.}}
 
-{{image: Abacus | One rod per place, one bead per unit of that place. Moving a bead is counting on by one; a full rod empties and adds one to the rod beside it — a rollover made physical.}}
+{{image: Abacus | One rod per place, one bead per unit. A full rod empties and adds one to its neighbour — a rollover made physical.}}
 
 ```drill
 place-value
@@ -132,9 +134,7 @@ place-value
 
 ## 4. The pattern in the numerals
 
-**Rule.** There are not ninety-nine symbols to learn. There are **ten**, used twice: the ones digit runs $0\ldots9$ over and over, and each time it rolls over the tens digit climbs by one.
-
-Written in a line it looks like a list. Laid out ten to a row it is a grid, and the pattern is unmissable — **across** is the ones digit, **down** is the tens digit.
+**Rule.** Ten symbols, used twice. **Across** = the ones digit, $0\ldots9$ over and over. **Down** = the tens digit, up one each time the ones roll over.
 
 $$\begin{array}{cccccccccc}
 0&1&2&3&4&5&6&7&8&9\\
@@ -142,7 +142,7 @@ $$\begin{array}{cccccccccc}
 20&21&22&23&24&25&26&27&28&29\\
 \end{array}$$
 
-Every row is $0$–$9$ again with a new digit in front. Switch the highlighting below between the ones digit and the tens digit and watch the stripes turn from vertical to horizontal.
+Every row is $0$–$9$ again with a new digit in front. Switch the highlighting and watch the stripes turn.
 
 ```hundredchart
 ```
@@ -159,16 +159,16 @@ Every row is $0$–$9$ again with a new digit in front. Switch the highlighting 
 | counting by $5$ | two columns |
 | counting by $10$ | a single column |
 
-That $+10$ is *straight down* is the whole of section 8 in one picture.
+$+10$ is *straight down* — that is section 8, in one picture.
 
-**These are all whole numbers.** $47$ is one number, not a $4$ next to a $7$ — every cell in the grid is a single whole number, exactly as much a number as $7$ is. Two digits does not mean two numbers.
+**All whole numbers.** $47$ is one number, not a $4$ beside a $7$. Two digits, one number.
 
 | name | what it holds |
 |---|---|
 | counting numbers | $1, 2, 3, 4, \ldots$ |
 | whole numbers | $0, 1, 2, 3, 4, \ldots$ — the counting numbers with $0$ |
 
-The only difference is the $0$. Everything in this lesson works the same for both.
+Only the $0$ differs. Everything here works for both.
 
 ```drill
 count-on
@@ -176,7 +176,7 @@ count-on
 
 ## 5. Number words
 
-**Rule.** Say the places in order: thousands, hundreds, tens, ones. A place you never say aloud still needs a $0$ written.
+**Rule.** Say the places in order: thousands, hundreds, tens, ones. A silent place still needs a written $0$.
 
 **Examples.**
 
@@ -189,7 +189,7 @@ count-on
 | $1040$ | one thousand and forty |
 | $3888$ | three thousand eight hundred and eighty-eight |
 
-$607$: no tens are said, but the $0$ must be written or it collapses to $67$.
+$607$: no tens said, but the $0$ must be written or it collapses to $67$.
 
 ```drill
 number-word
@@ -197,7 +197,7 @@ number-word
 
 ## 6. Comparing
 
-**Rule.** More digits wins. Otherwise compare from the **left**; the first place where the digits differ decides it, and everything to its right is irrelevant.
+**Rule.** More digits wins. Otherwise compare from the **left**; the first differing place decides it.
 
 **Examples.**
 
@@ -209,7 +209,7 @@ number-word
 | $520$ vs $519$ | tens: $2$ vs $1$ | $520 > 519$ |
 | $88$ vs $88$ | none | $88 = 88$ |
 
-The wide end faces the larger number. Exactly one of $<$, $=$, $>$ holds for any pair.
+The wide end faces the larger number. Exactly one of $<$, $=$, $>$ holds.
 
 ```drill
 compare-numbers
@@ -235,7 +235,7 @@ $$1 + 1 = 2$$
 
 $$a + b = b + a \qquad a + 0 = a \qquad \text{the pairs making ten}$$
 
-Flip to save work: $2+9$ is $9$ count on $2$. And $a+b=b+a$ cuts the $100$ digit sums to $55$.
+Flip to save work: $2+9$ is $9$, count on $2$. $a+b=b+a$ cuts $100$ digit sums to $55$.
 
 **Pairs that make ten.** $1+9$, $2+8$, $3+7$, $4+6$, $5+5$.
 
@@ -264,7 +264,7 @@ add-count-on
 
 ## 8. Adding tens
 
-**Rule.** Count in tens instead of ones. $10+20$ is $1$ ten plus $2$ tens $= 3$ tens $= 30$ — the fact $1+2=3$, moved one place left.
+**Rule.** Count in tens, not ones. $10+20 = 1$ ten $+\,2$ tens $= 3$ tens $= 30$: the fact $1+2=3$, one place left.
 
 **Examples.**
 
@@ -277,7 +277,7 @@ add-count-on
 | $62+20$ | $6+2 = 8$ tens, $2$ ones | $82$ |
 | $70+60$ | $7+6 = 13$ tens | $130$ |
 
-Ten tens make a hundred, exactly as ten ones make a ten.
+Ten tens make a hundred, as ten ones make a ten.
 
 ```drill
 add-tens
@@ -285,7 +285,7 @@ add-tens
 
 ## 9. Subtraction — counting back
 
-**Rule.** $a - b$: start at $a$, count back $b$. Equivalently, $a - b$ is what must be added to $b$ to reach $a$.
+**Rule.** $a-b$: start at $a$, count back $b$. Or: what must be added to $b$ to reach $a$.
 
 **Examples.**
 
@@ -296,9 +296,9 @@ add-tens
 | $52-48$ | 48 steps | $48 \to 52$ is $4$ | $4$ |
 | $15-7$ | 14, …, 8 | $7 \to 15$ is $8$ | $8$ |
 
-Take the shorter direction. **Check forwards:** $9-4=5$, and $5+4=9$. ✓
+Take the shorter direction. **Check forwards:** $5+4=9$. ✓
 
-**Order matters:** $9-4 \ne 4-9$. And $4-9$ has **no answer** here — count back from $4$ and you run out with five steps still owed. That gap is the next lesson.
+**Order matters:** $9-4 \ne 4-9$. And $4-9$ has **no answer** here — you run out with five steps owed. Next lesson.
 
 ```drill
 sub-count-back
@@ -339,7 +339,7 @@ The three walks away from counting:
 | backward | subtraction | $9 - 4 = 5$ |
 | forward in equal steps | multiplication | $5 \times 3 = 15$ |
 
-The drill mixes all three — decide which walk each question is. Stay on this one longest.
+Decide which walk each question is. Stay on this one longest.
 
 ```drill
 mixed-arithmetic
