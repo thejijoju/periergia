@@ -95,6 +95,10 @@ create table if not exists research_signups (
   referrer text,
   ua       text
 );
+-- Which prompt the address came from: "research" (the gated tier's interest
+-- list) or "progress" (the save-your-progress card on a lecture). Null on rows
+-- written before the column existed, all of which are research.
+alter table research_signups add column if not exists source text;
 create index if not exists research_signups_ts_idx on research_signups (ts desc);
 
 -- Reader-reported errors and suggested edits, written server-side by

@@ -119,6 +119,7 @@ import { NumberSets } from "./NumberSets";
 import { ResearchGate } from "./ResearchGate";
 import { StudyExports } from "./StudyExports";
 import { ReportIssue } from "./ReportIssue";
+import { SaveProgress } from "./SaveProgress";
 import { PolarisAltitude } from "./PolarisAltitude";
 import { BlackHoleLensing } from "./BlackHoleLensing";
 import { SunInterior } from "./SunInterior";
@@ -1185,6 +1186,10 @@ export function Reader({
             depth={shownDepth}
             level={shownLevel}
           />
+          {/* Shell only — there are no accounts yet, so this states the intent
+              and collects an address rather than offering a button that leads
+              nowhere. Dismissed state is remembered locally. */}
+          <SaveProgress nodeId={node.id} title={node.title.replace(/\s*\*+$/, "")} />
         </>
       )}
         </>

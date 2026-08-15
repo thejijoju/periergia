@@ -3,7 +3,8 @@ import { getSupabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
-// Interest capture for the gated Research tier. Public (the browser calls it),
+// Interest capture, shared by two prompts and separated by the `source` field:
+// the gated Research tier, and the save-your-progress card on a lecture page. Public (the browser calls it),
 // so it's length-capped and drops obvious bots. Stores one row per submission
 // in `research_signups`; a matching research_signup analytics event is logged
 // separately via /api/track. No auth, no account — just a mailing-interest list.
@@ -44,6 +45,8 @@ export async function POST(req: Request) {
     country: cap(h.get("x-vercel-ip-country"), 8),
     referrer: cap(h.get("referer"), 300),
     ua: cap(ua, 300),
+    // "research" (the gated tier) or "progress" (the save-your-progress card).
+    source: cap(p.source, 32) ?? "research",
   };
 
   try {
