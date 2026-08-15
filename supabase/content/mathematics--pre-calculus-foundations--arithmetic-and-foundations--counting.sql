@@ -117,11 +117,11 @@ place-value
 
 Write the numbers ten to a row and something clicks: after $9$ comes a second row — $10, 11, 12, 13, \ldots$ — and it is just $0$ to $9$ again with a $1$ in front. The row after that is $0$ to $9$ with a $2$ in front. Every row, forever.
 
-$$\begin{array}{cccccccccc}
-0&1&2&3&4&5&6&7&8&9\\
-10&11&12&13&14&15&16&17&18&19\\
-20&21&22&23&24&25&26&27&28&29\\
-\end{array}$$
+| | | | | | | | | | |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 |
+| 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 |
 
 So there are not a hundred different numerals to learn. There are **ten digits**, reused: going **across** a row, the ones digit counts $0$ to $9$; going **down** a column, the tens digit climbs by one.
 
