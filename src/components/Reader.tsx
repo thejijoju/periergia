@@ -119,6 +119,7 @@ import { NumberSets } from "./NumberSets";
 import { HundredChart } from "./HundredChart";
 import { NumberLine } from "./NumberLine";
 import { DotArray } from "./DotArray";
+import { LinePlace } from "./LinePlace";
 import { ResearchGate } from "./ResearchGate";
 import { StudyExports } from "./StudyExports";
 import { ReportIssue } from "./ReportIssue";
@@ -647,6 +648,11 @@ export function Reader({
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const spec = extractText((child as any).props?.children).trim();
                     return <DotArray spec={spec} />;
+                  }
+                  // A fenced ```lineplace block becomes the click-to-place
+                  // estimation drill: where does 470 live between 0 and 1000?
+                  if (typeof cls === "string" && /language-lineplace\b/.test(cls)) {
+                    return <LinePlace />;
                   }
                   // A fenced ```supplydemand block becomes an interactive
                   // supply-and-demand diagram with shift sliders.

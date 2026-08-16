@@ -40,7 +40,8 @@
 -- arithmetic). KaTeX output switched to html-only so copied text no longer
 -- duplicates every formula.
 --
--- ~4,300 words, 15 infinite drills, 7 checkpoint questions, 17 practice
+-- ~4,900 words, 16 infinite drills (incl. the click-to-place line), 12
+-- checkpoint questions covering every section, 17 practice
 -- problems with answers, 2 figures, 1 interactive grid, 4 number lines
 -- (3 hop views, 1 pivot view), 1 dot array.
 --
@@ -199,6 +200,11 @@ The number line makes both symbols a picture. Stand on $6$: everything to the le
 
 ```drill
 line-compare
+```
+
+Comparing is one skill; knowing **where** a number actually sits is another — and it's the one that makes big numbers meaningful. Click the spot where the number lives; the line only labels its ends, so you have to judge.
+
+```lineplace
 ```
 
 For big written numbers, counting up to them is hopeless — place value does it instead:
@@ -477,6 +483,71 @@ a: Nothing — 15 and 3 can't be divided.
 x: They can, exactly: jumps of 3 land on 3, 6, 9, 12, 15 — five jumps, no leftover. So $15 \div 3 = 5$.
 hint: Division is multiplication read backwards.
 why: $15 \div 3$ asks how many jumps of 3 reach 15: "3, 6, 9, 12, 15" — five. Equivalently, 15 shared into 3 equal piles puts 5 in each. Check by multiplying back: $5 \times 3 = 15$. ✓
+
+---
+
+q: On the 0–99 grid (ten numbers to a row), you stand on 34 and take one step straight down. Where are you?
+a*: 44 — one step down adds ten.
+a: 35 — one step down adds one.
+x: Adding one is a step to the *right*. Down a column, the ones digit stays put and the tens digit climbs: 34, 44, 54, …
+a: 43 — the digits swap.
+x: Digits never swap on the grid. Below 34 sits the number with the same ones digit and one more ten: 44.
+a: 24 — down means smaller.
+x: The grid grows downward: each new row continues the counting. 24 is one step *up*.
+hint: What changes between a number and the one directly below it — the ones digit or the tens digit?
+why: Each row holds ten numbers, so the number directly below 34 is 34 + 10 = 44. Straight down = add ten, one step right = add one. That picture is why adding tens never disturbs the ones digit.
+
+---
+
+q: Which numeral is "six hundred seven"?
+a*: 607
+a: 670
+x: That is "six hundred seventy". "Seven" with no "-ty" is ones, not tens — so the tens place holds a 0 and the 7 sits in the ones.
+a: 67
+x: The "six hundred" has been lost. Nothing was said for the tens, but the numeral must still hold that place with a 0 — drop it and the 6 slides into the tens place, shrinking the number tenfold.
+a: 6007
+x: That is "six thousand seven". "Six hundred" puts the 6 in the hundreds place, three digits total.
+hint: Say the places in order — hundreds, tens, ones — and give the silent one a zero.
+why: Six hundreds, no tens, seven ones: 607. The silent place is exactly where beginners slip, and the zero is what keeps the 6 worth six hundred.
+
+---
+
+q: Which is bigger: 4,812 or 4,806?
+a*: 4,812 — the first difference is in the tens, where 1 beats 0.
+a: 4,806 — because 6 beats 2 in the ones.
+x: Comparison runs from the *left*, and stops at the first difference. The tens differ (1 vs 0) before the ones are ever reached, so the ones digits are irrelevant.
+a: They are equal.
+x: Check place by place: thousands 4=4, hundreds 8=8, tens 1≠0. They differ.
+a: You can't tell without subtracting.
+x: No arithmetic needed — compare digit by digit from the left and stop at the first difference. A difference in a higher place outweighs everything after it.
+hint: Same number of digits — so compare from the left and stop at the first difference.
+why: Thousands tie, hundreds tie, tens: 1 beats 0 — done, 4,812 > 4,806. On the number line, 4,812 sits to the right of 4,806.
+
+---
+
+q: What is $45 + 30$?
+a*: 75 — the tens are $4+3=7$ and the 5 ones ride along.
+a: 48 — add the 3 to the ones.
+x: The 3 in 30 is three *tens*, not three ones. Think in tens: 4 tens + 3 tens = 7 tens, ones untouched.
+a: 78 — add 3 to both digits.
+x: Only the tens change when adding a whole number of tens. The ones digit of 30 is 0, so the 5 stays a 5.
+a: 750 — put the digits together.
+x: Digits aren't glued together; each place is added to its own place. Tens with tens: $40+30=70$, plus the 5 ones: 75.
+hint: On the 0–99 grid, adding 30 is three steps straight down.
+why: $45+30$: tens are $4+3=7$, ones stay 5 — so 75. Adding tens is the single-digit fact $4+3=7$ shifted one place left, which is exactly what the grid's straight-down move shows.
+
+---
+
+q: In the column sum $47 + 38$, the ones give $7+8=15$. What happens to the "1" of the 15?
+a*: It is carried into the tens column — ten ones become one ten.
+a: It is thrown away; only the 5 is kept.
+x: Nothing is thrown away — the sum would come out wrong ($75$ instead of $85$). The ten that the ones column produced still has to be counted somewhere.
+a: It is written next to the 5, giving 15 in the answer.
+x: Each column writes exactly one digit. Writing "15" in the ones place would claim fifteen ones, but ten of those ones are exactly one ten — they belong one column left.
+a: It doubles the tens.
+x: It adds *one* to the tens column, not double: $4+3+1 = 8$, so $47+38 = 85$.
+hint: Ten in one column is worth exactly one in the next column left.
+why: $7+8=15$ is one ten and five ones: write the 5, carry the 1 ten into the tens column, where $4+3+1=8$. So $47+38=85$. A carry is the 9-to-10 flip from counting, happening inside a sum.
 ```
 
 ## Practice
