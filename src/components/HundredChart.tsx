@@ -25,9 +25,9 @@ const CAPTION: Record<Mode, string> = {
   plain:
     "Ten numbers to a row. Reading left to right and then down, every row is the digits 0–9 again with a new digit in front — so there are not ninety-nine symbols to learn, there are ten, used twice.",
   ones:
-    "Each column is shaded by its ones digit. The columns are solid, because the ones digit depends only on how far across you are: it runs 0 to 9 and starts over, once per row, forever.",
+    "Every cell with the same ones digit wears the same colour — ten solid vertical stripes. The ones digit depends only on how far across you are: it runs 0 to 9 and starts over, once per row, forever.",
   tens:
-    "Each row is shaded by its tens digit. The rows are solid, because the tens digit changes only when the ones digit rolls over from 9 back to 0 — which is exactly what carrying is.",
+    "Now the same ten colours paint the rows: every cell with the same tens digit matches. The tens digit changes only when the ones digit rolls over from 9 back to 0 — which is exactly what carrying is.",
   by2: "Counting by twos lights up alternate columns — every second number, so the pattern is vertical stripes that never break.",
   by5: "Counting by fives lights up two columns, the 0s and the 5s. Half a row apart, every row the same.",
   by10:
@@ -44,12 +44,15 @@ export function HundredChart() {
     return false;
   };
 
-  // Alternating bands rather than a colour per digit: the point is that the
-  // stripe is unbroken, not which particular shade it happens to be.
-  const band = (n: number): boolean => {
-    if (mode === "ones") return n % 10 < 5;
-    if (mode === "tens") return Math.floor(n / 10) % 2 === 0;
-    return false;
+  // One colour per digit value, applied as a translucent wash so it reads on
+  // both themes: in "ones" mode every cell with the same ones digit shares a
+  // colour, giving ten solid vertical stripes; in "tens" mode the same ten
+  // colours paint the rows. The earlier subtle two-tone banding was invisible
+  // on some screens — a digit deserves a colour of its own.
+  const wash = (n: number): string | undefined => {
+    if (mode === "ones") return `hsla(${(n % 10) * 36}, 70%, 50%, 0.32)`;
+    if (mode === "tens") return `hsla(${Math.floor(n / 10) * 36}, 70%, 50%, 0.32)`;
+    return undefined;
   };
 
   return (
@@ -74,16 +77,15 @@ export function HundredChart() {
       <div className="grid grid-cols-10 gap-[3px]">
         {Array.from({ length: 100 }, (_, n) => {
           const on = lit(n);
-          const shaded = band(n);
+          const shaded = wash(n);
           return (
             <div
               key={n}
+              style={shaded && !on ? { backgroundColor: shaded } : undefined}
               className={`aspect-square flex items-center justify-center rounded font-mono text-[11px] sm:text-[12.5px] border ${
                 on
                   ? "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-text)] font-semibold"
-                  : shaded
-                    ? "border-line bg-purple-soft/50 text-ink"
-                    : "border-line text-ink"
+                  : "border-line text-ink"
               } ${n === 0 ? "opacity-45" : ""}`}
             >
               {n}
