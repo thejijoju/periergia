@@ -548,6 +548,43 @@ const GENERATORS: Record<string, Generator> = {
     };
   },
 
+  // Position on the line: tick every number on the chosen side of a pivot.
+  "line-compare": (rng, lvl) => {
+    const span = lvl === 1 ? 12 : lvl === 2 ? 100 : 1000;
+    const pivot =
+      lvl === 1
+        ? Math.floor(rng() * 7) + 3
+        : Math.floor(rng() * (span - 20)) + 10;
+    const smaller = rng() < 0.5;
+    // Six distinct candidates spread on both sides of the pivot, hard levels
+    // hugging it so the decision needs a real comparison rather than a glance.
+    const cands = new Set<number>();
+    let guard = 0;
+    while (cands.size < 6 && guard++ < 300) {
+      const nearby = lvl === 1 ? rng() < 0.4 : rng() < 0.7;
+      const c = nearby
+        ? Math.max(0, pivot + Math.floor(rng() * 21) - 10)
+        : Math.floor(rng() * span);
+      if (c !== pivot) cands.add(c);
+    }
+    const list = shuffle(rng, [...cands]);
+    const side = (c: number) => (smaller ? c < pivot : c > pivot);
+    return {
+      title: "Left or right of the line?",
+      prompt: `Think of the number line, and stand on $${pivot}$. Tick every number below that is ${smaller ? "**less than**" : "**greater than**"} $${pivot}$.`,
+      mode: "multi",
+      options: list.map((c) => ({
+        label: `$${c}$`,
+        correct: side(c),
+        why: side(c)
+          ? `$${c}$ is ${smaller ? "to the left of" : "to the right of"} $${pivot}$ — it is ${smaller ? "smaller" : "larger"}.`
+          : `$${c}$ sits ${smaller ? "at or to the right of" : "at or to the left of"} $${pivot}$, so it is not ${smaller ? "less" : "greater"} than $${pivot}$.`,
+      })),
+      hint: `Picture the line: numbers ${smaller ? "left of" : "right of"} $${pivot}$ are the ones you want. For written numbers, compare digit by digit from the left.`,
+      why: `On the number line, "less than $${pivot}$" is everything to the left of $${pivot}$ and "greater than" is everything to the right. Here the ${smaller ? "smaller" : "larger"} ones are ${list.filter(side).map((c) => `$${c}$`).join(", ")}. Position on the line and the $<$ / $>$ symbols are the same fact.`,
+    };
+  },
+
   // Skip counting — the bridge from counting to multiplication.
   "skip-count": (rng, lvl) => {
     const step = lvl === 1 ? pick(rng, [2, 5, 10]) : lvl === 2 ? pick(rng, [3, 4, 6]) : pick(rng, [7, 8, 9, 11, 12, 25]);

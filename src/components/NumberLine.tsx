@@ -14,6 +14,11 @@ const LABEL_Y = 96;
 const PAD = 26;
 
 export function NumberLine({ spec }: { spec: string }) {
+  // A bare number ("6") renders the pivot view: that number marked on the
+  // line, everything left of it tinted as smaller, everything right as
+  // larger — the picture of what < and > mean.
+  const pivot = spec.trim().match(/^(\d+)$/);
+  if (pivot) return <PivotLine n={Number(pivot[1])} />;
   const m = spec.trim().match(/^(\d+)\s*([+-])\s*(\d+)$/);
   if (!m) return null;
   const a = Number(m[1]);
@@ -125,6 +130,50 @@ export function NumberLine({ spec }: { spec: string }) {
             {result}.
           </>
         )}
+      </figcaption>
+    </figure>
+  );
+}
+
+function PivotLine({ n }: { n: number }) {
+  const max = Math.max(10, n + 4);
+  if (max > 24) return null;
+  const x = (v: number) => PAD + ((W - 2 * PAD) * v) / max;
+  return (
+    <figure className="my-6 not-prose rounded-xl border border-line bg-card p-3 sm:p-4">
+      <svg
+        viewBox={`0 0 ${W} 112`}
+        className="w-full h-auto"
+        role="img"
+        aria-label={`The number line around ${n}: every number to the left of ${n} is less than it, every number to the right is greater.`}
+      >
+        {/* tinted regions either side of the pivot */}
+        <rect x={PAD - 10} y={AXIS_Y - 26} width={x(n) - (PAD - 10)} height={34} fill="currentColor" className="text-purple" opacity={0.08} />
+        <rect x={x(n)} y={AXIS_Y - 26} width={W - PAD + 12 - x(n)} height={34} fill="currentColor" className="text-maroon" opacity={0.08} />
+
+        <text x={(PAD + x(n)) / 2} y={AXIS_Y - 34} textAnchor="middle" fontSize={10} fill="currentColor" className="text-purple" fontFamily="ui-sans-serif, system-ui, sans-serif">
+          ← less than {n}
+        </text>
+        <text x={(x(n) + W - PAD) / 2} y={AXIS_Y - 34} textAnchor="middle" fontSize={10} fill="currentColor" className="text-maroon" fontFamily="ui-sans-serif, system-ui, sans-serif">
+          greater than {n} →
+        </text>
+
+        <line x1={PAD - 10} y1={AXIS_Y} x2={W - PAD + 12} y2={AXIS_Y} stroke="currentColor" strokeWidth={1.2} className="text-line" />
+        <path d={`M ${W - PAD + 6} ${AXIS_Y - 4} L ${W - PAD + 13} ${AXIS_Y} L ${W - PAD + 6} ${AXIS_Y + 4}`} fill="none" stroke="currentColor" strokeWidth={1.2} className="text-line" />
+
+        {Array.from({ length: max + 1 }, (_, v) => (
+          <g key={v}>
+            <line x1={x(v)} y1={AXIS_Y - 4} x2={x(v)} y2={AXIS_Y + 4} stroke="currentColor" strokeWidth={1} className="text-line" />
+            <text x={x(v)} y={LABEL_Y} textAnchor="middle" fontSize={9.5} fill="currentColor" className={v === n ? "text-maroon" : "text-muted"} fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontWeight={v === n ? 700 : 400}>
+              {v}
+            </text>
+          </g>
+        ))}
+        <circle cx={x(n)} cy={AXIS_Y} r={4.5} fill="currentColor" className="text-maroon" />
+      </svg>
+      <figcaption className="mt-2 font-sans text-[13px] leading-relaxed text-muted">
+        Stand on {n}. Everything to the <span className="text-ink">left</span> is less than {n}; everything to the{" "}
+        <span className="text-ink">right</span> is greater. That is all &lt; and &gt; mean — position on the line.
       </figcaption>
     </figure>
   );
