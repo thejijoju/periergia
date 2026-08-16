@@ -17,7 +17,7 @@ import katex from "katex";
 // Deliberately not a markdown parser — no links, lists, or block structure.
 
 function renderTex(tex: string): string {
-  return katex.renderToString(tex, { displayMode: false, throwOnError: false });
+  return katex.renderToString(tex, { displayMode: false, throwOnError: false, output: "html" });
 }
 
 // **bold** and *italic* inside a non-math run.

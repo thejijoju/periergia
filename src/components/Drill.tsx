@@ -513,9 +513,9 @@ const GENERATORS: Record<string, Generator> = {
         prompt: `Row A: ${row(a)}\nRow B: ${row(b)}\nWhich sign belongs between them? A $\\square$ B`,
         mode: "choice",
         options: [
-          { label: "$<$ — A has fewer", correct: rel === "<", why: rel === "<" ? "" : "Pair them off: A does not run out first." },
-          { label: "$=$ — same number", correct: rel === "=", why: rel === "=" ? "" : "Pair them off star for star: one row has stars left over, so they are not equal." },
-          { label: "$>$ — A has more", correct: rel === ">", why: rel === ">" ? "" : "Pair them off: A is not the row with stars left over." },
+          { label: "$<$ (row A has fewer)", correct: rel === "<", why: rel === "<" ? "" : "Pair them off: A does not run out first." },
+          { label: "$=$ (both rows the same)", correct: rel === "=", why: rel === "=" ? "" : "Pair them off star for star: one row has stars left over, so they are not equal." },
+          { label: "$>$ (row A has more)", correct: rel === ">", why: rel === ">" ? "" : "Pair them off: A is not the row with stars left over." },
         ],
         hint: "You don't even need to count — pair each star in row A with one in row B and see which row runs out first.",
         why: `Row A has $${a}$ and row B has $${b}$${

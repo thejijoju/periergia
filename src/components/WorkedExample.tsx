@@ -3544,7 +3544,7 @@ const GENERATORS: Record<string, Generator> = {
 
 function Tex({ tex }: { tex: string }) {
   const html = useMemo(
-    () => katex.renderToString(tex, { displayMode: true, throwOnError: false }),
+    () => katex.renderToString(tex, { displayMode: true, throwOnError: false, output: "html" }),
     [tex],
   );
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
