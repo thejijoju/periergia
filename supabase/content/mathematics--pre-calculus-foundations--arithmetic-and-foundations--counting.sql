@@ -17,7 +17,8 @@
 --   3 how we write numbers (place value)         -> place-value
 --   4 the pattern (0-99 grid; naturals vs wholes)-> hundredchart + count-on
 --   5 saying numbers                             -> number-word
---   6 which is bigger                            -> compare-numbers
+--   6 more, fewer, or the same: stars & pairing,
+--     symbols, pivot number line, place value   -> line-compare, compare-numbers
 --   7 adding (stars first, number line, names
 --     of the laws in a light aside)              -> make-ten, add-count-on
 --   8 adding tens                                -> add-tens
@@ -39,9 +40,9 @@
 -- arithmetic). KaTeX output switched to html-only so copied text no longer
 -- duplicates every formula.
 --
--- ~4,050 words, 14 infinite drills, 7 checkpoint questions, 17 practice
--- problems with answers, 2 figures, 1 interactive grid, 3 number lines,
--- 1 dot array.
+-- ~4,300 words, 15 infinite drills, 7 checkpoint questions, 17 practice
+-- problems with answers, 2 figures, 1 interactive grid, 4 number lines
+-- (3 hop views, 1 pivot view), 1 dot array.
 --
 -- Numbers verified (python3): all practice answers including 15/3=5,
 --   12/4=3, 30/5=6, 21/7=3, 40/10=4, 14 = 3x4+2, 54/6=9; column sums
@@ -188,6 +189,18 @@ We write it with three symbols — and the wide open end always faces the bigger
 
 $$4 < 6 \quad (4 \text{ is less than } 6) \qquad 6 > 4 \quad (6 \text{ is greater than } 4) \qquad 5 = 5 \quad (\text{equal})$$
 
+The number line makes both symbols a picture. Stand on $6$: everything to the left is smaller, everything to the right is bigger.
+
+```numberline
+6
+```
+
+**Your turn — left or right?**
+
+```drill
+line-compare
+```
+
 For big written numbers, counting up to them is hopeless — place value does it instead:
 
 **Example.** $999$ or $1000$? The one with more digits is bigger: $1000$.
@@ -200,7 +213,7 @@ For big written numbers, counting up to them is hopeless — place value does it
 
 $1$ beats $0$, so $4812 > 4806$. The ones digits never mattered: a difference in a bigger place always outweighs everything after it.
 
-**Your turn.** The gentle level is star rows — no digits at all. Then written numbers, then long near-ties.
+**Your turn — full comparisons.** The gentle level is star rows — no digits at all. Then written numbers, then long near-ties.
 
 ```drill
 compare-numbers
