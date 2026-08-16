@@ -557,7 +557,11 @@ const GENERATORS: Record<string, Generator> = {
       why:
         rel === "="
           ? `They are the same number, so $${a} = ${b}$.`
-          : `$${a} ${rel} ${b}$. Compare from the left: the digits agree until the ${PLACE_NAMES[sa.length - 1 - firstDiff]} place, where $${sa[firstDiff]}$ meets $${sb[firstDiff]}$ — and that settles it, because a difference in a higher place outweighs everything below it put together. Underneath, the meaning is about counting: the larger number is the one you reach later when counting upward.`,
+          : `$${a} ${rel} ${b}$. Compare from the left: the digits agree until the ${PLACE_NAMES[sa.length - 1 - firstDiff]} place, where $${sa[firstDiff]}$ meets $${sb[firstDiff]}$${
+              firstDiff < sa.length - 1
+                ? " — and that settles it: everything to the right is ignored, because a difference in a higher place outweighs all the places below it put together."
+                : " — the last place there is, so it decides."
+            } Underneath, the meaning is about counting: the larger number is the one you reach later when counting upward.`,
     };
   },
 
