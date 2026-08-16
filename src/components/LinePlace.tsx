@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { fireConfetti } from "@/lib/confetti";
+import { useExerciseDone } from "@/lib/exerciseProgress";
 
 // ── Place the number on the line ──────────────────────────────────────────
 // A fenced ```lineplace block becomes an infinite estimation exercise: a
@@ -43,6 +44,8 @@ export function LinePlace() {
   const [streak, setStreak] = useState(0);
   const [best, setBest] = useState(0);
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const rightCount = useRef(0);
+  const { done, markDone } = useExerciseDone("lineplace");
 
   const { max, tick, tol } = CFG[lvl];
   const target = useMemo(() => {
@@ -70,6 +73,8 @@ export function LinePlace() {
     setGuess(snapped);
     setAsked((n) => n + 1);
     if (Math.abs(snapped - target) <= tol) {
+      rightCount.current += 1;
+      if (rightCount.current >= 3) markDone();
       setStreak((s) => {
         const next = s + 1;
         setBest((b) => Math.max(b, next));
@@ -98,10 +103,13 @@ export function LinePlace() {
   const nearTick = Math.round(target / tick) * tick;
 
   return (
-    <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+    <div className={`my-6 not-prose border rounded-2xl bg-page overflow-hidden ${done ? "border-[var(--ok-border)]" : "border-line"}`}>
       <div className="px-4 sm:px-5 pt-3.5 pb-1 flex flex-wrap items-center gap-x-2 gap-y-1">
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">∞ Drill</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper">· Place it on the line</span>
+        {done && (
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--ok-text)]">· ✓ done</span>
+        )}
         {asked > 0 && (
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper ml-auto">
             streak {streak}

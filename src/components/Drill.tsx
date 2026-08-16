@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { Rich } from "./RichText";
 import { fireConfetti } from "@/lib/confetti";
+import { useExerciseDone } from "@/lib/exerciseProgress";
 
 // ── Infinite drill ────────────────────────────────────────────────────────
 // A fenced ```drill block in article markdown becomes a self-test that never
@@ -1056,6 +1057,10 @@ export function Drill({ spec }: { spec: string }) {
   const [streak, setStreak] = useState(0);
   const [best, setBest] = useState(0);
   const boxRef = useRef<HTMLDivElement | null>(null);
+  // Three correct answers marks this drill done for this reader, remembered
+  // locally so the badge survives reloads.
+  const rightCount = useRef(0);
+  const { done, markDone } = useExerciseDone(`drill:${kind}`);
 
   const item = useMemo(() => (gen ? gen(mulberry32(seed + 1), lvl) : null), [gen, seed, lvl]);
   // Offset the example's seed well clear of the practice seeds so the reader
@@ -1090,6 +1095,8 @@ export function Drill({ spec }: { spec: string }) {
           ? chosen.size === correctSet.size && [...chosen].every((i) => correctSet.has(i))
           : chosen.size === 1 && correctSet.has([...chosen][0]);
     if (right) {
+      rightCount.current += 1;
+      if (rightCount.current >= 3) markDone();
       setStreak((s) => {
         const next = s + 1;
         setBest((b) => Math.max(b, next));
@@ -1151,7 +1158,7 @@ export function Drill({ spec }: { spec: string }) {
   if (phase === "example") {
     const exOptions = example.options ?? [];
     return (
-      <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+      <div className={`my-6 not-prose border rounded-2xl bg-page overflow-hidden ${done ? "border-[var(--ok-border)]" : "border-line"}`}>
         <div className="px-4 sm:px-5 pt-3.5 pb-1 flex flex-wrap items-center gap-x-2 gap-y-1">
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
             ◆ Worked example
@@ -1159,6 +1166,11 @@ export function Drill({ spec }: { spec: string }) {
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper">
             · {example.title}
           </span>
+          {done && (
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--ok-text)]">
+              · ✓ done
+            </span>
+          )}
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper ml-auto">
             {lvl === 1 ? "gentle" : lvl === 2 ? "standard" : "hard"}
           </span>
@@ -1241,7 +1253,7 @@ export function Drill({ spec }: { spec: string }) {
   }
 
   return (
-    <div ref={boxRef} className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+    <div ref={boxRef} className={`my-6 not-prose border rounded-2xl bg-page overflow-hidden ${done ? "border-[var(--ok-border)]" : "border-line"}`}>
       <div className="px-4 sm:px-5 pt-3.5 pb-1 flex flex-wrap items-center gap-x-2 gap-y-1">
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
           ∞ Drill
@@ -1249,6 +1261,11 @@ export function Drill({ spec }: { spec: string }) {
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper">
           · {item.title}
         </span>
+        {done && (
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--ok-text)]">
+            · ✓ done
+          </span>
+        )}
         {asked > 0 && (
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper ml-auto">
             streak {streak}

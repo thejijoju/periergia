@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { Rich } from "./RichText";
 import { fireConfetti } from "@/lib/confetti";
+import { specHash, useExerciseDone } from "@/lib/exerciseProgress";
 
 // ── Inline checkpoint quiz ────────────────────────────────────────────────
 // A fenced ```checkpoint block in article markdown becomes a short set of
@@ -130,6 +131,7 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   const [firstTry, setFirstTry] = useState<boolean[]>([]);
   const [finished, setFinished] = useState(false);
   const boxRef = useRef<HTMLDivElement | null>(null);
+  const { done, markDone } = useExerciseDone(`checkpoint:${specHash(spec)}`);
 
   // A malformed spec renders as nothing rather than a broken card.
   if (!questions.length) return null;
@@ -160,6 +162,7 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   const advance = () => {
     if (isLast) {
       setFinished(true);
+      markDone();
       if (firstTry.filter(Boolean).length === total) {
         fireConfetti({ count: 180 });
       }
@@ -177,7 +180,7 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   if (finished) {
     const perfect = score === total;
     return (
-      <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+      <div className="my-6 not-prose border border-[var(--ok-border)] rounded-2xl bg-page overflow-hidden">
         <div className="px-4 sm:px-5 pt-3.5 pb-1 flex items-center gap-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
             ✦ Checkpoint
@@ -204,11 +207,16 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   }
 
   return (
-    <div ref={boxRef} className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+    <div ref={boxRef} className={`my-6 not-prose border rounded-2xl bg-page overflow-hidden ${done ? "border-[var(--ok-border)]" : "border-line"}`}>
       <div className="px-4 sm:px-5 pt-3.5 pb-1 flex items-center gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
           ✦ Checkpoint
         </span>
+        {done && !solved && (
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--ok-text)]">
+            · ✓ done before
+          </span>
+        )}
         {total > 1 && (
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-whisper">
             · {index + 1} / {total}
