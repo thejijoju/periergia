@@ -231,7 +231,7 @@ const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "ei
 const TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
-// English name of a whole number below 1000.
+// English name of a whole number below a million.
 function words(n: number): string {
   if (n < 10) return ONES[n];
   if (n < 20) return TEENS[n - 10];
@@ -240,9 +240,20 @@ function words(n: number): string {
     const r = n % 10;
     return r === 0 ? TENS[t] : `${TENS[t]}-${ONES[r]}`;
   }
-  const h = Math.floor(n / 100);
-  const r = n % 100;
-  return r === 0 ? `${ONES[h]} hundred` : `${ONES[h]} hundred and ${words(r)}`;
+  if (n < 1000) {
+    const h = Math.floor(n / 100);
+    const r = n % 100;
+    return r === 0 ? `${ONES[h]} hundred` : `${ONES[h]} hundred and ${words(r)}`;
+  }
+  if (n < 1000000) {
+    const k = Math.floor(n / 1000);
+    const r = n % 1000;
+    if (r === 0) return `${words(k)} thousand`;
+    // "one thousand and forty" but "one thousand two hundred and six" —
+    // the "and" joins only a sub-hundred remainder.
+    return r < 100 ? `${words(k)} thousand and ${words(r)}` : `${words(k)} thousand ${words(r)}`;
+  }
+  return String(n);
 }
 
 const PLACE_NAMES = ["ones", "tens", "hundreds", "thousands"];
