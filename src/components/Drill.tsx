@@ -455,6 +455,38 @@ const GENERATORS: Record<string, Generator> = {
     };
   },
 
+  // Division as the fourth way of counting: how many jumps fit.
+  "divide-groups": (rng, lvl) => {
+    const d = lvl === 1 ? pick(rng, [2, 5, 10]) : lvl === 2 ? pick(rng, [3, 4, 6]) : pick(rng, [7, 8, 9, 12]);
+    const q = Math.floor(rng() * (lvl === 1 ? 8 : 10)) + 2;
+    const withRemainder = lvl === 3 && rng() < 0.5;
+    const r = withRemainder ? Math.floor(rng() * (d - 1)) + 1 : 0;
+    const a = d * q + r;
+    const jumps = Array.from({ length: q }, (_, i) => d * (i + 1)).join(", ");
+    if (withRemainder) {
+      return {
+        title: "How many jumps fit?",
+        prompt: `How many whole jumps of $${d}$ fit into $${a}$, and how much is left over? (Answer like "4 r 2".)`,
+        mode: "text",
+        accept: [`${q}r${r}`, `${q} r ${r}`, `${q} r${r}`, `${q}r ${r}`, `${q} remainder ${r}`, `${q} rest ${r}`],
+        answerLabel: `${q} r ${r}`,
+        placeholder: "e.g. 4 r 2",
+        hint: `Count jumps of $${d}$ upward — ${d}, ${2 * d}, … — and stop before you pass $${a}$. Whatever is short of $${a}$ is the remainder.`,
+        why: `Jumps of $${d}$: ${jumps} — that is $${q}$ whole jumps, reaching $${d * q}$, with $${r}$ left over to get to $${a}$. So $${a} \\div ${d} = ${q}$ remainder $${r}$. Check: $${q} \\times ${d} + ${r} = ${a}$. ✓`,
+      };
+    }
+    return {
+      title: "How many jumps fit?",
+      prompt: `What is $${a} \\div ${d}$? (How many jumps of $${d}$ does it take to reach $${a}$?)`,
+      mode: "text",
+      accept: [String(q), words(q)],
+      answerLabel: String(q),
+      placeholder: "a number",
+      hint: `Count jumps of $${d}$ upward — $${d}$, $${2 * d}$, … — until you land exactly on $${a}$, and count how many jumps that took.`,
+      why: `Jumps of $${d}$: ${jumps}. It took $${q}$ jumps to reach $${a}$, so $${a} \\div ${d} = ${q}$. The other reading is sharing: $${a}$ things dealt into $${d}$ equal piles puts $${q}$ in each. Check by multiplying back: $${q} \\times ${d} = ${a}$. ✓`,
+    };
+  },
+
   // Which is bigger? Order comes from counting: whichever you reach later is larger.
   "compare-numbers": (rng, lvl) => {
     const digits = lvl === 1 ? 2 : lvl === 2 ? 3 : 4;
@@ -595,7 +627,7 @@ const GENERATORS: Record<string, Generator> = {
 
   // A mixed capstone: one of the three operations, chosen at random.
   "mixed-arithmetic": (rng, lvl) => {
-    const op = pick(rng, ["+", "-", "\\times"]);
+    const op = pick(rng, ["+", "-", "\\times", "\\div"]);
     let a: number, b: number, ans: number, method: string;
     if (op === "+") {
       a = lvl === 1 ? Math.floor(rng() * 8) + 1 : lvl === 2 ? Math.floor(rng() * 18) + 2 : Math.floor(rng() * 80) + 11;
@@ -607,11 +639,16 @@ const GENERATORS: Record<string, Generator> = {
       a = lvl === 1 ? b + Math.floor(rng() * 9) : lvl === 2 ? b + Math.floor(rng() * 12) : Math.floor(rng() * 60) + 21;
       ans = a - b;
       method = `count back $${b}$ from $${a}$, or ask what must be added to $${b}$ to reach $${a}$`;
-    } else {
+    } else if (op === "\\times") {
       a = lvl === 1 ? pick(rng, [2, 5, 10]) : lvl === 2 ? pick(rng, [3, 4, 6]) : pick(rng, [7, 8, 9, 12]);
       b = Math.floor(rng() * 9) + 2;
       ans = a * b;
       method = `$${b}$ groups of $${a}$, which is $${a}$ added $${b}$ times`;
+    } else {
+      b = lvl === 1 ? pick(rng, [2, 5, 10]) : lvl === 2 ? pick(rng, [3, 4, 6]) : pick(rng, [7, 8, 9]);
+      ans = Math.floor(rng() * 8) + 2;
+      a = b * ans;
+      method = `count jumps of $${b}$ up to $${a}$ — it takes $${ans}$`;
     }
     return {
       title: "Mixed practice",
@@ -620,9 +657,9 @@ const GENERATORS: Record<string, Generator> = {
       accept: [String(ans), words(ans < 1000 ? ans : 0)].filter((s) => s !== "zero" || ans === 0),
       answerLabel: String(ans),
       placeholder: "a number",
-      hint: "Decide first which of the three walks this is: forward, backward, or forward in equal steps.",
+      hint: "Decide first which kind of counting this is: on, back, in jumps — or counting how many jumps fit.",
       why: `$${a} ${op} ${b} = ${ans}$ — ${method}.${
-        op === "-" ? ` Check it forwards: $${ans} + ${b} = ${a}$.` : op === "\\times" ? ` And $${b} \\times ${a}$ is the same $${ans}$, since turning the rectangle changes nothing.` : ` And $${b} + ${a}$ is the same $${ans}$.`
+        op === "-" ? ` Check it forwards: $${ans} + ${b} = ${a}$.` : op === "\\times" ? ` And $${b} \\times ${a}$ is the same $${ans}$, since turning the rectangle changes nothing.` : op === "\\div" ? ` Check by multiplying back: $${ans} \\times ${b} = ${a}$.` : ` And $${b} + ${a}$ is the same $${ans}$.`
       }`,
     };
   },

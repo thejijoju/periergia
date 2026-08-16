@@ -117,6 +117,8 @@ import { CheckpointQuiz } from "./CheckpointQuiz";
 import { Drill } from "./Drill";
 import { NumberSets } from "./NumberSets";
 import { HundredChart } from "./HundredChart";
+import { NumberLine } from "./NumberLine";
+import { DotArray } from "./DotArray";
 import { ResearchGate } from "./ResearchGate";
 import { StudyExports } from "./StudyExports";
 import { ReportIssue } from "./ReportIssue";
@@ -563,7 +565,7 @@ export function Reader({
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkMath]}
-              rehypePlugins={[rehypeKatex]}
+              rehypePlugins={[[rehypeKatex, { output: "html" }]]}
               components={{
                 h2: ({ children }) => <h2 id={headingId(children)}>{children}</h2>,
                 h3: ({ children }) => <h3 id={headingId(children)}>{children}</h3>,
@@ -630,6 +632,21 @@ export function Reader({
                   // to a row, with the ones and tens patterns highlightable.
                   if (typeof cls === "string" && /language-hundredchart\b/.test(cls)) {
                     return <HundredChart />;
+                  }
+                  // A fenced ```numberline block ("6+3", "9-4", "4-9") draws
+                  // the hops on a number line; subtraction past zero shows the
+                  // steps still owed dashed off the left edge.
+                  if (typeof cls === "string" && /language-numberline\b/.test(cls)) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const spec = extractText((child as any).props?.children).trim();
+                    return <NumberLine spec={spec} />;
+                  }
+                  // A fenced ```dotarray block ("5x3") renders the dots with a
+                  // turn-the-tray button — commutativity performed, not told.
+                  if (typeof cls === "string" && /language-dotarray\b/.test(cls)) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const spec = extractText((child as any).props?.children).trim();
+                    return <DotArray spec={spec} />;
                   }
                   // A fenced ```supplydemand block becomes an interactive
                   // supply-and-demand diagram with shift sliders.

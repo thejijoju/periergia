@@ -6,41 +6,46 @@
 --
 -- Node added to seed.ts in the same change, ahead of Number Systems.
 --
--- The genuine first lesson of the whole mathematics tree: what a number is,
--- how to count a collection, and how counting turns into addition,
--- subtraction and multiplication. It assumes literally nothing.
+-- The genuine first lesson of the whole mathematics tree. Shape of every
+-- section: a rule in plain tutor language, worked examples talked through
+-- step by step, then an infinite drill (three difficulty levels; opens on a
+-- worked example whose solution is hidden until revealed).
 --
--- Built exercise-first per review: mathematics is practised, not read, so
--- EVERY section ends with an infinite drill on exactly what that section
--- taught - eight sections, eight drills, each regenerating forever at three
--- difficulty levels. The prose is the shortest honest account of each idea
--- and then gets out of the way.
+-- Thirteen sections / fourteen drills:
+--   1 counting (with 1-1 pairing said plainly)   -> count-objects
+--   2 the next number                            -> count-on
+--   3 how we write numbers (place value)         -> place-value
+--   4 the pattern (0-99 grid; naturals vs wholes)-> hundredchart + count-on
+--   5 saying numbers                             -> number-word
+--   6 which is bigger                            -> compare-numbers
+--   7 adding (stars first, number line, names
+--     of the laws in a light aside)              -> make-ten, add-count-on
+--   8 adding tens                                -> add-tens
+--   9 adding big numbers (carrying)              -> column-add
+--  10 subtracting (number lines incl. the 4-9
+--     wall with steps owed dashed past zero)     -> sub-count-back
+--  11 multiplying (interactive dot array)        -> skip-count
+--  12 dividing: jumps-that-fit and sharing,
+--     remainders, check-by-multiplying, and
+--     divide-by-zero forbidden                   -> divide-groups
+--  13 all four together                          -> mixed-arithmetic
 --
--- Eight sections / eight drills:
---   1 counting a collection            -> count-objects
---   2 the next number                  -> count-on
---   3 writing numbers: place value     -> place-value
---   4 saying numbers: number words     -> number-word
---   5 comparing                        -> compare-numbers
---   6 counting on = addition (1+1=2)   -> add-count-on
---   7 counting back = subtraction      -> sub-count-back
---   8 counting in steps = multiplying  -> skip-count
+-- Additions from review: division as the fourth pillar; number-line figures
+-- for adding and subtracting (```numberline); the 5x3 dot array with a
+-- turn-the-tray button (```dotarray); Peano-axioms framing so an adult
+-- reader knows why lesson one is counting; crisp natural-vs-whole naming;
+-- commutative law and identity elements named in light asides; a "Where
+-- this goes" bridge (set theory, Peano, binary, negatives, modular
+-- arithmetic). KaTeX output switched to html-only so copied text no longer
+-- duplicates every formula.
 --
--- ~5,200 words, 8 infinite drills, 8 checkpoint questions across 3
--- blocks, 9 worked problems, 2 figures. Half the length of the standard
--- chapter, on purpose: there is no honest way to write ten thousand words
--- about counting, and padding it would bury the exercises that are the
--- point. The word count is not the deliverable here; the eight drills are.
+-- ~4,050 words, 14 infinite drills, 7 checkpoint questions, 17 practice
+-- problems with answers, 2 figures, 1 interactive grid, 3 number lines,
+-- 1 dot array.
 --
--- Numbers verified before drafting (python3):
---   Roman numerals: 1944 = MCMXLIV (7 characters); 3888 =
---     MMMDCCCLXXXVIII (15 characters, against 4 for "3888"); 38 =
---     XXXVIII (7); 2024 = MMXXIV (6);
---   counting to a million at one number per second takes 1,000,000 s =
---     11.57 days; to a billion, 31.69 years;
---   the addition facts for digits 0-9 number 10 x 10 = 100 ordered
---     pairs, but only 10 x 11 / 2 = 55 once commutativity is used;
---   40 marks make 8 groups of five.
+-- Numbers verified (python3): all practice answers including 15/3=5,
+--   12/4=3, 30/5=6, 21/7=3, 40/10=4, 14 = 3x4+2, 54/6=9; column sums
+--   32+21=53, 47+38=85, 286+457=743, 2343+3937=6280.
 
 with master as (
   insert into content (node_id, depth, level, format, body, generated, reviewed)
@@ -49,9 +54,13 @@ with master as (
     'research','advanced','read',
     $preCount_master$> Every part of this lesson works the same way: you see one example done for you, then it's your turn. The practice boxes never run out of questions — keep answering until it feels easy, then raise the difficulty, then move on.
 
+And if counting seems too basic to bother with: when mathematicians rebuilt all of arithmetic from scratch (the **Peano axioms**, 1889), the entire foundation turned out to be two ideas — a starting number, and "add one". That is literally this lesson. Everything else is built on it.
+
 ## 1. Counting
 
 Counting is pointing at things one at a time while saying "one, two, three, …". The last word you say is how many there are.
+
+Said carefully: counting **pairs** every object with one number name, in order — nothing skipped, nothing counted twice. (That pairing idea seems obvious; it becomes one of the deepest tools in mathematics.)
 
 **Example.** Count these stars:
 
@@ -135,7 +144,9 @@ Two things worth noticing on the grid:
 - **Adding $1$ moves you one step right.** At the end of a row, you wrap to the start of the next — that's the $9 \to 10$ flip from section 2.
 - **Adding $10$ moves you one step straight down.** The ones digit stays put; only the tens digit changes. Remember this — it comes back in section 8.
 
-One more thing, because it trips people up: $47$ is **one number**, not "a $4$ and a $7$". Every cell in that grid is a single number. Numbers written with $0$ included — $0, 1, 2, 3, \ldots$ — are called **whole numbers**.
+One more thing, because it trips people up: $47$ is **one number**, not "a $4$ and a $7$". Every cell in that grid is a single number.
+
+And the names, precisely, because both get used later: $1, 2, 3, \ldots$ are the **counting numbers** — mathematicians call them the **natural numbers**. Put $0$ in as well and you have the **whole numbers** $0, 1, 2, 3, \ldots$, also called the non-negative integers. The only difference between the two lists is the zero.
 
 **Your turn.**
 
@@ -185,13 +196,23 @@ compare-numbers
 
 ## 7. Adding
 
-Adding is counting on. That's all it is.
+Adding is putting two piles together and counting the result:
+
+$$\bigstar\,\bigstar \;+\; \bigstar\,\bigstar\,\bigstar \;=\; \bigstar\,\bigstar\,\bigstar\,\bigstar\,\bigstar$$
+
+Two stars and three stars make five stars: $2 + 3 = 5$. In practice you don't recount the whole pile — you **count on**: start at the first number and keep counting.
 
 **Example.** $1 + 1$: start at $1$, count on one more: "$2$". So $1 + 1 = 2$.
 
-**Example.** $6 + 3$: start at $6$, count on three: "$7, 8, 9$". So $6 + 3 = 9$.
+**Example.** $6 + 3$: start at $6$, count on three: "$7, 8, 9$". So $6 + 3 = 9$. On a number line, that's three hops to the right:
+
+```numberline
+6+3
+```
 
 **Example.** $2 + 9$: you could count on nine times… or flip it. $2 + 9$ is the same as $9 + 2$: "$10, 11$". Done. **Order never matters in addition**, so always start from the bigger number.
+
+*(The official names, for later: "order never matters" is the **commutative law** of addition, and because $7+0=7$, zero is called the **identity** for addition. You'll meet both again in algebra — here they're just facts about piles.)*
 
 The pairs that add to $10$ are worth knowing by heart, because ten is where our number system turns over:
 
@@ -253,7 +274,11 @@ column-add
 
 Subtracting is counting **back**.
 
-**Example.** $9 - 4$: start at $9$, count back four: "$8, 7, 6, 5$". You land on $5$. So $9 - 4 = 5$.
+**Example.** $9 - 4$: start at $9$, count back four: "$8, 7, 6, 5$". You land on $5$. So $9 - 4 = 5$. Same hops as addition, pointed the other way:
+
+```numberline
+9-4
+```
 
 **Check your answer** by adding it back: $5 + 4 = 9$. ✓ If the check fails, the subtraction was wrong. Every subtraction can be checked this way.
 
@@ -261,7 +286,13 @@ Sometimes counting back is the slow way round:
 
 **Example.** $52 - 48$. Counting back $48$ steps? No. Ask instead: *how far is it from $48$ up to $52$?* "$49, 50, 51, 52$" — four steps. So $52 - 48 = 4$. Same answer, four steps instead of forty-eight. **Count back or count up — take whichever is shorter.**
 
-One warning: in addition, order didn't matter. Here it does. $9 - 4 = 5$, but $4 - 9$ is a different question — start at $4$, count back nine — and after four steps you hit… nothing. You've run out of numbers with five steps still to go. Among the counting numbers, $4 - 9$ simply **has no answer**. Hold that thought; it is exactly where the next lesson begins.
+One warning: in addition, order didn't matter. Here it does. $9 - 4 = 5$, but $4 - 9$ is a different question — start at $4$, count back nine — and after four steps you hit the wall:
+
+```numberline
+4-9
+```
+
+You've run out of numbers with five steps still to go. Among the counting numbers, $4 - 9$ simply **has no answer**. The picture almost begs the fix: *let the line keep going past zero.* That is exactly what the next lesson does.
 
 **Your turn.**
 
@@ -275,9 +306,15 @@ Multiplying is counting in equal jumps.
 
 **Example.** $5 \times 3$ means five jumps of three: "$3, 6, 9, 12, 15$". So $5 \times 3 = 15$. (It's the same as $3+3+3+3+3$ — just faster to say.)
 
-**Example.** Why is $3 \times 5$ also $15$? Picture $5$ rows of $3$ dots. Turn the page sideways: now it's $3$ rows of $5$ — same dots, nothing added, nothing removed. **Order never matters in multiplication either.**
+**Example.** Why is $3 \times 5$ also $15$? Don't picture it — do it:
 
-Two easy special cases: $7 \times 1 = 7$ (one jump of seven), and $7 \times 0 = 0$ (no jumps at all).
+```dotarray
+5x3
+```
+
+Same dots, nothing added, nothing removed. **Order never matters in multiplication either** *(the commutative law again)*.
+
+Two easy special cases: $7 \times 1 = 7$ (one jump of seven — which makes $1$ the identity for multiplication, as $0$ was for addition), and $7 \times 0 = 0$ (no jumps at all).
 
 **Your turn.**
 
@@ -285,17 +322,42 @@ Two easy special cases: $7 \times 1 = 7$ (one jump of seven), and $7 \times 0 = 
 skip-count
 ```
 
-## 12. All three together
+## 12. Dividing
 
-Everything in this lesson is counting, walked three different ways:
+One question remains: multiplication in reverse. $5 \times 3 = 15$ says five jumps of three reach fifteen. Division asks it backwards: **how many jumps of three does it take to reach fifteen?**
+
+**Example.** $15 \div 3$: count jumps of three — "$3, 6, 9, 12, 15$" — that's $5$ jumps. So $15 \div 3 = 5$.
+
+There is a second way to read the same question: **sharing**. Deal $15$ things into $3$ equal piles and each pile gets $5$. Both readings give the same answer, and both are counting.
+
+**Example.** $30 \div 5$: jumps of five — "$5, 10, 15, 20, 25, 30$" — six jumps. So $30 \div 5 = 6$.
+
+**Check by multiplying back**, the way subtraction checks by adding back: $6 \times 5 = 30$. ✓
+
+Sometimes the jumps don't land exactly:
+
+**Example.** $14 \div 4$: jumps of four — "$4, 8, 12$" — three jumps, and the next one would overshoot. Three whole jumps with $2$ left over: $14 \div 4 = 3$ **remainder** $2$. Check: $3 \times 4 + 2 = 14$. ✓
+
+And one question is forbidden: $15 \div 0$ asks "how many jumps of size zero reach fifteen?" — no number of zero-jumps gets anywhere, so **dividing by zero has no answer**. Ever.
+
+**Your turn.**
+
+```drill
+divide-groups
+```
+
+## 13. All four together
+
+Everything in this lesson is counting, walked four different ways:
 
 | operation | what you do | example |
 |---|---|---|
 | add | count on | $6+3=9$ |
 | subtract | count back | $9-4=5$ |
 | multiply | count in jumps | $5\times3=15$ |
+| divide | count how many jumps fit | $15\div3=5$ |
 
-This last practice box mixes all three, so you must first recognise which one you're looking at. Stay on it the longest.
+This last practice box mixes all four, so you must first recognise which one you're looking at. Stay on it the longest.
 
 ```drill
 mixed-arithmetic
@@ -377,6 +439,19 @@ a: Nothing — the two arrangements are different problems.
 x: They're the same cups. Turning a tray adds nothing and removes nothing, so both descriptions count the same 15.
 hint: Does turning a tray change how many cups are on it?
 why: Rotating turns "5 rows of 3" into "3 rows of 5" without touching a cup, so both count the same 15. That picture is the whole proof that order doesn't matter in multiplication.
+
+---
+
+q: What question does $15 \div 3$ ask?
+a*: How many jumps of 3 it takes to reach 15.
+a: What is left when 3 is taken from 15.
+x: That's subtraction — $15 - 3 = 12$, one step back. Division asks about repeated jumps, not a single one.
+a: What 15 jumps of 3 add up to.
+x: That's multiplication — $15 \times 3 = 45$. Division runs that question in reverse: the total is known, the number of jumps is not.
+a: Nothing — 15 and 3 can't be divided.
+x: They can, exactly: jumps of 3 land on 3, 6, 9, 12, 15 — five jumps, no leftover. So $15 \div 3 = 5$.
+hint: Division is multiplication read backwards.
+why: $15 \div 3$ asks how many jumps of 3 reach 15: "3, 6, 9, 12, 15" — five. Equivalently, 15 shared into 3 equal piles puts 5 in each. Check by multiplying back: $5 \times 3 = 15$. ✓
 ```
 
 ## Practice
@@ -411,9 +486,11 @@ Do these on paper, then check against the answers below.
 
 **14.** Continue each pattern three more steps: **(a)** $4, 8, 12, \ldots$ **(b)** $7, 14, 21, \ldots$ **(c)** $25, 50, 75, \ldots$
 
-**15.** Mixed: $12+9$, $20-8$, $8\times7$, $63-9$, $6\times9$, $45+7$.
+**15.** Divide: $15\div3$, $12\div4$, $30\div5$, $21\div7$, $40\div10$, and $14\div4$ (give the remainder).
 
-**16.** In one sentence: why does $4-9$ have no answer in this lesson?
+**16.** Mixed: $12+9$, $20-8$, $8\times7$, $63-9$, $54\div6$, $45+7$.
+
+**17.** In one sentence: why does $4-9$ have no answer in this lesson?
 
 ### Answers
 
@@ -431,8 +508,19 @@ Do these on paper, then check against the answers below.
 **12.** $5,\ 4,\ 8,\ 4,\ 3$ — counting up is quicker for $52-48$ and $100-97$, counting back for the rest.
 **13.** $15,\ 15,\ 7,\ 0,\ 24,\ 72$.
 **14.** (a) $16, 20, 24$ (b) $28, 35, 42$ (c) $100, 125, 150$.
-**15.** $21,\ 12,\ 56,\ 54,\ 54,\ 52$.
-**16.** Counting back nine from four runs out of numbers after four steps — no counting number is the answer. (The next lesson fixes this.)
+**15.** $5,\ 3,\ 6,\ 3,\ 4$; and $3$ remainder $2$.
+**16.** $21,\ 12,\ 56,\ 54,\ 9,\ 52$.
+**17.** Counting back nine from four runs out of numbers after four steps — no counting number is the answer. (The next lesson fixes this.)
+
+## Where this goes
+
+Every idea in this lesson grows into a whole field. For the curious — nothing here is needed yet:
+
+- **Counting as pairing** becomes *set theory*, where the same pairing trick compares infinite collections — and proves some infinities are bigger than others.
+- **"Add one" and a starting point** are the *Peano axioms* — the official foundation all of arithmetic is rebuilt from.
+- **Carrying** is base-ten positional notation; computers run the identical system with two digits instead of ten (*binary*).
+- **$4 - 9$ has no answer** forces the negative numbers — the next lesson, and the first step on a ladder that ends at the complex numbers.
+- **Remainders** become *modular arithmetic*, the mathematics behind clocks, calendars and internet cryptography.
 
 ## Further reading
 
