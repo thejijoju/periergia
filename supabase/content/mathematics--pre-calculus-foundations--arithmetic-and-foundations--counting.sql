@@ -174,7 +174,21 @@ The only irregular part of English numbers is the teens: "eleven, twelve, thirte
 number-word
 ```
 
-## 6. Which number is bigger?
+## 6. More, fewer, or the same?
+
+Which row has more stars?
+
+$$\text{A: } \bigstar\;\bigstar\;\bigstar\;\bigstar\;\bigstar\;\bigstar \qquad\qquad \text{B: } \bigstar\;\bigstar\;\bigstar\;\bigstar$$
+
+You don't even need to count. **Pair them off** — one star from A with one star from B — and see which row runs out first. B runs out with two stars of A left over, so A has more. (This is the pairing idea from section 1, doing its first real job.)
+
+Counting gives the same verdict: A has $6$, B has $4$, and $6$ is bigger because you reach it *later* when counting up. That's what "bigger" means.
+
+We write it with three symbols — and the wide open end always faces the bigger number:
+
+$$4 < 6 \quad (4 \text{ is less than } 6) \qquad 6 > 4 \quad (6 \text{ is greater than } 4) \qquad 5 = 5 \quad (\text{equal})$$
+
+For big written numbers, counting up to them is hopeless — place value does it instead:
 
 **Example.** $999$ or $1000$? The one with more digits is bigger: $1000$.
 
@@ -186,9 +200,7 @@ number-word
 
 $1$ beats $0$, so $4812 > 4806$. The ones digits never mattered: a difference in a bigger place always outweighs everything after it.
 
-We write "bigger" and "smaller" with symbols: $4 < 7$ means $4$ is less than $7$, and $7 > 4$ means $7$ is greater than $4$. The wide open end always faces the bigger number.
-
-**Your turn.**
+**Your turn.** The gentle level is star rows — no digits at all. Then written numbers, then long near-ties.
 
 ```drill
 compare-numbers

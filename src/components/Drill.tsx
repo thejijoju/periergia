@@ -487,15 +487,38 @@ const GENERATORS: Record<string, Generator> = {
     };
   },
 
-  // Which is bigger? Order comes from counting: whichever you reach later is larger.
+  // Which is bigger? Gentle level compares two rows of stars by pairing them
+  // off — no digits involved; the harder levels compare written numbers.
   "compare-numbers": (rng, lvl) => {
-    const digits = lvl === 1 ? 2 : lvl === 2 ? 3 : 4;
+    if (lvl === 1) {
+      const a = Math.floor(rng() * 9) + 3; // 3..11
+      const b = rng() < 0.2 ? a : Math.max(2, Math.min(12, a + (Math.floor(rng() * 7) - 3)));
+      const rel = a > b ? ">" : a < b ? "<" : "=";
+      const row = (n: number) => Array.from({ length: n }, () => "★").join(" ");
+      return {
+        title: "Which row has more?",
+        prompt: `Row A: ${row(a)}\nRow B: ${row(b)}\nWhich sign belongs between them? A $\\square$ B`,
+        mode: "choice",
+        options: [
+          { label: "$<$ — A has fewer", correct: rel === "<", why: rel === "<" ? "" : "Pair them off: A does not run out first." },
+          { label: "$=$ — same number", correct: rel === "=", why: rel === "=" ? "" : "Pair them off star for star: one row has stars left over, so they are not equal." },
+          { label: "$>$ — A has more", correct: rel === ">", why: rel === ">" ? "" : "Pair them off: A is not the row with stars left over." },
+        ],
+        hint: "You don't even need to count — pair each star in row A with one in row B and see which row runs out first.",
+        why: `Row A has $${a}$ and row B has $${b}$${
+          a === b
+            ? ", so the rows pair off exactly: $A = B$."
+            : `. Pairing them off, ${a > b ? "B" : "A"} runs out first with ${Math.abs(a - b)} left over in ${a > b ? "A" : "B"}, so $A ${rel} B$.`
+        } Counting gives the same verdict — the bigger count is the one you reach later when counting up.`,
+      };
+    }
+    const digits = lvl === 2 ? pick(rng, [2, 3]) : pick(rng, [4, 5]);
     const lo = Math.pow(10, digits - 1);
     const hi = Math.pow(10, digits) - 1;
     const a = Math.floor(rng() * (hi - lo + 1)) + lo;
     // Harder levels are weighted towards near-ties, where the difference sits
     // in a low place and the eye is tempted to compare from the wrong end.
-    const near = rng() < (lvl === 1 ? 0.3 : lvl === 2 ? 0.55 : 0.8);
+    const near = rng() < (lvl === 2 ? 0.5 : 0.8);
     const b = near
       ? Math.max(lo, Math.min(hi, a + (Math.floor(rng() * 19) - 9)))
       : Math.floor(rng() * (hi - lo + 1)) + lo;
@@ -1099,7 +1122,7 @@ export function Drill({ spec }: { spec: string }) {
               ? "Here is the whole solution. When it makes sense, try one yourself."
               : "First, one example. Try it in your head, then reveal the solution."}
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-ink mb-3">
+          <p className="font-sans text-[15px] leading-relaxed text-ink mb-3 whitespace-pre-line">
             <Rich text={example.prompt} />
           </p>
 
@@ -1206,7 +1229,7 @@ export function Drill({ spec }: { spec: string }) {
         ))}
       </div>
       <div className="px-4 sm:px-5 pb-4">
-        <p className="font-sans text-[15px] leading-relaxed text-ink mb-1.5">
+        <p className="font-sans text-[15px] leading-relaxed text-ink mb-1.5 whitespace-pre-line">
           <Rich text={item.prompt} />
         </p>
         <p className="font-sans text-[12.5px] text-whisper mb-3">
