@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Rich } from "./RichText";
+import { fireConfetti } from "@/lib/confetti";
 
 // ── Infinite drill ────────────────────────────────────────────────────────
 // A fenced ```drill block in article markdown becomes a self-test that never
@@ -1054,6 +1055,7 @@ export function Drill({ spec }: { spec: string }) {
   const [asked, setAsked] = useState(0);
   const [streak, setStreak] = useState(0);
   const [best, setBest] = useState(0);
+  const boxRef = useRef<HTMLDivElement | null>(null);
 
   const item = useMemo(() => (gen ? gen(mulberry32(seed + 1), lvl) : null), [gen, seed, lvl]);
   // Offset the example's seed well clear of the practice seeds so the reader
@@ -1091,6 +1093,14 @@ export function Drill({ spec }: { spec: string }) {
       setStreak((s) => {
         const next = s + 1;
         setBest((b) => Math.max(b, next));
+        // A short burst for every correct answer, a bigger one at each
+        // multiple of five — celebration scaled to the moment.
+        const r = boxRef.current?.getBoundingClientRect();
+        fireConfetti({
+          x: r ? r.left + r.width / 2 : undefined,
+          y: r ? Math.max(60, r.top + 40) : undefined,
+          count: next % 5 === 0 ? 150 : 45,
+        });
         return next;
       });
     } else {
@@ -1231,7 +1241,7 @@ export function Drill({ spec }: { spec: string }) {
   }
 
   return (
-    <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+    <div ref={boxRef} className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
       <div className="px-4 sm:px-5 pt-3.5 pb-1 flex flex-wrap items-center gap-x-2 gap-y-1">
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
           ∞ Drill

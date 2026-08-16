@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Rich } from "./RichText";
+import { fireConfetti } from "@/lib/confetti";
 
 // ── Inline checkpoint quiz ────────────────────────────────────────────────
 // A fenced ```checkpoint block in article markdown becomes a short set of
@@ -128,6 +129,7 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   // One entry per answered question: true if it was right on the first try.
   const [firstTry, setFirstTry] = useState<boolean[]>([]);
   const [finished, setFinished] = useState(false);
+  const boxRef = useRef<HTMLDivElement | null>(null);
 
   // A malformed spec renders as nothing rather than a broken card.
   if (!questions.length) return null;
@@ -140,7 +142,16 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
     if (solved) return;
     if (i === current.answerIndex) {
       setSolved(true);
-      setFirstTry((prev) => [...prev, tried.size === 0]);
+      const first = tried.size === 0;
+      setFirstTry((prev) => [...prev, first]);
+      if (first) {
+        const r = boxRef.current?.getBoundingClientRect();
+        fireConfetti({
+          x: r ? r.left + r.width / 2 : undefined,
+          y: r ? Math.max(60, r.top + 40) : undefined,
+          count: 45,
+        });
+      }
     } else {
       setTried((prev) => new Set(prev).add(i));
     }
@@ -149,6 +160,9 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   const advance = () => {
     if (isLast) {
       setFinished(true);
+      if (firstTry.filter(Boolean).length === total) {
+        fireConfetti({ count: 180 });
+      }
       return;
     }
     setIndex((i) => i + 1);
@@ -190,7 +204,7 @@ export function CheckpointQuiz({ spec }: { spec: string }) {
   }
 
   return (
-    <div className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
+    <div ref={boxRef} className="my-6 not-prose border border-line rounded-2xl bg-page overflow-hidden">
       <div className="px-4 sm:px-5 pt-3.5 pb-1 flex items-center gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-maroon">
           ✦ Checkpoint

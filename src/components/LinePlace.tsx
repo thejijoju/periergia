@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { fireConfetti } from "@/lib/confetti";
 
 // ── Place the number on the line ──────────────────────────────────────────
 // A fenced ```lineplace block becomes an infinite estimation exercise: a
@@ -72,6 +73,7 @@ export function LinePlace() {
       setStreak((s) => {
         const next = s + 1;
         setBest((b) => Math.max(b, next));
+        fireConfetti({ x: e.clientX, y: e.clientY, count: next % 5 === 0 ? 150 : 45 });
         return next;
       });
     } else {
