@@ -3988,14 +3988,17 @@ export const SUBJECTS: SubjectSpec[] = [
       },
       {
         "title": "Before Writing: the Human Deep Past",
+        "slug": "before-writing",
         "summary": "More than ninety-five per cent of the human story happened before anyone wrote anything down. This block covers what can be known without texts — from bones, genes, stone tools, art, and seeds — and the turn to farming that made cities and states possible.",
         "children": [
           {
             "title": "Human Origins and the Peopling of the Earth",
+            "slug": "human-origins",
             "summary": "How a single African species came to live on every continent but one. Homo sapiens in Africa by about 300,000 years ago (Jebel Irhoud); the dispersals out of Africa and the evidence for them — fossils, stone tools, and ancient and modern DNA; meeting and interbreeding with Neanderthals and Denisovans; the 'behavioural modernity' debate and the art of Blombos Cave, Sulawesi, and Chauvet; the crossing to Sahul (Australia and New Guinea) by at least 50,000 years ago; the peopling of the Americas and the collapse of the 'Clovis first' model (Monte Verde, the White Sands footprints); Ice Age climate and the megafaunal extinctions debate; and what forager societies were like, read cautiously from archaeology and ethnography."
           },
           {
             "title": "The Neolithic Revolution: Farming and Its Costs",
+            "slug": "neolithic-revolution",
             "summary": "Agriculture was invented independently at least half a dozen times — in Southwest Asia, China, New Guinea, Mesoamerica, the Andes, and Africa's Sahel — and it made most people's lives harder before it made anyone's easier. Domestication of wheat, barley, rice, millet, maize, squash, and animals; Göbekli Tepe and the question of whether ritual came before farming; Çatalhöyük and early village life; the skeletal evidence for worse health, shorter stature, and new diseases; population growth, surplus, storage, and inequality; the spread of farming by migration versus imitation (the ancient-DNA evidence for Europe); pastoralism as a separate path; and the debate from Childe's 'revolution' to Scott's Against the Grain over why people settled down at all."
           }
         ]
@@ -4303,6 +4306,7 @@ export const SUBJECTS: SubjectSpec[] = [
       },
       {
         "title": "The Age of Revolutions (c. 1760–1850)",
+        "slug": "age-of-revolutions",
         "summary": "Political and industrial revolutions that overturned kings, empires, and ways of working, beginning in the Atlantic world and spreading from there.",
         "children": [
           {
