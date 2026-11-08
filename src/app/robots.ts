@@ -43,6 +43,11 @@ const BLOCKED_BOTS = [
   "serpstatbot",
   "ZoominfoBot",
   "Seekr",
+  "SERankingBacklinksBot",
+  // AI data crawlers seen in our own logs (Nov 2026) that send no readers
+  "ElevenlabsCrawler",
+  "RiverBot",
+  "Reflectionbot",
 ];
 
 export default function robots(): MetadataRoute.Robots {

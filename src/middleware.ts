@@ -14,7 +14,7 @@ import { NextResponse, type NextRequest } from "next/server";
 // person at the request level and need a WAF / bot-management challenge
 // (Vercel Firewall) — a dashboard setting, not code.
 const BLOCKED_UA =
-  /GPTBot|OAI-SearchBot|ChatGPT-User|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Bytespider|Amazonbot|PerplexityBot|Omgilibot|Omgili|Diffbot|ImagesiftBot|cohere-ai|YouBot|Meta-ExternalAgent|Meta-ExternalFetcher|FacebookBot|Timpibot|VelenPublicWebCrawler|Scrapy|AhrefsBot|SemrushBot|MJ12bot|DotBot|DataForSeoBot|BLEXBot|PetalBot|serpstatbot|ZoominfoBot|Seekr|python-requests|Go-http-client|node-fetch/i;
+  /GPTBot|OAI-SearchBot|ChatGPT-User|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Bytespider|Amazonbot|PerplexityBot|Omgilibot|Omgili|Diffbot|ImagesiftBot|cohere-ai|YouBot|Meta-ExternalAgent|Meta-ExternalFetcher|FacebookBot|Timpibot|VelenPublicWebCrawler|Scrapy|AhrefsBot|SemrushBot|MJ12bot|DotBot|DataForSeoBot|BLEXBot|PetalBot|serpstatbot|ZoominfoBot|Seekr|SERankingBacklinksBot|ElevenlabsCrawler|RiverBot|Reflectionbot|python-requests|Go-http-client|node-fetch/i;
 
 export function middleware(req: NextRequest) {
   const ua = req.headers.get("user-agent") ?? "";
