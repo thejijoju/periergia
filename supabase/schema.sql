@@ -79,6 +79,8 @@ create table if not exists events (
 -- pages worth pre-warming.
 alter table events add column if not exists bot  boolean;
 alter table events add column if not exists cold boolean;
+-- Furthest point a reader scrolled (% of page), sent with article_read.
+alter table events add column if not exists scroll_pct integer;
 create index if not exists events_ts_idx   on events (ts desc);
 create index if not exists events_name_idx on events (name);
 
