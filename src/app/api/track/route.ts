@@ -36,6 +36,11 @@ export async function POST(req: Request) {
     ? Math.max(0, Math.min(86_400, Math.round(rawSeconds)))
     : null;
 
+  const rawScroll = Number(p.scrollPct);
+  const scroll_pct = Number.isFinite(rawScroll)
+    ? Math.max(0, Math.min(100, Math.round(rawScroll)))
+    : null;
+
   const row = {
     name: cap(p.name, 64) ?? "article_read",
     node_id: cap(p.nodeId, 200),
@@ -44,6 +49,7 @@ export async function POST(req: Request) {
     depth: cap(p.depth, 32),
     level: cap(p.level, 32),
     seconds,
+    scroll_pct,
     dwell: cap(p.dwell, 32),
     country: cap(h.get("x-vercel-ip-country"), 8),
     city: cap(decodeURIComponent(h.get("x-vercel-ip-city") ?? ""), 120),

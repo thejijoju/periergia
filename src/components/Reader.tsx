@@ -357,15 +357,53 @@ export function Reader({
   // visitors, per-article page views, and location; this custom event adds the
   // dwell time it can't measure on its own. Fires once, on leaving the article
   // (tab hidden, tab/page close, client-side nav, or a depth/level switch).
+  //
+  // `seconds` is ACTIVE reading time, not wall-clock time: a 5s tick only
+  // counts while the tab is visible and the reader has scrolled, typed, or
+  // touched the page within the last minute. A tab left open overnight thus
+  // adds at most ~60s instead of 24 hours. `scrollPct` is the furthest point
+  // reached, as a % of the page — where readers drop off.
   useEffect(() => {
     if (loading || !generated) return;
-    const startedAt = Date.now();
+    const TICK_MS = 5000;
+    const IDLE_MS = 60_000;
+    let activeMs = 0;
+    let lastActivity = Date.now();
+    let lastTick = Date.now();
+    let maxScrollPct = 0;
     let sent = false;
+    const measureScroll = () => {
+      const el = document.documentElement;
+      const total = el.scrollHeight;
+      if (total > 0) {
+        const pct = Math.round(((window.scrollY + window.innerHeight) / total) * 100);
+        if (pct > maxScrollPct) maxScrollPct = Math.min(100, pct);
+      }
+    };
+    const onActivity = () => {
+      lastActivity = Date.now();
+    };
+    const onScroll = () => {
+      lastActivity = Date.now();
+      measureScroll();
+    };
+    const tick = () => {
+      const now = Date.now();
+      const visible = document.visibilityState === "visible";
+      if (visible && now - lastActivity <= IDLE_MS) activeMs += now - lastTick;
+      lastTick = now;
+    };
+    const timer = window.setInterval(tick, TICK_MS);
+    measureScroll();
+    const activityEvents = ["pointerdown", "pointermove", "keydown", "touchstart", "wheel"] as const;
+    activityEvents.forEach((e) => window.addEventListener(e, onActivity, { passive: true }));
+    window.addEventListener("scroll", onScroll, { passive: true });
     const title = node.title.replace(/\s*\*+$/, "");
     const fire = () => {
       if (sent) return;
       if (isExcludedVisitor()) return; // owner opted this browser out (?mine)
-      const seconds = Math.round((Date.now() - startedAt) / 1000);
+      tick();
+      const seconds = Math.round(activeMs / 1000);
       if (seconds < 3) return; // ignore flickers and instant bounces
       sent = true;
       const payload = JSON.stringify({
@@ -376,6 +414,7 @@ export function Reader({
         depth: shownDepth,
         level: shownLevel,
         seconds,
+        scrollPct: maxScrollPct,
         dwell: dwellBucket(seconds),
         referrer: document.referrer || null,
       });
@@ -403,6 +442,9 @@ export function Reader({
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pagehide", fire);
       fire(); // client-side navigation away, unmount, or depth/level change
+      window.clearInterval(timer);
+      activityEvents.forEach((e) => window.removeEventListener(e, onActivity));
+      window.removeEventListener("scroll", onScroll);
     };
   }, [node.id, loading, generated, shownDepth, shownLevel]);
 
