@@ -188,7 +188,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | overview | Long Histories of Regions (`history/regional-histories`) |  |
 | | | **Europe** | | |
 | ✅ | ✅ 2026-11-11 | chapter | East European Identities: Russia and Ukraine (`history/regional-histories/europe/east-european-identities-russia-and-ukraine`) | `history--regional-histories--east-european-identities.sql` |
-| ⬜ | — | chapter | The European Union (`history/regional-histories/europe/the-european-union`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The European Union (`history/regional-histories/europe/the-european-union`) | `history--regional-histories--european-union.sql` |
 | ⬜ | — | chapter | God Save the Queen: the British Monarchy (`history/regional-histories/europe/god-save-the-queen-the-british-monarchy`) |  |
 | | | **Asia** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Chinese History (`history/regional-histories/asia/chinese-history`) | `history--regional-histories--chinese-history.sql` |
