@@ -197,7 +197,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | The Modern History of Rural China (`history/regional-histories/asia/the-modern-history-of-rural-china`) |  |
 | ⬜ | — | chapter | Premodern Korean History (`history/regional-histories/asia/premodern-korean-history`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Modern South Asia (`history/regional-histories/asia/modern-south-asia`) | `history--regional-histories--modern-south-asia.sql` |
-| ⬜ | — | chapter | Modern Southeast Asia (`history/regional-histories/asia/modern-southeast-asia`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Modern Southeast Asia (`history/regional-histories/asia/modern-southeast-asia`) | `history--regional-histories--modern-southeast-asia.sql` |
 | ⬜ | — | chapter | Indochina and Modern Vietnam, 1880s-1980s (`history/regional-histories/asia/indochina-and-modern-vietnam-1880s-1980s`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Central Asia and the Steppe (`history/regional-histories/asia/central-asia-and-the-steppe`) | `history--regional-histories--central-asia.sql` |
 | | | **Africa** | | |
