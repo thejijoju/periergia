@@ -39,3 +39,17 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## Contemporary chapters (found by the era-overview audits, 2026-11-11)
 - Globalization (and the overview): container loading cost "$5.86 a ton to 16 cents". Wikipedia (Malcom McLean) gives $5.86; secondary sources citing Levinson's *The Box* give $5.83 and 15.8 cents. Check Levinson's text.
+
+## Soviet and Ukrainian chapters (found by the East European Identities research, 2026-11-11)
+- Soviet Union and Interwar: Holodomor "3.5–5 million according to recent scholarship". Recent estimates in the scholarship run lower as well (Kulchytsky 3–3.5 m; Snyder ~3.3 m; Vallin et al. ~2.6 m direct deaths in 1933; Wheatcroft 1.8 m registered, 2.8–4.8 m with unregistered). Consider "about 3–5 million", attributed. The 20th-century overview uses 3.5–5 m too.
+- *Bloodlands* "14 million": Snyder's book says 14 million; he gave 13 million in a 2016 interview. Check which the chapter means.
+
+## South Asian chapters (found by the Modern South Asia research, 2026-11-11)
+- Bengal famine of 1770: published chapters give the traditional range and "a third of the population"; Rajat Datta estimates about 1.2 million deaths and Dyson calls the Company's 10 million "barely credible". Present as a contested range.
+- World-output share figures: keep Maddison's GDP share and the manufacturing-output share apart wherever chapters cite them.
+
+## Mongol Empire chapter (found by the Central Asia research, 2026-11-11)
+- Timur "1336–1405": born in the 1320s; 8 April 1336 is a later Timurid date that Manz calls "probably an invention".
+- "The last ruler of Chinggisid descent was deposed in Bukhara in 1920": Bukhara's Manghit emirs were not Chinggisids (Soucek). Chinggisid rulers lasted elsewhere (Maqsud Shah of Kumul to 1930; Navaanneren Setsen Khan executed in Mongolia in 1937).
+- Global Cold War: Semipalatinsk "over 450" tests; sources give 468 (consistent, could be exact).
+- Imperial Expansion: General Smith's order quoted as "kill everyone over the age of ten"; the documented wording (1902 press) is "KILL EVERY ONE OVER TEN". Check the quotation against a primary report. (Found by the Modern Southeast Asia research, 2026-11-11.)
