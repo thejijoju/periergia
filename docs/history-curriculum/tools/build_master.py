@@ -15,6 +15,9 @@ ap.add_argument("--about", default="")
 a = ap.parse_args()
 
 body = open(a.body, encoding="utf-8").read().strip()
+# Escape currency dollar signs: the Reader runs remark-math, which renders any
+# pair of "$" in a paragraph as inline math ("$400 million ... $1 billion").
+body = re.sub(r"(?<!\\)\$(?=[0-9])", r"\\$", body)
 TARGETS = [0, 2, 1, 3, 2, 0, 3, 1, 1, 3, 0, 2, 3, 1, 2, 0]
 k = 0
 

@@ -39,7 +39,7 @@ At first licensees made steel that was "rotten hot and rotten cold", until Rober
 
 {{image: Bessemer process | A schematic diagram of a Bessemer converter, which made steel cheap by blowing air through molten iron.}}
 
-**Andrew Carnegie** opened his Edgar Thomson Steel Works in 1875 and cut the price of steel rails from $100 a ton to $18 by the 1890s. US steel output passed Britain's by 1889 and reached 26 million tons a year by 1910. Steel, railways and coal fed one another: in the 1880s the United States laid 75,000 miles of track.
+**Andrew Carnegie** opened his Edgar Thomson Steel Works in 1875 and cut the price of steel rails from \$100 a ton to \$18 by the 1890s. US steel output passed Britain's by 1889 and reached 26 million tons a year by 1910. Steel, railways and coal fed one another: in the 1880s the United States laid 75,000 miles of track.
 
 ## Chemistry and the Laboratory
 
@@ -69,7 +69,7 @@ Yet the world's oil centre for a time was not American. At **Baku**, on the Casp
 
 The first transatlantic cable carried its first official messages on 16 August 1858, including Queen Victoria's to President Buchanan. Three weeks later it failed, after Wildman Whitehouse applied excessive voltage. The *Great Eastern* laid a lasting cable in 1866. Cables were insulated with gutta-percha, a latex from Southeast Asian trees whose name comes from Malay. By 1870 Bombay was linked to London by cable, and by 1872 Singapore and Australia, and British cable systems dominated the world until 1911. By 1890 merchants in England could order goods from India or China by telegraph for delivery by steamship, cutting out middlemen. Marconi's wireless crossed the Atlantic in 1901.
 
-The telephone had a disputed birth. On 14 February 1876 Alexander Graham Bell's lawyer filed his patent application on the same day that Elisha Gray's lawyer filed a caveat. Bell's patent was granted on 7 March, and three days later he said "Mr. Watson, come here, I want to see you" through a liquid transmitter similar to Gray's design. Antonio Meucci's voice-transmission devices, developed from 1849 onwards and later called the *telettrofono*, are credited by several sources as the first telephone; he filed a caveat in 1871 but let it lapse after 1874. A 2002 US House resolution declared that if he had been able to pay the $10 fee, "no patent could have been issued to Bell"; Canada's House of Commons replied by declaring Bell the inventor. The telephone also opened a new job for women: in 1878 a Boston exchange replaced its boy operators with women, starting with Emma Nutt.
+The telephone had a disputed birth. On 14 February 1876 Alexander Graham Bell's lawyer filed his patent application on the same day that Elisha Gray's lawyer filed a caveat. Bell's patent was granted on 7 March, and three days later he said "Mr. Watson, come here, I want to see you" through a liquid transmitter similar to Gray's design. Antonio Meucci's voice-transmission devices, developed from 1849 onwards and later called the *telettrofono*, are credited by several sources as the first telephone; he filed a caveat in 1871 but let it lapse after 1874. A 2002 US House resolution declared that if he had been able to pay the \$10 fee, "no patent could have been issued to Bell"; Canada's House of Commons replied by declaring Bell the inventor. The telephone also opened a new job for women: in 1878 a Boston exchange replaced its boy operators with women, starting with Emma Nutt.
 
 ```checkpoint
 q: What happened to the first transatlantic telegraph cable of 1858?
@@ -114,14 +114,14 @@ Chandler argued that railways created the modern business enterprise, with depar
 
 **Frederick Winslow Taylor**, once a foreman at Midvale Steel, replaced rule of thumb with the scientific study of tasks, with managers planning and workers executing; his *Principles of Scientific Management* appeared in 1911. Moulders at the Watertown Arsenal walked out against the system that year, and historians question Taylor's story of the pig-iron handler "Schmidt". Lenin called Taylorism "a 'scientific' system of sweating" in 1913, then, in power in 1918, urged Russians to learn from it.
 
-Chicago's meatpackers had used "disassembly lines" since 1867. Henry Ford's moving assembly line, begun at Highland Park, Michigan, in October 1913, cut the final assembly of a Model T from 12.5 man-hours to about 93 minutes. Prices fell steeply, from about $825 in 1908 to $575 in 1912 by one count, or from $780 in 1910 to $360 in 1916 by another. Ford's best-known line needs a caveat:
+Chicago's meatpackers had used "disassembly lines" since 1867. Henry Ford's moving assembly line, begun at Highland Park, Michigan, in October 1913, cut the final assembly of a Model T from 12.5 man-hours to about 93 minutes. Prices fell steeply, from about \$825 in 1908 to \$575 in 1912 by one count, or from \$780 in 1910 to \$360 in 1916 by another. Ford's best-known line needs a caveat:
 
 ```quote
 Any customer can have a car painted any color that he wants so long as it is black.
 Henry Ford · My Life and Work · 1922
 ```
 
-In fact, from 1908 to 1913 the Model T was not available in black at all, but in grey, green, blue and red; the black-only policy began in 1914. That January Ford announced the $5 day, more than doubling minimum pay for qualifying men. It answered high turnover (in 1913 Ford had to hire 963 men to add 100), and eligibility depended on approval by the company's Social Department investigators.
+In fact, from 1908 to 1913 the Model T was not available in black at all, but in grey, green, blue and red; the black-only policy began in 1914. That January Ford announced the \$5 day, more than doubling minimum pay for qualifying men. It answered high turnover (in 1913 Ford had to hire 963 men to add 100), and eligibility depended on approval by the company's Social Department investigators.
 
 ## Challengers: America, Germany and the Late Developers
 
@@ -144,7 +144,7 @@ Workers organised: the Knights of Labor grew from about 100,000 members in 1884 
 Women's work was central. In July 1888 about 1,400 women and girls, mostly Irish or of Irish descent, walked out of the Bryant & May match factory in London, where white phosphorus caused "phossy jaw"; they won the end of fines and founded a union. In the United States women were about 14 per cent of the paid workforce in 1870. New department stores, from Au Bon Marché in Paris to Selfridges in London (1909) and Mitsukoshi in Tokyo (1904), gave middle-class women respectable public spaces of their own. In Japan's textile mills most workers were women, half of them under 20, sent by their fathers, to whom they handed their wages. Children worked too: the 1900 census counted about 1.75 million American children aged 10 to 15 at work, most on farms but many in mills, mines and factories, as Lewis Hine's photographs of the 1910s documented.
 
 ```checkpoint
-q: Why did Henry Ford introduce the $5 day in 1914?
+q: Why did Henry Ford introduce the \$5 day in 1914?
 a: Because the Sherman Antitrust Act required it.
 x: The Sherman Act concerned monopolies, not wages.
 a*: Partly to cure high turnover on the assembly line, with eligibility policed by the Social Department.
@@ -153,7 +153,7 @@ x: Model T prices were falling steeply in these years.
 a: Because the Second International demanded it.
 x: The Second International had no say over Ford's pay.
 hint: Think of the 963 men hired to add 100.
-why: Historians debate how far the $5 day was generosity and how far a cure for turnover and a tool of social control.
+why: Historians debate how far the \$5 day was generosity and how far a cure for turnover and a tool of social control.
 ---
 q: What did the Matchgirls' strike of 1888 achieve?
 a: A ban on all women's factory work in Britain.

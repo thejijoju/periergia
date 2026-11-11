@@ -50,7 +50,7 @@ Cubans call the missile crisis of 1962 the "October Crisis"; from Havana it look
 
 ## The Alliance for Progress
 
-Kennedy's answer mixed reform with counter-insurgency. The **Alliance for Progress**, signed at Punta del Este, Uruguay, in August 1961, promised $20 billion of US funds over ten years, matched by $80 billion of Latin American investment. Critics noted that this came to only about $10 per Latin American a year.
+Kennedy's answer mixed reform with counter-insurgency. The **Alliance for Progress**, signed at Punta del Este, Uruguay, in August 1961, promised \$20 billion of US funds over ten years, matched by \$80 billion of Latin American investment. Critics noted that this came to only about \$10 per Latin American a year.
 
 ```quote
 Those who make peaceful revolution impossible will make violent revolution inevitable.
