@@ -1,0 +1,22 @@
+# Verified facts — Colonial Latin America (searched 2026-11-10)
+- Viceroyalties: New Spain 1535 (Mexico City; incl. Central America, Caribbean, Philippines); Peru 1542 (Lima); New Granada 1717–23, re-est. 1739; Río de la Plata 1776 (Buenos Aires).
+- Central Mexico: 1519 pop est 15–30 m; smallpox 1520; cocoliztli 1545–48 (5–15 m, up to 80%) and 1576–78 (~50% of remaining); cause debated (European disease vs native haemorrhagic fever + drought). Population did not recover to pre-contact levels until 20th c.
+- Potosí: silver found 1545 (Diego Huallpa); amalgamation adopted early 1570s; mercury from Huancavelica (cinnabar found 1560s) and Almadén; Toledo mita 1573: one-seventh of adult men of each community per year; Potosí ~160,000 reported 1610 (figures vary). Acosta c.1590 described mercury poisoning.
+- Two republics: república de indios / de españoles (legal separation).
+- Inquisition: Lima 1570, Mexico 1571; Indigenous people excluded from its jurisdiction (treated as neophytes).
+- General Indian Court of New Spain: establishment 1585–1592 (formal 1592, Velasco II), funded by half-real levy; Borah Justice by Insurance (1983); lasted to 1820.
+- Printing: Juan Pablos press Mexico City 1539.
+- Guaman Poma, Nueva corónica y buen gobierno c.1615: ~1,200 pp, ~400 drawings; addressed to Philip III; Royal Danish Library Copenhagen; rediscovered 1908 (Pietschmann).
+- Garcilaso de la Vega (El Inca), Comentarios Reales part 1 Lisbon 1609; part 2 Córdoba 1617; Cuzco as "another Rome".
+- Guadalupe: apparition dated Dec 1531 by tradition; first published account Miguel Sánchez 1648 (Spanish), Laso de la Vega 1649 Nahuatl (Nican mopohua; date of composition debated). No incontrovertible evidence before 1648.
+- Sor Juana: b. 1648 or 1651 (disputed), d. 17 Apr 1695; Respuesta a Sor Filotea 1691, defence of women's learning.
+- Manila galleon annual Manila–Acapulco 1565–1815 (Urdaneta tornaviaje); Asians called "chinos" (Luis 2024); Catarina de San Juan, born in South Asia, enslaved, d. Puebla 1688.
+- Yanga: maroon leader near Veracruz; 1609 expedition; 1618 agreement recognised free settlement San Lorenzo de los Negros (formal founding dates 1630–31 given); renamed Yanga 1932.
+- Brazil: Dutch held Pernambuco 1630–1654; Palmares overrun 1694 (Domingos Jorge Velho), Zumbi killed 20 Nov 1695; gold in Minas Gerais 1690s (1695 Rio das Velhas; Vila Rica 1698); 1693–1720 ~400,000 Portuguese and ~500,000 enslaved moved there (one source); Brazil received ~40% of enslaved Africans brought to Americas, ~4.8 m (largest destination).
+- Treaty of Madrid 1750 → Guaraní War 1754–56, Sepé Tiaraju killed 7 Feb 1756, Caiboaté 10 Feb 1756; treaty annulled 1761 (El Pardo). Jesuits expelled Portugal/Brazil 1759, Spanish empire 1767 (Charles III).
+- Bourbon reforms: José de Gálvez visitor general New Spain from 1765; tax reorganisation, tobacco monopoly, favoured peninsular Spaniards (avoid stronger claim).
+- Comuneros New Granada: 16 Mar 1781 Socorro, Manuela Beltrán tore down tax edict; Berbeo; Galán executed Feb 1782; ~20,000 participants.
+- Túpac Amaru II: began Nov 1780; Micaela Bastidas full partner (Walker); executed Cusco 18 May 1781, after watching wife and sons executed; Túpac Katari besieged La Paz 1781 (~6 months, forces up to 40,000); continued to 1783 under Diego Cristóbal. NO verified death toll — do not give 100,000.
+- Casta painting: series of ~16 canvases; 16–22 categories; Katzew Casta Painting (Yale 2004): by 18th c. "race alone was no longer a reliable index to social rank".
+- Books verified: Lane Potosí (UC Press 2019); Walker Tupac Amaru Rebellion (Belknap 2014); Restall Seven Myths (OUP 2003); Schwartz Sugar Plantations (CUP 1985); Katzew Casta Painting (Yale 2004); Borah Justice by Insurance (1983); Diego Javier Luis First Asians in the Americas (Harvard 2024).
+- NOT VERIFIED: Paz Sor Juana dates; Burkholder & Johnson.
