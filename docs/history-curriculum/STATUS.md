@@ -191,7 +191,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | The European Union (`history/regional-histories/europe/the-european-union`) |  |
 | ⬜ | — | chapter | God Save the Queen: the British Monarchy (`history/regional-histories/europe/god-save-the-queen-the-british-monarchy`) |  |
 | | | **Asia** | | |
-| ⬜ | — | chapter | Chinese History (`history/regional-histories/asia/chinese-history`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Chinese History (`history/regional-histories/asia/chinese-history`) | `history--regional-histories--chinese-history.sql` |
 | ⬜ | — | chapter | Ming-Qing History (`history/regional-histories/asia/ming-qing-history`) |  |
 | ⬜ | — | chapter | Modern China (`history/regional-histories/asia/modern-china`) |  |
 | ⬜ | — | chapter | The Modern History of Rural China (`history/regional-histories/asia/the-modern-history-of-rural-china`) |  |
@@ -207,7 +207,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Women in African History (`history/regional-histories/africa/women-in-african-history`) |  |
 | ⬜ | — | chapter | History of Sport in Africa (`history/regional-histories/africa/history-of-sport-in-africa`) |  |
 | | | **Americas** | | |
-| ⬜ | — | chapter | Native American and Indigenous Studies (`history/regional-histories/americas/native-american-and-indigenous-studies`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Native American and Indigenous Studies (`history/regional-histories/americas/native-american-and-indigenous-studies`) | `history--regional-histories--native-american-studies.sql` |
 | ⬜ | — | chapter | Afro-Indigenous Intersections in Early America (`history/regional-histories/americas/afro-indigenous-intersections-in-early-america`) |  |
 | ⬜ | — | chapter | Indigenous Economies and Environments (`history/regional-histories/americas/indigenous-economies-and-environments`) |  |
 | ⬜ | — | chapter | Indigenous Oral Literatures of the Northwest Coast of North America (`history/regional-histories/americas/indigenous-oral-literatures-of-the-northwest-coast-of-north-america`) |  |
