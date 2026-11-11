@@ -29,3 +29,4 @@ Phase 2 leads:
 - Check Preston's figure in *The Spanish Holocaust*.
 - Check the UPI text of the Miller dispatch.
 - Check the Mandates Commission petitions from Syrians and Samoans in Pedersen.
+| Kwantung Army acted "against orders from Tokyo" | IMPRECISE (Japan empire research): it acted without orders | Mukden incident | "without orders from Tokyo" |
