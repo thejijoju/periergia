@@ -106,27 +106,30 @@ body {
 /* Reader prose — airy, docs-style, easy to read */
 .prose-reading {
   color: var(--prose-text);
-  /* Mobile gets a slightly larger body (17.5px); desktop stays at 16.5px (see
-     the min-width override below). Phone screens are held closer but are lower
-     resolution and higher glare, so the extra point reads easier there. */
-  font-size: 17.5px;
+  /* Reader settings (ReaderSettings.tsx, applied before paint by the layout):
+     --reader-scale multiplies the body size (A− / A+), --reader-font is the
+     chosen typeface. Mobile gets a slightly larger base body (17.5px); desktop
+     16.5px (see the min-width override below). Headings and everything inside
+     are sized in em, so they follow the reader's choice. */
+  font-size: calc(17.5px * var(--reader-scale, 1));
+  font-family: var(--reader-font, inherit);
   line-height: 1.85;
-  /* Cap the reading measure at 14cm — the width of a printed book's text block,
-     and about 53 characters at the desktop body size. Long lines make the eye
-     lose its place on the return sweep; this is the single biggest readability
-     win, and it matters most for older readers and low-quality screens. The
-     column may sit in a wider frame — we just centre the narrower text within it.
-     Stated in cm rather than ch so the measure is a fixed physical width that
-     does not drift when the font size or typeface changes; CSS maps 1cm to
-     96/2.54 px, so this is 529px. Being a max-width it is inert on phones,
-     where the viewport is narrower and the text stays fluid. */
-  max-width: 14cm;
+  /* Reading measure: 720px, the width of a chat column (Jirel, 11.11.26), the
+     full width of the article column. Inert on phones, where the viewport is
+     narrower and the text stays fluid. */
+  max-width: 720px;
   margin-inline: auto;
 }
 @media (min-width: 640px) {
   .prose-reading {
-    font-size: 16.5px;
+    font-size: calc(16.5px * var(--reader-scale, 1));
   }
+}
+:root[data-reader-font="serif"] {
+  --reader-font: var(--font-spectral), Georgia, serif;
+}
+:root[data-reader-font="readable"] {
+  --reader-font: var(--font-atkinson), Verdana, sans-serif;
 }
 .prose-reading :where(p) {
   margin: 0 0 1.25em;
@@ -134,7 +137,7 @@ body {
 .prose-reading :where(h2) {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.36em;
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--prose-heading);
@@ -144,7 +147,7 @@ body {
 .prose-reading :where(h3) {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-weight: 600;
-  font-size: 1.12rem;
+  font-size: 1.09em;
   letter-spacing: -0.01em;
   color: var(--prose-heading);
   margin: 1.8em 0 0.5em;

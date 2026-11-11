@@ -8,6 +8,7 @@ import { HeaderSearch } from "@/components/HeaderSearch";
 import { OnThisPage } from "@/components/OnThisPage";
 import { Wordmark } from "@/components/Wordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ReaderSettings } from "@/components/ReaderSettings";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MobileNav } from "@/components/MobileNav";
 import {
@@ -269,6 +270,7 @@ export default async function ReaderPage({
           <div className="ml-auto flex items-center gap-1 justify-end min-w-0">
             <HeaderSearch searchIndex={searchIndex} lang={lang} />
             <LanguageSwitcher />
+            <ReaderSettings />
             <ThemeToggle />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Spectral } from "next/font/google";
+import { Atkinson_Hyperlegible, Inter, Spectral } from "next/font/google";
 import { AnalyticsGate } from "@/components/AnalyticsGate";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
@@ -21,6 +21,16 @@ const spectral = Spectral({
   display: "swap",
 });
 
+// Atkinson Hyperlegible: the "Readable" choice in the reader settings, designed
+// for low-vision readers (clearly distinct letter shapes).
+const atkinson = Atkinson_Hyperlegible({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-atkinson",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Periergia — a free library of everything worth knowing",
@@ -31,11 +41,12 @@ export const metadata: Metadata = {
 
 // Dark is the default. This runs before paint: if the visitor previously chose
 // light, flip the attribute now so there's no flash of the wrong theme.
-const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();`;
+// The reader's text size and typeface (ReaderSettings) are applied the same way.
+const themeInit = `(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme');if(t==='light')d.setAttribute('data-theme','light');var s=parseFloat(localStorage.getItem('reader-scale'));if(s>=0.8&&s<=1.6)d.style.setProperty('--reader-scale',String(s));var f=localStorage.getItem('reader-font');if(f==='serif'||f==='readable')d.setAttribute('data-reader-font',f);}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${inter.variable} ${spectral.variable}`}>
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`${inter.variable} ${spectral.variable} ${atkinson.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>
