@@ -217,7 +217,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | A History of Modern Syria (`history/regional-histories/middle-east/a-history-of-modern-syria`) |  |
 | ⬜ | — | chapter | Jerusalem, a History: From Antiquity to the Present (`history/regional-histories/middle-east/jerusalem-a-history-from-antiquity-to-the-present`) |  |
 | | | **Oceania and the Pacific** | | |
-| ⬜ | — | chapter | Pacific Voyagers: the Settlement of Oceania (`history/regional-histories/oceania-and-the-pacific/pacific-voyagers-the-settlement-of-oceania`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Pacific Voyagers: the Settlement of Oceania (`history/regional-histories/oceania-and-the-pacific/pacific-voyagers-the-settlement-of-oceania`) | `history--regional-histories--pacific-voyagers.sql` |
 | ⬜ | — | chapter | The 'Settler Revolution' at the Edge of Empire: Australia, 1770-1901 (`history/regional-histories/oceania-and-the-pacific/the-settler-revolution-at-the-edge-of-empire-australia-1770-1901`) |  |
 
 ### Thematic History
