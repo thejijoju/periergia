@@ -41,3 +41,6 @@ Written source-first from `research/modern-era-19th-century--second-industrial-r
 Confirmed by one pass and kept: $100 to $18 a ton for rails (B: Bessemer process); eight German dye firms with nearly 90% of world dyestuffs (B: Second Industrial Revolution); nitrate taxes 45 to over 50% of Chile's revenue (B); wars spread canned food (B: Canning); Japanese textiles competing in China and India, and women mill workers half under 20 (A: Economic history of Japan); Model T prices by both counts (B).
 
 Phase 2 leads: A found a Cambridge source giving German dyes as over 80% of world production and about 90% of world trade, against "eight firms, nearly 90%". Ford's table gives $590 for 1912, against "$575 by one count". Lazonick's "far from settled" is from his 1981 cotton article.
+
+## Later correction (found by the era-overview audit, 2026-11-11)
+- The chapter said the US adopted gold "in 1873". That was IMPRECISE: 1873 was the de facto shift, and the formal adoption came with the Gold Standard Act of 1900. Corrected to "in effect in 1873 (formally in 1900)".
