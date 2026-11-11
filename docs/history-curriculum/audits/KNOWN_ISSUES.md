@@ -39,3 +39,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## Contemporary chapters (found by the era-overview audits, 2026-11-11)
 - Globalization (and the overview): container loading cost "$5.86 a ton to 16 cents". Wikipedia (Malcom McLean) gives $5.86; secondary sources citing Levinson's *The Box* give $5.83 and 15.8 cents. Check Levinson's text.
+
+## Soviet and Ukrainian chapters (found by the East European Identities research, 2026-11-11)
+- Soviet Union and Interwar: Holodomor "3.5–5 million according to recent scholarship". Recent estimates in the scholarship run lower as well (Kulchytsky 3–3.5 m; Snyder ~3.3 m; Vallin et al. ~2.6 m direct deaths in 1933; Wheatcroft 1.8 m registered, 2.8–4.8 m with unregistered). Consider "about 3–5 million", attributed. The 20th-century overview uses 3.5–5 m too.
+- *Bloodlands* "14 million": Snyder's book says 14 million; he gave 13 million in a 2016 interview. Check which the chapter means.
