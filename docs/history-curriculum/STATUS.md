@@ -160,7 +160,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | The Soviet Union: History of the Soviet Empire (`history/20th-century-history/the-soviet-union-history-of-the-soviet-empire`) | `history--20th-century-history--soviet-union.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Global Cold War and the Arms Race (`history/20th-century-history/global-cold-war-and-the-arms-race`) | `history--20th-century-history--global-cold-war.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Partition and its Consequences: Ireland, India, Palestine (`history/20th-century-history/partition-and-its-consequences-ireland-india-palestine`) | `history--20th-century-history--partition.sql` |
-| ⬜ | — | chapter | Decolonization (`history/20th-century-history/european-decolonization`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Decolonization (`history/20th-century-history/european-decolonization`) | `history--20th-century-history--decolonization.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Maoism (`history/20th-century-history/maoism`) | `history--20th-century-history--maoism.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Cultural Revolution (`history/20th-century-history/the-cultural-revolution`) | `history--20th-century-history--cultural-revolution.sql` |
 | ⬜ | — | chapter | The Vietnam War: the American War in Vietnam (`history/20th-century-history/the-vietnam-war-the-american-war-in-vietnam`) |  |
