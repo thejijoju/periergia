@@ -1,0 +1,22 @@
+# Audit ledger: Indochina and Modern Vietnam, 1880s-1980s
+
+File: `supabase/content/history--regional-histories--indochina-vietnam.sql`
+Written source-first on 2026-11-11 from `research/regional-histories--indochina-vietnam.md`. Two independent passes: A (top-down, about 140 claims confirmed) and B (bottom-up, about 150 confirmed). Neither found an outright error. Fixes (11 edits):
+
+| Claim (before) | Verdict | Source | Change |
+|---|---|---|---|
+| Quote block of Ho's 1945 declaration "as quoted by Stanley Karnow" | UNVERIFIED wording and attribution (A, B) | Declaration of independence of the DRV | Quote block removed; the prose already says it opened with the American Declaration |
+| Haiphong 1946: "Estimates … run from 2,000 to 6,000 … Valluy said 300" (body, quiz q3) | IMPRECISE, self-contradictory (A, B) | Haiphong incident (fewer than 100 to 20,000) | "range from a few hundred to 20,000; most run from about 2,000 to 6,000 …; Valluy claimed only 300" |
+| "in 1946 imprisoned 2,500 non-communist nationalists and forced 6,000 to flee" | UNVERIFIED (A, B) | Civil conflicts in Vietnam (1945–1949); August Revolution | "jailed or drove into exile many members of the VNQDĐ and the Đại Việt" |
+| First Indochina War dead "400,000 to about 843,000, including 125,000–400,000 civilians" | IMPRECISE (B; source contradicts itself) | First Indochina War | "Estimates … vary widely; one compilation gives …, and civilian deaths are put at …" |
+| Ho's declaration "gave 2 million" | IMPRECISE (A) | French Indochina | "spoke of more than 2 million; 2 million remains the Party's official figure" |
+| Taylor: "simply a recycling into English …" | "simply" UNVERIFIED (A, B) | Cornell Chronicle 2013 (via search) | "simply" dropped; scope (anti-war academics) and date (2013) added |
+| Holy Man's Rebellion "(1901–1907)" | IMPRECISE (A) | Holy Man's Rebellion (1901–1936) | "began in 1901 and on the Bolaven Plateau lasted until 1936" |
+| 71.66 per cent "of those classified as landlords" | IMPRECISE (A, B) | Land reform in North Vietnam | "Of the 172,008 people classified as landlords or rich peasants" |
+| "Trường Chinh was dismissed in 1956" | IMPRECISE (A) | Trường Chinh | "forced to resign as party leader" |
+| "about 150,000 southerners went north" | IMPRECISE (A) | Operation Passage to Freedom | "some 100,000–150,000" |
+| WWI recruits: "most were volunteers, or at least ostensibly so" | IMPRECISE (B) | French Indochina | "later historians call recruitment 'ostensibly voluntary', though many did volunteer" |
+
+Kept with one confirming pass: Furuta Motoo's judgement on the famine toll (A: French Indochina); Heder's doubts on racial motive (A: Cambodian genocide); about a third of Lao Hmong leaving (A: Laotian Civil War); "up to 400,000" boat-people deaths (A: World Vision, UNHCR); Pavie naming Laos (A, B weakly); Laos formally included in 1899 (A, B; the protectorate article says 1898).
+
+Confirmed by both passes, among others: the treaties of 1862 and 1884; the Union of 1887; 1893; 16.4 million ruled by about 18,000 French; *colonie d'exploitation*; Doumer and the monopolies (44% of the budget in 1920); the 1916 Cambodian protests and Bardez in 1925; Delta landholding in 1930; Vietnamese majorities in Lao towns; Phú Riềng and Trần Tử Bình; the 93,000 wartime recruits and Sarraut; quốc ngữ; the Tonkin Free School; the two Phans and Phan Châu Trinh's quotation; Marr on the 1920s; the VNQDĐ and Yên Bái; Ho's early life and the 1919 petition; the party's founding on 3 February 1930 and renaming as the ICP that October; the Nghệ-Tĩnh soviets; Minh Khai; Tạ Thu Thâu; Cao Đài, Hòa Hảo, Nagaravatta; 1940, the Việt Minh, the coup of 9 March 1945; the famine (400,000–2 million; Marr and Huff about 1 million); the August Revolution and Bảo Đại's abdication; Asselin; Lao Issara; Son Ngoc Thanh; the French war (19 December 1946, the Élysée Accords, 1950 recognition, US funding, Dien Bien Phu); Cambodian and Lao independence; the Pathet Lao; Geneva; the move south; land reform figures (800–200,000; Moïse; Tuong Vu; the old 50,000); Diệm; Sihanouk and the Khmer Rouge (1.5–2 million, Kiernan's bombing estimate, the 2018 verdict, Vickery); Kaysone and the Secret War; 2 December 1975; reunification; re-education (200,000–300,000; 500,000–1 million); boat people (about 800,000; UNHCR 200,000–250,000; Wain 30,000); Ba Chúc; the invasion of Cambodia and withdrawal in 1989; the 1979 Chinese invasion; Đổi Mới; Ho's 1960 line; Tuong Vu, Goscha, Lien-Hang Nguyen; the reading list.
