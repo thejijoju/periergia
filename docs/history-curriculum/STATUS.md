@@ -189,7 +189,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | | | **Europe** | | |
 | ✅ | ✅ 2026-11-11 | chapter | East European Identities: Russia and Ukraine (`history/regional-histories/europe/east-european-identities-russia-and-ukraine`) | `history--regional-histories--east-european-identities.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The European Union (`history/regional-histories/europe/the-european-union`) | `history--regional-histories--european-union.sql` |
-| ⬜ | — | chapter | God Save the Queen: the British Monarchy (`history/regional-histories/europe/god-save-the-queen-the-british-monarchy`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | God Save the Queen: the British Monarchy (`history/regional-histories/europe/god-save-the-queen-the-british-monarchy`) | `history--regional-histories--british-monarchy.sql` |
 | | | **Asia** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Chinese History (`history/regional-histories/asia/chinese-history`) | `history--regional-histories--chinese-history.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Ming-Qing History (`history/regional-histories/asia/ming-qing-history`) | `history--regional-histories--ming-qing.sql` |
