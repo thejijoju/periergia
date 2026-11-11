@@ -199,7 +199,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Modern South Asia (`history/regional-histories/asia/modern-south-asia`) |  |
 | ⬜ | — | chapter | Modern Southeast Asia (`history/regional-histories/asia/modern-southeast-asia`) |  |
 | ⬜ | — | chapter | Indochina and Modern Vietnam, 1880s-1980s (`history/regional-histories/asia/indochina-and-modern-vietnam-1880s-1980s`) |  |
-| ⬜ | — | chapter | Central Asia and the Steppe (`history/regional-histories/asia/central-asia-and-the-steppe`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Central Asia and the Steppe (`history/regional-histories/asia/central-asia-and-the-steppe`) | `history--regional-histories--central-asia.sql` |
 | | | **Africa** | | |
 | ✅ | ✅ 2026-11-11 | chapter | History of Sub-Saharan Africa to 1860: Precolonial States and Societies (`history/regional-histories/africa/history-of-sub-saharan-africa-to-1860-precolonial-states-and-societies`) | `history--regional-histories--africa-to-1860.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern African History since 1860 (`history/regional-histories/africa/modern-african-history-since-1860`) | `history--regional-histories--modern-africa.sql` |
