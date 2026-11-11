@@ -164,7 +164,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | Maoism (`history/20th-century-history/maoism`) | `history--20th-century-history--maoism.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Cultural Revolution (`history/20th-century-history/the-cultural-revolution`) | `history--20th-century-history--cultural-revolution.sql` |
 | ⬜ | — | chapter | The Vietnam War: the American War in Vietnam (`history/20th-century-history/the-vietnam-war-the-american-war-in-vietnam`) |  |
-| ⬜ | — | chapter | Latin America in the Cold War (`history/20th-century-history/latin-america-in-the-cold-war`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Latin America in the Cold War (`history/20th-century-history/latin-america-in-the-cold-war`) | `history--20th-century-history--latin-america-cold-war.sql` |
 | ⬜ | — | chapter | Power and Protest in the Long 1960s: the May 1968 Movement (`history/20th-century-history/power-and-protest-in-the-long-1960s-the-may-1968-movement`) |  |
 | ⬜ | — | chapter | Apartheid and Its End (`history/20th-century-history/apartheid-and-its-end`) |  |
 | ⬜ | — | chapter | Collapse of the Soviet Union and Eastern Europe: the End of the Cold War (`history/20th-century-history/collapse-of-the-soviet-union-and-eastern-europe-the-end-of-the-cold-war`) |  |
