@@ -210,7 +210,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | Native American and Indigenous Studies (`history/regional-histories/americas/native-american-and-indigenous-studies`) | `history--regional-histories--native-american-studies.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Afro-Indigenous Intersections in Early America (`history/regional-histories/americas/afro-indigenous-intersections-in-early-america`) | `history--regional-histories--afro-indigenous.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Indigenous Economies and Environments (`history/regional-histories/americas/indigenous-economies-and-environments`) | `history--regional-histories--indigenous-economies.sql` |
-| ⬜ | — | chapter | Indigenous Oral Literatures of the Northwest Coast of North America (`history/regional-histories/americas/indigenous-oral-literatures-of-the-northwest-coast-of-north-america`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Indigenous Oral Literatures of the Northwest Coast of North America (`history/regional-histories/americas/indigenous-oral-literatures-of-the-northwest-coast-of-north-america`) | `history--regional-histories--northwest-coast.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern American History: the United States in the Twentieth Century (`history/regional-histories/americas/modern-american-history-the-united-states-in-the-twentieth-century`) | `history--regional-histories--modern-america.sql` |
 | | | **Middle East** | | |
 | ✅ | ✅ 2026-11-11 | chapter | The Making of the Modern Middle East (`history/regional-histories/middle-east/the-making-of-the-modern-middle-east`) | `history--regional-histories--modern-middle-east.sql` |
