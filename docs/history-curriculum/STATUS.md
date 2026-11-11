@@ -128,7 +128,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ⬜ | — | overview | The Long Nineteenth Century (1815–1914) (`history/modern-era-19th-century`) |  |
+| ✅ | ✅ 2026-11-11 | overview | The Long Nineteenth Century (1815–1914) (`history/modern-era-19th-century`) | `history--modern-era-19th-century--overview.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Nationalism and the Making of Nation-States (`history/modern-era-19th-century/nationalism-and-the-making-of-nation-states`) | `history--modern-era-19th-century--nationalism.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Second Industrial Revolution (`history/modern-era-19th-century/the-second-industrial-revolution`) | `history--modern-era-19th-century--second-industrial-revolution.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Abolition and Emancipation (`history/modern-era-19th-century/abolition-and-emancipation`) | `history--modern-era-19th-century--abolition-and-emancipation.sql` |
