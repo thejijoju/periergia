@@ -198,7 +198,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | Premodern Korean History (`history/regional-histories/asia/premodern-korean-history`) | `history--regional-histories--premodern-korea.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern South Asia (`history/regional-histories/asia/modern-south-asia`) | `history--regional-histories--modern-south-asia.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern Southeast Asia (`history/regional-histories/asia/modern-southeast-asia`) | `history--regional-histories--modern-southeast-asia.sql` |
-| ⬜ | — | chapter | Indochina and Modern Vietnam, 1880s-1980s (`history/regional-histories/asia/indochina-and-modern-vietnam-1880s-1980s`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Indochina and Modern Vietnam, 1880s-1980s (`history/regional-histories/asia/indochina-and-modern-vietnam-1880s-1980s`) | `history--regional-histories--indochina-vietnam.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Central Asia and the Steppe (`history/regional-histories/asia/central-asia-and-the-steppe`) | `history--regional-histories--central-asia.sql` |
 | | | **Africa** | | |
 | ✅ | ✅ 2026-11-11 | chapter | History of Sub-Saharan Africa to 1860: Precolonial States and Societies (`history/regional-histories/africa/history-of-sub-saharan-africa-to-1860-precolonial-states-and-societies`) | `history--regional-histories--africa-to-1860.sql` |
