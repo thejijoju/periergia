@@ -175,7 +175,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 |---|---|---|---|---|
 | ⬜ | — | overview | Contemporary History (`history/contemporary-history`) |  |
 | ⬜ | — | chapter | The Post-Cold War Era (`history/contemporary-history/the-post-cold-war-era`) |  |
-| ⬜ | — | chapter | The Neoliberal Age (`history/contemporary-history/the-neoliberal-age`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Neoliberal Age (`history/contemporary-history/the-neoliberal-age`) | `history--contemporary-history--neoliberal-age.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Globalization (`history/contemporary-history/globalization`) | `history--contemporary-history--globalization.sql` |
 | ⬜ | — | chapter | Technological Advancements and the Digital Age (`history/contemporary-history/technological-advancements-and-the-digital-age`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Modern Conflicts since 1991 (`history/contemporary-history/modern-conflicts-since-1991`) | `history--contemporary-history--modern-conflicts.sql` |
