@@ -30,6 +30,9 @@ export async function logPageRequest(opts: {
   title?: string;
   nodeId?: string;
   cold?: boolean;
+  /** The page's own referrer, when the log comes from the browser beacon (the
+   *  request's Referer is then the article itself). */
+  referrer?: string | null;
   headers: Headers;
 }): Promise<void> {
   const supabase = getSupabase();
@@ -46,7 +49,7 @@ export async function logPageRequest(opts: {
     bot: BOT.test(ua),
     country: cap(h.get("x-vercel-ip-country"), 8),
     city: cap(decodeURIComponent(h.get("x-vercel-ip-city") ?? ""), 120),
-    referrer: cap(h.get("referer"), 300),
+    referrer: cap(opts.referrer !== undefined ? opts.referrer : h.get("referer"), 300),
     ua: cap(ua, 300),
   };
 

@@ -1,9 +1,6 @@
 import { notFound } from "next/navigation";
-import { after } from "next/server";
-import { headers, cookies } from "next/headers";
-import { normalizeLang, LANG_COOKIE, subjectName } from "@/lib/i18n";
-import { logPageRequest } from "@/lib/demand";
-import { EXCLUDE_KEY } from "@/lib/analyticsOptOut";
+import { normalizeLang, subjectName } from "@/lib/i18n";
+import { PageBeacon } from "@/components/PageBeacon";
 import { Reader, type ReaderNode, type Crumb } from "@/components/Reader";
 import { SectionLanding } from "@/components/SectionLanding";
 import { SubjectTree, type TreeItem } from "@/components/SubjectTree";
@@ -40,10 +37,25 @@ function cleanNodeSummary(summary: string | null | undefined): string {
     .trim();
 }
 
+// Cached pages (ISR). The middleware rewrites /learn/<subject>/<…node> to
+// /lang/<reader's language>/learn/…, so each language is its own cached page and
+// nothing here reads cookies or request headers: a page is rendered once, served
+// from the cache for an hour, then refreshed in the background on the next visit.
+// Before, every visit (and every crawler hit) rendered the page from scratch on
+// the server with a dozen database queries, which is what used up the CPU.
+// Things that depend on the visitor now happen in the browser: the country for
+// the Amazon links (cookie set by the middleware, read in Reader) and the demand
+// log (PageBeacon → /api/page-request).
+export const revalidate = 3600;
+export const dynamicParams = true;
+export async function generateStaticParams() {
+  return [];
+}
+
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ subject: string; node: string[] }>;
+  params: Promise<{ lang: string; subject: string; node: string[] }>;
 }) {
   const { subject, node } = await params;
   const n = await getNodeByPath(subject, node);
@@ -68,17 +80,18 @@ export async function generateMetadata({
 export default async function ReaderPage({
   params,
 }: {
-  params: Promise<{ subject: string; node: string[] }>;
+  params: Promise<{ lang: string; subject: string; node: string[] }>;
 }) {
-  const { subject, node: nodePath } = await params;
+  const { lang: langParam, subject, node: nodePath } = await params;
   const subj = await getSubject(subject);
   if (!subj) notFound();
   const node = await getNodeByPath(subject, nodePath);
   if (!node) notFound();
 
-  // Reading language (cookie set by the switcher). Subject names translate to it
-  // wherever they appear; deeper topic titles stay English for now.
-  const lang = normalizeLang((await cookies()).get(LANG_COOKIE)?.value);
+  // Reading language: from the route (the middleware puts the switcher's cookie
+  // there). Subject names translate to it wherever they appear; deeper topic
+  // titles stay English for now.
+  const lang = normalizeLang(langParam);
   const subjName = subjectName(lang, subj.slug, subj.name);
 
   const subjectNodes = await getNodes(subj.id);
@@ -140,11 +153,6 @@ export default async function ReaderPage({
 
   const searchIndex = await getSearchIndex();
 
-  // Reader's country (Vercel geo header) picks the local Amazon marketplace and
-  // matching Associates tag for the Further Reading affiliate links.
-  const hdrs = await headers();
-  const country = hdrs.get("x-vercel-ip-country") || undefined;
-
   // Server-render an already-cached read article into the HTML, so crawlers and
   // default-prefs readers get real text. Prefer the richest cached depth (a
   // full Research chapter indexes far better than a skim) and fall back down.
@@ -188,27 +196,11 @@ export default async function ReaderPage({
   // A section with no overview article falls back to the plain topic-list landing.
   const showLanding = isSection && !initialBody;
 
-  // Demand log for the warming worklist: record this article request server-side
-  // AFTER the response (next/server `after`), so it adds no latency. Skip Next's
-  // speculative link prefetches and the owner's own visits (?mine sets the
-  // exclude cookie), and mark the request "cold" when nothing was cached — those
-  // are the exact pages worth pre-generating for the next visitor and for SEO.
-  const isPrefetch = hdrs.get("next-router-prefetch") === "1";
-  const optedOut = (await cookies()).get(EXCLUDE_KEY)?.value === "1";
-  if (!isPrefetch && !optedOut) {
-    const cold = !initialBody && !showLanding;
-    const reqPath = `/learn/${subj.slug}/${node.path.join("/")}`;
-    after(() =>
-      logPageRequest({
-        name: "article_request",
-        nodeId: node.id,
-        title: node.title.replace(/\s*\*+$/, ""),
-        path: reqPath,
-        cold,
-        headers: hdrs,
-      }),
-    );
-  }
+  // Demand log for the warming worklist: the browser reports the visit after
+  // load (PageBeacon), with "cold" when nothing was cached — those are the
+  // pages worth pre-generating for the next visitor and for SEO.
+  const cold = !initialBody && !showLanding;
+  const reqPath = `/learn/${subj.slug}/${node.path.join("/")}`;
 
   // Chapter reading times for a section's `courseWorkload`. One batched query
   // for all children rather than one per child, and only for section pages.
@@ -254,6 +246,7 @@ export default async function ReaderPage({
 
   return (
     <div className="min-h-screen bg-page">
+      <PageBeacon nodeId={node.id} title={node.title.replace(/\s*\*+$/, "")} path={reqPath} cold={cold} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
@@ -317,7 +310,6 @@ export default async function ReaderPage({
                 initialDepth={initialDepth}
                 initialLevel={initialLevel}
                 initialReviewed={initialReviewed}
-                country={country}
                 lang={lang}
               />
               {isSection && (

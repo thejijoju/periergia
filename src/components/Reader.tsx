@@ -196,7 +196,6 @@ export function Reader({
   initialDepth,
   initialLevel,
   initialReviewed = false,
-  country,
   lang = "en",
 }: {
   node: ReaderNode;
@@ -204,9 +203,16 @@ export function Reader({
   initialDepth?: Depth;
   initialLevel?: Level;
   initialReviewed?: boolean;
-  country?: string;
   lang?: string;
 }) {
+  // Reader's country picks the local Amazon marketplace and Associates tag for
+  // the Further Reading links. The page is cached for everyone, so the country
+  // comes from a cookie the middleware sets from Vercel's geo header.
+  const [country, setCountry] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    const m = document.cookie.match(/(?:^|; )periergia_country=([^;]*)/);
+    if (m) setCountry(decodeURIComponent(m[1]));
+  }, []);
   const { state, hydrated, markVisited, markCompleted, setPrefs } = useProgress();
   const { depth: prefDepth, level: prefLevel, mode } = state.prefs;
   const spec = getMode(mode);

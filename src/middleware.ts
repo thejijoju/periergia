@@ -1,4 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { LANG_COOKIE, normalizeLang } from "@/lib/i18n";
+
+const COUNTRY_COOKIE = "periergia_country";
 
 // Hard-block AI-training crawlers, SEO scrapers, and raw HTTP-library scrapers
 // by user-agent — a 403 before the page ever renders. This enforces what
@@ -24,7 +27,25 @@ export function middleware(req: NextRequest) {
       headers: { "content-type": "text/plain; charset=utf-8", "x-robots-tag": "noindex" },
     });
   }
-  return NextResponse.next();
+  // Article pages are cached per language: /learn/<subject>/<…node> is served
+  // from /lang/<reader's language>/learn/… (the URL in the address bar stays the
+  // same). The language comes from the switcher's cookie, English by default.
+  const { pathname } = req.nextUrl;
+  let res: NextResponse;
+  if (/^\/learn\/[^/]+\/.+/.test(pathname)) {
+    const url = req.nextUrl.clone();
+    url.pathname = `/lang/${normalizeLang(req.cookies.get(LANG_COOKIE)?.value)}${pathname}`;
+    res = NextResponse.rewrite(url);
+  } else {
+    res = NextResponse.next();
+  }
+  // The reader's country (Vercel geo header) for the Amazon links in the cached
+  // article, read in the browser by Reader.
+  const country = req.headers.get("x-vercel-ip-country");
+  if (country && req.cookies.get(COUNTRY_COOKIE)?.value !== country) {
+    res.cookies.set(COUNTRY_COOKIE, country, { path: "/", maxAge: 60 * 60 * 24 * 30, sameSite: "lax" });
+  }
+  return res;
 }
 
 export const config = {
