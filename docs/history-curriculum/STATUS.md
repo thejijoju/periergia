@@ -131,12 +131,12 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | overview | The Long Nineteenth Century (1815–1914) (`history/modern-era-19th-century`) |  |
 | ⬜ | — | chapter | Nationalism and the Making of Nation-States (`history/modern-era-19th-century/nationalism-and-the-making-of-nation-states`) |  |
 | ⬜ | — | chapter | The Second Industrial Revolution (`history/modern-era-19th-century/the-second-industrial-revolution`) |  |
-| ⬜ | — | chapter | Abolition and Emancipation (`history/modern-era-19th-century/abolition-and-emancipation`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Abolition and Emancipation (`history/modern-era-19th-century/abolition-and-emancipation`) | `history--modern-era-19th-century--abolition-and-emancipation.sql` |
 | ⬜ | — | chapter | The Victorian Era (`history/modern-era-19th-century/the-victorian-era`) |  |
 | ⬜ | — | chapter | British Empire (`history/modern-era-19th-century/british-empire`) |  |
 | ⬜ | — | chapter | Imperial Expansion and Resistance (`history/modern-era-19th-century/imperial-expansion-and-resistance`) |  |
 | ✅ | ⬜ | chapter | The Opium Wars (`history/modern-era-19th-century/the-opium-wars`) | `history--the-opium-wars.sql` |
-| ⬜ | — | chapter | The Taiping Rebellion and the Late Qing (`history/modern-era-19th-century/the-taiping-rebellion-and-the-late-qing`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Taiping Rebellion and the Late Qing (`history/modern-era-19th-century/the-taiping-rebellion-and-the-late-qing`) | `history--modern-era-19th-century--taiping-late-qing.sql` |
 | ⬜ | — | chapter | The Meiji Restoration (`history/modern-era-19th-century/the-meiji-restoration`) |  |
 | ⬜ | — | chapter | Imperial Russia from Napoleon to 1905 (`history/modern-era-19th-century/imperial-russia-from-napoleon-to-1905`) |  |
 | ⬜ | — | chapter | The American Civil War (`history/modern-era-19th-century/the-american-civil-war`) |  |
