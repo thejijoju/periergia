@@ -208,7 +208,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | History of Sport in Africa (`history/regional-histories/africa/history-of-sport-in-africa`) | `history--regional-histories--sport-africa.sql` |
 | | | **Americas** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Native American and Indigenous Studies (`history/regional-histories/americas/native-american-and-indigenous-studies`) | `history--regional-histories--native-american-studies.sql` |
-| ⬜ | — | chapter | Afro-Indigenous Intersections in Early America (`history/regional-histories/americas/afro-indigenous-intersections-in-early-america`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Afro-Indigenous Intersections in Early America (`history/regional-histories/americas/afro-indigenous-intersections-in-early-america`) | `history--regional-histories--afro-indigenous.sql` |
 | ⬜ | — | chapter | Indigenous Economies and Environments (`history/regional-histories/americas/indigenous-economies-and-environments`) |  |
 | ⬜ | — | chapter | Indigenous Oral Literatures of the Northwest Coast of North America (`history/regional-histories/americas/indigenous-oral-literatures-of-the-northwest-coast-of-north-america`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Modern American History: the United States in the Twentieth Century (`history/regional-histories/americas/modern-american-history-the-united-states-in-the-twentieth-century`) | `history--regional-histories--modern-america.sql` |
