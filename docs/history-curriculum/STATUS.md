@@ -195,7 +195,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Ming-Qing History (`history/regional-histories/asia/ming-qing-history`) |  |
 | ⬜ | — | chapter | Modern China (`history/regional-histories/asia/modern-china`) |  |
 | ⬜ | — | chapter | The Modern History of Rural China (`history/regional-histories/asia/the-modern-history-of-rural-china`) |  |
-| ⬜ | — | chapter | Premodern Korean History (`history/regional-histories/asia/premodern-korean-history`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Premodern Korean History (`history/regional-histories/asia/premodern-korean-history`) | `history--regional-histories--premodern-korea.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern South Asia (`history/regional-histories/asia/modern-south-asia`) | `history--regional-histories--modern-south-asia.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern Southeast Asia (`history/regional-histories/asia/modern-southeast-asia`) | `history--regional-histories--modern-southeast-asia.sql` |
 | ⬜ | — | chapter | Indochina and Modern Vietnam, 1880s-1980s (`history/regional-histories/asia/indochina-and-modern-vietnam-1880s-1980s`) |  |
