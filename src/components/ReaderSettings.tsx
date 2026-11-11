@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Reader settings ("Aa" in the header): text size (A− / A+) and typeface for
+// Reader settings ("Aa" in the header): text size (A− / A+, or type a % from
+// 80 to 160) and typeface for
 // the article text. Stored in localStorage and applied to <html> — the layout's
 // init script applies them before paint on every page, so there is no flash.
 // --reader-scale and data-reader-font are read by .prose-reading (globals.css).
@@ -31,12 +32,16 @@ export function ReaderSettings() {
   const [open, setOpen] = useState(false);
   const [scale, setScale] = useState(1);
   const [font, setFont] = useState<FontId>("sans");
+  const [draft, setDraft] = useState("100");
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const d = document.documentElement;
     const s = parseFloat(getComputedStyle(d).getPropertyValue("--reader-scale"));
-    if (s > 0) setScale(s);
+    if (s > 0) {
+      setScale(s);
+      setDraft(String(Math.round(s * 100)));
+    }
     const f = d.getAttribute("data-reader-font");
     if (f === "serif" || f === "readable") setFont(f);
   }, []);
@@ -55,11 +60,29 @@ export function ReaderSettings() {
     };
   }, [open]);
 
-  const idx = STEPS.reduce((best, v, i) => (Math.abs(v - scale) < Math.abs(STEPS[best] - scale) ? i : best), 2);
-  const setStep = (i: number) => {
-    const next = STEPS[Math.max(0, Math.min(STEPS.length - 1, i))];
+  const MIN = 80;
+  const MAX = 160;
+  const setPct = (pct: number) => {
+    const clamped = Math.max(MIN, Math.min(MAX, Math.round(pct)));
+    const next = clamped / 100;
     setScale(next);
+    setDraft(String(clamped));
     apply(next, font);
+  };
+  // A− / A+ jump to the next step below / above the current size, so a typed
+  // value like 113% still moves in sensible steps.
+  const smaller = () => {
+    const lower = [...STEPS].reverse().find((v) => v < scale - 0.001);
+    setPct((lower ?? MIN / 100) * 100);
+  };
+  const larger = () => {
+    const higher = STEPS.find((v) => v > scale + 0.001);
+    setPct((higher ?? MAX / 100) * 100);
+  };
+  const commitDraft = () => {
+    const n = parseFloat(draft.replace(",", "."));
+    if (Number.isFinite(n)) setPct(n);
+    else setDraft(String(Math.round(scale * 100)));
   };
   const choose = (f: FontId) => {
     setFont(f);
@@ -91,21 +114,35 @@ export function ReaderSettings() {
         >
           <p className="text-[12px] uppercase tracking-wide text-faint mb-2">Text size</p>
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 mb-4">
-            <button type="button" className={btn} onClick={() => setStep(idx - 1)} disabled={idx === 0} aria-label="Smaller text">
+            <button type="button" className={btn} onClick={smaller} disabled={scale <= MIN / 100 + 0.001} aria-label="Smaller text">
               <span className="text-[13px]">A−</span>
             </button>
-            <button
-              type="button"
-              onClick={() => setStep(2)}
-              className="text-[13px] text-muted hover:text-ink min-w-[3.5rem] text-center"
-              title="Reset to 100%"
-            >
-              {Math.round(STEPS[idx] * 100)}%
-            </button>
-            <button type="button" className={btn} onClick={() => setStep(idx + 1)} disabled={idx === STEPS.length - 1} aria-label="Larger text">
+            <label className="flex items-center justify-center gap-0.5 h-9 px-2 rounded-lg border border-line focus-within:border-purple">
+              <span className="sr-only">Text size in percent ({MIN}–{MAX})</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                value={draft}
+                onChange={(e) => setDraft(e.target.value.replace(/[^0-9.,]/g, "").slice(0, 5))}
+                onBlur={commitDraft}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    commitDraft();
+                  }
+                }}
+                className="w-10 bg-transparent text-right text-[13px] text-ink outline-none"
+                aria-label={`Text size in percent (${MIN}–${MAX})`}
+              />
+              <span className="text-[13px] text-muted">%</span>
+            </label>
+            <button type="button" className={btn} onClick={larger} disabled={scale >= MAX / 100 - 0.001} aria-label="Larger text">
               <span className="text-[17px]">A+</span>
             </button>
           </div>
+          <button type="button" onClick={() => setPct(100)} className="-mt-2 mb-3 text-[12px] text-muted hover:text-ink underline underline-offset-2">
+            Reset to 100%
+          </button>
           <p className="text-[12px] uppercase tracking-wide text-faint mb-2">Font</p>
           <div className="grid grid-cols-3 gap-2">
             {FONTS.map((f) => (
