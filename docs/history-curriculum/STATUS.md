@@ -133,12 +133,12 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | The Second Industrial Revolution (`history/modern-era-19th-century/the-second-industrial-revolution`) | `history--modern-era-19th-century--second-industrial-revolution.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Abolition and Emancipation (`history/modern-era-19th-century/abolition-and-emancipation`) | `history--modern-era-19th-century--abolition-and-emancipation.sql` |
 | ⬜ | — | chapter | The Victorian Era (`history/modern-era-19th-century/the-victorian-era`) |  |
-| ⬜ | — | chapter | British Empire (`history/modern-era-19th-century/british-empire`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | British Empire (`history/modern-era-19th-century/british-empire`) | `history--modern-era-19th-century--british-empire.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Imperial Expansion and Resistance (`history/modern-era-19th-century/imperial-expansion-and-resistance`) | `history--modern-era-19th-century--imperial-expansion.sql` |
 | ✅ | ⬜ | chapter | The Opium Wars (`history/modern-era-19th-century/the-opium-wars`) | `history--the-opium-wars.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Taiping Rebellion and the Late Qing (`history/modern-era-19th-century/the-taiping-rebellion-and-the-late-qing`) | `history--modern-era-19th-century--taiping-late-qing.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Meiji Restoration (`history/modern-era-19th-century/the-meiji-restoration`) | `history--modern-era-19th-century--meiji-restoration.sql` |
-| ⬜ | — | chapter | Imperial Russia from Napoleon to 1905 (`history/modern-era-19th-century/imperial-russia-from-napoleon-to-1905`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Imperial Russia from Napoleon to 1905 (`history/modern-era-19th-century/imperial-russia-from-napoleon-to-1905`) | `history--modern-era-19th-century--imperial-russia.sql` |
 | ⬜ | — | chapter | The American Civil War (`history/modern-era-19th-century/the-american-civil-war`) |  |
 | ⬜ | — | chapter | Latin America after Independence (`history/modern-era-19th-century/latin-america-after-independence`) |  |
 
