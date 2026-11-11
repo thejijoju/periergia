@@ -120,7 +120,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | overview | The Age of Revolutions (c. 1760–1850) (`history/age-of-revolutions`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Declarations of Independence: the American Revolution (`history/age-of-revolutions/declarations-of-independence-the-american-revolution`) | `history--age-of-revolutions--american-revolution.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | French and Haitian Revolutions (`history/age-of-revolutions/french-and-haitian-revolutions`) | `history--age-of-revolutions--french-and-haitian-revolutions.sql` |
-| ⬜ | — | chapter | Napoleon and the Remaking of Europe (`history/age-of-revolutions/napoleon-and-the-remaking-of-europe`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Napoleon and the Remaking of Europe (`history/age-of-revolutions/napoleon-and-the-remaking-of-europe`) | `history--age-of-revolutions--napoleon.sql` |
 | ⬜ | — | chapter | Latin American Independence (`history/age-of-revolutions/latin-american-independence`) |  |
 | ⬜ | — | chapter | The Industrial Revolution (`history/age-of-revolutions/the-industrial-revolution`) |  |
 
