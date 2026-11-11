@@ -99,7 +99,7 @@ why: The real anti-AC stunts were Harold P. Brown's electrocutions of animals in
 
 In 1882 the refrigerated sailing ship *Dunedin* carried almost 5,000 sheep and lamb carcasses from New Zealand to London in 98 days, with only one condemned, and began the frozen meat trade. Gustavus Swift's ice-cooled railway car of 1878 ushered in an "era of cheap beef" from Chicago, and wars spread canned food to working-class men.
 
-After the German Empire moved from silver to gold in the early 1870s, others followed: the United States in 1873, India in 1893, Russia and Japan in 1897. More than 30 million Europeans migrated to the United States between 1836 and 1914, but the Chinese Exclusion Act of 1882 barred Chinese labourers from immigrating. More than 1.6 million Indians went overseas under indenture, and some 140,000 to 150,000 Chinese labourers were shipped to Cuba before that trade ended in the mid-1870s.
+After the German Empire moved from silver to gold in the early 1870s, others followed: the United States in effect in 1873 (formally in 1900), India in 1893, Russia and Japan in 1897. More than 30 million Europeans migrated to the United States between 1836 and 1914, but the Chinese Exclusion Act of 1882 barred Chinese labourers from immigrating. More than 1.6 million Indians went overseas under indenture, and some 140,000 to 150,000 Chinese labourers were shipped to Cuba before that trade ended in the mid-1870s.
 
 Kevin O'Rourke and Jeffrey Williamson treat the convergence of commodity prices as the core evidence of a first globalisation, argue that mass migration narrowed wage gaps across the Atlantic economy, and describe a backlash of tariffs and immigration restriction. Looking back from 1919, John Maynard Keynes caught the confidence of the age:
 

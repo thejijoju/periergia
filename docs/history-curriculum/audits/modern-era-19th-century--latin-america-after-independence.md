@@ -41,3 +41,6 @@ Phase 2 leads:
 - Doratioto's Spanish title.
 - The 1969 date of Cardoso and Faletto's Spanish original.
 - Chevalier's wording, checked in his 1962 article.
+
+## Later correction (found by the era-overview audit, 2026-11-11)
+- The chapter said "3.8 million Italians and 1.5 million Spaniards arrived" in 1861–1920. That was WRONG: 3.8 million was the total of all immigrants, of whom about 2.3 million were Italians (Italian Argentines, after Baily). Corrected to "about 3.8 million immigrants … some 2.3 million of them Italians and many of the rest Spaniards".

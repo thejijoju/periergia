@@ -15,3 +15,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## 20th Century History overview
 - FIXED 2026-11-11: it called 1905 "the first modern victory of an Asian over a European power" (ignoring Adwa, 1896); now "an Asian victory over a European great power in a modern war".
+- Verdun and the Somme together are given as "roughly two million casualties". Sources give about 1.6–2.1 million combined, so this is the top of the range; consider "well over 1.5 million".
+- Kennan's "great seminal catastrophe": the book is confirmed, but the wording has not been checked against the text.
+- "perhaps four million colonial soldiers and laborers": no single source; the component figures make it plausible. (Both found by the First World War research, 2026-11-11.)
+- The overview says Africa's partition was "formalized at Berlin", but the audited Imperial Expansion chapter says the Berlin Conference set rules and did not carve up Africa. Align the wording. (Flagged by the Long Nineteenth Century overview writer, 2026-11-11.)
