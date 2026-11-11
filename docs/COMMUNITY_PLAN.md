@@ -64,6 +64,6 @@ Stages 1–2 are the foundation; 3–6 can be reordered depending on which partn
 
 ## Open questions for the owner
 
-- Should this start before, during, or after the History curriculum is finished?
+- ~~Should this start before, during, or after the History curriculum is finished?~~ **Decided (2026-11-11): after the History curriculum is complete.**
 - Is there a first university or student group to pilot with? The pilot should shape stage 2.
 - Will Periergia staff do moderation, or will universities moderate their own pages and groups?
