@@ -1,0 +1,27 @@
+# Audit ledger: History of Sub-Saharan Africa to 1860
+
+File: `supabase/content/history--regional-histories--africa-to-1860.sql`
+Written source-first on 2026-11-11 from `research/regional-histories--africa-to-1860.md`. Two independent passes: A (top-down, about 135 claims confirmed) and B (bottom-up, about 120 confirmed). Fixes (18 edits):
+
+| Claim (before) | Verdict | Source | Change |
+|---|---|---|---|
+| Lovejoy: "about 2 million more were taken in the nineteenth century" across the Sahara | WRONG (A, B) | Trans-Saharan slave trade (Segal: 1.2 million); Lovejoy's tables (about 1.2 million for 1800–1900) | "about 1.2 million more are estimated to have crossed the Sahara in the nineteenth century" |
+| Futa Jallon: "an elected *almamy* … lasted until 1898" | WRONG (B) / IMPRECISE (A) | Imamate of Futa Jallon (alternation between Alfaya and Soriya; French protectorate 1896) | "an *almamy* chosen from two leading families, which fell under French control in 1896" |
+| "Estimates for East Africa are higher but contested" | IMPRECISE (A) | Indian Ocean slave trade (high estimate about 8 million, 7th century–1920) | States the high-end estimate and that it is contested |
+| Thornton: "a very large preexisting slave population" in quotation marks | UNVERIFIED as a quotation (A) | Atlantic slave trade (Wikipedia's paraphrase) | Quotation marks removed |
+| Miller "attributes … stagnation mainly to domestic causes" (body, quiz rubric) | IMPRECISE (B); A found only the Wikipedia paraphrase | Miller, JAH 1982 ("Significance of drought, disease and famine") | "gives great weight to drought, disease and famine … working together with the trade" |
+| Sokoto: "at least half its people were enslaved" | IMPRECISE (A, B) | Sokoto Caliphate (Lovejoy and Hogendorn: a quarter to a half) | "estimates … run from a quarter to a half or more" |
+| al-Kanemi's "letters to Bello" (body, checkpoint x:) | IMPRECISE (A) | Muhammad al-Amin al-Kanemi | Letters to Usman dan Fodio and then Muhammad Bello |
+| Ilorin "in 1835 destroyed Oyo's old capital" | IMPRECISE (B) | Old Oyo; Oyo Empire | "in about 1835 defeated Oyo, whose old capital was then abandoned" |
+| Igbo-Ukwu "radiocarbon-dated to the ninth century" | IMPRECISE (B) | Archaeology of Igbo-Ukwu (newer dates 10th–12th centuries for some material) | Shaw's ninth-century dates and the newer dates both given |
+| *Tarikh al-Fattash*: rulers "not Black but of Berber origin" | IMPRECISE (B) | Ghana Empire ("white" is the *Tarikh al-Sudan*'s wording; al-Fattash gives several origins) | "The Timbuktu chronicles claimed … 'white' or of Berber origin" |
+| Sunni Ali took Timbuktu "in 1468" | IMPRECISE (B) | Sonni Ali (1469); Timbuktu (1468–69) | "1468–69" |
+| Nok "earliest large figurative sculpture in sub-Saharan Africa outside Egypt"; "to 1 CE" | IMPRECISE (A) | Nok culture | "in Africa outside Egypt"; "to 1 BCE" |
+| *African Political Systems*: societies "without government" in quotation marks | UNVERIFIED wording (A) | African Political Systems; Acephalous society | "societies that lacked centralised authority" |
+| Great Zimbabwe "population was perhaps 10,000" | IMPRECISE (A) | Great Zimbabwe (Chirikure et al. 2017: "likely never exceeded 10,000") | "probably never exceeded about 10,000" |
+| The Aro supplied captives "without building a kingdom" | IMPRECISE (A) | Aro Confederacy (Eze Aro; the chapter's own "priest-kings") | "through a trading network rather than a centralised kingdom" |
+| Kanem–Bornu's ruling house "converted to Islam in the eleventh century, when Hummay founded the Sayfawa" | IMPRECISE (A) | Kanem–Bornu Empire (earlier rulers possibly Ibadi) | "its rulers had adopted Islam by the eleventh century, when Hummay founded the Sunni Sayfawa dynasty" |
+
+Kept with one confirming pass: Lovejoy's 6 million across the Sahara, 650–1500 (A: Trans-Saharan slave trade; B found it only on mirrors); the "gun-slave cycle" of Inikori, Lovejoy and others (A: Atlantic slave trade); al-Sa'di's "gross iniquity" quotation on Sunni Ali (A: Songhai Empire); Europeans holding about a tenth of Africa in the 1870s (A: Scramble for Africa).
+
+Confirmed by both passes, among others: griots and the Sunjata epic (Kouyaté, Niane 1960); Vansina 1985; Jenne-jeno; Ghana in 788–93 and Ibn Hawqal; Munson at Dhar Tichitt; the Bantu expansion (dates, homeland, Urewe, KwaZulu-Natal by 300 CE, genetics, the pottery critique); iron (Douroula, Eggert and Holl); Nok's discovery and Taruga; Igbo-Ukwu's discovery; *African Political Systems* (1940); Igbo republican government; Zagwe, Lalibela, the Solomonic dynasty, Zara Yaqob, Gragn, Gondar, the Zemene Mesafint; camels; Ghana's conversion and the Almoravid debate; Mali, Mansa Musa (al-Umari, Schultz); Tondibi 1591; Sankoré and Ahmad Baba; the Timbuktu manuscripts (4,203 lost, 350,000 saved); ajami; Ewuare, the Benin earthworks; Kongo law; Oyo and Dahomey; Ouidah 1727; Osei Tutu 1701; Atlantic figures (12.5 and 10.7 million); Manning's 4 million; Rodney; Thornton's "more than capable" quotation; Nunn and Wantchekon; the West Africa Squadron; Sierra Leone 1808; Ghezo; the Cape 1652, 1795, 1806; the Great Trek; the cattle-killing; Shaka, Blood River, Mzilikazi, Soshangane, Moshoeshoe; the Mfecane debate (Cobbing, Eldredge, Wylie, Omer-Cooper 1966); Usman dan Fodio; Sokoto's emirates and population; Nana Asma'u; Massina 1818; the Toucouleur empire 1852; Oman and Zanzibar; the Moresby and Hamerton treaties; Imerina; the whole reading list.
