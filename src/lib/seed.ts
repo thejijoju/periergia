@@ -4370,7 +4370,7 @@ export const SUBJECTS: SubjectSpec[] = [
           },
           {
             "title": "The Meiji Restoration",
-            "summary": "Japan's rush to modernity (1868–1912): the overthrow of the Tokugawa shogunate and the restoration of imperial rule under the Meiji Emperor; the slogan 'rich country, strong army' (fukoku kyohei); the abolition of the samurai class, the Iwakura Mission's study of the West, and the wholesale importing of railways, industry, a conscript army, and a Prussian-style constitution; rapid industrialization and the zaibatsu; victory over China (1895) and Russia (1905) — the first modern defeat of a European power by an Asian state; and the tensions of headlong Westernization that would shape imperial Japan into the twentieth century."
+            "summary": "Japan's rush to modernity (1868–1912): the overthrow of the Tokugawa shogunate and the restoration of imperial rule under the Meiji Emperor; the slogan 'rich country, strong army' (fukoku kyohei); the abolition of the samurai class, the Iwakura Mission's study of the West, and the wholesale importing of railways, industry, a conscript army, and a Prussian-style constitution; rapid industrialization and the zaibatsu; victory over China (1895) and Russia (1905), a defeat of a European great power that echoed across Asia and Africa; and the tensions of headlong Westernization that would shape imperial Japan into the twentieth century."
           },
           {
             "title": "Imperial Russia from Napoleon to 1905",
