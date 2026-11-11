@@ -193,7 +193,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | | | **Asia** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Chinese History (`history/regional-histories/asia/chinese-history`) | `history--regional-histories--chinese-history.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Ming-Qing History (`history/regional-histories/asia/ming-qing-history`) | `history--regional-histories--ming-qing.sql` |
-| ⬜ | — | chapter | Modern China (`history/regional-histories/asia/modern-china`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Modern China (`history/regional-histories/asia/modern-china`) | `history--regional-histories--modern-china.sql` |
 | ⬜ | — | chapter | The Modern History of Rural China (`history/regional-histories/asia/the-modern-history-of-rural-china`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Premodern Korean History (`history/regional-histories/asia/premodern-korean-history`) | `history--regional-histories--premodern-korea.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern South Asia (`history/regional-histories/asia/modern-south-asia`) | `history--regional-histories--modern-south-asia.sql` |
