@@ -205,7 +205,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | Modern African History since 1860 (`history/regional-histories/africa/modern-african-history-since-1860`) | `history--regional-histories--modern-africa.sql` |
 | ⬜ | — | chapter | Health and Healing in African History (`history/regional-histories/africa/health-and-healing-in-african-history`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Women in African History (`history/regional-histories/africa/women-in-african-history`) | `history--regional-histories--women-africa.sql` |
-| ⬜ | — | chapter | History of Sport in Africa (`history/regional-histories/africa/history-of-sport-in-africa`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | History of Sport in Africa (`history/regional-histories/africa/history-of-sport-in-africa`) | `history--regional-histories--sport-africa.sql` |
 | | | **Americas** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Native American and Indigenous Studies (`history/regional-histories/americas/native-american-and-indigenous-studies`) | `history--regional-histories--native-american-studies.sql` |
 | ⬜ | — | chapter | Afro-Indigenous Intersections in Early America (`history/regional-histories/americas/afro-indigenous-intersections-in-early-america`) |  |
