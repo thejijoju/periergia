@@ -104,7 +104,7 @@ why: De Gouges exposed the gap between the Revolution's universal language and i
 
 The man who came to lead the revolution, **Toussaint Louverture**, was born around 1743 on the Bréda plantation. Historians long believed, as C. L. R. James did in 1938, that he was enslaved until 1791. In fact he had been freed in the 1770s, and before the revolution he owned land and enslaved people himself. In August 1793 he announced himself to the colony: "I want Liberty and Equality to reign in St. Domingue." He fought at first with the Spanish, then in May 1794 switched to the French Republic, which had now abolished slavery. Over the following years he fought the British, who withdrew in 1798, defeated his rival André Rigaud, and in 1801 occupied Spanish Santo Domingo, freeing its slaves.
 
-His constitution of 1801 declared that slavery was "forever abolished" in Saint-Domingue and that "all men are born, live and die free and French". It also made him governor for life, kept the colony French, and bound the formerly enslaved to work on the plantations, a system his nephew Moïse rebelled against and Toussaint repressed.
+His constitution of 1801 declared that slavery was "forever abolished" in Saint-Domingue and that "all men are born, live and die there free and French". It also made him governor for life, kept the colony French, and bound the formerly enslaved to work on the plantations, a system his nephew Moïse rebelled against and Toussaint repressed.
 
 {{image: Toussaint Louverture | A portrait of Toussaint Louverture, leader of the Haitian Revolution.}}
 
