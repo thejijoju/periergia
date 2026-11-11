@@ -202,7 +202,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Central Asia and the Steppe (`history/regional-histories/asia/central-asia-and-the-steppe`) |  |
 | | | **Africa** | | |
 | ⬜ | — | chapter | History of Sub-Saharan Africa to 1860: Precolonial States and Societies (`history/regional-histories/africa/history-of-sub-saharan-africa-to-1860-precolonial-states-and-societies`) |  |
-| ⬜ | — | chapter | Modern African History since 1860 (`history/regional-histories/africa/modern-african-history-since-1860`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Modern African History since 1860 (`history/regional-histories/africa/modern-african-history-since-1860`) | `history--regional-histories--modern-africa.sql` |
 | ⬜ | — | chapter | Health and Healing in African History (`history/regional-histories/africa/health-and-healing-in-african-history`) |  |
 | ⬜ | — | chapter | Women in African History (`history/regional-histories/africa/women-in-african-history`) |  |
 | ⬜ | — | chapter | History of Sport in Africa (`history/regional-histories/africa/history-of-sport-in-africa`) |  |
