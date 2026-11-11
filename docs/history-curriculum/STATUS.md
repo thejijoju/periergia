@@ -140,7 +140,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | The Meiji Restoration (`history/modern-era-19th-century/the-meiji-restoration`) | `history--modern-era-19th-century--meiji-restoration.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Imperial Russia from Napoleon to 1905 (`history/modern-era-19th-century/imperial-russia-from-napoleon-to-1905`) | `history--modern-era-19th-century--imperial-russia.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The American Civil War (`history/modern-era-19th-century/the-american-civil-war`) | `history--modern-era-19th-century--american-civil-war.sql` |
-| ⬜ | — | chapter | Latin America after Independence (`history/modern-era-19th-century/latin-america-after-independence`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Latin America after Independence (`history/modern-era-19th-century/latin-america-after-independence`) | `history--modern-era-19th-century--latin-america-after-independence.sql` |
 
 ### 20th Century History
 
