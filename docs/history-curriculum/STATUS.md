@@ -215,7 +215,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | | | **Middle East** | | |
 | ✅ | ✅ 2026-11-11 | chapter | The Making of the Modern Middle East (`history/regional-histories/middle-east/the-making-of-the-modern-middle-east`) | `history--regional-histories--modern-middle-east.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | A History of Modern Syria (`history/regional-histories/middle-east/a-history-of-modern-syria`) | `history--regional-histories--modern-syria.sql` |
-| ⬜ | — | chapter | Jerusalem, a History: From Antiquity to the Present (`history/regional-histories/middle-east/jerusalem-a-history-from-antiquity-to-the-present`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Jerusalem, a History: From Antiquity to the Present (`history/regional-histories/middle-east/jerusalem-a-history-from-antiquity-to-the-present`) | `history--regional-histories--jerusalem.sql` |
 | | | **Oceania and the Pacific** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Pacific Voyagers: the Settlement of Oceania (`history/regional-histories/oceania-and-the-pacific/pacific-voyagers-the-settlement-of-oceania`) | `history--regional-histories--pacific-voyagers.sql` |
 | ⬜ | — | chapter | The 'Settler Revolution' at the Edge of Empire: Australia, 1770-1901 (`history/regional-histories/oceania-and-the-pacific/the-settler-revolution-at-the-edge-of-empire-australia-1770-1901`) |  |
