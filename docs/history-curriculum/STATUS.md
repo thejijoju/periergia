@@ -122,7 +122,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | French and Haitian Revolutions (`history/age-of-revolutions/french-and-haitian-revolutions`) | `history--age-of-revolutions--french-and-haitian-revolutions.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Napoleon and the Remaking of Europe (`history/age-of-revolutions/napoleon-and-the-remaking-of-europe`) | `history--age-of-revolutions--napoleon.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Latin American Independence (`history/age-of-revolutions/latin-american-independence`) | `history--age-of-revolutions--latin-american-independence.sql` |
-| ⬜ | — | chapter | The Industrial Revolution (`history/age-of-revolutions/the-industrial-revolution`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Industrial Revolution (`history/age-of-revolutions/the-industrial-revolution`) | `history--age-of-revolutions--industrial-revolution.sql` |
 
 ### The Long Nineteenth Century (1815–1914)
 
