@@ -134,7 +134,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | Abolition and Emancipation (`history/modern-era-19th-century/abolition-and-emancipation`) | `history--modern-era-19th-century--abolition-and-emancipation.sql` |
 | ⬜ | — | chapter | The Victorian Era (`history/modern-era-19th-century/the-victorian-era`) |  |
 | ⬜ | — | chapter | British Empire (`history/modern-era-19th-century/british-empire`) |  |
-| ⬜ | — | chapter | Imperial Expansion and Resistance (`history/modern-era-19th-century/imperial-expansion-and-resistance`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Imperial Expansion and Resistance (`history/modern-era-19th-century/imperial-expansion-and-resistance`) | `history--modern-era-19th-century--imperial-expansion.sql` |
 | ✅ | ⬜ | chapter | The Opium Wars (`history/modern-era-19th-century/the-opium-wars`) | `history--the-opium-wars.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Taiping Rebellion and the Late Qing (`history/modern-era-19th-century/the-taiping-rebellion-and-the-late-qing`) | `history--modern-era-19th-century--taiping-late-qing.sql` |
 | ⬜ | — | chapter | The Meiji Restoration (`history/modern-era-19th-century/the-meiji-restoration`) |  |
