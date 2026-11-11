@@ -79,6 +79,18 @@ For each published History article, one at a time:
 | `status.ts` | Lists every History node as DONE or TODO, with its content file. |
 | `AUDIT_BRIEF.md` | The instructions given to each independent audit pass. |
 
+## Beyond the curriculum: accounts and community
+
+Periergia will also get **user accounts** so that:
+
+- students can join their universities;
+- universities can set up their own pages;
+- students can publish their papers, message each other, and join groups that correspond to their classes to share materials;
+- anyone can read free lectures published by universities;
+- people can show their education and work experience on a profile, a little like LinkedIn.
+
+That plan is in [../COMMUNITY_PLAN.md](../COMMUNITY_PLAN.md). The History curriculum written here becomes part of the free library those users read and discuss.
+
 ## Content format reminders
 
 - Authored masters are stored as `content` rows at depth `research`, level `advanced`, format `read`, with `reviewed = true`, plus a curated `quizzes` row per level.
