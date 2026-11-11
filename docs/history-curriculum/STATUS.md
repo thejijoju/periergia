@@ -157,7 +157,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | The Holocaust (`history/20th-century-history/the-holocaust`) | `history--20th-century-history--holocaust.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | France Under Nazi Occupation (`history/20th-century-history/france-under-nazi-occupation`) | `history--20th-century-history--france-occupation.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Yalta Conference (`history/20th-century-history/the-yalta-conference`) | `history--20th-century-history--yalta.sql` |
-| ⬜ | — | chapter | The Soviet Union: History of the Soviet Empire (`history/20th-century-history/the-soviet-union-history-of-the-soviet-empire`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Soviet Union: History of the Soviet Empire (`history/20th-century-history/the-soviet-union-history-of-the-soviet-empire`) | `history--20th-century-history--soviet-union.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Global Cold War and the Arms Race (`history/20th-century-history/global-cold-war-and-the-arms-race`) | `history--20th-century-history--global-cold-war.sql` |
 | ⬜ | — | chapter | Partition and its Consequences: Ireland, India, Palestine (`history/20th-century-history/partition-and-its-consequences-ireland-india-palestine`) |  |
 | ⬜ | — | chapter | Decolonization (`history/20th-century-history/european-decolonization`) |  |
