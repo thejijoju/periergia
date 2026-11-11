@@ -30,3 +30,4 @@ Leads found while researching new chapters that may affect articles already publ
 - Two chapters say Benin restricted the sale of male captives; not confirmed by the Benin article. Check.
 - Ghana–Mali: links al-Sahili to the Djinguereber mosque — Hunwick showed only a royal audience chamber is firmly his. Says Musa's spending depressed Cairo's gold "for years" — Schultz argues the fall was within normal fluctuation; hedge.
 - Swahili Coast: Ibn Battuta at Kilwa "1331" (Wikipedia: 1330); Great Zimbabwe population 10,000–18,000 (a newer survey: probably never above 10,000).
+- British Empire: the Truth and Reconciliation Commission of Canada "documented about 3,200 deaths" — sources give "at least 4,118" documented, with estimates over 6,000; the 3,200 figure (an earlier interim count, 3,201) could not be confirmed as current. Update. (Found by the Native American and Indigenous Studies research, 2026-11-11.)
