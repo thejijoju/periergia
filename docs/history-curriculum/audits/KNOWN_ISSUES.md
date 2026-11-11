@@ -68,3 +68,9 @@ Leads found while researching new chapters that may affect articles already publ
 ## Found by the Modern Syria research (2026-11-11)
 - First World War: says Faisal "proclaimed" the kingdom; the Syrian National Congress proclaimed him king on 8 March 1920.
 - Modern Conflicts: March 2025 killings of Alawites given as SOHR's provisional 1,614; later figures: UN Commission of Inquiry about 1,400, Syria's national inquiry at least 1,426, SOHR 1,659+. Give the range.
+
+## Vietnam War and Modern Southeast Asia chapters (found by the Indochina research, 2026-11-11)
+- Vietnam War: Ho "founded the Indochinese Communist Party in 1930" — he chaired the founding of the Vietnamese Communist Party on 3 February 1930, renamed the ICP in October 1930.
+- Vietnam War: land-reform executions "under 2,000 to about 50,000"; current range 800 to 200,000 (attributed). Re-education camps: upper estimates now 500,000 to 1 million.
+- Vietnam War / overviews: the 1945 famine's "2 million" is the official figure (Ho's declaration); research (Furuta, Marr, Huff 2019) points to about 1 million or a little more.
+- Modern Southeast Asia: Laos added to French Indochina "after 1893"; formal inclusion 1899.
