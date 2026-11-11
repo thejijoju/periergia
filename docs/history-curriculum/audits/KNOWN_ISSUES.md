@@ -78,3 +78,4 @@ Leads found while researching new chapters that may affect articles already publ
 ## Found by the Women in African History research (2026-11-11)
 - Interwar and British Empire: Igbo Women's War deaths given as "55"; sources differ (51 women and 1 man; separate tolls by place; oral accounts of about 100 at Aba). Consider "more than fifty".
 - Kongo, Asante and Dahomey: Dahomey's women soldiers were recruited from captives and free women, not only palace women.
+- Modern Africa: "Sub-Saharan Africa has carried over two-thirds of the world's HIV infections"; UNAIDS 2024 gives about 26.3 of 40.8 million (about 64%). Use "about two-thirds". (Found by the Health and Healing research, 2026-11-11.)
