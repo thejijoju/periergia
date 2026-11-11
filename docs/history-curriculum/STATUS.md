@@ -152,7 +152,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | The Second World War (WW2) (`history/20th-century-history/world-wars/the-second-world-war-ww2`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | The Mexican Revolution (`history/20th-century-history/the-mexican-revolution`) | `history--20th-century-history--mexican-revolution.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Interwar Period (`history/20th-century-history/the-interwar-period`) | `history--20th-century-history--interwar-period.sql` |
-| ⬜ | — | chapter | Hitler and the Death of Democracy in Germany, 1918-1945 (`history/20th-century-history/hitler-and-the-death-of-democracy-in-germany-1918-1945`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Hitler and the Death of Democracy in Germany, 1918-1945 (`history/20th-century-history/hitler-and-the-death-of-democracy-in-germany-1918-1945`) | `history--20th-century-history--hitler-germany.sql` |
 | ⬜ | — | chapter | Japan's Empire in Asia, 1895–1945 (`history/20th-century-history/japan-s-empire-in-asia-1895-1945`) |  |
 | ⬜ | — | chapter | The Holocaust (`history/20th-century-history/the-holocaust`) |  |
 | ⬜ | — | chapter | France Under Nazi Occupation (`history/20th-century-history/france-under-nazi-occupation`) |  |
