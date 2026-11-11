@@ -52,3 +52,4 @@ Leads found while researching new chapters that may affect articles already publ
 - Timur "1336–1405": born in the 1320s; 8 April 1336 is a later Timurid date that Manz calls "probably an invention".
 - "The last ruler of Chinggisid descent was deposed in Bukhara in 1920": Bukhara's Manghit emirs were not Chinggisids (Soucek). Chinggisid rulers lasted elsewhere (Maqsud Shah of Kumul to 1930; Navaanneren Setsen Khan executed in Mongolia in 1937).
 - Global Cold War: Semipalatinsk "over 450" tests; sources give 468 (consistent, could be exact).
+- Imperial Expansion: General Smith's order quoted as "kill everyone over the age of ten"; the documented wording (1902 press) is "KILL EVERY ONE OVER TEN". Check the quotation against a primary report. (Found by the Modern Southeast Asia research, 2026-11-11.)
