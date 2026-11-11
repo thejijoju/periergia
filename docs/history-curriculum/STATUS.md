@@ -156,7 +156,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | Japan's Empire in Asia, 1895–1945 (`history/20th-century-history/japan-s-empire-in-asia-1895-1945`) | `history--20th-century-history--japan-empire.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Holocaust (`history/20th-century-history/the-holocaust`) | `history--20th-century-history--holocaust.sql` |
 | ⬜ | — | chapter | France Under Nazi Occupation (`history/20th-century-history/france-under-nazi-occupation`) |  |
-| ⬜ | — | chapter | The Yalta Conference (`history/20th-century-history/the-yalta-conference`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Yalta Conference (`history/20th-century-history/the-yalta-conference`) | `history--20th-century-history--yalta.sql` |
 | ⬜ | — | chapter | The Soviet Union: History of the Soviet Empire (`history/20th-century-history/the-soviet-union-history-of-the-soviet-empire`) |  |
 | ⬜ | — | chapter | Global Cold War and the Arms Race (`history/20th-century-history/global-cold-war-and-the-arms-race`) |  |
 | ⬜ | — | chapter | Partition and its Consequences: Ireland, India, Palestine (`history/20th-century-history/partition-and-its-consequences-ireland-india-palestine`) |  |

@@ -90,7 +90,7 @@ a*: French troops shot repatriated African soldiers who were protesting over unp
 a: Allied troops liberated a German prisoner-of-war camp.
 x: The soldiers had been German prisoners in 1940, but the shooting was by the French army after their return.
 hint: Think of what the empire owed the soldiers it had sent to fight.
-why: Thiaroye, like the "whitening" of the victory parade, shows how colonial soldiers were treated by the powers they served.
+why: Thiaroye, like the "whitening" of the French army in 1944, shows how colonial soldiers were treated by the powers they served.
 ```
 
 ## North Africa and the Mediterranean
