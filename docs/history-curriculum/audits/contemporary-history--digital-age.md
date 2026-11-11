@@ -27,3 +27,10 @@ Written source-first from `research/contemporary-history--digital-age.md`. Two i
 | "child labour is rampant" around Kolwezi | Unverified wording (B) | DRC mining | "child labour is widespread" |
 | Chile 1972 "employers' strike" | Wording vs Latin America chapter (A, B) | Project Cybersyn | "employers' and truckers' strike" |
 | Zuboff "the defining critique" (reading list) | Evaluative (A) | — | "An influential critique" |
+
+## Follow-up, 2026-11-11 (from the era-overview audits)
+
+| Claim (before) | Verdict | Source | Change |
+|---|---|---|---|
+| "A UN fact-finding mission said in 2018 that Facebook had played a 'determining role'" | IMPRECISE | Reuters, Time, Al Jazeera, March 2018: the chair said social media had played a "determining role", adding "social media is Facebook" | "the head of a UN fact-finding mission said that social media, which in Myanmar effectively meant Facebook, had played a 'determining role'" |
+| TSMC "now holds about 70 per cent of the global foundry market" | IMPRECISE | TrendForce 2025 (69.9% of foundry revenue); Counterpoint's broader "Foundry 2.0" about 35% | "By TrendForce's count it took about 70 per cent of contract-foundry revenue in 2025, though broader measures of the chip-making market give it far less" |

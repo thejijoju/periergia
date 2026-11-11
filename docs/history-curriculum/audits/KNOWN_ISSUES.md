@@ -36,3 +36,6 @@ Leads found while researching new chapters that may affect articles already publ
 - Ancient China: oracle bones "perhaps a third" of about 4,000 characters read — Wikipedia: 1,500–2,000, about 40–50%. Erlitou "1900–1500 BCE" — radiocarbon since 2007 narrows it to about 1750–1500.
 - An Lushan pre-war census dated 754 (source: 755). Late-Ming "perhaps 150 million" by 1600 is at or below the low end of 160–200 million; Qing 1700 "150 million" vs 160 million estimates.
 - Han China calls *Romance of the Three Kingdoms* 14th-century; other sources give a 16th-century print — check wording ("attributed to the 14th century, printed in the 16th").
+
+## Contemporary chapters (found by the era-overview audits, 2026-11-11)
+- Globalization (and the overview): container loading cost "$5.86 a ton to 16 cents". Wikipedia (Malcom McLean) gives $5.86; secondary sources citing Levinson's *The Box* give $5.83 and 15.8 cents. Check Levinson's text.
