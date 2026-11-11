@@ -57,3 +57,8 @@ Leads found while researching new chapters that may affect articles already publ
 ## Japanese chapters (found by the Premodern Korea research, 2026-11-11)
 - Tokugawa chapter: turtle ships called "armoured"; no source from Yi Sun-sin's time calls them ironclad (only the spiked roof is attested).
 - Meiji chapter: "35 Korean soldiers were killed" at Ganghwa in 1875; the source says 35 casualties.
+
+## Ming China and Zheng He chapter (found by the Ming-Qing research, 2026-11-11)
+- Hongwu's purges "tens of thousands": Ebrey and Fairbank/Goldman give about 100,000.
+- Late-Ming population "perhaps 150 million or more by 1600": estimates run 160–231 million (Fairbank 160, Brook 175, Ebrey 200, Mote 231).
+- Share of American silver reaching China "a third or more": Wakeman says half; use "between a third and a half".
