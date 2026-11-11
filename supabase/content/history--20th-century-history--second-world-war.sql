@@ -128,7 +128,7 @@ Over Japan, American precision raids largely failed, and the United States switc
 
 ## The End of the War
 
-On **D-Day**, 6 June 1944, nearly 160,000 Allied troops landed in Normandy in the largest seaborne invasion in history. At **Yalta** in February 1945, Roosevelt, Churchill and Stalin met in a conference that later became intensely controversial over the division of Europe; there the Soviet Union promised to enter the war against Japan three months after Germany's defeat. After the fall of Berlin, Germany surrendered unconditionally on 8 May 1945.
+On **D-Day**, 6 June 1944, nearly 160,000 Allied troops landed in Normandy in the largest seaborne invasion in history. At **Yalta** in February 1945, Roosevelt, Churchill and Stalin met in a conference that later became intensely controversial over the division of Europe; there the Soviet Union promised to enter the war against Japan "two or three months" after Germany's defeat. After the fall of Berlin, Germany surrendered unconditionally on 8 May 1945.
 
 {{image: Raising a Flag over the Reichstag | A 1945 photograph of a flag raised over the Reichstag in Berlin, an image of the war's end in Europe.}}
 
