@@ -203,7 +203,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | | | **Africa** | | |
 | ✅ | ✅ 2026-11-11 | chapter | History of Sub-Saharan Africa to 1860: Precolonial States and Societies (`history/regional-histories/africa/history-of-sub-saharan-africa-to-1860-precolonial-states-and-societies`) | `history--regional-histories--africa-to-1860.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Modern African History since 1860 (`history/regional-histories/africa/modern-african-history-since-1860`) | `history--regional-histories--modern-africa.sql` |
-| ⬜ | — | chapter | Health and Healing in African History (`history/regional-histories/africa/health-and-healing-in-african-history`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Health and Healing in African History (`history/regional-histories/africa/health-and-healing-in-african-history`) | `history--regional-histories--health-africa.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Women in African History (`history/regional-histories/africa/women-in-african-history`) | `history--regional-histories--women-africa.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | History of Sport in Africa (`history/regional-histories/africa/history-of-sport-in-africa`) | `history--regional-histories--sport-africa.sql` |
 | | | **Americas** | | |
