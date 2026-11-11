@@ -74,3 +74,7 @@ Leads found while researching new chapters that may affect articles already publ
 - Vietnam War: land-reform executions "under 2,000 to about 50,000"; current range 800 to 200,000 (attributed). Re-education camps: upper estimates now 500,000 to 1 million.
 - Vietnam War / overviews: the 1945 famine's "2 million" is the official figure (Ho's declaration); research (Furuta, Marr, Huff 2019) points to about 1 million or a little more.
 - Modern Southeast Asia: Laos added to French Indochina "after 1893"; formal inclusion 1899.
+
+## Found by the Women in African History research (2026-11-11)
+- Interwar and British Empire: Igbo Women's War deaths given as "55"; sources differ (51 women and 1 man; separate tolls by place; oral accounts of about 100 at Aba). Consider "more than fifty".
+- Kongo, Asante and Dahomey: Dahomey's women soldiers were recruited from captives and free women, not only palace women.
