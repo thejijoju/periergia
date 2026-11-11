@@ -154,7 +154,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | The Interwar Period (`history/20th-century-history/the-interwar-period`) | `history--20th-century-history--interwar-period.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Hitler and the Death of Democracy in Germany, 1918-1945 (`history/20th-century-history/hitler-and-the-death-of-democracy-in-germany-1918-1945`) | `history--20th-century-history--hitler-germany.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Japan's Empire in Asia, 1895–1945 (`history/20th-century-history/japan-s-empire-in-asia-1895-1945`) | `history--20th-century-history--japan-empire.sql` |
-| ⬜ | — | chapter | The Holocaust (`history/20th-century-history/the-holocaust`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Holocaust (`history/20th-century-history/the-holocaust`) | `history--20th-century-history--holocaust.sql` |
 | ⬜ | — | chapter | France Under Nazi Occupation (`history/20th-century-history/france-under-nazi-occupation`) |  |
 | ⬜ | — | chapter | The Yalta Conference (`history/20th-century-history/the-yalta-conference`) |  |
 | ⬜ | — | chapter | The Soviet Union: History of the Soviet Empire (`history/20th-century-history/the-soviet-union-history-of-the-soviet-empire`) |  |
