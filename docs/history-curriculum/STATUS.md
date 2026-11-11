@@ -213,7 +213,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Indigenous Oral Literatures of the Northwest Coast of North America (`history/regional-histories/americas/indigenous-oral-literatures-of-the-northwest-coast-of-north-america`) |  |
 | ⬜ | — | chapter | Modern American History: the United States in the Twentieth Century (`history/regional-histories/americas/modern-american-history-the-united-states-in-the-twentieth-century`) |  |
 | | | **Middle East** | | |
-| ⬜ | — | chapter | The Making of the Modern Middle East (`history/regional-histories/middle-east/the-making-of-the-modern-middle-east`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The Making of the Modern Middle East (`history/regional-histories/middle-east/the-making-of-the-modern-middle-east`) | `history--regional-histories--modern-middle-east.sql` |
 | ⬜ | — | chapter | A History of Modern Syria (`history/regional-histories/middle-east/a-history-of-modern-syria`) |  |
 | ⬜ | — | chapter | Jerusalem, a History: From Antiquity to the Present (`history/regional-histories/middle-east/jerusalem-a-history-from-antiquity-to-the-present`) |  |
 | | | **Oceania and the Pacific** | | |
