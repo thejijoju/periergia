@@ -192,7 +192,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | God Save the Queen: the British Monarchy (`history/regional-histories/europe/god-save-the-queen-the-british-monarchy`) |  |
 | | | **Asia** | | |
 | ✅ | ✅ 2026-11-11 | chapter | Chinese History (`history/regional-histories/asia/chinese-history`) | `history--regional-histories--chinese-history.sql` |
-| ⬜ | — | chapter | Ming-Qing History (`history/regional-histories/asia/ming-qing-history`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Ming-Qing History (`history/regional-histories/asia/ming-qing-history`) | `history--regional-histories--ming-qing.sql` |
 | ⬜ | — | chapter | Modern China (`history/regional-histories/asia/modern-china`) |  |
 | ⬜ | — | chapter | The Modern History of Rural China (`history/regional-histories/asia/the-modern-history-of-rural-china`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | Premodern Korean History (`history/regional-histories/asia/premodern-korean-history`) | `history--regional-histories--premodern-korea.sql` |
