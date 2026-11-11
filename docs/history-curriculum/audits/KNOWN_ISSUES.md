@@ -12,3 +12,6 @@ Leads found while researching new chapters that may affect articles already publ
   - If it mentions Harriet Tubman freeing "300", the sources give about 70 people on about 13 missions; the Combahee Ferry raid she guided freed more than 700.
   - If it quotes Sojourner Truth's "Ain't I a Woman?", that wording comes from Frances Gage's 1863 version, not the 1851 report.
   - Check the numbers for Demerara executions (27 or 33) and the Brazilians freed in 1888 (about 600,000 to 723,419).
+
+## 20th Century History overview
+- FIXED 2026-11-11: it called 1905 "the first modern victory of an Asian over a European power" (ignoring Adwa, 1896); now "an Asian victory over a European great power in a modern war".
