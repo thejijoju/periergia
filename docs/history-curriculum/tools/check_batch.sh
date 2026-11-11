@@ -7,6 +7,7 @@ set -u
 T=docs/history-curriculum/tools
 cd "$(git rev-parse --show-toplevel)" || exit 1
 node scripts/render-check.mjs 2>&1 | tail -1
+node $T/math-check.mjs "$@" 2>&1 | tail -3
 for f in "$@"; do printf '%s: ' "$(basename "$f")"; npx tsx $T/cp.ts "$f" | tail -1; done
 D=$(mktemp -d /var/tmp/periergia-pgtest.XXXXXX); B=/usr/lib/postgresql/16/bin
 PORT=$(( 20000 + RANDOM % 20000 ))   # unique dir and port so parallel runs do not collide
