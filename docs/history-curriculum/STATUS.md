@@ -148,7 +148,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | 20th Century History (`history/20th-century-history`) | `history--20th-century-history--overview.sql` |
 | | | **The World Wars** | | |
-| ⬜ | — | chapter | The First World War (WW1) (`history/20th-century-history/world-wars/the-first-world-war-ww1`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | The First World War (WW1) (`history/20th-century-history/world-wars/the-first-world-war-ww1`) | `history--20th-century-history--first-world-war.sql` |
 | ⬜ | — | chapter | The Second World War (WW2) (`history/20th-century-history/world-wars/the-second-world-war-ww2`) |  |
 | ✅ | ✅ 2026-11-11 | chapter | The Mexican Revolution (`history/20th-century-history/the-mexican-revolution`) | `history--20th-century-history--mexican-revolution.sql` |
 | ⬜ | — | chapter | The Interwar Period (`history/20th-century-history/the-interwar-period`) |  |
