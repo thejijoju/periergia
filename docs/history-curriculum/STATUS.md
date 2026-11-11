@@ -211,7 +211,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Afro-Indigenous Intersections in Early America (`history/regional-histories/americas/afro-indigenous-intersections-in-early-america`) |  |
 | ⬜ | — | chapter | Indigenous Economies and Environments (`history/regional-histories/americas/indigenous-economies-and-environments`) |  |
 | ⬜ | — | chapter | Indigenous Oral Literatures of the Northwest Coast of North America (`history/regional-histories/americas/indigenous-oral-literatures-of-the-northwest-coast-of-north-america`) |  |
-| ⬜ | — | chapter | Modern American History: the United States in the Twentieth Century (`history/regional-histories/americas/modern-american-history-the-united-states-in-the-twentieth-century`) |  |
+| ✅ | ✅ 2026-11-11 | chapter | Modern American History: the United States in the Twentieth Century (`history/regional-histories/americas/modern-american-history-the-united-states-in-the-twentieth-century`) | `history--regional-histories--modern-america.sql` |
 | | | **Middle East** | | |
 | ✅ | ✅ 2026-11-11 | chapter | The Making of the Modern Middle East (`history/regional-histories/middle-east/the-making-of-the-modern-middle-east`) | `history--regional-histories--modern-middle-east.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | A History of Modern Syria (`history/regional-histories/middle-east/a-history-of-modern-syria`) | `history--regional-histories--modern-syria.sql` |
