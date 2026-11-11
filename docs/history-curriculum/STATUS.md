@@ -173,7 +173,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ⬜ | — | overview | Contemporary History (`history/contemporary-history`) |  |
+| ✅ | ✅ 2026-11-11 | overview | Contemporary History (`history/contemporary-history`) | `history--contemporary-history--overview.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Post-Cold War Era (`history/contemporary-history/the-post-cold-war-era`) | `history--contemporary-history--post-cold-war.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Neoliberal Age (`history/contemporary-history/the-neoliberal-age`) | `history--contemporary-history--neoliberal-age.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Globalization (`history/contemporary-history/globalization`) | `history--contemporary-history--globalization.sql` |
