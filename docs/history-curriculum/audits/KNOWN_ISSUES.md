@@ -31,3 +31,8 @@ Leads found while researching new chapters that may affect articles already publ
 - Ghana–Mali: links al-Sahili to the Djinguereber mosque — Hunwick showed only a royal audience chamber is firmly his. Says Musa's spending depressed Cairo's gold "for years" — Schultz argues the fall was within normal fluctuation; hedge.
 - Swahili Coast: Ibn Battuta at Kilwa "1331" (Wikipedia: 1330); Great Zimbabwe population 10,000–18,000 (a newer survey: probably never above 10,000).
 - British Empire: the Truth and Reconciliation Commission of Canada "documented about 3,200 deaths" — sources give "at least 4,118" documented, with estimates over 6,000; the 3,200 figure (an earlier interim count, 3,201) could not be confirmed as current. Update. (Found by the Native American and Indigenous Studies research, 2026-11-11.)
+
+## Chinese chapters (found by the Chinese History research, 2026-11-11)
+- Ancient China: oracle bones "perhaps a third" of about 4,000 characters read — Wikipedia: 1,500–2,000, about 40–50%. Erlitou "1900–1500 BCE" — radiocarbon since 2007 narrows it to about 1750–1500.
+- An Lushan pre-war census dated 754 (source: 755). Late-Ming "perhaps 150 million" by 1600 is at or below the low end of 160–200 million; Qing 1700 "150 million" vs 160 million estimates.
+- Han China calls *Romance of the Three Kingdoms* 14th-century; other sources give a 16th-century print — check wording ("attributed to the 14th century, printed in the 16th").
