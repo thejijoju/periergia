@@ -40,3 +40,4 @@ Kept, confirmed by one pass:
 
 Cross-chapter: the 20th-century overview's "some 70–85 million" is logged in KNOWN_ISSUES.
 - Found by the Yalta research (2026-11-11): the chapter said the USSR promised to enter the war against Japan "three months" after Germany's defeat. That was IMPRECISE: the agreement says "two or three months". Corrected.
+- Found by the France audit (2026-11-11): a checkpoint said the "whitening" was "of the victory parade". That was WRONG; it was a whitening of the French army in 1944. Corrected.
