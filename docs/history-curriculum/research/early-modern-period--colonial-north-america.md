@@ -1,0 +1,26 @@
+# Verified facts — Colonial North America (searched 2026-11-10)
+- Jamestown 1607. Starving Time 1609–10: Powhatan siege from Nov 1609; ~500 → ~60 by spring 1610 (Britannica, Historic Jamestowne); some give 240 start. Cannibalism evidence.
+- Pocahontas m. John Rolfe 5 Apr 1614; baptized Rebecca; died Gravesend Mar 1617 (buried 21 Mar).
+- 1619 White Lion at Point Comfort, "20. and odd Negroes" (Rolfe); captives from Ndongo (Angola), taken from São João Bautista bound for Veracruz (NPS, Encyclopedia Virginia). Treasurer brought more days later.
+- 22 Mar 1622 Opechancanough attack: 347 killed, about a quarter–third of colonists (sources vary). Opechancanough died in captivity 1646.
+- Wampanoag: epidemic 1616–19 killed est. 50–90% coastal peoples; Tisquantum's village (Patuxet) wiped out; 1621 mutual-defence treaty Massasoit (Ousamequin)–Plymouth; Tisquantum died Nov 1622.
+- Winthrop "Model of Christian Charity" 1630: "we shall be as a city upon a hill"; place (aboard Arbella vs England) and even authorship disputed.
+- Pequot War: Mystic 26 May 1637, Mason & Underhill w/ Mohegan & Narragansett allies; ~400–700 killed (estimates).
+- King Philip's War 1675–76 (north to 1678); Metacom killed Aug 1676; often called deadliest per capita in US history; Native losses large, many sold into slavery (numbers vary).
+- Bacon's Rebellion 1676: Jamestown burned 19 Sep 1676; Bacon promised freedom to servants and enslaved who joined; Bacon died (dysentery); ~two dozen executed. Planters' later shift to slavery = interpretation (Morgan).
+- Indentured servants ≈ three-quarters (75–80%) of 17th-c. European immigrants to Chesapeake.
+- Virginia 1662: child's status follows mother (partus), break with English law; 1705 comprehensive slave code.
+- Salem 1692: 19 hanged (14 women, 5 men), Giles Corey pressed to death (19 Sep), ≥5 died in custody; Tituba enslaved in Parris household, first to confess.
+- Pueblo Revolt 10 Aug 1680, Popé (Po'pay) of Ohkay Owingeh; ~400 Spanish killed incl. 21 of 33 Franciscans; Spanish fled to El Paso; Vargas reentered Santa Fe 1692.
+- Stono 9 Sep 1739, largest slave revolt in colonial South; Thornton: likely Kongolese Catholics (interpretation).
+- Walking Purchase 1737 (walk 19 Sep 1737), widely called fraudulent; ~1,200 sq mi.
+- New Netherland est. 1624 (WIC); ~9,000 people by 1664; surrendered to Nicolls 8 Sep 1664 → New York.
+- Covenant Chain: Haudenosaunee–English alliance; Mohawk declared it broken 1753.
+- Wendat dispersed 1649 by Haudenosaunee (with Dutch guns) after epidemics; Wendat still exist (Wendake). Wendat joined French alliance 1609.
+- Great Awakening: Whitefield toured 1739–41; Edwards "Sinners in the Hands of an Angry God", Enfield 8 Jul 1741.
+- Seven Years' War: Jumonville Glen May 1754; formal war 1756; Treaty of Paris 10 Feb 1763; Louisiana to Spain via secret Fontainebleau 1762.
+- Pontiac's War from May 1763 (Detroit siege); Fort Pitt smallpox blankets June 1763 (attempt documented, effect debated); Royal Proclamation 1763 boundary (not simply a response to Pontiac).
+- Population 1770: ~2.16 m, ~469,000 Black (~1/5). 1700 ~250,000.
+- Rice: Carney Black Rice 2001 vs Eltis, Morgan, Richardson — debated.
+- Books verified: Taylor American Colonies 2001; Richter Facing East 2001; Morgan ASAF 1975; Berlin Many Thousands Gone 1998; DuVal Native Nations 2024 (Pulitzer 2025); Hämäläinen Indigenous Continent 2022; White Middle Ground 1991.
+- NOT VERIFIED (leave out or hedge): Quebec 1608 founding (search didn't cover) — well-known but recheck; Bacon numbers.
