@@ -47,3 +47,8 @@ Leads found while researching new chapters that may affect articles already publ
 ## South Asian chapters (found by the Modern South Asia research, 2026-11-11)
 - Bengal famine of 1770: published chapters give the traditional range and "a third of the population"; Rajat Datta estimates about 1.2 million deaths and Dyson calls the Company's 10 million "barely credible". Present as a contested range.
 - World-output share figures: keep Maddison's GDP share and the manufacturing-output share apart wherever chapters cite them.
+
+## Mongol Empire chapter (found by the Central Asia research, 2026-11-11)
+- Timur "1336–1405": born in the 1320s; 8 April 1336 is a later Timurid date that Manz calls "probably an invention".
+- "The last ruler of Chinggisid descent was deposed in Bukhara in 1920": Bukhara's Manghit emirs were not Chinggisids (Soucek). Chinggisid rulers lasted elsewhere (Maqsud Shah of Kumul to 1930; Navaanneren Setsen Khan executed in Mongolia in 1937).
+- Global Cold War: Semipalatinsk "over 450" tests; sources give 468 (consistent, could be exact).
