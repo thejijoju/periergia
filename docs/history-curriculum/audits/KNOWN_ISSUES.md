@@ -62,3 +62,4 @@ Leads found while researching new chapters that may affect articles already publ
 - Hongwu's purges "tens of thousands": Ebrey and Fairbank/Goldman give about 100,000.
 - Late-Ming population "perhaps 150 million or more by 1600": estimates run 160–231 million (Fairbank 160, Brook 175, Ebrey 200, Mote 231).
 - Share of American silver reaching China "a third or more": Wakeman says half; use "between a third and a half".
+- Second World War chapter: attributes "about 15–16 million" Chinese war dead to Mitter; Wikipedia cites Mitter for 14 million total, reviews give his range as 14–20 million, and Japan's Empire says Mitter calls Westad's 14 million conservative. Check the attribution. (Found by the Modern China research, 2026-11-11.)
