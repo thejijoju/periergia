@@ -53,3 +53,7 @@ Leads found while researching new chapters that may affect articles already publ
 - "The last ruler of Chinggisid descent was deposed in Bukhara in 1920": Bukhara's Manghit emirs were not Chinggisids (Soucek). Chinggisid rulers lasted elsewhere (Maqsud Shah of Kumul to 1930; Navaanneren Setsen Khan executed in Mongolia in 1937).
 - Global Cold War: Semipalatinsk "over 450" tests; sources give 468 (consistent, could be exact).
 - Imperial Expansion: General Smith's order quoted as "kill everyone over the age of ten"; the documented wording (1902 press) is "KILL EVERY ONE OVER TEN". Check the quotation against a primary report. (Found by the Modern Southeast Asia research, 2026-11-11.)
+
+## Japanese chapters (found by the Premodern Korea research, 2026-11-11)
+- Tokugawa chapter: turtle ships called "armoured"; no source from Yi Sun-sin's time calls them ironclad (only the spiked roof is attested).
+- Meiji chapter: "35 Korean soldiers were killed" at Ganghwa in 1875; the source says 35 casualties.
