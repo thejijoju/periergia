@@ -5,12 +5,13 @@ import { SITE_URL } from "@/lib/site";
 // bandwidth while sending zero readers back. The compliant ones honour a
 // robots.txt disallow; the rest are hard-blocked in middleware.ts. Search
 // engines (Googlebot, Bingbot, DuckDuckBot, Applebot, …) are deliberately NOT
-// listed — they're how real readers find the site, so they stay welcome.
+// listed — they're how real readers find the site, so they stay welcome. The
+// same goes for the AI search/assistant fetchers (OAI-SearchBot, ChatGPT-User,
+// PerplexityBot, Claude-SearchBot, Claude-User): they cite and link the page in
+// answers, so they send readers too. Only AI *training* crawlers are listed.
 const BLOCKED_BOTS = [
   // AI / LLM training crawlers
   "GPTBot",
-  "OAI-SearchBot",
-  "ChatGPT-User",
   "ClaudeBot",
   "Claude-Web",
   "anthropic-ai",
@@ -19,7 +20,6 @@ const BLOCKED_BOTS = [
   "Applebot-Extended",
   "Bytespider",
   "Amazonbot",
-  "PerplexityBot",
   "Omgilibot",
   "Omgili",
   "Diffbot",

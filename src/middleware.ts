@@ -9,6 +9,10 @@ const COUNTRY_COOKIE = "periergia_country";
 //
 // Deliberately NOT matched: search-engine crawlers (Googlebot, Bingbot,
 // DuckDuckBot, Applebot) — they bring the real readers, so indexing stays open.
+// Nor the AI *search/assistant* fetchers (OAI-SearchBot, ChatGPT-User,
+// PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User): they fetch a
+// page when someone asks ChatGPT/Perplexity/Claude a question and cite it with a
+// link, so they send readers. Only the AI *training* crawlers stay blocked.
 // (Google-Extended / Applebot-Extended are robots.txt-only AI-opt-out tokens,
 // not request user-agents, so they live in robots.ts, not here.)
 //
@@ -17,7 +21,7 @@ const COUNTRY_COOKIE = "periergia_country";
 // person at the request level and need a WAF / bot-management challenge
 // (Vercel Firewall) — a dashboard setting, not code.
 const BLOCKED_UA =
-  /GPTBot|OAI-SearchBot|ChatGPT-User|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Bytespider|Amazonbot|PerplexityBot|Omgilibot|Omgili|Diffbot|ImagesiftBot|cohere-ai|YouBot|Meta-ExternalAgent|Meta-ExternalFetcher|FacebookBot|Timpibot|VelenPublicWebCrawler|Scrapy|AhrefsBot|SemrushBot|MJ12bot|DotBot|DataForSeoBot|BLEXBot|PetalBot|serpstatbot|ZoominfoBot|Seekr|SERankingBacklinksBot|ElevenlabsCrawler|RiverBot|Reflectionbot|python-requests|Go-http-client|node-fetch/i;
+  /GPTBot|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Bytespider|Amazonbot|Omgilibot|Omgili|Diffbot|ImagesiftBot|cohere-ai|YouBot|Meta-ExternalAgent|Meta-ExternalFetcher|FacebookBot|Timpibot|VelenPublicWebCrawler|Scrapy|AhrefsBot|SemrushBot|MJ12bot|DotBot|DataForSeoBot|BLEXBot|PetalBot|serpstatbot|ZoominfoBot|Seekr|SERankingBacklinksBot|ElevenlabsCrawler|RiverBot|Reflectionbot|python-requests|Go-http-client|node-fetch/i;
 
 export function middleware(req: NextRequest) {
   const ua = req.headers.get("user-agent") ?? "";
