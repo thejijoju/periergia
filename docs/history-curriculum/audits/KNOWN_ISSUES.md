@@ -26,8 +26,8 @@ Leads found while researching new chapters that may affect articles already publ
 - The 20th-century overview's Rwanda figure "500,000–800,000 dead": the scholarly range is about 500,000–662,000 Tutsi, plus about 10,000 Twa and 10,000–30,000 Hutu; Rwanda's government says over 1 million. Consider "some 500,000–800,000 or more, mostly Tutsi". (Found by the Post-Cold War research, 2026-11-11.)
 
 ## African chapters (found by the Sub-Saharan Africa to 1860 research, 2026-11-11)
-- Kongo–Asante–Dahomey: Dahomey's tribute to Oyo "from 1730" — Wikipedia: Oyo invaded 11 times before subjugating Dahomey in 1748. Its reading list gives Thornton's 1992 first edition as "1400–1800"; the 1992 edition was *1400–1650* (1400–1800 is the 1998 second edition).
-- Two chapters say Benin restricted the sale of male captives; not confirmed by the Benin article. Check.
+- Kongo–Asante–Dahomey: Dahomey's tribute to Oyo "from 1730" — Wikipedia: Oyo invaded 11 times before subjugating Dahomey in 1748. Its reading list gives Thornton's 1992 first edition as "1400–1800"; the 1992 edition was *1400–1650* (1400–1800 is the 1998 second edition). **Resolved 2026-11-12.**
+- Two chapters say Benin restricted the sale of male captives; not confirmed by the Benin article. Check. **Checked 2026-11-12:** supported by secondary summaries of Ryder; both chapters now date it (early sixteenth to late seventeenth century).
 - Ghana–Mali: links al-Sahili to the Djinguereber mosque — Hunwick showed only a royal audience chamber is firmly his. Says Musa's spending depressed Cairo's gold "for years" — Schultz argues the fall was within normal fluctuation; hedge. **Resolved in Phase 2 (2026-11-12).**
 - Swahili Coast: Ibn Battuta at Kilwa "1331" (Wikipedia: 1330); Great Zimbabwe population 10,000–18,000 (a newer survey: probably never above 10,000). **Resolved in Phase 2 (2026-11-12).**
 - British Empire: the Truth and Reconciliation Commission of Canada "documented about 3,200 deaths" — sources give "at least 4,118" documented, with estimates over 6,000; the 3,200 figure (an earlier interim count, 3,201) could not be confirmed as current. Update. (Found by the Native American and Indigenous Studies research, 2026-11-11.)
@@ -77,7 +77,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## Found by the Women in African History research (2026-11-11)
 - Interwar and British Empire: Igbo Women's War deaths given as "55"; sources differ (51 women and 1 man; separate tolls by place; oral accounts of about 100 at Aba). Consider "more than fifty".
-- Kongo, Asante and Dahomey: Dahomey's women soldiers were recruited from captives and free women, not only palace women.
+- Kongo, Asante and Dahomey: Dahomey's women soldiers were recruited from captives and free women, not only palace women. **Resolved 2026-11-12.**
 - Modern Africa: "Sub-Saharan Africa has carried over two-thirds of the world's HIV infections"; UNAIDS 2024 gives about 26.3 of 40.8 million (about 64%). Use "about two-thirds". (Found by the Health and Healing research, 2026-11-11.)
 
 ## Found during Disease and Epidemics research (2026-11-12)
