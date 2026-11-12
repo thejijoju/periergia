@@ -44,7 +44,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Ancient Greece (`history/classical-antiquity/ancient-greece`) | `history--classical-antiquity--ancient-greece.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Alexander and the Hellenistic World (`history/classical-antiquity/alexander-and-the-hellenistic-world`) | `history--classical-antiquity--alexander-hellenistic.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Rome and the Ancient Roman World (`history/classical-antiquity/rome-and-the-ancient-roman-world`) | `history--classical-antiquity--rome.sql` |
-| ✅ | ⬜ | chapter | The Fall of the Roman Empire (`history/classical-antiquity/the-fall-of-the-roman-empire`) | `history--classical-antiquity--fall-of-rome.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Fall of the Roman Empire (`history/classical-antiquity/the-fall-of-the-roman-empire`) | `history--classical-antiquity--fall-of-rome.sql` |
 | ✅ | ⬜ | chapter | Classical India: the Mauryas to the Guptas (`history/classical-antiquity/classical-india-the-mauryas-to-the-guptas`) | `history--classical-antiquity--classical-india.sql` |
 | ✅ | ⬜ | chapter | Han China (206 BCE–220 CE) (`history/classical-antiquity/han-china-206-bce-220-ce`) | `history--classical-antiquity--han-china.sql` |
 | ✅ | ⬜ | chapter | The Silk Roads (`history/classical-antiquity/the-silk-roads`) | `history--classical-antiquity--silk-roads.sql` |
