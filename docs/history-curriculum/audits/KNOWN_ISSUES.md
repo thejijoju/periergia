@@ -59,9 +59,9 @@ Leads found while researching new chapters that may affect articles already publ
 - Meiji chapter: "35 Korean soldiers were killed" at Ganghwa in 1875; the source says 35 casualties.
 
 ## Ming China and Zheng He chapter (found by the Ming-Qing research, 2026-11-11)
-- Hongwu's purges "tens of thousands": Ebrey and Fairbank/Goldman give about 100,000.
-- Late-Ming population "perhaps 150 million or more by 1600": estimates run 160–231 million (Fairbank 160, Brook 175, Ebrey 200, Mote 231).
-- Share of American silver reaching China "a third or more": Wakeman says half; use "between a third and a half".
+- Hongwu's purges "tens of thousands": Ebrey and Fairbank/Goldman give about 100,000. **Resolved 2026-11-12.**
+- Late-Ming population "perhaps 150 million or more by 1600": estimates run 160–231 million (Fairbank 160, Brook 175, Ebrey 200, Mote 231). **Resolved 2026-11-12.**
+- Share of American silver reaching China "a third or more": Wakeman says half; use "between a third and a half". **Resolved 2026-11-12.**
 - Second World War chapter: attributes "about 15–16 million" Chinese war dead to Mitter; Wikipedia cites Mitter for 14 million total, reviews give his range as 14–20 million, and Japan's Empire says Mitter calls Westad's 14 million conservative. Check the attribution. (Found by the Modern China research, 2026-11-11.)
 - Columbian Exchange: lists sweet potatoes among crops spreading from the Americas after 1492; add that sweet potato had already reached Polynesia centuries earlier (Mangaia, Cook Islands, c. 1000–1200 CE). (Found by the Pacific Voyagers research, 2026-11-11.)
 
@@ -147,7 +147,7 @@ Leads found while researching new chapters that may affect articles already publ
 - **Rome (resolved 2026-11-12):** the 6,000 crucified are now attributed to Appian, as in the Slavery chapter.
 - **Slavery chapter:** says Wang Mang's abolition of slavery (9 CE) was reversed in 12 CE; Wikipedia's Wang Mang article puts the reinstatement after his death in 23 CE. Check the date (Han China now says only "a measure soon reversed").
 - **Han China (resolved 2026-11-12):** *Romance of the Three Kingdoms* now "attributed to … Luo Guanzhong and first printed in 1522".
-- **Renaissance:** says the *querelle des femmes* was "begun by Christine de Pizan around 1405"; her debate over the *Roman de la Rose* began in 1401–02. Check when the Renaissance chapter is reviewed.
+- **Renaissance:** says the *querelle des femmes* was "begun by Christine de Pizan around 1405"; her debate over the *Roman de la Rose* began in 1401–02. Check when the Renaissance chapter is reviewed. **Resolved 2026-11-12.**
 - **Chinese History:** says the *jiaozi* was "taken over by the state in 1023"; Tang and Song now says "took over in 1023, issuing its first notes in 1024". Also consider noting that Zhu Xi's commentaries became the examination basis under the Yuan (1313), not first under the Ming.
 - **Conquest of the Americas:** says smallpox "reached the Andes in the 1520s before Pizarro, killing the Inca ruler and his heir". The disease's identity is debated (McCaa) and Pizarro's exploring voyages were already on the coast in 1524–28; The Inca Empire now says "often identified as smallpox though this is debated" and "years before Pizarro's 1532 invasion". Align when that chapter is reviewed.
 - **Medieval World overview:** says the Black Death killed "a third to a half of the populations it reached, from China to Western Europe"; The Black Death and Disease and Epidemics both say plague in fourteenth-century China is unproven. Fix when the overview is reviewed.

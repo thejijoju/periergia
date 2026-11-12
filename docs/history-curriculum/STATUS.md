@@ -85,9 +85,9 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | Renaissance, Reformation, and Encounter (c. 1400–1650) (`history/renaissance-and-reformation`) | `history--renaissance-and-reformation--overview.sql` |
-| ✅ | ⬜ | chapter | The Renaissance (`history/renaissance-and-reformation/the-renaissance`) | `history--renaissance-and-reformation--renaissance.sql` |
-| ✅ | ⬜ | chapter | The Protestant and Catholic Reformations (`history/renaissance-and-reformation/the-protestant-and-catholic-reformations`) | `history--renaissance-and-reformation--reformations.sql` |
-| ✅ | ⬜ | chapter | Ming China and the Voyages of Zheng He (`history/renaissance-and-reformation/ming-china-and-the-voyages-of-zheng-he`) | `history--renaissance-and-reformation--ming-zheng-he.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Renaissance (`history/renaissance-and-reformation/the-renaissance`) | `history--renaissance-and-reformation--renaissance.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Protestant and Catholic Reformations (`history/renaissance-and-reformation/the-protestant-and-catholic-reformations`) | `history--renaissance-and-reformation--reformations.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Ming China and the Voyages of Zheng He (`history/renaissance-and-reformation/ming-china-and-the-voyages-of-zheng-he`) | `history--renaissance-and-reformation--ming-zheng-he.sql` |
 | ✅ | ⬜ | chapter | European Expansion Overseas (Age of Exploration) (`history/renaissance-and-reformation/european-expansion-overseas-age-of-exploration`) | `history--renaissance-and-reformation--european-expansion.sql` |
 | ✅ | ⬜ | chapter | The Conquest of the Americas (`history/renaissance-and-reformation/the-conquest-of-the-americas`) | `history--renaissance-and-reformation--conquest-of-americas.sql` |
 | ✅ | ⬜ | chapter | The Columbian Exchange and the First Global Economy (`history/renaissance-and-reformation/new-world-economy`) | `history--renaissance-and-reformation--columbian-exchange.sql` |
