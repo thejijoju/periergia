@@ -30,38 +30,38 @@ with master as (
     'read',
     $fcov_master$## Cities, Kings, and Writing
 
-About 5,500 years ago, in the floodplain of southern Iraq, a settlement called Uruk grew into something new: a city of tens of thousands of people, most of whom did not grow their own food. Over the following three thousand years, comparable societies appeared along the Nile, the Indus, and the Yellow River, around the eastern Mediterranean, and, entirely independently, in Mesoamerica and the Andes. This block takes them one at a time, from Mesopotamia and Egypt to the Olmec, Maya, and the first states of the Andes, and asks a comparative question throughout: what did these societies have in common, and what was genuinely different about each?
+Between about 5,500 and 5,000 years ago, in the floodplain of southern Iraq, a settlement called Uruk grew into something new: a city of perhaps 25,000 to 50,000 people, many of whom did not grow their own food. Over the following three thousand years, comparable societies appeared along the Nile, the Indus, and the Yellow River, around the eastern Mediterranean, and, entirely independently, in Mesoamerica and the Andes. This block takes them one at a time, from Mesopotamia and Egypt to the Olmec, Maya, and the first states of the Andes, and asks a comparative question throughout: what did these societies have in common, and what was genuinely different about each?
 
 ## What "Civilization" Means Here
 
 The word *civilization* has a troubled history. For nineteenth-century European writers it meant a ranking, with "civilized" peoples at the top and "savages" and "barbarians" below, and it was used to justify conquest. Historians now use it in a narrower and descriptive sense, for a particular kind of society, not a measure of worth.
 
-The archaeologist V. Gordon Childe, who named the Neolithic Revolution, also proposed an "urban revolution" and in 1950 listed ten features that marked it. Simplified, they are: large, dense settlements; full-time specialists such as craftspeople, priests, and officials; a surplus collected by a central authority as tax or tribute; monumental public buildings; a ruling class; writing or another system of record-keeping; mathematics, astronomy, and calendars; representational art; long-distance trade; and a state organised by residence rather than kinship alone. No list fits every case perfectly. The Andean civilizations kept records with knotted cords rather than writing; the Indus cities have left no palaces or royal tombs. But Childe's list remains a useful way of seeing what changed when villages became cities and chiefdoms became states.
+The archaeologist V. Gordon Childe, who named the Neolithic Revolution, also proposed an "urban revolution" and in 1950 listed ten features that marked it. Simplified, they are: large, dense settlements; full-time specialists such as craftspeople, priests, and officials; a surplus collected by a central authority as tax or tribute; monumental public buildings; a ruling class; writing or another system of record-keeping; mathematics, astronomy, and calendars; representational art; long-distance trade; and a state organised by residence rather than kinship alone. No list fits every case perfectly. Later Andean states, Wari and then the Inca, kept records with knotted cords rather than writing; the Indus cities have left no clearly identified palaces or royal tombs. But Childe's list remains a useful way of seeing what changed when villages became cities and chiefdoms became states.
 
 ## Independent Inventions
 
 The most striking fact about early civilizations is that they arose several times independently. Archaeologists distinguish **primary** or **pristine** states, which developed without a model to copy, from **secondary** states, which formed under the influence of existing ones. Mesopotamia, Egypt, the Indus valley, China, Mesoamerica, and the Andes are usually counted as primary, though how far Egypt and the Indus were stimulated by contact with Mesopotamia is debated.
 
-Writing, too, was invented independently at least three and probably four times: in Mesopotamia around 3200 BCE, in China by about 1200 BCE (the earliest surviving examples are Shang oracle bones), and in Mesoamerica in the first millennium BCE. Egyptian hieroglyphs appear at almost the same time as Mesopotamian cuneiform, and whether they were invented independently or inspired by knowledge of writing in Mesopotamia is unresolved. The Indus script remains undeciphered, and it is not certain that it records language at all. That writing was invented several times, by different people for different purposes, is one of the best arguments that it was a response to the needs of complex societies rather than a single lucky discovery.
+Writing, too, was invented independently at least three and probably four times: in Mesopotamia around 3300 BCE, in China by about 1200 BCE (the earliest surviving examples are Shang oracle bones), and in Mesoamerica in the first millennium BCE. Egyptian hieroglyphs appear at almost the same time as Mesopotamian cuneiform, and whether they were invented independently or inspired by knowledge of writing in Mesopotamia is unresolved. The Indus script remains undeciphered, and it is not certain that it records language at all. That writing was invented several times, by different people for different purposes, is one of the best arguments that it was a response to the needs of complex societies rather than a single lucky discovery.
 
 ## A Rough Timeline
 
 The dates below are approximate, and specialists argue about many of them.
 
 - **c. 4000–3100 BCE:** Uruk and the growth of cities in southern Mesopotamia.
-- **c. 3200 BCE:** writing in Mesopotamia; hieroglyphs in Egypt soon after.
+- **c. 3300–3200 BCE:** writing in Mesopotamia; hieroglyphs in Egypt at almost the same time.
 - **c. 3100 BCE:** unification of Egypt.
-- **c. 3000 BCE:** monumental sites at Caral in coastal Peru.
+- **c. 3000 BCE:** the first monumental sites of the Norte Chico region of coastal Peru (Caral from about 2600 BCE).
 - **c. 2600–1900 BCE:** the mature Indus cities, Harappa and Mohenjo-daro.
-- **c. 2560 BCE:** the Great Pyramid of Khufu.
+- **c. 2600–2560 BCE:** the Great Pyramid of Khufu.
 - **c. 2500–1500 BCE:** Kerma, the first kingdom of Kush, in Nubia.
 - **c. 2300 BCE:** Sargon of Akkad's empire.
 - **c. 1600–1046 BCE:** the Shang dynasty in China.
 - **c. 1600–1200 BCE:** palace societies of the eastern Mediterranean.
 - **c. 1200–1150 BCE:** the Bronze Age collapse in the eastern Mediterranean.
 - **c. 1200–400 BCE:** the Olmec in Mesoamerica; Chavín in the Andes from about 900 BCE.
-- **c. 900–600 BCE:** the Assyrian empire.
-- **c. 728–664 BCE:** Kushite pharaohs rule Egypt.
+- **c. 911–609 BCE:** the Neo-Assyrian empire.
+- **c. 728–656 BCE:** Kushite pharaohs rule Egypt (driven out by Assyria in the 660s).
 
 ## Questions to Carry Through the Block
 
@@ -76,7 +76,7 @@ Five questions recur through these chapters, and they are worth bringing to each
 ## Further reading
 
 - **Bruce Trigger, *Understanding Early Civilizations: A Comparative Study* (2003).** The standard systematic comparison of seven early civilizations.
-- **Norman Yoffee, *Myths of the Archaic State* (2005).** A critical rethinking of how early states formed and what "collapse" meant.
+- **Norman Yoffee, *Myths of the Archaic State: Evolution of the Earliest Cities, States, and Civilizations* (2005).** A critical rethinking of how early states formed and what "collapse" meant.
 - **James C. Scott, *Against the Grain* (2017).** On why early states were fragile, grain-based, and often avoided.$fcov_master$,
     true,
     true

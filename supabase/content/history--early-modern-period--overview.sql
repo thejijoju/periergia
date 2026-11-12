@@ -30,7 +30,7 @@ with master as (
     'read',
     $emov_master$## Gunpowder Empires and Global Connections, c. 1550–1800
 
-Between the mid-sixteenth century and the end of the eighteenth, most of the world's people lived under a handful of great land empires. The historians Marshall Hodgson and William McNeill called the Islamic ones the **"gunpowder empires"**: the **Ottomans**, ruling from the Balkans to Arabia and North Africa; the **Safavids** in Iran; and the **Mughals** in India. To these can be added the **Qing** in China, who conquered the Ming in 1644 and doubled China's territory into Mongolia, Tibet, and Xinjiang; **Russia**, which expanded across Siberia to the Pacific; and the Tokugawa shoguns, who unified Japan. These states used artillery and muskets, large armies, and growing bureaucracies to rule vast and diverse populations, and for most of this period they were richer and more powerful than the states of western Europe.
+Between the mid-sixteenth century and the end of the eighteenth, most of the world's people lived under a handful of great land empires. The historians Marshall Hodgson and William McNeill called the Islamic ones the **"gunpowder empires"**: the **Ottomans**, ruling from the Balkans to Arabia and North Africa; the **Safavids** in Iran; and the **Mughals** in India. To these can be added the **Qing** in China, who took Beijing in 1644, completed their conquest of Ming China by 1683, and by the late eighteenth century had more than doubled China's territory into Mongolia, Tibet, and Xinjiang; **Russia**, which expanded across Siberia to the Pacific; and the Tokugawa shoguns, who completed and consolidated the unification of Japan from 1603. These states used artillery and muskets, large armies, and growing bureaucracies to rule vast and diverse populations, and for most of this period they were larger, more populous, and at least as powerful as the states of western Europe.
 
 At the same time, the world was becoming more connected. European trading companies, armed and backed by their states, built networks of forts and ports from West Africa to Indonesia. The Atlantic economy, built on silver, sugar, and slavery, linked Europe, Africa, and the Americas. And in Europe, new ways of investigating nature, the Scientific Revolution, and new ideas about politics and society, the Enlightenment, began to reshape thought, drawing on knowledge from across the world.
 
@@ -40,14 +40,14 @@ Historians call this period **"early modern"**, a term invented to describe Euro
 
 ## A World in Crisis
 
-The seventeenth century brought a wave of crises across the northern hemisphere. A period of cooler climate known as the **Little Ice Age**, at its most severe in the mid-seventeenth century, brought failed harvests, famine, and disease. In *Global Crisis* (2013), the historian **Geoffrey Parker** showed how this climate stress coincided with wars, rebellions, and state breakdowns across the world: the fall of the Ming in 1644, the Thirty Years' War, revolts in the Ottoman empire, the English Civil War, and uprisings from Russia to Spain's empire. States that survived often emerged stronger and more centralised.
+The seventeenth century brought a wave of crises across the northern hemisphere. A period of regional cooling known as the **Little Ice Age**, severe in many places in the mid-seventeenth century, brought failed harvests, famine, and disease. In *Global Crisis* (2013), the historian **Geoffrey Parker** argued that this climate stress coincided with wars, rebellions, and state breakdowns across the world: the fall of the Ming in 1644, the Thirty Years' War, revolts in the Ottoman empire, the English Civil War, and uprisings from Russia to Spain's empire. States that survived often emerged stronger and more centralised.
 
 ## The Chapters
 
 1. **The Ottomans**, from frontier principality to world empire, and its long transformation to 1923.
 2. **Ottoman Social and Cultural History**, the empire from the inside.
 3. **Safavid Iran**, the dynasty that made Iran Shi'a.
-4. **The Mughal Empire**, India's last great empire.
+4. **The Mughal Empire**, which ruled most of the Indian subcontinent from the sixteenth to the eighteenth century.
 5. **The Tokugawa Shogunate**, two and a half centuries of peace in Japan.
 6. **Russia from Muscovy to Catherine the Great**, the making of the largest state on earth.
 7. **The Rise of Absolutism**, the early modern state in Europe, compared with its Asian contemporaries.
@@ -58,7 +58,7 @@ The seventeenth century brought a wave of crises across the northern hemisphere.
 12. **Colonial North America**, from Indigenous, African, and settler perspectives.
 13. **Colonial Latin America**, three centuries of Spanish and Portuguese rule.
 
-The history of the Qing dynasty, the largest of these empires, continues in the chapter *Ming-Qing History*.
+The history of the Qing dynasty, the most populous of these empires, continues in the chapter *Ming-Qing History*.
 
 ## Questions to Carry Through
 

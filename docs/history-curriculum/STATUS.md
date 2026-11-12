@@ -16,7 +16,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | Before Writing: the Human Deep Past (`history/before-writing`) | `history--before-writing--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | Before Writing: the Human Deep Past (`history/before-writing`) | `history--before-writing--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Human Origins and the Peopling of the Earth (`history/before-writing/human-origins`) | `history--before-writing--human-origins.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Neolithic Revolution: Farming and Its Costs (`history/before-writing/neolithic-revolution`) | `history--before-writing--neolithic-revolution.sql` |
 
@@ -24,7 +24,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | The First Civilizations (c. 3500–500 BCE) (`history/ancient-civilizations`) | `history--ancient-civilizations--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | The First Civilizations (c. 3500–500 BCE) (`history/ancient-civilizations`) | `history--ancient-civilizations--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Mesopotamia (`history/ancient-civilizations/mesopotamia`) | `history--ancient-civilizations--mesopotamia.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Ancient Egypt (`history/ancient-civilizations/ancient-egypt`) | `history--ancient-civilizations--ancient-egypt.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Bronze Age Mediterranean and Its Collapse (`history/ancient-civilizations/the-bronze-age-mediterranean-and-its-collapse`) | `history--ancient-civilizations--bronze-age-mediterranean.sql` |
@@ -39,7 +39,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | The Classical World (c. 600 BCE–600 CE) (`history/classical-antiquity`) | `history--classical-antiquity--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | The Classical World (c. 600 BCE–600 CE) (`history/classical-antiquity`) | `history--classical-antiquity--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Persian Empire (`history/classical-antiquity/the-persian-empire`) | `history--classical-antiquity--persian-empire.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Ancient Greece (`history/classical-antiquity/ancient-greece`) | `history--classical-antiquity--ancient-greece.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Alexander and the Hellenistic World (`history/classical-antiquity/alexander-and-the-hellenistic-world`) | `history--classical-antiquity--alexander-hellenistic.sql` |
@@ -53,7 +53,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | The Medieval World (c. 500–1500) (`history/medieval-history`) | `history--medieval-history--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | The Medieval World (c. 500–1500) (`history/medieval-history`) | `history--medieval-history--overview.sql` |
 | | | **Europe and Byzantium** | | |
 | ✅ | ✅ 2026-11-12 | chapter | Early Medieval Europe (`history/medieval-history/europe-and-byzantium/early-medieval-europe`) | `history--medieval-history--early-medieval-europe.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Lords, Peasants, and Towns in Medieval Europe (`history/medieval-history/europe-and-byzantium/lords-peasants-and-towns-in-medieval-europe`) | `history--medieval-history--lords-peasants-towns.sql` |
@@ -84,7 +84,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | Renaissance, Reformation, and Encounter (c. 1400–1650) (`history/renaissance-and-reformation`) | `history--renaissance-and-reformation--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | Renaissance, Reformation, and Encounter (c. 1400–1650) (`history/renaissance-and-reformation`) | `history--renaissance-and-reformation--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Renaissance (`history/renaissance-and-reformation/the-renaissance`) | `history--renaissance-and-reformation--renaissance.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Protestant and Catholic Reformations (`history/renaissance-and-reformation/the-protestant-and-catholic-reformations`) | `history--renaissance-and-reformation--reformations.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Ming China and the Voyages of Zheng He (`history/renaissance-and-reformation/ming-china-and-the-voyages-of-zheng-he`) | `history--renaissance-and-reformation--ming-zheng-he.sql` |
@@ -98,7 +98,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | The Early Modern World (c. 1550–1800) (`history/early-modern-period`) | `history--early-modern-period--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | The Early Modern World (c. 1550–1800) (`history/early-modern-period`) | `history--early-modern-period--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Ottomans (`history/early-modern-period/the-ottomans`) | `history--early-modern-period--ottomans.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Ottoman Social and Cultural History (`history/early-modern-period/ottoman-social-and-cultural-history`) | `history--early-modern-period--ottoman-social-cultural.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Safavid Iran (`history/early-modern-period/safavid-iran`) | `history--early-modern-period--safavid.sql` |
@@ -109,7 +109,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | The Scientific Revolution (`history/early-modern-period/the-scientific-revolution`) | `history--early-modern-period--scientific-revolution.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Enlightenment (`history/early-modern-period/the-enlightenment`) | `history--early-modern-period--enlightenment.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Trading Companies and Empires: the VOC and the East India Company (`history/early-modern-period/trading-companies-and-empires-the-voc-and-the-east-india-company`) | `history--early-modern-period--trading-companies.sql` |
-| ✅ | ⬜ | chapter | Kongo, Asante, and Dahomey: West Africa in the Atlantic Age (`history/early-modern-period/kongo-asante-and-dahomey-west-africa-in-the-atlantic-age`) | `history--early-modern-period--kongo-asante-dahomey.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Kongo, Asante, and Dahomey: West Africa in the Atlantic Age (`history/early-modern-period/kongo-asante-and-dahomey-west-africa-in-the-atlantic-age`) | `history--early-modern-period--kongo-asante-dahomey.sql` |
 | ✅ | ✅ 2026-11-10 | chapter | Colonial North America (`history/early-modern-period/colonial-america`) | `history--early-modern-period--colonial-north-america.sql` |
 | ✅ | ✅ 2026-11-10 | chapter | Colonial Latin America (`history/early-modern-period/colonial-latin-america`) | `history--early-modern-period--colonial-latin-america.sql` |
 
@@ -135,7 +135,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-11 | chapter | The Victorian Era (`history/modern-era-19th-century/the-victorian-era`) | `history--modern-era-19th-century--victorian-era.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | British Empire (`history/modern-era-19th-century/british-empire`) | `history--modern-era-19th-century--british-empire.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Imperial Expansion and Resistance (`history/modern-era-19th-century/imperial-expansion-and-resistance`) | `history--modern-era-19th-century--imperial-expansion.sql` |
-| ✅ | ⬜ | chapter | The Opium Wars (`history/modern-era-19th-century/the-opium-wars`) | `history--the-opium-wars.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Opium Wars (`history/modern-era-19th-century/the-opium-wars`) | `history--the-opium-wars.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Taiping Rebellion and the Late Qing (`history/modern-era-19th-century/the-taiping-rebellion-and-the-late-qing`) | `history--modern-era-19th-century--taiping-late-qing.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The Meiji Restoration (`history/modern-era-19th-century/the-meiji-restoration`) | `history--modern-era-19th-century--meiji-restoration.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | Imperial Russia from Napoleon to 1905 (`history/modern-era-19th-century/imperial-russia-from-napoleon-to-1905`) | `history--modern-era-19th-century--imperial-russia.sql` |

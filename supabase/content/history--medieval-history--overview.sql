@@ -38,12 +38,12 @@ This block uses "medieval" only as a convenient name for the roughly thousand ye
 
 Several forces knitted Afro-Eurasia together in these centuries.
 
-- **World religions.** Christianity spread through Europe and into Ethiopia and Central Asia; Islam, founded in the seventh century, spread within a century from Spain to Central Asia and later into West Africa, East Africa, India, and Southeast Asia; Buddhism spread across East and Southeast Asia. Each created communities of belief, learning, law, and pilgrimage that crossed political borders.
+- **World religions.** Christianity spread through northern and eastern Europe, into Nubia, and, through the Church of the East, across Central Asia to China; within a century of its founding in the seventh century, Muslim rule stretched from Spain to Central Asia, though conversion took centuries, and Islam later spread into West Africa, East Africa, India, and Southeast Asia; Buddhism spread across East and Southeast Asia. Each created communities of belief, learning, law, and pilgrimage that crossed political borders.
 - **Trade networks.** The Indian Ocean, the Silk Roads, the trans-Saharan routes, and the Mediterranean carried goods, people, and ideas on a growing scale. Muslim, Jewish, Armenian, Indian, Chinese, and Swahili merchants built diasporas and commercial institutions that linked distant markets.
-- **Empires of the steppe.** In the thirteenth century the Mongols created the largest land empire in history, stretching from Korea to Hungary, which for a time made travel across Eurasia easier than ever before.
-- **Disease.** The same connections carried plague. The Black Death of the fourteenth century killed perhaps a third to a half of the populations it reached, from China to Western Europe and North Africa.
+- **Empires of the steppe.** In the thirteenth century the Mongols created the largest contiguous land empire in history, stretching from Korea to eastern Europe, which for a time made travel across Eurasia easier than ever before.
+- **Disease.** The same connections carried plague. The Black Death of the mid-fourteenth century killed perhaps a third to a half of the people of Europe, the Middle East, and North Africa; China suffered devastating epidemics in the same decades, but whether they were plague is unproven.
 
-The world's population grew from perhaps 200 to 250 million around 500 CE to roughly 400 million by 1300, before the Black Death caused a sharp fall. A warmer climate in much of the northern hemisphere from about 950 to 1250, sometimes called the Medieval Climate Anomaly, helped farming expand in some regions, while the onset of cooler, more unstable conditions from the early fourteenth century contributed to famines.
+The world's population grew from perhaps 200 million around 500 CE to roughly 400 million by 1300, before the Black Death caused a sharp fall. A warmer climate in the North Atlantic region and some other areas from about 950 to 1250, sometimes called the Medieval Climate Anomaly, helped farming expand in some regions, while the onset of cooler, more unstable conditions from the early fourteenth century contributed to famines.
 
 ## How This Block Is Organised
 
