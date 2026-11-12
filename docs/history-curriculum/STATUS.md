@@ -244,7 +244,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Cryo-History: Histories of Cold Places (`history/thematic-history/cryo-history-histories-of-cold-places`) | `history--thematic-history--cryo-history.sql` |
 | ⬜ | — | chapter | Revolutions in Comparison (`history/thematic-history/revolutions-in-comparison`) |  |
 | ⬜ | — | chapter | History of Peace and Peacemaking (`history/thematic-history/history-of-peace-and-peacemaking`) |  |
-| ⬜ | — | chapter | Slavery: a Global History (`history/thematic-history/slavery`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Slavery: a Global History (`history/thematic-history/slavery`) | `history--thematic-history--slavery.sql` |
 | ⬜ | — | chapter | Abolitionist Women (`history/thematic-history/abolitionist-women`) |  |
 | ⬜ | — | chapter | History of Civil Liberties (`history/thematic-history/history-of-civil-liberties`) |  |
 | ⬜ | — | chapter | Scandals in History: Moral Panics, Repression, and Reform (`history/thematic-history/scandals-in-history-moral-panics-repression-and-reform`) |  |
