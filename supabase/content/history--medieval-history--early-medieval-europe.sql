@@ -33,12 +33,12 @@ As Roman government in the west collapsed in the fifth century, as the chapter o
 
 - **The Visigoths** ruled southern Gaul and then Spain, from Toledo, until the Arab conquest of 711.
 - **The Ostrogoths** under **Theodoric** (ruled 493–526) ruled Italy, preserving much of Roman administration and employing Roman senators. One of them, the philosopher **Boethius**, wrote *The Consolation of Philosophy* while awaiting execution on Theodoric's orders in 524; it became one of the most widely read books of the Middle Ages.
-- **The Vandals** ruled North Africa from Carthage until 533.
+- **The Vandals** ruled North Africa from Carthage until the eastern Roman reconquest of 533–534.
 - **The Franks** in northern Gaul were united under **Clovis** (ruled about 481–511), whose dynasty is called the **Merovingians**. Unlike most other Germanic rulers, who followed the Arian form of Christianity, regarded as heretical by most Roman Christians, Clovis converted to Catholic Christianity, which won him the support of the Gallo-Roman bishops and population.
-- **The Anglo-Saxons**, from northern Germany and Denmark, settled in eastern Britain from the fifth century, forming a number of kingdoms. The ship burial at **Sutton Hoo** in East Anglia, from around 625 and excavated in 1939, revealed a king buried with gold, weapons, and silver from Byzantium, showing long-distance connections even in this "dark" age.
+- **The Anglo-Saxons**, from northern Germany and Denmark, settled in eastern Britain from the fifth century, forming a number of kingdoms. The ship burial at **Sutton Hoo** in East Anglia, from around 625 and excavated in 1939, revealed a burial, probably of a king, with gold, weapons, and silver from Byzantium, showing long-distance connections even in this "dark" age.
 - **The Lombards** invaded Italy in 568 and ruled much of it for two centuries.
 
-These kingdoms mixed Roman and Germanic traditions. Kings issued written law codes, in Latin, combining Roman law with customary law; Latin remained the language of the Church and of writing; and the populations of Roman provinces, far more numerous than the newcomers, gradually merged with them. The languages of France, Spain, and Italy descend from the Latin spoken in these provinces.
+These kingdoms mixed Roman and Germanic traditions. Kings issued written law codes, mostly in Latin (in England, in Old English), combining Roman law with customary law; Latin remained the language of the Church and of writing; and the populations of Roman provinces, far more numerous than the newcomers, gradually merged with them. The languages of France, Spain, and Italy descend from the Latin spoken in these provinces.
 
 In the east, the Roman empire continued. The emperor **Justinian** (reigned 527–565) reconquered North Africa, Italy, and southern Spain, codified Roman law, and built the great church of **Hagia Sophia** in Constantinople, completed in 537. But the long Gothic War in Italy (535–554) devastated the peninsula, and the plague of 541 struck the whole Mediterranean. The story of the eastern empire continues in the chapter on Byzantium.
 
@@ -60,7 +60,7 @@ q: What does the Sutton Hoo burial show about early medieval England?
 a: That England was completely cut off from the rest of the world.
 x: Silver from Byzantium in the burial shows long-distance connections.
 a: That the Anglo-Saxons had no kings.
-x: The burial is that of a king, most likely Rædwald of East Anglia.
+x: The burial is probably that of a king, often identified as Rædwald of East Anglia (died about 624).
 a*: That Anglo-Saxon kings were wealthy and connected to distant regions, including the eastern Roman empire.
 a: That Vikings had already settled in England by 625.
 x: Viking raids on England began in the late eighth century, long after Sutton Hoo.
@@ -74,15 +74,15 @@ The Christian Church was the most important institution linking the successor ki
 
 **Monasticism**, which had begun in the deserts of Egypt and Syria, spread across the west. Around 530 **Benedict of Nursia** wrote a *Rule* for his monastery at Monte Cassino in Italy, setting out a balanced life of prayer, work, and study under an abbot, which became the model for western monasteries. Monasteries became centres of learning, farming, and copying manuscripts, and later of great wealth.
 
-Ireland, never part of the Roman empire, became a centre of monastic Christianity after its conversion, traditionally credited to **Patrick** in the fifth century. Irish monks such as **Columba**, who founded a monastery on the island of **Iona** in 563, and **Columbanus**, who founded monasteries in France, Switzerland, and Italy, travelled as missionaries. In 597 Pope **Gregory the Great** sent a mission led by Augustine to convert the Anglo-Saxon kingdom of Kent. The monk **Bede**, writing in Northumbria, completed his *Ecclesiastical History of the English People* in 731, a major work of history that popularised dating events from the birth of Christ. Anglo-Saxon missionaries, such as **Boniface**, in turn converted much of Germany; Boniface was killed in Frisia in 754.
+Ireland, never part of the Roman empire, became a centre of monastic Christianity after its conversion, traditionally credited to **Patrick** in the fifth century. Irish monks such as **Columba**, who founded a monastery on the island of **Iona** in 563, and **Columbanus**, who founded monasteries in Gaul, such as Luxeuil, and in northern Italy, at Bobbio, and preached in the Alps, travelled as missionaries. In 597 Pope **Gregory the Great** sent a mission led by Augustine to convert the Anglo-Saxon kingdom of Kent. The monk **Bede**, writing in Northumbria, completed his *Ecclesiastical History of the English People* in 731, a major work of history that popularised dating events from the birth of Christ. Anglo-Saxon missionaries, such as **Boniface**, in turn converted much of Germany; Boniface was killed in Frisia in 754.
 
 ## The Carolingians and Charlemagne
 
-By the seventh century the Merovingian kings had lost much of their power to their chief officials, the **mayors of the palace**. One mayor, **Charles Martel**, defeated an Arab raiding army near Tours (or Poitiers) in 732, a battle later mythologised as having saved Christian Europe, though most historians now see it as one of many raids rather than a decisive turning point. His son **Pippin III** deposed the last Merovingian king in 751 with the approval of the pope and became king himself, founding the **Carolingian** dynasty.
+By the seventh century the Merovingian kings had lost much of their power to their chief officials, the **mayors of the palace**. One mayor, **Charles Martel**, defeated an Arab raiding army near Tours (or Poitiers) in 732, a battle later mythologised as having saved Christian Europe, though many historians now see it as a large raid rather than a decisive turning point. His son **Pippin III** deposed the last Merovingian king in 751 with the approval of the pope and became king himself, founding the **Carolingian** dynasty.
 
-Pippin's son **Charlemagne** (Charles the Great, ruled 768–814) built the largest state in Western Europe since Rome. He conquered the Lombard kingdom of Italy in 774, fought the pagan Saxons for three decades, forcing their conversion with great brutality (the Frankish annals record the execution of 4,500 Saxons at Verden in 782), and destroyed the Avar khaganate in central Europe. On Christmas Day 800, in St Peter's in Rome, **Pope Leo III** crowned Charlemagne emperor. The coronation revived the title of emperor in the west for the first time since 476, offended the emperors in Constantinople, and set up a long-running question about whether popes made emperors or emperors protected popes. Charlemagne even exchanged embassies with the Abbasid caliph Harun al-Rashid, who sent him an elephant named Abul-Abbas.
+Pippin's son **Charlemagne** (Charles the Great, ruled 768–814) built the largest state in Western Europe since Rome. He conquered the Lombard kingdom of Italy in 774, fought the pagan Saxons for three decades, forcing their conversion with great brutality (the Frankish annals record the execution of 4,500 Saxons at Verden in 782), and destroyed the Avar khaganate in central Europe. On Christmas Day 800, in St Peter's in Rome, **Pope Leo III** crowned Charlemagne emperor. The coronation revived the title of emperor in the west for the first time since the western line of emperors ended in 476–480, offended the emperors in Constantinople, and set up a long-running question about whether popes made emperors or emperors protected popes. Charlemagne even exchanged embassies with the Abbasid caliph Harun al-Rashid, who sent him an elephant named Abul-Abbas.
 
-Charlemagne governed through counts, checked by royal envoys called *missi dominici*, and through annual assemblies. He also sponsored a revival of learning known as the **Carolingian Renaissance**, led by scholars such as **Alcuin of York**. Scribes developed a clear new script, **Carolingian minuscule**, the ancestor of the lower-case letters used in this text. Carolingian monasteries copied ancient texts on a huge scale; most of the classical Latin literature that survives today survives because it was copied in this period.
+Charlemagne governed through counts, checked by royal envoys called *missi dominici*, and through annual assemblies. He also sponsored a revival of learning known as the **Carolingian Renaissance**, led by scholars such as **Alcuin of York**. Scribes developed a clear new script, **Carolingian minuscule**, the ancestor of the lower-case letters used in this text. Carolingian monasteries copied ancient texts on a huge scale; for much of the classical Latin literature that survives today, the oldest surviving manuscripts are Carolingian copies.
 
 Carolingian unity did not last. By Frankish custom, the kingdom was divided among heirs, and after civil war Charlemagne's grandsons divided the empire by the **Treaty of Verdun** in 843 into a western kingdom (the ancestor of France), an eastern kingdom (the ancestor of Germany), and a middle kingdom stretching from the Low Countries to Italy, which soon fragmented. The border between French- and German-speaking lands, and centuries of conflict over the lands in between, can be traced back to this division.
 
@@ -107,18 +107,18 @@ a: Because it introduced Greek as the language of western learning.
 x: Latin remained the language of western learning; the Carolingian revival focused on Latin texts.
 a: Because it destroyed pagan texts, leaving only Christian ones.
 x: Carolingian scribes preserved many pagan classical texts.
-a*: Because Carolingian monasteries copied ancient texts on a large scale, and most surviving classical Latin literature survives through these copies.
+a*: Because Carolingian monasteries copied ancient texts on a large scale, and much surviving classical Latin literature survives through these copies.
 hint: Where do the oldest manuscripts of many Latin authors come from?
 why: Mass copying in a new clear script preserved much of Latin literature for later generations.
 ```
 
 ## Vikings, Magyars, and Saracens
 
-In the ninth and tenth centuries, Europe faced attacks from several directions. From the north came the **Vikings**, Scandinavian seafarers whose shallow-draught longships could cross the sea and sail up rivers. Their first famous raid was on the monastery of **Lindisfarne** in Northumbria in 793. Over the following century, Vikings raided and traded across Europe, besieged Paris in 845, and settled in large parts of England, where the area under their control became known as the **Danelaw**. In 911 the Frankish king granted land around Rouen to the Viking leader Rollo, creating **Normandy**.
+In the ninth and tenth centuries, Europe faced attacks from several directions. From the north came the **Vikings**, Scandinavian seafarers whose shallow-draught longships could cross the sea and sail up rivers. Their first famous raid was on the monastery of **Lindisfarne** in Northumbria in 793. Over the following century, Vikings raided and traded across Europe, besieged Paris in 845, and settled in large parts of England, in an area later called the **Danelaw**, where Danish law prevailed. In 911 the Frankish king granted land around Rouen to the Viking leader Rollo, creating **Normandy**.
 
-Vikings were not only raiders. They were also traders and settlers, who sold slaves and furs, founded towns such as Dublin and York, settled Iceland from around 870 and Greenland in the late tenth century, and reached North America: the settlement at **L'Anse aux Meadows** in Newfoundland has been dated, using tree rings that record a burst of solar radiation, to 1021. In the east, Scandinavian traders and warriors known as **Varangians** or Rus' travelled down the rivers of Russia and Ukraine to Constantinople and Baghdad, and helped found the state of **Kievan Rus'**.
+Vikings were not only raiders. They were also traders and settlers, who sold slaves and furs, founded towns such as Dublin, made York (Jórvík) a Viking capital, settled Iceland from around 870 and Greenland in the late tenth century, and reached North America: wood cut by the Norse at **L'Anse aux Meadows** in Newfoundland has been dated, using tree rings that record a burst of solar radiation, to 1021. In the east, Scandinavian traders and warriors known as **Varangians** or Rus' travelled down the rivers of Russia and Ukraine to Constantinople and Baghdad, and helped found the state of **Kyivan Rus'**.
 
-From the east came the **Magyars**, horse-riding nomads who settled in the Hungarian plain and raided deep into Germany, Italy, and France until the German king **Otto I** defeated them at the **Lechfeld** in 955. Otto was crowned emperor in Rome in 962, beginning what was later called the Holy Roman Empire. From the south, Muslim raiders, whom Europeans called Saracens, attacked the coasts of Italy and southern France and in 846 sacked the outskirts of Rome. By around 1000, the Magyars and Scandinavians had largely converted to Christianity, and new Christian kingdoms, such as Hungary, Poland, Denmark, and Norway, had joined Latin Europe.
+From the east came the **Magyars**, horse-riding nomads who settled in the Hungarian plain and raided deep into Germany, Italy, and France until the German king **Otto I** defeated them at the **Lechfeld** in 955. Otto was crowned emperor in Rome in 962, beginning what was later called the Holy Roman Empire. From the south, Muslim raiders, whom Europeans called Saracens, attacked the coasts of Italy and southern France and in 846 sacked the outskirts of Rome. By around 1000, the Magyars, Danes and Norwegians had largely converted to Christianity (Sweden only in the following century), and new Christian kingdoms, such as Hungary, Poland, Denmark, and Norway, had joined Latin Europe.
 
 ## Why Not "Dark Ages"?
 
@@ -126,17 +126,17 @@ The term "Dark Ages" goes back to the Italian poet **Petrarch** in the fourteent
 
 Historians now reject the label for several reasons. It is too broad: the Byzantine and Islamic worlds flourished in these centuries. It ignores real achievements in the west, such as the copying of classical texts, monastic learning, law codes, and art such as the illuminated *Book of Kells*. And much of the "darkness" reflects the scarcity of sources rather than an absence of activity.
 
-Historians do not deny that Western Europe went through real decline. Archaeology shows that trade, towns, coinage, and building in stone declined sharply in many regions after the end of Roman rule, as the chapter on the fall of Rome discussed. The Belgian historian **Henri Pirenne** argued in *Mohammed and Charlemagne* (1937) that the decisive break came not with the Germanic kingdoms but with the Arab conquests, which, he believed, closed the Mediterranean to trade and forced Europe to turn inward: "without Mohammed, Charlemagne would be inconceivable". His thesis has been heavily criticised and revised, notably by Michael McCormick, who used a wide range of evidence to show that trade between Europe and the Islamic world continued, including, grimly, a large trade in enslaved Europeans sold to Muslim lands. But Pirenne's question, how Western Europe's place in the wider world changed in these centuries, remains central.
+Historians do not deny that Western Europe went through real decline. Archaeology shows that trade, towns, coinage, and building in stone declined sharply in many regions after the end of Roman rule, as the chapter on the fall of Rome discussed. The Belgian historian **Henri Pirenne** argued in *Mohammed and Charlemagne* (published posthumously in 1937) that the decisive break came not with the Germanic kingdoms but with the Arab conquests, which, he believed, closed the Mediterranean to trade and forced Europe to turn inward: "Without Islam, the Frankish Empire would probably never have existed, and Charlemagne, without Mahomet, would be inconceivable." His thesis has been heavily criticised and revised, notably by Michael McCormick, who used a wide range of evidence to argue that, after a low point around 700, trade between Europe and the Islamic world revived, driven largely, and grimly, by a trade in enslaved Europeans sold to Muslim lands; a recent study of coin flows has revived part of Pirenne's case that Mediterranean trade was sharply divided after the conquests. But Pirenne's question, how Western Europe's place in the wider world changed in these centuries, remains central.
 
 ```checkpoint
 q: Which statement best describes the Vikings?
 a: They were only raiders and never settled or traded.
 x: The Vikings were also traders and settlers, founding towns and settlements from Dublin to Iceland and Greenland.
 a: They never reached North America.
-x: The Norse settlement at L'Anse aux Meadows in Newfoundland is dated to 1021.
-a*: They raided, traded, and settled across a vast area, from Dublin and Normandy to Kievan Rus' and Newfoundland.
+x: Wood cut by the Norse at L'Anse aux Meadows in Newfoundland is dated to 1021.
+a*: They raided, traded, and settled across a vast area, from Dublin and Normandy to Kyivan Rus' and Newfoundland.
 a: They were Christian missionaries from Scandinavia.
-x: Most Vikings were pagans during the raiding period; Scandinavia converted around the end of the first millennium.
+x: Most Vikings were pagans during the raiding period; Scandinavia converted gradually between the late tenth and twelfth centuries.
 hint: Think of Dublin, Normandy, Iceland, and L'Anse aux Meadows.
 why: The Vikings were a diverse seafaring culture whose raids, trade, and settlement reshaped much of Europe and beyond.
 ---
@@ -148,17 +148,17 @@ a: That the early Middle Ages were a time of great prosperity in the west.
 x: Pirenne accepted that the west declined; his thesis concerned the cause.
 a: That Charlemagne conquered the Islamic world.
 x: Charlemagne fought on the Spanish frontier but never conquered the Islamic world.
-hint: "Without Mohammed, Charlemagne would be inconceivable."
+hint: "Charlemagne, without Mahomet, would be inconceivable."
 why: Pirenne shifted attention from the Germanic invasions to the Islamic world, and though his thesis has been revised, his question remains central.
 ```
 
 ## Further exploration
 
 - **Chris Wickham, *The Inheritance of Rome: A History of Europe from 400 to 1000* (2009).** The authoritative modern history of the period.
-- **Peter Brown, *The Rise of Western Christendom* (3rd ed., 2013).** Christianity in the early medieval world.
+- **Peter Brown, *The Rise of Western Christendom: Triumph and Diversity, A.D. 200–1000* (tenth anniversary revised ed., 2013).** Christianity in the early medieval world.
 - **Rosamond McKitterick, *Charlemagne: The Formation of a European Identity* (2008).** A scholarly study of Charlemagne.
-- **Neil Price, *The Children of Ash and Elm: A History of the Vikings* (2020).** A comprehensive modern account of the Vikings.
-- **Michael McCormick, *Origins of the European Economy* (2001).** Communications and commerce in the early medieval Mediterranean.$earlyeu_master$,
+- **Neil Price, *Children of Ash and Elm: A History of the Vikings* (2020).** A comprehensive modern account of the Vikings.
+- **Michael McCormick, *Origins of the European Economy: Communications and Commerce, A.D. 300–900* (2001).** Communications and commerce in the early medieval Mediterranean.$earlyeu_master$,
     true,
     true
   )
