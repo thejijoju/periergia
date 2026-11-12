@@ -106,7 +106,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 - **Neolithic chapter:** Çatalhöyük "several thousand" people; recent work gives 600–800 in an average year (older estimates 5,000–7,000). Give the range and the revision.
 - **Tang and Song China:** Chang'an "a million people"; modern estimates are 800,000–1,000,000.
-- **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400.
+- **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400. **Resolved in North America before Columbus, Phase 2 (2026-11-12).**
 - **Teotihuacan:** check peak and decline dates against current estimates.
 - **Sophiatown:** the Apartheid chapter's attribution of the removal is probably the more precise; check other mentions.
 

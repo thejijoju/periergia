@@ -72,7 +72,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Ghana, Mali, and the Trans-Saharan World (`history/medieval-history/africa/ghana-mali-and-the-trans-saharan-world`) | `history--medieval-history--ghana-mali.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Swahili Coast and Great Zimbabwe (`history/medieval-history/africa/the-swahili-coast-and-great-zimbabwe`) | `history--medieval-history--swahili-zimbabwe.sql` |
 | | | **The Americas** | | |
-| ✅ | ⬜ | chapter | North America before Columbus (`history/medieval-history/the-americas/north-america-before-columbus`) | `history--medieval-history--north-america.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | North America before Columbus (`history/medieval-history/the-americas/north-america-before-columbus`) | `history--medieval-history--north-america.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Moctezuma's Mexico (`history/medieval-history/the-americas/moctezuma-s-mexico`) | `history--medieval-history--moctezumas-mexico.sql` |
 | ✅ | ⬜ | chapter | The Inca Empire (`history/medieval-history/the-americas/the-inca-empire`) | `history--medieval-history--inca-empire.sql` |
 | | | **Across Afro-Eurasia** | | |
