@@ -29,7 +29,7 @@ Leads found while researching new chapters that may affect articles already publ
 - Kongo–Asante–Dahomey: Dahomey's tribute to Oyo "from 1730" — Wikipedia: Oyo invaded 11 times before subjugating Dahomey in 1748. Its reading list gives Thornton's 1992 first edition as "1400–1800"; the 1992 edition was *1400–1650* (1400–1800 is the 1998 second edition).
 - Two chapters say Benin restricted the sale of male captives; not confirmed by the Benin article. Check.
 - Ghana–Mali: links al-Sahili to the Djinguereber mosque — Hunwick showed only a royal audience chamber is firmly his. Says Musa's spending depressed Cairo's gold "for years" — Schultz argues the fall was within normal fluctuation; hedge. **Resolved in Phase 2 (2026-11-12).**
-- Swahili Coast: Ibn Battuta at Kilwa "1331" (Wikipedia: 1330); Great Zimbabwe population 10,000–18,000 (a newer survey: probably never above 10,000).
+- Swahili Coast: Ibn Battuta at Kilwa "1331" (Wikipedia: 1330); Great Zimbabwe population 10,000–18,000 (a newer survey: probably never above 10,000). **Resolved in Phase 2 (2026-11-12).**
 - British Empire: the Truth and Reconciliation Commission of Canada "documented about 3,200 deaths" — sources give "at least 4,118" documented, with estimates over 6,000; the 3,200 figure (an earlier interim count, 3,201) could not be confirmed as current. Update. (Found by the Native American and Indigenous Studies research, 2026-11-11.)
 
 ## Chinese chapters (found by the Chinese History research, 2026-11-11)
@@ -100,13 +100,13 @@ Leads found while researching new chapters that may affect articles already publ
 - **Environmental History:** says Smil dates fossil fuels overtaking biomass to the late 1890s; summaries of Smil give the late 1880s or "around 1900". Check against *Energy and Civilization*.
 - **Second Industrial Revolution:** the tanker *Zoroaster* is dated 1878; Wikipedia gives 1877 (built). Minor.
 - **Imperial Russia:** if it implies a completed Trans-Siberian line before 1916, note that a continuous all-Russian Moscow–Vladivostok line was finished only in 1916.
-- **Inca Empire:** "30,000–40,000 km" of roads fits, but proposed estimates run 23,000–60,000 km, with about 40,000 most cited.
+- **Inca Empire:** "30,000–40,000 km" of roads fits, but proposed estimates run 23,000–60,000 km, with about 40,000 most cited. **Resolved in Phase 2 (2026-11-12).**
 
 ## Found during Urban History research (2026-11-12)
 
 - **Neolithic chapter:** Çatalhöyük "several thousand" people; recent work gives 600–800 in an average year (older estimates 5,000–7,000). Give the range and the revision.
 - **Tang and Song China:** Chang'an "a million people"; modern estimates are 800,000–1,000,000.
-- **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400.
+- **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400. **Resolved in North America before Columbus, Phase 2 (2026-11-12).**
 - **Teotihuacan:** check peak and decline dates against current estimates.
 - **Sophiatown:** the Apartheid chapter's attribution of the removal is probably the more precise; check other mentions.
 
@@ -149,3 +149,4 @@ Leads found while researching new chapters that may affect articles already publ
 - **Han China (resolved 2026-11-12):** *Romance of the Three Kingdoms* now "attributed to … Luo Guanzhong and first printed in 1522".
 - **Renaissance:** says the *querelle des femmes* was "begun by Christine de Pizan around 1405"; her debate over the *Roman de la Rose* began in 1401–02. Check when the Renaissance chapter is reviewed.
 - **Chinese History:** says the *jiaozi* was "taken over by the state in 1023"; Tang and Song now says "took over in 1023, issuing its first notes in 1024". Also consider noting that Zhu Xi's commentaries became the examination basis under the Yuan (1313), not first under the Ming.
+- **Conquest of the Americas:** says smallpox "reached the Andes in the 1520s before Pizarro, killing the Inca ruler and his heir". The disease's identity is debated (McCaa) and Pizarro's exploring voyages were already on the coast in 1524–28; The Inca Empire now says "often identified as smallpox though this is debated" and "years before Pizarro's 1532 invasion". Align when that chapter is reviewed.

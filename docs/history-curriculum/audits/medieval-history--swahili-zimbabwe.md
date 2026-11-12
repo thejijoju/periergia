@@ -1,0 +1,27 @@
+# Audit ledger: The Swahili Coast and Great Zimbabwe
+
+File: `supabase/content/history--medieval-history--swahili-zimbabwe.sql` · Node: `history/medieval-history/africa/the-swahili-coast-and-great-zimbabwe` · Phase 2 review, 2026-11-12: two independent passes (A top-down, B bottom-up) on the published article, which was written before the source-first rule. Two outright errors: the single Kilwa coin found in Australia (five were found), and Chittick credited with showing the towns' African origins (he favoured foreign settlement).
+
+| Claim (before) | Verdict | Source | Change |
+|---|---|---|---|
+| Kilwa coin: "one was found in 1944 on an island off northern Australia" | WRONG (A; B imprecise) | Kilwa Sultanate; Wessel Islands | Five Kilwa coins with four Dutch coins on Marchinbar Island |
+| "Excavations by Neville Chittick at Kilwa, by Mark Horton at Shanga … showed that the towns grew from local African … villages" (body, q5 rubric) | WRONG attribution (B) | Neville Chittick; Shirazi people (Chittick 1963, 1965); Shillington debate summary | Chittick gave the chronology but favoured foreign settlement; Horton at Shanga and others showed African origins |
+| Shirazi stories "now understood as claims to prestige … rather than literal history" | Out of date (A, B) | Kilwa Chronicle; Brielle et al., *Nature* 2023 | Long read as prestige claims; aDNA suggests a memory of real Persian newcomers |
+| aDNA: "much of the rest from men of Persian and Indian origin" (body, checkpoint a*, x, q5) | IMPRECISE (A, B) | Swahili people (genetics); press summaries of Brielle et al. | Mostly Asian men, chiefly Persian, smaller Indian contribution |
+| Ibn Battuta "visited Kilwa in 1331"; "one of the most beautiful and well-constructed towns in the world" (body, q2) | IMPRECISE (A, B; KNOWN_ISSUES) | Ibn Battuta; Kilwa Kisiwani | About 1330–31; Gibb's wording "one of the finest and most beautifully built towns" |
+| Swahili "closely related to languages of the East African interior"; "from *sahil*, 'coast'" (body, q1) | IMPRECISE (A, B) | Swahili language | Related to coastal languages (Sabaki); *sawahil*, "coasts" |
+| Great Mosque "begun in the eleventh century … one of the largest mosques in sub-Saharan Africa" | IMPRECISE / UNVERIFIED (A, B) | Great Mosque of Kilwa | Founded perhaps tenth century, rebuilt eleventh–thirteenth, expanded fourteenth; largest of its kind on the coast |
+| Malindi giraffe "celebrated as a qilin" | IMPRECISE (B) | Ming treasure voyages | 1415; courtiers hailed it as a qilin |
+| Mapungubwe "about 1220 to 1290"; gold rhinoceros "a national symbol of South Africa" | IMPRECISE (A, B) | Kingdom of Mapungubwe; Golden Rhinoceros of Mapungubwe; Order of Mapungubwe | 1220–1300; gold foil over wood; emblem of the Order of Mapungubwe |
+| Great Zimbabwe "may have had 10,000 to 18,000 inhabitants" | Out of date (A, B; KNOWN_ISSUES) | Great Zimbabwe (Chirikure et al. 2017); africa-to-1860 and urban-history chapters | Traditional up to 18,000; probably never above about 10,000 |
+| Name from *dzimba dza mabwe* | IMPRECISE (B) | Great Zimbabwe | "Probably"; alternative "venerated houses" |
+| "Glass beads from India" | UNVERIFIED (B) | Great Zimbabwe | "Glass beads" |
+| "It declined around 1450, probably because of the exhaustion of local resources … and shifts in trade routes" | IMPRECISE (A, B) | Great Zimbabwe; Kingdom of Great Zimbabwe | Reasons debated, including the Zambezi route and gold demand; site occupied into the sixteenth century |
+| Randall-MacIver "in 1905"; Caton-Thompson "entirely African" (body, q4) | IMPRECISE (A) | Great Zimbabwe | 1905–06; "African (Bantu) in origin and medieval in date" |
+| "in the 1970s archaeologists such as Peter Garlake were pressured … and Garlake left" (body, q6) | IMPRECISE (A, B) | Peter Garlake; urban-history chapter | 1960s and 1970s; Garlake forced out in 1970 |
+| Garlake's *Great Zimbabwe* (1973) "written under political pressure" | IMPRECISE (A, B) | Peter Garlake | Published after he was forced out |
+| "largest stone structures in sub-Saharan Africa before modern times" (lede, q3) | IMPRECISE (A, B) | Great Zimbabwe | Largest precolonial stone structures in southern Africa |
+
+**Kept with one confirming pass or low-risk:** the trade goods list (iron, mangrove timber, tortoiseshell, rhinoceros horn, ambergris; ivory to India and China; enslaved people to Arabia, the Gulf and Iraq; B confirmed gold, ivory, timber and the Zanj trade to Iraq); Rhodesia named after Rhodes (standard).
+
+**Confirmed by both passes:** towns from the ninth century along some 3,000 km from Mogadishu to Sofala; Muslim sultans; coral-stone mosques; Husuni Kubwa (early fourteenth century, courtyards, pool, over 100 rooms); Kilwa's copper coins; Kilwa's control of Sofala's gold; monsoon trade and Chinese porcelain; Zheng He in East Africa; the *Kilwa Chronicle*'s Shirazi founders; Shanga and Horton; the 2023 aDNA study (1250–1800 burials; African ancestry mainly through women; mixing from about 1000 CE); Great Zimbabwe (eleventh–fifteenth centuries, peak c. 1300–1450, Shona ancestors, mortarless granite, Great Enclosure about 250 m and 11 m high, conical tower, Hill Complex, eight soapstone birds, the 1980 renaming); Mutapa and Torwa at Khami; Mauch (1871) and the Sheba myth; settler attribution to foreigners and looting; Rhodesian censorship; da Gama at Malindi (1498) and his pilot; Kilwa and Mombasa sacked in 1505; and the reading list (Horton and Middleton 2000, Wynne-Jones and LaViolette 2018, Pikirayi 2001, Garlake 1973, Fauvelle 2018).
