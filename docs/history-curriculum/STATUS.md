@@ -16,7 +16,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | Before Writing: the Human Deep Past (`history/before-writing`) | `history--before-writing--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | Before Writing: the Human Deep Past (`history/before-writing`) | `history--before-writing--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Human Origins and the Peopling of the Earth (`history/before-writing/human-origins`) | `history--before-writing--human-origins.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Neolithic Revolution: Farming and Its Costs (`history/before-writing/neolithic-revolution`) | `history--before-writing--neolithic-revolution.sql` |
 
