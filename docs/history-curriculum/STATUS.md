@@ -25,7 +25,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | The First Civilizations (c. 3500–500 BCE) (`history/ancient-civilizations`) | `history--ancient-civilizations--overview.sql` |
-| ✅ | ⬜ | chapter | Mesopotamia (`history/ancient-civilizations/mesopotamia`) | `history--ancient-civilizations--mesopotamia.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Mesopotamia (`history/ancient-civilizations/mesopotamia`) | `history--ancient-civilizations--mesopotamia.sql` |
 | ✅ | ⬜ | chapter | Ancient Egypt (`history/ancient-civilizations/ancient-egypt`) | `history--ancient-civilizations--ancient-egypt.sql` |
 | ✅ | ⬜ | chapter | The Bronze Age Mediterranean and Its Collapse (`history/ancient-civilizations/the-bronze-age-mediterranean-and-its-collapse`) | `history--ancient-civilizations--bronze-age-mediterranean.sql` |
 | ✅ | ⬜ | chapter | Ancient Israel and the Levant (`history/ancient-civilizations/ancient-israel-and-the-levant`) | `history--ancient-civilizations--israel-and-the-levant.sql` |
