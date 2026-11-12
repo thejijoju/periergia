@@ -250,7 +250,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Scandals in History: Moral Panics, Repression, and Reform (`history/thematic-history/scandals-in-history-moral-panics-repression-and-reform`) | `history--thematic-history--scandals.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | History and Drugs (`history/thematic-history/history-and-drugs`) | `history--thematic-history--history-and-drugs.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Global History of Capitalism: Past, Present, Future (`history/thematic-history/global-history-of-capitalism-past-present-future`) | `history--thematic-history--capitalism.sql` |
-| ⬜ | — | chapter | Capitalism and Labor in the United States (`history/thematic-history/capitalism-and-labor-in-the-united-states`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Capitalism and Labor in the United States (`history/thematic-history/capitalism-and-labor-in-the-united-states`) | `history--thematic-history--us-capitalism-labor.sql` |
 | ⬜ | — | chapter | American Empire: the United States in the World (`history/thematic-history/american-empire-the-united-states-in-the-world`) |  |
 | ✅ | ✅ 2026-11-12 | chapter | Oil and Empire (`history/thematic-history/oil-and-empire`) | `history--thematic-history--oil-empire.sql` |
 | ⬜ | — | chapter | AI and Empire (`history/thematic-history/ai-and-empire`) |  |
