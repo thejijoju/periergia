@@ -100,7 +100,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | The Early Modern World (c. 1550–1800) (`history/early-modern-period`) | `history--early-modern-period--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Ottomans (`history/early-modern-period/the-ottomans`) | `history--early-modern-period--ottomans.sql` |
-| ✅ | ⬜ | chapter | Ottoman Social and Cultural History (`history/early-modern-period/ottoman-social-and-cultural-history`) | `history--early-modern-period--ottoman-social-cultural.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Ottoman Social and Cultural History (`history/early-modern-period/ottoman-social-and-cultural-history`) | `history--early-modern-period--ottoman-social-cultural.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Safavid Iran (`history/early-modern-period/safavid-iran`) | `history--early-modern-period--safavid.sql` |
 | ✅ | ⬜ | chapter | The Mughal Empire (`history/early-modern-period/the-mughal-empire`) | `history--early-modern-period--mughal.sql` |
 | ✅ | ⬜ | chapter | Tokugawa Shogunate (`history/early-modern-period/tokugawa-shogunate`) | `history--early-modern-period--tokugawa.sql` |
