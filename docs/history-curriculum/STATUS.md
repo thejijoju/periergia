@@ -66,8 +66,8 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | | | **Asia** | | |
 | ✅ | ✅ 2026-11-12 | chapter | Tang and Song China (`history/medieval-history/asia/tang-and-song-china`) | `history--medieval-history--tang-song.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Medieval Japan: Court, Samurai, and Shogun (`history/medieval-history/asia/medieval-japan-court-samurai-and-shogun`) | `history--medieval-history--medieval-japan.sql` |
-| ✅ | ⬜ | chapter | The Delhi Sultanate and Medieval India (`history/medieval-history/asia/the-delhi-sultanate-and-medieval-india`) | `history--medieval-history--delhi-sultanate.sql` |
-| ✅ | ⬜ | chapter | Angkor, Srivijaya, and Medieval Southeast Asia (`history/medieval-history/asia/angkor-srivijaya-and-medieval-southeast-asia`) | `history--medieval-history--southeast-asia.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Delhi Sultanate and Medieval India (`history/medieval-history/asia/the-delhi-sultanate-and-medieval-india`) | `history--medieval-history--delhi-sultanate.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Angkor, Srivijaya, and Medieval Southeast Asia (`history/medieval-history/asia/angkor-srivijaya-and-medieval-southeast-asia`) | `history--medieval-history--southeast-asia.sql` |
 | | | **Africa** | | |
 | ✅ | ⬜ | chapter | Ghana, Mali, and the Trans-Saharan World (`history/medieval-history/africa/ghana-mali-and-the-trans-saharan-world`) | `history--medieval-history--ghana-mali.sql` |
 | ✅ | ⬜ | chapter | The Swahili Coast and Great Zimbabwe (`history/medieval-history/africa/the-swahili-coast-and-great-zimbabwe`) | `history--medieval-history--swahili-zimbabwe.sql` |
