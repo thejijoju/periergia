@@ -30,7 +30,7 @@ with master as (
     'read',
     $rrov_master$## A World on the Move, 1400–1650
 
-The period from about 1400 to 1650 is often told as a European story: the Renaissance, the Reformation, and the "Age of Discovery". This block tells a wider one. In 1400 the world's largest economies and most powerful states were in Asia. Ming China, founded in 1368, sent fleets larger than anything in Europe across the Indian Ocean. The Ottoman empire took Constantinople in 1453 and became the leading power of the Mediterranean. The Safavids unified Iran after 1501, and the Mughals conquered northern India from 1526. In Africa, Songhay controlled the trans-Saharan trade and the kingdom of Kongo engaged the Portuguese as a Christian partner; in the Americas, the Aztec and Inca empires were at their height. Europe's Atlantic kingdoms were, by comparison, small and on the edge of this world.
+The period from about 1400 to 1650 is often told as a European story: the Renaissance, the Reformation, and the "Age of Discovery". This block tells a wider one. In 1400 the world's largest economies and most powerful states were in Asia. Ming China, founded in 1368, sent fleets of more than 300 ships and some 28,000 men, far larger than any European expedition of the time, across the Indian Ocean. The Ottoman empire took Constantinople in 1453 and became the leading power of the Mediterranean. The Safavids unified Iran after 1501, and the Mughals conquered northern India from 1526. In Africa, Songhay, rising from the 1460s, came to dominate the southern end of the trans-Saharan trade, and from the 1480s the kingdom of Kongo engaged the Portuguese as a Christian partner; in the Americas, the Aztec and Inca empires, both formed after 1420, reached their height around 1500. Europe's Atlantic kingdoms were, by comparison, small and on the edge of this world.
 
 What changed in these two and a half centuries was the joining of the hemispheres. European ships reached West Africa, India, the Americas, and China, and for the first time trade, people, crops, diseases, and ideas moved regularly around the entire globe. The consequences were catastrophic for the peoples of the Americas and for millions of Africans forced into slavery, transforming for Europe, and significant, but far more limited, for the great Asian empires, which for most of this period dealt with Europeans on their own terms.
 
@@ -48,7 +48,7 @@ This block uses these terms where they are standard, but tries in each chapter t
 4. **European Expansion Overseas**, from the Portuguese in Africa and the Indian Ocean to the Spanish in the Americas.
 5. **The Conquest of the Americas**, told through Indigenous as well as Spanish sources.
 6. **The Columbian Exchange and the First Global Economy**, including the silver that linked the Americas to China.
-7. **The Atlantic Slave Trade**, the largest forced migration in history, including the role of African states.
+7. **The Atlantic Slave Trade**, the largest long-distance forced migration in history, including the role of African states.
 8. **Atlantic Slave Wars**, the resistance and revolts that made and unmade Atlantic slavery.
 
 ## Questions to Carry Through
@@ -56,11 +56,11 @@ This block uses these terms where they are standard, but tries in each chapter t
 - **Who held the advantage, where?** Europeans conquered the Americas, but in Asia they were mostly traders who needed permission from powerful rulers. Why the difference?
 - **What role did disease play?** Epidemics did more than steel to determine the fate of the Americas.
 - **Whose voices survive?** Indigenous and African perspectives survive in codices, chronicles written by Indigenous authors, oral tradition, and the records of resistance, and they change the story.
-- **How did the world economy change?** Silver mined by forced Indigenous labour in the Andes ended up paying for Chinese silk and porcelain. Who benefited, and who paid?
+- **How did the world economy change?** Silver mined largely by forced Indigenous labour in the Andes ended up paying for Chinese silk and porcelain. Who benefited, and who paid?
 
 ## Further reading
 
-- **Felipe Fernández-Armesto, *1492: The Year Our World Began* (2009).** A global view of a single year.
+- **Felipe Fernández-Armesto, *1492: The Year the World Began* (2009; UK edition *1492: The Year Our World Began*, 2010).** A global view of a single year.
 - **Charles C. Mann, *1493: Uncovering the New World Columbus Created* (2011).** The Columbian exchange and the first global economy.
 - **Jerry Brotton, *The Renaissance Bazaar: From the Silk Road to Michelangelo* (2002).** The Renaissance as a product of exchange between East and West.$rrov_master$,
     true,
@@ -80,7 +80,7 @@ where node_id in (select node_id from master)
 -- Curated, human-reviewed quiz — same set served at every level.
 with q as (
   select $rrov_quiz$[
-    {"type": "mcq", "prompt": "Where were the world's largest economies and most powerful states around 1400?", "options": ["In Western Europe", "In the Americas", "In Asia, including Ming China and the rising Ottoman empire", "In Scandinavia"], "answerIndex": 2, "explanation": "Europe's Atlantic kingdoms were small and peripheral compared with the great Asian empires.", "id": "q1"},
+    {"type": "mcq", "prompt": "Where were the world's largest economies and most powerful states around 1400?", "options": ["In Western Europe", "In the Americas", "In Asia, especially China and India", "In Scandinavia"], "answerIndex": 2, "explanation": "Europe's Atlantic kingdoms were small and peripheral compared with the great Asian empires.", "id": "q1"},
     {"type": "mcq", "prompt": "Why do historians question the term 'Age of Discovery'?", "options": ["Because the lands Europeans reached were already inhabited by millions of people who did not need to be discovered", "Because no voyages took place", "Because it was invented by the Ming", "Because it only refers to Africa"], "answerIndex": 0, "explanation": "The term reflects a European viewpoint; 'encounter' or 'contact' are often preferred, though they can soften violent conquest.", "id": "q2"},
     {"type": "mcq", "prompt": "How did the European position in Asia differ from that in the Americas in this period?", "options": ["Europeans conquered the great Asian empires quickly", "There was no difference", "Europeans never reached Asia", "In Asia Europeans were mostly traders who needed the permission of powerful rulers, while in the Americas they conquered empires"], "answerIndex": 3, "explanation": "The great Asian empires dealt with Europeans largely on their own terms for most of this period.", "id": "q3"},
     {"type": "open", "prompt": "Why does it matter which words historians use for the events of 1400–1650, such as 'discovery', 'exploration', 'New World', and 'Renaissance'?", "rubric": "A strong answer explains that each term carries a European viewpoint: 'discovery' erases inhabitants, 'exploration' hides commercial and military aims, 'New World' was new only to Europeans, and 'Renaissance' and 'Reformation' were Latin Christian movements while other civilizations had their own revivals. It discusses alternatives such as 'encounter' and their own problems, and explains how terminology shapes whose perspective a history adopts.", "id": "q4"}
