@@ -49,8 +49,8 @@ Leads found while researching new chapters that may affect articles already publ
 - World-output share figures: keep Maddison's GDP share and the manufacturing-output share apart wherever chapters cite them.
 
 ## Mongol Empire chapter (found by the Central Asia research, 2026-11-11)
-- Timur "1336–1405": born in the 1320s; 8 April 1336 is a later Timurid date that Manz calls "probably an invention".
-- "The last ruler of Chinggisid descent was deposed in Bukhara in 1920": Bukhara's Manghit emirs were not Chinggisids (Soucek). Chinggisid rulers lasted elsewhere (Maqsud Shah of Kumul to 1930; Navaanneren Setsen Khan executed in Mongolia in 1937).
+- Timur "1336–1405": born in the 1320s; 8 April 1336 is a later Timurid date that Manz calls "probably an invention". **Resolved 2026-11-12.**
+- "The last ruler of Chinggisid descent was deposed in Bukhara in 1920": Bukhara's Manghit emirs were not Chinggisids (Soucek). Chinggisid rulers lasted elsewhere (Maqsud Shah of Kumul to 1930; Navaanneren Setsen Khan executed in Mongolia in 1937). **Resolved 2026-11-12.**
 - Global Cold War: Semipalatinsk "over 450" tests; sources give 468 (consistent, could be exact).
 - Imperial Expansion: General Smith's order quoted as "kill everyone over the age of ten"; the documented wording (1902 press) is "KILL EVERY ONE OVER TEN". Check the quotation against a primary report. (Found by the Modern Southeast Asia research, 2026-11-11.)
 
@@ -112,7 +112,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## Found during Slavery research (2026-11-12)
 
-- **Medieval slavery chapter:** states as fact that "slave" derives from "Slav"; this is the widespread view but has been disputed since the 19th century. Hedge it.
+- **Medieval slavery chapter:** states as fact that "slave" derives from "Slav"; this is the widespread view but has been disputed since the 19th century. Hedge it. **Resolved 2026-11-12.**
 - **Rome chapter:** "6,000 crucified" after Spartacus is citation-needed in the source; attribute it to Appian.
 - **East African slave trade:** Africa to 1860 calls 8 million "high-end … contested"; Migration and Diaspora attributes it to N'Diaye and Pétré-Grenouilleau. Keep attributed wherever it appears.
 
@@ -150,3 +150,4 @@ Leads found while researching new chapters that may affect articles already publ
 - **Renaissance:** says the *querelle des femmes* was "begun by Christine de Pizan around 1405"; her debate over the *Roman de la Rose* began in 1401–02. Check when the Renaissance chapter is reviewed.
 - **Chinese History:** says the *jiaozi* was "taken over by the state in 1023"; Tang and Song now says "took over in 1023, issuing its first notes in 1024". Also consider noting that Zhu Xi's commentaries became the examination basis under the Yuan (1313), not first under the Ming.
 - **Conquest of the Americas:** says smallpox "reached the Andes in the 1520s before Pizarro, killing the Inca ruler and his heir". The disease's identity is debated (McCaa) and Pizarro's exploring voyages were already on the coast in 1524–28; The Inca Empire now says "often identified as smallpox though this is debated" and "years before Pizarro's 1532 invasion". Align when that chapter is reviewed.
+- **Medieval World overview:** says the Black Death killed "a third to a half of the populations it reached, from China to Western Europe"; The Black Death and Disease and Epidemics both say plague in fourteenth-century China is unproven. Fix when the overview is reviewed.
