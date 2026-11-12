@@ -59,10 +59,10 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Lords, Peasants, and Towns in Medieval Europe (`history/medieval-history/europe-and-byzantium/lords-peasants-and-towns-in-medieval-europe`) | `history--medieval-history--lords-peasants-towns.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Sex, Love, and Marriage in the Middle Ages (`history/medieval-history/europe-and-byzantium/sex-love-and-marriage-in-the-middle-ages`) | `history--medieval-history--sex-love-marriage.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Byzantium: the Empire of New Rome (`history/medieval-history/europe-and-byzantium/byzantium-the-empire-of-new-rome`) | `history--medieval-history--byzantium.sql` |
-| ✅ | ⬜ | chapter | The Crusades (`history/medieval-history/europe-and-byzantium/the-crusades`) | `history--medieval-history--crusades.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Crusades (`history/medieval-history/europe-and-byzantium/the-crusades`) | `history--medieval-history--crusades.sql` |
 | | | **The Islamic World** | | |
-| ✅ | ⬜ | chapter | The Rise of Islam and the Caliphates (`history/medieval-history/the-islamic-world/the-rise-of-islam-and-the-caliphates`) | `history--medieval-history--rise-of-islam.sql` |
-| ✅ | ⬜ | chapter | The Islamic Commercial Revolution (800–1200) (`history/medieval-history/the-islamic-world/the-islamic-commercial-revolution-800-1200`) | `history--medieval-history--islamic-commercial-revolution.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Rise of Islam and the Caliphates (`history/medieval-history/the-islamic-world/the-rise-of-islam-and-the-caliphates`) | `history--medieval-history--rise-of-islam.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Islamic Commercial Revolution (800–1200) (`history/medieval-history/the-islamic-world/the-islamic-commercial-revolution-800-1200`) | `history--medieval-history--islamic-commercial-revolution.sql` |
 | | | **Asia** | | |
 | ✅ | ⬜ | chapter | Tang and Song China (`history/medieval-history/asia/tang-and-song-china`) | `history--medieval-history--tang-song.sql` |
 | ✅ | ⬜ | chapter | Medieval Japan: Court, Samurai, and Shogun (`history/medieval-history/asia/medieval-japan-court-samurai-and-shogun`) | `history--medieval-history--medieval-japan.sql` |

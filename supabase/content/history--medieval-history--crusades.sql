@@ -29,20 +29,20 @@ with master as (
 
 ## The Call at Clermont
 
-In November 1095, at a church council at **Clermont** in central France, **Pope Urban II** preached a sermon calling on Christians to go east, help their fellow Christians of the Byzantine empire against the Seljuk Turks, and free Jerusalem, which had been under Muslim rule since the 630s. The crowd reportedly responded with the cry *Deus vult*, "God wills it". Those who took the vow sewed a cloth cross onto their clothes, and the movement later took its name from the Latin *crux*, "cross".
+In November 1095, at a church council at **Clermont** in central France, **Pope Urban II** preached a sermon calling on Christians to go east, help their fellow Christians of the Byzantine empire against the Seljuk Turks, and free Jerusalem, which had been under Muslim rule since the 630s. According to one chronicler, the crowd responded with the cry *Deus vult*, "God wills it". Those who took the vow sewed a cloth cross onto their clothes, and the movement later took its name from the Latin *crux*, "cross".
 
 Several forces combined to make the appeal so powerful:
 
 - **Byzantine appeals.** The emperor Alexios I Komnenos, facing the Seljuk advance after the defeat at Manzikert in 1071, had asked the pope for western mercenaries.
 - **Papal ambitions.** The reforming papacy, fresh from its struggles with the German emperor, sought to lead Latin Christendom and perhaps to heal the schism with the Orthodox Church.
 - **Religious motivation.** Urban offered participants the remission of penance for their sins, a powerful promise to warriors anxious about salvation. Jerusalem, the site of Christ's death and resurrection, held an immense place in the Christian imagination.
-- **Social and economic factors.** Older historians stressed land-hungry younger sons and adventurers seeking wealth. The historian **Jonathan Riley-Smith**, studying the records of individual crusaders, showed that crusading was enormously expensive, that many crusaders sold or mortgaged property to go, and that most returned home poorer; for most, piety rather than profit was the main motive, though motives were always mixed.
+- **Social and economic factors.** Older historians stressed land-hungry younger sons and adventurers seeking wealth. The historian **Jonathan Riley-Smith**, studying the records of individual crusaders, showed that crusading was enormously expensive, that charters show many crusaders selling or mortgaging property to go, and that very few made any profit; for most, piety rather than profit was the main motive, though motives were always mixed.
 
 ## The First Crusade
 
-Before the main armies set out, popular bands, the so-called **People's Crusade**, led by preachers such as Peter the Hermit, marched east in 1096. Some of these groups, and some crusading forces, massacred Jewish communities in the cities of the Rhineland, such as Speyer, Worms, and Mainz, regarding them as enemies of Christ closer to home. These **Rhineland massacres** were the first large-scale violence against Jews in medieval Europe, and they are remembered in Jewish chronicles and liturgy.
+Before the main armies set out, popular bands, the so-called **People's Crusade**, led by preachers such as Peter the Hermit, marched east in 1096. Some of these groups, and some crusading forces, massacred Jewish communities in the cities of the Rhineland, such as Speyer, Worms, and Mainz, regarding them as enemies of Christ closer to home. These **Rhineland massacres** were the first large-scale massacres of Jews in Latin Christian Europe, and they are remembered in Jewish chronicles and liturgy.
 
-The main armies of knights, led by great lords from France, Normandy, Flanders, and southern Italy, travelled to Constantinople and crossed into Anatolia in 1097. Helped by divisions among Muslim rulers, they took Nicaea, besieged and captured Antioch after terrible suffering in 1098, and reached Jerusalem. On 15 July 1099 they stormed the city and massacred much of its Muslim and Jewish population. Christian chroniclers described the slaughter in triumphant terms; the Muslim historian Ibn al-Athir, writing later, recorded it as a catastrophe.
+The main armies of knights, led by great lords from France, Normandy, Flanders, and southern Italy, travelled to Constantinople and crossed into Anatolia in 1097. Helped by divisions among Muslim rulers, they took Nicaea, besieged and captured Antioch after terrible suffering in 1098, and reached Jerusalem. On 15 July 1099 they stormed the city and massacred many of its Muslim and Jewish inhabitants; modern estimates put the dead at 3,000–10,000. Christian chroniclers described the slaughter in triumphant terms; the Muslim historian Ibn al-Athir, writing later, recorded it as a catastrophe.
 
 The crusaders established four **crusader states**: the County of Edessa, the Principality of Antioch, the County of Tripoli, and the Kingdom of Jerusalem. Their Latin rulers, often called Franks by the local population, were a small minority ruling over Muslims, Eastern Christians, and Jews, and they depended on a constant flow of new crusaders and on the support of Italian maritime cities such as Venice, Genoa, and Pisa.
 
@@ -50,7 +50,7 @@ The crusaders established four **crusader states**: the County of Edessa, the Pr
 q: What did Jonathan Riley-Smith's research suggest about the motives of crusaders?
 a*: That crusading was costly, many crusaders sold or mortgaged property to go, and religious motivation was usually central, though motives were mixed.
 a: That most crusaders went to get rich from plunder.
-x: Riley-Smith's work showed that crusading was very expensive and most crusaders returned poorer.
+x: Riley-Smith's work showed that crusading was very expensive and that very few crusaders profited from it.
 a: That crusaders were forced to go by the pope.
 x: Crusading was voluntary, undertaken by taking a vow.
 a: That crusaders were mainly peasants seeking land.
@@ -74,7 +74,7 @@ why: The crusade's religious fervour turned violently against Jews in Europe, be
 
 Muslim rulers gradually united against the crusader states. In 1144 **Zengi**, ruler of Mosul and Aleppo, captured Edessa. The **Second Crusade** (1147–1149), led by the kings of France and Germany, failed miserably at Damascus. Zengi's son Nur al-Din promoted the idea of *jihad* against the Franks and united Syria.
 
-The decisive figure was **Saladin** (Salah al-Din), a Kurdish commander who made himself ruler of Egypt and Syria. On 4 July 1187 he destroyed the army of the Kingdom of Jerusalem at the **Horns of Hattin** near the Sea of Galilee, and in October he took Jerusalem itself. Unlike the crusaders in 1099, he allowed most of its Christian inhabitants to leave on payment of a ransom.
+The decisive figure was **Saladin** (Salah al-Din), a Kurdish commander who made himself ruler of Egypt and Syria. On 4 July 1187 he destroyed the army of the Kingdom of Jerusalem at the **Horns of Hattin** near the Sea of Galilee, and in October he took Jerusalem itself. Unlike the crusaders in 1099, he took the city by negotiated surrender: Franks who could pay a ransom were allowed to leave, Eastern Christians could stay, but thousands who could not pay were enslaved.
 
 The fall of Jerusalem launched the **Third Crusade** (1189–1192), led by three of Europe's most powerful rulers: the emperor Frederick Barbarossa, who drowned in a river in Anatolia on the way; King Philip II of France; and King **Richard I** of England, known as the Lionheart. The crusaders recaptured the port city of **Acre** in 1191, after which Richard had about 2,700 Muslim prisoners executed when ransom negotiations stalled. Richard won victories but could not take Jerusalem. In 1192 he and Saladin agreed the **Treaty of Jaffa**, which left Jerusalem in Muslim hands but allowed Christian pilgrims to visit. Saladin became a model of chivalry in later European legend, and a hero of Muslim and Arab resistance in modern memory.
 
@@ -92,7 +92,7 @@ Crusading spread beyond the Holy Land:
 
 - **The Reconquista** in the Iberian peninsula, where Christian kingdoms fought the Muslim states of al-Andalus, was given crusading status. A decisive Christian victory came at **Las Navas de Tolosa** in 1212, and the last Muslim kingdom, Granada, fell in 1492.
 - **The Baltic crusades** led by the Teutonic Knights and others conquered and forcibly converted the pagan peoples of Prussia and Livonia, and fought Lithuania, the last pagan state in Europe.
-- **Crusades against heretics and political enemies** within Europe included the **Albigensian Crusade** (1209–1229) against the Cathars of southern France, a brutal war that also extended the French crown's power. At the sack of Béziers in 1209, a papal legate was later reported to have said, "Kill them all; God will know his own", a remark recorded decades afterwards and of uncertain authenticity, but expressive of the war's ferocity. Popes also proclaimed crusades against Christian political opponents, such as the Hohenstaufen emperors.
+- **Crusades against heretics and political enemies** within Europe included the **Albigensian Crusade** (1209–1229) against the Cathars of southern France, a brutal war that also extended the French crown's power. At the sack of Béziers in 1209, a papal legate was later reported to have said, "Kill them all; God will know his own", a remark recorded some ten years later by the German monk Caesarius of Heisterbach and of uncertain authenticity, but expressive of the war's ferocity. Popes also proclaimed crusades against Christian political opponents, such as the Hohenstaufen emperors.
 
 ```checkpoint
 q: Why did the Fourth Crusade end by sacking Constantinople?
@@ -155,7 +155,7 @@ why: Modern political uses flatten the crusades into a clash of civilisations, i
 - **Thomas Asbridge, *The Crusades: The War for the Holy Land* (2010).** A comprehensive narrative from both Christian and Muslim perspectives.
 - **Jonathan Riley-Smith, *The Crusades: A History* (3rd ed., 2014).** A standard scholarly history emphasising religious motivation.
 - **Carole Hillenbrand, *The Crusades: Islamic Perspectives* (1999).** The crusades as seen in Muslim sources.
-- **Amin Maalouf, *The Crusades Through Arab Eyes* (1983).** A vivid narrative drawing on Arab chroniclers.
+- **Amin Maalouf, *The Crusades Through Arab Eyes* (1983; English translation 1984).** A vivid narrative drawing on Arab chroniclers.
 - **Christopher Tyerman, *God's War: A New History of the Crusades* (2006).** A detailed scholarly account of the whole crusading movement.$crusades_master$,
     true,
     true
