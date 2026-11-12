@@ -230,7 +230,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Military History (`history/thematic-history/military-history`) | `history--thematic-history--military-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Global History (`history/thematic-history/global-history`) | `history--thematic-history--global-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Environmental History (`history/thematic-history/environmental-history`) | `history--thematic-history--environmental-history.sql` |
-| ⬜ | — | chapter | The Global History of Quantitative Data (`history/thematic-history/the-global-history-of-quantitative-data`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | The Global History of Quantitative Data (`history/thematic-history/the-global-history-of-quantitative-data`) | `history--thematic-history--quantitative-data.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Digital History (`history/thematic-history/digital-history`) | `history--thematic-history--digital-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Histories of Emotions: From the 'Rational Self' to Modern Neuroscience (`history/thematic-history/histories-of-emotions-from-the-rational-self-to-modern-neuroscience`) | `history--thematic-history--emotions.sql` |
 | ⬜ | — | chapter | Women and Gender in World History (`history/thematic-history/women-and-gender-in-world-history`) |  |
