@@ -123,7 +123,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## Found during Global History of Capitalism research (2026-11-12)
 
-- **Trading Companies chapter:** says the VOC had permanent capital and limited liability from 1602; Padgett and Powell (cited on Wikipedia) date locked-in capital and limited liability to 1612. Earlier share companies (Song *douniu*, Stora 1288, Bazacle c. 1350) mean "first joint-stock company" needs hedging.
+- **Trading Companies chapter:** says the VOC had permanent capital and limited liability from 1602; Padgett and Powell (cited on Wikipedia) date locked-in capital and limited liability to 1612. Earlier share companies (Song *douniu*, Stora 1288, Bazacle c. 1350) mean "first joint-stock company" needs hedging. **Resolved 2026-11-12.**
 - **Environmental History chapter:** dates Jason Moore's Capitalocene to the "long sixteenth century" (from c. 1450); Wikipedia gives his "long seventeenth century (c. 1550–1700)". Check against Moore's book.
 
 ## Found during American Empire research (2026-11-12)
