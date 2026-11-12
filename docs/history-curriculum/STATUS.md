@@ -69,7 +69,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | The Delhi Sultanate and Medieval India (`history/medieval-history/asia/the-delhi-sultanate-and-medieval-india`) | `history--medieval-history--delhi-sultanate.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Angkor, Srivijaya, and Medieval Southeast Asia (`history/medieval-history/asia/angkor-srivijaya-and-medieval-southeast-asia`) | `history--medieval-history--southeast-asia.sql` |
 | | | **Africa** | | |
-| ✅ | ⬜ | chapter | Ghana, Mali, and the Trans-Saharan World (`history/medieval-history/africa/ghana-mali-and-the-trans-saharan-world`) | `history--medieval-history--ghana-mali.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Ghana, Mali, and the Trans-Saharan World (`history/medieval-history/africa/ghana-mali-and-the-trans-saharan-world`) | `history--medieval-history--ghana-mali.sql` |
 | ✅ | ⬜ | chapter | The Swahili Coast and Great Zimbabwe (`history/medieval-history/africa/the-swahili-coast-and-great-zimbabwe`) | `history--medieval-history--swahili-zimbabwe.sql` |
 | | | **The Americas** | | |
 | ✅ | ⬜ | chapter | North America before Columbus (`history/medieval-history/the-americas/north-america-before-columbus`) | `history--medieval-history--north-america.sql` |
