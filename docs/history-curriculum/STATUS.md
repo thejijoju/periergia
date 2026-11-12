@@ -245,7 +245,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | chapter | Revolutions in Comparison (`history/thematic-history/revolutions-in-comparison`) |  |
 | ⬜ | — | chapter | History of Peace and Peacemaking (`history/thematic-history/history-of-peace-and-peacemaking`) |  |
 | ✅ | ✅ 2026-11-12 | chapter | Slavery: a Global History (`history/thematic-history/slavery`) | `history--thematic-history--slavery.sql` |
-| ⬜ | — | chapter | Abolitionist Women (`history/thematic-history/abolitionist-women`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Abolitionist Women (`history/thematic-history/abolitionist-women`) | `history--thematic-history--abolitionist-women.sql` |
 | ⬜ | — | chapter | History of Civil Liberties (`history/thematic-history/history-of-civil-liberties`) |  |
 | ⬜ | — | chapter | Scandals in History: Moral Panics, Repression, and Reform (`history/thematic-history/scandals-in-history-moral-panics-repression-and-reform`) |  |
 | ✅ | ⬜ | chapter | History and Drugs (`history/thematic-history/history-and-drugs`) | `history--thematic-history--history-and-drugs.sql` |
