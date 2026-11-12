@@ -115,3 +115,8 @@ Leads found while researching new chapters that may affect articles already publ
 - **Medieval slavery chapter:** states as fact that "slave" derives from "Slav"; this is the widespread view but has been disputed since the 19th century. Hedge it.
 - **Rome chapter:** "6,000 crucified" after Spartacus is citation-needed in the source; attribute it to Appian.
 - **East African slave trade:** Africa to 1860 calls 8 million "high-end … contested"; Migration and Diaspora attributes it to N'Diaye and Pétré-Grenouilleau. Keep attributed wherever it appears.
+
+## Found during Scandals research (2026-11-12)
+
+- **British Empire chapter:** Boer War camp deaths given as 18,000–26,000 Boer civilians; Wikipedia gives 27,927, the Hobhouse article "some 34,000", Pakenham "at least twenty thousand whites". Give an attributed range and say whether Black African camp deaths are included.
+- **Victorian Era chapter:** Morant Bay "439 killed directly, 354 later executed"; the 1866 Royal Commission's approximate total of 439 deaths may already include the executions. Check before adding them.
