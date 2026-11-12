@@ -145,3 +145,5 @@ Leads found while researching new chapters that may affect articles already publ
 - **Uruk tablets:** Quantitative Data says "almost all" of about 5,000 archaic tablets are administrative; Mesopotamia says "about 85 per cent" (Englund). Compatible, but consider aligning.
 - **Urban History vs Indus Valley:** Urban History gives Mohenjo-daro "at least 40,000" and "laid out on a grid"; Indus Valley now says "around 40,000 … up to 60,000" and "not on a perfect grid". Align the grid wording.
 - **Rome (resolved 2026-11-12):** the 6,000 crucified are now attributed to Appian, as in the Slavery chapter.
+- **Slavery chapter:** says Wang Mang's abolition of slavery (9 CE) was reversed in 12 CE; Wikipedia's Wang Mang article puts the reinstatement after his death in 23 CE. Check the date (Han China now says only "a measure soon reversed").
+- **Han China (resolved 2026-11-12):** *Romance of the Three Kingdoms* now "attributed to … Luo Guanzhong and first printed in 1522".
