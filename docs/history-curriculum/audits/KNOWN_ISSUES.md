@@ -63,7 +63,7 @@ Leads found while researching new chapters that may affect articles already publ
 - Late-Ming population "perhaps 150 million or more by 1600": estimates run 160–231 million (Fairbank 160, Brook 175, Ebrey 200, Mote 231). **Resolved 2026-11-12.**
 - Share of American silver reaching China "a third or more": Wakeman says half; use "between a third and a half". **Resolved 2026-11-12.**
 - Second World War chapter: attributes "about 15–16 million" Chinese war dead to Mitter; Wikipedia cites Mitter for 14 million total, reviews give his range as 14–20 million, and Japan's Empire says Mitter calls Westad's 14 million conservative. Check the attribution. (Found by the Modern China research, 2026-11-11.)
-- Columbian Exchange: lists sweet potatoes among crops spreading from the Americas after 1492; add that sweet potato had already reached Polynesia centuries earlier (Mangaia, Cook Islands, c. 1000–1200 CE). (Found by the Pacific Voyagers research, 2026-11-11.)
+- Columbian Exchange: lists sweet potatoes among crops spreading from the Americas after 1492; add that sweet potato had already reached Polynesia centuries earlier (Mangaia, Cook Islands, c. 1000–1200 CE). (Found by the Pacific Voyagers research, 2026-11-11.) **Resolved 2026-11-12.**
 
 ## Found by the Modern Syria research (2026-11-11)
 - First World War: says Faisal "proclaimed" the kingdom; the Syrian National Congress proclaimed him king on 8 March 1920.
