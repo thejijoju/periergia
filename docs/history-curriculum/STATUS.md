@@ -57,8 +57,8 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | | | **Europe and Byzantium** | | |
 | ✅ | ✅ 2026-11-12 | chapter | Early Medieval Europe (`history/medieval-history/europe-and-byzantium/early-medieval-europe`) | `history--medieval-history--early-medieval-europe.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Lords, Peasants, and Towns in Medieval Europe (`history/medieval-history/europe-and-byzantium/lords-peasants-and-towns-in-medieval-europe`) | `history--medieval-history--lords-peasants-towns.sql` |
-| ✅ | ⬜ | chapter | Sex, Love, and Marriage in the Middle Ages (`history/medieval-history/europe-and-byzantium/sex-love-and-marriage-in-the-middle-ages`) | `history--medieval-history--sex-love-marriage.sql` |
-| ✅ | ⬜ | chapter | Byzantium: the Empire of New Rome (`history/medieval-history/europe-and-byzantium/byzantium-the-empire-of-new-rome`) | `history--medieval-history--byzantium.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Sex, Love, and Marriage in the Middle Ages (`history/medieval-history/europe-and-byzantium/sex-love-and-marriage-in-the-middle-ages`) | `history--medieval-history--sex-love-marriage.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Byzantium: the Empire of New Rome (`history/medieval-history/europe-and-byzantium/byzantium-the-empire-of-new-rome`) | `history--medieval-history--byzantium.sql` |
 | ✅ | ⬜ | chapter | The Crusades (`history/medieval-history/europe-and-byzantium/the-crusades`) | `history--medieval-history--crusades.sql` |
 | | | **The Islamic World** | | |
 | ✅ | ⬜ | chapter | The Rise of Islam and the Caliphates (`history/medieval-history/the-islamic-world/the-rise-of-islam-and-the-caliphates`) | `history--medieval-history--rise-of-islam.sql` |
