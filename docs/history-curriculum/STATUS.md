@@ -243,7 +243,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Borders and Borderlands (`history/thematic-history/borders-and-borderlands`) | `history--thematic-history--borders.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Cryo-History: Histories of Cold Places (`history/thematic-history/cryo-history-histories-of-cold-places`) | `history--thematic-history--cryo-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Revolutions in Comparison (`history/thematic-history/revolutions-in-comparison`) | `history--thematic-history--revolutions.sql` |
-| ⬜ | — | chapter | History of Peace and Peacemaking (`history/thematic-history/history-of-peace-and-peacemaking`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | History of Peace and Peacemaking (`history/thematic-history/history-of-peace-and-peacemaking`) | `history--thematic-history--peace.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Slavery: a Global History (`history/thematic-history/slavery`) | `history--thematic-history--slavery.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Abolitionist Women (`history/thematic-history/abolitionist-women`) | `history--thematic-history--abolitionist-women.sql` |
 | ⬜ | — | chapter | History of Civil Liberties (`history/thematic-history/history-of-civil-liberties`) |  |
