@@ -135,3 +135,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 - **Digital Age chapter:** gives Kenyan data-labelling pay of $1.32–$2 an hour without Sama's rebuttal ($1.46–$3.74); add it. Its cobalt share (about three-quarters, USGS 2024) should stay dated.
 - **Infrastructure chapter:** check that the Digital Silk Road is not implied to date from 2013; it was announced in 2015.
+
+## Found during Phase 2 review (2026-11-12)
+
+- **Disease and Epidemics:** dates the measles–rinderpest split to "between 900 and 2,400 years ago". The Neolithic chapter now cites Düx et al. 2020 (as early as the sixth century BCE, range 1174 BCE–165 CE). Align the Disease chapter with the 2020 study when it is next revised.
