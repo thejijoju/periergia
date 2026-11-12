@@ -26,8 +26,8 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | The First Civilizations (c. 3500–500 BCE) (`history/ancient-civilizations`) | `history--ancient-civilizations--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Mesopotamia (`history/ancient-civilizations/mesopotamia`) | `history--ancient-civilizations--mesopotamia.sql` |
-| ✅ | ⬜ | chapter | Ancient Egypt (`history/ancient-civilizations/ancient-egypt`) | `history--ancient-civilizations--ancient-egypt.sql` |
-| ✅ | ⬜ | chapter | The Bronze Age Mediterranean and Its Collapse (`history/ancient-civilizations/the-bronze-age-mediterranean-and-its-collapse`) | `history--ancient-civilizations--bronze-age-mediterranean.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Ancient Egypt (`history/ancient-civilizations/ancient-egypt`) | `history--ancient-civilizations--ancient-egypt.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Bronze Age Mediterranean and Its Collapse (`history/ancient-civilizations/the-bronze-age-mediterranean-and-its-collapse`) | `history--ancient-civilizations--bronze-age-mediterranean.sql` |
 | ✅ | ⬜ | chapter | Ancient Israel and the Levant (`history/ancient-civilizations/ancient-israel-and-the-levant`) | `history--ancient-civilizations--israel-and-the-levant.sql` |
 | ✅ | ⬜ | chapter | The Indus Valley Civilization (`history/ancient-civilizations/the-indus-valley-civilization`) | `history--ancient-civilizations--indus-valley.sql` |
 | ✅ | ⬜ | chapter | Ancient China: Shang, Zhou, and the Hundred Schools (`history/ancient-civilizations/ancient-china-shang-zhou-and-the-hundred-schools`) | `history--ancient-civilizations--ancient-china.sql` |
