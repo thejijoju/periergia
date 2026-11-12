@@ -241,7 +241,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | The Role of Infrastructure in History: its Powers and Limitations (`history/thematic-history/the-role-of-infrastructure-in-history-its-powers-and-limitations`) | `history--thematic-history--infrastructure.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Urban History (`history/thematic-history/urban-history`) | `history--thematic-history--urban-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Borders and Borderlands (`history/thematic-history/borders-and-borderlands`) | `history--thematic-history--borders.sql` |
-| ⬜ | — | chapter | Cryo-History: Histories of Cold Places (`history/thematic-history/cryo-history-histories-of-cold-places`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Cryo-History: Histories of Cold Places (`history/thematic-history/cryo-history-histories-of-cold-places`) | `history--thematic-history--cryo-history.sql` |
 | ⬜ | — | chapter | Revolutions in Comparison (`history/thematic-history/revolutions-in-comparison`) |  |
 | ⬜ | — | chapter | History of Peace and Peacemaking (`history/thematic-history/history-of-peace-and-peacemaking`) |  |
 | ⬜ | — | chapter | Slavery: a Global History (`history/thematic-history/slavery`) |  |
