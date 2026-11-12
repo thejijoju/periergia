@@ -31,7 +31,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Ancient Israel and the Levant (`history/ancient-civilizations/ancient-israel-and-the-levant`) | `history--ancient-civilizations--israel-and-the-levant.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Indus Valley Civilization (`history/ancient-civilizations/the-indus-valley-civilization`) | `history--ancient-civilizations--indus-valley.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Ancient China: Shang, Zhou, and the Hundred Schools (`history/ancient-civilizations/ancient-china-shang-zhou-and-the-hundred-schools`) | `history--ancient-civilizations--ancient-china.sql` |
-| ✅ | ⬜ | chapter | Kush and Aksum: Ancient Northeast Africa (`history/ancient-civilizations/kush-and-aksum-ancient-northeast-africa`) | `history--ancient-civilizations--kush-and-aksum.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Kush and Aksum: Ancient Northeast Africa (`history/ancient-civilizations/kush-and-aksum-ancient-northeast-africa`) | `history--ancient-civilizations--kush-and-aksum.sql` |
 | ✅ | ⬜ | chapter | The First Civilizations of the Andes (`history/ancient-civilizations/the-first-civilizations-of-the-andes`) | `history--ancient-civilizations--andes.sql` |
 | ✅ | ⬜ | chapter | Mesoamerican Cultures: Olmec, Maya, and Teotihuacan (`history/ancient-civilizations/mesoamerican-cultures-olmec-maya-and-teotihuacan`) | `history--ancient-civilizations--mesoamerica.sql` |
 
