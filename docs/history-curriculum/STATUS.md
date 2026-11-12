@@ -246,7 +246,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | History of Peace and Peacemaking (`history/thematic-history/history-of-peace-and-peacemaking`) | `history--thematic-history--peace.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Slavery: a Global History (`history/thematic-history/slavery`) | `history--thematic-history--slavery.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Abolitionist Women (`history/thematic-history/abolitionist-women`) | `history--thematic-history--abolitionist-women.sql` |
-| ⬜ | — | chapter | History of Civil Liberties (`history/thematic-history/history-of-civil-liberties`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | History of Civil Liberties (`history/thematic-history/history-of-civil-liberties`) | `history--thematic-history--civil-liberties.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Scandals in History: Moral Panics, Repression, and Reform (`history/thematic-history/scandals-in-history-moral-panics-repression-and-reform`) | `history--thematic-history--scandals.sql` |
 | ✅ | ⬜ | chapter | History and Drugs (`history/thematic-history/history-and-drugs`) | `history--thematic-history--history-and-drugs.sql` |
 | ⬜ | — | chapter | Global History of Capitalism: Past, Present, Future (`history/thematic-history/global-history-of-capitalism-past-present-future`) |  |
