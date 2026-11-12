@@ -239,7 +239,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Food in World History (`history/thematic-history/food-in-world-history`) | `history--thematic-history--food.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | History of Energy (`history/thematic-history/history-of-energy`) | `history--thematic-history--energy.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Role of Infrastructure in History: its Powers and Limitations (`history/thematic-history/the-role-of-infrastructure-in-history-its-powers-and-limitations`) | `history--thematic-history--infrastructure.sql` |
-| ⬜ | — | chapter | Urban History (`history/thematic-history/urban-history`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Urban History (`history/thematic-history/urban-history`) | `history--thematic-history--urban-history.sql` |
 | ⬜ | — | chapter | Borders and Borderlands (`history/thematic-history/borders-and-borderlands`) |  |
 | ⬜ | — | chapter | Cryo-History: Histories of Cold Places (`history/thematic-history/cryo-history-histories-of-cold-places`) |  |
 | ⬜ | — | chapter | Revolutions in Comparison (`history/thematic-history/revolutions-in-comparison`) |  |
