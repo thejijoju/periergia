@@ -64,7 +64,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | The Rise of Islam and the Caliphates (`history/medieval-history/the-islamic-world/the-rise-of-islam-and-the-caliphates`) | `history--medieval-history--rise-of-islam.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Islamic Commercial Revolution (800–1200) (`history/medieval-history/the-islamic-world/the-islamic-commercial-revolution-800-1200`) | `history--medieval-history--islamic-commercial-revolution.sql` |
 | | | **Asia** | | |
-| ✅ | ⬜ | chapter | Tang and Song China (`history/medieval-history/asia/tang-and-song-china`) | `history--medieval-history--tang-song.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Tang and Song China (`history/medieval-history/asia/tang-and-song-china`) | `history--medieval-history--tang-song.sql` |
 | ✅ | ⬜ | chapter | Medieval Japan: Court, Samurai, and Shogun (`history/medieval-history/asia/medieval-japan-court-samurai-and-shogun`) | `history--medieval-history--medieval-japan.sql` |
 | ✅ | ⬜ | chapter | The Delhi Sultanate and Medieval India (`history/medieval-history/asia/the-delhi-sultanate-and-medieval-india`) | `history--medieval-history--delhi-sultanate.sql` |
 | ✅ | ⬜ | chapter | Angkor, Srivijaya, and Medieval Southeast Asia (`history/medieval-history/asia/angkor-srivijaya-and-medieval-southeast-asia`) | `history--medieval-history--southeast-asia.sql` |
