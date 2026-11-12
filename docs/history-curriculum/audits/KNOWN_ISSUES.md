@@ -101,3 +101,11 @@ Leads found while researching new chapters that may affect articles already publ
 - **Second Industrial Revolution:** the tanker *Zoroaster* is dated 1878; Wikipedia gives 1877 (built). Minor.
 - **Imperial Russia:** if it implies a completed Trans-Siberian line before 1916, note that a continuous all-Russian Moscow–Vladivostok line was finished only in 1916.
 - **Inca Empire:** "30,000–40,000 km" of roads fits, but proposed estimates run 23,000–60,000 km, with about 40,000 most cited.
+
+## Found during Urban History research (2026-11-12)
+
+- **Neolithic chapter:** Çatalhöyük "several thousand" people; recent work gives 600–800 in an average year (older estimates 5,000–7,000). Give the range and the revision.
+- **Tang and Song China:** Chang'an "a million people"; modern estimates are 800,000–1,000,000.
+- **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400.
+- **Teotihuacan:** check peak and decline dates against current estimates.
+- **Sophiatown:** the Apartheid chapter's attribution of the removal is probably the more precise; check other mentions.
