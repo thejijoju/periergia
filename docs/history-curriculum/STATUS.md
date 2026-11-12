@@ -227,7 +227,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ⬜ | — | overview | Thematic History (`history/thematic-history`) |  |
 | ✅ | ✅ 2026-11-12 | chapter | Social History (`history/thematic-history/social-history`) | `history--thematic-history--social-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Intellectual History (`history/thematic-history/intellectual-history`) | `history--thematic-history--intellectual-history.sql` |
-| ⬜ | — | chapter | Military History (`history/thematic-history/military-history`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Military History (`history/thematic-history/military-history`) | `history--thematic-history--military-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Global History (`history/thematic-history/global-history`) | `history--thematic-history--global-history.sql` |
 | ⬜ | — | chapter | Environmental History (`history/thematic-history/environmental-history`) |  |
 | ⬜ | — | chapter | The Global History of Quantitative Data (`history/thematic-history/the-global-history-of-quantitative-data`) |  |
