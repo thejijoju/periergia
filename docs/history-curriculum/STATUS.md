@@ -91,8 +91,8 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | European Expansion Overseas (Age of Exploration) (`history/renaissance-and-reformation/european-expansion-overseas-age-of-exploration`) | `history--renaissance-and-reformation--european-expansion.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Conquest of the Americas (`history/renaissance-and-reformation/the-conquest-of-the-americas`) | `history--renaissance-and-reformation--conquest-of-americas.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Columbian Exchange and the First Global Economy (`history/renaissance-and-reformation/new-world-economy`) | `history--renaissance-and-reformation--columbian-exchange.sql` |
-| ✅ | ⬜ | chapter | The Atlantic Slave Trade (`history/renaissance-and-reformation/the-atlantic-slave-trade`) | `history--renaissance-and-reformation--atlantic-slave-trade.sql` |
-| ✅ | ⬜ | chapter | Atlantic Slave Wars (`history/renaissance-and-reformation/atlantic-slave-wars`) | `history--renaissance-and-reformation--atlantic-slave-wars.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Atlantic Slave Trade (`history/renaissance-and-reformation/the-atlantic-slave-trade`) | `history--renaissance-and-reformation--atlantic-slave-trade.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Atlantic Slave Wars (`history/renaissance-and-reformation/atlantic-slave-wars`) | `history--renaissance-and-reformation--atlantic-slave-wars.sql` |
 
 ### The Early Modern World (c. 1550–1800)
 
