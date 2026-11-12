@@ -148,3 +148,4 @@ Leads found while researching new chapters that may affect articles already publ
 - **Slavery chapter:** says Wang Mang's abolition of slavery (9 CE) was reversed in 12 CE; Wikipedia's Wang Mang article puts the reinstatement after his death in 23 CE. Check the date (Han China now says only "a measure soon reversed").
 - **Han China (resolved 2026-11-12):** *Romance of the Three Kingdoms* now "attributed to … Luo Guanzhong and first printed in 1522".
 - **Renaissance:** says the *querelle des femmes* was "begun by Christine de Pizan around 1405"; her debate over the *Roman de la Rose* began in 1401–02. Check when the Renaissance chapter is reviewed.
+- **Chinese History:** says the *jiaozi* was "taken over by the state in 1023"; Tang and Song now says "took over in 1023, issuing its first notes in 1024". Also consider noting that Zhu Xi's commentaries became the examination basis under the Yuan (1313), not first under the Ming.
