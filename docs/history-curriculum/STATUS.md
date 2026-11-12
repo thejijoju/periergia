@@ -251,6 +251,6 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | History and Drugs (`history/thematic-history/history-and-drugs`) | `history--thematic-history--history-and-drugs.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Global History of Capitalism: Past, Present, Future (`history/thematic-history/global-history-of-capitalism-past-present-future`) | `history--thematic-history--capitalism.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Capitalism and Labor in the United States (`history/thematic-history/capitalism-and-labor-in-the-united-states`) | `history--thematic-history--us-capitalism-labor.sql` |
-| ⬜ | — | chapter | American Empire: the United States in the World (`history/thematic-history/american-empire-the-united-states-in-the-world`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | American Empire: the United States in the World (`history/thematic-history/american-empire-the-united-states-in-the-world`) | `history--thematic-history--american-empire.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Oil and Empire (`history/thematic-history/oil-and-empire`) | `history--thematic-history--oil-empire.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | AI and Empire (`history/thematic-history/ai-and-empire`) | `history--thematic-history--ai-empire.sql` |
