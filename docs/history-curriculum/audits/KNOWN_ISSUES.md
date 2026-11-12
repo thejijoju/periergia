@@ -79,3 +79,9 @@ Leads found while researching new chapters that may affect articles already publ
 - Interwar and British Empire: Igbo Women's War deaths given as "55"; sources differ (51 women and 1 man; separate tolls by place; oral accounts of about 100 at Aba). Consider "more than fifty".
 - Kongo, Asante and Dahomey: Dahomey's women soldiers were recruited from captives and free women, not only palace women.
 - Modern Africa: "Sub-Saharan Africa has carried over two-thirds of the world's HIV infections"; UNAIDS 2024 gives about 26.3 of 40.8 million (about 64%). Use "about two-thirds". (Found by the Health and Healing research, 2026-11-11.)
+
+## Found during Disease and Epidemics research (2026-11-12)
+
+- Contemporary chapters: COVID-19 excess-death range "13.3–16.6 million", "81% in middle-income countries" and India's "4.7 million" could not be confirmed; only the WHO's 14.9 million excess deaths (against 5.4 million reported) was confirmed. Re-check in Phase 2.
+- 20th-century overview: smallpox "300 million" deaths in the twentieth century; sources give 250–500 million. Consider giving the range.
+- Haiti / yellow fever: the published chapter's 7,000–8,000 survivors of 31,000 French troops counts a different total from J. R. McNeill's 35,000–45,000 casualties; attribute figures if both appear.
