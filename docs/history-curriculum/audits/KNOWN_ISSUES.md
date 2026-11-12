@@ -85,3 +85,12 @@ Leads found while researching new chapters that may affect articles already publ
 - Contemporary chapters: COVID-19 excess-death range "13.3–16.6 million", "81% in middle-income countries" and India's "4.7 million" could not be confirmed; only the WHO's 14.9 million excess deaths (against 5.4 million reported) was confirmed. Re-check in Phase 2.
 - 20th-century overview: smallpox "300 million" deaths in the twentieth century; sources give 250–500 million. Consider giving the range.
 - Haiti / yellow fever: the published chapter's 7,000–8,000 survivors of 31,000 French troops counts a different total from J. R. McNeill's 35,000–45,000 casualties; attribute figures if both appear.
+
+## Found during Food in World History research (2026-11-12)
+
+- **Great Leap Forward famine:** the 20th Century overview gives "30–45 million", while Maoism, Modern China and Chinese History give about 15–45 million or more. Align the overview with the attributed range.
+- **Indian famines of 1876–78:** Mike Davis is cited (via Wikipedia) for 6.1–10.3 million deaths; the British Empire chapter gives 5.6–9.6 million. Check which figure belongs to which source and attribute it.
+- **Coffee:** History and Drugs says coffee was "first cultivated in Ethiopia and Yemen". Wild arabica is Ethiopian, but drinking and cultivation are first attested in Yemen.
+- **Sen's democracy line:** the Maoism chapter's wording ("no substantial famine has ever occurred in a democratic country") could not be confirmed. The version found is "No famine has ever taken place in the history of the world in a functioning democracy" (interview, attributed to *Development as Freedom*, 1999). Check against the book.
+- **Holodomor:** published chapters give 3.5–5 million; East European Identities gives about 3–5 million (already noted above if listed). Align with an attributed range.
+- **Note on the Haiti / yellow fever entry above:** the Disease and Epidemics audit could not confirm McNeill's "35,000–45,000 casualties" or the "a third returned" line (citation-needed on Wikipedia; other summaries give over 50,000 French dead). The published Disease chapter now says only that most of Leclerc's soldiers died, chiefly of yellow fever.
