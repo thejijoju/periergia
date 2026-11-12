@@ -125,3 +125,8 @@ Leads found while researching new chapters that may affect articles already publ
 
 - **Trading Companies chapter:** says the VOC had permanent capital and limited liability from 1602; Padgett and Powell (cited on Wikipedia) date locked-in capital and limited liability to 1612. Earlier share companies (Song *douniu*, Stora 1288, Bazacle c. 1350) mean "first joint-stock company" needs hedging.
 - **Environmental History chapter:** dates Jason Moore's Capitalocene to the "long sixteenth century" (from c. 1450); Wikipedia gives his "long seventeenth century (c. 1550–1700)". Check against Moore's book.
+
+## Found during American Empire research (2026-11-12)
+
+- **Imperial Expansion and Resistance:** Balangiga given as 54 US soldiers killed; Wikipedia says "almost fifty". Check.
+- **Modern Southeast Asia:** Philippine–American War deaths use the 600,000 claim and Gates's 321,000 maximum; the mainstream civilian range is 200,000–250,000. Attribute each figure.
