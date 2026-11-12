@@ -73,7 +73,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | The Swahili Coast and Great Zimbabwe (`history/medieval-history/africa/the-swahili-coast-and-great-zimbabwe`) | `history--medieval-history--swahili-zimbabwe.sql` |
 | | | **The Americas** | | |
 | ✅ | ⬜ | chapter | North America before Columbus (`history/medieval-history/the-americas/north-america-before-columbus`) | `history--medieval-history--north-america.sql` |
-| ✅ | ⬜ | chapter | Moctezuma's Mexico (`history/medieval-history/the-americas/moctezuma-s-mexico`) | `history--medieval-history--moctezumas-mexico.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Moctezuma's Mexico (`history/medieval-history/the-americas/moctezuma-s-mexico`) | `history--medieval-history--moctezumas-mexico.sql` |
 | ✅ | ⬜ | chapter | The Inca Empire (`history/medieval-history/the-americas/the-inca-empire`) | `history--medieval-history--inca-empire.sql` |
 | | | **Across Afro-Eurasia** | | |
 | ✅ | ⬜ | chapter | The Mongol Empire (`history/medieval-history/across-afro-eurasia/the-mongol-empire`) | `history--medieval-history--mongol-empire.sql` |
