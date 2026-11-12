@@ -41,7 +41,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | The Classical World (c. 600 BCE–600 CE) (`history/classical-antiquity`) | `history--classical-antiquity--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Persian Empire (`history/classical-antiquity/the-persian-empire`) | `history--classical-antiquity--persian-empire.sql` |
-| ✅ | ⬜ | chapter | Ancient Greece (`history/classical-antiquity/ancient-greece`) | `history--classical-antiquity--ancient-greece.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Ancient Greece (`history/classical-antiquity/ancient-greece`) | `history--classical-antiquity--ancient-greece.sql` |
 | ✅ | ⬜ | chapter | Alexander and the Hellenistic World (`history/classical-antiquity/alexander-and-the-hellenistic-world`) | `history--classical-antiquity--alexander-hellenistic.sql` |
 | ✅ | ⬜ | chapter | Rome and the Ancient Roman World (`history/classical-antiquity/rome-and-the-ancient-roman-world`) | `history--classical-antiquity--rome.sql` |
 | ✅ | ⬜ | chapter | The Fall of the Roman Empire (`history/classical-antiquity/the-fall-of-the-roman-empire`) | `history--classical-antiquity--fall-of-rome.sql` |
