@@ -139,3 +139,5 @@ Leads found while researching new chapters that may affect articles already publ
 ## Found during Phase 2 review (2026-11-12)
 
 - **Disease and Epidemics:** dates the measles–rinderpest split to "between 900 and 2,400 years ago". The Neolithic chapter now cites Düx et al. 2020 (as early as the sixth century BCE, range 1174 BCE–165 CE). Align the Disease chapter with the 2020 study when it is next revised.
+- **Energy vs Environmental History:** Britain's "five-sixths of the world's coal" in 1700 is hedged "by one estimate" in Environmental History (and the Thematic overview) but unhedged in the Energy chapter. Add the hedge to Energy.
+- **Hollerith's 1890 census:** AI and Empire says it took six years to process (against eight for 1880); Quantitative Data gives a range from under three to about six years. Reconcile.

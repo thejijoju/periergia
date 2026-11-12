@@ -224,7 +224,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ⬜ | — | overview | Thematic History (`history/thematic-history`) |  |
+| ✅ | ✅ 2026-11-12 | overview | Thematic History (`history/thematic-history`) | `history--thematic-history--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Social History (`history/thematic-history/social-history`) | `history--thematic-history--social-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Intellectual History (`history/thematic-history/intellectual-history`) | `history--thematic-history--intellectual-history.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Military History (`history/thematic-history/military-history`) | `history--thematic-history--military-history.sql` |
