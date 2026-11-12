@@ -120,3 +120,18 @@ Leads found while researching new chapters that may affect articles already publ
 
 - **British Empire chapter:** Boer War camp deaths given as 18,000–26,000 Boer civilians; Wikipedia gives 27,927, the Hobhouse article "some 34,000", Pakenham "at least twenty thousand whites". Give an attributed range and say whether Black African camp deaths are included.
 - **Victorian Era chapter:** Morant Bay "439 killed directly, 354 later executed"; the 1866 Royal Commission's approximate total of 439 deaths may already include the executions. Check before adding them.
+
+## Found during Global History of Capitalism research (2026-11-12)
+
+- **Trading Companies chapter:** says the VOC had permanent capital and limited liability from 1602; Padgett and Powell (cited on Wikipedia) date locked-in capital and limited liability to 1612. Earlier share companies (Song *douniu*, Stora 1288, Bazacle c. 1350) mean "first joint-stock company" needs hedging.
+- **Environmental History chapter:** dates Jason Moore's Capitalocene to the "long sixteenth century" (from c. 1450); Wikipedia gives his "long seventeenth century (c. 1550–1700)". Check against Moore's book.
+
+## Found during American Empire research (2026-11-12)
+
+- **Imperial Expansion and Resistance:** Balangiga given as 54 US soldiers killed; Wikipedia says "almost fifty". Check.
+- **Modern Southeast Asia:** Philippine–American War deaths use the 600,000 claim and Gates's 321,000 maximum; the mainstream civilian range is 200,000–250,000. Attribute each figure.
+
+## Found during AI and Empire research (2026-11-12)
+
+- **Digital Age chapter:** gives Kenyan data-labelling pay of $1.32–$2 an hour without Sama's rebuttal ($1.46–$3.74); add it. Its cobalt share (about three-quarters, USGS 2024) should stay dated.
+- **Infrastructure chapter:** check that the Digital Silk Road is not implied to date from 2013; it was announced in 2015.
