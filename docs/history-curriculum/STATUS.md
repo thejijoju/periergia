@@ -185,7 +185,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ⬜ | — | overview | Long Histories of Regions (`history/regional-histories`) |  |
+| ✅ | ✅ 2026-11-12 | overview | Long Histories of Regions (`history/regional-histories`) | `history--regional-histories--overview.sql` |
 | | | **Europe** | | |
 | ✅ | ✅ 2026-11-11 | chapter | East European Identities: Russia and Ukraine (`history/regional-histories/europe/east-european-identities-russia-and-ukraine`) | `history--regional-histories--east-european-identities.sql` |
 | ✅ | ✅ 2026-11-11 | chapter | The European Union (`history/regional-histories/europe/the-european-union`) | `history--regional-histories--european-union.sql` |

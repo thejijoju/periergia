@@ -136,7 +136,7 @@ Britain had taken Hong Kong in stages from 1842. In the Sino-British Joint Decla
 
 ## Interpreting Modern China
 
-The idea of a "century of humiliation", from the First Opium War to 1949, arose after the defeat of 1895, was popularised by both Nationalists and Communists in the 1920s, became central to party messaging under Xi Jinping, and was made a required theme by the 2023 Patriotic Education Law. Zheng Wang has shown how that memory shapes Chinese politics and foreign relations.
+The idea of a "century of humiliation", from the First Opium War to 1949, arose after the defeat of 1895, was popularised by both Nationalists and Communists in the 1920s, and became central to party messaging under Xi Jinping, whose 2023 Patriotic Education Law made patriotic history education compulsory. Zheng Wang has shown how that memory shapes Chinese politics and foreign relations.
 
 In the West, John King Fairbank, with the Chinese scholar Teng Ssu-yu in *China's Response to the West* (1954), framed modern Chinese history as a response to the Western impact. His student Paul Cohen, in *Discovering History in China* (1984), criticised this "impact–response" model for casting China as passive and called for a "China-centered history of China".
 
