@@ -144,3 +144,4 @@ Leads found while researching new chapters that may affect articles already publ
 - **Migration and Diaspora:** dates the destruction of Jerusalem and Judah's deportation to "586 BCE"; Mesopotamia and Jerusalem say "587 or 586 BCE". Align Migration.
 - **Uruk tablets:** Quantitative Data says "almost all" of about 5,000 archaic tablets are administrative; Mesopotamia says "about 85 per cent" (Englund). Compatible, but consider aligning.
 - **Urban History vs Indus Valley:** Urban History gives Mohenjo-daro "at least 40,000" and "laid out on a grid"; Indus Valley now says "around 40,000 … up to 60,000" and "not on a perfect grid". Align the grid wording.
+- **Rome (resolved 2026-11-12):** the 6,000 crucified are now attributed to Appian, as in the Slavery chapter.
