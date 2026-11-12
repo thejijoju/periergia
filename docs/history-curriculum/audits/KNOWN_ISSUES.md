@@ -130,3 +130,8 @@ Leads found while researching new chapters that may affect articles already publ
 
 - **Imperial Expansion and Resistance:** Balangiga given as 54 US soldiers killed; Wikipedia says "almost fifty". Check.
 - **Modern Southeast Asia:** Philippine–American War deaths use the 600,000 claim and Gates's 321,000 maximum; the mainstream civilian range is 200,000–250,000. Attribute each figure.
+
+## Found during AI and Empire research (2026-11-12)
+
+- **Digital Age chapter:** gives Kenyan data-labelling pay of $1.32–$2 an hour without Sama's rebuttal ($1.46–$3.74); add it. Its cobalt share (about three-quarters, USGS 2024) should stay dated.
+- **Infrastructure chapter:** check that the Digital Silk Road is not implied to date from 2013; it was announced in 2015.
