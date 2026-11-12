@@ -76,9 +76,9 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Moctezuma's Mexico (`history/medieval-history/the-americas/moctezuma-s-mexico`) | `history--medieval-history--moctezumas-mexico.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Inca Empire (`history/medieval-history/the-americas/the-inca-empire`) | `history--medieval-history--inca-empire.sql` |
 | | | **Across Afro-Eurasia** | | |
-| ✅ | ⬜ | chapter | The Mongol Empire (`history/medieval-history/across-afro-eurasia/the-mongol-empire`) | `history--medieval-history--mongol-empire.sql` |
-| ✅ | ⬜ | chapter | The Black Death (`history/medieval-history/across-afro-eurasia/the-black-death`) | `history--medieval-history--black-death.sql` |
-| ✅ | ⬜ | chapter | Slavery in the global Middle Ages (`history/medieval-history/across-afro-eurasia/slavery-in-the-global-middle-ages`) | `history--medieval-history--slavery-global.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Mongol Empire (`history/medieval-history/across-afro-eurasia/the-mongol-empire`) | `history--medieval-history--mongol-empire.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Black Death (`history/medieval-history/across-afro-eurasia/the-black-death`) | `history--medieval-history--black-death.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Slavery in the global Middle Ages (`history/medieval-history/across-afro-eurasia/slavery-in-the-global-middle-ages`) | `history--medieval-history--slavery-global.sql` |
 
 ### Renaissance, Reformation, and Encounter (c. 1400–1650)
 
