@@ -232,7 +232,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Environmental History (`history/thematic-history/environmental-history`) | `history--thematic-history--environmental-history.sql` |
 | ⬜ | — | chapter | The Global History of Quantitative Data (`history/thematic-history/the-global-history-of-quantitative-data`) |  |
 | ✅ | ✅ 2026-11-12 | chapter | Digital History (`history/thematic-history/digital-history`) | `history--thematic-history--digital-history.sql` |
-| ⬜ | — | chapter | Histories of Emotions: From the 'Rational Self' to Modern Neuroscience (`history/thematic-history/histories-of-emotions-from-the-rational-self-to-modern-neuroscience`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Histories of Emotions: From the 'Rational Self' to Modern Neuroscience (`history/thematic-history/histories-of-emotions-from-the-rational-self-to-modern-neuroscience`) | `history--thematic-history--emotions.sql` |
 | ⬜ | — | chapter | Women and Gender in World History (`history/thematic-history/women-and-gender-in-world-history`) |  |
 | ⬜ | — | chapter | Disease and Epidemics in World History (`history/thematic-history/disease-and-epidemics-in-world-history`) |  |
 | ⬜ | — | chapter | Migration and Diaspora (`history/thematic-history/migration-and-diaspora`) |  |
