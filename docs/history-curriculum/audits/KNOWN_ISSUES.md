@@ -109,3 +109,9 @@ Leads found while researching new chapters that may affect articles already publ
 - **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400.
 - **Teotihuacan:** check peak and decline dates against current estimates.
 - **Sophiatown:** the Apartheid chapter's attribution of the removal is probably the more precise; check other mentions.
+
+## Found during Slavery research (2026-11-12)
+
+- **Medieval slavery chapter:** states as fact that "slave" derives from "Slav"; this is the widespread view but has been disputed since the 19th century. Hedge it.
+- **Rome chapter:** "6,000 crucified" after Spartacus is citation-needed in the source; attribute it to Appian.
+- **East African slave trade:** Africa to 1860 calls 8 million "high-end … contested"; Migration and Diaspora attributes it to N'Diaye and Pétré-Grenouilleau. Keep attributed wherever it appears.
