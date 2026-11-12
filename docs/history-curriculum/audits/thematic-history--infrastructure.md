@@ -1,0 +1,24 @@
+# Audit ledger: The Role of Infrastructure in History: its Powers and Limitations
+
+File: `supabase/content/history--thematic-history--infrastructure.sql`
+Written source-first on 2026-11-12 from `research/thematic-history--infrastructure.md`. Two independent passes: A (top-down, 104 claims confirmed) and B (bottom-up, about 150 confirmed). Fixes (15 edits):
+
+| Claim (before) | Verdict | Source | Change |
+|---|---|---|---|
+| Mann "in his words": "the institutional capacity of a state, despotic or not, …" (introduced 1984) | IMPRECISE (A, B): this is the 1993 wording, and the original may read "a central state" | Infrastructural power; Michael Mann (sociologist) | Dated "a later formulation (1993)" and paraphrased, without quotation marks |
+| Subak terraces "covering nearly 20,000 hectares" | IMPRECISE (A, B): that is the World Heritage core | Subak (irrigation) | "whose World Heritage-listed core covers nearly 20,000 hectares" |
+| Erie Canal "built largely by newly arrived Irish labourers" | IMPRECISE (A, B) | Erie Canal | "Many of its labourers were newly arrived Irish immigrants" |
+| Suez: 2.49 per thousand "implying fewer than 3,000" (body, checkpoint 2 answer and "why") | IMPRECISE (A, B): a Wikipedia editor's extrapolation | Suez Canal | "a generous extrapolation gives a few thousand deaths at most" |
+| Central Pacific Chinese workers: "conventional total 10,000–12,000 … payroll analyses suggest about 9,000" | IMPRECISE (A, B): peak, not total; 9,000 disputed | Stanford Chinese Railroad Workers project; Central Pacific Railroad | Peak workforce 10,000–15,000 at any one time, more in total because of turnover |
+| Narmada: "the World Bank, its own review critical, withdrew" (1993) | IMPRECISE (A, B): India cancelled the loan | Narmada Bachao Andolan | After a critical independent review commissioned by the Bank, India cancelled the loan |
+| HS2 "lost its northern legs in 2023" | IMPRECISE (A, B) | High Speed 2 | "in 2021–23" |
+| Ming renovation "with 165,000 labourers" | IMPRECISE scope (B): Shandong section | Grand Canal (China) | "165,000 labourers dredged the Shandong section alone" |
+| A Moses aide said low bridges "were meant to deter commercial traffic" (as a rebuttal) | IMPRECISE framing (B) | Robert Moses (citing Caro p. 952) | Aide's statement given in full (commercial vehicles, buses included); Caro read it as support |
+| Aswan "resettled 100,000–120,000 Nubians, who began to receive compensation only in 2019–20" | IMPRECISE scope (B) | Aswan High Dam | Nubians in Egypt and Sudan; Egypt compensated its displaced Nubians from 2019–20 |
+| Julie Greene: the gold/silver division "rested on class, gender, race and nationality together" | UNVERIFIED (A, B) | Gold roll | Replaced: racially coded, gold roll tied to American or Panamanian citizenship |
+| "Larkin replies that much infrastructure … is built precisely to be seen" | UNVERIFIED (A, B) | Secondary summaries of Larkin 2013 | "Larkin stresses that infrastructures are also aesthetic and political signs, often meant to be seen" |
+| 2021 study: "communities within 20 km of the Inca road" | IMPRECISE (A): Peru only | Franco, Galiani and Lavado (NBER w28979) | "communities in Peru within 20 km" |
+
+Kept with one confirming pass: Hambantota about 5% of Sri Lanka's 2017 debt service (B, via CGTN and *The Diplomat* quoting Brautigam and Rithmire); Paul N. Edwards on modernity and infrastructures (A, paraphrase from Edwards 2003).
+
+Confirmed by both passes, among others: Larkin's two definitions (2013); Star (1999); Mann's 1984 coinage and over/through; the Royal Road (about 2,700 km, 111 stations, Herodotus); Roman roads and the Via Appia; the coin-hoard study; the Inca road (about 40,000 km); Roman aqueducts, Frontinus, the Goths in 537, the Pont du Gard; qanats; the Grand Canal (604–609, 1855); Wittfogel (1957), his critics and Carneiro's quotation; Lansing on subak; the Erie Canal (1817–25, 363 miles, flour freight); Suez (Necho, corvée, 1.5 million, Nasser's 120,000, 1875); Panama (French failure, about 5,600 dead, 1999); standard gauge; the transcontinental railroad (1869, late-1865 snapshot, bison); the Trans-Siberian (1891, 1904, 1916); cables (1858, 1866, 1872, gutta-percha); Headrick (1981); Indian railways and Donaldson, Burgess and Donaldson; the Uganda and Congo–Ocean railways and Kongo-Wara; the Great Stink, Disraeli's quotation, Bazalgette and 1866; Lenin and GOELRO; rural electrification and Beito; Bhakra and Nehru's wording; TVA, Kariba, Akosombo, Three Gorges; the World Commission on Dams' 40–80 million; the Interstates; redlining and Fishback; Moses, Caro, Woolgar and Cooper, Jackson; Graham and Marvin (2001); Scott (1998) and Hardin; the groundnut scheme; Flyvbjerg and Hirschman; the Big Dig; Mattala; I-35W; Morandi; Tideway; TAZARA; the Belt and Road; Kenya's SGR; Chellaney; Hambantota's lease; Brautigam and Rithmire's quotation; Lowy (2025); California high-speed rail; the reading list.
