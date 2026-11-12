@@ -123,7 +123,7 @@ Leads found while researching new chapters that may affect articles already publ
 
 ## Found during Global History of Capitalism research (2026-11-12)
 
-- **Trading Companies chapter:** says the VOC had permanent capital and limited liability from 1602; Padgett and Powell (cited on Wikipedia) date locked-in capital and limited liability to 1612. Earlier share companies (Song *douniu*, Stora 1288, Bazacle c. 1350) mean "first joint-stock company" needs hedging.
+- **Trading Companies chapter:** says the VOC had permanent capital and limited liability from 1602; Padgett and Powell (cited on Wikipedia) date locked-in capital and limited liability to 1612. Earlier share companies (Song *douniu*, Stora 1288, Bazacle c. 1350) mean "first joint-stock company" needs hedging. **Resolved 2026-11-12.**
 - **Environmental History chapter:** dates Jason Moore's Capitalocene to the "long sixteenth century" (from c. 1450); Wikipedia gives his "long seventeenth century (c. 1550–1700)". Check against Moore's book.
 
 ## Found during American Empire research (2026-11-12)
@@ -151,4 +151,4 @@ Leads found while researching new chapters that may affect articles already publ
 - **Chinese History:** says the *jiaozi* was "taken over by the state in 1023"; Tang and Song now says "took over in 1023, issuing its first notes in 1024". Also consider noting that Zhu Xi's commentaries became the examination basis under the Yuan (1313), not first under the Ming.
 - **Conquest of the Americas:** says smallpox "reached the Andes in the 1520s before Pizarro, killing the Inca ruler and his heir". The disease's identity is debated (McCaa) and Pizarro's exploring voyages were already on the coast in 1524–28; The Inca Empire now says "often identified as smallpox though this is debated" and "years before Pizarro's 1532 invasion". Align when that chapter is reviewed. **Resolved 2026-11-12.**
 - **Medieval World overview:** says the Black Death killed "a third to a half of the populations it reached, from China to Western Europe"; The Black Death and Disease and Epidemics both say plague in fourteenth-century China is unproven. Fix when the overview is reviewed.
-- **Enlightenment:** says Müteferrika in 1727 opened "the first Ottoman printing press using Arabic script"; Arab Christians printed in Arabic at Aleppo in 1706–1711. Ottoman Social and Cultural History now says "no Muslim-run press … until". Align when the Enlightenment chapter is reviewed.
+- **Enlightenment:** says Müteferrika in 1727 opened "the first Ottoman printing press using Arabic script"; Arab Christians printed in Arabic at Aleppo in 1706–1711. Ottoman Social and Cultural History now says "no Muslim-run press … until". Align when the Enlightenment chapter is reviewed. **Resolved 2026-11-12.**
