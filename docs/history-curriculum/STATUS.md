@@ -237,7 +237,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Disease and Epidemics in World History (`history/thematic-history/disease-and-epidemics-in-world-history`) | `history--thematic-history--disease-epidemics.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Migration and Diaspora (`history/thematic-history/migration-and-diaspora`) | `history--thematic-history--migration-diaspora.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Food in World History (`history/thematic-history/food-in-world-history`) | `history--thematic-history--food.sql` |
-| ⬜ | — | chapter | History of Energy (`history/thematic-history/history-of-energy`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | History of Energy (`history/thematic-history/history-of-energy`) | `history--thematic-history--energy.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Role of Infrastructure in History: its Powers and Limitations (`history/thematic-history/the-role-of-infrastructure-in-history-its-powers-and-limitations`) | `history--thematic-history--infrastructure.sql` |
 | ⬜ | — | chapter | Urban History (`history/thematic-history/urban-history`) |  |
 | ⬜ | — | chapter | Borders and Borderlands (`history/thematic-history/borders-and-borderlands`) |  |
