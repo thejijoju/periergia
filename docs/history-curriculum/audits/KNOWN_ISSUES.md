@@ -85,3 +85,27 @@ Leads found while researching new chapters that may affect articles already publ
 - Contemporary chapters: COVID-19 excess-death range "13.3–16.6 million", "81% in middle-income countries" and India's "4.7 million" could not be confirmed; only the WHO's 14.9 million excess deaths (against 5.4 million reported) was confirmed. Re-check in Phase 2.
 - 20th-century overview: smallpox "300 million" deaths in the twentieth century; sources give 250–500 million. Consider giving the range.
 - Haiti / yellow fever: the published chapter's 7,000–8,000 survivors of 31,000 French troops counts a different total from J. R. McNeill's 35,000–45,000 casualties; attribute figures if both appear.
+
+## Found during Food in World History research (2026-11-12)
+
+- **Great Leap Forward famine:** the 20th Century overview gives "30–45 million", while Maoism, Modern China and Chinese History give about 15–45 million or more. Align the overview with the attributed range.
+- **Indian famines of 1876–78:** Mike Davis is cited (via Wikipedia) for 6.1–10.3 million deaths; the British Empire chapter gives 5.6–9.6 million. Check which figure belongs to which source and attribute it.
+- **Coffee:** History and Drugs says coffee was "first cultivated in Ethiopia and Yemen". Wild arabica is Ethiopian, but drinking and cultivation are first attested in Yemen.
+- **Sen's democracy line:** the Maoism chapter's wording ("no substantial famine has ever occurred in a democratic country") could not be confirmed. The version found is "No famine has ever taken place in the history of the world in a functioning democracy" (interview, attributed to *Development as Freedom*, 1999). Check against the book.
+- **Holodomor:** published chapters give 3.5–5 million; East European Identities gives about 3–5 million (already noted above if listed). Align with an attributed range.
+- **Note on the Haiti / yellow fever entry above:** the Disease and Epidemics audit could not confirm McNeill's "35,000–45,000 casualties" or the "a third returned" line (citation-needed on Wikipedia; other summaries give over 50,000 French dead). The published Disease chapter now says only that most of Leclerc's soldiers died, chiefly of yellow fever.
+
+## Found during Energy and Infrastructure research (2026-11-12)
+
+- **Environmental History:** says Smil dates fossil fuels overtaking biomass to the late 1890s; summaries of Smil give the late 1880s or "around 1900". Check against *Energy and Civilization*.
+- **Second Industrial Revolution:** the tanker *Zoroaster* is dated 1878; Wikipedia gives 1877 (built). Minor.
+- **Imperial Russia:** if it implies a completed Trans-Siberian line before 1916, note that a continuous all-Russian Moscow–Vladivostok line was finished only in 1916.
+- **Inca Empire:** "30,000–40,000 km" of roads fits, but proposed estimates run 23,000–60,000 km, with about 40,000 most cited.
+
+## Found during Urban History research (2026-11-12)
+
+- **Neolithic chapter:** Çatalhöyük "several thousand" people; recent work gives 600–800 in an average year (older estimates 5,000–7,000). Give the range and the revision.
+- **Tang and Song China:** Chang'an "a million people"; modern estimates are 800,000–1,000,000.
+- **Cahokia (where published):** 10,000–20,000 and abandoned "by 1350"; estimates run 6,000–40,000 and abandonment by about 1400.
+- **Teotihuacan:** check peak and decline dates against current estimates.
+- **Sophiatown:** the Apartheid chapter's attribution of the removal is probably the more precise; check other mentions.
