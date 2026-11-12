@@ -47,7 +47,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | The Fall of the Roman Empire (`history/classical-antiquity/the-fall-of-the-roman-empire`) | `history--classical-antiquity--fall-of-rome.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Classical India: the Mauryas to the Guptas (`history/classical-antiquity/classical-india-the-mauryas-to-the-guptas`) | `history--classical-antiquity--classical-india.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Han China (206 BCE–220 CE) (`history/classical-antiquity/han-china-206-bce-220-ce`) | `history--classical-antiquity--han-china.sql` |
-| ✅ | ⬜ | chapter | The Silk Roads (`history/classical-antiquity/the-silk-roads`) | `history--classical-antiquity--silk-roads.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Silk Roads (`history/classical-antiquity/the-silk-roads`) | `history--classical-antiquity--silk-roads.sql` |
 
 ### The Medieval World (c. 500–1500)
 
@@ -55,8 +55,8 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 |---|---|---|---|---|
 | ✅ | ⬜ | overview | The Medieval World (c. 500–1500) (`history/medieval-history`) | `history--medieval-history--overview.sql` |
 | | | **Europe and Byzantium** | | |
-| ✅ | ⬜ | chapter | Early Medieval Europe (`history/medieval-history/europe-and-byzantium/early-medieval-europe`) | `history--medieval-history--early-medieval-europe.sql` |
-| ✅ | ⬜ | chapter | Lords, Peasants, and Towns in Medieval Europe (`history/medieval-history/europe-and-byzantium/lords-peasants-and-towns-in-medieval-europe`) | `history--medieval-history--lords-peasants-towns.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Early Medieval Europe (`history/medieval-history/europe-and-byzantium/early-medieval-europe`) | `history--medieval-history--early-medieval-europe.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Lords, Peasants, and Towns in Medieval Europe (`history/medieval-history/europe-and-byzantium/lords-peasants-and-towns-in-medieval-europe`) | `history--medieval-history--lords-peasants-towns.sql` |
 | ✅ | ⬜ | chapter | Sex, Love, and Marriage in the Middle Ages (`history/medieval-history/europe-and-byzantium/sex-love-and-marriage-in-the-middle-ages`) | `history--medieval-history--sex-love-marriage.sql` |
 | ✅ | ⬜ | chapter | Byzantium: the Empire of New Rome (`history/medieval-history/europe-and-byzantium/byzantium-the-empire-of-new-rome`) | `history--medieval-history--byzantium.sql` |
 | ✅ | ⬜ | chapter | The Crusades (`history/medieval-history/europe-and-byzantium/the-crusades`) | `history--medieval-history--crusades.sql` |
