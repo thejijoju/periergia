@@ -247,7 +247,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Slavery: a Global History (`history/thematic-history/slavery`) | `history--thematic-history--slavery.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Abolitionist Women (`history/thematic-history/abolitionist-women`) | `history--thematic-history--abolitionist-women.sql` |
 | ⬜ | — | chapter | History of Civil Liberties (`history/thematic-history/history-of-civil-liberties`) |  |
-| ⬜ | — | chapter | Scandals in History: Moral Panics, Repression, and Reform (`history/thematic-history/scandals-in-history-moral-panics-repression-and-reform`) |  |
+| ✅ | ✅ 2026-11-12 | chapter | Scandals in History: Moral Panics, Repression, and Reform (`history/thematic-history/scandals-in-history-moral-panics-repression-and-reform`) | `history--thematic-history--scandals.sql` |
 | ✅ | ⬜ | chapter | History and Drugs (`history/thematic-history/history-and-drugs`) | `history--thematic-history--history-and-drugs.sql` |
 | ⬜ | — | chapter | Global History of Capitalism: Past, Present, Future (`history/thematic-history/global-history-of-capitalism-past-present-future`) |  |
 | ⬜ | — | chapter | Capitalism and Labor in the United States (`history/thematic-history/capitalism-and-labor-in-the-united-states`) |  |
