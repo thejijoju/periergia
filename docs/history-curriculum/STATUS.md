@@ -103,9 +103,9 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 | ✅ | ✅ 2026-11-12 | chapter | Ottoman Social and Cultural History (`history/early-modern-period/ottoman-social-and-cultural-history`) | `history--early-modern-period--ottoman-social-cultural.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Safavid Iran (`history/early-modern-period/safavid-iran`) | `history--early-modern-period--safavid.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Mughal Empire (`history/early-modern-period/the-mughal-empire`) | `history--early-modern-period--mughal.sql` |
-| ✅ | ⬜ | chapter | Tokugawa Shogunate (`history/early-modern-period/tokugawa-shogunate`) | `history--early-modern-period--tokugawa.sql` |
-| ✅ | ⬜ | chapter | Russia from Muscovy to Catherine the Great (`history/early-modern-period/russia-from-muscovy-to-catherine-the-great`) | `history--early-modern-period--russia.sql` |
-| ✅ | ⬜ | chapter | The Rise of Absolutism (`history/early-modern-period/the-rise-of-absolutism`) | `history--early-modern-period--absolutism.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Tokugawa Shogunate (`history/early-modern-period/tokugawa-shogunate`) | `history--early-modern-period--tokugawa.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | Russia from Muscovy to Catherine the Great (`history/early-modern-period/russia-from-muscovy-to-catherine-the-great`) | `history--early-modern-period--russia.sql` |
+| ✅ | ✅ 2026-11-12 | chapter | The Rise of Absolutism (`history/early-modern-period/the-rise-of-absolutism`) | `history--early-modern-period--absolutism.sql` |
 | ✅ | ⬜ | chapter | The Scientific Revolution (`history/early-modern-period/the-scientific-revolution`) | `history--early-modern-period--scientific-revolution.sql` |
 | ✅ | ⬜ | chapter | The Enlightenment (`history/early-modern-period/the-enlightenment`) | `history--early-modern-period--enlightenment.sql` |
 | ✅ | ⬜ | chapter | Trading Companies and Empires: the VOC and the East India Company (`history/early-modern-period/trading-companies-and-empires-the-voc-and-the-east-india-company`) | `history--early-modern-period--trading-companies.sql` |

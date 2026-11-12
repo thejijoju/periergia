@@ -29,10 +29,10 @@ The religious wars of the sixteenth century, described in the chapter on the Ref
 
 The bishop **Jacques-Bénigne Bossuet**, tutor to Louis XIV's son, gave the theory a religious form: kings were God's lieutenants on earth, and to rebel against them was to rebel against God. This was the **divine right of kings**.
 
-The English philosopher **Thomas Hobbes**, writing after his country's civil war, reached a similar conclusion by a very different route. In *Leviathan* (1651) he argued that without a sovereign power, human beings would live in a "state of nature", a war of all against all.
+The English philosopher **Thomas Hobbes**, writing in exile as his country's civil wars drew to a close, reached a similar conclusion by a very different route. In *Leviathan* (1651) he argued that without a sovereign power, human beings would live in a "state of nature", a war of all against all.
 
 ```quote
-And the life of man, solitary, poore, nasty, brutish, and short.
+…and the life of man, solitary, poore, nasty, brutish, and short.
 Thomas Hobbes · Leviathan, chapter 13 · 1651
 ```
 
@@ -40,14 +40,14 @@ To escape it, people agreed to hand power to a sovereign, whose authority must b
 
 ## France: From Richelieu to Louis XIV
 
-France in 1600 was a patchwork of provinces with their own laws, estates, and privileges, a powerful nobility, and a Protestant minority, the Huguenots, with fortified towns guaranteed by the Edict of Nantes (1598). As chief minister to Louis XIII from 1624 to 1642, **Cardinal Richelieu** set out to strengthen royal power. He took the Huguenot stronghold of **La Rochelle** in 1628 and removed the Huguenots' military privileges, though not their freedom of worship; sent royal commissioners, the *intendants*, into the provinces; and fought the Habsburgs in the Thirty Years' War, financed by rising taxes that provoked many peasant revolts.
+France in 1600 was a patchwork of provinces with their own laws, estates, and privileges, a powerful nobility, and a Protestant minority, the Huguenots, with fortified towns guaranteed by the Edict of Nantes (1598). As chief minister to Louis XIII from 1624 to 1642, **Cardinal Richelieu** set out to strengthen royal power. He took the Huguenot stronghold of **La Rochelle** in 1628 and, by the Peace of Alès (1629), removed the Huguenots' military privileges, though not their freedom of worship; sent royal commissioners, the *intendants*, into the provinces; and fought the Habsburgs in the Thirty Years' War, financed by rising taxes that provoked many peasant revolts.
 
 When Louis XIV came to the throne as a child in 1643, the cardinal **Mazarin** governed in his name. From 1648 to 1653 the **Fronde**, a series of rebellions by the Paris law courts and then by great nobles, drove the young king from Paris. Louis never forgot it.
 
 On Mazarin's death in 1661, **Louis XIV** (reigned 1643–1715) announced that he would rule without a chief minister. He chose the sun as his emblem. His achievements were real:
 
 - **Versailles.** From 1682 the court lived at the vast new palace of Versailles outside Paris. Great nobles were drawn into an elaborate ceremonial of royal rising and retiring, gambling, and festivals, competing for the king's favour and pensions. The sociologist Norbert Elias described this "court society" as a means of taming the warrior nobility.
-- **The army.** The French army grew to several hundred thousand men in wartime, the largest in Europe, paid and supplied by the state.
+- **The army.** The French army grew to some 340,000 men at its peak in the 1690s (more on paper), the largest in Europe, paid and supplied by the state.
 - **Colbert's mercantilism.** The finance minister **Jean-Baptiste Colbert** promoted manufactures, roads and canals, a navy, and overseas trading companies, believing that a nation's wealth lay in exporting more than it imported.
 - **Religious uniformity.** In 1685, by the Edict of Fontainebleau, Louis revoked the Edict of Nantes and banned Protestant worship. Perhaps two hundred thousand Huguenots fled to the Dutch Republic, England, Prussia, and beyond, taking their skills with them.
 
@@ -83,17 +83,17 @@ why: Both edicts show the absolutist pursuit of order and uniformity, at heavy h
 
 ## War and the Fiscal-Military State
 
-Why did monarchs need so much power? Above all, to make war. In 1955 the historian Michael Roberts argued that a **"military revolution"** had taken place between 1560 and 1660, as new tactics and drill made armies larger and more expensive; Geoffrey Parker extended the argument to the new artillery fortresses, the *trace italienne*, which required ever larger armies to besiege them. Armies of a few tens of thousands grew to hundreds of thousands. The sociologist Charles Tilly summed up the result: war made the state, and the state made war. To pay for armies, rulers needed taxes, loans, and bureaucracies, creating what historians call the **fiscal-military state**.
+Why did monarchs need so much power? Above all, to make war. In 1955 the historian Michael Roberts argued that a **"military revolution"** had taken place between 1560 and 1660, as new tactics and drill made armies larger and more expensive; Geoffrey Parker recast and extended the argument to the new artillery fortresses, the *trace italienne*, which required ever larger armies to besiege them. Armies grew several-fold; France's rose from about 125,000 men in the 1630s to over 300,000 in the 1690s, though the scale and timing of the "revolution" remain debated. The sociologist Charles Tilly summed up the result: war made the state, and the state made war. To pay for armies, rulers needed taxes, loans, and bureaucracies, creating what historians call the **fiscal-military state**.
 
 ## Prussia and the Habsburgs
 
-The Hohenzollern rulers of **Brandenburg-Prussia**, a scattered set of poor territories, built one of Europe's most formidable armies. **Frederick William, the Great Elector** (reigned 1640–1688), made a bargain with the landed nobility, the Junkers: they accepted royal taxation and served as army officers, and in return gained full control over their serfs. He also welcomed Huguenot refugees after 1685. His son became the first king in Prussia in 1701, and his grandson, Frederick William I, the "soldier king", made the army so central that Prussia was later described as an army with a state rather than a state with an army.
+The Hohenzollern rulers of **Brandenburg-Prussia**, a scattered set of poor territories, built one of Europe's most formidable armies. **Frederick William, the Great Elector** (reigned 1640–1688), made a bargain with the landed nobility, the Junkers: in the Recess of 1653 the Brandenburg estates granted him taxes for a standing army, paid largely by peasants and towns; in return the Junkers kept their own tax exemptions and their power over their serfs, and later served as army officers. He also welcomed Huguenot refugees after 1685. His son became the first king in Prussia in 1701, and his grandson, Frederick William I, the "soldier king", made the army so central that Prussia was later described as an army with a state rather than a state with an army.
 
 The Austrian **Habsburgs** ruled a very different realm, a collection of kingdoms and duchies, Austria, Bohemia, and Hungary among them, each with its own laws and estates. They imposed Catholicism in Bohemia after 1620, but in Hungary had to negotiate with powerful nobles. After the Ottoman siege of **Vienna** failed in 1683, as the chapter on the Ottomans described, Habsburg armies reconquered Hungary, and the monarchy became a great power. It remained a multinational dynastic empire, comparable in some ways to the Ottomans it fought.
 
 ## The English and Dutch Alternatives
 
-Not every European state went the absolutist way. In **England**, the Stuart kings' attempts to rule and tax without Parliament led to civil war from 1642. Parliament's New Model Army won, and in 1649 **Charles I** was tried and beheaded. After a republic under **Oliver Cromwell**, which also conquered Ireland with great brutality, the monarchy was restored in 1660. When James II, a Catholic, seemed to threaten Protestantism and Parliament, his son-in-law **William of Orange**, ruler of the Dutch Republic, invaded in 1688. In this **"Glorious Revolution"** James fled, and the **Bill of Rights** of 1689 established that the king could not raise taxes or keep an army in peacetime without Parliament's consent.
+Not every European state went the absolutist way. In **England**, the Stuart kings' attempts to rule and tax without Parliament led to civil war from 1642. Parliament's New Model Army won, and in 1649 **Charles I** was tried and beheaded. After a republic under **Oliver Cromwell**, which also conquered Ireland with great brutality, the monarchy was restored in 1660. When James II, a Catholic, seemed to threaten Protestantism and Parliament, his nephew and son-in-law **William of Orange**, stadtholder of the leading Dutch provinces, invaded in 1688. In this **"Glorious Revolution"** James fled, and the **Bill of Rights** of 1689 established that the king could not raise taxes or keep an army in peacetime without Parliament's consent.
 
 The result was a powerful state of a different kind. Parliament's control of taxation made lenders trust the government, and the Bank of England (1694) and a national debt allowed Britain to borrow cheaply and fight long wars, what the historian John Brewer called the "sinews of power". The **Dutch Republic**, a federation of provinces governed by merchant oligarchies, had already shown that a state without a strong monarch could dominate world trade and finance.
 
@@ -105,11 +105,11 @@ Historians have increasingly questioned the term. Studying the province of Langu
 
 Europe's monarchs were not alone. Across Eurasia and Africa, rulers of this period built larger armies, more centralised administrations, and more elaborate court rituals, often to tame nobles and fund war.
 
-- **Qing China.** The **Kangxi emperor** (reigned 1661–1722), Louis XIV's contemporary, ruled the world's largest population, crushed the revolt of the Three Feudatories in 1673–1681, and conquered Taiwan in 1683. In 1685 Louis sent a group of Jesuit mathematicians to China, and one of them, Joachim Bouvet, later wrote a portrait of Kangxi for the French king. Some European writers admired Chinese government as a model of rational rule by educated officials.
-- **Tokugawa Japan.** As the chapter on the Tokugawa described, the shogun's alternate-attendance system kept the daimyō's families as hostages in Edo and drained their wealth, an arrangement historians have compared with Versailles.
+- **Qing China.** The **Kangxi emperor** (reigned 1661–1722), Louis XIV's contemporary, ruled one of the world's two largest populations, crushed the revolt of the Three Feudatories in 1673–1681, and conquered Taiwan in 1683. In 1685 Louis sent a group of Jesuit mathematicians to China, and one of them, Joachim Bouvet, later wrote a portrait of Kangxi for the French king. Some European writers admired Chinese government as a model of rational rule by educated officials.
+- **Tokugawa Japan.** As the chapter on the Tokugawa described, the shogun's alternate-attendance system kept the daimyō's families as hostages in Edo and drained their wealth, an arrangement often compared with Versailles.
 - **The Ottomans and Mughals** ruled through military slavery, rotating revenue assignments, and imperial ceremony, as the chapters on them described.
 - **Morocco.** **Moulay Ismail** (reigned 1672–1727), another contemporary of Louis XIV, built a vast palace city at Meknes and a standing army of enslaved and conscripted Black soldiers, the *Abid al-Bukhari*, loyal to the sultan alone. He exchanged embassies with Louis XIV; his envoy Abdallah ben Aisha was received at Versailles in 1699.
-- **Southeast Asia.** The historian Victor Lieberman, in *Strange Parallels*, has shown that Burma, Siam, and Vietnam went through cycles of political consolidation that paralleled those of France and Russia across the same centuries.
+- **Southeast Asia.** The historian Victor Lieberman, in *Strange Parallels*, has argued that Burma, Siam, and Vietnam went through cycles of political consolidation that paralleled those of France and Russia across the same centuries.
 
 Seen in this frame, absolutism looks less like a peculiarly European path and more like one version of a widespread early modern project: building states strong enough to survive in an age of gunpowder war.
 
@@ -131,7 +131,7 @@ x: Louis XIV's reign is extremely well documented.
 a: Because kings had no power at all.
 x: The argument is that power was negotiated, not absent.
 a: Because absolutism was invented in the twentieth century in China.
-x: The term was coined by historians to describe early modern European monarchies.
+x: The term was coined by nineteenth-century political writers and later applied by historians to early modern European monarchies.
 a*: Because royal power depended on cooperation with local elites, who were rewarded with privileges and offices, and was limited everywhere by law, custom, and privilege.
 hint: Think of Languedoc and its elites.
 why: The "absolute" monarch was in practice a negotiator with powerful interests.

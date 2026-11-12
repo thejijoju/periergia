@@ -55,7 +55,7 @@ Leads found while researching new chapters that may affect articles already publ
 - Imperial Expansion: General Smith's order quoted as "kill everyone over the age of ten"; the documented wording (1902 press) is "KILL EVERY ONE OVER TEN". Check the quotation against a primary report. (Found by the Modern Southeast Asia research, 2026-11-11.)
 
 ## Japanese chapters (found by the Premodern Korea research, 2026-11-11)
-- Tokugawa chapter: turtle ships called "armoured"; no source from Yi Sun-sin's time calls them ironclad (only the spiked roof is attested).
+- Tokugawa chapter: turtle ships called "armoured"; no source from Yi Sun-sin's time calls them ironclad (only the spiked roof is attested). **Resolved 2026-11-12.**
 - Meiji chapter: "35 Korean soldiers were killed" at Ganghwa in 1875; the source says 35 casualties.
 
 ## Ming China and Zheng He chapter (found by the Ming-Qing research, 2026-11-11)
