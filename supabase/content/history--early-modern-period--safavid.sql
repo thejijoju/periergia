@@ -21,7 +21,7 @@ with master as (
     'research',
     'advanced',
     'read',
-    $em_safavid_master$> **The Safavid dynasty** (1501–1722) made Iran a Shi'a Muslim country, a transformation that still defines Iran's identity and shapes the politics of the Middle East today. From a Sufi order in northwestern Iran, the Safavids built an empire that rivalled the Ottomans to the west and the Mughals to the east, and under Shah Abbas the Great created in Isfahan one of the most beautiful cities in the world. This chapter covers the Safavid order and Shah Ismail, the conversion of Iran to Twelver Shi'ism, the wars with the Ottomans, Shah Abbas's reforms, Isfahan, the Armenian silk merchants of New Julfa, Safavid art, and the dynasty's fall to an Afghan army in 1722.
+    $em_safavid_master$> **The Safavid dynasty** (1501–1722, with puppet shahs until 1736) made Iran a Shi'a Muslim country, a transformation that still defines Iran's identity and shapes the politics of the Middle East today. From a Sufi order in northwestern Iran, the Safavids built an empire that rivalled the Ottomans to the west and the Mughals to the east, and under Shah Abbas the Great created in Isfahan one of the most beautiful cities in the world. This chapter covers the Safavid order and Shah Ismail, the conversion of Iran to Twelver Shi'ism, the wars with the Ottomans, Shah Abbas's reforms, Isfahan, the Armenian silk merchants of New Julfa, Safavid art, and the dynasty's fall to an Afghan army in 1722.
 
 ## From Sufi Order to Dynasty
 
@@ -61,15 +61,15 @@ why: The Qizilbash were the military backbone of the early Safavid state, though
 
 ## Rivalry with the Ottomans
 
-The Safavids' religious propaganda among the Turkmen of eastern Anatolia alarmed the Ottomans. In 1514 the Ottoman sultan **Selim I** invaded and defeated Ismail at **Chaldiran**, where Ottoman artillery and Janissary musketeers destroyed the Qizilbash cavalry. The Ottomans briefly occupied Tabriz. Ismail never led his armies in battle again, and the myth of his invincibility was broken. The two empires fought repeatedly for a century and a half over eastern Anatolia, the Caucasus, and Iraq. The Treaty of Amasya in 1555 and later the Treaty of Zuhab in 1639 established a frontier between them that roughly corresponds to the modern border between Iran and Turkey and Iraq.
+The Safavids' religious propaganda among the Turkmen of eastern Anatolia alarmed the Ottomans. In 1514 the Ottoman sultan **Selim I** invaded and defeated Ismail at **Chaldiran**, where Ottoman artillery and Janissary musketeers destroyed the Qizilbash cavalry. The Ottomans briefly occupied Tabriz. Ismail never led his armies in battle again, and the myth of his invincibility was broken. The two empires fought repeatedly for a century and a half over eastern Anatolia, the Caucasus, and Iraq. The Treaty of Amasya in 1555 and later the Treaty of Zuhab in 1639 established a frontier between them that roughly corresponds to the modern borders of Iran with Turkey and Iraq.
 
-Ismail's son **Tahmasp** (reigned 1524–1576) moved the capital away from the Ottoman frontier, to Qazvin, and welcomed the exiled Mughal emperor Humayun, whose return to India in 1555 was aided by Safavid troops, as the next chapter describes.
+Ismail's son **Tahmasp** (reigned 1524–1576) moved the capital away from the Ottoman frontier, to Qazvin (about 1555), and welcomed the exiled Mughal emperor Humayun, whose recovery of his throne (Kandahar and Kabul from 1545, Delhi in 1555) began with Safavid troops, as the next chapter describes.
 
 ## Shah Abbas the Great
 
-The greatest Safavid ruler, **Shah Abbas I** (reigned 1588–1629), came to the throne in a period of crisis, with Ottoman and Uzbek armies occupying Safavid territory and the Qizilbash chiefs dominating the state. Abbas reduced the power of the Qizilbash by building a new army of *ghulams*, slave soldiers recruited from Georgian, Armenian, and Circassian captives and converts, loyal to the shah alone, and units of musketeers and artillery. He took more land into direct royal control to pay for them.
+The greatest Safavid ruler, **Shah Abbas I** (reigned 1587/88–1629), came to the throne in a period of crisis, with Ottoman and Uzbek armies occupying Safavid territory and the Qizilbash chiefs dominating the state. Abbas reduced the power of the Qizilbash by building a new army of *ghulams*, slave soldiers recruited from Georgian, Armenian, and Circassian captives and converts, loyal to the shah alone, and units of musketeers and artillery. He took more land into direct royal control to pay for them.
 
-With his new army, Abbas drove out the Uzbeks and recovered Tabriz and Baghdad from the Ottomans. In 1622, with the help of ships of the English East India Company, he expelled the Portuguese from the island port of **Hormuz** in the Persian Gulf, as the chapter on European expansion described. He welcomed European envoys, merchants, and adventurers, such as the English brothers Anthony and Robert Sherley, and used European rivalries to his advantage against the Ottomans.
+With his new army, Abbas drove out the Uzbeks and recovered Tabriz and Baghdad from the Ottomans. In 1622, with the help of ships of the English East India Company, he expelled the Portuguese from the island port of **Hormuz** in the Persian Gulf, which they had held since 1515, as the chapter on European expansion described. He welcomed European envoys, merchants, and adventurers, such as the English brothers Anthony and Robert Sherley, and used European rivalries to his advantage against the Ottomans.
 
 ## Isfahan, "Half the World"
 
@@ -77,19 +77,19 @@ In 1598 Abbas made **Isfahan** his capital and rebuilt it on a magnificent scale
 
 ## New Julfa and the Silk Trade
 
-Silk was Iran's most valuable export. In 1604–1605, during a war with the Ottomans, Abbas forcibly deported the Armenian population of the town of Julfa in the Caucasus and resettled them in a new suburb of Isfahan, **New Julfa**. He granted the Armenian merchants privileges, including a leading role in the royal silk trade. From New Julfa, Armenian merchant families built a commercial network that stretched from Amsterdam, Venice, and London to India, Tibet, and Manila, as the historian Sebouh Aslanian has shown, one of the great trading diasporas of the early modern world. Their story shows how much of global commerce in this period was run by non-European merchants.
+Silk was Iran's most valuable export. In 1604–1605, during a war with the Ottomans, Abbas forcibly deported the Armenian population of the town of Julfa in the Caucasus and resettled them in a new suburb of Isfahan, **New Julfa**. He granted the Armenian merchants privileges, including a leading role in the royal silk trade. From New Julfa, Armenian merchant families built a commercial network that stretched from London and Amsterdam through the Mediterranean to India, Tibet, Manila, and even Acapulco, as the historian Sebouh Aslanian has shown, one of the great trading networks of the early modern world. Their story shows how much of global commerce in this period was run by non-European merchants.
 
 ## Art and Culture
 
-Safavid court workshops produced some of the finest art of the Islamic world. The illustrated *Shahnameh* made for Shah Tahmasp, with over two hundred and fifty paintings, is a masterpiece of Persian miniature painting. In Abbas's reign, the painter **Reza Abbasi** developed a new style of single-figure drawings and paintings of courtiers and ordinary people. Safavid **carpets**, such as the great Ardabil carpet of 1539–1540, now in the Victoria and Albert Museum in London, became prized across Europe. Persian poetry and philosophy flourished; the "School of Isfahan" of philosophers such as Mulla Sadra developed influential ideas combining Islamic philosophy and mysticism. Persian also remained the language of high culture and administration across the Mughal empire and much of Central Asia, creating a vast "Persianate" world from the Ottomans to India.
+Safavid court workshops produced some of the finest art of the Islamic world. The illustrated *Shahnameh* made for Shah Tahmasp, with over two hundred and fifty paintings, is a masterpiece of Persian miniature painting. In Abbas's reign, the painter **Reza Abbasi** developed a new style of single-figure drawings and paintings of courtiers and ordinary people. Safavid **carpets**, such as the great Ardabil carpet of 1539–1540, now in the Victoria and Albert Museum in London (its twin is in Los Angeles), became prized across Europe. Persian poetry and philosophy flourished; the "School of Isfahan" of philosophers such as Mir Damad and Mulla Sadra developed influential ideas combining Islamic philosophy and mysticism. Persian also remained the language of high culture and administration across the Mughal empire and much of Central Asia, creating a vast "Persianate" world from the Ottomans to India.
 
 {{image: Naqsh-e Jahan Square | The Naqsh-e Jahan square in Isfahan, laid out by Shah Abbas I, with the Shah Mosque at its southern end.}}
 
 ## Decline and the Afghan Conquest
 
-After Abbas, the Safavid state enjoyed a long period of relative peace with the Ottomans after 1639, but its later rulers were less effective, and historians debate how far the state was declining and how far it was adapting. The economy suffered from a decline in silver inflows and in the silk trade, and the court grew distant from the provinces. Historians such as Rudi Matthee have described a "Persia in crisis" in the late seventeenth century.
+After Abbas, the Safavid state enjoyed a long period of relative peace with the Ottomans after 1639, but its later rulers were less effective, and historians debate how far the state was declining and how far it was adapting. The economy suffered from a drain of silver out of the country, much of it to India, and from a weakening silk trade, and the court grew distant from the provinces. Historians such as Rudi Matthee have described a "Persia in crisis" in the late seventeenth century.
 
-Under **Shah Sultan Husayn** (reigned 1694–1722), a pious ruler more interested in religion than government, Afghan tribes in the eastern provinces rebelled. In 1722 an Afghan army under **Mahmud Hotaki** defeated the Safavid forces and besieged Isfahan; after months of famine, the shah surrendered. The Safavid dynasty never recovered. A military leader, **Nader Shah**, restored Iranian power in the 1730s, invading India and sacking Delhi in 1739, as the next chapter describes.
+Under **Shah Sultan Husayn** (reigned 1694–1722), a pious ruler long portrayed as more interested in religion than government, Afghan tribes in the eastern provinces rebelled. In 1722 an Afghan army under **Mahmud Hotaki** defeated the Safavid forces and besieged Isfahan; after months of famine, the shah surrendered. The dynasty never regained real power; Nader Shah ruled through Safavid puppet shahs until he took the throne himself in 1736. **Nader Shah**, a military leader, restored Iranian power in the 1730s, invading India and sacking Delhi in 1739, as the next chapter describes.
 
 ```checkpoint
 q: Why did Shah Abbas build an army of ghulams?
@@ -120,8 +120,8 @@ why: New Julfa's merchants show that much early modern global trade was run by n
 - **Andrew J. Newman, *Safavid Iran: Rebirth of a Persian Empire* (2006).** A history of the Safavid state and society.
 - **Rudi Matthee, *Persia in Crisis: Safavid Decline and the Fall of Isfahan* (2012).** The late Safavid period.
 - **Sebouh David Aslanian, *From the Indian Ocean to the Mediterranean: The Global Trade Networks of Armenian Merchants from New Julfa* (2011).** The Armenian merchant network.
-- **Sheila R. Canby, *Shah Abbas: The Remaking of Iran* (2009).** The art and achievements of Shah Abbas.
-- **Michael Axworthy, *Iran: Empire of the Mind* (2007).** A concise history of Iran.$em_safavid_master$,
+- **Sheila R. Canby (ed.), *Shah Abbas: The Remaking of Iran* (2009).** The art and achievements of Shah Abbas.
+- **Michael Axworthy, *Empire of the Mind: A History of Iran* (2007).** A concise history of Iran.$em_safavid_master$,
     true,
     true
   )
