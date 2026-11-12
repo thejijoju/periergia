@@ -98,7 +98,7 @@ Legend: **Written**: ✅ authored master merged, ⬜ not yet written. **Audit**:
 
 | Written | Audit (2 passes) | Type | Node | File |
 |---|---|---|---|---|
-| ✅ | ⬜ | overview | The Early Modern World (c. 1550–1800) (`history/early-modern-period`) | `history--early-modern-period--overview.sql` |
+| ✅ | ✅ 2026-11-12 | overview | The Early Modern World (c. 1550–1800) (`history/early-modern-period`) | `history--early-modern-period--overview.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | The Ottomans (`history/early-modern-period/the-ottomans`) | `history--early-modern-period--ottomans.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Ottoman Social and Cultural History (`history/early-modern-period/ottoman-social-and-cultural-history`) | `history--early-modern-period--ottoman-social-cultural.sql` |
 | ✅ | ✅ 2026-11-12 | chapter | Safavid Iran (`history/early-modern-period/safavid-iran`) | `history--early-modern-period--safavid.sql` |
