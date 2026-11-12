@@ -94,3 +94,10 @@ Leads found while researching new chapters that may affect articles already publ
 - **Sen's democracy line:** the Maoism chapter's wording ("no substantial famine has ever occurred in a democratic country") could not be confirmed. The version found is "No famine has ever taken place in the history of the world in a functioning democracy" (interview, attributed to *Development as Freedom*, 1999). Check against the book.
 - **Holodomor:** published chapters give 3.5–5 million; East European Identities gives about 3–5 million (already noted above if listed). Align with an attributed range.
 - **Note on the Haiti / yellow fever entry above:** the Disease and Epidemics audit could not confirm McNeill's "35,000–45,000 casualties" or the "a third returned" line (citation-needed on Wikipedia; other summaries give over 50,000 French dead). The published Disease chapter now says only that most of Leclerc's soldiers died, chiefly of yellow fever.
+
+## Found during Energy and Infrastructure research (2026-11-12)
+
+- **Environmental History:** says Smil dates fossil fuels overtaking biomass to the late 1890s; summaries of Smil give the late 1880s or "around 1900". Check against *Energy and Civilization*.
+- **Second Industrial Revolution:** the tanker *Zoroaster* is dated 1878; Wikipedia gives 1877 (built). Minor.
+- **Imperial Russia:** if it implies a completed Trans-Siberian line before 1916, note that a continuous all-Russian Moscow–Vladivostok line was finished only in 1916.
+- **Inca Empire:** "30,000–40,000 km" of roads fits, but proposed estimates run 23,000–60,000 km, with about 40,000 most cited.
