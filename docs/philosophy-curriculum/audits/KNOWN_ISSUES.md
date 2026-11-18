@@ -17,3 +17,4 @@ Found after publication; fix in a later batch.
 - Overview: the Buddha's "there is no enduring self" with craving as the cause of suffering stated flatly — present the debate over what non-self denies and IEP's point that ignorance is the deeper root. Source: research/ancient--early-buddhism.md.
 - Overview: Mohism as "history's first consequentialism" — matches Fraser, but name the rival divine-command reading; the Zhuangzi fish debate is from an Outer Chapter (ch. 17), possibly not by Zhuangzi. Source: research/ancient--hundred-schools.md.
 - Overview: Neoplatonism's "emanation" — gloss as procession and return (SEP neoplatonism calls "emanation" misleading); don't call the school closed in 529 Plato's Academy. Source: research/medieval--neoplatonism.md.
+- Overview: Nāgārjuna's tetralemmas "read like proto-deconstruction" — an interpretation; present as such. Source: research/medieval--mahayana-philosophy.md.
