@@ -193,4 +193,5 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 - Erasmus born "about 1466": SEP's Erasmus entry gives 1469 (SEP Pico gives 1466); say "1466 or 1469". Source: docs/philosophy-curriculum/research/early-modern--renaissance-philosophy.md.
 
 ### The Enlightenment — open
+- d'Alembert co-edited the Encyclopédie "until 1759": he resigned in 1758 (SEP). Hume's footnote: 1753–54 edition. Source: docs/philosophy-curriculum/research/early-modern--enlightenment-and-rousseau.md.
 - States Jonathan Israel's "Radical Enlightenment" thesis (Spinoza as its source) without its critics; present as a debate. Source: docs/philosophy-curriculum/research/early-modern--spinoza.md.
