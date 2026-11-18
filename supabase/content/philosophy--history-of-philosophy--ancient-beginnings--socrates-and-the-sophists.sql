@@ -39,16 +39,16 @@ They were well paid. In Plato, Hippias boasts of earning more than 150 minas on 
 
 ### Protagoras and the measure of all things
 
-Protagoras of Abdera (c. 490 – c. 420 BCE) claimed in Plato's dialogue named after him to be the first to call himself openly a sophist. He taught *euboulia*, "good deliberation" about one's household and the city's affairs, and was respected enough that in 444/3 BCE Pericles had him draft the laws of the new colony of Thurii in southern Italy. Fewer than ten genuine fragments of his writing survive. The most famous opened his book *Truth*:
+Protagoras of Abdera (c. 490 – c. 420 BCE) claimed in Plato's dialogue named after him to be the first to call himself openly a sophist. He taught *euboulia*, "good deliberation" about one's household and the city's affairs, and was respected enough that in 444/3 BCE Pericles had him draft the laws of the new colony of Thurii in southern Italy. Only a handful of genuine fragments of his writing survive. The most famous opened his book *Truth*:
 
 ```quote
 "Man is the measure of all things, of the things that are that they are and of the things that are not that they are not."
 Protagoras · Truth (DK 80B1, preserved by Plato and Sextus Empiricus) · fifth century BCE
 ```
 
-Another fragment says he was not able to know whether the gods exist or what they are like, because the subject is obscure and life is short. That makes him the first known agnostic, which is not the same as an atheist; hostile ancient writers blurred "I do not know that they exist" into "I know that they do not".
+Another fragment says he was not able to know whether the gods exist or what they are like, because the subject is obscure and life is short. He is often called the first known agnostic, which is not the same as an atheist, although some hostile sources treated the two as one.
 
-Was he a relativist? **Relativism** is the view that truth is not the same for everyone but holds only relative to a person or community. In the *Theaetetus*, Plato reads the measure doctrine this way: as each thing appears to me, so it is for me, so that one wind can be cold to me and warm to you. Yet the same dialogue makes Protagoras say that a wise teacher, like a doctor, replaces worse appearances with better ones, which implies that some judgments really are better. Plato also pressed an objection first formulated by Democritus, called *peritropē* or self-refutation:
+Was he a relativist? **Relativism** is the view that truth is not the same for everyone but holds only relative to a person or community. In the *Theaetetus*, Plato reads the measure doctrine this way: as each thing appears to me, so it is for me, so that one wind can be cold to me and warm to you. Yet the same dialogue makes Protagoras say that a wise teacher, like a doctor, replaces worse appearances with better ones, which implies that some judgments really are better. Plato also pressed an objection apparently first formulated by Democritus, called *peritropē* or self-refutation:
 
 1. On Protagoras' view, every judgment is true for the person who makes it.
 2. Many people judge that Protagoras' doctrine is false.
@@ -69,7 +69,7 @@ Others defended convention. Protagoras' "Great Speech" in Plato tells how Zeus g
 
 ## Socrates in Athens
 
-Socrates was born in 469 BCE in the district of Alopece, outside the city wall. His father, Sophroniscus, was a stoneworker, and his mother, Phaenarete, became a midwife. He fought as a hoplite (heavy infantryman) at Potidaea, Delium and Amphipolis. He married Xanthippe and had three sons; the picture of Xanthippe as a shrew comes from Xenophon and later writers, not Plato. All ancient sources agree he was strikingly ugly.
+Socrates was born in 469 BCE in the district of Alopece, outside the city wall. His father, Sophroniscus, was a stoneworker, and his mother, Phaenarete, became a midwife. He fought as a hoplite (heavy infantryman) at Potidaea, Delium and Amphipolis. He married Xanthippe and had three sons (some ancient sources add a second wife, Myrto); the picture of Xanthippe as a shrew comes from Xenophon and later writers, not Plato. All ancient sources agree he was strikingly ugly.
 
 {{image: Socrates | A portrait bust of Socrates. Every ancient source agrees on his unusual looks: snub nose, bulging eyes and a face compared to a satyr's.}}
 
@@ -79,7 +79,7 @@ Twice he defied power. In 406 BCE, serving by lot on the Council's presiding com
 
 In Plato's *Apology*, his speech at his trial, Socrates tells how his friend Chaerephon asked the oracle at Delphi whether anyone was wiser than Socrates, and was told no one was. Puzzled, Socrates questioned politicians, who lacked wisdom; poets, who composed by inspiration, not understanding; and craftsmen, who knew their crafts but thought they knew much more. Of one man he examined he says, in G. M. A. Grube's translation: "I am wiser than this man; it is likely that neither of us knows anything worthwhile, but he thinks he knows something when he does not." So his only wisdom is not thinking he knows what he does not. Scholars call this awareness "simple ignorance", as against the "double ignorance" of not knowing and thinking one does.
 
-The famous "I know that I know nothing" appears nowhere in Plato in that form. It derives from a later Latin paraphrase by Cicero, and scholars such as Gail Fine and C. C. W. Taylor argue that it misreads Plato. Socrates does claim some moral knowledge, for instance that it is shameful to do wrong. The best reading is that he disclaims expert, definitional knowledge while holding convictions that have survived long testing. Whether his professions of ignorance are sincere or **irony** (saying less than one means) is disputed.
+The famous "I know that I know nothing" appears nowhere in Plato in that form. It is a later paraphrase, found in Cicero's Latin and in the Greek of Diogenes Laertius, and scholars such as Gail Fine and C. C. W. Taylor argue that it misreads Plato. Socrates does claim some moral knowledge, for instance that it is shameful to do wrong. The best reading is that he disclaims expert, definitional knowledge while holding convictions that have survived long testing. Whether his professions of ignorance are sincere or **irony** (saying less than one means) is disputed.
 
 He took the oracle as a command to examine his fellow citizens and shame them into caring for their souls more than for wealth and reputation. He called himself a gadfly stinging a sluggish horse, and a midwife who delivers other people's ideas and tests them.
 
@@ -116,7 +116,7 @@ Socrates' method is the **elenchus**, Greek for "cross-examination" or "refutati
 In the *Laches*, set in 424 BCE, Laches and Nicias are asked for advice about the military training of young men, and Socrates steers them to a prior question.
 
 1. **Premise.** An expert in instilling a quality must know what it is. Training aims at courage, so an adviser must be able to say what courage is.
-2. **Laches' first answer:** courage is staying at one's post and not running away. But it fails to cover every case: there is courage in retreat (as Socrates showed at Delium), and at sea, in illness, in poverty and in politics.
+2. **Laches' first answer:** courage is staying at one's post and not running away. But it fails to cover every case: there is courage in retreat (Laches himself had praised Socrates' conduct in the retreat from Delium), and at sea, in illness, in poverty and in politics.
 3. **Laches' second answer:** courage is endurance of the soul. Both agree courage is always admirable. Foolish endurance is not admirable, so courage is not just any endurance; yet wise endurance seems *less* brave, since the expert diver seems less courageous than the ignorant one. Laches admits defeat.
 4. **Nicias' answer:** courage is knowledge of what is to be feared and dared. Socrates takes this as knowledge of future goods and evils; but such knowledge cannot be limited to the future, and would be the whole of virtue.
 5. **Conclusion.** Nicias had agreed that courage is only *part* of virtue. His definition makes it both part and whole: a contradiction, and aporia.
@@ -146,7 +146,7 @@ The jury probably numbered 501, though neither Plato nor Xenophon says so. Socra
 Socrates, as written by Plato · Apology 38a · set in 399 BCE
 ```
 
-The death penalty then passed by a larger majority than the conviction; the exact figures are uncertain. Execution waited about thirty days, while the sacred ship made its annual voyage to Delos. In Plato's *Crito*, his friend Crito, having bribed the jailers, begs him to escape. Socrates refuses, voicing the personified Laws of Athens, who say that by living in the city he agreed to its rule. The *Phaedo* describes his last day, though Plato was not present. Socrates drinks "the drug"; whether it was hemlock, and whether Plato idealised the scene, are debated.
+The death penalty then passed by a larger majority than the conviction; the exact figures are uncertain. Execution waited about thirty days, while the sacred ship made its annual voyage to Delos. In Plato's *Crito*, his friend Crito, ready to bribe the guards and with the money for an escape, begs him to escape. Socrates refuses, voicing the personified Laws of Athens, who say that by living in the city he agreed to its rule. The *Phaedo* describes his last day, though Plato was not present. Socrates drinks "the drug"; whether it was hemlock, and whether Plato idealised the scene, are debated.
 
 ## The Socratic Problem
 
@@ -154,7 +154,7 @@ Because Socrates wrote nothing, separating the historical man from the character
 
 In 1818 Friedrich Schleiermacher turned scholarship from Xenophon to Plato: a Socrates as plain as Xenophon's could never have been so influential. Vlastos later argued that Plato's early dialogues record the historical Socrates' philosophy; Charles Kahn replied that they are Plato's literary constructions. The chapter on *Plato* takes up the dialogues in their own right.
 
-Two women figure in the story. Socrates claims to have learned rhetoric from Aspasia of Miletus, Pericles' partner, slandered by comic poets but portrayed in Socratic dialogues as a skilled speaker; and to have learned about love from Diotima of Mantinea in the *Symposium*, whom most modern scholars think Plato invented, though Mary Ellen Waithe has argued she was real. Almost every ancient school except the Epicureans claimed Socrates as founder or model. Aristippus of Cyrene, a Greek city in North Africa, founded the Cyrenaic school and taught his daughter Arete, who taught her son. Plato's Socrates asked his hearers to give little thought to Socrates and much more to the truth. They have been arguing about both ever since.
+Two women figure in the story. Socrates claims to have learned rhetoric from Aspasia of Miletus, Pericles' partner, slandered by comic poets but portrayed in Socratic dialogues as a skilled speaker; and to have learned about love from Diotima of Mantinea in the *Symposium*, whom most modern scholars think Plato invented, though Mary Ellen Waithe has argued she may have been a real woman. Almost every ancient school except the Epicureans claimed Socrates as founder or model. Aristippus of Cyrene, a Greek city in North Africa, founded the Cyrenaic school and taught his daughter Arete, who taught her son. Plato's Socrates asked his hearers to give little thought to Socrates and much more to the truth. They have been arguing about both ever since.
 
 ```checkpoint
 q: In the Laches, why does Nicias' definition of courage as knowledge of what is to be feared and dared fail?
