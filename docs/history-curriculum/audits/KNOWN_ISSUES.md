@@ -199,3 +199,6 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 
 ### Safavid Iran — open
 - "School of Isfahan" used without noting it is a modern label (Corbin and Nasr), criticised as retroactive. Source: docs/philosophy-curriculum/research/early-modern--early-modern-beyond-europe.md.
+
+### Nationalism — open
+- Quotes Fukuzawa's "Heaven never created a man above another nor a man below another" as his own claim; the original frames it as a saying ("it is said"). Source: docs/philosophy-curriculum/research/nineteenth--philosophy-in-an-age-of-empire.md.
