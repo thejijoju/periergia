@@ -13,7 +13,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aristotle | chapter | `philosophy/history-of-philosophy/ancient-beginnings/aristotle` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hellenistic Philosophy: Stoics, Epicureans and Sceptics | chapter | `philosophy/history-of-philosophy/ancient-beginnings/hellenistic-philosophy` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Upanishads and the Beginnings of Indian Philosophy | chapter | `philosophy/history-of-philosophy/ancient-beginnings/upanishads` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Buddha and Early Buddhist Philosophy | chapter | `philosophy/history-of-philosophy/ancient-beginnings/early-buddhism` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Buddha and Early Buddhist Philosophy | chapter | `philosophy/history-of-philosophy/ancient-beginnings/early-buddhism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jains, Ājīvikas and Materialists: India's Other Dissenters | chapter | `philosophy/history-of-philosophy/ancient-beginnings/indian-dissenters` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confucius, Mencius and Xunzi | chapter | `philosophy/history-of-philosophy/ancient-beginnings/confucianism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mozi, the Daoists and the Legalists: the Hundred Schools | chapter | `philosophy/history-of-philosophy/ancient-beginnings/hundred-schools` | ⬜ |
