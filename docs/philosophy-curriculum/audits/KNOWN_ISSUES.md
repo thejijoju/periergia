@@ -21,11 +21,15 @@ Found after publication; fix in a later batch.
 - Overview: Maimonides "pioneering negative theology" — overstated: SEP credits Philo as founder of negative theology in monotheism, and Saadia already used a via negativa; say "the most systematic medieval exponent". Source: research/medieval--jewish-philosophy.md.
 - Overview: "Averroes's Aristotle ignited the thirteenth century" — oversimplified: Latin Averroes arrived c. 1228–30, and Aristotle also came directly from Greek (James of Venice, later Moerbeke). Source: research/medieval--early-scholasticism.md.
 - Overview: Ockham's razor as "do not multiply entities beyond necessity" — that wording is a later slogan (popularly credited to John Punch, 1639); Ockham's attested lines are "Numquam ponenda est pluralitas sine necessitate" etc. Also Scotus is placed in the fourteenth century; he died 1308 (mostly 13th c.). Source: research/medieval--scotus-and-ockham.md.
+- Overview: Descartes' interaction "unexplained at the pineal gland ever since" — leans on the caricature; the archived SEP pineal-gland entry doubts Descartes was a straightforward interactionist, and Elisabeth's objection and his 'union' reply should be named. Source: research/early-modern--descartes.md.
+- Overview: scepticism "weaponized by Montaigne" — frame as Popkin's (contested) sceptical-crisis thesis. Source: research/early-modern--renaissance-philosophy.md.
+- Overview: Spinoza's mind and body as "two aspects" — say "two attributes" (Ethics II P7). Source: research/early-modern--spinoza.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
 - Overview: al-Ghazālī's arguments "occasionalist" and "strikingly anticipate Hume" — present the occasionalism debate (Marmura/Frank/Griffel) and the differences from Hume. Source: research/medieval--ghazali-and-averroes.md.
 
 ### Plato — open
+- "Plethon brought the texts to Florence": loose — Cosimo supplied the Plato manuscript to Ficino in 1462 (SEP ficino). Source: research/early-modern--renaissance-philosophy.md.
 - Sends readers to "Falsafa" for Averroes' Republic commentary; that material is in "Al-Ghazālī, Averroes and the Quarrel over Reason". Re-point the cross-reference.
 - Overview: Avicenna's flying man has an "unmistakable family resemblance" to the cogito — present as debated (how deep the resemblance goes is disputed). Source: research/medieval--falsafa.md.

@@ -185,3 +185,12 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 
 ### The Rise of Islam and the Caliphates (found by Philosophy research, 18 Nov 2026) — open
 - Avicenna "980–1037": SEP (Gutas) gives c. 970 and calls 980 a miscalculation; IEP/WP c. 980. Use "c. 970 (traditionally 980)–1037", consistent with the Philosophy chapters. Source: docs/philosophy-curriculum/research/medieval--falsafa.md.
+
+### The Scientific Revolution — open
+- Descartes' *Discourse on the Method* (1637) described as "doubting everything": the radical doubt is in the *Meditations* (1641); the *Discourse* deliberately softens it (written in French for a wide audience). Source: docs/philosophy-curriculum/research/early-modern--descartes.md.
+
+### The Renaissance — open
+- Erasmus born "about 1466": SEP's Erasmus entry gives 1469 (SEP Pico gives 1466); say "1466 or 1469". Source: docs/philosophy-curriculum/research/early-modern--renaissance-philosophy.md.
+
+### The Enlightenment — open
+- States Jonathan Israel's "Radical Enlightenment" thesis (Spinoza as its source) without its critics; present as a debate. Source: docs/philosophy-curriculum/research/early-modern--spinoza.md.
