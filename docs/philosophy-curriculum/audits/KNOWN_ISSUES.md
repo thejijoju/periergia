@@ -29,6 +29,7 @@ Found after publication; fix in a later batch.
 - Overview: old metaphysics of God, soul and world "collapses into antinomies" — only the world yields antinomies (soul → paralogisms; God → failed proofs); and "Copernican revolution" in quotation marks is not Kant's phrase. Source: research/early-modern--kant.md.
 - Overview: Kierkegaard's "leap of faith" (not his phrase; McKinnon) and "truth as subjectivity" (the pseudonym Climacus's), and Schopenhauer "importing … Buddhist thought" (he denied Buddhist influence before 1818; the Indian-influence question is debated) — qualify. Source: research/nineteenth--schopenhauer-and-kierkegaard.md.
 - Overview: the harm principle as "the reference point of every free-speech debate" (Mill never names a 'harm principle'; SEP says ch. II partly qualifies it), and *The Subjection of Women* credited to Mill alone (Harriet Taylor Mill's role is debated); Bentham not mentioned. Source: research/nineteenth--utilitarianism.md.
+- Says the later Wittgenstein "repudiated his earlier self" and that "meaning is use" without qualification; sources treat the break as a live debate and PI §43 limits use to "a large class of cases". Source: docs/philosophy-curriculum/research/twentieth--wittgenstein.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
@@ -50,3 +51,4 @@ Found after publication; fix in a later batch.
 
 ### What Is Philosophy? — open
 - "most scholars now accept his authorship" of the Hatata: overstated; the debate is open (Wion 2021; Cantor/Egid/Merawi 2024; the 2023 translators accept it). Source: research/early-modern--early-modern-beyond-europe.md.
+- Describes Wittgensteinian philosophy as "therapy for confusions caused by ordinary language"; for the later Wittgenstein confusion comes from misleading analogies and words taken out of everyday use (PI §§90, 116), not from ordinary language. Source: docs/philosophy-curriculum/research/twentieth--wittgenstein.md.
