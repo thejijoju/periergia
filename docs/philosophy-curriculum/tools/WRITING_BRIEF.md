@@ -11,7 +11,7 @@ Global and plural: bring in the other traditions that worked on the same questio
 **Arguments, not just opinions.** At least one argument in the chapter is set out step by step as a short numbered list (premises, then the conclusion), followed by the strongest objection and the best reply, all from the notes. Don't write "X thought Y" without saying why X thought it.
 
 ## Form (see the model chapter: `supabase/content/history--what-is-history.sql`, readable with `python3 docs/history-curriculum/tools/extract.py <file>`)
-- Markdown body, about 2,200–3,000 words, British spelling, plain clear prose, no bullet-heavy sections except short lists.
+- Markdown body, about 3,000–3,600 words of prose (excluding checkpoints and reading list; era overviews about 2,000–2,600), British spelling, plain clear prose, no bullet-heavy sections except short lists.
 - Opens with a one-paragraph blockquote summary (`> **Bold lead.** …`) saying what the chapter covers.
 - `##` section headings; no `#` title.
 - At most one `{{image: Exact Wikipedia Article Title | caption}}` (choose an article whose lead image fits the caption).

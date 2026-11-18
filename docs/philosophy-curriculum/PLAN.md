@@ -158,7 +158,7 @@ Sections B–I each get an overview. The list may shift by a few chapters during
 
 The History method, unchanged:
 
-1. **Phase 1: write everything, source-first.** For each chapter, research notes come first (`docs/philosophy-curriculum/research/`): every date, attribution, quotation and book is verified against a source found during the work. **Memory is never confirmation.** Quotations of philosophers are a particular risk, because so many famous ones are paraphrases or misattributions; each is checked against the text or a reliable translation, and the translation is named. Then the chapter is written from the notes: 1,800–2,500 words, a summary, two checkpoints, a six-question quiz and a verified reading list. Built with the History tools (`docs/history-curriculum/tools/`), checked, double-audited, and merged in batches of two or three.
+1. **Phase 1: write everything, source-first.** For each chapter, research notes come first (`docs/philosophy-curriculum/research/`): every date, attribution, quotation and book is verified against a source found during the work. **Memory is never confirmation.** Quotations of philosophers are a particular risk, because so many famous ones are paraphrases or misattributions; each is checked against the text or a reliable translation, and the translation is named. Then the chapter is written from the notes: about 3,000–3,600 words of prose, a summary, two checkpoints, a six-question quiz and a verified reading list. Built with the History tools (`docs/history-curriculum/tools/`), checked, double-audited, and merged in batches of two or three.
 2. **Phase 2: review every article, one by one**, with two independent audit passes and a claim ledger in `docs/philosophy-curriculum/audits/`.
 
 ### Order of work
