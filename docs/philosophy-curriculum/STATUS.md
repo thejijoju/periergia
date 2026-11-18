@@ -30,7 +30,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Early Scholasticism: Anselm, Abelard and the Universities | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/early-scholasticism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thomas Aquinas | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/aquinas` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scotus, Ockham and the Late Medieval Debates | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/scotus-and-ockham` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;Renaissance and Early Modern Philosophy (c. 1450 – 1800) | overview | `philosophy/history-of-philosophy/early-modern` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Renaissance and Early Modern Philosophy (c. 1450 – 1800) | overview | `philosophy/history-of-philosophy/early-modern` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Renaissance Philosophy: Humanists, Platonists, Machiavelli and Montaigne | chapter | `philosophy/history-of-philosophy/early-modern/renaissance-philosophy` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descartes | chapter | `philosophy/history-of-philosophy/early-modern/descartes` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hobbes | chapter | `philosophy/history-of-philosophy/early-modern/hobbes` | ✍️ 18 Nov 2026 |
