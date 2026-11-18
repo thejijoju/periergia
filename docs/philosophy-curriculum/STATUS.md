@@ -4,7 +4,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 
 | Node | Kind | Node id | Status |
 |---|---|---|---|
-| What Is Philosophy? | chapter | `philosophy/what-is-philosophy` | ⬜ |
+| What Is Philosophy? | chapter | `philosophy/what-is-philosophy` | ✍️ 18 Nov 2026 |
 | History of Philosophy | overview | `philosophy/history-of-philosophy` | ✅ (pre-plan, needs audit) |
 | &nbsp;&nbsp;&nbsp;&nbsp;Ancient Beginnings (c. 800 BCE – 200 CE) | overview | `philosophy/history-of-philosophy/ancient-beginnings` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Presocratics: from Myth to Argument | chapter | `philosophy/history-of-philosophy/ancient-beginnings/presocratics` | ✍️ 18 Nov 2026 |
