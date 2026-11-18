@@ -18,6 +18,9 @@ Found after publication; fix in a later batch.
 - Overview: Mohism as "history's first consequentialism" — matches Fraser, but name the rival divine-command reading; the Zhuangzi fish debate is from an Outer Chapter (ch. 17), possibly not by Zhuangzi. Source: research/ancient--hundred-schools.md.
 - Overview: Neoplatonism's "emanation" — gloss as procession and return (SEP neoplatonism calls "emanation" misleading); don't call the school closed in 529 Plato's Academy. Source: research/medieval--neoplatonism.md.
 - Overview: Nāgārjuna's tetralemmas "read like proto-deconstruction" — an interpretation; present as such. Source: research/medieval--mahayana-philosophy.md.
+- Overview: Maimonides "pioneering negative theology" — overstated: SEP credits Philo as founder of negative theology in monotheism, and Saadia already used a via negativa; say "the most systematic medieval exponent". Source: research/medieval--jewish-philosophy.md.
+- Overview: "Averroes's Aristotle ignited the thirteenth century" — oversimplified: Latin Averroes arrived c. 1228–30, and Aristotle also came directly from Greek (James of Venice, later Moerbeke). Source: research/medieval--early-scholasticism.md.
+- Overview: Ockham's razor as "do not multiply entities beyond necessity" — that wording is a later slogan (popularly credited to John Punch, 1639); Ockham's attested lines are "Numquam ponenda est pluralitas sine necessitate" etc. Also Scotus is placed in the fourteenth century; he died 1308 (mostly 13th c.). Source: research/medieval--scotus-and-ockham.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
