@@ -43,10 +43,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beyond Europe: Mullā Ṣadrā, Wang Yangming, Tokugawa Confucianism and the Hatata | chapter | `philosophy/history-of-philosophy/early-modern/early-modern-beyond-europe` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kant | chapter | `philosophy/history-of-philosophy/early-modern/kant` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Nineteenth Century | overview | `philosophy/history-of-philosophy/nineteenth-century` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;German Idealism: Fichte, Schelling and Hegel | chapter | `philosophy/history-of-philosophy/nineteenth-century/german-idealism` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Schopenhauer and Kierkegaard | chapter | `philosophy/history-of-philosophy/nineteenth-century/schopenhauer-and-kierkegaard` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bentham, Mill and Utilitarianism | chapter | `philosophy/history-of-philosophy/nineteenth-century/utilitarianism` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marx | chapter | `philosophy/history-of-philosophy/nineteenth-century/marx` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;German Idealism: Fichte, Schelling and Hegel | chapter | `philosophy/history-of-philosophy/nineteenth-century/german-idealism` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Schopenhauer and Kierkegaard | chapter | `philosophy/history-of-philosophy/nineteenth-century/schopenhauer-and-kierkegaard` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bentham, Mill and Utilitarianism | chapter | `philosophy/history-of-philosophy/nineteenth-century/utilitarianism` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marx | chapter | `philosophy/history-of-philosophy/nineteenth-century/marx` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nietzsche | chapter | `philosophy/history-of-philosophy/nineteenth-century/nietzsche` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;American Pragmatism: Peirce, James and Dewey | chapter | `philosophy/history-of-philosophy/nineteenth-century/pragmatism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Philosophy in an Age of Empire | chapter | `philosophy/history-of-philosophy/nineteenth-century/philosophy-in-an-age-of-empire` | ⬜ |
