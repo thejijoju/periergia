@@ -42,17 +42,17 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women Philosophers of the Early Modern Era | chapter | `philosophy/history-of-philosophy/early-modern/early-modern-women-philosophers` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beyond Europe: Mullā Ṣadrā, Wang Yangming, Tokugawa Confucianism and the Hatata | chapter | `philosophy/history-of-philosophy/early-modern/early-modern-beyond-europe` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kant | chapter | `philosophy/history-of-philosophy/early-modern/kant` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;The Nineteenth Century | overview | `philosophy/history-of-philosophy/nineteenth-century` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;The Nineteenth Century | overview | `philosophy/history-of-philosophy/nineteenth-century` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;German Idealism: Fichte, Schelling and Hegel | chapter | `philosophy/history-of-philosophy/nineteenth-century/german-idealism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Schopenhauer and Kierkegaard | chapter | `philosophy/history-of-philosophy/nineteenth-century/schopenhauer-and-kierkegaard` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bentham, Mill and Utilitarianism | chapter | `philosophy/history-of-philosophy/nineteenth-century/utilitarianism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marx | chapter | `philosophy/history-of-philosophy/nineteenth-century/marx` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nietzsche | chapter | `philosophy/history-of-philosophy/nineteenth-century/nietzsche` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;American Pragmatism: Peirce, James and Dewey | chapter | `philosophy/history-of-philosophy/nineteenth-century/pragmatism` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Philosophy in an Age of Empire | chapter | `philosophy/history-of-philosophy/nineteenth-century/philosophy-in-an-age-of-empire` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Philosophy in an Age of Empire | chapter | `philosophy/history-of-philosophy/nineteenth-century/philosophy-in-an-age-of-empire` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Twentieth Century and After | overview | `philosophy/history-of-philosophy/twentieth-century` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frege, Russell and the Birth of Analytic Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/birth-of-analytic-philosophy` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wittgenstein | chapter | `philosophy/history-of-philosophy/twentieth-century/wittgenstein` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frege, Russell and the Birth of Analytic Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/birth-of-analytic-philosophy` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wittgenstein | chapter | `philosophy/history-of-philosophy/twentieth-century/wittgenstein` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logical Positivism and Its Critics: the Vienna Circle, Popper and Quine | chapter | `philosophy/history-of-philosophy/twentieth-century/logical-positivism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phenomenology: Husserl, Heidegger and Merleau-Ponty | chapter | `philosophy/history-of-philosophy/twentieth-century/phenomenology` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existentialism: Sartre, Beauvoir and Camus | chapter | `philosophy/history-of-philosophy/twentieth-century/existentialism` | ⬜ |
