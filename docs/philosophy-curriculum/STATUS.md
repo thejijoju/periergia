@@ -35,10 +35,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descartes | chapter | `philosophy/history-of-philosophy/early-modern/descartes` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hobbes | chapter | `philosophy/history-of-philosophy/early-modern/hobbes` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spinoza | chapter | `philosophy/history-of-philosophy/early-modern/spinoza` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leibniz | chapter | `philosophy/history-of-philosophy/early-modern/leibniz` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Locke | chapter | `philosophy/history-of-philosophy/early-modern/locke` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Berkeley and Hume | chapter | `philosophy/history-of-philosophy/early-modern/berkeley-and-hume` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Enlightenment and Rousseau | chapter | `philosophy/history-of-philosophy/early-modern/enlightenment-and-rousseau` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leibniz | chapter | `philosophy/history-of-philosophy/early-modern/leibniz` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Locke | chapter | `philosophy/history-of-philosophy/early-modern/locke` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Berkeley and Hume | chapter | `philosophy/history-of-philosophy/early-modern/berkeley-and-hume` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Enlightenment and Rousseau | chapter | `philosophy/history-of-philosophy/early-modern/enlightenment-and-rousseau` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Women Philosophers of the Early Modern Era | chapter | `philosophy/history-of-philosophy/early-modern/early-modern-women-philosophers` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beyond Europe: Mullā Ṣadrā, Wang Yangming, Tokugawa Confucianism and the Hatata | chapter | `philosophy/history-of-philosophy/early-modern/early-modern-beyond-europe` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kant | chapter | `philosophy/history-of-philosophy/early-modern/kant` | ⬜ |
