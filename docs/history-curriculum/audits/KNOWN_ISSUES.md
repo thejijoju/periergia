@@ -205,3 +205,6 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 
 ### Decolonization — open
 - Says Fanon headed a service at Blida "before joining the FLN"; he joined the FLN while still at Blida. Source: docs/philosophy-curriculum/research/twentieth--existentialism.md.
+
+### Maoism — open
+- Implies the Prison Information Group (GIP) belonged to the Gauche prolétarienne; Foucault co-founded it with Vidal-Naquet and Domenach. Source: docs/philosophy-curriculum/research/twentieth--structuralism-and-after.md.

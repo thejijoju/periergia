@@ -53,10 +53,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;The Twentieth Century and After | overview | `philosophy/history-of-philosophy/twentieth-century` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frege, Russell and the Birth of Analytic Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/birth-of-analytic-philosophy` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wittgenstein | chapter | `philosophy/history-of-philosophy/twentieth-century/wittgenstein` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logical Positivism and Its Critics: the Vienna Circle, Popper and Quine | chapter | `philosophy/history-of-philosophy/twentieth-century/logical-positivism` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phenomenology: Husserl, Heidegger and Merleau-Ponty | chapter | `philosophy/history-of-philosophy/twentieth-century/phenomenology` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existentialism: Sartre, Beauvoir and Camus | chapter | `philosophy/history-of-philosophy/twentieth-century/existentialism` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Critical Theory: the Frankfurt School and Habermas | chapter | `philosophy/history-of-philosophy/twentieth-century/critical-theory` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logical Positivism and Its Critics: the Vienna Circle, Popper and Quine | chapter | `philosophy/history-of-philosophy/twentieth-century/logical-positivism` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phenomenology: Husserl, Heidegger and Merleau-Ponty | chapter | `philosophy/history-of-philosophy/twentieth-century/phenomenology` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existentialism: Sartre, Beauvoir and Camus | chapter | `philosophy/history-of-philosophy/twentieth-century/existentialism` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Critical Theory: the Frankfurt School and Habermas | chapter | `philosophy/history-of-philosophy/twentieth-century/critical-theory` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Structuralism and After: Foucault, Derrida and Their Critics | chapter | `philosophy/history-of-philosophy/twentieth-century/structuralism-and-after` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Kyoto School and Modern Japanese Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/kyoto-school` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modern Chinese and Indian Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/modern-chinese-and-indian-philosophy` | ⬜ |
