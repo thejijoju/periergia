@@ -3,8 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Wordmark } from "@/components/Wordmark";
 import { AccountButton } from "@/components/AccountButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { ProfileView, type ProgressGroup } from "@/components/ProfileView";
-import { OwnerEditButton, PrivateProfileFallback } from "@/components/ProfileOwner";
+import { ProfileView, type Activity, type ProgressGroup } from "@/components/ProfileView";
+import { ProfileActions, PrivateProfileFallback } from "@/components/ProfileOwner";
 import { accountTypeLabel, type Profile, type ProfileEntry } from "@/lib/accountTypes";
 import { getNodeById, getSubjects } from "@/lib/store";
 
@@ -25,6 +25,11 @@ async function load(handle: string) {
   const { data: profile } = await sb.from("profiles").select("*").eq("handle", handle).maybeSingle();
   if (!profile) return null;
   const { data: entries } = await sb.from("profile_entries").select("*").eq("user_id", profile.id).order("position");
+  const countOf = async (col: "followee_id" | "follower_id") =>
+    (await sb.from("follows").select("*", { count: "exact", head: true }).eq(col, profile.id)).count ?? 0;
+  const [followers, following] = await Promise.all([countOf("followee_id"), countOf("follower_id")]);
+  const stats = { followers, following, publications: 0 }; // papers arrive with stage 3
+  const activity: Activity[] = [];
   let progress: ProgressGroup[] | null = null;
   let counts: { read: number; passed: number } | null = null;
   if (profile.show_progress) {
@@ -45,6 +50,15 @@ async function load(handle: string) {
       if (r.completed_at) passed++;
       const subject = subjects.get(node.subjectId)?.name ?? node.subjectSlug;
       if (!groups.has(subject)) groups.set(subject, { subject, items: [] });
+      if (activity.length < 5) {
+        const when = (r.completed_at as string | null) ?? (r.visited_at as string);
+        activity.push({
+          title: node.title,
+          href: `/learn/${node.id}`,
+          completed: Boolean(r.completed_at),
+          when: new Date(when).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+        });
+      }
       groups.get(subject)!.items.push({
         id: node.id,
         title: node.title,
@@ -55,7 +69,7 @@ async function load(handle: string) {
     progress = Array.from(groups.values());
     counts = { read, passed };
   }
-  return { profile: profile as Profile & { created_at: string }, entries: (entries as ProfileEntry[]) ?? [], progress, counts };
+  return { profile: profile as Profile & { created_at: string }, entries: (entries as ProfileEntry[]) ?? [], progress, counts, stats, activity };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
@@ -77,7 +91,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ handle
   const data = await load(handle);
   return (
     <main className="min-h-screen bg-page text-ink px-4 py-6">
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-5xl">
         <div className="flex items-center gap-2">
           <Wordmark size="sm" underline={false} />
           <div className="ml-auto flex items-center gap-1">
@@ -92,11 +106,13 @@ export default async function ProfilePage({ params }: { params: Promise<{ handle
               entries={data.entries}
               progress={data.progress}
               counts={data.counts}
+              stats={data.stats}
+              activity={data.activity}
               memberSince={new Date(data.profile.created_at).toLocaleDateString("en-GB", {
                 month: "long",
                 year: "numeric",
               })}
-              ownerSlot={<OwnerEditButton profileId={data.profile.id} />}
+              actionSlot={<ProfileActions profileId={data.profile.id} />}
             />
           ) : (
             <PrivateProfileFallback handle={handle} />

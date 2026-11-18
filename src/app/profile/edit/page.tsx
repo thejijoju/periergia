@@ -69,6 +69,9 @@ export default function EditProfile() {
     field: "",
     website: "",
     skills: [],
+    avatar_url: null,
+    degree: "",
+    contact_email: "",
     is_public: true,
     show_progress: true,
   });
@@ -128,6 +131,12 @@ export default function EditProfile() {
       setMessage("The website should start with https://");
       return;
     }
+    const contact = p.contact_email?.trim() ?? "";
+    if (contact && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) {
+      setStatus("error");
+      setMessage("The contact email does not look like an email address.");
+      return;
+    }
     const clean = entries.filter((x) => x.title.trim() && x.organisation.trim());
     for (const x of clean) {
       if (x.start_year && x.end_year && x.end_year < x.start_year) {
@@ -149,6 +158,9 @@ export default function EditProfile() {
       institution: nul(p.institution),
       field: nul(p.field),
       website: nul(website),
+      avatar_url: p.avatar_url,
+      degree: nul(p.degree),
+      contact_email: nul(p.contact_email),
       skills: skillsText
         .split(",")
         .map((s) => s.trim())
@@ -189,6 +201,29 @@ export default function EditProfile() {
     router.push(`/u/${handle}`);
   };
 
+  const [uploading, setUploading] = useState(false);
+  const uploadPhoto = async (file: File | undefined) => {
+    if (!file || !session) return;
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size > 3 * 1024 * 1024) {
+      setStatus("error");
+      setMessage("Use a JPEG, PNG or WebP image under 3 MB.");
+      return;
+    }
+    setUploading(true);
+    const sb = authClient()!;
+    const ext = file.type.split("/")[1].replace("jpeg", "jpg");
+    const path = `${session.user.id}/avatar-${Date.now()}.${ext}`;
+    const { error } = await sb.storage.from("avatars").upload(path, file, { contentType: file.type, upsert: true });
+    setUploading(false);
+    if (error) {
+      setStatus("error");
+      setMessage(`The photo did not upload: ${error.message}`);
+      return;
+    }
+    set("avatar_url", sb.storage.from("avatars").getPublicUrl(path).data.publicUrl);
+    setStatus("idle");
+  };
+
   const signOut = async () => {
     await authClient()?.auth.signOut();
     router.push("/");
@@ -218,7 +253,13 @@ export default function EditProfile() {
                 <input className={input} inputMode="numeric" value={x.end_year ?? ""} onChange={(e) => setEntry(i, { end_year: year(e.target.value) })} />
               </Field>
               <div className="sm:col-span-2">
-                <Field name="Location">
+                <Field name="Current degree or level" hint="e.g. Master 2, BA year 3, PhD candidate">
+              <input className={input} maxLength={80} value={p.degree ?? ""} onChange={(e) => set("degree", e.target.value)} />
+            </Field>
+            <Field name="Public contact email (optional)" hint="Shown as a Contact button on your page">
+              <input className={input} type="email" maxLength={200} value={p.contact_email ?? ""} onChange={(e) => set("contact_email", e.target.value)} />
+            </Field>
+            <Field name="Location">
                   <input className={input} value={x.location ?? ""} maxLength={80} onChange={(e) => setEntry(i, { location: e.target.value })} />
                 </Field>
               </div>
@@ -261,7 +302,35 @@ export default function EditProfile() {
         <p className="mt-1 font-sans text-[14px] text-muted">Signed in as {session?.user.email}</p>
 
         <form onSubmit={save} className="mt-8">
-          <section>
+          <section className="flex items-center gap-4">
+            {p.avatar_url ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={p.avatar_url} alt="" className="w-24 h-28 object-cover rounded-lg border border-line" />
+            ) : (
+              <div className="w-24 h-28 rounded-lg border border-line bg-pill flex items-center justify-center font-serif text-[34px]">
+                {(p.display_name || "?").charAt(0).toUpperCase()}
+              </div>
+            )}
+            <div className="flex flex-col gap-2 font-sans text-[13.5px]">
+              <label className="cursor-pointer self-start rounded-full border border-line px-3.5 py-1.5 hover:border-ink">
+                {uploading ? "Uploading…" : p.avatar_url ? "Change photo" : "Add a photo"}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="sr-only"
+                  onChange={(e) => uploadPhoto(e.target.files?.[0])}
+                />
+              </label>
+              {p.avatar_url && (
+                <button type="button" onClick={() => set("avatar_url", null)} className="self-start text-muted hover:text-ink">
+                  Remove photo
+                </button>
+              )}
+              <span className="text-[12px] text-faint">JPEG, PNG or WebP, under 3 MB. Saved when you save the profile.</span>
+            </div>
+          </section>
+
+          <section className="mt-10">
             <h2 className="font-serif text-[22px]">I am a…</h2>
             <div className="mt-3 grid gap-2 sm:grid-cols-3">
               {ACCOUNT_TYPES.map((t) => (

@@ -2,21 +2,69 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ProfileView } from "./ProfileView";
 import { authClient, useSession } from "@/lib/account";
 import type { Profile, ProfileEntry } from "@/lib/accountTypes";
 
-/** "Edit profile" button, shown only to the profile's owner. */
-export function OwnerEditButton({ profileId }: { profileId: string }) {
+const btn = "text-center rounded-full px-4 py-2 font-sans text-[13.5px] transition-colors";
+
+/** Owner: "Edit profile". Others: Follow / Following (sign-in first if needed). */
+export function ProfileActions({ profileId }: { profileId: string }) {
   const session = useSession();
-  if (!session || session.user.id !== profileId) return null;
+  const router = useRouter();
+  const [following, setFollowing] = useState<boolean | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!session || session.user.id === profileId) return;
+    authClient()!
+      .from("follows")
+      .select("followee_id")
+      .eq("follower_id", session.user.id)
+      .eq("followee_id", profileId)
+      .maybeSingle()
+      .then(({ data }) => setFollowing(Boolean(data)));
+  }, [session, profileId]);
+
+  if (session === undefined) return null;
+  if (session && session.user.id === profileId) {
+    return (
+      <Link href="/profile/edit" className={`${btn} border border-line hover:border-ink`}>
+        Edit profile
+      </Link>
+    );
+  }
+  if (!session) {
+    return (
+      <Link href="/signin" className={`${btn} bg-ink text-page`}>
+        Follow
+      </Link>
+    );
+  }
+  const toggle = async () => {
+    const sb = authClient()!;
+    setBusy(true);
+    const { error } = following
+      ? await sb.from("follows").delete().eq("follower_id", session.user.id).eq("followee_id", profileId)
+      : await sb.from("follows").insert({ follower_id: session.user.id, followee_id: profileId });
+    setBusy(false);
+    if (error) {
+      // No profile of their own yet: following needs one.
+      if (error.code === "23503") router.push("/profile/edit");
+      return;
+    }
+    setFollowing(!following);
+    router.refresh();
+  };
   return (
-    <Link
-      href="/profile/edit"
-      className="shrink-0 rounded-full border border-line px-3.5 py-1.5 font-sans text-[13px] hover:border-ink"
+    <button
+      onClick={toggle}
+      disabled={busy || following === null}
+      className={`${btn} ${following ? "border border-line hover:border-ink" : "bg-ink text-page"} disabled:opacity-60`}
     >
-      Edit profile
-    </Link>
+      {following ? "Following" : "Follow"}
+    </button>
   );
 }
 
@@ -58,7 +106,7 @@ export function PrivateProfileFallback({ handle }: { handle: string }) {
         entries={data.entries}
         progress={null}
         counts={data.profile.show_progress ? { read: data.read, passed: data.passed } : null}
-        ownerSlot={<OwnerEditButton profileId={data.profile.id} />}
+        actionSlot={<ProfileActions profileId={data.profile.id} />}
       />
     );
   }
