@@ -52,7 +52,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Philosophy in an Age of Empire | chapter | `philosophy/history-of-philosophy/nineteenth-century/philosophy-in-an-age-of-empire` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Twentieth Century and After | overview | `philosophy/history-of-philosophy/twentieth-century` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frege, Russell and the Birth of Analytic Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/birth-of-analytic-philosophy` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wittgenstein | chapter | `philosophy/history-of-philosophy/twentieth-century/wittgenstein` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wittgenstein | chapter | `philosophy/history-of-philosophy/twentieth-century/wittgenstein` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logical Positivism and Its Critics: the Vienna Circle, Popper and Quine | chapter | `philosophy/history-of-philosophy/twentieth-century/logical-positivism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phenomenology: Husserl, Heidegger and Merleau-Ponty | chapter | `philosophy/history-of-philosophy/twentieth-century/phenomenology` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existentialism: Sartre, Beauvoir and Camus | chapter | `philosophy/history-of-philosophy/twentieth-century/existentialism` | ⬜ |
