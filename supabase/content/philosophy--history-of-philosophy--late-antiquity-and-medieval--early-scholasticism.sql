@@ -205,7 +205,13 @@ Conflict followed. In 1277 Bishop Étienne Tempier of Paris condemned 219 theses
 
 ## Further exploration
 
-- **Thomas Williams (tr.), *Anselm: The Complete Treatises, with Selected Letters and Prayers and the Meditation on Human Redemption* (2022).** All of Anselm's treatises translated by one hand.$scholastic_master$,
+- **Thomas Williams (tr.), *Anselm: The Complete Treatises, with Selected Letters and Prayers and the Meditation on Human Redemption* (2022).** All of Anselm's treatises translated by one hand.
+- **Sandra Visser and Thomas Williams, *Anselm* (2008).** A philosophical study, and the source of the reading of the *Proslogion* argument that rejects Gaunilo's interpretation.
+- **R. W. Southern, *Saint Anselm: A Portrait in a Landscape* (1990).** The classic historical biography.
+- **M. T. Clanchy, *Abelard: A Medieval Life* (1997).** A lively biography of Abelard in his world.
+- **Constant J. Mews, *Abelard and Heloise* (2005).** An intellectual biography arguing for Heloise's influence on Abelard's ideas.
+- **John Marenbon, *The Philosophy of Peter Abelard* (1997).** The standard philosophical study, including Heloise's influence on his ethics.
+- **Paul Vincent Spade (tr.), *Five Texts on the Mediaeval Problem of Universals* (1994).** Porphyry, Boethius, Abelard, Scotus and Ockham on universals in translation.$scholastic_master$,
     true,
     true
   )
