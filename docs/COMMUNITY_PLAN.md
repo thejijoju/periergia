@@ -53,7 +53,7 @@ The database is Supabase (Postgres). Public tables are readable by everyone, and
 
 Each stage is usable on its own and builds on the previous one.
 
-1. **Accounts and profiles:** sign-in, profile with work experience and education, saved reading progress. (This also replaces the email-only "save your progress" card.)
+1. **Accounts and profiles:** sign-in, profile with work experience and education, saved reading progress. (This also replaces the email-only "save your progress" card.) **Built (Nov 2026):** Supabase Auth email sign-in link (`/signin`, `/auth/callback`), profile editor (`/profile/edit`), public profile at `/u/<handle>` with account type (student / professor or lecturer / independent learner), education and experience, interests, and lessons read and checkpoints passed (`user_progress`, synced from the browser). Tables and row-level security in `supabase/accounts.sql`. Account type is self-declared until stage 2 adds verification.
 2. **Universities:** university pages (unverified, then claimed by verified staff), and joining via university email.
 3. **Papers:** publishing papers to a profile and university page, with licence and visibility.
 4. **Lectures from universities:** university admins publish free lectures into the library, credited to the university.

@@ -10,6 +10,7 @@ import { Wordmark } from "@/components/Wordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ReaderSettings } from "@/components/ReaderSettings";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { AccountButton } from "@/components/AccountButton";
 import { MobileNav } from "@/components/MobileNav";
 import {
   getSubject,
@@ -272,6 +273,7 @@ export default async function ReaderPage({
             <LanguageSwitcher />
             <ReaderSettings />
             <ThemeToggle />
+            <AccountButton />
           </div>
         </div>
       </header>

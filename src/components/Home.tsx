@@ -8,6 +8,7 @@ import { Wordmark } from "./Wordmark";
 import { SearchBar } from "./SearchBar";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { AccountButton } from "./AccountButton";
 import { t } from "@/lib/i18n";
 import type { SearchItem } from "@/lib/types";
 
@@ -89,6 +90,7 @@ export function Home({
       <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
         <ThemeToggle />
         <LanguageSwitcher />
+        <AccountButton />
       </div>
       {/* Faint pixel-grid accent, top-right */}
       <Image

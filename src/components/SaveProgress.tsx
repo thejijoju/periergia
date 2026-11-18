@@ -1,8 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { accountsEnabled, useSession } from "@/lib/account";
 
 // ── "Save your progress" prompt ───────────────────────────────────────────
+// When accounts are switched on (Supabase keys present) this is a sign-in
+// prompt, hidden for signed-in readers. Otherwise, the original shell below:
 // SHELL ONLY. There are no accounts yet: drill streaks, checkpoint scores and
 // which lectures have been read all live in component memory and vanish on
 // reload. This card states the intent and collects an address for when
@@ -20,6 +24,7 @@ export function SaveProgress({ nodeId, title }: { nodeId: string; title: string 
   const [hidden, setHidden] = useState(true); // assume hidden until localStorage is read
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const session = useSession();
 
   useEffect(() => {
     try {
@@ -68,6 +73,37 @@ export function SaveProgress({ nodeId, title }: { nodeId: string; title: string 
   };
 
   if (hidden) return null;
+
+  if (accountsEnabled) {
+    if (session !== null) return null; // signed in, or not known yet
+    return (
+      <aside className="mt-10 not-prose rounded-2xl border border-line bg-card px-4 sm:px-5 py-4">
+        <div className="flex items-start gap-3">
+          <div className="flex-1">
+            <p className="font-sans text-[15px] font-semibold text-ink">Want to save your progress?</p>
+            <p className="mt-1 font-sans text-[13.5px] leading-relaxed text-muted">
+              Create a free account to keep the lessons you have read and the checkpoints you have
+              passed across devices, and to build a profile page showing your background and what
+              you are learning.
+            </p>
+            <Link
+              href="/signin"
+              className="mt-3 inline-block font-sans text-[13px] font-medium px-3.5 py-2 rounded-xl border border-line text-ink hover:border-ink"
+            >
+              Sign in or create an account
+            </Link>
+          </div>
+          <button
+            onClick={dismiss}
+            aria-label="Dismiss"
+            className="shrink-0 font-sans text-[13px] text-whisper hover:text-ink"
+          >
+            ✕
+          </button>
+        </div>
+      </aside>
+    );
+  }
 
   return (
     <aside className="mt-10 not-prose rounded-2xl border border-line bg-card px-4 sm:px-5 py-4">

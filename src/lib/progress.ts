@@ -3,9 +3,12 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Depth, Level } from "./types";
 import { MODES, type Mode } from "./modes";
+import { syncProgress } from "./account";
 
-// Browser-saved progress + reader preferences. No accounts in v1 — everything
-// lives in localStorage. Swappable for Supabase Auth + a `progress` table later.
+// Browser-saved progress + reader preferences, in localStorage. When the
+// reader is signed in, each article opened / checkpoint passed is also
+// written to their account (user_progress), and on sign-in the two are
+// merged (see mergeLocalProgress and lib/account.ts).
 
 const KEY = "periergia.v4";
 // Previous key. The default reading prefs changed (the reviewed master is now
@@ -90,6 +93,7 @@ export function useProgress() {
 
   const markVisited = useCallback(
     (nodeId: string) => {
+      void syncProgress(nodeId, false);
       setState((prev) => {
         if (prev.visited.includes(nodeId)) return prev;
         const next = { ...prev, visited: [...prev.visited, nodeId] };
@@ -106,6 +110,7 @@ export function useProgress() {
 
   const markCompleted = useCallback(
     (nodeId: string) => {
+      void syncProgress(nodeId, true);
       setState((prev) => {
         if (prev.completed.includes(nodeId)) return prev;
         const next = { ...prev, completed: [...prev.completed, nodeId] };
@@ -128,4 +133,26 @@ export function useProgress() {
   );
 
   return { state, hydrated, markVisited, markCompleted, setPrefs };
+}
+
+/** Read the saved progress lists (for the sign-in merge). */
+export function readLocalProgress(): { visited: string[]; completed: string[] } {
+  const s = load();
+  return { visited: s.visited, completed: s.completed };
+}
+
+/** Add progress held by the account (other devices) to this browser's copy. */
+export function mergeLocalProgress(remote: { visited: string[]; completed: string[] }): void {
+  if (typeof window === "undefined") return;
+  const s = load();
+  const next: ProgressState = {
+    ...s,
+    visited: Array.from(new Set([...s.visited, ...remote.visited])),
+    completed: Array.from(new Set([...s.completed, ...remote.completed])),
+  };
+  try {
+    window.localStorage.setItem(KEY, JSON.stringify(next));
+  } catch {
+    /* ignore */
+  }
 }
