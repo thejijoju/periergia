@@ -57,3 +57,6 @@ Found after publication; fix in a later batch.
 
 ### The Enlightenment and Rousseau — open
 - Says Horkheimer and Adorno "read the Nazi death camps as an outcome of the supremacy of instrumental reason"; no source quotes *Dialectic of Enlightenment* (written 1939–44) on the camps. Soften to the book's critique of instrumental reason; Adorno's explicit claims about Auschwitz come later (*Negative Dialectics*, 1966). Source: docs/philosophy-curriculum/research/twentieth--critical-theory.md.
+
+### Beyond Europe (early modern) — open
+- Says Mou Zongsan held Wang Yangming understood Confucianism more deeply than Zhu Xi; true, but Mou ranked a third line (Hu Hong and Liu Zongzhou) highest of all. Add the nuance. Source: docs/philosophy-curriculum/research/twentieth--modern-chinese-and-indian-philosophy.md.
