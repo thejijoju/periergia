@@ -165,3 +165,16 @@ Source: docs/philosophy-curriculum/research/ancient--socrates-and-the-sophists.m
 ### Classical India: the Mauryas to the Guptas (found by Philosophy research, 18 Nov 2026) — open
 - Upanishads dated "800–200 BCE" (the Philosophy overview says 800–300): IEP 700–300; Olivelle earliest 7th–6th c. BCE ± a century. Align the two.
 - Upanishads "developed" karma, saṃsāra and mokṣa: the early Upaniṣads have no explicit karma theory; saṃsāra and mokṣa (as liberation) first appear in later ones (Kaṭha, Śvetāśvatara). Source: docs/philosophy-curriculum/research/ancient--upanishads.md.
+
+### Ancient China / Han China (found by Philosophy research, 18 Nov 2026) — open
+- Ancient China image caption: Confucius's teachings "collected by his disciples in the Analects" states the traditional view as fact; the Analects' composition is contested (Brooks & Brooks; Zhu Weizheng; Hunter).
+- Ancient China: Mencius c. 371–289 BCE — add that many recent scholars date him about 20 years earlier (b. c. 390).
+- Han China: Imperial Academy 124 BCE vs 136 BCE (Five Classics as exam basis, IEP; WP Emperor Wu) — unresolved; check.
+Source: docs/philosophy-curriculum/research/ancient--confucianism.md.
+
+### Classical India / Alexander (found by Philosophy research, 18 Nov 2026) — open
+- Classical India: Buddha "born into a ruling family" — his father was probably an elected Śākya chief, not a king; dates 563–483 BCE are the traditional "long chronology" (many scholars now place his death c. 405). Rahula, *What the Buddha Taught* "1959" unconfirmed (SEP cites 2nd ed. 1967).
+- Alexander and the Hellenistic World: Menander "is converted" — say the Milindapañha presents him as converted (Nāgasena otherwise unknown).
+Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
+- Ancient China (more): "the Daoists turned away from political engineering altogether" conflicts with the political reading of the Laozi (SEP laozi: Lau, LaFargue, Moeller, Graham); "people hardly know he exists" (ch. 17) is an unattributed paraphrase; Mozi 470–391 BCE should be a range (SEP: fl. c. 430); Jixia Academy "founded" by Qi disputed (possibly restored by King Xuan). Source: docs/philosophy-curriculum/research/ancient--hundred-schools.md.
+- Ancient China (more): Mencius held human nature "fundamentally good" — that phrase is Zhu Xi's later gloss (xing ben shan); Mencius says only "nature is good". Source: docs/philosophy-curriculum/research/ancient--confucianism.md.
