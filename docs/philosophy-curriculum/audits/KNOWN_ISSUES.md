@@ -18,3 +18,6 @@ Found after publication; fix in a later batch.
 - Overview: Mohism as "history's first consequentialism" — matches Fraser, but name the rival divine-command reading; the Zhuangzi fish debate is from an Outer Chapter (ch. 17), possibly not by Zhuangzi. Source: research/ancient--hundred-schools.md.
 - Overview: Neoplatonism's "emanation" — gloss as procession and return (SEP neoplatonism calls "emanation" misleading); don't call the school closed in 529 Plato's Academy. Source: research/medieval--neoplatonism.md.
 - Overview: Nāgārjuna's tetralemmas "read like proto-deconstruction" — an interpretation; present as such. Source: research/medieval--mahayana-philosophy.md.
+
+### The Upanishads and the Beginnings of Indian Philosophy — open
+- "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
