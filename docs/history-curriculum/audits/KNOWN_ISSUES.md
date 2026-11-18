@@ -188,3 +188,6 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 
 ### The Scientific Revolution — open
 - Descartes' *Discourse on the Method* (1637) described as "doubting everything": the radical doubt is in the *Meditations* (1641); the *Discourse* deliberately softens it (written in French for a wide audience). Source: docs/philosophy-curriculum/research/early-modern--descartes.md.
+
+### The Renaissance — open
+- Erasmus born "about 1466": SEP's Erasmus entry gives 1469 (SEP Pico gives 1466); say "1466 or 1469". Source: docs/philosophy-curriculum/research/early-modern--renaissance-philosophy.md.
