@@ -24,6 +24,7 @@ Found after publication; fix in a later batch.
 - Overview: Descartes' interaction "unexplained at the pineal gland ever since" — leans on the caricature; the archived SEP pineal-gland entry doubts Descartes was a straightforward interactionist, and Elisabeth's objection and his 'union' reply should be named. Source: research/early-modern--descartes.md.
 - Overview: scepticism "weaponized by Montaigne" — frame as Popkin's (contested) sceptical-crisis thesis. Source: research/early-modern--renaissance-philosophy.md.
 - Overview: Spinoza's mind and body as "two aspects" — say "two attributes" (Ethics II P7). Source: research/early-modern--spinoza.md.
+- Overview: Leibniz's "possible-worlds machinery … tools logic still uses" — SEP: he did not explicitly formulate possible-worlds semantics, though his account translates into it; soften. Source: research/early-modern--leibniz.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
