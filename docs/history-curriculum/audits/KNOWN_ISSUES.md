@@ -177,3 +177,4 @@ Source: docs/philosophy-curriculum/research/ancient--confucianism.md.
 - Alexander and the Hellenistic World: Menander "is converted" — say the Milindapañha presents him as converted (Nāgasena otherwise unknown).
 Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 - Ancient China (more): "the Daoists turned away from political engineering altogether" conflicts with the political reading of the Laozi (SEP laozi: Lau, LaFargue, Moeller, Graham); "people hardly know he exists" (ch. 17) is an unattributed paraphrase; Mozi 470–391 BCE should be a range (SEP: fl. c. 430); Jixia Academy "founded" by Qi disputed (possibly restored by King Xuan). Source: docs/philosophy-curriculum/research/ancient--hundred-schools.md.
+- Ancient China (more): Mencius held human nature "fundamentally good" — that phrase is Zhu Xi's later gloss (xing ben shan); Mencius says only "nature is good". Source: docs/philosophy-curriculum/research/ancient--confucianism.md.
