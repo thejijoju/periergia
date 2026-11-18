@@ -1,0 +1,12 @@
+# Philosophy: known issues in published chapters
+
+Found after publication; fix in a later batch.
+
+### Socrates and the Sophists — open
+- "Plato … about twenty-five at the trial": follows Nails's birth date (424/3). SEP Plato (Kraut, rev. 2026) gives 429?; IEP 428/7; Diogenes Laertius says 28. Say "in his mid-to-late twenties". Source: research/ancient--plato.md.
+
+### History of Philosophy overview (pre-plan article, not yet audited) — open
+- "first complete philosophical system" (Plato) and the Parmenides' "most devastating criticisms of the Forms ever produced": present as debated (SEP Plato: exploratory, incompletely systematic; Meinwald). Source: research/ancient--plato.md.
+- Al-Fārābī "harmonized Plato's political philosophy with Islam": the harmonisation treatise's authorship is questioned (Rashed 2009); full Arabic Republic doubtful. Source: research/ancient--plato.md.
+- Parmenides "set the task for every successor": one reading among several (Palmer). Source: research/ancient--presocratics.md.
+- Confucius 551–479 BCE: mark as traditional dates; "earlier histories routinely began philosophy in Egypt, Persia, or India" — Persia unsourced, "routinely" overstated. Source: research/what-is-philosophy.md.
