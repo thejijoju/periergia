@@ -42,3 +42,6 @@ Found after publication; fix in a later batch.
 
 ### Hobbes — open
 - "Cavendish Circle" attendees and host: SEP says William Cavendish hosted; IEP says Charles Cavendish's salon, with Descartes, Mersenne and Gassendi attending only "occasionally", and Margaret denied discussing more than superficial matters with them. Soften. Source: research/early-modern--early-modern-women-philosophers.md.
+
+### What Is Philosophy? — open
+- "most scholars now accept his authorship" of the Hatata: overstated; the debate is open (Wion 2021; Cantor/Egid/Merawi 2024; the 2023 translators accept it). Source: research/early-modern--early-modern-beyond-europe.md.
