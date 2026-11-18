@@ -21,3 +21,7 @@ Found after publication; fix in a later batch.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
+- Overview: al-Ghazālī's arguments "occasionalist" and "strikingly anticipate Hume" — present the occasionalism debate (Marmura/Frank/Griffel) and the differences from Hume. Source: research/medieval--ghazali-and-averroes.md.
+
+### Plato — open
+- Sends readers to "Falsafa" for Averroes' Republic commentary; that material is in "Al-Ghazālī, Averroes and the Quarrel over Reason". Re-point the cross-reference.
