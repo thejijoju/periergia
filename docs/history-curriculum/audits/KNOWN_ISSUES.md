@@ -182,3 +182,6 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 ### Early Medieval Europe (found by Philosophy research, 18 Nov 2026) — open
 - Boethius executed "524": SEP Boethius (Marenbon, rev. Oct 2026) says "probably" 526; Marenbon's SEP medieval-philosophy says c. 525; Wikipedia/IEP 524. Write "524 (or possibly 526)". Source: docs/philosophy-curriculum/research/medieval--augustine.md.
 - Unchecked: "Sex, Love and Marriage" cites Augustine on prostitution as a "lesser evil" — verify.
+
+### The Rise of Islam and the Caliphates (found by Philosophy research, 18 Nov 2026) — open
+- Avicenna "980–1037": SEP (Gutas) gives c. 970 and calls 980 a miscalculation; IEP/WP c. 980. Use "c. 970 (traditionally 980)–1037", consistent with the Philosophy chapters. Source: docs/philosophy-curriculum/research/medieval--falsafa.md.
