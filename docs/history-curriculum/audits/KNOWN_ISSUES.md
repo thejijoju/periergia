@@ -193,5 +193,9 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 - Erasmus born "about 1466": SEP's Erasmus entry gives 1469 (SEP Pico gives 1466); say "1466 or 1469". Source: docs/philosophy-curriculum/research/early-modern--renaissance-philosophy.md.
 
 ### The Enlightenment — open
+- "most specialists … accept" Zera Yacob's authorship of the Hatata: overstated; present as an open debate (Wion 2021; 2024 volume). Source: docs/philosophy-curriculum/research/early-modern--early-modern-beyond-europe.md.
 - d'Alembert co-edited the Encyclopédie "until 1759": he resigned in 1758 (SEP). Hume's footnote: 1753–54 edition. Source: docs/philosophy-curriculum/research/early-modern--enlightenment-and-rousseau.md.
 - States Jonathan Israel's "Radical Enlightenment" thesis (Spinoza as its source) without its critics; present as a debate. Source: docs/philosophy-curriculum/research/early-modern--spinoza.md.
+
+### Safavid Iran — open
+- "School of Isfahan" used without noting it is a modern label (Corbin and Nasr), criticised as retroactive. Source: docs/philosophy-curriculum/research/early-modern--early-modern-beyond-europe.md.

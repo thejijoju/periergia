@@ -26,6 +26,7 @@ Found after publication; fix in a later batch.
 - Overview: Spinoza's mind and body as "two aspects" — say "two attributes" (Ethics II P7). Source: research/early-modern--spinoza.md.
 - Overview: Leibniz's "possible-worlds machinery … tools logic still uses" — SEP: he did not explicitly formulate possible-worlds semantics, though his account translates into it; soften. Source: research/early-modern--leibniz.md.
 - Overview: Wollstonecraft as "the first systematic philosophical feminism" — Astell (and Gournay, 1622) wrote earlier; soften. Source: research/early-modern--enlightenment-and-rousseau.md.
+- Overview: old metaphysics of God, soul and world "collapses into antinomies" — only the world yields antinomies (soul → paralogisms; God → failed proofs); and "Copernican revolution" in quotation marks is not Kant's phrase. Source: research/early-modern--kant.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
@@ -35,3 +36,12 @@ Found after publication; fix in a later batch.
 - "Plethon brought the texts to Florence": loose — Cosimo supplied the Plato manuscript to Ficino in 1462 (SEP ficino). Source: research/early-modern--renaissance-philosophy.md.
 - Sends readers to "Falsafa" for Averroes' Republic commentary; that material is in "Al-Ghazālī, Averroes and the Quarrel over Reason". Re-point the cross-reference.
 - Overview: Avicenna's flying man has an "unmistakable family resemblance" to the cogito — present as debated (how deep the resemblance goes is disputed). Source: research/medieval--falsafa.md.
+
+### Other subjects (found by Philosophy research) — open
+- Astronomy `astronomy-and-space--solar-system--origins--nebular-collapse`: Kant "still working as a private tutor" in 1755 — he returned to Königsberg in August 1754 and began lecturing in 1755 (SEP kant; Kuehn). Source: research/early-modern--kant.md.
+
+### Hobbes — open
+- "Cavendish Circle" attendees and host: SEP says William Cavendish hosted; IEP says Charles Cavendish's salon, with Descartes, Mersenne and Gassendi attending only "occasionally", and Margaret denied discussing more than superficial matters with them. Soften. Source: research/early-modern--early-modern-women-philosophers.md.
+
+### What Is Philosophy? — open
+- "most scholars now accept his authorship" of the Hatata: overstated; the debate is open (Wion 2021; Cantor/Egid/Merawi 2024; the 2023 translators accept it). Source: research/early-modern--early-modern-beyond-europe.md.
