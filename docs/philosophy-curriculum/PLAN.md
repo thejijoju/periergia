@@ -174,3 +174,8 @@ Progress will be tracked in `docs/philosophy-curriculum/STATUS.md`.
 - **Is the size right?** About 115 pieces in total. A shorter first version would be Part A only (about 58 pieces), with the branches later.
 - **Branches or history first?** The plan starts with history, because the branch chapters can then link back to it. Starting with Ethics and Logic would put the most-searched topics online sooner.
 - **Classics and Religion & Theology** are separate subjects on the site. This plan covers Greek and religious *philosophy* only; Greek literature and theology proper stay in those subjects.
+
+## 5. Tools and practical notes
+- The briefs for research, writing and audit agents are in `docs/philosophy-curriculum/tools/` (adapted from History's). Building and checking reuse History's tools: `docs/history-curriculum/tools/build_master.py`, `check_batch.sh` and `extract.py`.
+- The cloud environment ("Periergia & Twiggli") allows the Stanford Encyclopedia of Philosophy (`plato.stanford.edu`) and the Internet Encyclopedia of Philosophy (`iep.utm.edu`), the preferred sources for arguments and interpretations, as well as English Wikipedia for dates and biography.
+- Research notes: `docs/philosophy-curriculum/research/`; audit ledgers: `docs/philosophy-curriculum/audits/`.
