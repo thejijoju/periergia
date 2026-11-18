@@ -191,3 +191,6 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 
 ### The Renaissance — open
 - Erasmus born "about 1466": SEP's Erasmus entry gives 1469 (SEP Pico gives 1466); say "1466 or 1469". Source: docs/philosophy-curriculum/research/early-modern--renaissance-philosophy.md.
+
+### The Enlightenment — open
+- States Jonathan Israel's "Radical Enlightenment" thesis (Spinoza as its source) without its critics; present as a debate. Source: docs/philosophy-curriculum/research/early-modern--spinoza.md.
