@@ -49,7 +49,7 @@ What is secure is a body of commentary, on the *Brahma-sūtra*, the *Gītā* and
 
 ## Superimposition and the Two Standpoints
 
-Śaṅkara's *Brahma-sūtra* commentary opens with a short preface on superimposition (*adhyāsa*), the root of all our troubles.
+Śaṅkara's *Brahma-sūtra* commentary opens with a short preface on superimposition (*adhyāsa*), the confusion through which, on his account, ignorance binds us to suffering.
 
 ```quote
 Since it is an established fact that the object and subject which are presented as yusmad—'you' /the other, and asmad—'me' are by very nature contradictory, and their qualities also contradictory, as light and darkness they cannot be identical.
