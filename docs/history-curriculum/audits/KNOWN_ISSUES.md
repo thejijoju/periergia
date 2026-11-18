@@ -171,3 +171,8 @@ Source: docs/philosophy-curriculum/research/ancient--socrates-and-the-sophists.m
 - Ancient China: Mencius c. 371–289 BCE — add that many recent scholars date him about 20 years earlier (b. c. 390).
 - Han China: Imperial Academy 124 BCE vs 136 BCE (Five Classics as exam basis, IEP; WP Emperor Wu) — unresolved; check.
 Source: docs/philosophy-curriculum/research/ancient--confucianism.md.
+
+### Classical India / Alexander (found by Philosophy research, 18 Nov 2026) — open
+- Classical India: Buddha "born into a ruling family" — his father was probably an elected Śākya chief, not a king; dates 563–483 BCE are the traditional "long chronology" (many scholars now place his death c. 405). Rahula, *What the Buddha Taught* "1959" unconfirmed (SEP cites 2nd ed. 1967).
+- Alexander and the Hellenistic World: Menander "is converted" — say the Milindapañha presents him as converted (Nāgasena otherwise unknown).
+Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
