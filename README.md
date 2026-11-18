@@ -91,6 +91,20 @@ before `npm run seed` runs. With no env vars at all, everything is in-memory.
 
 ---
 
+## Accounts (Supabase Auth)
+
+Readers can sign in with an emailed link and keep a CV-style profile at
+`/u/<handle>` (see `supabase/accounts.sql` and `docs/COMMUNITY_PLAN.md`).
+Account UI only appears when `NEXT_PUBLIC_SUPABASE_URL` and
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` are set. In the Supabase dashboard:
+
+- **Authentication → URL Configuration:** Site URL `https://www.periergia.com`;
+  add `https://www.periergia.com/auth/callback` (and preview / localhost
+  callback URLs) to the redirect allow list.
+- **Authentication → Emails / SMTP:** set up a custom SMTP sender; the built-in
+  one is rate-limited and meant for testing.
+- `supabase/accounts.sql` is applied by the db-migrate workflow.
+
 ## Architecture
 
 ```
