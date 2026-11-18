@@ -28,10 +28,14 @@ Found after publication; fix in a later batch.
 - Overview: Wollstonecraft as "the first systematic philosophical feminism" — Astell (and Gournay, 1622) wrote earlier; soften. Source: research/early-modern--enlightenment-and-rousseau.md.
 - Overview: old metaphysics of God, soul and world "collapses into antinomies" — only the world yields antinomies (soul → paralogisms; God → failed proofs); and "Copernican revolution" in quotation marks is not Kant's phrase. Source: research/early-modern--kant.md.
 - Overview: Kierkegaard's "leap of faith" (not his phrase; McKinnon) and "truth as subjectivity" (the pseudonym Climacus's), and Schopenhauer "importing … Buddhist thought" (he denied Buddhist influence before 1818; the Indian-influence question is debated) — qualify. Source: research/nineteenth--schopenhauer-and-kierkegaard.md.
+- Overview: the harm principle as "the reference point of every free-speech debate" (Mill never names a 'harm principle'; SEP says ch. II partly qualifies it), and *The Subjection of Women* credited to Mill alone (Harriet Taylor Mill's role is debated); Bentham not mentioned. Source: research/nineteenth--utilitarianism.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
 - Overview: al-Ghazālī's arguments "occasionalist" and "strikingly anticipate Hume" — present the occasionalism debate (Marmura/Frank/Griffel) and the differences from Hume. Source: research/medieval--ghazali-and-averroes.md.
+
+### Aristotle — open
+- The "Socrates is mortal" syllogism "is traced to" Mill: sources show Mill using it, not originating it. Source: research/nineteenth--utilitarianism.md.
 
 ### Plato — open
 - "Plethon brought the texts to Florence": loose — Cosimo supplied the Plato manuscript to Ficino in 1462 (SEP ficino). Source: research/early-modern--renaissance-philosophy.md.
