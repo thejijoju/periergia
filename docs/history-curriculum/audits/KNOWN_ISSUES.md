@@ -202,3 +202,6 @@ Source: docs/philosophy-curriculum/research/ancient--early-buddhism.md.
 
 ### Nationalism — open
 - Quotes Fukuzawa's "Heaven never created a man above another nor a man below another" as his own claim; the original frames it as a saying ("it is said"). Source: docs/philosophy-curriculum/research/nineteenth--philosophy-in-an-age-of-empire.md.
+
+### Decolonization — open
+- Says Fanon headed a service at Blida "before joining the FLN"; he joined the FLN while still at Blida. Source: docs/philosophy-curriculum/research/twentieth--existentialism.md.
