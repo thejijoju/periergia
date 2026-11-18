@@ -161,3 +161,7 @@ Leads found while researching new chapters that may affect articles already publ
 - Critias and Charmides as Socrates' "former students": Socrates denied being a teacher (Apology 33a–b); say "associates".
 - Plato dated 428–348: SEP gives 424/423–347; IEP 427. Give "c. 428/427–348/347" or a range.
 Source: docs/philosophy-curriculum/research/ancient--socrates-and-the-sophists.md.
+
+### Classical India: the Mauryas to the Guptas (found by Philosophy research, 18 Nov 2026) — open
+- Upanishads dated "800–200 BCE" (the Philosophy overview says 800–300): IEP 700–300; Olivelle earliest 7th–6th c. BCE ± a century. Align the two.
+- Upanishads "developed" karma, saṃsāra and mokṣa: the early Upaniṣads have no explicit karma theory; saṃsāra and mokṣa (as liberation) first appear in later ones (Kaṭha, Śvetāśvatara). Source: docs/philosophy-curriculum/research/ancient--upanishads.md.

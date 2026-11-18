@@ -9,10 +9,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Ancient Beginnings (c. 800 BCE – 200 CE) | overview | `philosophy/history-of-philosophy/ancient-beginnings` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Presocratics: from Myth to Argument | chapter | `philosophy/history-of-philosophy/ancient-beginnings/presocratics` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Socrates and the Sophists | chapter | `philosophy/history-of-philosophy/ancient-beginnings/socrates-and-the-sophists` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plato | chapter | `philosophy/history-of-philosophy/ancient-beginnings/plato` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aristotle | chapter | `philosophy/history-of-philosophy/ancient-beginnings/aristotle` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hellenistic Philosophy: Stoics, Epicureans and Sceptics | chapter | `philosophy/history-of-philosophy/ancient-beginnings/hellenistic-philosophy` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Upanishads and the Beginnings of Indian Philosophy | chapter | `philosophy/history-of-philosophy/ancient-beginnings/upanishads` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plato | chapter | `philosophy/history-of-philosophy/ancient-beginnings/plato` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aristotle | chapter | `philosophy/history-of-philosophy/ancient-beginnings/aristotle` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hellenistic Philosophy: Stoics, Epicureans and Sceptics | chapter | `philosophy/history-of-philosophy/ancient-beginnings/hellenistic-philosophy` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Upanishads and the Beginnings of Indian Philosophy | chapter | `philosophy/history-of-philosophy/ancient-beginnings/upanishads` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Buddha and Early Buddhist Philosophy | chapter | `philosophy/history-of-philosophy/ancient-beginnings/early-buddhism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jains, Ājīvikas and Materialists: India's Other Dissenters | chapter | `philosophy/history-of-philosophy/ancient-beginnings/indian-dissenters` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confucius, Mencius and Xunzi | chapter | `philosophy/history-of-philosophy/ancient-beginnings/confucianism` | ⬜ |
