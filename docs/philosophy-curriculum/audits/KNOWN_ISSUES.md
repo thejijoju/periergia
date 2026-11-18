@@ -30,6 +30,8 @@ Found after publication; fix in a later batch.
 - Overview: Kierkegaard's "leap of faith" (not his phrase; McKinnon) and "truth as subjectivity" (the pseudonym Climacus's), and Schopenhauer "importing … Buddhist thought" (he denied Buddhist influence before 1818; the Indian-influence question is debated) — qualify. Source: research/nineteenth--schopenhauer-and-kierkegaard.md.
 - Overview: the harm principle as "the reference point of every free-speech debate" (Mill never names a 'harm principle'; SEP says ch. II partly qualifies it), and *The Subjection of Women* credited to Mill alone (Harriet Taylor Mill's role is debated); Bentham not mentioned. Source: research/nineteenth--utilitarianism.md.
 - Says the later Wittgenstein "repudiated his earlier self" and that "meaning is use" without qualification; sources treat the break as a live debate and PI §43 limits use to "a large class of cases". Source: docs/philosophy-curriculum/research/twentieth--wittgenstein.md.
+- Says the verification principle "failed its own test" (self-refutation is disputed; the decisive failures were technical: Church 1949, Hempel), that Quine "dissolved" the analytic–synthetic distinction (not accepted by current scholarship; Quine later allowed a limited analyticity), and implies holism replaced foundationalism (Neurath was already anti-foundationalist). Source: docs/philosophy-curriculum/research/twentieth--logical-positivism.md.
+- Calls Foucault's *History of Madness* a "genealogy"; SEP: genealogy begins with *Discipline and Punish*, the earlier books are "archaeology". Source: docs/philosophy-curriculum/research/twentieth--structuralism-and-after.md.
 
 ### The Upanishads and the Beginnings of Indian Philosophy — open
 - "Rāmānuja (c. 1000)" fits only the traditional dating (1017–1137; Carman 1077–1157); "Madhva (c. 1200)" fits only the minority dating (1238–1317 more usual; 1199–1278). Use "eleventh–twelfth century" and "thirteenth century". Source: research/medieval--vedanta.md.
@@ -52,3 +54,6 @@ Found after publication; fix in a later batch.
 ### What Is Philosophy? — open
 - "most scholars now accept his authorship" of the Hatata: overstated; the debate is open (Wion 2021; Cantor/Egid/Merawi 2024; the 2023 translators accept it). Source: research/early-modern--early-modern-beyond-europe.md.
 - Describes Wittgensteinian philosophy as "therapy for confusions caused by ordinary language"; for the later Wittgenstein confusion comes from misleading analogies and words taken out of everyday use (PI §§90, 116), not from ordinary language. Source: docs/philosophy-curriculum/research/twentieth--wittgenstein.md.
+
+### The Enlightenment and Rousseau — open
+- Says Horkheimer and Adorno "read the Nazi death camps as an outcome of the supremacy of instrumental reason"; no source quotes *Dialectic of Enlightenment* (written 1939–44) on the camps. Soften to the book's critique of instrumental reason; Adorno's explicit claims about Auschwitz come later (*Negative Dialectics*, 1966). Source: docs/philosophy-curriculum/research/twentieth--critical-theory.md.
