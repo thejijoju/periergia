@@ -53,3 +53,6 @@ Found after publication; fix in a later batch.
 ### What Is Philosophy? — open
 - "most scholars now accept his authorship" of the Hatata: overstated; the debate is open (Wion 2021; Cantor/Egid/Merawi 2024; the 2023 translators accept it). Source: research/early-modern--early-modern-beyond-europe.md.
 - Describes Wittgensteinian philosophy as "therapy for confusions caused by ordinary language"; for the later Wittgenstein confusion comes from misleading analogies and words taken out of everyday use (PI §§90, 116), not from ordinary language. Source: docs/philosophy-curriculum/research/twentieth--wittgenstein.md.
+
+### The Enlightenment and Rousseau — open
+- Says Horkheimer and Adorno "read the Nazi death camps as an outcome of the supremacy of instrumental reason"; no source quotes *Dialectic of Enlightenment* (written 1939–44) on the camps. Soften to the book's critique of instrumental reason; Adorno's explicit claims about Auschwitz come later (*Negative Dialectics*, 1966). Source: docs/philosophy-curriculum/research/twentieth--critical-theory.md.
