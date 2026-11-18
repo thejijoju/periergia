@@ -10,3 +10,4 @@ Found after publication; fix in a later batch.
 - Al-Fārābī "harmonized Plato's political philosophy with Islam": the harmonisation treatise's authorship is questioned (Rashed 2009); full Arabic Republic doubtful. Source: research/ancient--plato.md.
 - Parmenides "set the task for every successor": one reading among several (Palmer). Source: research/ancient--presocratics.md.
 - Confucius 551–479 BCE: mark as traditional dates; "earlier histories routinely began philosophy in Egypt, Persia, or India" — Persia unsourced, "routinely" overstated. Source: research/what-is-philosophy.md.
+- Overview: Aristotle's syllogistic "unrivaled until the nineteenth century": Stoic propositional logic (Chrysippus) was a real rival in antiquity; say "dominant from late antiquity to the nineteenth century". Source: research/ancient--aristotle.md.
