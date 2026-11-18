@@ -24,6 +24,9 @@ export interface Profile {
   field: string | null;
   website: string | null;
   skills: string[];
+  avatar_url: string | null;
+  degree: string | null;
+  contact_email: string | null;
   is_public: boolean;
   show_progress: boolean;
 }

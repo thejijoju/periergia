@@ -104,6 +104,60 @@ begin
   end if;
 end $$;
 
+-- Added after launch: profile photo, current degree or level ("Master 2"),
+-- and an optional public contact address.
+alter table profiles add column if not exists avatar_url    text check (char_length(avatar_url) <= 500);
+alter table profiles add column if not exists degree        text check (char_length(degree) <= 80);
+alter table profiles add column if not exists contact_email text check (char_length(contact_email) <= 200);
+
+-- Who follows whom. Public: follower counts and lists appear on profiles.
+create table if not exists follows (
+  follower_id uuid not null references profiles (id) on delete cascade,
+  followee_id uuid not null references profiles (id) on delete cascade,
+  created_at  timestamptz not null default now(),
+  primary key (follower_id, followee_id),
+  check (follower_id <> followee_id)
+);
+create index if not exists follows_followee_idx on follows (followee_id);
+alter table follows enable row level security;
+do $$
+begin
+  if not exists (select 1 from pg_policies where tablename = 'follows' and policyname = 'read all') then
+    create policy "read all" on follows for select using (true);
+  end if;
+  if not exists (select 1 from pg_policies where tablename = 'follows' and policyname = 'follow as self') then
+    create policy "follow as self" on follows for insert with check (follower_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where tablename = 'follows' and policyname = 'unfollow as self') then
+    create policy "unfollow as self" on follows for delete using (follower_id = auth.uid());
+  end if;
+end $$;
+grant select on follows to anon;
+grant select, insert, delete on follows to authenticated;
+
+-- Profile photos: a public Storage bucket; each user writes only inside a
+-- folder named after their own id ("<uid>/avatar-<time>.jpg"). Skipped where
+-- Supabase Storage is absent (plain Postgres in tests).
+do $$
+begin
+  if exists (select 1 from information_schema.schemata where schema_name = 'storage') then
+    insert into storage.buckets (id, name, public) values ('avatars', 'avatars', true)
+      on conflict (id) do nothing;
+    if not exists (select 1 from pg_policies where schemaname = 'storage' and tablename = 'objects' and policyname = 'avatars insert own') then
+      create policy "avatars insert own" on storage.objects for insert to authenticated
+        with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+    end if;
+    if not exists (select 1 from pg_policies where schemaname = 'storage' and tablename = 'objects' and policyname = 'avatars update own') then
+      create policy "avatars update own" on storage.objects for update to authenticated
+        using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+    end if;
+    if not exists (select 1 from pg_policies where schemaname = 'storage' and tablename = 'objects' and policyname = 'avatars delete own') then
+      create policy "avatars delete own" on storage.objects for delete to authenticated
+        using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+    end if;
+  end if;
+end $$;
+
 -- Keep updated_at current.
 create or replace function profiles_touch() returns trigger language plpgsql as $$
 begin
