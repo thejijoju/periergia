@@ -25,3 +25,4 @@ Found after publication; fix in a later batch.
 
 ### Plato — open
 - Sends readers to "Falsafa" for Averroes' Republic commentary; that material is in "Al-Ghazālī, Averroes and the Quarrel over Reason". Re-point the cross-reference.
+- Overview: Avicenna's flying man has an "unmistakable family resemblance" to the cogito — present as debated (how deep the resemblance goes is disputed). Source: research/medieval--falsafa.md.
