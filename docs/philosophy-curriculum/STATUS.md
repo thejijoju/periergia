@@ -18,10 +18,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confucius, Mencius and Xunzi | chapter | `philosophy/history-of-philosophy/ancient-beginnings/confucianism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mozi, the Daoists and the Legalists: the Hundred Schools | chapter | `philosophy/history-of-philosophy/ancient-beginnings/hundred-schools` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Late Antiquity and the Medieval World (c. 200 – 1450) | overview | `philosophy/history-of-philosophy/late-antiquity-and-medieval` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plotinus and Neoplatonism | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/neoplatonism` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Augustine and Early Christian Philosophy | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/augustine` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Classical Indian Schools: Nyāya, Vaiśeṣika, Sāṃkhya, Yoga and Mīmāṃsā | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/classical-indian-schools` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mahāyāna Philosophy: Nāgārjuna, Yogācāra and Buddhist Logic | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/mahayana-philosophy` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plotinus and Neoplatonism | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/neoplatonism` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Augustine and Early Christian Philosophy | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/augustine` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Classical Indian Schools: Nyāya, Vaiśeṣika, Sāṃkhya, Yoga and Mīmāṃsā | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/classical-indian-schools` | ✍️ 18 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mahāyāna Philosophy: Nāgārjuna, Yogācāra and Buddhist Logic | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/mahayana-philosophy` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vedānta: Śaṅkara, Rāmānuja and Madhva | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/vedanta` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chinese Buddhism and the Rise of Neo-Confucianism | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/chinese-buddhism-and-neo-confucianism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Falsafa: al-Kindī, al-Fārābī and Avicenna | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/falsafa` | ⬜ |
