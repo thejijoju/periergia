@@ -1,6 +1,6 @@
 # Philosophy curriculum: plan
 
-**Status: proposal, awaiting the owner's approval of the chapter tree (Part 2).** Nothing in `src/lib/seed.ts` changes until the tree is agreed.
+**Status: approved by the owner on 18 November 2026 (full plan). The tree is in `src/lib/seed.ts`.**
 
 This is the working plan for Periergia's Philosophy subject. It follows the History curriculum's plan ([../history-curriculum/PLAN.md](../history-curriculum/PLAN.md)): the same audience, the same source-first rule, the same two phases and the same tools.
 

@@ -4872,135 +4872,595 @@ export const SUBJECTS: SubjectSpec[] = [
     "description": "",
     "tree": [
       {
-        "title": "Logic",
+        "title": "What Is Philosophy?",
+        "slug": "what-is-philosophy",
+        "summary": "What makes a question philosophical, and how philosophers try to answer one. Arguments, premises and conclusions; thought experiments and counterexamples; why philosophy keeps reading its own past; the main branches (logic, knowledge, reality, mind, ethics, politics, art, science, language) and the main traditions (Greek and European, Indian, Chinese, Islamic, Jewish, Japanese, African, Latin American); and how to use this curriculum."
+      },
+      {
+        "title": "History of Philosophy",
+        "slug": "history-of-philosophy",
+        "summary": "The story of philosophy from the first recorded arguments in Greece, India and China to the present, told as one global history: who argued what, when, in answer to whom, and why it still matters.",
         "children": [
           {
-            "title": "arguments"
+            "title": "Ancient Beginnings (c. 800 BCE – 200 CE)",
+            "slug": "ancient-beginnings",
+            "summary": "The independent beginnings of systematic argument in the Greek world, in northern India and in Warring States China, and the schools that each founded.",
+            "children": [
+              {
+                "title": "The Presocratics: from Myth to Argument",
+                "slug": "presocratics",
+                "summary": "The first Greek thinkers who explained the world by principles rather than gods, and gave reasons a rival could dispute: the Milesians, Pythagoras, Heraclitus, Parmenides and the problem of change, Zeno's paradoxes, Empedocles, Anaxagoras and the atomists; and how their ideas survive only in fragments quoted by later writers."
+              },
+              {
+                "title": "Socrates and the Sophists",
+                "slug": "socrates-and-the-sophists",
+                "summary": "The turn from nature to human life in fifth-century Athens: the Sophists as paid teachers of rhetoric and their relativism, Socrates' method of cross-examination, his claims about virtue and knowledge, his trial and death, and the problem of knowing the historical Socrates through Plato, Xenophon and Aristophanes."
+              },
+              {
+                "title": "Plato",
+                "slug": "plato",
+                "summary": "Plato's dialogues and the first complete philosophical system: the theory of Forms, knowledge versus opinion, the immortal and divided soul, the Republic's account of justice and its ideal city, love and beauty in the Symposium, his own self-criticism in the Parmenides, and the Academy."
+              },
+              {
+                "title": "Aristotle",
+                "slug": "aristotle",
+                "summary": "Aristotle's reorganisation of knowledge: the invention of formal logic, substance, form and matter, the four causes, potentiality and actuality, biology based on observation, the soul as the form of the body, ethics of flourishing and virtue, and politics; and his long afterlife in three religious civilisations."
+              },
+              {
+                "title": "Hellenistic Philosophy: Stoics, Epicureans and Sceptics",
+                "slug": "hellenistic-philosophy",
+                "summary": "Philosophy as a way of life after Alexander: Stoic logic, physics and ethics (virtue as the only good, what is and is not up to us), Epicurean atomism, pleasure and the fear of death, Cynics, and Pyrrhonian and Academic scepticism; and the Roman Stoics Seneca, Epictetus and Marcus Aurelius."
+              },
+              {
+                "title": "The Upanishads and the Beginnings of Indian Philosophy",
+                "slug": "upanishads",
+                "summary": "Philosophical speculation in the Vedic tradition: the Upanishads on the self (ātman) and ultimate reality (brahman), karma and rebirth, liberation (mokṣa), and the Bhagavad Gītā's synthesis; how dates and authorship of these texts are established and debated."
+              },
+              {
+                "title": "The Buddha and Early Buddhist Philosophy",
+                "slug": "early-buddhism",
+                "summary": "The Buddha's teaching as philosophy: the four noble truths, dependent origination, impermanence and the denial of an enduring self (anātman), the problem of rebirth without a self, early Buddhist ethics, and the Abhidharma analysis of experience into momentary events."
+              },
+              {
+                "title": "Jains, Ājīvikas and Materialists: India's Other Dissenters",
+                "slug": "indian-dissenters",
+                "summary": "The other movements that rejected Vedic authority: Jain metaphysics and ethics of non-violence, the Jain doctrine of many-sidedness (anekāntavāda), the fatalism of the Ājīvikas, and the Cārvāka/Lokāyata materialists who denied rebirth and accepted only perception, known mostly through their opponents."
+              },
+              {
+                "title": "Confucius, Mencius and Xunzi",
+                "slug": "confucianism",
+                "summary": "The Confucian tradition's founders: Confucius on humaneness (ren), ritual propriety (li) and government by virtue in the Analects; Mencius on the goodness of human nature; Xunzi's argument that human nature is bad and must be shaped by ritual and learning; and what is known about the texts' composition."
+              },
+              {
+                "title": "Mozi, the Daoists and the Legalists: the Hundred Schools",
+                "slug": "hundred-schools",
+                "summary": "The rival schools of Warring States China: Mohist impartial care, consequentialist reasoning and logic; the Daodejing and the Zhuangzi on the Way, effortless action and the limits of language and distinctions; the School of Names; and Legalist statecraft from Shang Yang to Han Feizi."
+              }
+            ]
           },
           {
-            "title": "fallacies"
+            "title": "Late Antiquity and the Medieval World (c. 200 – 1450)",
+            "slug": "late-antiquity-and-medieval",
+            "summary": "A thousand years in which philosophy worked inside religious civilisations: Neoplatonism, the classical Indian and Buddhist schools, Chinese Buddhism and Neo-Confucianism, and the interlinked Islamic, Jewish and Christian debates about reason and revelation.",
+            "children": [
+              {
+                "title": "Plotinus and Neoplatonism",
+                "slug": "neoplatonism",
+                "summary": "Plotinus' system of the One, Intellect and Soul, the return of the soul through contemplation, his successors Porphyry and Proclus, the closing of the Athenian school, and how Neoplatonism shaped Christian, Islamic and Jewish thought."
+              },
+              {
+                "title": "Augustine and Early Christian Philosophy",
+                "slug": "augustine",
+                "summary": "Christianity's encounter with Greek philosophy, and Augustine above all: the Confessions, his answers to scepticism, time and memory, evil as privation, free will and grace, the City of God; and Boethius' Consolation of Philosophy."
+              },
+              {
+                "title": "The Classical Indian Schools: Nyāya, Vaiśeṣika, Sāṃkhya, Yoga and Mīmāṃsā",
+                "slug": "classical-indian-schools",
+                "summary": "The orthodox schools (darśanas) and their debates: Nyāya logic and the sources of knowledge (pramāṇas), Vaiśeṣika atomism and categories, Sāṃkhya dualism of spirit and matter, Patañjali's Yoga, and Mīmāṃsā on language, ritual and the authority of the Veda."
+              },
+              {
+                "title": "Mahāyāna Philosophy: Nāgārjuna, Yogācāra and Buddhist Logic",
+                "slug": "mahayana-philosophy",
+                "summary": "Nāgārjuna's Madhyamaka and the emptiness of all things, the two truths, Yogācāra's analysis of consciousness, and the Buddhist epistemology and logic of Dignāga and Dharmakīrti; and the spread of these ideas to Tibet."
+              },
+              {
+                "title": "Vedānta: Śaṅkara, Rāmānuja and Madhva",
+                "slug": "vedanta",
+                "summary": "The schools that systematised the Upanishads: Śaṅkara's non-dualism (Advaita) and the doctrine of illusion, Rāmānuja's qualified non-dualism, Madhva's dualism, and their arguments about consciousness, error and the self."
+              },
+              {
+                "title": "Chinese Buddhism and the Rise of Neo-Confucianism",
+                "slug": "chinese-buddhism-and-neo-confucianism",
+                "summary": "How Buddhism became Chinese: the Huayan, Tiantai and Chan schools; then the Neo-Confucian response of the Song: Zhou Dunyi, the Cheng brothers, and Zhu Xi's philosophy of principle (li) and vital stuff (qi), with Lu Xiangshan's opposing school of mind; and Neo-Confucianism's spread to Korea and Japan."
+              },
+              {
+                "title": "Falsafa: al-Kindī, al-Fārābī and Avicenna",
+                "slug": "falsafa",
+                "summary": "Philosophy in Arabic after the translation movement: al-Kindī, al-Fārābī's political philosophy and logic, and Avicenna's metaphysics: the distinction between essence and existence, the Necessary Existent, the 'flying man' argument, and his theory of the soul."
+              },
+              {
+                "title": "Al-Ghazālī, Averroes and the Quarrel over Reason",
+                "slug": "ghazali-and-averroes",
+                "summary": "The debate over philosophy's place in Islam: al-Ghazālī's Incoherence of the Philosophers and his critique of necessary causation, Averroes' reply and his Aristotle commentaries, Ibn Ṭufayl's philosophical novel, the kalām theologians, and the later Islamic tradition after Averroes."
+              },
+              {
+                "title": "Jewish Philosophy: from Saadia to Maimonides",
+                "slug": "jewish-philosophy",
+                "summary": "Philosophy within medieval Judaism: Saadia Gaon, Solomon ibn Gabirol, Judah Halevi's critique of philosophy, Maimonides' Guide of the Perplexed (negative theology, creation, prophecy), and Gersonides."
+              },
+              {
+                "title": "Early Scholasticism: Anselm, Abelard and the Universities",
+                "slug": "early-scholasticism",
+                "summary": "The rise of Latin philosophy: Anselm's ontological argument and Gaunilo's reply, the problem of universals and Abelard, Heloise, the cathedral schools and the new universities, and the arrival of Aristotle and Averroes in Latin translation."
+              },
+              {
+                "title": "Thomas Aquinas",
+                "slug": "aquinas",
+                "summary": "Aquinas' synthesis of Aristotle and Christianity: faith and reason, the Five Ways, essence and existence, the soul, natural law, and his ethics; the condemnations of 1277; and Aquinas' later influence."
+              },
+              {
+                "title": "Scotus, Ockham and the Late Medieval Debates",
+                "slug": "scotus-and-ockham",
+                "summary": "The late medieval debates: Duns Scotus on univocity and individuality, William of Ockham's nominalism and the 'razor', debates about the will and divine power, Buridan, and the state of philosophy on the eve of the Renaissance."
+              }
+            ]
           },
           {
-            "title": "formal logic"
+            "title": "Renaissance and Early Modern Philosophy (c. 1450 – 1800)",
+            "slug": "early-modern",
+            "summary": "From the humanists to Kant: the recovery of ancient schools, the new science, and the rival systems of rationalists and empiricists; women philosophers of the period; philosophy beyond Europe in the same centuries; and the Enlightenment.",
+            "children": [
+              {
+                "title": "Renaissance Philosophy: Humanists, Platonists, Machiavelli and Montaigne",
+                "slug": "renaissance-philosophy",
+                "summary": "Philosophy between the medieval and the modern: humanism, Ficino's Platonism and Pico's Oration, Pomponazzi on the soul, Machiavelli's political realism, the revival of scepticism and Montaigne's Essays, and Bruno."
+              },
+              {
+                "title": "Descartes",
+                "slug": "descartes",
+                "summary": "Descartes' project of certain knowledge: the method of doubt, the cogito, the proofs of God, mind–body dualism and the problem of interaction (including Elisabeth of Bohemia's objection), mechanical physics, and the objections and replies to the Meditations."
+              },
+              {
+                "title": "Hobbes",
+                "slug": "hobbes",
+                "summary": "Hobbes' materialism and his political philosophy: the state of nature as a war of all against all, the social contract, the sovereign in Leviathan, and his disputes with Descartes and the Church."
+              },
+              {
+                "title": "Spinoza",
+                "slug": "spinoza",
+                "summary": "Spinoza's Ethics: one substance, 'God or Nature', determinism, mind and body as two attributes of one thing, the emotions and the path to freedom; his Theological-Political Treatise on scripture and toleration; and his excommunication and reputation."
+              },
+              {
+                "title": "Leibniz",
+                "slug": "leibniz",
+                "summary": "Leibniz's system: monads, pre-established harmony, the principle of sufficient reason, the best of all possible worlds and the problem of evil, his logic and calculus, his debate with Newton's follower Clarke, and his interest in China."
+              },
+              {
+                "title": "Locke",
+                "slug": "locke",
+                "summary": "Locke's empiricism and politics: the attack on innate ideas, ideas of sensation and reflection, primary and secondary qualities, personal identity and memory, the Two Treatises' theory of property, consent and resistance, toleration, and Locke's involvement in colonial and slaving enterprises."
+              },
+              {
+                "title": "Berkeley and Hume",
+                "slug": "berkeley-and-hume",
+                "summary": "Empiricism pushed to its limits: Berkeley's idealism ('to be is to be perceived'); Hume's theory of ideas, the problem of induction, causation as habit, the self as a bundle, reason as 'slave of the passions', the is–ought gap, and his critique of religion."
+              },
+              {
+                "title": "The Enlightenment and Rousseau",
+                "slug": "enlightenment-and-rousseau",
+                "summary": "Enlightenment philosophy and its critics: the philosophes and the Encyclopédie, Voltaire, Montesquieu, the Scottish Enlightenment (Smith, Reid), Rousseau's critique of civilisation, the Social Contract and the general will, and debates about who the Enlightenment excluded."
+              },
+              {
+                "title": "Women Philosophers of the Early Modern Era",
+                "slug": "early-modern-women-philosophers",
+                "summary": "The women whose work the standard story left out: Elisabeth of Bohemia, Margaret Cavendish, Anne Conway, Mary Astell, Émilie du Châtelet and Mary Wollstonecraft; and how historians have recovered them."
+              },
+              {
+                "title": "Beyond Europe: Mullā Ṣadrā, Wang Yangming, Tokugawa Confucianism and the Hatata",
+                "slug": "early-modern-beyond-europe",
+                "summary": "Philosophy outside Europe in the same centuries: Wang Yangming's unity of knowing and acting, Mullā Ṣadrā and the School of Isfahan, Confucian and nativist thought in Tokugawa Japan, and the Ethiopian Hatata attributed to Zera Yacob, with the debate over its authorship."
+              },
+              {
+                "title": "Kant",
+                "slug": "kant",
+                "summary": "Kant's critical philosophy: the synthetic a priori, space and time as forms of intuition, the categories, the limits of knowledge and the antinomies; the categorical imperative and autonomy; the Critique of Judgment on beauty; perpetual peace; and his writings on race."
+              }
+            ]
           },
           {
-            "title": "reasoning"
+            "title": "The Nineteenth Century",
+            "slug": "nineteenth-century",
+            "summary": "Philosophy after Kant: German idealism and its rebels, utilitarianism, Marx, Nietzsche, American pragmatism, and philosophy in an age of empire.",
+            "children": [
+              {
+                "title": "German Idealism: Fichte, Schelling and Hegel",
+                "slug": "german-idealism",
+                "summary": "The systems that followed Kant: Fichte's I and not-I, Schelling's philosophy of nature, and Hegel: the Phenomenology of Spirit, dialectic, the master–slave relationship, Absolute Spirit, and history as the progress of freedom; and the split between Left and Right Hegelians."
+              },
+              {
+                "title": "Schopenhauer and Kierkegaard",
+                "slug": "schopenhauer-and-kierkegaard",
+                "summary": "Two rebels against Hegel: Schopenhauer's world as will and representation, his pessimism and debts to Indian thought; Kierkegaard's pseudonymous works, the stages of life, anxiety, faith and the individual."
+              },
+              {
+                "title": "Bentham, Mill and Utilitarianism",
+                "slug": "utilitarianism",
+                "summary": "Utilitarianism from Bentham's felicific calculus to John Stuart Mill: higher and lower pleasures, On Liberty and the harm principle, The Subjection of Women (with Harriet Taylor Mill), Mill's logic, and Sidgwick."
+              },
+              {
+                "title": "Marx",
+                "slug": "marx",
+                "summary": "Marx's philosophy: alienation, historical materialism, ideology, class struggle, the critique of political economy and Capital, his collaboration with Engels, and the difficulty of separating Marx from later Marxisms."
+              },
+              {
+                "title": "Nietzsche",
+                "slug": "nietzsche",
+                "summary": "Nietzsche's critique of morality and truth: the death of God, master and slave morality, the genealogy of morals, perspectivism, will to power, eternal recurrence and the Übermensch; and the distortion of his work by his sister and by the Nazis."
+              },
+              {
+                "title": "American Pragmatism: Peirce, James and Dewey",
+                "slug": "pragmatism",
+                "summary": "Pragmatism: Peirce's theory of meaning, inquiry and signs, James on truth, religious belief and the stream of consciousness, Dewey on experience, education and democracy, and the pragmatists' later revival."
+              },
+              {
+                "title": "Philosophy in an Age of Empire",
+                "slug": "philosophy-in-an-age-of-empire",
+                "summary": "Philosophy across the colonised and modernising world in the nineteenth and early twentieth centuries: Indian reformers and Vivekananda, Meiji Japan's encounter with Western philosophy, Latin American positivism, and the Black Atlantic from Blyden to Du Bois's double consciousness."
+              }
+            ]
+          },
+          {
+            "title": "The Twentieth Century and After",
+            "slug": "twentieth-century",
+            "summary": "Philosophy since about 1900: the analytic and continental traditions and their quarrels, and the philosophical traditions of Japan, China, India, Africa and Latin America in the modern world.",
+            "children": [
+              {
+                "title": "Frege, Russell and the Birth of Analytic Philosophy",
+                "slug": "birth-of-analytic-philosophy",
+                "summary": "The logical revolution: Frege's new logic and sense and reference, Russell's paradox, the theory of descriptions, Principia Mathematica, and G. E. Moore's defence of common sense."
+              },
+              {
+                "title": "Wittgenstein",
+                "slug": "wittgenstein",
+                "summary": "Wittgenstein's two philosophies: the Tractatus' picture theory and its limits of language, and the later Philosophical Investigations: meaning as use, language games, rule-following and the private language argument."
+              },
+              {
+                "title": "Logical Positivism and Its Critics: the Vienna Circle, Popper and Quine",
+                "slug": "logical-positivism",
+                "summary": "The Vienna Circle and the verification principle, Ayer, Carnap, Popper's falsificationism, and Quine's 'Two Dogmas of Empiricism' and the end of the analytic–synthetic distinction."
+              },
+              {
+                "title": "Phenomenology: Husserl, Heidegger and Merleau-Ponty",
+                "slug": "phenomenology",
+                "summary": "Phenomenology as the study of experience: Husserl's intentionality and the reduction, Heidegger's Being and Time (being-in-the-world, care, being-towards-death) and his Nazism, Edith Stein, and Merleau-Ponty on the body."
+              },
+              {
+                "title": "Existentialism: Sartre, Beauvoir and Camus",
+                "slug": "existentialism",
+                "summary": "Existentialism: Sartre's 'existence precedes essence', freedom and bad faith, Beauvoir's ethics of ambiguity and The Second Sex, Camus and the absurd, and Fanon's existential critique of colonialism."
+              },
+              {
+                "title": "Critical Theory: the Frankfurt School and Habermas",
+                "slug": "critical-theory",
+                "summary": "The Frankfurt School: Horkheimer and Adorno's critique of instrumental reason and the culture industry, Benjamin, Marcuse, Habermas's communicative reason, discourse ethics and the public sphere, and Honneth's theory of recognition."
+              },
+              {
+                "title": "Structuralism and After: Foucault, Derrida and Their Critics",
+                "slug": "structuralism-and-after",
+                "summary": "From Saussure and Lévi-Strauss's structuralism to its successors: Foucault on power, knowledge and discipline, Derrida's deconstruction, Deleuze, Lyotard's postmodern condition, and the analytic and Habermasian criticisms of them."
+              },
+              {
+                "title": "The Kyoto School and Modern Japanese Philosophy",
+                "slug": "kyoto-school",
+                "summary": "Modern Japanese philosophy: Nishida Kitarō's logic of place and absolute nothingness, Tanabe, Nishitani, Watsuji Tetsurō's ethics of betweenness, and the controversy over the school's wartime nationalism."
+              },
+              {
+                "title": "Modern Chinese and Indian Philosophy",
+                "slug": "modern-chinese-and-indian-philosophy",
+                "summary": "Philosophy in modern China and India: Chinese responses to the West, Feng Youlan and New Confucianism (Mou Zongsan), Chinese Marxism; Gandhi on non-violence and self-rule, Ambedkar's critique of caste, Radhakrishnan, Aurobindo, and B. K. Matilal's analytic study of Indian philosophy."
+              },
+              {
+                "title": "African Philosophy: the Ethnophilosophy Debate and Beyond",
+                "slug": "african-philosophy",
+                "summary": "Modern African philosophy: Tempels' Bantu Philosophy and the ethnophilosophy debate, Hountondji's critique, Wiredu's conceptual decolonisation, Oruka's sage philosophy, Nkrumah and Nyerere, ubuntu, and Gyekye and Menkiti on personhood and community."
+              },
+              {
+                "title": "Latin American Philosophy and the Philosophy of Liberation",
+                "slug": "latin-american-philosophy",
+                "summary": "Philosophy in Latin America: colonial scholasticism and the Valladolid debate, Sor Juana, positivism and its critics, Vasconcelos, the 'is there a Latin American philosophy?' debate (Salazar Bondy and Zea), Dussel's philosophy of liberation, and Paulo Freire."
+              },
+              {
+                "title": "Analytic Philosophy since 1950",
+                "slug": "analytic-philosophy-since-1950",
+                "summary": "The return of big questions to analytic philosophy: ordinary language philosophy, Rawls and the revival of political philosophy, Kripke on naming and necessity, the revival of metaphysics, philosophy of mind after behaviourism, and the field's growing engagement with other traditions."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Logic and Reasoning",
+        "slug": "logic-and-reasoning",
+        "summary": "How to tell good reasoning from bad: arguments and their forms, everyday fallacies, formal logic, induction and probability, the paradoxes that test logic's limits, and logic in the Greek, Indian and Chinese traditions.",
+        "children": [
+          {
+            "title": "Arguments: Validity, Soundness and Form",
+            "slug": "arguments",
+            "summary": "What an argument is, premises and conclusions, deductive validity and soundness, logical form, common valid and invalid forms, and how to reconstruct an argument from ordinary prose."
+          },
+          {
+            "title": "Informal Fallacies and Everyday Reasoning",
+            "slug": "fallacies",
+            "summary": "The classic informal fallacies (ad hominem, straw man, begging the question, false dilemma, slippery slope, appeal to authority and others), when they are and are not mistakes, and reasoning about everyday claims and the news."
+          },
+          {
+            "title": "Formal Logic: Propositions, Predicates and Proofs",
+            "slug": "formal-logic",
+            "summary": "A first course in symbolic logic: propositional connectives and truth tables, quantifiers and predicate logic, translation from English, proofs, and what logic can and cannot capture."
+          },
+          {
+            "title": "Induction, Probability and Inference to the Best Explanation",
+            "slug": "induction-and-probability",
+            "summary": "Reasoning beyond the evidence: inductive generalisation, Hume's problem of induction and attempted answers, Goodman's new riddle, probability and Bayesian reasoning, and inference to the best explanation."
+          },
+          {
+            "title": "Paradoxes: the Liar, the Heap and Zeno",
+            "slug": "paradoxes",
+            "summary": "Paradoxes that test logic: Zeno's paradoxes of motion, the sorites (heap) and vagueness, the liar and self-reference, Russell's paradox, and what their proposed solutions teach."
+          },
+          {
+            "title": "Logic across Traditions",
+            "slug": "logic-across-traditions",
+            "summary": "How different civilisations studied valid inference: Aristotle's syllogistic, Stoic propositional logic, the Nyāya five-part inference and Buddhist logic, Mohist logic and the School of Names, Arabic logic, and the formal revolution of the nineteenth century."
+          }
+        ]
+      },
+      {
+        "title": "Knowledge (Epistemology)",
+        "slug": "epistemology",
+        "summary": "What knowledge is, whether we have any, and how we get it: definitions of knowledge, scepticism, perception, reason and experience, trust in others, and truth.",
+        "children": [
+          {
+            "title": "What Is Knowledge? From Plato to the Gettier Problem",
+            "slug": "what-is-knowledge",
+            "summary": "Attempts to define knowledge: true belief and justification from Plato's Theaetetus, Gettier's counterexamples, and the responses (no-false-lemmas, reliabilism, virtue epistemology, knowledge-first), with parallel debates in Indian epistemology."
+          },
+          {
+            "title": "Scepticism and the Answers to It",
+            "slug": "scepticism",
+            "summary": "Can we know anything? Ancient Pyrrhonism, Zhuangzi, Descartes' dreaming and demon arguments, brains in vats, and the main answers: Moore, contextualism, externalism, and the Pyrrhonist's own way of living."
+          },
+          {
+            "title": "Perception and the External World",
+            "slug": "perception",
+            "summary": "How perception gives us the world: naive and direct realism, the argument from illusion, sense-data, representationalism, idealism, and the science of perception."
+          },
+          {
+            "title": "Reason, Experience and Innate Ideas",
+            "slug": "reason-and-experience",
+            "summary": "Rationalism versus empiricism: the a priori and the a posteriori, innate ideas from Plato to Chomsky, Kant's synthesis, and what mathematics and logic tell us about where knowledge comes from."
+          },
+          {
+            "title": "Testimony, Trust and Social Epistemology",
+            "slug": "testimony-and-social-epistemology",
+            "summary": "Knowing from others: testimony in Hume, Reid and Indian epistemology (śabda), expertise and disagreement, epistemic injustice, and knowledge in an age of misinformation."
+          },
+          {
+            "title": "Truth",
+            "slug": "truth",
+            "summary": "What truth is: correspondence, coherence, pragmatist and deflationary theories, the liar paradox revisited, and whether truth is relative."
+          }
+        ]
+      },
+      {
+        "title": "Reality (Metaphysics)",
+        "slug": "metaphysics",
+        "summary": "The most general questions about what there is: existence and universals, identity and change, causation, time, free will, possibility, and God.",
+        "children": [
+          {
+            "title": "What Exists? Ontology and Universals",
+            "slug": "ontology",
+            "summary": "What is there, and how should we decide? Realism and nominalism about universals from Plato and Aristotle to the medievals and today, abstract objects, Quine's criterion of ontological commitment, and Buddhist and Nyāya debates about wholes and properties."
+          },
+          {
+            "title": "Identity, Change and Persons",
+            "slug": "identity-and-change",
+            "summary": "Puzzles of persistence: the Ship of Theseus, the river of Heraclitus, the statue and the clay, endurance versus perdurance, and the Buddhist chariot argument."
+          },
+          {
+            "title": "Causation",
+            "slug": "causation",
+            "summary": "What causes are: Aristotle's four causes, al-Ghazālī and Hume on necessary connection, regularity, counterfactual and interventionist theories, and causation in science."
+          },
+          {
+            "title": "Time",
+            "slug": "time",
+            "summary": "The nature of time: Augustine's puzzle, McTaggart's argument for its unreality, presentism versus eternalism, the direction of time, time in physics, and time travel."
+          },
+          {
+            "title": "Free Will and Determinism",
+            "slug": "free-will",
+            "summary": "Are we free? Determinism and fatalism, compatibilism from the Stoics and Hume to Frankfurt, libertarian freedom, hard incompatibilism, moral responsibility, and what neuroscience does and does not show."
+          },
+          {
+            "title": "Possibility and Necessity",
+            "slug": "possibility-and-necessity",
+            "summary": "Modal metaphysics: what could have been, possible worlds (Leibniz, Lewis, Kripke), essence, necessary and contingent truths, and conceivability as a guide to possibility."
+          },
+          {
+            "title": "God: Arguments For and Against",
+            "slug": "arguments-about-god",
+            "summary": "The classic arguments for God's existence (ontological, cosmological, teleological, from experience) across Christian, Islamic, Jewish and Indian traditions (including Nyāya arguments and Buddhist and Mīmāṃsā objections), Pascal's wager, faith and reason, and religious diversity."
+          },
+          {
+            "title": "The Problem of Evil",
+            "slug": "problem-of-evil",
+            "summary": "How can a good and all-powerful God allow suffering? The logical and evidential problems, the free-will and soul-making defences, Leibniz's theodicy, the Lisbon earthquake and Voltaire, and Indian approaches through karma."
+          }
+        ]
+      },
+      {
+        "title": "Mind",
+        "slug": "philosophy-of-mind",
+        "summary": "What minds are and how they fit into the physical world: the mind–body problem, consciousness, the self, and artificial intelligence.",
+        "children": [
+          {
+            "title": "The Mind–Body Problem",
+            "slug": "mind-body-problem",
+            "summary": "How mind and body relate: Cartesian dualism, behaviourism, identity theory, functionalism, eliminativism, and the arguments for and against each."
+          },
+          {
+            "title": "Consciousness",
+            "slug": "consciousness",
+            "summary": "The hard problem of consciousness: qualia, Nagel's bat, Jackson's Mary, zombies, physicalist replies, panpsychism, and the science of consciousness."
+          },
+          {
+            "title": "Self and No-Self: Personal Identity East and West",
+            "slug": "self-and-no-self",
+            "summary": "What a person is and what makes them the same over time: Locke's memory theory, Hume's bundle, Parfit's reductionism, the Buddhist no-self doctrine and the Nyāya and Vedānta replies, and narrative selves."
+          },
+          {
+            "title": "Minds and Machines: Could AI Think?",
+            "slug": "minds-and-machines",
+            "summary": "Can machines think? Turing's test, Searle's Chinese room, functionalism and computation, embodiment, and what today's AI systems do and do not settle."
           }
         ]
       },
       {
         "title": "Ethics",
+        "slug": "ethics",
+        "summary": "How we should live and what we owe each other: the main moral theories, whether there are moral facts, meaning and death, and applied ethics in medicine, nature and technology.",
         "children": [
           {
-            "title": "moral theories"
+            "title": "Consequentialism: What Makes Right Acts Right?",
+            "slug": "consequentialism",
+            "summary": "Judging acts by their outcomes: classical utilitarianism, Mohist consequentialism, rule and act versions, the trolley problems, demandingness, and effective altruism."
           },
           {
-            "title": "applied ethics"
+            "title": "Deontology: Duty and Respect",
+            "slug": "deontology",
+            "summary": "Ethics of duties and rights: Kant's categorical imperative, treating people as ends, constraints and the doctrine of double effect, contractualism (Scanlon), and objections."
           },
           {
-            "title": "metaethics"
-          }
-        ]
-      },
-      {
-        "title": "Metaphysics",
-        "children": [
-          {
-            "title": "reality"
+            "title": "Virtue Ethics, Greek and Confucian",
+            "slug": "virtue-ethics",
+            "summary": "Ethics of character: Aristotle's virtues and practical wisdom, the Stoics, Confucian and Mencian cultivation, the modern revival (Anscombe, MacIntyre, Foot), and care ethics."
           },
           {
-            "title": "existence"
+            "title": "Metaethics: Are There Moral Facts?",
+            "slug": "metaethics",
+            "summary": "The status of morality itself: moral realism, error theory, expressivism, constructivism, relativism, the is–ought gap, and the evolutionary debunking challenge."
           },
           {
-            "title": "free will"
+            "title": "The Meaning of Life and the Fear of Death",
+            "slug": "meaning-and-death",
+            "summary": "Whether life has meaning and whether death is bad: Epicurus and Lucretius, Ecclesiastes, the Stoics, Buddhist impermanence, Camus and the absurd, Tolstoy's crisis, and contemporary debates."
           },
           {
-            "title": "mind & body"
-          }
-        ]
-      },
-      {
-        "title": "Epistemology",
-        "children": [
-          {
-            "title": "knowledge"
+            "title": "Bioethics: Life, Death and Medicine",
+            "slug": "bioethics",
+            "summary": "Ethics in medicine and the life sciences: autonomy and consent, abortion, euthanasia, research ethics and its scandals, genetic enhancement, and the allocation of scarce care."
           },
           {
-            "title": "belief"
+            "title": "Animals and the Environment",
+            "slug": "animals-and-environment",
+            "summary": "Our duties to animals and to nature: Singer and Regan, Jain and Buddhist non-violence, environmental ethics from Leopold to deep ecology, and climate justice between generations."
           },
           {
-            "title": "truth"
-          },
-          {
-            "title": "skepticism"
+            "title": "Ethics of Technology and AI",
+            "slug": "ethics-of-technology",
+            "summary": "Ethical questions raised by technology: privacy and surveillance, algorithmic bias, automation and work, responsibility for autonomous systems, and the long-term risks of AI."
           }
         ]
       },
       {
         "title": "Political Philosophy",
+        "slug": "political-philosophy",
+        "summary": "What makes political power legitimate and a society just: the state, liberty and rights, justice and equality, democracy, race and colonialism, and feminism.",
         "children": [
           {
-            "title": "justice"
+            "title": "Authority and the State: the Social Contract and Its Critics",
+            "slug": "authority-and-the-state",
+            "summary": "Why obey the state? Hobbes, Locke and Rousseau's social contracts, Confucian and Legalist views of rule, consent and its problems, anarchism, and the obligation to obey unjust laws."
           },
           {
-            "title": "rights"
+            "title": "Liberty and Rights",
+            "slug": "liberty-and-rights",
+            "summary": "Freedom and rights: Mill's harm principle, Berlin's two concepts of liberty, republican freedom as non-domination, natural and human rights, and free speech."
           },
           {
-            "title": "the state"
+            "title": "Justice and Equality",
+            "slug": "justice-and-equality",
+            "summary": "What a just distribution looks like: Rawls's A Theory of Justice, Nozick's libertarian reply, luck egalitarianism, the capabilities approach (Sen and Nussbaum), and global justice."
           },
           {
-            "title": "liberty"
+            "title": "Democracy and Its Critics",
+            "slug": "democracy",
+            "summary": "The case for and against democracy: Plato's critique, Aristotle's mixed constitution, Rousseau, Mill, epistocracy, deliberative democracy, and Confucian meritocracy debates."
+          },
+          {
+            "title": "Race, Colonialism and Philosophy",
+            "slug": "race-and-colonialism",
+            "summary": "Philosophy confronting race and empire: Enlightenment theories of race, Du Bois, Fanon, Césaire, the racial contract (Mills), postcolonial theory, and debates about reparations."
+          },
+          {
+            "title": "Feminist Philosophy",
+            "slug": "feminist-philosophy",
+            "summary": "Feminist philosophy from Wollstonecraft and Beauvoir to today: sex and gender, standpoint epistemology, care ethics, intersectionality, and critiques of the canon."
           }
         ]
       },
       {
-        "title": "History of Philosophy",
-        "summary": "Why living philosophers still argue with Plato, Hume, and Kant — the whole story as one continuous argument rather than a graveyard of errors. The two ways of reading that history (rational reconstruction versus Skinner's contextualism); the Greek achievement that turned reasoning into a public, disputable practice — Socrates' elenchus, Plato's Forms, Aristotle's logic and systematizing; the non-Western traditions taken as philosophy full stop — India's no-self debates and Nyaya logic, China's Confucian, Mohist, and Daoist argument over the Way; the medieval synthesis of faith and reason across the Islamic, Jewish, and Christian worlds (Avicenna, Averroes, Maimonides, Aquinas); the early-modern break — the scientific revolution, rationalists and empiricists, and Kant's 'Copernican revolution' that made the mind the condition of experience; the nineteenth century's masters of suspicion (Hegel, Marx, Nietzsche, Freud); and the twentieth century's split into analytic and continental streams — the linguistic turn, phenomenology, existentialism, and critical theory — with the recurring question of which philosophical problems belong to reason as such and which are creatures of a particular language and age.",
+        "title": "Art and Beauty (Aesthetics)",
+        "slug": "aesthetics",
+        "summary": "What art is, what beauty is, how taste can be judged, how artworks mean, and how different traditions have thought about all of these.",
         "children": [
           {
-            "title": "ancient"
+            "title": "What Is Art?",
+            "slug": "what-is-art",
+            "summary": "Definitions of art: imitation (Plato and Aristotle), expression (Tolstoy, Collingwood), form, the institutional theory after Duchamp, and whether art can be defined at all."
           },
           {
-            "title": "medieval"
+            "title": "Beauty and Taste",
+            "slug": "beauty-and-taste",
+            "summary": "Beauty and the judgement of taste: Hume's standard of taste, Kant's disinterested pleasure, the sublime, and whether beauty is objective."
           },
           {
-            "title": "modern"
+            "title": "Interpretation and Meaning in Art",
+            "slug": "interpretation",
+            "summary": "How artworks mean: the intentional fallacy, the death of the author, interpreting music and pictures, fiction and emotion, and art and morality."
           },
           {
-            "title": "Hegel",
-            "summary": "The system-builder of German idealism (1770–1831): the Phenomenology of Spirit (1807) — consciousness's journey to absolute knowing, the master-slave dialectic, and recognition; dialectic itself — negation, sublation (Aufhebung), and why 'thesis-antithesis-synthesis' is a caricature; the Science of Logic and the claim that the rational is the real; the Philosophy of Right — freedom actualized in family, civil society, and the state; the philosophy of history — world spirit, the cunning of reason, and history as the progress of the consciousness of freedom ('the owl of Minerva flies at dusk'); art, religion, and philosophy as absolute spirit; the split inheritance — Right Hegelians, Left Hegelians (Feuerbach, the young Marx standing Hegel 'on his head'), Kojève and recognition, Fukuyama's end of history; and the critics from Kierkegaard to the analytic Hegel revival (Pippin, Brandom)."
-          },
-          {
-            "title": "Nietzsche's Anti-Foundationalist Critique of Morality and Truth",
-            "summary": "Nietzsche's demolition of morality's and truth's foundations: the genealogy of morals — master and slave morality, ressentiment, and the ascetic ideal; the death of God (The Gay Science §125) and the specter of European nihilism; perspectivism and 'On Truth and Lies in a Nonmoral Sense' — truth as 'a mobile army of metaphors'; the critique of Kantian and Christian-Platonic foundations ('how the true world became a fable'); will to power; the revaluation of all values, the Übermensch, and eternal recurrence as affirmative responses; the self-reference problem — whether the critique undermines itself; and the legacy running through existentialism, Foucault's genealogies, and postmodern thought."
-          },
-          {
-            "title": "Habermas: Discourse Ethics and Communicative Reason after Metaphysics",
-            "summary": "Habermas's attempt to rebuild a pragmatic-transcendentalist theory of ethical and discursive reason after the collapse of metaphysics: postmetaphysical thinking and the linguistic turn from the philosophy of consciousness to communication; The Theory of Communicative Action (1981) — communicative versus strategic action and the validity claims of truth, rightness, and sincerity; universal pragmatics and the quasi-transcendental argument from the unavoidable presuppositions of argumentation (the performative contradiction against the skeptic); discourse ethics — principles (U) and (D) as an intersubjective reconstruction of Kant; the public sphere and deliberative democracy (Between Facts and Norms); and the debates — with Gadamer, Luhmann, Rawls, and the postmodernists — in defense of Enlightenment reason as an 'unfinished project'."
-          },
-          {
-            "title": "Critical Theory",
-            "summary": "The Frankfurt School and the tradition of emancipatory critique: the Institute for Social Research (1923) and Horkheimer's program — theory that aims to liberate, not merely describe; Adorno and Horkheimer's Dialectic of Enlightenment and the culture industry; Benjamin's theses on history and the Arcades; Marcuse and the one-dimensional society's sixties explosion; Fromm; the second generation — Habermas's communicative turn; the third — Honneth on recognition, Forst on justification; the wider critical family — Foucault's genealogies, postcolonial critique, critical race theory, feminist critical theory; and the standing question: what grounds critique after the collapse of foundations?"
-          },
-          {
-            "title": "contemporary thinkers"
+            "title": "Aesthetics across Traditions",
+            "slug": "aesthetics-across-traditions",
+            "summary": "Aesthetic theory beyond Europe: the Indian theory of rasa, Chinese theories of painting and calligraphy, Japanese aesthetics (mono no aware, wabi-sabi, yūgen), and Islamic aesthetics."
           }
         ]
       },
       {
-        "title": "Aesthetics",
+        "title": "Science and Language",
+        "slug": "science-and-language",
+        "summary": "How science works and what it tells us, and how words manage to mean things.",
         "children": [
           {
-            "title": "beauty"
+            "title": "What Makes Science Science? Method and Demarcation",
+            "slug": "scientific-method",
+            "summary": "The scientific method and its problems: Bacon, induction and confirmation, Popper's falsifiability, the demarcation problem, and pseudoscience."
           },
           {
-            "title": "art"
+            "title": "Revolutions and Realism: Kuhn and After",
+            "slug": "kuhn-and-realism",
+            "summary": "Kuhn's paradigms and scientific revolutions, Lakatos and Feyerabend, scientific realism versus anti-realism, explanation and laws of nature, and values in science."
           },
           {
-            "title": "taste"
+            "title": "Meaning and Reference",
+            "slug": "meaning-and-reference",
+            "summary": "How words refer: Frege's sense and reference, Russell's descriptions, Kripke's causal theory, Putnam's 'meanings ain't in the head', and Indian theories of word meaning."
           },
           {
-            "title": "interpretation"
+            "title": "Language, Thought and Speech Acts",
+            "slug": "language-and-thought",
+            "summary": "Language in use: Austin and speech acts, Grice and implicature, language and thought from Sapir–Whorf to Chomsky, and the later Wittgenstein's influence."
           }
         ]
       }
