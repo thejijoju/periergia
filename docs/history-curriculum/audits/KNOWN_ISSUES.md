@@ -155,3 +155,9 @@ Leads found while researching new chapters that may affect articles already publ
 - **Taiping and Late Qing; 19th-century overview:** describe "an Anglo-French force burning the Old Summer Palace" (1860). Sources (and the Opium Wars and Drugs chapters) say both armies looted it but British troops burned it on Elgin's order. Say "looting and burning" or "British troops burning".
 - **Ming–Qing chapter:** says the Opium Wars chapter covers why the Macartney embassy failed "not because Macartney refused to kowtow"; the Opium Wars chapter does not discuss the kowtow question. Adjust the cross-reference or add a sentence there.
 - **Ming China and Zheng He:** calls Ming China "the largest economy"; Maddison-based estimates put South Asia ahead until about 1500. Consider "one of the two largest economies".
+
+### Ancient Greece (found by Philosophy research, 18 Nov 2026) — open
+- "argued that many moral rules were human conventions" (the sophists): over-generalises; SEP sophists says there was no uniform sophistic position on nomos/physis (Protagoras defended convention). Soften to "some sophists argued…".
+- Critias and Charmides as Socrates' "former students": Socrates denied being a teacher (Apology 33a–b); say "associates".
+- Plato dated 428–348: SEP gives 424/423–347; IEP 427. Give "c. 428/427–348/347" or a range.
+Source: docs/philosophy-curriculum/research/ancient--socrates-and-the-sophists.md.
