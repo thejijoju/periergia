@@ -165,3 +165,9 @@ Source: docs/philosophy-curriculum/research/ancient--socrates-and-the-sophists.m
 ### Classical India: the Mauryas to the Guptas (found by Philosophy research, 18 Nov 2026) — open
 - Upanishads dated "800–200 BCE" (the Philosophy overview says 800–300): IEP 700–300; Olivelle earliest 7th–6th c. BCE ± a century. Align the two.
 - Upanishads "developed" karma, saṃsāra and mokṣa: the early Upaniṣads have no explicit karma theory; saṃsāra and mokṣa (as liberation) first appear in later ones (Kaṭha, Śvetāśvatara). Source: docs/philosophy-curriculum/research/ancient--upanishads.md.
+
+### Ancient China / Han China (found by Philosophy research, 18 Nov 2026) — open
+- Ancient China image caption: Confucius's teachings "collected by his disciples in the Analects" states the traditional view as fact; the Analects' composition is contested (Brooks & Brooks; Zhu Weizheng; Hunter).
+- Ancient China: Mencius c. 371–289 BCE — add that many recent scholars date him about 20 years earlier (b. c. 390).
+- Han China: Imperial Academy 124 BCE vs 136 BCE (Five Classics as exam basis, IEP; WP Emperor Wu) — unresolved; check.
+Source: docs/philosophy-curriculum/research/ancient--confucianism.md.
