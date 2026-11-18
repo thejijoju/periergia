@@ -180,7 +180,7 @@ This chapter's title echoes Wilhelm Nestle's *Vom Mythos zum Logos* ("from myth 
 
 Nor did the Greeks work alone. Ionian cities traded closely with Egypt and Mesopotamia, and Babylonian astronomy and mathematics contributed significantly to Greek knowledge. But some ancient travel stories were later attempts to claim eastern wisdom for Greek heroes, and the claim that Greek philosophy was simply taken from Egypt is rejected by most scholars, as the History chapter Ancient Greece discusses. What scholars generally treat as new is the argumentative form. In roughly the same centuries India and China saw new kinds of thought — Karl Jaspers' disputed "Axial Age" — explored in The Upanishads and the Beginnings of Indian Philosophy, The Buddha and Early Buddhist Philosophy, and Confucius, Mencius and Xunzi.
 
-The legacy was immediate. Plato described his Forms in language echoing Parmenides and took Heraclitus as a model for the changing world of the senses (see Plato); Aristotle's theory of the continuum answered Zeno; the Stoics drew on Heraclitus. Much later Nietzsche, Heidegger and Karl Popper, in "Back to the Presocratics" (1958), returned to them.
+The legacy was immediate. Plato described his Forms in language echoing Parmenides and took Heraclitus as a model for the changing world of the senses (see Plato); Zeno's arguments shaped Aristotle's theory of the continuum; the Stoics drew on Heraclitus. Much later Nietzsche, Heidegger and Karl Popper, in "Back to the Presocratics" (1958), returned to them.
 
 ## Further exploration
 
