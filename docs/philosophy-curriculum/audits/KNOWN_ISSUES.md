@@ -39,3 +39,6 @@ Found after publication; fix in a later batch.
 
 ### Other subjects (found by Philosophy research) — open
 - Astronomy `astronomy-and-space--solar-system--origins--nebular-collapse`: Kant "still working as a private tutor" in 1755 — he returned to Königsberg in August 1754 and began lecturing in 1755 (SEP kant; Kuehn). Source: research/early-modern--kant.md.
+
+### Hobbes — open
+- "Cavendish Circle" attendees and host: SEP says William Cavendish hosted; IEP says Charles Cavendish's salon, with Descartes, Mersenne and Gassendi attending only "occasionally", and Margaret denied discussing more than superficial matters with them. Soften. Source: research/early-modern--early-modern-women-philosophers.md.
