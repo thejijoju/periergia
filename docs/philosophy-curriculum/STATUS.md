@@ -27,7 +27,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Falsafa: al-Kindī, al-Fārābī and Avicenna | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/falsafa` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Al-Ghazālī, Averroes and the Quarrel over Reason | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/ghazali-and-averroes` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jewish Philosophy: from Saadia to Maimonides | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/jewish-philosophy` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Early Scholasticism: Anselm, Abelard and the Universities | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/early-scholasticism` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Early Scholasticism: Anselm, Abelard and the Universities | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/early-scholasticism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thomas Aquinas | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/aquinas` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scotus, Ockham and the Late Medieval Debates | chapter | `philosophy/history-of-philosophy/late-antiquity-and-medieval/scotus-and-ockham` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Renaissance and Early Modern Philosophy (c. 1450 – 1800) | overview | `philosophy/history-of-philosophy/early-modern` | ⬜ |
