@@ -81,3 +81,6 @@ Found after publication; fix in a later batch.
 
 ### Kalām occasionalism (published chapter treating al-Ghazālī/kalām) — open (minor)
 - Blurs earlier and later Ashʿarite theologians, who differed on occasionalism. Source: docs/philosophy-curriculum/research/metaphysics--ontology.md (consistency section names the chapter).
+
+### Hellenistic Philosophy (Epicurean swerve) — open
+- Puts "at no specific time or place" in quotation marks as Lucretius's words; that is SEP's paraphrase. Long & Sedley read "at no fixed region of space or fixed time". Drop the quotation marks or use the translation. Source: docs/philosophy-curriculum/research/metaphysics--free-will.md.
