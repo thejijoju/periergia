@@ -98,7 +98,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Metaethics: Are There Moral Facts? | chapter | `philosophy/ethics/metaethics` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Meaning of Life and the Fear of Death | chapter | `philosophy/ethics/meaning-and-death` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Bioethics: Life, Death and Medicine | chapter | `philosophy/ethics/bioethics` | ✍️ 19 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;Animals and the Environment | chapter | `philosophy/ethics/animals-and-environment` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Animals and the Environment | chapter | `philosophy/ethics/animals-and-environment` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Ethics of Technology and AI | chapter | `philosophy/ethics/ethics-of-technology` | ⬜ |
 | Political Philosophy | overview | `philosophy/political-philosophy` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Authority and the State: the Social Contract and Its Critics | chapter | `philosophy/political-philosophy/authority-and-the-state` | ⬜ |
