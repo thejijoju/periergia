@@ -52,6 +52,8 @@ Why does consent matter? The dominant answer since the 1970s is **autonomy**, ac
 
 ## Research Ethics and Its Scandals
 
+{{image: Doctors' Trial | The courtroom at Nuremberg during the Doctors' Trial (1946–47), whose verdict set out the ten points of the Nuremberg Code.}}
+
 In the "Doctors' Trial" (1946–47), an American military tribunal tried 23 defendants, 20 of them physicians; seven were sentenced to death and seven acquitted. Its verdict set out ten points now called the **Nuremberg Code**.
 
 ```quote
@@ -64,8 +66,6 @@ No nation adopted the Code as law, and Jay Katz reported that it was at first di
 In the **Tuskegee** study (1932–72), the US Public Health Service followed 600 poor Black sharecroppers in Alabama, 399 with latent syphilis. They were told they had "bad blood" and were not treated with penicillin even after it became standard. The study was no secret, being published in medical journals; it ended in 1972 after Peter Buxtun took it to the press. On 16 May 1997 President Clinton apologised: "what the United States government did was shameful, and I am sorry." Between 1946 and 1948, US researchers in **Guatemala** also infected people without consent, which is one reason Latin American bioethicists reject "double standards" in international trials.
 
 In Asia, the Imperial Japanese Army's **Unit 731**, based at Pingfang near Harbin and led by Shirō Ishii, infected, vivisected and froze prisoners, mostly Chinese, until 1945. Estimates of those killed in the facility range from over 3,000 to about 14,000. Ishii and others received US immunity in exchange for their data; *Japan's Empire in Asia, 1895–1945* gives the wider history.
-
-{{image: Belmont Report | The Belmont Report (1978), which set out respect for persons, beneficence and justice as the principles of human research.}}
 
 Rules followed. The World Medical Association's **Declaration of Helsinki** (1964) added in 1975 that "concern for the interests of the subject must always prevail over the interests of science and society" and introduced independent committee review. In the US, Tuskegee led to the National Research Act (1974) and the **Belmont Report** (released 1978, published 1979), which Beauchamp helped write; its principles apply as informed consent, risk-benefit assessment and fair selection of subjects.
 
