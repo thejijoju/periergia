@@ -86,7 +86,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Possibility and Necessity | chapter | `philosophy/metaphysics/possibility-and-necessity` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;God: Arguments For and Against | chapter | `philosophy/metaphysics/arguments-about-god` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Problem of Evil | chapter | `philosophy/metaphysics/problem-of-evil` | ✍️ 19 Nov 2026 |
-| Mind | overview | `philosophy/philosophy-of-mind` | ⬜ |
+| Mind | overview | `philosophy/philosophy-of-mind` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Mind–Body Problem | chapter | `philosophy/philosophy-of-mind/mind-body-problem` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Consciousness | chapter | `philosophy/philosophy-of-mind/consciousness` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Self and No-Self: Personal Identity East and West | chapter | `philosophy/philosophy-of-mind/self-and-no-self` | ✍️ 19 Nov 2026 |
