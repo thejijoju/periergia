@@ -84,6 +84,3 @@ Found after publication; fix in a later batch.
 
 ### Hellenistic Philosophy (Epicurean swerve) — open
 - Puts "at no specific time or place" in quotation marks as Lucretius's words; that is SEP's paraphrase. Long & Sedley read "at no fixed region of space or fixed time". Drop the quotation marks or use the translation. Source: docs/philosophy-curriculum/research/metaphysics--free-will.md.
-
-### The History of Philosophy overview (Kierkegaard) — open
-- Credits Kierkegaard with "the leap of faith"; the *Schopenhauer and Kierkegaard* chapter (and SEP) note the phrase is not in his works. Reword (e.g. "a leap", or describe his view without the phrase). Source: docs/philosophy-curriculum/research/metaphysics--arguments-about-god.md.
