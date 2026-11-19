@@ -66,3 +66,6 @@ Found after publication; fix in a later batch.
 
 ### Hellenistic Philosophy — open
 - Says the Stoics held that "every valid argument" is an indemonstrable or reducible to one; Bobzien (SEP) says they acknowledged valid arguments that are not syllogisms and only assumed these could be converted. Soften. Source: docs/philosophy-curriculum/research/logic--arguments.md.
+
+### Informal Fallacies and Everyday Reasoning — open
+- Says "the heap and the beard of the ancient Sorites puzzle"; Eubulides' companion puzzle was the bald man (SEP sorites-paradox). Replace "the beard" with "the bald man". Source: docs/philosophy-curriculum/research/logic--paradoxes.md.
