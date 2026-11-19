@@ -78,7 +78,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Testimony, Trust and Social Epistemology | chapter | `philosophy/epistemology/testimony-and-social-epistemology` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Truth | chapter | `philosophy/epistemology/truth` | ✍️ 19 Nov 2026 |
 | Reality (Metaphysics) | overview | `philosophy/metaphysics` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;What Exists? Ontology and Universals | chapter | `philosophy/metaphysics/ontology` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;What Exists? Ontology and Universals | chapter | `philosophy/metaphysics/ontology` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Identity, Change and Persons | chapter | `philosophy/metaphysics/identity-and-change` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Causation | chapter | `philosophy/metaphysics/causation` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Time | chapter | `philosophy/metaphysics/time` | ⬜ |
