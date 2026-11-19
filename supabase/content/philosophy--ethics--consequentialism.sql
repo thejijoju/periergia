@@ -140,12 +140,7 @@ Demandingness returns here in general form. Classic utilitarianism seems to forb
 
 ## Too Many People? The Repugnant Conclusion
 
-Total utilitarianism faces a puzzle that Parfit made famous in *Reasons and Persons* (1984):
-
-```quote
-For any possible population of at least ten billion people, all with a very high quality of life, there must be some much larger imaginable population whose existence, if other things are equal, would be better even though its members have lives that are barely worth living.
-Parfit · Reasons and Persons · 1984
-```
+Total utilitarianism faces a puzzle that Parfit made famous in *Reasons and Persons* (1984): "For any possible population of at least ten billion people, all with a very high quality of life, there must be some much larger imaginable population whose existence, if other things are equal, would be better even though its members have lives that are barely worth living."
 
 Parfit's **mere addition paradox** reaches this by innocent-looking steps: adding people whose lives are worth living does not seem to make things worse; then making everyone equal, with a higher total and average, seems better; repeat, and the conclusion follows. Averaging welfare blocks the result but implies, implausibly, that adding very good lives below the average makes things worse. A few philosophers, Tännsjö and Huemer among them, accept the conclusion. Gustaf Arrhenius, in the SEP, judges that escaping it without equally counterintuitive results has proved surprisingly difficult.
 
