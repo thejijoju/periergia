@@ -92,10 +92,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Self and No-Self: Personal Identity East and West | chapter | `philosophy/philosophy-of-mind/self-and-no-self` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Minds and Machines: Could AI Think? | chapter | `philosophy/philosophy-of-mind/minds-and-machines` | ✍️ 19 Nov 2026 |
 | Ethics | overview | `philosophy/ethics` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Consequentialism: What Makes Right Acts Right? | chapter | `philosophy/ethics/consequentialism` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Deontology: Duty and Respect | chapter | `philosophy/ethics/deontology` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Virtue Ethics, Greek and Confucian | chapter | `philosophy/ethics/virtue-ethics` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Metaethics: Are There Moral Facts? | chapter | `philosophy/ethics/metaethics` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Consequentialism: What Makes Right Acts Right? | chapter | `philosophy/ethics/consequentialism` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Deontology: Duty and Respect | chapter | `philosophy/ethics/deontology` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Virtue Ethics, Greek and Confucian | chapter | `philosophy/ethics/virtue-ethics` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Metaethics: Are There Moral Facts? | chapter | `philosophy/ethics/metaethics` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Meaning of Life and the Fear of Death | chapter | `philosophy/ethics/meaning-and-death` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Bioethics: Life, Death and Medicine | chapter | `philosophy/ethics/bioethics` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Animals and the Environment | chapter | `philosophy/ethics/animals-and-environment` | ⬜ |
