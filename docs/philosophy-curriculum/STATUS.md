@@ -59,7 +59,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Critical Theory: the Frankfurt School and Habermas | chapter | `philosophy/history-of-philosophy/twentieth-century/critical-theory` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Structuralism and After: Foucault, Derrida and Their Critics | chapter | `philosophy/history-of-philosophy/twentieth-century/structuralism-and-after` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Kyoto School and Modern Japanese Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/kyoto-school` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modern Chinese and Indian Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/modern-chinese-and-indian-philosophy` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modern Chinese and Indian Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/modern-chinese-and-indian-philosophy` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;African Philosophy: the Ethnophilosophy Debate and Beyond | chapter | `philosophy/history-of-philosophy/twentieth-century/african-philosophy` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latin American Philosophy and the Philosophy of Liberation | chapter | `philosophy/history-of-philosophy/twentieth-century/latin-american-philosophy` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytic Philosophy since 1950 | chapter | `philosophy/history-of-philosophy/twentieth-century/analytic-philosophy-since-1950` | ⬜ |
