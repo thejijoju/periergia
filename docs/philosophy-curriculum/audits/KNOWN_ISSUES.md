@@ -87,3 +87,6 @@ Found after publication; fix in a later batch.
 
 ### Forward references to "God: Arguments For and Against" not delivered — open
 - *Vedānta* promises the chapter will discuss Rāmānuja and Madhva on God; *Schopenhauer and Kierkegaard* promises it will take up "what 'the ethical' means"; *Spinoza* promises a pantheism/atheism discussion. None is covered (no verified material / cut for length). Either add short verified passages to the God chapter or reword the promises in those chapters. Source: writer report, 19 Nov 2026.
+
+### Frege, Russell and the Birth of Analytic Philosophy (Hesperus/Phosphorus) — open
+- Puts "Hesperus = Phosphorus" into Frege's argument in "On Sense and Reference"; SEP and IEP give his example as "the morning star" / "the evening star". Check against the German text (Abendstern/Morgenstern) or reword as the encyclopedias do. Source: docs/philosophy-curriculum/research/science--meaning-and-reference.md.

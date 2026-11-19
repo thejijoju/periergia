@@ -19,3 +19,4 @@ File: `supabase/content/philosophy--aesthetics--what-is-art.sql`. Written source
 | Porter: Kristeller's "system" "his own construct" | UNVERIFIED wording (B) | IEP; BJA abstract | concept of art did not first appear with the eighteenth-century system |
 | Shiner's "artist was simply a skilled maker" | UNVERIFIED gloss (B) | SEP bibliography | fine art in the modern sense an eighteenth-century invention |
 | Duchamp "No, not rejected … simply suppressed"; Fry's *Vision and Design* summary; Bell circularity charge | UNVERIFIED by one pass | other pass or secondary sources | kept |
+| Quiz q6 rubric still carried the Porter "construct" and Shiner "skilled makers" wording | IMPRECISE (found while writing the overview) | as above | rubric aligned with corrected body |
