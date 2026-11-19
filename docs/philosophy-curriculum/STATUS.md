@@ -66,7 +66,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | Logic and Reasoning | overview | `philosophy/logic-and-reasoning` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Arguments: Validity, Soundness and Form | chapter | `philosophy/logic-and-reasoning/arguments` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Informal Fallacies and Everyday Reasoning | chapter | `philosophy/logic-and-reasoning/fallacies` | ✍️ 19 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;Formal Logic: Propositions, Predicates and Proofs | chapter | `philosophy/logic-and-reasoning/formal-logic` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Formal Logic: Propositions, Predicates and Proofs | chapter | `philosophy/logic-and-reasoning/formal-logic` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Induction, Probability and Inference to the Best Explanation | chapter | `philosophy/logic-and-reasoning/induction-and-probability` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Paradoxes: the Liar, the Heap and Zeno | chapter | `philosophy/logic-and-reasoning/paradoxes` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Logic across Traditions | chapter | `philosophy/logic-and-reasoning/logic-across-traditions` | ⬜ |

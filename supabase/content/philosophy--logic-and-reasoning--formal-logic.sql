@@ -46,7 +46,7 @@ A conjunction is true only when both parts are; a disjunction is false only when
 
 Klement warns that the match with English is "really only rough", since English words "are not always used truth-functionally".
 
-Brackets fix the **main connective**: P ↔ (Q ∧ R) is a biconditional, (P ↔ Q) ∧ R a conjunction, and they can differ in value. Notation varies: "&" or "·" for "and", "⊃" for the conditional, "≡" for the biconditional, "∼" for "not". Nor are five connectives needed. "Not" with "or" can express every truth function (A ∧ B is equivalent to ¬(¬A ∨ ¬B)), and in 1913 Henry Sheffer showed that one connective, "not both", suffices, rediscovering an unpublished observation of Charles Sanders Peirce.
+Brackets fix the **main connective**: P ↔ (Q ∧ R) is a biconditional, (P ↔ Q) ∧ R a conjunction, and they can differ in value. Notation varies: "&" or "·" for "and", "⊃" for the conditional, "≡" for the biconditional, "∼" for "not". Nor are five connectives needed. "Not" with "or" can express every truth function (A ∧ B is equivalent to ¬(¬A ∨ ¬B)), and in 1913 Henry Sheffer showed that a single connective suffices: his was "neither … nor", and "not both" works equally well. Charles Sanders Peirce had noticed this in unpublished work.
 
 ## Tautologies and the Truth-Table Test
 
@@ -69,7 +69,7 @@ Truth tables make propositional logic **decidable**: a mechanical procedure alwa
 
 ## Translating English
 
-Most errors happen in translation. **"Only if"** marks a necessary condition: "P only if Q" is P → Q, not Q → P. "You may vote only if you are registered" does not promise that registration lets you vote. **"Unless"**: textbooks render "P unless Q" as ¬Q → P, which the truth tables show equivalent to P ∨ Q. **"Or"**: ∨ is inclusive. A parent who says "Either we can buy the toy robot, or we can buy the toy truck; you must choose!" means "not both", written ¬(P ↔ Q). Whether English "or" is ambiguous, as Tarski suggested, or inclusive with an implied "not both", is disputed; the Stoics' "or" was exclusive. **"But"**: "Donovan is poor *but* happy" is true in exactly the circumstances in which "Donovan is poor and happy" is; "but" adds contrast, not truth conditions, so it becomes ∧. **"And" in time**: "He drank a bottle of vodka and fell into a stupor" suggests "and as a result", but P ∧ Q says the same as Q ∧ P.
+Most errors happen in translation. **"Only if"** marks a necessary condition: "P only if Q" is P → Q, not Q → P. "You may vote only if you are registered" does not promise that registration lets you vote. **"Unless"**: textbooks render "P unless Q" as ¬Q → P, which the truth tables show equivalent to P ∨ Q. **"Or"**: ∨ is inclusive. A parent who says "Either we can buy the toy robot, or we can buy the toy truck; you must choose!" means "not both", written ¬(P ↔ Q). Whether English "or" is ambiguous, as Tarski suggested, or inclusive with an implied "not both", is disputed; the Stoics' standard "or" was exclusive. **"But"**: "Donovan is poor *but* happy" is true in exactly the circumstances in which "Donovan is poor and happy" is; "but" adds contrast, not truth conditions, so it becomes ∧. **"And" in time**: "He drank a bottle of vodka and fell into a stupor" suggests "and as a result", but P ∧ Q says the same as Q ∧ P.
 
 ## Is "If" the Material Conditional?
 
@@ -80,9 +80,9 @@ The material conditional, Dorothy Edgington writes, "does not strike students as
 3. Suppose "if" is truth-functional, so that the value of "If A, B" is fixed by the values of A and B.
 4. Then "If A, B" is true in all three remaining combinations: it is the material conditional, of the sixteen truth functions of two sentences "the only serious candidate".
 
-**The objection** targets step 3. On the material reading a false antecedent alone makes "If A, B" true. Does "She didn't touch the wire" entail "If she touched the wire, she got a shock"? Klement's pair: "If Bob Dole is president of the United States in 2004, then the president is a member of the Republican party" seems true, the same with Al Gore false, though both have a false antecedent and a true consequent. Even Frege, who built the material conditional into his logic in 1879, cautioned that "the causal connection implicit in the word 'if' ... is not expressed by our symbols" (Bynum's translation). Frank Ramsey suggested reading "If A, B" through the probability of B given A; in 1976 David Lewis proved that conditionals so understood are not even propositions. Edgington finds the oddities "harder to tolerate" outside mathematics.
+**The objection** targets step 3. On the material reading a false antecedent alone makes "If A, B" true. Does "She didn't touch the wire" entail "If she touched the wire, she got a shock"? Klement's pair: "If Bob Dole is president of the United States in 2004, then the president is a member of the Republican party" seems true, the same with Al Gore false, though both have a false antecedent and a true consequent. Even Frege, who built the material conditional into his logic in 1879, cautioned that "the causal connection implicit in the word 'if' ... is not expressed by our symbols" (Bynum's translation). Frank Ramsey suggested reading "If A, B" through the probability of B given A; in 1976 David Lewis proved that no proposition can in general have the probability of B given A, so if Ramsey is right, conditionals seem not to be propositions at all. Edgington finds the oddities "harder to tolerate" outside mathematics.
 
-**The reply** comes from Paul Grice's 1967 Harvard lectures, "Logic and Conversation". A statement can be true but misleading to assert. If I know my friend is in the pub, "He is either in the pub or in the library" is true but a poor thing to say. Likewise "If she touched the wire, she got a shock" is true when she did not, merely pointless to say. Defenders add that when we know A is false we have no use for "if A" thoughts, so intuition there is silent. Edgington judges Grice right about "or" but thinks compound conditionals tell against the material reading. The debate is open; *Analytic Philosophy since 1950* places Grice in his era.
+**The reply** comes from Paul Grice's 1967 Harvard lectures, "Logic and Conversation". A statement can be true but misleading to assert. If I know my friend is in the pub, "He is either in the pub or in the library" is true but a poor thing to say. Likewise "If she touched the wire, she got a shock" is true when she did not, merely pointless to say. Defenders add that when we know A is false we have no use for "if A" thoughts, so intuition there is silent. Edgington judges Grice right about "or" but thinks the conditional's troubles arise at the level of belief, not just of what is worth saying: one can sensibly disbelieve "if he is not in the pub, he is in the library" while believing he is in the pub. Compound conditionals add further trouble. The debate is open; *Analytic Philosophy since 1950* places Grice in his era.
 
 ```checkpoint
 q: On a truth table, what shows the argument "P → Q; ¬Q → P; therefore Q" to be valid?
@@ -163,7 +163,7 @@ Gentzen treated introduction rules as "a kind of definition" of each connective.
 
 ## Soundness, Completeness and Their Limits
 
-A proof system is **sound** if everything it derives is valid, and **complete** if every valid argument is derivable. (This "sound" describes a system; a sound *argument*, as *Arguments* notes, is a valid one with true premises.) Emil Post's 1921 doctoral work proved the propositional calculus of *Principia Mathematica* complete. Hilbert and Ackermann's 1928 textbook asked whether first-order logic is; Kurt Gödel proved it in his 1929 dissertation, published 1930. Two "vastly different conceptions of logicality", provability and validity, coincide.
+A proof system is **sound** if everything it derives is valid, and **complete** if every valid argument is derivable. (This "sound" describes a system; a sound *argument*, as *Arguments* notes, is a valid one with true premises.) Emil Post's doctoral thesis (1920, published 1921) proved the propositional calculus of *Principia Mathematica* complete. Hilbert and Ackermann's 1928 textbook asked whether first-order logic is; Kurt Gödel proved it in his 1929 dissertation, published 1930. Two very different ideas of what makes logic logic, provability and validity, turn out to coincide.
 
 Gödel's 1931 incompleteness theorems concern something else: formal theories rich enough for elementary arithmetic. Any consistent such system F has statements that "can neither be proved nor disproved in F", and F cannot prove its own consistency. Panu Raatikainen warns: "A common misunderstanding is to interpret Gödel's first theorem as showing that there are truths that cannot be proved." The theorem concerns derivability in a given formal system, not provability in any absolute sense. Gödel was trying to advance Hilbert's programme, not undermine it.
 
@@ -190,7 +190,7 @@ a: Because it is not truth-functional.
 x: The argument is about proof rules, not truth tables.
 a*: Because a word with an or-like introduction rule and an and-like elimination rule lets any statement be derived from any other.
 hint: Chain the two rules together.
-why: From P, tonk-introduction gives P tonk Q and tonk-elimination gives Q. Belnap replied that rules must be noncreative, in harmony.
+why: From P, tonk-introduction gives P tonk Q and tonk-elimination gives Q. Belnap replied that rules must be noncreative; later writers call the general requirement harmony.
 ```
 
 ## A Short History
@@ -208,7 +208,7 @@ Modern logic needed relations and notation for "all" and "some". Gottlob Frege, 
 C. S. Peirce · "On the Algebra of Logic" · 1885
 ```
 
-Another Peirce student, Christine Ladd, published "On the Algebra of Logic" in his *Studies in Logic* (1883); she completed every requirement for a doctorate but, as a woman, was refused it until 1926. Truth tables are implicit in Peirce and others, explicit in Eugen Müller by 1909, and were popularised in 1921 by Post and by Wittgenstein's *Tractatus* (see *Wittgenstein*). Peano (1889) introduced ∃ and a reversed C for "if", which Russell turned into ⊃ in *Principia Mathematica* (1910–13); Gentzen first printed ∀. Łukasiewicz "came upon the idea of a parenthesis-free notation in 1924", by his own account: "Polish notation", operators before operands, later used in computing.
+Another Peirce student, Christine Ladd, published "On the Algebra of Logic" in his *Studies in Logic* (1883); she completed every requirement for a doctorate but, as a woman, was refused it until 1926. Truth tables are implicit in Peirce and others, explicit in Eugen Müller by 1909, and were popularised in 1921 by Post and by Wittgenstein's *Tractatus* (see *Wittgenstein*). Peano introduced a reversed C for "if" (1889), which became the ⊃ Russell used in *Principia Mathematica* (1910–13), and later ∃ (in the 1890s); Gentzen first printed ∀. Łukasiewicz "came upon the idea of a parenthesis-free notation in 1924", by his own account: "Polish notation", operators before operands, later used in computing.
 
 Logic then met engineering. Claude Shannon's MIT master's thesis, written in 1937 and published in 1938, showed that Boolean algebra could describe the relay circuits of telephone exchanges, "and" corresponding to switches in series and "or" to switches in parallel. Shannon was not alone: Akira Nakashima in Japan independently introduced switching-circuit theory in papers of 1934–36, and Victor Shestakov in Moscow found the Boolean interpretation in 1935, though he first published, in Russian, in 1941.
 
@@ -225,7 +225,7 @@ Classical logic is bivalent, truth-functional and explosive: from a contradictio
 1. To assert "A or B" is to have a proof of A or a proof of B, or a method for getting one.
 2. Let A be the twin primes conjecture: that beyond every number there is a pair of primes differing by two. We have neither proof nor refutation, nor a method for finding one.
 3. So we cannot now assert "A or not A".
-4. So excluded middle is not a universal law; it "was abstracted from finite situations, then extended without justification to statements about infinite collections".
+4. So excluded middle is not a universal law; as Joan Moschovakis summarises Brouwer's 1908 point, it "was abstracted from finite situations, then extended without justification to statements about infinite collections".
 
 **The objection** is that this confuses truth with knowledge: on the classical, realist view every meaningful statement is true or false whether or not anyone can prove it, and the example leans on a problem that might yet be solved. **The reply** is that the point is general, about what we may assert concerning infinite collections, not about one open problem; and that meaning may itself rest on proof rather than proof-independent truth, the anti-realism Dummett developed. Intuitionists therefore reject double-negation elimination.
 
@@ -239,7 +239,7 @@ Finally, meaning outruns truth conditions. Grice's **implicatures** explain why 
 - **Susan Haack, *Philosophy of Logics* (1978).** What formal logic captures, and the case for and against its rivals.
 - **Graham Priest, *An Introduction to Non-Classical Logic* (2001).** A tableau-based survey of modal, intuitionistic, many-valued, relevant and paraconsistent logics; the second edition (2008) is subtitled *From If to Is*.
 - **Ernest Nagel and James R. Newman, *Gödel's Proof* (1958).** The classic short exposition of the incompleteness theorems.
-- **Rebecca Goldstein, *Incompleteness: The Proof and Paradox of Kurt Gödel* (2005).** Biography and philosophical exposition; Solomon Feferman's review questioned its reading of the young Gödel.
+- **Rebecca Goldstein, *Incompleteness: The Proof and Paradox of Kurt Gödel* (2005).** Biography and philosophical exposition; Solomon Feferman's review (*London Review of Books*, 2006) was sharply critical.
 - **Apostolos Doxiadis and Christos H. Papadimitriou, *Logicomix: An Epic Search for Truth* (2009).** A graphic novel about Russell and the foundations of logic; the authors admit inventing some meetings.
 - **Bimal Krishna Matilal, *The Character of Logic in India* (1998).** Indian logic from the rules of debate through Dignāga, Dharmakīrti, the Jainas and Navya-Nyāya.$formallogic_master$,
     true,
