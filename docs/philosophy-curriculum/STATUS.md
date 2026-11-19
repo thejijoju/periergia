@@ -87,10 +87,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;God: Arguments For and Against | chapter | `philosophy/metaphysics/arguments-about-god` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;The Problem of Evil | chapter | `philosophy/metaphysics/problem-of-evil` | ✍️ 19 Nov 2026 |
 | Mind | overview | `philosophy/philosophy-of-mind` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;The Mind–Body Problem | chapter | `philosophy/philosophy-of-mind/mind-body-problem` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Consciousness | chapter | `philosophy/philosophy-of-mind/consciousness` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Self and No-Self: Personal Identity East and West | chapter | `philosophy/philosophy-of-mind/self-and-no-self` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Minds and Machines: Could AI Think? | chapter | `philosophy/philosophy-of-mind/minds-and-machines` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;The Mind–Body Problem | chapter | `philosophy/philosophy-of-mind/mind-body-problem` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Consciousness | chapter | `philosophy/philosophy-of-mind/consciousness` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Self and No-Self: Personal Identity East and West | chapter | `philosophy/philosophy-of-mind/self-and-no-self` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Minds and Machines: Could AI Think? | chapter | `philosophy/philosophy-of-mind/minds-and-machines` | ✍️ 19 Nov 2026 |
 | Ethics | overview | `philosophy/ethics` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Consequentialism: What Makes Right Acts Right? | chapter | `philosophy/ethics/consequentialism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Deontology: Duty and Respect | chapter | `philosophy/ethics/deontology` | ⬜ |
