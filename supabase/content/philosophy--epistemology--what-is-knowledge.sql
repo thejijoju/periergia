@@ -34,7 +34,7 @@ If, for any operation to be intelligently executed, a prior theoretical operatio
 Gilbert Ryle · The Concept of Mind, p. 19 · 1949
 ```
 
-If acting skilfully meant first contemplating a proposition, the contemplating would itself need know-how, and so on, and no one could ever act. Ryle's view long held sway, until Stanley and Timothy Williamson revived intellectualism in 2001, replying, after Carl Ginet, that we often use knowledge without intentionally contemplating anything, as when a driver brakes at a red light.
+If acting skilfully meant first contemplating a proposition, the contemplating would itself need know-how, and so on, and no one could ever act. Ryle's view long held sway, until Jason Stanley and Timothy Williamson revived intellectualism in 2001, replying, after Carl Ginet, that we often use knowledge without intentionally contemplating anything, as when a driver brakes at a red light.
 
 The later Mohists of China, introduced in *Mozi, the Daoists and the Legalists: the Hundred Schools*, made knowing practical from the start. They treated knowing (*zhī* 知) as an ability (*néng* 能): passing by a thing and being able to describe it, or knowing how to sort things into "this" (*shì* 是) and "not-this" (*fēi* 非). Their concern, as Chris Fraser puts it, was not the justification or truth of beliefs.
 
@@ -60,7 +60,7 @@ Here the dialogue ends, and Socrates leaves to meet his accusers.
 
 ## Why Want Knowledge? The Meno
 
-The *Meno*, probably written about 385 BCE, asks a different question. A man with a true belief that a road leads to Larissa will get there as surely as a man who knows the way. So why is knowledge worth more? Socrates answers that true beliefs are like the moving statues of Daedalus, which run away unless "tied down". A true belief becomes knowledge when tied down by an account of the reason why (*aitias logismos*, at 98a), and it then stays put: the knower is less likely to give up when the road at first seems to go the wrong way. The Stanford Encyclopedia calls this perhaps the first attempt at a justified true belief account (see *Plato*). Gettier himself suggested in a footnote that Plato was considering such a definition in the *Theaetetus* and perhaps accepting one in the *Meno*.
+The *Meno*, probably written about 385 BCE, asks a different question. A man with a true belief that a road leads to Larissa will get there as surely as a man who knows the way. So why is knowledge worth more? Socrates answers that true beliefs are like the moving statues of Daedalus, which run away unless "tied down". A true belief becomes knowledge when tied down by an account of the reason why (*aitias logismos*, at 98a), and it then stays put: the knower is less likely to give up when the road at first seems to go the wrong way. The Stanford Encyclopedia reads this "true belief with an account of the reason why" as Plato's own view (see *Plato*). Gettier himself suggested in a footnote that Plato was considering such a definition in the *Theaetetus* and perhaps accepting one in the *Meno*.
 
 ## Was There Ever a "Traditional Analysis"?
 
@@ -68,14 +68,14 @@ The modern **tripartite analysis** says that S knows that P if and only if P is 
 
 ```quote
 It is almost as if a distinguished critic created a tradition in the very act of destroying it.
-Alvin Plantinga · Warrant: The Current Debate · 1992
+Alvin Plantinga · Warrant: The Current Debate · 1993
 ```
 
 According to "the inherited lore of the epistemological tribe", Plantinga wrote, JTB was orthodoxy until 1963, yet explicit statements of it before Gettier are hard to find, though he granted that C. I. Lewis and A. J. Ayer gave accounts like it. Gettier's footnotes named Roderick Chisholm (1957) and Ayer (1956), whose version required being sure and having "the right to be sure". Julien Dutant, in "The Legend of the Justified True Belief Analysis" (2015), argues that the real tradition was **infallibilist**: knowledge required grounds, discernible to the knower, that guarantee the truth. Gettier's cases work only because his justification does not guarantee truth, so on Dutant's account they refute a modern view, not the historical one.
 
 ## Gettier's Ten Coins
 
-Edmund Gettier (1927–2021) was teaching at Wayne State University, where Plantinga was a colleague, when he published "Is Justified True Belief Knowledge?" in the journal *Analysis* in 1963. It runs to about three pages and proposes no replacement. According to Duncan Pritchard, Gettier wrote it partly to secure tenure.
+Edmund Gettier (1927–2021) was teaching at Wayne State University, where Plantinga was a colleague, when he published "Is Justified True Belief Knowledge?" in the journal *Analysis* in 1963. It runs to about three pages and proposes no replacement. According to Duncan Pritchard, Gettier wrote it in a bid to get tenure.
 
 Gettier relied on two assumptions: one can be justified in believing something false, and if you are justified in believing P and validly deduce Q from it, you are justified in believing Q. *What Is Philosophy?* sets out his second case, about a Ford and Barcelona. His first runs as follows. Smith and Jones have applied for the same job. Smith has strong evidence that Jones will get the job and that Jones has ten coins in his pocket: the company president told him Jones would be chosen, and he counted Jones's coins ten minutes ago. He infers that the man who will get the job has ten coins in his pocket. Unknown to Smith, he himself will get the job, and he too has ten coins in his pocket. His belief is true, but, in Gettier's words, true "in virtue of the number of coins in Smith's pocket, while Smith does not know how many coins are in his pocket".
 
@@ -100,7 +100,7 @@ The most striking ancestors are Indian. Dharmottara, an eighth-century Buddhist 
 
 In the twelfth century Śrīharṣa, a poet-philosopher often (though not uncontroversially) read as an Advaita Vedāntin, attacked Udayana's definition: "Knowledge is non-mnemonic awareness of the truth", that is, true awareness that is not memory. It also covers awareness that is true by accident, he objected. You see mist, take it for smoke, and infer fire on the hill; there is fire. Or, believing falsely that only cows have horns, you infer that a horned animal is a cow; it is. Nilanjan Das observes that these cases clearly have the structure of Gettier cases. Śrīharṣa used them to suggest that knowledge may have no satisfactory definition at all.
 
-Europe had cases too. The fourteenth-century Italian Peter of Mantua imagined seeing Plato running nearby, mistaking him for Socrates and so believing that Socrates is running, which he is, in Rome. Russell, in *Human Knowledge: Its Scope and Limits* (1948), wrote that if you look at a stopped clock "which you believe to be going" when it happens to be right, you acquire a true belief about the time "but you cannot be correctly said to have knowledge". His interest was the nature of belief, not the analysis of knowledge.
+Europe had cases too. The fourteenth-century Italian Peter of Mantua imagined seeing Plato running nearby, mistaking him for Socrates and so believing that Socrates is running, which he is, in Rome. Russell, in *Human Knowledge: Its Scope and Limits* (1948), described someone who looks at a clock that has stopped, believing it to be going, at a moment when it happens to be right: they acquire a true belief about the time, but cannot be said to know it. His interest was the nature of belief, not the analysis of knowledge.
 
 ```checkpoint
 q: What does Gettier's ten-coins case show, if it succeeds?
@@ -156,13 +156,37 @@ Her illustration targets Plantinga's view that knowledge requires properly funct
 
 ## Knowledge First
 
-Williamson's *Knowledge and Its Limits* (2000) drew a radical lesson: the analysis project was a mistake. Knowledge is not belief plus extra ingredients but one of the most basic mental states, "the most general factive mental state" (a factive state is one you can be in only if its content is true). Williamson keeps truth, belief and justification as necessary conditions, but reverses the order of explanation: one's total evidence is simply one's total knowledge. There is, the Stanford Encyclopedia notes, "no very straightforward argument" for the view; its case rests on how much it explains. Śrīharṣa had already denied that treating knowledge as primitive escapes his cases.
+Williamson's *Knowledge and Its Limits* (2000) drew a radical lesson: the analysis project was a mistake. Knowledge is not belief plus extra ingredients but one of the most basic mental states, "the most general factive mental state" (a factive state is one you can be in only if its content is true). Williamson allows that knowledge entails truth, belief and justification, but reverses the order of explanation: one's total evidence is simply one's total knowledge. There is, the Stanford Encyclopedia notes, "no very straightforward argument" for the view; its case rests on how much it explains. Śrīharṣa had already denied that treating knowledge as primitive escapes his cases.
+
+```checkpoint
+q: Whose condition is "safety", and how does it differ from Nozick's sensitivity?
+a: Nozick's own: safety is simply another name for sensitivity.
+x: Nozick's condition is sensitivity; the safety condition is credited to Sosa, and the two come apart.
+a*: Sosa's (1999): a safe belief could not easily have been false, whereas a sensitive belief is one you would not hold if it were false.
+a: Gettier's: he proposed safety as the missing fourth condition.
+x: Gettier proposed no replacement analysis at all.
+a: Plato's: the statues of Daedalus are the safety condition.
+x: Plato's image is about the stability of knowledge, not a modern modal condition.
+hint: One condition asks what you would believe if the claim were false; the other asks whether you could easily have been wrong.
+why: Sensitivity looks at the nearest world where the claim is false; safety looks at nearby worlds where you believe it. Williamson and Pritchard also defend safety.
+---
+q: What is Zagzebski's 1994 recipe meant to show?
+a: That justification is never necessary for knowledge.
+x: The recipe is aimed at any analysis whose extra condition falls short of guaranteeing truth, not at justification as such.
+a: That Gettier cases are impossible once safety is added.
+x: The recipe is a general argument that such cases are hard to escape; it does not endorse safety.
+a: That knowledge is a mental state.
+x: That is Williamson's knowledge-first view, a separate response.
+a*: That if the condition added to true belief does not guarantee truth, a Gettier case can always be built.
+hint: Start from a justified false belief, then add a stroke of good luck.
+why: Take a case where the condition is met but the belief is false, then let a second accident make it true: "double luck". Only a condition that entails truth, or an explicit anti-luck condition, escapes.
+```
 
 ## Knowledge in Indian Epistemology
 
-Indian theory of knowledge (*pramāṇa-śāstra*) centres on the **pedigree** of knowledge: the processes that produce it, called *pramāṇas*, chiefly perception, inference and testimony. One translation trap: *jñāna* is often rendered "knowledge", but Sanskrit allows a false *jñāna*, so "cognition" is better. The word that matches the English is *pramā*, and *pramāṇa*-words are factive: in Stephen Phillips's words, "no knowledge source ever generates a false belief. Only pseudo-sources do." So "knowledge cannot arise by accident. A lucky guess… would not have the right pedigree."
+Indian theory of knowledge (*pramāṇa-śāstra*) centres on the **pedigree** of knowledge: the processes that produce it, called *pramāṇas*, chiefly perception, inference and testimony. One translation trap: *jñāna* is often rendered "knowledge", but Sanskrit allows a false *jñāna*, so "cognition" is better. The word that matches the English is *pramā*, and *pramāṇa*-words are factive: in the words of the Stanford Encyclopedia entry by Stephen Phillips and Anand Vaidya, "no genuine knowledge source ever produces a false belief. Only pseudo-sources do." So "knowledge cannot arise by accident. A lucky guess… would not have the right pedigree."
 
-Is Nyāya, then, a reliabilism? *The Classical Indian Schools: Nyāya, Vaiśeṣika, Sāṃkhya, Yoga and Mīmāṃsā* quotes Dasti's description of it as "a sophisticated precursor to contemporary reliabilism". Phillips is more precise about its strength: Gaṅgeśa's Nyāya is "a super-reliabilism, an infallibilism for externalists", since a knowledge source "is then not merely a reliable doxastic practice" but one that never yields falsehood. The descriptions fit together: Nyāya, like reliabilism, grounds knowledge in its causal origin, but it sets the bar at infallibility. Gaṅgeśa, the fourteenth-century founder of the New Nyāya, also has his own Gettier-style case: a parrot utters a sentence that a hearer would take as true, yet the hearer gains no knowledge from it. Vaidya (2022) reads him as a kind of knowledge-first theorist.
+Is Nyāya, then, a reliabilism? *The Classical Indian Schools: Nyāya, Vaiśeṣika, Sāṃkhya, Yoga and Mīmāṃsā* quotes Dasti's description of it as "a sophisticated precursor to contemporary reliabilism". Phillips is more precise about its strength: Gaṅgeśa's Nyāya is "a super-reliabilism, an infallibilism for externalists", since a knowledge source "is then not merely a reliable doxastic practice" but one that never yields falsehood. The descriptions fit together: Nyāya, like reliabilism, grounds knowledge in its causal origin, but it sets the bar at infallibility. Gaṅgeśa, the fourteenth-century thinker traditionally regarded as the founder of the New Nyāya, also has his own Gettier-style case: a parrot utters a sentence that a hearer would take as true if he did not know it came from a parrot; knowing that it does, he gains no knowledge from it. Vaidya (2022) reads him as a kind of knowledge-first theorist.
 
 How do we know that a cognition is knowledge? Kumārila's Mīmāṃsā held that validity is intrinsic (*svataḥ prāmāṇya*), since demanding certification for every cognition would start a regress; *The Classical Indian Schools* reconstructs his argument. Nyāya held that validity is extrinsic (*parataḥ*), confirmed by success in action or later reflection, and denied that knowing entails knowing that you know. For Dharmakīrti a source of knowledge is a "reliable (*avisaṃvādin*) cognition", one that, as Dharmottara explained, leads you to obtain what you seek.
 
@@ -176,13 +200,13 @@ In Arabic, knowledge is *ʿilm*, whose root and derivatives occur around 750 tim
 
 ## Do Gettier Intuitions Travel?
 
-Gettier's argument rests on a judgement about a case: that Smith does not know. Is that judgement universal? In 2001 Weinberg, Nichols and Stich, in a paper often treated as the start of experimental philosophy, reported that respondents of East Asian or Indian-subcontinent descent were more willing than European Americans to say a Gettier subject knows. Perhaps the intuition was a local habit.
+Gettier's argument rests on a judgement about a case: that Smith does not know. Is that judgement universal? In 2001 Weinberg, Nichols and Stich, in a paper often treated as the start of experimental philosophy, reported that respondents of East Asian descent were more willing than European Americans to say a Gettier subject knows. Perhaps the intuition was a local habit.
 
 Later studies consistently failed to replicate the result, among them Kim and Yuan's "No cross-cultural differences in the Gettier car case intuition" (2015). Then Machery, Stich and colleagues tested 521 people in the United States, India, Japan and Brazil, with control cases, and found Gettier intuitions in all four countries ("Gettier Across Cultures", 2017), suggesting a possible "core folk epistemology". Stich co-wrote both the 2001 and the 2017 papers. Das adds historical evidence: Śrīharṣa's and Dharmottara's cases show the judgement made independently, in Sanskrit, centuries earlier. How far intuitions about other cases vary is still disputed; *Analytic Philosophy since 1950* follows the wider movement.
 
 ## The Value of Knowledge: the Swamping Argument
 
-Plato's road to Larissa poses what is now called the **primary value problem**: why is knowledge worth more than mere true belief? Zagzebski pressed a version against reliabilism that Jonathan Kvanvig named the "swamping problem":
+Plato's road to Larissa poses what is now called the **primary value problem**: why is knowledge worth more than mere true belief? Zagzebski pressed a version against reliabilism that Jonathan Kvanvig (2003) and others call the "swamping problem":
 
 1. The value of a reliable belief-forming process is wholly instrumental: it lies in its tendency to produce true beliefs.
 2. A good cup of coffee from a reliable machine is no better than an equally good cup from an unreliable one.
@@ -228,7 +252,7 @@ with q as (
     {"type": "mcq", "prompt": "Whose condition is 'safety', the requirement that in all nearby possible situations where you believe P, P is true?", "options": ["Robert Nozick's, in Philosophical Explanations (1981)", "Plato's, in the Meno", "Gettier's, in his 1963 paper", "Ernest Sosa's (1999), later also defended by Williamson and Pritchard"], "answerIndex": 3, "explanation": "Nozick's condition is sensitivity: if P were false, you would not believe it. Safety is Sosa's, and Williamson and Pritchard also defend it.", "id": "q3"},
     {"type": "mcq", "prompt": "What did the study 'Gettier Across Cultures' (Machery and colleagues, 2017) find?", "options": ["East Asian participants were far more likely than Americans to say a Gettier subject knows", "Gettier intuitions appeared among participants in the United States, India, Japan and Brazil", "Most people in every country say that a Gettier subject knows", "Intuitions about Gettier cases depend mainly on socio-economic status"], "answerIndex": 1, "explanation": "The 2001 study by Weinberg, Nichols and Stich reported cultural differences, but later studies failed to replicate them, and the 2017 study of 521 people in four countries suggested a possible 'core folk epistemology'.", "id": "q4"},
     {"type": "open", "prompt": "Set out Zagzebski's argument that Gettier problems are inescapable as a numbered argument, illustrate it with a case, and give the strongest objection and the best reply.", "rubric": "A strong answer states that any analysis of knowledge as true belief plus a condition X that does not guarantee truth allows a case where a belief meets X but is false; adding a stroke of good luck makes it true without changing X, so the belief meets the analysis but is not knowledge; hence every such analysis has counterexamples ('double luck'). It gives an illustration such as Mary, whose properly functioning eyesight leads her to mistake her husband's look-alike brother for her husband while her husband is, by luck, also in the room. The objection: choose a condition that guarantees truth, such as factive justification (Dutant and others) or an anti-luck condition, which Zagzebski herself outlined. The reply: some luck is compatible with knowledge (the raffle-won encyclopedia), so the condition must specify the bad kind of luck, and no account has won agreement; virtue theories face the fake barns. Better answers mention Williamson's knowledge-first alternative or Śrīharṣa's doubts about defining knowledge.", "id": "q5"},
-    {"type": "open", "prompt": "Explain the swamping argument against reliabilism and assess one response to it. How does it relate to the question Plato raised in the Meno about the road to Larissa?", "rubric": "A strong answer explains the Meno problem: a true belief about the road to Larissa gets you there as well as knowledge does, so why is knowledge more valuable? Plato's answer is that knowledge is 'tied down' by an account of the reason why, like Daedalus' statues, and so is more stable. It sets out the swamping argument (Zagzebski; named by Kvanvig): the value of a reliable process is purely instrumental; the coffee analogy; once a belief is true, reliability adds no value; so reliabilism cannot explain the extra value of knowledge. It assesses a response: Goldman and Olsson's view that a reliably formed true belief makes future true beliefs more likely, echoing Plato's stability answer, with the reply that this value is still instrumental and truth-based; or the virtue-theoretic view that knowledge is a creditable achievement (Riggs, Greco).", "id": "q6"}
+    {"type": "open", "prompt": "Explain the swamping argument against reliabilism and assess one response to it. How does it relate to the question Plato raised in the Meno about the road to Larissa?", "rubric": "A strong answer explains the Meno problem: a true belief about the road to Larissa gets you there as well as knowledge does, so why is knowledge more valuable? Plato's answer is that knowledge is 'tied down' by an account of the reason why, like Daedalus' statues, and so is more stable. It sets out the swamping argument (Zagzebski; so called by Kvanvig): the value of a reliable process is purely instrumental; the coffee analogy; once a belief is true, reliability adds no value; so reliabilism cannot explain the extra value of knowledge. It assesses a response: Goldman and Olsson's view that a reliably formed true belief makes future true beliefs more likely, echoing Plato's stability answer, with the reply that this value is still instrumental and truth-based; or the virtue-theoretic view that knowledge is a creditable achievement (Riggs, Greco).", "id": "q6"}
   ]$knowledge_quiz$::jsonb as questions
 )
 insert into quizzes (node_id, level, questions, generated)
