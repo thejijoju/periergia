@@ -72,3 +72,6 @@ Found after publication; fix in a later batch.
 
 ### Logical Positivism and Its Critics — open
 - Uses Einstein and non-Euclidean geometry as a blow to the a priori without caveat; SEP (Rey, "The Analytic/Synthetic Distinction") says this reading "mis-interprets the history". Add the caveat. Source: docs/philosophy-curriculum/research/epistemology--reason-and-experience.md.
+
+### The Buddha and Early Buddhism (chariot passage) — open
+- Quotes Nāgasena with "(no soul)"; SEP and the chapter's own research notes give "(or self)". Align the wording. Source: docs/philosophy-curriculum/research/metaphysics--identity-and-change.md.
