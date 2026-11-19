@@ -63,3 +63,6 @@ Found after publication; fix in a later batch.
 
 ### Women Philosophers of the Early Modern Era — open
 - Cross-reference sends readers to the *Beyond Europe* chapter for Sor Juana, which never mentions her; point to *Latin American Philosophy and the Philosophy of Liberation* instead. Source: docs/philosophy-curriculum/research/twentieth--latin-american-philosophy.md.
+
+### Hellenistic Philosophy — open
+- Says the Stoics held that "every valid argument" is an indemonstrable or reducible to one; Bobzien (SEP) says they acknowledged valid arguments that are not syllogisms and only assumed these could be converted. Soften. Source: docs/philosophy-curriculum/research/logic--arguments.md.
