@@ -113,7 +113,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Interpretation and Meaning in Art | chapter | `philosophy/aesthetics/interpretation` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Aesthetics across Traditions | chapter | `philosophy/aesthetics/aesthetics-across-traditions` | ✍️ 19 Nov 2026 |
 | Science and Language | overview | `philosophy/science-and-language` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;What Makes Science Science? Method and Demarcation | chapter | `philosophy/science-and-language/scientific-method` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;What Makes Science Science? Method and Demarcation | chapter | `philosophy/science-and-language/scientific-method` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Revolutions and Realism: Kuhn and After | chapter | `philosophy/science-and-language/kuhn-and-realism` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Meaning and Reference | chapter | `philosophy/science-and-language/meaning-and-reference` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Language, Thought and Speech Acts | chapter | `philosophy/science-and-language/language-and-thought` | ⬜ |
