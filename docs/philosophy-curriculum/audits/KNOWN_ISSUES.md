@@ -84,3 +84,6 @@ Found after publication; fix in a later batch.
 
 ### Hellenistic Philosophy (Epicurean swerve) — open
 - Puts "at no specific time or place" in quotation marks as Lucretius's words; that is SEP's paraphrase. Long & Sedley read "at no fixed region of space or fixed time". Drop the quotation marks or use the translation. Source: docs/philosophy-curriculum/research/metaphysics--free-will.md.
+
+### Forward references to "God: Arguments For and Against" not delivered — open
+- *Vedānta* promises the chapter will discuss Rāmānuja and Madhva on God; *Schopenhauer and Kierkegaard* promises it will take up "what 'the ethical' means"; *Spinoza* promises a pantheism/atheism discussion. None is covered (no verified material / cut for length). Either add short verified passages to the God chapter or reword the promises in those chapters. Source: writer report, 19 Nov 2026.
