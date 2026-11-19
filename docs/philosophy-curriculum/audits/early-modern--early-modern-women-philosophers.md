@@ -19,3 +19,4 @@ File: `supabase/content/philosophy--history-of-philosophy--early-modern--early-m
 | Wollstonecraft: "elected representatives of their own" | IMPRECISE (B): SEP's phrase | SEP wollstonecraft | credited to the SEP |
 | Suchon "dedicated solely to women" | minor (B) | WP | "to the topic of women" |
 | Kant's "beard" wording; Cavendish's "order" quotation; Conway's "dead thing" quotation; "scorn to be scribes"; *Respuesta* 1691 | UNVERIFIED wording (A or B) | research notes (IEP cavendish §2a; SEP margaret-cavendish; Goldthwait via secondary) | kept |
+| Sor Juana cross-reference to *Beyond Europe* | KNOWN_ISSUE | research/twentieth--latin-american-philosophy.md | re-pointed to *Latin American Philosophy and the Philosophy of Liberation* |

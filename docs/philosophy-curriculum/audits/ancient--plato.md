@@ -20,3 +20,5 @@ File: `supabase/content/philosophy--history-of-philosophy--ancient-beginnings--p
 | Birth range 429–423 | IMPRECISE, minor (A) | SEP 429?; WP 428–423; IEP 428/7 | kept (range covers all) |
 | Philosopher-prophet-ruler; "multi-ethnic, multi-religious empire" | UNVERIFIED (A) / CONFIRMED (B) | SEP al-farabi | kept |
 | Neoplatonists called themselves "Platonists"; Augustine and Plotinus; Tübingen "speculative" | UNVERIFIED (A) / CONFIRMED (B) | SEP neoplatonism; WP unwritten doctrines | kept |
+| "Gemistos Plethon brought the texts to Florence" | KNOWN_ISSUE | research/early-modern--renaissance-philosophy.md (IEP/SEP Ficino) | Plethon's lectures at the Council of Florence (1438–39) revived interest; Cosimo supplied the manuscript in 1462 |
+| Averroes' Republic commentary: "*Falsafa…* tells that story" | KNOWN_ISSUE | KNOWN_ISSUES cross-reference check (seed.ts titles) | re-pointed to *Al-Ghazālī, Averroes and the Quarrel over Reason* |

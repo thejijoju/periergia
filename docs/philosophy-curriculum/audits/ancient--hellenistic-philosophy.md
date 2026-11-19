@@ -21,3 +21,5 @@ File: `supabase/content/philosophy--history-of-philosophy--ancient-beginnings--h
 | Marcus "nowhere does he call himself a Stoic" | UNVERIFIED (A, B) | — | "rarely if ever labels himself a Stoic" |
 | Medieval Epicurus "proprietor of the kitchen, the tavern, and the brothel" | UNVERIFIED (A, B) | WP Epicurus (phrase present, checked 18 Nov) | kept |
 | Marcus 8.49 wording; four Athenian chairs | UNVERIFIED wording / weak (A, B) | research notes: IEP marcus-aurelius; search | kept |
+| Stoics: "Every valid argument" is an indemonstrable or reducible to one | KNOWN_ISSUE | research/logic--arguments.md (SEP ancient logic §5.4, Bobzien) | "Every syllogism"; added that they acknowledged non-syllogistic valid arguments, assumed convertible |
+| Swerve "at no specific time or place" quoted as Lucretius | KNOWN_ISSUE | research/metaphysics--free-will.md (LS 20F via O'Keefe; SEP Lucretius paraphrase) | quotes Long and Sedley: "at no fixed region of space or fixed time" |

@@ -192,7 +192,7 @@ Some modern scholars see something in the charge. S. N. Dasgupta wrote that Śa�
 
 ## Legacy
 
-In the nineteenth and twentieth centuries, "Neo-Vedānta" thinkers and Western Orientalists promoted Advaita as the thread uniting Hinduism, though most Hindus do not follow it; on Anantanand Rambachan's reading, Swami Vivekananda shifted its foundation from scripture towards experience, a story told in Philosophy in an Age of Empire and Modern Chinese and Indian Philosophy. Rāmānuja's God of innumerable good qualities and Madhva's dependent world belong to the debates of God: Arguments For and Against, and the comparison of Advaita with Plotinus is taken up in Plotinus and Neoplatonism.
+In the nineteenth and twentieth centuries, "Neo-Vedānta" thinkers and Western Orientalists promoted Advaita as the thread uniting Hinduism, though most Hindus do not follow it; on Anantanand Rambachan's reading, Swami Vivekananda shifted its foundation from scripture towards experience, a story told in Philosophy in an Age of Empire and Modern Chinese and Indian Philosophy. Rāmānuja's God of innumerable good qualities and Madhva's dependent world can be set beside the general arguments surveyed in God: Arguments For and Against, and the comparison of Advaita with Plotinus is taken up in Plotinus and Neoplatonism.
 
 The three Vedāntins shared a canon, a method and a goal; they disagreed about almost everything else. Their quarrel turns on one question: whether the knowing self can be pure consciousness with nothing to know, or whether to be conscious is always to be someone, aware of something other than oneself.
 

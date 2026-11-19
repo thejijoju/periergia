@@ -17,3 +17,4 @@ File: `supabase/content/philosophy--history-of-philosophy--nineteenth-century--s
 | Anti-Climacus "a voice he endorsed but felt unworthy to claim" | IMPRECISE (B) | SEP kierkegaard | "lacked the authority to claim in his own name" |
 | "a system of existence is possible only for God" | UNVERIFIED (B) | WP Concluding Unscientific Postscript | "a logical system is possible but an existential system is not" |
 | Stokes on Kierkegaard reading Schopenhauer (1854); Brandes's lectures in the 1870s; collapse in early autumn 1855; "the highest truth attainable" (Swenson–Lowrie, via SEP existentialism) | UNVERIFIED (B) | research notes (Stokes 2007; WP 1877; IEP 28 Sept 1855; SEP existentialism) | kept |
+| "the ethical" debate "(see *God: Arguments For and Against*)" | KNOWN_ISSUE | God chapter checked: no discussion of "the ethical" | pointer now to Kierkegaard and fideism, which that chapter does mention |

@@ -19,3 +19,4 @@ File: `supabase/content/philosophy--history-of-philosophy--late-antiquity-and-me
 | "Following al-Fārābī", three paths to assent | UNVERIFIED (A, B) | research notes: IEP ibn-rushd §3; SEP arabic-islamic-religion | kept |
 | Ḥayy "resigns himself …"; novel illustrates al-Fārābī's view | UNVERIFIED (A, B) | research notes: SEP arabic-islamic-religion (verbatim) | kept |
 | Floating man turned into social isolation | interpretive (A) | WP Hayy ibn Yaqdhan (Goodman 2000) | kept |
+| kalām theologians "mostly held" atoms and accidents "re-created by God at every moment" | KNOWN_ISSUE | research/metaphysics--ontology.md (SEP arabic-islamic-natural §1) | early (generation, *tawallud*) vs most later theologians (occasionalism) distinguished |

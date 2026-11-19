@@ -12,3 +12,4 @@ File: `supabase/content/philosophy--logic-and-reasoning--fallacies.sql`. Branch 
 | IEP example "20 dollars" | quotation detail (A) | IEP fallacy | "$20" |
 | Port-Royal "added post hoc … and hasty generalisation" | IMPRECISE (B) | SEP fallacies §2.3 | post hoc under false cause; added imperfect enumeration and hasty generalisation |
 | Hahn and Oaksford "considerably raise the probability"; affirming the consequent can lend support; Moore on Mill's "desirable"; Kunda on accuracy; Madison's Federalist 40 line; Fork's pragma-dialectics step; Walton's critical questions | UNVERIFIED by one pass | research notes (Hahn & Oaksford 2007; WP Ad hominem; fair-use.org Principia Ethica; WP Motivated reasoning; WS abstract) | kept |
+| "the heap and the beard of the ancient Sorites puzzle" | KNOWN_ISSUE | research/logic--paradoxes.md (SEP sorites; DL 2.108) | "the heap and the bald man" |

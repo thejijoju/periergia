@@ -18,3 +18,4 @@ File: `supabase/content/philosophy--history-of-philosophy--early-modern--hobbes.
 | "Sreedhar on the Amazons" | UNVERIFIED (B) | SEP hobbes-moral bibliography | name dropped |
 | Third Objections details; "power after power"; "nothing but reckoning" | UNVERIFIED wording (A, B) | research notes (search snippets, SEP descartes entries) | kept |
 | Gert 1967's argument | content UNVERIFIED (B) | SEP hobbes-moral ("widely rejected") | kept |
+| Margaret Cavendish attended "Cavendish Circle" meetings with Hobbes, Descartes, Mersenne and Gassendi | KNOWN_ISSUE | research/early-modern--early-modern-women-philosophers.md (SEP/IEP Cavendish) | host William or Charles; Descartes, Mersenne, Gassendi perhaps only occasionally; her own disclaimer added |

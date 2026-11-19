@@ -21,3 +21,4 @@ File: `supabase/content/philosophy--history-of-philosophy--ancient-beginnings--e
 | Caption: "the oldest written reference to the Buddha's birthplace" | UNVERIFIED (A, B) | WP Lumbini pillar inscription | "which names it as the Buddha's birthplace" |
 | Parfit "persons do exist … nations"; Bodhi SN 22.59 wording; Nāgasena similes | UNVERIFIED wording (A, B) | research notes: SEP personhood-india (Parfit p. 445); WP; Rhys Davids via search (B confirmed similes) | kept |
 | Anālayo "no compelling basis" | UNVERIFIED (A) / CONFIRMED (B: WP Four Noble Truths) | — | kept |
+| Nāgasena: "no permanent individuality (no soul)" | KNOWN_ISSUE | research/metaphysics--identity-and-change.md (SEP mind-indian-buddhism) | "(or self)" |

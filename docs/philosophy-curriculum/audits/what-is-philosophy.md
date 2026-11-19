@@ -17,3 +17,5 @@ File: `supabase/content/philosophy--what-is-philosophy.sql`. Written source-firs
 | *tetsugaku* standard in Chinese, Korean and Vietnamese | UNVERIFIED (Vietnamese, A) | research notes: WP Nishi Amane | kept |
 | Russell: value "partly in their very uncertainty" (quiz) | UNVERIFIED (A, B; text blocked) | search excerpts of ch. XV ("largely in its very uncertainty") | kept |
 | Burkert "showed" (1960) | CONFIRMED with note (B) | SEP pythagoras ("demonstrated"; Riedweg 2005 partly defends) | kept |
+| Hatata: "most scholars now accept his authorship" | KNOWN_ISSUE | research/early-modern--early-modern-beyond-europe.md (Wion 2021; Cantor/Egid/Merawi 2024) | "many scholars, including its recent translators, accept his authorship, but the question remains disputed" |
+| Wittgenstein: "therapy for confusions caused by ordinary language" | KNOWN_ISSUE | research/twentieth--wittgenstein.md (PI §§90, 116 via IEP/WP) | "confusions that arise when we are misled by the forms of our language" |

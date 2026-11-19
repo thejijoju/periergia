@@ -13,3 +13,4 @@ File: `supabase/content/philosophy--history-of-philosophy--early-modern--spinoza
 | Bayle's Chinese sect "in fact Buddhism" | partly UNVERIFIED (B) | WP ("Foe Kiao") | "which he called 'Foe Kiao', apparently Buddhism" |
 | Carlisle and James titles | IMPRECISE (B) | WP; NDPR | full titles (*… A New Reading of the Ethics*; *… Theologico-Political Treatise*) |
 | TTP 6 quotation; III P2s wording; Della Rocca's reply in detail | UNVERIFIED wording (A or B) | research notes; IEP | kept |
+| "(see *God: Arguments For and Against*)" for pantheism/atheism | KNOWN_ISSUE | God chapter checked: no Spinoza/pantheism discussion | "(for theism and atheism in general, see …)" |

@@ -18,3 +18,4 @@ File: `supabase/content/philosophy--history-of-philosophy--early-modern--early-m
 | Wion: "a set of evidence rather than a decisive proof" (body, rubric) | UNVERIFIED wording (A, B) | Wion snippet | paraphrased |
 | Merawi; the 2024 volume "treats the question as open" | partly UNVERIFIED (B): Merawi himself doubts authenticity | EJOSSAH abstract; De Gruyter blog | Merawi's own doubt added; volume "surveys the debate" |
 | Qian Mu on Zhu's method; Wang Ji "provisional"; Izutsu; Ansai's Zen past; Ṣadrā's premises 4–5; Sorai's wording | UNVERIFIED wording (A or B) | research notes; SEP | kept |
+| Mou Zongsan held Wang understood Confucianism more deeply than Zhu | KNOWN_ISSUE | research/twentieth--modern-chinese-and-indian-philosophy.md (IEP Mou §2c) | added that Mou ranked the Hu Hong–Liu Zongzhou line highest |

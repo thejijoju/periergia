@@ -18,5 +18,6 @@ File: `supabase/content/philosophy--history-of-philosophy--ancient-beginnings--s
 | Grube's wording of Apology 21d | UNVERIFIED (A) | WP Apology (Plato) quotes Grube | kept |
 | Elenchus rules ("answer according to his own beliefs" …) | UNVERIFIED (B) | research notes (SEP socrates / plato-ethics-shorter) | kept |
 | Stone, Strauss | CONFIRMED via reviews (A) | Kirkus; Harvard CHS bulletin | kept |
+| Plato "about twenty-five at the trial" | KNOWN_ISSUE | research/ancient--plato.md (SEP Plato 429?; IEP 428/7; DL 28; Nails 424/3) | "in his mid-to-late twenties at the trial" |
 
 Open: primary-text checks (Laches 193c, Crito 43a/45a, Grube translations) need Perseus or a printed text.

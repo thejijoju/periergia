@@ -15,3 +15,4 @@ File: `supabase/content/philosophy--history-of-philosophy--early-modern--enlight
 | Shklar called the separation of powers "a liberalism of fear" | IMPRECISE (B) | SEP montesquieu | "called his liberalism" |
 | Natural man "isolated, timid, peaceful, mute" (quoted as Rousseau) | IMPRECISE (B): IEP's words | IEP rousseau | "in the IEP's summary", unquoted |
 | Cole wordings; Nugent's sugar line; Wollstonecraft quotations; Gregor's gloss; "ten epochs"; Duchet; Berlin 1958 paraphrase | UNVERIFIED wording (A or B) | research notes (WP Vindication; WP Age of Enlightenment; search transcriptions) | kept |
+| *Dialectic of Enlightenment* "read the Nazi death camps as an outcome of the supremacy of instrumental reason" | KNOWN_ISSUE | research/twentieth--critical-theory.md (SEP Adorno) | "attacked the supremacy of instrumental reason"; Auschwitz claims dated later (*Negative Dialectics*, 1966) |

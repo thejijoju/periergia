@@ -22,3 +22,4 @@ File: `supabase/content/philosophy--history-of-philosophy--ancient-beginnings--a
 | Avicenna c. 970–1037 | IMPRECISE, minor (B) | SEP ibn-sina (ca. 970); WP c. 980 | kept (SEP) |
 | Greek *ear* = spring | UNVERIFIED (B) | research notes (WP Nicomachean Ethics; Rackham, Sachs) | kept |
 | Aquinas synthesis "praised as brilliant and attacked as distorting"; universities kept teaching after 1277 | UNVERIFIED (B), framing | — | kept as framing |
+| "Socrates is mortal" syllogism "is traced to John Stuart Mill" (also checkpoint "comes from J. S. Mill") | KNOWN_ISSUE | research/nineteenth--utilitarianism.md (SEP Mill shows use, not origin) | "a later textbook example (John Stuart Mill uses it)"; checkpoint explanation aligned |

@@ -31,7 +31,7 @@ What actually happened was a quarrel among people who all valued reason, about w
 
 ## The Theologians of Kalām
 
-Al-Ghazālī belonged to another tradition, *kalām*: rational theology, the defence of doctrine by argument. Its practitioners mostly held that the world consists of atoms (indivisible particles) and accidents (passing qualities such as colour or heat), re-created by God at every moment, so that God is the immediate cause of every change.
+Al-Ghazālī belonged to another tradition, *kalām*: rational theology, the defence of doctrine by argument. Its practitioners mostly held that the world consists of atoms (indivisible particles) and accidents (passing qualities such as colour or heat). Earlier theologians allowed that one event could generate (*tawallud*) another, but most later ones held that these are re-created by God at every moment, so that God is the immediate cause of every change.
 
 The first great school, the Muʿtazila, flourished in Basra and Baghdad. Their five principles included God's unity and God's justice, and justice did real philosophical work: if God rewards and punishes us, we must produce our own actions, or the punishment would be unjust.
 

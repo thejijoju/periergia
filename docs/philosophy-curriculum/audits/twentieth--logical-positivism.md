@@ -16,3 +16,4 @@ File: `supabase/content/philosophy--history-of-philosophy--twentieth-century--lo
 | *LTL* "written at 24" | IMPRECISE (B) | WP A. J. Ayer | "in his early twenties" |
 | "Reichenbach insisted on" "logical empiricism" | IMPRECISE (B) | SEP logical-empiricism | the Berlin group never called themselves positivists |
 | *LTL* a best seller after the war; Stebbing's logical/empiricism/positivism formula; Grayling; probabilistic hypotheses; Nelböck's diagnosis; Tscha Hung | UNVERIFIED by A or B / sources differ | research notes (SEP ayer; SEP stebbing; WP Ludwig Wittgenstein; notes on *LSD* §68; SEP schlick; Jiang) | kept |
+| Einstein's relativity showed Euclidean geometry false of physical space (no caveat) | KNOWN_ISSUE | research/epistemology--reason-and-experience.md (SEP analytic-synthetic, Rey) | added Rey's caveat that this use misreads the history |
