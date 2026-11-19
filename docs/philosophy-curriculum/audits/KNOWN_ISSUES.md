@@ -69,3 +69,6 @@ Found after publication; fix in a later batch.
 
 ### Informal Fallacies and Everyday Reasoning — open
 - Says "the heap and the beard of the ancient Sorites puzzle"; Eubulides' companion puzzle was the bald man (SEP sorites-paradox). Replace "the beard" with "the bald man". Source: docs/philosophy-curriculum/research/logic--paradoxes.md.
+
+### Logical Positivism and Its Critics — open
+- Uses Einstein and non-Euclidean geometry as a blow to the a priori without caveat; SEP (Rey, "The Analytic/Synthetic Distinction") says this reading "mis-interprets the history". Add the caveat. Source: docs/philosophy-curriculum/research/epistemology--reason-and-experience.md.
