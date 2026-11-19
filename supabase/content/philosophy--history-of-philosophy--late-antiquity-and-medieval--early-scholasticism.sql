@@ -119,7 +119,7 @@ On the other side stood William of Champeaux (c. 1070–1122, perhaps born a dec
 
 ## Abelard Against William
 
-Peter Abelard was born in 1079 at Le Pallet near Nantes in Brittany, into the lesser nobility, and gave up his inheritance and knighthood. He studied with Roscelin and then William, and returned to Paris between 1108 and 1113 to debate William on universals. His argument runs:
+Peter Abelard was born in 1079 at Le Pallet near Nantes in Brittany, into the lesser nobility, and gave up his inheritance and knighthood. He studied with Roscelin and then William, and returned to Paris to debate William on universals (between 1108 and 1110 on the IEP's dating; the SEP allows 1108–1113 for his return). His argument runs:
 
 1. Suppose the universal *animal* is one real thing, wholly present at once in Socrates and in Brunellus the donkey, making up the substance of each.
 2. In Socrates this animal is shaped by rationality; in Brunellus, by irrationality.

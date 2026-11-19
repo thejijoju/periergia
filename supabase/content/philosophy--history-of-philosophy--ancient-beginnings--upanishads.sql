@@ -117,7 +117,7 @@ The identification of ātman with brahman is often treated as the central teachi
 
 But Black cautions that this is "not the only characterization". Uddālaka does not make it, and even in Śāṇḍilya it is "often unclear" whether full identity is meant or whether ātman is "an aspect or quality of brahman". Some passages are frankly materialist, making brahman space or tracing everything to water or wind. And the Upanishadic self is often active, a controller or creator, unlike the "changeless and inactive" self of later Sāṃkhya, Yoga and Advaita.
 
-The single doctrine came later, when Śaṅkara (c. 700 CE), Rāmānuja (c. 1000) and Madhva (c. 1200) each wrote commentaries presenting the Upaniṣads as one consistent position, as Vedānta: Śaṅkara, Rāmānuja and Madhva explains. The Buddhists, meanwhile, rejected "any notion of an indivisible and unchanging self", the subject of The Buddha and Early Buddhist Philosophy.
+The single doctrine came later, when Śaṅkara (c. 700 CE), Rāmānuja (eleventh–twelfth century) and Madhva (thirteenth century) each wrote commentaries presenting the Upaniṣads as one consistent position, as Vedānta: Śaṅkara, Rāmānuja and Madhva explains. The Buddhists, meanwhile, rejected "any notion of an indivisible and unchanging self", the subject of The Buddha and Early Buddhist Philosophy.
 
 ## Karma, Rebirth and the Slow Arrival of Liberation
 

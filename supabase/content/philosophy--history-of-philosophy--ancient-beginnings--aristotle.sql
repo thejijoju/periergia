@@ -51,7 +51,7 @@ He studied deductions built from four kinds of sentence, later lettered A, E, I 
 2. Every human is an animal.
 3. Therefore, every human is mortal.
 
-The form is valid whatever terms replace "animal", "mortal" and "human", and Aristotle made that visible by writing letters in place of terms, as modern logic uses variables. The schoolroom "All men are mortal; Socrates is a man; therefore Socrates is mortal" is not his: it is traced to John Stuart Mill, and Aristotle's system seems to exclude sentences about individuals altogether. He sorted premise pairs into three "figures" by the position of the middle term, showed that fourteen combinations yield a conclusion of necessity, and proved the valid forms of the second and third figures by reducing them to the self-evident first figure; the remaining combinations he rejected by counterexample.
+The form is valid whatever terms replace "animal", "mortal" and "human", and Aristotle made that visible by writing letters in place of terms, as modern logic uses variables. The schoolroom "All men are mortal; Socrates is a man; therefore Socrates is mortal" is not his: it is a later textbook example (John Stuart Mill uses it), and Aristotle's system seems to exclude sentences about individuals altogether. He sorted premise pairs into three "figures" by the position of the middle term, showed that fourteen combinations yield a conclusion of necessity, and proved the valid forms of the second and third figures by reducing them to the self-evident first figure; the remaining combinations he rejected by counterexample.
 
 There were limits. The syllogistic covers only a small part of valid reasoning and cannot handle relations: in it, the inferences from "John loves Mary" to "Something loves Mary" and to "John loves something" have nothing in common, whereas Gottlob Frege's logic, from 1879, treats both by one rule. Nor was it the only ancient logic. The logic of "if", "or" and "and" was developed by Diodorus Cronus, Philo and above all the Stoic Chrysippus, whom many ancients thought the greatest logician, as *Hellenistic Philosophy: Stoics, Epicureans and Sceptics* explains. Still, Aristotle's system was taught, by and large without rival, from the fourth to the nineteenth century CE; Kant thought nothing significant had been added in two millennia. *Logic across Traditions* sets it beside other traditions' logics.
 
@@ -89,7 +89,7 @@ The errors were serious too. He thought thinking happens near the heart and the 
 q: Which of these is a valid syllogism in Aristotle's own system, rather than a later textbook example?
 a*: Every animal is mortal; every human is an animal; therefore every human is mortal.
 a: All men are mortal; Socrates is a man; therefore Socrates is mortal.
-x: This example comes from J. S. Mill, and Aristotle's syllogistic seems to exclude sentences about individuals.
+x: This is a later textbook example (J. S. Mill uses it), and Aristotle's syllogistic seems to exclude sentences about individuals.
 a: If it is day, it is light; it is day; therefore it is light.
 x: This "if... then" inference belongs to propositional logic, developed above all by the Stoic Chrysippus, not to Aristotle's term logic.
 a: John loves Mary; therefore something loves Mary.

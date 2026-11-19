@@ -17,3 +17,4 @@ File: `supabase/content/philosophy--history-of-philosophy--late-antiquity-and-me
 | Grendler: university "unlikely before the 1150s" | minor (B) | WP University of Bologna | "and perhaps not before the 1180s" |
 | "Toledo School" doubtful; lectio/quaestio/determination; Soissons 1122 | UNVERIFIED (A, B) | research notes: WP Toledo School; WP Scholasticism; IEP abelard | kept |
 | Sens 1141 (traditionally 1140) | CONFIRMED with source split (A, B) | WP / Mews 2002 vs SEP abelard | kept |
+| Abelard returned to Paris "between 1108 and 1113" to debate William | KNOWN_ISSUE | research/metaphysics--ontology.md; IEP Abelard (1108–1110); SEP Abelard (return 1108–1113) | debates dated 1108–1110 (IEP), SEP range kept for the return |

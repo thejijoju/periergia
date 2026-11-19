@@ -18,3 +18,4 @@ File: `supabase/content/philosophy--history-of-philosophy--late-antiquity-and-me
 | Comans annotation: "the problem of which works are authentic" | UNVERIFIED (B) | publisher description | annotation rewritten (method, scripture, Īśvara) |
 | Seven untenables gist; Ingalls's reading; khyātivāda verse; garland legend; Ram-Prasad's dream argument; Brahma-sūtra vs Nyāya | UNVERIFIED in detail / minor (A, B) | Grimes 1990; Ingalls 1953 (SEP bibliography); hagiographies | kept (framed as gist or legend) |
 | Siderits irreflexivity cross-reference | UNVERIFIED (A); CONFIRMED (B) | SEP buddha; Early Buddhism chapter | kept |
+| Rāmānuja and Madhva on God "belong to the debates of" *God: Arguments For and Against* | KNOWN_ISSUE | God chapter checked: neither discussed | "can be set beside the general arguments surveyed in" that chapter |

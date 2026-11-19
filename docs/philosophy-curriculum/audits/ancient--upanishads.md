@@ -19,3 +19,4 @@ File: `supabase/content/philosophy--history-of-philosophy--ancient-beginnings--u
 | Krishan on Vedic origins | UNVERIFIED (A) / CONFIRMED (B) | WP Karma | kept |
 | Lindquist 2008 argument; "privately" (BU 3.2.13); BU 2.4.3 verse; Hume 1921; Kosambi Gītā 4.13; Śāṇḍilya wording | UNVERIFIED details (A, B) | — | kept; primary-text checks pending |
 | Oupnek'hat 1801–02 | CONFIRMED (WP); IEP says 1804 | WP Anquetil-Duperron | kept |
+| "Rāmānuja (c. 1000) and Madhva (c. 1200)" | KNOWN_ISSUE | research/medieval--vedanta.md (IEP Rāmānuja; Carman; IEP Madhva) | "Rāmānuja (eleventh–twelfth century) and Madhva (thirteenth century)" |

@@ -14,3 +14,4 @@ File: `supabase/content/philosophy--history-of-philosophy--twentieth-century--bi
 | Stebbing "led the Cambridge School of Analysis", "the paradigm of analysis" | IMPRECISE, UNVERIFIED (B) | SEP stebbing | "a leading figure"; unquoted "its model of analysis" |
 | "follows Dummett's 'reference'" | UNVERIFIED (B) | WP Sense and reference | "the common translation" |
 | Frege's 22 June 1902 reply wording; Beaney p. 279; *On Certainty* §521 paraphrase; "wig" joke; Ramsey 1925 vs Chwistek 1921; Brixton five months | UNVERIFIED by A or B / sources differ | research notes (van Heijenoort via SEP and MacTutor; IEP moore §3; SEP russell) | kept |
+| Frege's argument uses "Hesperus = Phosphorus" | KNOWN_ISSUE | research/science--meaning-and-reference.md (SEP/IEP Frege: morning star/evening star) | argument uses "the morning star = the evening star"; Hesperus/Phosphorus marked as later philosophers' names |
