@@ -60,3 +60,6 @@ Found after publication; fix in a later batch.
 
 ### Beyond Europe (early modern) — open
 - Says Mou Zongsan held Wang Yangming understood Confucianism more deeply than Zhu Xi; true, but Mou ranked a third line (Hu Hong and Liu Zongzhou) highest of all. Add the nuance. Source: docs/philosophy-curriculum/research/twentieth--modern-chinese-and-indian-philosophy.md.
+
+### Women Philosophers of the Early Modern Era — open
+- Cross-reference sends readers to the *Beyond Europe* chapter for Sor Juana, which never mentions her; point to *Latin American Philosophy and the Philosophy of Liberation* instead. Source: docs/philosophy-curriculum/research/twentieth--latin-american-philosophy.md.
