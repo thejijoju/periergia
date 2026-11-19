@@ -18,7 +18,18 @@ Node: `philosophy/aesthetics/beauty-and-taste`. Seed: Beauty and the judgement o
 - IEP-Taste = https://iep.utm.edu/aesthetic-taste/ ("Aesthetic Taste", Michael R. Spicher).
 - IEP-KantAes = https://iep.utm.edu/kantaest/ (Douglas Burnham; uses Pluhar's translation).
 - WP-x = English Wikipedia raw wikitext read this session: On_the_Sublime, Sublime_(philosophy), A_Philosophical_Enquiry_into_the_Origin_of_Our_Ideas_of_the_Sublime_and_Beautiful, Hippias_Major, John_Ogilby, Four_Dissertations, Critique_of_Judgment, Distinction_(book), Pierre_Bourdieu, Paul_C._Taylor, Yuriko_Saito, Elaine_Scarry, Alexander_Nehamas, Nick_Zangwill, Roger_Scruton, Evolutionary_aesthetics, Denis_Dutton, Władysław_Tatarkiewicz, Anthony_Ashley-Cooper,_3rd_Earl_of_Shaftesbury, On_the_Genealogy_of_Morality. URL form: https://en.wikipedia.org/wiki/<title>.
-- WS-n = WebSearch result summaries (secondary; noted where used).
+- WS-n = WebSearch result summaries (secondary; hedge anything resting on them alone):
+  - WS-1: search on Hume's Sancho/leathern-thong passage (results incl. SEP archive, Lander open reader, Rowan edition; summary only).
+  - WS-2: search on Kant §56 antinomy thesis/antithesis (Protevi lecture notes, Cambridge abstract on *Kant's Theory of Taste*).
+  - WS-3: search on the Ogilby/Milton sentence (confirmed via WP-John_Ogilby).
+  - WS-4: two searches on Levinson 2002 "Hume's Standard of Taste: The Real Problem" (ResearchGate record, PhilArchive RIGLOT-3 "Levinson on the Aesthetic Ideal", others).
+  - WS-6: search on Tatarkiewicz "The Great Theory of Beauty and Its Decline" (Skow Substack summary; table of contents of *A History of Six Ideas*).
+  - WS-7: search on ST I q.39 a.8 and I q.5 a.4 ad 1 Latin (secondary articles).
+  - WS-8: search on Kant §9 Guyer wording (Kantian Review article summary).
+  - WS-9: second search on §56 (Protevi notes; commentary on §57's indeterminate concept of the supersensible).
+  - WS-10: extended search on the Sancho passage (summaries of the Hume text and of commentators).
+  - WS-12: search on Stendhal's "promesse du bonheur" source (Weintraub article; 3 Quarks Daily; quotation sites).
+  - (Searches on the Homer sentence and a first Sancho query returned nothing usable.)
 
 No SEP entry exists at /entries/sublime/ or /entries/medieval-aesthetics/ (both 404 this session); no IEP entry at /hume-aes/, /beauty/ or /sublime/. Primary-text sites (davidhume.org, Gutenberg, Wikisource, university mirrors) were blocked by this session's network, so no primary text of Hume or Kant was read directly; quotations below come from SEP/IEP/Wikipedia citing them.
 
@@ -201,7 +212,7 @@ Reconstruction assembled from SEP-HumeAes §4, SEP-18C §1.3, SEP-Beauty §1 and
 - "by beauty I mean, that quality or those qualities in bodies, by which they cause love, or some passion similar to it" — Burke, *Philosophical Enquiry* (1757) [source: SEP-Beauty §2.3]
 - "There are three requirements for beauty. Firstly, integrity or perfection—for if something is impaired it is ugly. Then there is due proportion or consonance. And also clarity: whence things that are brightly coloured are called beautiful." — Aquinas, ST I, q. 39, a. 8 (English Dominican Fathers trans.) [source: SEP-Beauty §2.1]
 - "beauty is not a concept of the object" — Kant, CPJ §38, Ak. 5:290 (Cambridge trans. via SEP) [source: SEP-KantAes §2.1.2]
-- "he judges not merely for himself, but for everyone, and speaks of beauty as if it were a property of things" — Kant, CPJ §7, Ak. 5:212 (Guyer & Matthews 2000: 98) [source: SEP-AesJudg §1.2]
+- "he judges not merely for himself, but for everyone, and speaks of beauty as if it were a property of things" — Kant, CPJ, Ak. 5:212–213 (Guyer & Matthews 2000: 98) [source: SEP-AesJudg §1.2]
 - "a power that has no dominion over us" — Kant on the dynamically sublime, CPJ §28, Ak. 5:260 [source: SEP-KantAes §2.7]
 - "Almost everyone declares that the symmetry of parts towards each other and towards a whole ... constitutes the beauty recognized by the eye" — Plotinus, Ennead I.6.1 (MacKenna & Page) [source: SEP-Beauty §2.2] (section number 1 inferred from structure of I.6; SEP cites only "Ennead I,6")
 - "the Sublime leads the listeners not to persuasion, but to ecstasy" — "Longinus", *On the Sublime* 1.4 (translation as given on WP) [source: WP-On_the_Sublime]
