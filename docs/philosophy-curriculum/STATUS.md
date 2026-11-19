@@ -101,7 +101,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Animals and the Environment | chapter | `philosophy/ethics/animals-and-environment` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Ethics of Technology and AI | chapter | `philosophy/ethics/ethics-of-technology` | ✍️ 19 Nov 2026 |
 | Political Philosophy | overview | `philosophy/political-philosophy` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Authority and the State: the Social Contract and Its Critics | chapter | `philosophy/political-philosophy/authority-and-the-state` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Authority and the State: the Social Contract and Its Critics | chapter | `philosophy/political-philosophy/authority-and-the-state` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Liberty and Rights | chapter | `philosophy/political-philosophy/liberty-and-rights` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Justice and Equality | chapter | `philosophy/political-philosophy/justice-and-equality` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Democracy and Its Critics | chapter | `philosophy/political-philosophy/democracy` | ⬜ |
