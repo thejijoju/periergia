@@ -62,7 +62,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modern Chinese and Indian Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/modern-chinese-and-indian-philosophy` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;African Philosophy: the Ethnophilosophy Debate and Beyond | chapter | `philosophy/history-of-philosophy/twentieth-century/african-philosophy` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latin American Philosophy and the Philosophy of Liberation | chapter | `philosophy/history-of-philosophy/twentieth-century/latin-american-philosophy` | ✍️ 19 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytic Philosophy since 1950 | chapter | `philosophy/history-of-philosophy/twentieth-century/analytic-philosophy-since-1950` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytic Philosophy since 1950 | chapter | `philosophy/history-of-philosophy/twentieth-century/analytic-philosophy-since-1950` | ✍️ 19 Nov 2026 |
 | Logic and Reasoning | overview | `philosophy/logic-and-reasoning` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Arguments: Validity, Soundness and Form | chapter | `philosophy/logic-and-reasoning/arguments` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Informal Fallacies and Everyday Reasoning | chapter | `philosophy/logic-and-reasoning/fallacies` | ⬜ |
