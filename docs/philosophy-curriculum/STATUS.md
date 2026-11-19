@@ -80,7 +80,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | Reality (Metaphysics) | overview | `philosophy/metaphysics` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;What Exists? Ontology and Universals | chapter | `philosophy/metaphysics/ontology` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Identity, Change and Persons | chapter | `philosophy/metaphysics/identity-and-change` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Causation | chapter | `philosophy/metaphysics/causation` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Causation | chapter | `philosophy/metaphysics/causation` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Time | chapter | `philosophy/metaphysics/time` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Free Will and Determinism | chapter | `philosophy/metaphysics/free-will` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Possibility and Necessity | chapter | `philosophy/metaphysics/possibility-and-necessity` | ⬜ |
