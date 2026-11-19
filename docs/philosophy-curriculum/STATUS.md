@@ -70,7 +70,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;Induction, Probability and Inference to the Best Explanation | chapter | `philosophy/logic-and-reasoning/induction-and-probability` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Paradoxes: the Liar, the Heap and Zeno | chapter | `philosophy/logic-and-reasoning/paradoxes` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Logic across Traditions | chapter | `philosophy/logic-and-reasoning/logic-across-traditions` | ✍️ 19 Nov 2026 |
-| Knowledge (Epistemology) | overview | `philosophy/epistemology` | ⬜ |
+| Knowledge (Epistemology) | overview | `philosophy/epistemology` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;What Is Knowledge? From Plato to the Gettier Problem | chapter | `philosophy/epistemology/what-is-knowledge` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Scepticism and the Answers to It | chapter | `philosophy/epistemology/scepticism` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Perception and the External World | chapter | `philosophy/epistemology/perception` | ✍️ 19 Nov 2026 |
