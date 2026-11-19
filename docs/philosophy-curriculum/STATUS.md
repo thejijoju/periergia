@@ -50,7 +50,7 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nietzsche | chapter | `philosophy/history-of-philosophy/nineteenth-century/nietzsche` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;American Pragmatism: Peirce, James and Dewey | chapter | `philosophy/history-of-philosophy/nineteenth-century/pragmatism` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Philosophy in an Age of Empire | chapter | `philosophy/history-of-philosophy/nineteenth-century/philosophy-in-an-age-of-empire` | ✍️ 18 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;The Twentieth Century and After | overview | `philosophy/history-of-philosophy/twentieth-century` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;The Twentieth Century and After | overview | `philosophy/history-of-philosophy/twentieth-century` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frege, Russell and the Birth of Analytic Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/birth-of-analytic-philosophy` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wittgenstein | chapter | `philosophy/history-of-philosophy/twentieth-century/wittgenstein` | ✍️ 18 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logical Positivism and Its Critics: the Vienna Circle, Popper and Quine | chapter | `philosophy/history-of-philosophy/twentieth-century/logical-positivism` | ✍️ 18 Nov 2026 |
@@ -62,10 +62,10 @@ Every node of the Philosophy tree (`src/lib/seed.ts`), in order. ⬜ not written
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modern Chinese and Indian Philosophy | chapter | `philosophy/history-of-philosophy/twentieth-century/modern-chinese-and-indian-philosophy` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;African Philosophy: the Ethnophilosophy Debate and Beyond | chapter | `philosophy/history-of-philosophy/twentieth-century/african-philosophy` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latin American Philosophy and the Philosophy of Liberation | chapter | `philosophy/history-of-philosophy/twentieth-century/latin-american-philosophy` | ✍️ 19 Nov 2026 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytic Philosophy since 1950 | chapter | `philosophy/history-of-philosophy/twentieth-century/analytic-philosophy-since-1950` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytic Philosophy since 1950 | chapter | `philosophy/history-of-philosophy/twentieth-century/analytic-philosophy-since-1950` | ✍️ 19 Nov 2026 |
 | Logic and Reasoning | overview | `philosophy/logic-and-reasoning` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Arguments: Validity, Soundness and Form | chapter | `philosophy/logic-and-reasoning/arguments` | ⬜ |
-| &nbsp;&nbsp;&nbsp;&nbsp;Informal Fallacies and Everyday Reasoning | chapter | `philosophy/logic-and-reasoning/fallacies` | ⬜ |
+| &nbsp;&nbsp;&nbsp;&nbsp;Arguments: Validity, Soundness and Form | chapter | `philosophy/logic-and-reasoning/arguments` | ✍️ 19 Nov 2026 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Informal Fallacies and Everyday Reasoning | chapter | `philosophy/logic-and-reasoning/fallacies` | ✍️ 19 Nov 2026 |
 | &nbsp;&nbsp;&nbsp;&nbsp;Formal Logic: Propositions, Predicates and Proofs | chapter | `philosophy/logic-and-reasoning/formal-logic` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Induction, Probability and Inference to the Best Explanation | chapter | `philosophy/logic-and-reasoning/induction-and-probability` | ⬜ |
 | &nbsp;&nbsp;&nbsp;&nbsp;Paradoxes: the Liar, the Heap and Zeno | chapter | `philosophy/logic-and-reasoning/paradoxes` | ⬜ |
